@@ -1,6 +1,6 @@
 bin_PROGRAMS = xfce4-taskmanager
 
-xfce4_taskmanager_SOURCES = xfce4-taskmanager.c
+xfce4_taskmanager_SOURCES = main.c types.h gui.c gui.h functions.c functions.h
 
 INCLUDES = $(DEPS_CFLAGS)
 
