@@ -24,6 +24,7 @@
 #include "types.h"
 #include "functions.h"
 
+GtkWidget *window;
 GtkTreeSelection *selection;
 GtkListStore *list_store;
 
@@ -34,3 +35,4 @@ GtkWidget *create_task_popup_menu(void);
 GtkWidget *create_main_popup_menu(void);
 gboolean handle_mouse_events(GtkWidget *widget, GdkEventButton *event);
 void handle_task_menu(GtkWidget *widget, gchar *signal);
+void show_about_dialog(void);

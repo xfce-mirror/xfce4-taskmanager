@@ -23,7 +23,7 @@
 /* create the GUI */
 void create_gui(void)
 {	
-	GtkWidget *window, *eventbox, *box, *button, *scrolled_window, *tree_view, *main_popup_menu, *task_popup_menu;
+	GtkWidget *eventbox, *box, *button, *scrolled_window, *tree_view, *main_popup_menu, *task_popup_menu;
 	GtkCellRenderer *cell_renderer;
 	GtkTreeViewColumn *column;
 	
@@ -182,6 +182,7 @@ GtkWidget *create_main_popup_menu()
 	menu = gtk_menu_new();
 	
 	menuitem = gtk_menu_item_new_with_label("About");
+	g_signal_connect(G_OBJECT(menuitem), "activate", G_CALLBACK(show_about_dialog), NULL);
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
 	gtk_widget_show(menuitem);
 	
@@ -224,7 +225,7 @@ void handle_task_menu(GtkWidget *widget, gchar *signal)
 				{
 					gtk_tree_model_get(model, &iter, 1, &task_id, -1);
 					send_signal_to_task(task_id, signal);
-					//refresh_task_list();
+					refresh_task_list();
 				}
 			}
 		}
@@ -240,7 +241,7 @@ void handle_task_menu(GtkWidget *widget, gchar *signal)
 				{
 					gtk_tree_model_get(model, &iter, 1, &task_id, -1);
 					send_signal_to_task(task_id, signal);
-					//refresh_task_list();
+					refresh_task_list();
 				}
 			}
 		}
@@ -257,4 +258,19 @@ void handle_task_menu(GtkWidget *widget, gchar *signal)
 			}
 		}		
 	}
+}
+
+void show_about_dialog()
+{
+	GtkWidget *about_dialog;
+	XfceAboutInfo *about_info;
+	
+	about_info = xfce_about_info_new("xfce4-taskmanager", VERSION, "Xfce4-Taskmanager is a easy to use Taskmanager.",XFCE_COPYRIGHT_TEXT("2005", "Johannes Zellner"), XFCE_LICENSE_GPL);
+	xfce_about_info_set_homepage(about_info, "http://developer.berlios.de/projects/xfce-goodies/");
+	xfce_about_info_add_credit(about_info, "Johannes Zellner", "webmaster@nebulon.de", "Original Author");
+    
+	about_dialog = xfce_about_dialog_new(GTK_WINDOW(window), about_info, NULL);
+	g_signal_connect(G_OBJECT(about_dialog), "response", G_CALLBACK(gtk_widget_destroy), NULL);
+	gtk_widget_show(about_dialog);
+	
 }
