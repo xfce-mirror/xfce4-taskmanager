@@ -37,7 +37,7 @@ void send_signal_to_task(gchar *task_id, gchar *signal)
 	}
 }
 
-void refresh_task_list()
+void refresh_task_list(gboolean first_time)
 {
 	/* markes all tasks to "not checked" */
 	gint i;
@@ -73,13 +73,14 @@ void refresh_task_list()
 					if(line_count == 0)
 						strcpy(task.name,g_strstrip(g_strsplit(buffer, ":", 2)[1]));
 					else if(line_count == 3)
-						strcpy(task.pid,g_strstrip(g_strsplit(buffer, ":", 2)[1]));
+						task.pid = atoi(g_strstrip(g_strsplit(buffer, ":", 2)[1]));
 					else if(line_count == 5)
-						strcpy(task.ppid,g_strstrip(g_strsplit(buffer, ":", 2)[1]));
+						task.ppid = atoi(g_strstrip(g_strsplit(buffer, ":", 2)[1]));
 					else if(line_count == 7)
 					{
-						passwdp = getpwuid(atoi(g_strsplit(g_strstrip(g_strsplit(buffer, ":", 2)[1]), "\t", 2)[0])); 
-						strcpy(task.uid, passwdp->pw_name);
+						task.uid = atoi(g_strsplit(g_strstrip(g_strsplit(buffer, ":", 2)[1]), "\t", 2)[0]);
+						passwdp = getpwuid(task.uid); 
+						strcpy(task.uname, passwdp->pw_name);
 					}
 					
 					line_count++;
@@ -93,7 +94,7 @@ void refresh_task_list()
 				
 				for(i = 0; i < task_count; i++)
 				{
-					if(strcmp(all_tasks[i].pid,task.pid) == 0)
+					if(all_tasks[i].pid == task.pid)
 					{
 						all_tasks[i].checked = TRUE;
 						new_task = FALSE;
@@ -105,27 +106,33 @@ void refresh_task_list()
 					task.checked = TRUE;
 					all_tasks[task_count] = task;
 					task_count++;
-					add_new_list_item(task);
+					
+					if(!first_time)
+						add_tree_item(task);
 				}
 			}
 		}
 	}
 	closedir(dir);
 	
-	/* removing all tasks which are not marked */
-	i = 0;
-	
-	while(i < task_count)
+	if(!first_time)
 	{
-		if(!all_tasks[i].checked)
+		/* removing all tasks which are not marked */
+		i = 0;
+	
+		while(i < task_count)
 		{
-			remove_list_item(all_tasks[i]);
-			remove_task_from_array(i);
+			if(!all_tasks[i].checked)
+			{
+				remove_tree_item(all_tasks[i]);
+				remove_task_from_array(i);
+			}
+			i++;
 		}
-		i++;
 	}
 }
 
+/* removes a task from the taskarray */
 void remove_task_from_array(gint count)
 {
 	gint i;
@@ -135,4 +142,111 @@ void remove_task_from_array(gint count)
 		all_tasks[i] = all_tasks[i+1];
 	}
 	task_count--;
+}
+
+/* checks if there is a parent task (ppid) */
+struct task *get_parent_task(struct task task)
+{
+	gint i;
+	
+	for(i = 0; i < task_count; i++)
+	{
+		if(task.ppid == all_tasks[i].pid && all_tasks[i].pid != task.pid)
+			return(&all_tasks[i]);
+	}
+	
+	return(NULL);
+}
+
+void show_user_tasks(void)
+{
+	gint i;
+	gint user_id = getuid();
+	
+	for(i = 0; i < task_count; i++)
+	{
+		if(all_tasks[i].uid == user_id)
+			add_tree_item(all_tasks[i]);
+	}
+}
+
+void hide_user_tasks(void)
+{
+	gint i;
+	gint user_id = getuid();
+	
+	for(i = 0; i < task_count; i++)
+	{
+		if(all_tasks[i].uid == user_id)
+			remove_tree_item(all_tasks[i]);
+	}
+}
+
+void show_root_tasks(void)
+{
+	gint i;
+	
+	for(i = 0; i < task_count; i++)
+	{
+		if(all_tasks[i].uid == 0)
+			add_tree_item(all_tasks[i]);
+	}
+}
+
+void hide_root_tasks(void)
+{
+	gint i;
+	
+	for(i = 0; i < task_count; i++)
+	{
+		if(all_tasks[i].uid == 0)
+			remove_tree_item(all_tasks[i]);
+	}
+}
+
+void show_other_tasks(void)
+{
+	gint i;
+	gint user_id = getuid();
+	
+	for(i = 0; i < task_count; i++)
+	{
+		if(all_tasks[i].uid != user_id && all_tasks[i].uid != 0)
+			add_tree_item(all_tasks[i]);
+	}
+}
+
+void hide_other_tasks(void)
+{
+	gint i;
+	gint user_id = getuid();
+	
+	for(i = 0; i < task_count; i++)
+	{
+		if(all_tasks[i].uid != user_id && all_tasks[i].uid != 0)
+			remove_tree_item(all_tasks[i]);
+	}
+}
+
+void load_config(void)
+{
+	gchar * homedir;
+	
+	homedir = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, "xfce4", FALSE);
+	XfceRc *config_obj = xfce_rc_simple_open(g_build_filename(homedir, "taskmanager.rc", NULL), TRUE);
+	g_free(homedir);
+	
+	if(config_obj == NULL)
+	{
+		config_show_user_tasks = TRUE;
+		config_show_root_tasks = FALSE;
+		config_show_other_tasks = FALSE;
+		printf("Could not open configfile\n");
+	}
+	else
+	{
+		config_show_user_tasks = xfce_rc_read_bool_entry(config_obj, "show_user_tasks", TRUE);
+		config_show_root_tasks = xfce_rc_read_bool_entry(config_obj, "show_root_tasks", FALSE);
+		config_show_other_tasks = xfce_rc_read_bool_entry(config_obj, "show_other_tasks", FALSE);	
+	}
 }

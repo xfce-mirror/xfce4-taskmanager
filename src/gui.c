@@ -57,16 +57,17 @@ void create_gui(void)
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_box_pack_start(GTK_BOX(box), scrolled_window, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled_window);
-	
+		
 	tree_view = gtk_tree_view_new();
+	
 	g_signal_connect_swapped(G_OBJECT(tree_view), "button-press-event", G_CALLBACK(handle_mouse_events), G_OBJECT(task_popup_menu));
 	gtk_container_add(GTK_CONTAINER(scrolled_window), GTK_WIDGET(tree_view));
 	gtk_widget_show(tree_view);
 	
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
 	
-	list_store = gtk_list_store_new(4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-	gtk_tree_view_set_model(GTK_TREE_VIEW(tree_view), GTK_TREE_MODEL(list_store));
+	tree_store = gtk_tree_store_new(4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+	gtk_tree_view_set_model(GTK_TREE_VIEW(tree_view), GTK_TREE_MODEL(tree_store));
 	
 	cell_renderer = gtk_cell_renderer_text_new();
 	
@@ -83,10 +84,17 @@ void create_gui(void)
 	gtk_tree_view_append_column(GTK_TREE_VIEW(tree_view), column);
 	
 	/* load the tasklist */
-   refresh_task_list();
-	
+   refresh_task_list(TRUE);
+   if(config_show_root_tasks)
+   	show_root_tasks();
+   if(config_show_user_tasks)
+   	show_user_tasks();
+  	if(config_show_other_tasks)
+   	show_other_tasks();
+   
 	/* Quit-button */
 	button = gtk_button_new_from_stock(GTK_STOCK_QUIT);
+	g_signal_connect_swapped(G_OBJECT(button), "button-press-event", G_CALLBACK(handle_mouse_events), G_OBJECT(main_popup_menu));
 	g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(gtk_main_quit), NULL);
 	gtk_box_pack_start(GTK_BOX(box), button, FALSE, TRUE, 0);
 	gtk_widget_show(button);
@@ -94,55 +102,122 @@ void create_gui(void)
 	gtk_widget_show(window);
 }
 
+
+GtkTreeIter get_iter_by_task(struct task *task)
+{
+	gboolean valid;
+	GtkTreeIter iter;
+	GtkTreeIter parent_iter;
+	parent_iter.stamp = -1;
+	gint count = 0;
+	
+	valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(tree_store), &iter);
+
+	while(valid)
+	{
+		gchar *str_data;
+		gtk_tree_model_get(GTK_TREE_MODEL(tree_store), &iter, 1, &str_data, -1);
+
+      if(task->ppid == atoi(str_data))
+      {
+      	g_free(str_data);
+      	return(iter);
+      }
+      g_free(str_data);
+
+		if(gtk_tree_model_iter_has_child(GTK_TREE_MODEL(tree_store), &iter))
+		{
+			parent_iter = *gtk_tree_iter_copy(&iter);
+			valid = gtk_tree_model_iter_children(GTK_TREE_MODEL(tree_store), &iter, &parent_iter);
+		}
+		else
+		{
+			valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(tree_store), &iter);
+			while(!valid)
+			{
+				if(parent_iter.stamp != -1)
+				{
+					iter = *gtk_tree_iter_copy(&parent_iter);
+
+					if(!gtk_tree_model_iter_parent(GTK_TREE_MODEL(tree_store), &parent_iter, &iter))
+						parent_iter.stamp = -1;
+					
+					valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(tree_store), &iter);
+				}
+				else
+					break;
+			}
+		}
+	}
+	
+	iter.stamp = -1;
+	return(iter);
+}
+
 /* add new tasks to the list */
-gboolean add_new_list_item(struct task task)
+gboolean add_tree_item(struct task task)
 {
 	GtkTreeIter iter;
 	
+	/* check if there is a parent task */
+	struct task *parent_task = get_parent_task(task);
+	
 	/* Append new line in the list */
-	gtk_list_store_append(GTK_LIST_STORE(list_store), &iter);
+	if(parent_task == NULL)
+	{
+		gtk_tree_store_append(GTK_TREE_STORE(tree_store), &iter, NULL);
+	}
+	else
+	{
+		GtkTreeIter parent_iter = get_iter_by_task(&task);
+
+		if(parent_iter.stamp == -1)
+			gtk_tree_store_append(GTK_TREE_STORE(tree_store), &iter, NULL);
+		else
+			gtk_tree_store_append(GTK_TREE_STORE(tree_store), &iter, &parent_iter);
+	}
 	
 	/* Fill the appended line with data */
-	gchar *list_value_1 = g_strdup_printf("%s", task.uid);
-	gtk_list_store_set(GTK_LIST_STORE(list_store), &iter, 0, list_value_1, -1);
+	gchar *list_value_1 = g_strdup_printf("%s", task.uname);
+	gtk_tree_store_set(GTK_TREE_STORE(tree_store), &iter, 0, list_value_1, -1);
 	g_free(list_value_1);
 
-	gchar *list_value_2 = g_strdup_printf("%s", task.pid);
-	gtk_list_store_set(GTK_LIST_STORE(list_store), &iter, 1, list_value_2, -1);
+	gchar *list_value_2 = g_strdup_printf("%i", task.pid);
+	gtk_tree_store_set(GTK_TREE_STORE(tree_store), &iter, 1, list_value_2, -1);
 	g_free(list_value_2);
 	
-	gchar *list_value_3 = g_strdup_printf("%s", task.ppid);
-	gtk_list_store_set(GTK_LIST_STORE(list_store), &iter, 2, list_value_3, -1);
+	gchar *list_value_3 = g_strdup_printf("%i", task.ppid);
+	gtk_tree_store_set(GTK_TREE_STORE(tree_store), &iter, 2, list_value_3, -1);
 	g_free(list_value_3);
 	
 	gchar *list_value_4 = g_strdup_printf("%s", task.name);
-	gtk_list_store_set(GTK_LIST_STORE(list_store), &iter, 3, list_value_4, -1);
+	gtk_tree_store_set(GTK_TREE_STORE(tree_store), &iter, 3, list_value_4, -1);
 	g_free(list_value_4);
 	
 	return(TRUE);
 }
 
-void remove_list_item(struct task task)
+void remove_tree_item(struct task task)
 {
 	gboolean valid;
 	GtkTreeIter iter;
 	
-	valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(list_store), &iter);
+	valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(tree_store), &iter);
 
 	while(valid)
 	{
 		gchar *str_data;
-		gtk_tree_model_get(GTK_TREE_MODEL(list_store), &iter, 1, &str_data, -1);
+		gtk_tree_model_get(GTK_TREE_MODEL(tree_store), &iter, 1, &str_data, -1);
 
-      if(strcmp(task.pid,str_data) == 0)
+      if(task.pid == atoi(str_data))
       {
-      	gtk_list_store_remove(GTK_LIST_STORE(list_store), &iter);
+      	gtk_tree_store_remove(GTK_TREE_STORE(tree_store), &iter);
       	g_free(str_data);
       	break;
       }
       g_free(str_data);
 
-		valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(list_store), &iter);
+		valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(tree_store), &iter);
 	}
 }
 
@@ -190,6 +265,31 @@ GtkWidget *create_main_popup_menu()
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
 	gtk_widget_show(menuitem);
 	
+	menuitem = gtk_check_menu_item_new_with_label("Show user tasks");
+	if(config_show_user_tasks)
+		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+	g_signal_connect(G_OBJECT(menuitem), "toggled", G_CALLBACK(handle_toggled_checkbox), "show_user_task");
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_widget_show(menuitem);
+	
+	menuitem = gtk_check_menu_item_new_with_label("Show root tasks");
+	if(config_show_root_tasks)
+		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+	g_signal_connect(G_OBJECT(menuitem), "toggled", G_CALLBACK(handle_toggled_checkbox), "show_root_task");
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_widget_show(menuitem);
+	
+	menuitem = gtk_check_menu_item_new_with_label("Show other tasks");
+	if(config_show_other_tasks)
+		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+	g_signal_connect(G_OBJECT(menuitem), "toggled", G_CALLBACK(handle_toggled_checkbox), "show_other_task");
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_widget_show(menuitem);
+	
+	menuitem = gtk_separator_menu_item_new();
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+	gtk_widget_show(menuitem);
+	
 	menuitem = gtk_image_menu_item_new_from_stock(GTK_STOCK_QUIT, NULL);
 	g_signal_connect(G_OBJECT(menuitem), "activate", G_CALLBACK(gtk_main_quit), NULL);
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
@@ -211,52 +311,78 @@ gboolean handle_mouse_events(GtkWidget *widget, GdkEventButton *event)
 
 void handle_task_menu(GtkWidget *widget, gchar *signal)
 {
-	if(signal != NULL)
+	gchar *task_id = "";
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+	
+	if(signal != NULL && gtk_tree_selection_get_selected(selection, &model, &iter))
 	{
 		if(strcmp(signal, "TERM") == 0)
 		{
 			if(xfce_confirm("Really TERM the Task?", GTK_STOCK_YES, NULL))
 			{
-				gchar *task_id = "";
-				GtkTreeModel *model;
-				GtkTreeIter iter;
-			
-				if(gtk_tree_selection_get_selected(selection, &model, &iter))
-				{
-					gtk_tree_model_get(model, &iter, 1, &task_id, -1);
-					send_signal_to_task(task_id, signal);
-					refresh_task_list();
-				}
+				gtk_tree_model_get(model, &iter, 1, &task_id, -1);
+				send_signal_to_task(task_id, signal);
+				refresh_task_list(FALSE);
 			}
 		}
 		else if(strcmp(signal, "KILL") == 0)
 		{
 			if(xfce_confirm("Really KILL the Task?", GTK_STOCK_YES, NULL))
 			{
-				gchar *task_id = "";
-				GtkTreeModel *model;
-				GtkTreeIter iter;
-			
-				if(gtk_tree_selection_get_selected(selection, &model, &iter))
-				{
-					gtk_tree_model_get(model, &iter, 1, &task_id, -1);
-					send_signal_to_task(task_id, signal);
-					refresh_task_list();
-				}
+				gtk_tree_model_get(model, &iter, 1, &task_id, -1);
+				send_signal_to_task(task_id, signal);
+				refresh_task_list(FALSE);
 			}
 		}
 		else
 		{
-			gchar *task_id = "";
-			GtkTreeModel *model;
-			GtkTreeIter iter;
-			
-			if(gtk_tree_selection_get_selected(selection, &model, &iter))
-			{
-				gtk_tree_model_get(model, &iter, 1, &task_id, -1);
-				send_signal_to_task(task_id, signal);
-			}
+			gtk_tree_model_get(model, &iter, 1, &task_id, -1);
+			send_signal_to_task(task_id, signal);
 		}		
+	}
+}
+
+void handle_toggled_checkbox(GtkCheckMenuItem *widget, gchar *checkbox_id)
+{
+	if(strcmp(checkbox_id, "show_user_task") == 0)
+	{
+		if(widget->active)
+		{
+			config_show_user_tasks = TRUE;
+			show_user_tasks();
+		}
+		else
+		{
+			config_show_user_tasks = FALSE;
+			hide_user_tasks();
+		}
+	}
+	else if(strcmp(checkbox_id, "show_root_task") == 0)
+	{
+		if(widget->active)
+		{
+			config_show_root_tasks = TRUE;
+			show_root_tasks();
+		}
+		else
+		{
+			config_show_root_tasks = FALSE;
+			hide_root_tasks();
+		}
+	}
+	else if(strcmp(checkbox_id, "show_other_task") == 0)
+	{
+		if(widget->active)
+		{
+			config_show_other_tasks = TRUE;
+			show_other_tasks();
+		}
+		else
+		{
+			config_show_other_tasks = FALSE;
+			hide_other_tasks();
+		}
 	}
 }
 

@@ -26,13 +26,14 @@
 
 GtkWidget *window;
 GtkTreeSelection *selection;
-GtkListStore *list_store;
+GtkTreeStore *tree_store;
 
 void gui_create(void);
-gboolean add_new_list_item(struct task task);
-void remove_list_item(struct task task);
+gboolean add_tree_item(struct task task);
+void remove_tree_item(struct task task);
 GtkWidget *create_task_popup_menu(void);
 GtkWidget *create_main_popup_menu(void);
 gboolean handle_mouse_events(GtkWidget *widget, GdkEventButton *event);
 void handle_task_menu(GtkWidget *widget, gchar *signal);
+void handle_toggled_checkbox(GtkCheckMenuItem *widget, gchar *signal);
 void show_about_dialog(void);

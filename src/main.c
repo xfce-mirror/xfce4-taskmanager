@@ -33,7 +33,7 @@
 /* handler for SIGALRM to refresh the list */
 void refresh_handler(void)
 {
-	refresh_task_list();
+	refresh_task_list(FALSE);
 	alarm(REFRESH_INTERVAL);
 }
 
@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
 {
 	gtk_init(&argc, &argv);
 	
+	load_config();
 	create_gui();
 	
 	signal(SIGALRM, refresh_handler);
