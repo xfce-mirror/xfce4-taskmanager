@@ -22,13 +22,14 @@
 #include <dirent.h>
 #include <pwd.h>
 #include <sys/types.h>
+#include <stdio.h>
 
 #include "types.h"
 
 struct task all_tasks[512];
-gint task_count;
 
 struct task task_list;
 
 void refresh_task_list(void);
 void send_signal_to_task(gchar *task_id, gchar *signal);
+void remove_task_from_array(gint count);

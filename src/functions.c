@@ -20,7 +20,7 @@
 
 #include "functions.h"
 
-task_count = 0;
+gint task_count = 0;
 
 /* function to kill the current task */
 void send_signal_to_task(gchar *task_id, gchar *signal)
@@ -64,7 +64,7 @@ void refresh_task_list()
 			gchar buffer[256];
 			gint line_count = 0;
 			struct task task;
-			struct passwd *passwdp; 
+			struct passwd *passwdp;
 		
 			if((task_file = fopen(task_file_name,"r")) != NULL)
 			{

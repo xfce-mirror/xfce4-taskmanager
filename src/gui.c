@@ -39,7 +39,7 @@ void create_gui(void)
 	/* eventbox */
 	eventbox = gtk_event_box_new();
 	gtk_event_box_set_visible_window(GTK_EVENT_BOX(eventbox), FALSE);
-	gtk_widget_add_events(GTK_WIDGET(eventbox), "BUTTON_PRESS");
+	gtk_widget_add_events(GTK_WIDGET(eventbox), GDK_BUTTON_PRESS);
 	g_signal_connect_swapped(G_OBJECT(eventbox), "button-press-event", G_CALLBACK(handle_mouse_events), G_OBJECT(main_popup_menu));
 	gtk_container_set_border_width(GTK_CONTAINER(eventbox), 0);
 	
@@ -60,13 +60,13 @@ void create_gui(void)
 	
 	tree_view = gtk_tree_view_new();
 	g_signal_connect_swapped(G_OBJECT(tree_view), "button-press-event", G_CALLBACK(handle_mouse_events), G_OBJECT(task_popup_menu));
-	gtk_container_add(GTK_CONTAINER(scrolled_window), tree_view);
+	gtk_container_add(GTK_CONTAINER(scrolled_window), GTK_WIDGET(tree_view));
 	gtk_widget_show(tree_view);
 	
-	selection = gtk_tree_view_get_selection(tree_view);
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
 	
 	list_store = gtk_list_store_new(4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-	gtk_tree_view_set_model(GTK_TREE_VIEW(tree_view), list_store);
+	gtk_tree_view_set_model(GTK_TREE_VIEW(tree_view), GTK_TREE_MODEL(list_store));
 	
 	cell_renderer = gtk_cell_renderer_text_new();
 	
@@ -127,22 +127,22 @@ void remove_list_item(struct task task)
 	gboolean valid;
 	GtkTreeIter iter;
 	
-	valid = gtk_tree_model_get_iter_first(list_store, &iter);
+	valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(list_store), &iter);
 
 	while(valid)
 	{
 		gchar *str_data;
-		gtk_tree_model_get(list_store, &iter, 1, &str_data, -1);
+		gtk_tree_model_get(GTK_TREE_MODEL(list_store), &iter, 1, &str_data, -1);
 
       if(strcmp(task.pid,str_data) == 0)
       {
-      	gtk_list_store_remove(list_store, &iter);
+      	gtk_list_store_remove(GTK_LIST_STORE(list_store), &iter);
       	g_free(str_data);
       	break;
       }
       g_free(str_data);
 
-		valid = gtk_tree_model_iter_next(list_store, &iter);
+		valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(list_store), &iter);
 	}
 }
 
