@@ -1,0 +1,28 @@
+*********************************************
+************  xfce4-taskmanager  ************
+*********************************************
+
+xfce4-taskmanager is a small taskmanager based on the Xfce 4 libraries.
+
+** Retrieving **
+
+The latest version of xfce4-taskmanager can always be obtained from
+http://developer.berlios.de/projects/xfce-goodies/. Please check to 
+see if there is a newer version available before reporting bugs.
+
+** Requirements **
+
+xfce4-taskmanager needs the commandlinetool 'ps' and Xfce 4's GUI library
+libxfcegui4. Xfce's core libraries can be obtained from http://xfce.org/.
+
+** Building **
+
+./configure
+make
+
+If 'configure' fails, please run 'autogen.sh' or send me a mail with the exactly
+errors :)
+
+** Usage **
+
+The GUI can be started by running 'xfce4-taskmanager'.
