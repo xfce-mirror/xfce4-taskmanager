@@ -1,0 +1,31 @@
+dnl --------------------------------
+dnl Initialization macros.
+dnl --------------------------------
+
+AC_INIT(src/main.c)
+
+dnl -----------------------------------------------
+dnl Package name and version number (user defined)
+dnl -----------------------------------------------
+
+AM_INIT_AUTOMAKE(xfce4-taskmanager, 0.1.0)
+
+dnl -----------------------------------------------
+dnl Checks for programs.
+dnl -----------------------------------------------
+
+AC_PROG_CC
+
+dnl -----------------------------------------------
+dnl Checks for libraries.
+dnl -----------------------------------------------
+
+PKG_CHECK_MODULES(DEPS, gtk+-2.0 >= 2.4 glib-2.0 >= 2.4 libxfcegui4-1.0 >= 4.1)
+AC_SUBST(DEPS_CFLAGS)
+AC_SUBST(DEPS_LIBS)
+
+dnl -----------------------------------------------
+dnl Generates Makefiles.
+dnl -----------------------------------------------
+
+AC_OUTPUT(Makefile src/Makefile)
