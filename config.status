@@ -481,12 +481,12 @@ s,@INSTALL_DATA@,${INSTALL} -m 644,;t t
 s,@CYGPATH_W@,echo,;t t
 s,@PACKAGE@,xfce4-taskmanager,;t t
 s,@VERSION@,0.1.0,;t t
-s,@ACLOCAL@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager-0.1.0/missing --run aclocal-1.9,;t t
-s,@AUTOCONF@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager-0.1.0/missing --run autoconf,;t t
-s,@AUTOMAKE@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager-0.1.0/missing --run automake-1.9,;t t
-s,@AUTOHEADER@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager-0.1.0/missing --run autoheader,;t t
-s,@MAKEINFO@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager-0.1.0/missing --run makeinfo,;t t
-s,@install_sh@,/home/the_hippie/devel/xfce4-taskmanager-0.1.0/install-sh,;t t
+s,@ACLOCAL@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager/missing --run aclocal-1.9,;t t
+s,@AUTOCONF@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager/missing --run autoconf,;t t
+s,@AUTOMAKE@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager/missing --run automake-1.9,;t t
+s,@AUTOHEADER@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager/missing --run autoheader,;t t
+s,@MAKEINFO@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager/missing --run makeinfo,;t t
+s,@install_sh@,/home/the_hippie/devel/xfce4-taskmanager/install-sh,;t t
 s,@STRIP@,,;t t
 s,@ac_ct_STRIP@,,;t t
 s,@INSTALL_STRIP_PROGRAM@,${SHELL} $(install_sh) -c -s,;t t
@@ -494,7 +494,7 @@ s,@mkdir_p@,mkdir -p --,;t t
 s,@AWK@,gawk,;t t
 s,@SET_MAKE@,,;t t
 s,@am__leading_dot@,.,;t t
-s,@AMTAR@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager-0.1.0/missing --run tar,;t t
+s,@AMTAR@,${SHELL} /home/the_hippie/devel/xfce4-taskmanager/missing --run tar,;t t
 s,@am__tar@,${AMTAR} chof - "$$tardir",;t t
 s,@am__untar@,${AMTAR} xf -,;t t
 s,@CC@,gcc,;t t
