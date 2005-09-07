@@ -1,0 +1,80 @@
+# Xfce4-taskmanager Finnish translation
+# by Pasi Sulasalmi <psulasasal@paju.oulu.fi>, 2005.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-06-30 19:49+0200\n"
+"PO-Revision-Date: 2005-07-02 21:30+0300\n"
+"Last-Translator: Pasi Sulasalmi <psulasal@paju.oulu.fi>\n"
+"Language-Team: Finnish <fi@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit"
+
+#: ../src/interface.c:41
+msgid "xfce4-taskmanager"
+msgstr "xfce4-taskmanager"
+
+#: ../src/interface.c:74
+msgid "more details"
+msgstr "Lis‰‰ tietoja"
+
+#: ../src/interface.c:108
+msgid "Command"
+msgstr "Komento"
+
+#: ../src/interface.c:114
+msgid "PID"
+msgstr "PID"
+
+#: ../src/interface.c:120
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/interface.c:126
+msgid "State"
+msgstr "Tila"
+
+#: ../src/interface.c:132
+msgid "VM-Size"
+msgstr "VM-Koko"
+
+#: ../src/interface.c:138
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/interface.c:144
+msgid "User"
+msgstr "K‰ytt‰j‰"
+
+#: ../src/interface.c:163
+msgid "Stop"
+msgstr "Pys‰yt‰"
+
+#: ../src/interface.c:167
+msgid "Continue"
+msgstr "Jatka"
+
+#: ../src/interface.c:171
+msgid "Term"
+msgstr "Lopeta"
+
+#: ../src/interface.c:175
+msgid "Kill"
+msgstr "Tapa"
+
+#: ../src/interface.c:210
+msgid "Show user tasks"
+msgstr "N‰yt‰ omat prosessit"
+
+#: ../src/interface.c:215
+msgid "Show root tasks"
+msgstr "N‰yt‰ p‰‰k‰ytt‰j‰n prosessit"
+
+#: ../src/interface.c:220
+msgid "Show other tasks"
+msgstr "N‰yt‰ muut prosessit"
+

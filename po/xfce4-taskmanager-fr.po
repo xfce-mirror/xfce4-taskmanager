@@ -1,0 +1,77 @@
+# Xfce French translation
+# Copyright (C) 2005 XFce development team
+# Johannes Zellner <xfce4-taskmanager@nebulon.de>, 2005.
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.3.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-17\n"
+"Last-Translator: Peggy Kutyla <peggy.kutyla@laposte.net>\n"
+"Language-Team: French <xfce4-dev@xfce.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/interface.c:41
+msgid "xfce4-taskmanager"
+msgstr "Gestionnaire de tâches Xfce4"
+
+#: ../src/interface.c:74
+msgid "more details"
+msgstr "Plus de détails"
+
+#: ../src/interface.c:108
+msgid "Command"
+msgstr "Processus"
+
+#: ../src/interface.c:114
+msgid "PID"
+msgstr "PID"
+
+#: ../src/interface.c:120
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/interface.c:126
+msgid "State"
+msgstr "État"
+
+#: ../src/interface.c:132
+msgid "VM-Size"
+msgstr "Mémoire"
+
+#: ../src/interface.c:138
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/interface.c:144
+msgid "User"
+msgstr "Utilisateur"
+
+#: ../src/interface.c:163
+msgid "Stop"
+msgstr "Stop"
+
+#: ../src/interface.c:167
+msgid "Continue"
+msgstr "Continue"
+
+#: ../src/interface.c:171
+msgid "Term"
+msgstr "Terminer"
+
+#: ../src/interface.c:175
+msgid "Kill"
+msgstr "Tuer"
+
+#: ../src/interface.c:210
+msgid "Show user tasks"
+msgstr "Processus utilisateur"
+
+#: ../src/interface.c:215
+msgid "Show root tasks"
+msgstr "Processus système"
+
+#: ../src/interface.c:220
+msgid "Show other tasks"
+msgstr "Autres processus"

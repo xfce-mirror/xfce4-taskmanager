@@ -1,3 +1,14 @@
-*********************************************
-************  xfce4-taskmanager  ************
-*********************************************
+2005-07-05 19:38	Johannes
+
+	* added finnish translation
+	* fixed a memory leak in functions.c
+	
+2005-06-30 23:47  Johannes
+
+	* bugfix in the sorting function
+	* name of about-dialog changed
+	* scrollbars only showed when needed
+	
+2005-06-30 22:09  Johannes
+
+	* started completly new ;)

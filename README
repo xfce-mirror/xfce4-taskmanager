@@ -12,17 +12,14 @@ see if there is a newer version available before reporting bugs.
 
 ** Requirements **
 
-xfce4-taskmanager needs the commandlinetool 'ps' and Xfce 4's GUI library
-libxfcegui4. Xfce's core libraries can be obtained from http://xfce.org/.
+xfce4-taskmanager needs the Xfce 4's GUI library libxfcegui4.
+Xfce's core libraries can be obtained from http://xfce.org/.
 
 ** Building **
 
 ./configure
 make
 make install (as root)
-
-If 'configure' fails, please run 'autogen.sh' or send me a mail with the exactly
-errors :)
 
 ** Usage **
 
