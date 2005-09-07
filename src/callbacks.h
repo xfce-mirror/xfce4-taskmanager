@@ -18,30 +18,23 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __FUNCTIONS_H_
-#define __FUNCTIONS_H_
+#ifndef __CALLBACKS_H_
+#define __CALLBACKS_H_
 
-#include <gtk/gtk.h>
-#include <dirent.h>
-#include <pwd.h>
-#include <sys/types.h>
-#include <stdio.h>
-
-#include "types.h"
-
-#define PROC_DIR_1 "/compat/linux/proc"
-#define PROC_DIR_2 "/emul/linux/proc"
-#define PROC_DIR_3 "/proc"
-
-gboolean refresh_task_list(void);
-void fill_list_item(gint i, GtkTreeIter *iter);
-void add_new_list_item(gint i);
-gint compare_list_item(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
-void remove_list_item(gint i);
-void refresh_list_item(gint i);
-void send_signal_to_task(gchar *task_id, gchar *signal);
-void change_task_view(void);
-
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
 #endif
 
+#include <gtk/gtk.h>
 
+#include "functions.h"
+#include "interface.h"                       
+
+void on_button1_button_press_event(GtkButton *button, GdkEventButton *event);
+void on_button3_toggled_event(GtkButton *button, GdkEventButton *event);
+gboolean on_treeview1_button_press_event(GtkButton *button, GdkEventButton *event);
+void on_info1_activate (GtkMenuItem *menuitem,  gpointer user_data);
+void handle_task_menu(GtkWidget *widget, gchar *signal);
+void on_show_tasks_toggled (GtkMenuItem *menuitem, gint uid);
+
+#endif

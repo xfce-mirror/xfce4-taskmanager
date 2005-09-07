@@ -1,7 +1,7 @@
 /*
  *  xfce4-taskmanager - very simple taskmanger
  *
- *  Copyright (c) 2004 Johannes Zellner, <webmaster@nebulon.de>
+ *  Copyright (c) 2005 Johannes Zellner, <webmaster@nebulon.de>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,13 +21,31 @@
 #ifndef __TYPES_H_
 #define __TYPES_H_
 
+#define REFRESH_INTERVAL 1
+#define FULL_VIEW FALSE
+
 struct task
 {
-	gchar pid[256];
-	gchar ppid[256];
-	gchar uid[256];
-	gchar name[256];
+	gint pid;
+	gint ppid;
+	gint uid;
+	gchar uname[64];
+	gchar name[64];
+	gchar state;
+	gint size;
+	gint rss;
 	gboolean checked;
 };
+
+GtkWidget *window1;
+GtkListStore *list_store;
+
+GArray *task_array;
+gint tasks;
+gint own_uid;
+
+gboolean show_user_tasks;
+gboolean show_root_tasks;
+gboolean show_other_tasks;
 
 #endif
