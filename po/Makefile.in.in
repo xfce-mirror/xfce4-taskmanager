@@ -21,7 +21,6 @@ SHELL = /bin/sh
 
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
-top_builddir = ..
 VPATH = @srcdir@
 
 prefix = @prefix@
@@ -32,12 +31,10 @@ localedir = $(libdir)/locale
 gnulocaledir = $(datadir)/locale
 gettextsrcdir = $(datadir)/glib-2.0/gettext/po
 subdir = po
-install_sh = @install_sh@
-mkdir_p = @mkdir_p@
-mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
+MKINSTALLDIRS = $(top_srcdir)/@MKINSTALLDIRS@
 
 CC = @CC@
 GENCAT = @GENCAT@
@@ -45,10 +42,7 @@ GMSGFMT = @GMSGFMT@
 MSGFMT = @MSGFMT@
 XGETTEXT_ARGS = @XGETTEXT_ARGS@
 XGETTEXT = @XGETTEXT@ $(XGETTEXT_ARGS)
-INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
-INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
-MSGMERGE = XGETTEXT_ARGS="$(XGETTEXT_ARGS)" INTLTOOL_EXTRACT=$(INTLTOOL_EXTRACT) srcdir=$(srcdir) $(INTLTOOL_UPDATE) --gettext-package $(GETTEXT_PACKAGE) --dist
-GENPOT   = XGETTEXT_ARGS="$(XGETTEXT_ARGS)" INTLTOOL_EXTRACT=$(INTLTOOL_EXTRACT) srcdir=$(srcdir) $(INTLTOOL_UPDATE) --gettext-package $(GETTEXT_PACKAGE) --pot
+MSGMERGE = msgmerge
 
 DEFS = @DEFS@
 CFLAGS = @CFLAGS@
@@ -61,7 +55,7 @@ COMPILE = $(CC) -c $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) $(XCFLAGS)
 SOURCES = 
 POFILES = @POFILES@
 GMOFILES = @GMOFILES@
-DISTFILES = ChangeLog Makefile.in.in POTFILES.in \
+DISTFILES = ChangeLog Makefile.in.in POTFILES.in $(GETTEXT_PACKAGE).pot \
 $(POFILES) $(GMOFILES) $(SOURCES)
 
 POTFILES = \
@@ -78,14 +72,14 @@ INSTOBJEXT = @INSTOBJEXT@
 
 .po.pox:
 	$(MAKE) $(GETTEXT_PACKAGE).pot
-	$(MSGMERGE) $< $(top_builddir)/po/$(GETTEXT_PACKAGE).pot -o $*pox
+	$(MSGMERGE) $< $(srcdir)/$(GETTEXT_PACKAGE).pot -o $*.pox
 
 .po.mo:
 	$(MSGFMT) -o $@ $<
 
 .po.gmo:
-	file=`echo $* | sed 's,.*/,,'`.gmo \
-	  && rm -f $$file && $(GMSGFMT) -o $$file $<
+	file=$(srcdir)/`echo $* | sed 's,.*/,,'`.gmo \
+	  && rm -f $$file && $(GMSGFMT) -c -o $$file $<
 
 .po.cat:
 	sed -f ../intl/po2msg.sed < $< > $*.msg \
@@ -97,15 +91,20 @@ all: all-@USE_NLS@
 all-yes: $(CATALOGS)
 all-no:
 
-$(GETTEXT_PACKAGE).pot: $(POTFILES)
-	$(GENPOT)
+$(srcdir)/$(GETTEXT_PACKAGE).pot: $(POTFILES)
+	$(XGETTEXT) --default-domain=$(GETTEXT_PACKAGE) --directory=$(top_srcdir) \
+	  --add-comments --keyword=_ --keyword=N_ \
+	  --files-from=$(srcdir)/POTFILES.in \
+	&& test ! -f $(GETTEXT_PACKAGE).po \
+	   || ( rm -f $(srcdir)/$(GETTEXT_PACKAGE).pot \
+		&& mv $(GETTEXT_PACKAGE).po $(srcdir)/$(GETTEXT_PACKAGE).pot )
 
 install: install-exec install-data
 install-exec:
 install-data: install-data-@USE_NLS@
 install-data-no: all
 install-data-yes: all
-	if test -n "$(MKINSTALLDIRS)"; then \
+	if test -r "$(MKINSTALLDIRS)"; then \
 	  $(MKINSTALLDIRS) $(DESTDIR)$(datadir); \
 	else \
 	  $(SHELL) $(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir); \
@@ -119,7 +118,7 @@ install-data-yes: all
 	  esac; \
 	  lang=`echo $$cat | sed 's/\$(CATOBJEXT)$$//'`; \
 	  dir=$(DESTDIR)$$destdir/$$lang/LC_MESSAGES; \
-	  if test -n "$(MKINSTALLDIRS)"; then \
+	  if test -r "$(MKINSTALLDIRS)"; then \
 	    $(MKINSTALLDIRS) $$dir; \
 	  else \
 	    $(SHELL) $(top_srcdir)/mkinstalldirs $$dir; \
@@ -147,7 +146,7 @@ install-data-yes: all
 	  fi; \
 	done
 	if test "$(PACKAGE)" = "glib"; then \
-	  if test -n "$(MKINSTALLDIRS)"; then \
+	  if test -r "$(MKINSTALLDIRS)"; then \
 	    $(MKINSTALLDIRS) $(DESTDIR)$(gettextsrcdir); \
 	  else \
 	    $(SHELL) $(top_srcdir)/mkinstalldirs $(DESTDIR)$(gettextsrcdir); \
@@ -180,9 +179,8 @@ check: all
 dvi info tags TAGS ID:
 
 mostlyclean:
-	rm -f core core.* *.pox $(GETTEXT_PACKAGE).pot *.old.po cat-id-tbl.tmp
+	rm -f core core.* *.pox $(GETTEXT_PACKAGE).po *.old.po cat-id-tbl.tmp
 	rm -fr *.o
-	rm -f .intltool-merge-cache
 
 clean: mostlyclean
 
@@ -195,7 +193,7 @@ maintainer-clean: distclean
 	rm -f $(GMOFILES)
 
 distdir = ../$(GETTEXT_PACKAGE)-$(VERSION)/$(subdir)
-dist distdir: $(DISTFILES) $(GETTEXT_PACKAGE).pot
+dist distdir: update-po $(DISTFILES)
 	dists="$(DISTFILES)"; \
 	for file in $$dists; do \
 	  ln $(srcdir)/$$file $(distdir) 2> /dev/null \
@@ -205,14 +203,14 @@ dist distdir: $(DISTFILES) $(GETTEXT_PACKAGE).pot
 update-po: Makefile
 	$(MAKE) $(GETTEXT_PACKAGE).pot
 	tmpdir=`pwd`; \
+	cd $(srcdir); \
 	catalogs='$(CATALOGS)'; \
 	for cat in $$catalogs; do \
 	  cat=`basename $$cat`; \
 	  lang=`echo $$cat | sed 's/\$(CATOBJEXT)$$//'`; \
 	  echo "$$lang:"; \
-	  result="`$(MSGMERGE) -o $$tmpdir/$$lang.new.po $$lang`"; \
-	  if $$result; then \
-	    if cmp $(srcdir)/$$lang.po $$tmpdir/$$lang.new.po >/dev/null 2>&1; then \
+	  if $(MSGMERGE) $$lang.po $(GETTEXT_PACKAGE).pot -o $$tmpdir/$$lang.new.po; then \
+	    if cmp $$lang.po $$tmpdir/$$lang.new.po >/dev/null 2>&1; then \
 	      rm -f $$tmpdir/$$lang.new.po; \
             else \
 	      if mv -f $$tmpdir/$$lang.new.po $$lang.po; then \
