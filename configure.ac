@@ -25,7 +25,7 @@ XDT_CHECK_PACKAGE([XFCE4_GUI], [libxfcegui4-1.0], [4.2.0])
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.2.0])
 
 dnl Check for i18n support
-XDT_I18N([de], [fi])
+XDT_I18N([de], [fi], [fr])
 
 dnl Check for debugging support
 BM_DEBUG_SUPPORT()
