@@ -61,10 +61,22 @@ gboolean refresh_task_list(void)
 			struct task task;
 			struct passwd *passwdp;
 					
+			memset(&task, 0, sizeof(task));
 			if((task_file_status = fopen(task_file_name_status,"r")) != NULL)
 			{				
 				while(fgets(buffer_status, sizeof buffer_status, task_file_status) != NULL)
 				{
+#if defined(__NetBSD__)
+					/*
+					 * NetBSD: /proc/number/status
+					 * init 1 0 1 1 -1,-1 sldr 1131254603,930043 0,74940 0,87430 wait 0 0,0
+					 */
+					gchar dummy[255];
+
+					sscanf(buffer_status, "%s %i %i %s %s %s %s %s %s %s %s %i %s",
+					       &task.name, &task.pid, &task.ppid, &dummy, &dummy, &dummy,
+					       &dummy, &dummy, &dummy, &dummy, &dummy, &task.uid, &dummy);
+#else
 					sscanf(buffer_status,"Uid: %i",&task.uid);
 					sscanf(buffer_status,"Pid: %i",&task.pid);
 					sscanf(buffer_status,"PPid: %i",&task.ppid);
@@ -74,6 +86,7 @@ gboolean refresh_task_list(void)
 					// fix for freebsd with linux emo
 					sscanf(buffer_status,"VmRss: %i",&task.rss);
 					sscanf(buffer_status,"State: %c",&task.state);
+#endif
 				}
 					
 				passwdp = getpwuid(task.uid);
@@ -86,16 +99,10 @@ gboolean refresh_task_list(void)
 			/* check if task is new and marks the task that its checked*/
 			gboolean new_task = TRUE;
 				
-			if(tasks < 1)
-			{
-				task_array = g_array_append_val(task_array, task);
-				tasks++;
-			}
-				
 			for(i = 0; i < tasks; i++)
 			{
 				struct task *data = &g_array_index(task_array, struct task, i);
-					
+				
 				if((gint)data->pid == task.pid)
 				{
 					if((gint)data->ppid != task.ppid || (gchar)data->state != task.state || (unsigned int)data->size != task.size || (unsigned int)data->rss != task.rss)
@@ -109,12 +116,14 @@ gboolean refresh_task_list(void)
 					}
 					new_task = FALSE;
 					data->checked = TRUE;
+					break;
 				}
 			}
 				
 			if(new_task)
 			{
-				g_array_append_val(task_array, task);
+				task.checked = TRUE;
+				g_array_append_val(task_array, task);				
 				tasks++;
 				if((show_user_tasks && task.uid == own_uid) || (show_root_tasks && task.uid == 0) ||  (show_other_tasks && task.uid != own_uid && task.uid != 0))
 					add_new_list_item(tasks-1);
@@ -135,6 +144,8 @@ gboolean refresh_task_list(void)
 			tasks--;
 		}
 	}
+	
+	printf("---------------------------------------------\n");
 	
 	return TRUE;
 }

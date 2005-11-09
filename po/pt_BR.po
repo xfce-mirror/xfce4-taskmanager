@@ -1,28 +1,28 @@
-# Xfce French translation
+# Xfce German translation
 # Copyright (C) 2005 XFce development team
-# Peggy Kutyla , 2005.
+# Johannes Zellner <xfce4-taskmanager@nebulon.de>, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.3.1\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-17\n"
-"Last-Translator: Peggy Kutyla <peggy.kutyla@laposte.net>\n"
-"Language-Team: French <xfce4-dev@xfce.org>\n"
+"POT-Creation-Date: 2005-06-30 19:49+0200\n"
+"Last-Translator: Johannes Zellner <xfce4-taskmanager@nebulon.de>\n"
+"Language-Team: German <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/interface.c:41
 msgid "xfce4-taskmanager"
-msgstr "Gestionnaire de tâches Xfce4"
+msgstr "xfce4-taskmanager"
 
 #: ../src/interface.c:74
 msgid "more details"
-msgstr "Plus de détails"
+msgstr "mais detalhes"
 
 #: ../src/interface.c:108
 msgid "Command"
-msgstr "Processus"
+msgstr "Comando"
 
 #: ../src/interface.c:114
 msgid "PID"
@@ -34,11 +34,11 @@ msgstr "PPID"
 
 #: ../src/interface.c:126
 msgid "State"
-msgstr "État"
+msgstr "Status"
 
 #: ../src/interface.c:132
 msgid "VM-Size"
-msgstr "Mémoire"
+msgstr "Tamanho VM"
 
 #: ../src/interface.c:138
 msgid "RSS"
@@ -46,32 +46,32 @@ msgstr "RSS"
 
 #: ../src/interface.c:144
 msgid "User"
-msgstr "Utilisateur"
+msgstr "Usuario"
 
 #: ../src/interface.c:163
 msgid "Stop"
-msgstr "Stop"
+msgstr "Parar"
 
 #: ../src/interface.c:167
 msgid "Continue"
-msgstr "Continue"
+msgstr "Continuar"
 
 #: ../src/interface.c:171
 msgid "Term"
-msgstr "Terminer"
+msgstr "Terminar"
 
 #: ../src/interface.c:175
 msgid "Kill"
-msgstr "Tuer"
+msgstr "Matar"
 
 #: ../src/interface.c:210
 msgid "Show user tasks"
-msgstr "Processus utilisateur"
+msgstr "Exibir processos do usuario"
 
 #: ../src/interface.c:215
 msgid "Show root tasks"
-msgstr "Processus système"
+msgstr "Exibir processos do root"
 
 #: ../src/interface.c:220
 msgid "Show other tasks"
-msgstr "Autres processus"
+msgstr "Exibir outros processos"

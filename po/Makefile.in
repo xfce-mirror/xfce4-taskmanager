@@ -24,7 +24,7 @@ top_srcdir = ..
 top_builddir = ..
 
 
-prefix = /usr/local
+prefix = /opt/lunar/xfce4/
 exec_prefix = ${prefix}
 datadir = ${prefix}/share
 libdir = ${exec_prefix}/lib
