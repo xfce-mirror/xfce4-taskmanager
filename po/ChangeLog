@@ -1,0 +1,24 @@
+2005-11-09 21:13  Johannes Zellner <webmaster@nebulon.de>
+
+	* pt_BR.po: Added Brazilian Portuguese translation.
+	* Makefile.in, fr.po, pt_BR.po: Updated.
+
+2005-10-09 10:20  Johannes Zellner <webmaster@nebulon.de>
+
+	* fr.po: Added French translation.
+	* xfce4-taskmanager-fr.po: Removed.
+
+2005-10-09 10:11  Johannes Zellner <webmaster@nebulon.de>
+
+	* Makefile, Makefile.in, Makefile.in.in: Replaced some old files.
+
+2005-10-09 10:00  Johannes Zellner <webmaster@nebulon.de>
+
+	* Makefile.in, Makefile.in.in: Replaced some old files.
+
+2005-09-07 04:38  Johannes Zellner <webmaster@nebulon.de>
+
+	* ChangeLog, Makefile, Makefile.in, Makefile.in.in, POTFILES,
+	  POTFILES.in, de.gmo, de.po, fi.po, xfce4-taskmanager-fr.po,
+	  xfce4-taskmanager.pot: Initial import.
+

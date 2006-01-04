@@ -1,80 +1,81 @@
-# Xfce4-taskmanager Finnish translation
-# by Pasi Sulasalmi <psulasasal@paju.oulu.fi>, 2005.
-# 
-# 
+# Finnish translations for xfce4-taskmanager package.
+# Copyright (C) 2005 Johannes Zellner.
+# This file is distributed under the same license as the
+#   xfce4-taskmanager package.
+# Pasi Sulasalmi <psulasasal@paju.oulu.fi>, 2005.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: xfce4-taskmanager 0.3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-30 19:49+0200\n"
-"PO-Revision-Date: 2005-07-02 21:30+0300\n"
+"POT-Creation-Date: 2005-07-03 11:43+0200\n"
+"PO-Revision-Date: 2006-01-04 20:48+0900\n"
 "Last-Translator: Pasi Sulasalmi <psulasal@paju.oulu.fi>\n"
-"Language-Team: Finnish <fi@li.org>\n"
+"Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-15\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/interface.c:41
+#: ../src/interface.c:41 ../src/interface.c:247
 msgid "xfce4-taskmanager"
 msgstr "xfce4-taskmanager"
 
-#: ../src/interface.c:74
+#: ../src/interface.c:75
 msgid "more details"
-msgstr "Lis‰‰ tietoja"
+msgstr "Lis√§√§ tietoja"
 
-#: ../src/interface.c:108
+#: ../src/interface.c:109
 msgid "Command"
 msgstr "Komento"
 
-#: ../src/interface.c:114
+#: ../src/interface.c:115
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:120
+#: ../src/interface.c:121
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:126
+#: ../src/interface.c:127
 msgid "State"
 msgstr "Tila"
 
-#: ../src/interface.c:132
+#: ../src/interface.c:133
 msgid "VM-Size"
 msgstr "VM-Koko"
 
-#: ../src/interface.c:138
+#: ../src/interface.c:139
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:144
+#: ../src/interface.c:145
 msgid "User"
-msgstr "K‰ytt‰j‰"
+msgstr "K√§ytt√§j√§"
 
-#: ../src/interface.c:163
+#: ../src/interface.c:164
 msgid "Stop"
-msgstr "Pys‰yt‰"
+msgstr "Pys√§yt√§"
 
-#: ../src/interface.c:167
+#: ../src/interface.c:168
 msgid "Continue"
 msgstr "Jatka"
 
-#: ../src/interface.c:171
+#: ../src/interface.c:172
 msgid "Term"
 msgstr "Lopeta"
 
-#: ../src/interface.c:175
+#: ../src/interface.c:176
 msgid "Kill"
 msgstr "Tapa"
 
-#: ../src/interface.c:210
+#: ../src/interface.c:211
 msgid "Show user tasks"
-msgstr "N‰yt‰ omat prosessit"
+msgstr "N√§yt√§ omat prosessit"
 
-#: ../src/interface.c:215
+#: ../src/interface.c:216
 msgid "Show root tasks"
-msgstr "N‰yt‰ p‰‰k‰ytt‰j‰n prosessit"
+msgstr "N√§yt√§ p√§√§k√§ytt√§j√§n prosessit"
 
-#: ../src/interface.c:220
+#: ../src/interface.c:221
 msgid "Show other tasks"
-msgstr "N‰yt‰ muut prosessit"
-
+msgstr "N√§yt√§ muut prosessit"
