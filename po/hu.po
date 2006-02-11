@@ -1,0 +1,78 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2006-02-11 18:10+0100\n"
+"Last-Translator: SZERVÑC Attila <sas@321.hu>\n"
+"Language-Team: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
+
+#: ../src/interface.c:41
+#: ../src/interface.c:247
+msgid "xfce4-taskmanager"
+msgstr "Xfce4 feladatkezelő"
+
+#: ../src/interface.c:75
+msgid "more details"
+msgstr "részletek"
+
+#: ../src/interface.c:109
+msgid "Command"
+msgstr "Parancs"
+
+#: ../src/interface.c:115
+msgid "PID"
+msgstr "PID"
+
+#: ../src/interface.c:121
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/interface.c:127
+msgid "State"
+msgstr "Állapot"
+
+#: ../src/interface.c:133
+msgid "VM-Size"
+msgstr "VM-méret"
+
+#: ../src/interface.c:139
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/interface.c:145
+msgid "User"
+msgstr "Felhasználó"
+
+#: ../src/interface.c:164
+msgid "Stop"
+msgstr "Stop"
+
+#: ../src/interface.c:168
+msgid "Continue"
+msgstr "Folytatás"
+
+#: ../src/interface.c:172
+msgid "Term"
+msgstr "Leállítás"
+
+#: ../src/interface.c:176
+msgid "Kill"
+msgstr "Gyilok"
+
+#: ../src/interface.c:211
+msgid "Show user tasks"
+msgstr "Felhasználói feladatok"
+
+#: ../src/interface.c:216
+msgid "Show root tasks"
+msgstr "Rendszergazda feladatok"
+
+#: ../src/interface.c:221
+msgid "Show other tasks"
+msgstr "Egyéb feladatok"
+
