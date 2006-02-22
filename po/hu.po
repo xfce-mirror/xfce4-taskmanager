@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-07-03 11:43+0200\n"
 "PO-Revision-Date: 2006-02-11 18:10+0100\n"
 "Last-Translator: SZERVÑC Attila <sas@321.hu>\n"
 "Language-Team: hu\n"
@@ -11,8 +12,7 @@ msgstr ""
 "X-Poedit-Language: Hungarian\n"
 "X-Poedit-Country: HUNGARY\n"
 
-#: ../src/interface.c:41
-#: ../src/interface.c:247
+#: ../src/interface.c:41 ../src/interface.c:247
 msgid "xfce4-taskmanager"
 msgstr "Xfce4 feladatkezelő"
 
@@ -75,4 +75,3 @@ msgstr "Rendszergazda feladatok"
 #: ../src/interface.c:221
 msgid "Show other tasks"
 msgstr "Egyéb feladatok"
-
