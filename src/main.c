@@ -23,19 +23,15 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <glib.h>
 #include <signal.h>
+
+#include <libxfce4util/libxfce4util.h>
 
 #include "types.h"
 
 #include "interface.h"
 #include "functions.h"
-
-/* handler for SIGALRM to refresh the list */
-void refresh_handler(void)
-{
-	refresh_task_list();
-	alarm(REFRESH_INTERVAL);
-}
 
 int main (int argc, char *argv[])
 {
@@ -47,23 +43,22 @@ int main (int argc, char *argv[])
 
 	gtk_set_locale ();
 	gtk_init (&argc, &argv);
-
-	window1 = create_window1 ();
-	gtk_widget_show (window1);
 	
 	own_uid = getuid();
-	show_user_tasks = TRUE;
-	show_root_tasks = FALSE;
-	show_other_tasks = FALSE;
-  
+
+	config_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, "xfce4-taskmanager.rc", FALSE);
+	load_config();
+	
 	task_array = g_array_new (FALSE, FALSE, sizeof (struct task));
 	tasks = 0;
+
+	main_window = create_main_window ();
+	gtk_widget_show (main_window);
 	
 	if(!refresh_task_list())
 		return 0;
 
-	signal(SIGALRM, (void *)refresh_handler);
-	alarm(REFRESH_INTERVAL);
+	g_timeout_add(REFRESH_INTERVAL, refresh_task_list, NULL);
 	
 	gtk_main ();
 	

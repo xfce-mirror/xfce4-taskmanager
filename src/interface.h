@@ -44,12 +44,12 @@ GtkWidget *treeview1;
 GtkWidget *mainmenu;
 GtkWidget *taskpopup;
 
-GtkTreeViewColumn *column1, *column2, *column3, *column4, *column5, *column6, *column7;
+GtkTreeViewColumn *column1, *column2, *column3, *column4, *column5, *column_sleep, *column6, *column7;
 
-void change_list_store(gboolean tmp_full_view);
+void change_list_store_view(void);
 void create_list_store(void);
 
-GtkWidget* create_window1 (void);
+GtkWidget* create_main_window (void);
 GtkWidget* create_taskpopup (void);
 GtkWidget* create_mainmenu (void);
 

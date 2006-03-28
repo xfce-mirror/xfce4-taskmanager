@@ -37,4 +37,6 @@ void on_info1_activate (GtkMenuItem *menuitem,  gpointer user_data);
 void handle_task_menu(GtkWidget *widget, gchar *signal);
 void on_show_tasks_toggled (GtkMenuItem *menuitem, gint uid);
 
+void on_quit(void);
+
 #endif

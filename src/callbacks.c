@@ -30,14 +30,8 @@ void on_button1_button_press_event(GtkButton *button, GdkEventButton *event)
 
 void on_button3_toggled_event(GtkButton *button, GdkEventButton *event)
 {
-	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)))
-	{
-		change_list_store(TRUE);
-	}
-	else
-	{
-		change_list_store(FALSE);
-	}
+	full_view = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button));
+	change_list_store_view();
 }
 
 gboolean on_treeview1_button_press_event(GtkButton *button, GdkEventButton *event)
@@ -90,4 +84,12 @@ void on_show_tasks_toggled (GtkMenuItem *menuitem, gint uid)
 		show_other_tasks = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menuitem));
 	
 	 change_task_view();
+}
+
+void on_quit(void)
+{
+	save_config();
+	free(config_file);
+	
+	gtk_main_quit();
 }

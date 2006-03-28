@@ -21,8 +21,7 @@
 #ifndef __TYPES_H_
 #define __TYPES_H_
 
-#define REFRESH_INTERVAL 1
-#define FULL_VIEW FALSE
+#define REFRESH_INTERVAL 1000
 
 struct task
 {
@@ -35,17 +34,25 @@ struct task
 	gint size;
 	gint rss;
 	gboolean checked;
+	gint sleep;
 };
 
-GtkWidget *window1;
+GtkWidget *main_window;
 GtkListStore *list_store;
 
 GArray *task_array;
 gint tasks;
 gint own_uid;
 
+gchar *config_file;
+
 gboolean show_user_tasks;
 gboolean show_root_tasks;
 gboolean show_other_tasks;
+
+gboolean full_view;
+
+guint win_width;
+guint win_height;
 
 #endif

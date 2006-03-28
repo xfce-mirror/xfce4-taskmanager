@@ -27,6 +27,8 @@
 #include <sys/types.h>
 #include <stdio.h>
 
+#include <libxfce4util/libxfce4util.h>
+
 #include "types.h"
 
 #define PROC_DIR_1 "/compat/linux/proc"
@@ -41,6 +43,9 @@ void remove_list_item(gint i);
 void refresh_list_item(gint i);
 void send_signal_to_task(gchar *task_id, gchar *signal);
 void change_task_view(void);
+
+void load_config(void);
+void save_config(void);
 
 #endif
 

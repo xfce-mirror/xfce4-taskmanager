@@ -86,6 +86,7 @@ gboolean refresh_task_list(void)
 					// fix for freebsd with linux emo
 					sscanf(buffer_status,"VmRss: %i",&task.rss);
 					sscanf(buffer_status,"State: %c",&task.state);
+					sscanf(buffer_status,"SleepAVG: %i",&task.sleep);
 #endif
 				}
 					
@@ -145,8 +146,6 @@ gboolean refresh_task_list(void)
 		}
 	}
 	
-	printf("---------------------------------------------\n");
-	
 	return TRUE;
 }
 
@@ -163,14 +162,16 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		gchar *rss = g_strdup_printf("%i kb", task->rss);
 		gchar *name = g_strdup_printf("%s", task->name);
 		gchar *uname = g_strdup_printf("%s", task->uname);
+		gchar *sleep = g_strdup_printf("%i %%", task->sleep);
 	
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 0, name, -1);
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 1, pid, -1);
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 2, ppid, -1);
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 3, state, -1);
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 4, size, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 5, rss, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 6, uname, -1);
+		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 5, sleep, -1);
+		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 6, rss, -1);
+		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 7, uname, -1);
 		
 		free(pid);
 		free(ppid);
@@ -179,6 +180,7 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		free(rss);
 		free(name);
 		free(uname);
+		free(sleep);
 	}
 }
 
@@ -311,4 +313,45 @@ void change_task_view(void)
 	}
 	
 	refresh_task_list();
+}
+
+void load_config(void)
+{
+	XfceRc *rc_file = xfce_rc_simple_open(config_file, FALSE);
+	
+	xfce_rc_set_group (rc_file, "General");
+	
+	show_user_tasks = xfce_rc_read_bool_entry(rc_file, "show_user_tasks", TRUE);
+	show_root_tasks = xfce_rc_read_bool_entry(rc_file, "show_root_tasks", FALSE);
+	show_other_tasks = xfce_rc_read_bool_entry(rc_file, "show_other_tasks", FALSE);
+	
+	full_view = xfce_rc_read_bool_entry(rc_file, "full_view", FALSE);
+	
+	win_width = xfce_rc_read_int_entry(rc_file, "win_width", 500);
+	win_height = xfce_rc_read_int_entry(rc_file, "win_height", 400);
+                                             
+	xfce_rc_close(rc_file);
+}
+
+void save_config(void)
+{
+	XfceRc *rc_file = xfce_rc_simple_open(config_file, FALSE);
+	
+	xfce_rc_set_group (rc_file, "General");
+	
+	xfce_rc_write_bool_entry(rc_file, "show_user_tasks", show_user_tasks);
+	xfce_rc_write_bool_entry(rc_file, "show_root_tasks", show_root_tasks);
+	xfce_rc_write_bool_entry(rc_file, "show_other_tasks", show_other_tasks);
+	
+	xfce_rc_write_bool_entry(rc_file, "full_view", full_view);
+
+	gtk_window_get_size(GTK_WINDOW (main_window), &win_width, &win_height);
+	
+	xfce_rc_write_int_entry(rc_file, "win_width", win_width);
+	xfce_rc_write_int_entry(rc_file, "win_height", win_height);
+	
+	xfce_rc_flush(rc_file);
+
+	xfce_rc_close(rc_file);
+	
 }
