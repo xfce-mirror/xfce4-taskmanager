@@ -55,55 +55,100 @@ gboolean refresh_task_list(void)
 			
 			gchar task_file_name_status[64] = "/proc/";
 			g_strlcat(task_file_name_status,dir_entry->d_name, sizeof task_file_name_status);
+#if defined(__NetBSD__)
 			g_strlcat(task_file_name_status,"/status", sizeof task_file_name_status);
-		
+#else
+			g_strlcat(task_file_name_status,"/stat", sizeof task_file_name_status);
+#endif
 			gchar buffer_status[256];
 			struct task task;
 			struct passwd *passwdp;
+			struct stat status;
 					
+			stat(task_file_name_status, &status);
+			
 			memset(&task, 0, sizeof(task));
 			if((task_file_status = fopen(task_file_name_status,"r")) != NULL)
 			{				
 				while(fgets(buffer_status, sizeof buffer_status, task_file_status) != NULL)
 				{
+					gchar dummy[255];
+					
 #if defined(__NetBSD__)
 					/*
 					 * NetBSD: /proc/number/status
 					 * init 1 0 1 1 -1,-1 sldr 1131254603,930043 0,74940 0,87430 wait 0 0,0
 					 */
-					gchar dummy[255];
+					
 
 					sscanf(buffer_status, "%s %i %i %s %s %s %s %s %s %s %s %i %s",
 					       &task.name, &task.pid, &task.ppid, &dummy, &dummy, &dummy,
 					       &dummy, &dummy, &dummy, &dummy, &dummy, &task.uid, &dummy);
 #else
-					sscanf(buffer_status,"Uid: %i",&task.uid);
-					sscanf(buffer_status,"Pid: %i",&task.pid);
-					sscanf(buffer_status,"PPid: %i",&task.ppid);
-					sscanf(buffer_status,"Name: %s",&task.name);
-					sscanf(buffer_status,"VmSize: %i",&task.size);
-					sscanf(buffer_status,"VmRSS: %i",&task.rss);
-					// fix for freebsd with linux emo
-					sscanf(buffer_status,"VmRss: %i",&task.rss);
-					sscanf(buffer_status,"State: %c",&task.state);
-					sscanf(buffer_status,"SleepAVG: %i",&task.sleep);
+					//sscanf(buffer_status, "%d %s %c %d %d %d %d %d %lu %lu %lu %lu %lu %lu %lu %ld %ld %ld %ld %ld %ld %lu %lu %ld %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %d %d",
+					
+					sscanf(buffer_status, "%i %s %c %i %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %i %i %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s",
+						&task.pid,	// processid
+						&task.name,	// processname
+						&task.state,	// processstate
+						&task.ppid,	// parentid
+						&dummy,		// processs groupid
+						&dummy,		// session id 
+						&dummy,		// tty id
+						&dummy,		// tpgid: The process group ID of the process running on tty of the process
+						&dummy,		// flags 
+						&dummy,		// minflt minor faults the process has maid
+						&dummy,		// cminflt
+						&dummy,		// majflt
+						&dummy,		// cmajflt
+						&dummy,		// utime the number of jiffies that this process has scheduled in user mode
+						&dummy,		// stime " kernel mode
+						&dummy,		// cutime " waited for children in user
+						&dummy,		// cstime " kernel mode
+						&dummy,		// priority (nice value + fifteen)
+						&dummy,		// nice range from 19 to -19
+						&dummy,		// hardcoded 0
+						&dummy,		// itrealvalue time in jiffies to next SIGALRM send to this process
+						&dummy,		// starttime jiffies the process startet after system boot
+						&task.size,	// vsize in bytes
+						&task.rss,	// rss
+						&dummy,		// rlim limit in bytes for rss
+						&dummy,		// startcode
+						&dummy,		// endcode
+						&dummy,		// startstack
+						&dummy,		// kstkesp value of esp (stack pointer) 
+						&dummy, 	// kstkeip value of EIP (instruction pointer)
+						&dummy,		// signal. bitmap of pending signals
+						&dummy,		// blocked: bitmap of blocked signals
+						&dummy,		// sigignore: bitmap of ignored signals
+						&dummy,		// sigcatch: bitmap of catched signals
+						&dummy,		// wchan 
+						&dummy,		// nswap
+						&dummy,		// cnswap
+						&dummy,		// exit_signal
+						&dummy,		// CPU number last executed on
+						&dummy,
+						&dummy
+					);									
 #endif
 				}
-					
+				
+				task.uid = status.st_uid;
 				passwdp = getpwuid(task.uid);
 				if(passwdp != NULL && passwdp->pw_name != NULL)
 					g_strlcpy(task.uname, passwdp->pw_name, sizeof task.uname);
 			}
 			
-			fclose(task_file_status);
-				
+			if(task_file_status != NULL)
+				fclose(task_file_status);
+							
 			/* check if task is new and marks the task that its checked*/
 			gboolean new_task = TRUE;
 				
 			for(i = 0; i < tasks; i++)
 			{
 				struct task *data = &g_array_index(task_array, struct task, i);
-				
+			
 				if((gint)data->pid == task.pid)
 				{
 					if((gint)data->ppid != task.ppid || (gchar)data->state != task.state || (unsigned int)data->size != task.size || (unsigned int)data->rss != task.rss)
@@ -120,7 +165,7 @@ gboolean refresh_task_list(void)
 					break;
 				}
 			}
-				
+			
 			if(new_task)
 			{
 				task.checked = TRUE;
@@ -158,20 +203,18 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		gchar *pid = g_strdup_printf("%i", task->pid);
 		gchar *ppid = g_strdup_printf("%i", task->ppid);
 		gchar *state = g_strdup_printf("%c", task->state);
-		gchar *size = g_strdup_printf("%i kb", task->size);
-		gchar *rss = g_strdup_printf("%i kb", task->rss);
+		gchar *size = g_strdup_printf("%i kB", task->size);
+		gchar *rss = g_strdup_printf("%i kB", task->rss);
 		gchar *name = g_strdup_printf("%s", task->name);
 		gchar *uname = g_strdup_printf("%s", task->uname);
-		gchar *sleep = g_strdup_printf("%i %%", task->sleep);
 	
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 0, name, -1);
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 1, pid, -1);
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 2, ppid, -1);
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 3, state, -1);
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 4, size, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 5, sleep, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 6, rss, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 7, uname, -1);
+		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 5, rss, -1);
+		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 6, uname, -1);
 		
 		free(pid);
 		free(ppid);
@@ -180,7 +223,6 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		free(rss);
 		free(name);
 		free(uname);
-		free(sleep);
 	}
 }
 

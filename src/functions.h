@@ -25,6 +25,7 @@
 #include <dirent.h>
 #include <pwd.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <stdio.h>
 
 #include <libxfce4util/libxfce4util.h>

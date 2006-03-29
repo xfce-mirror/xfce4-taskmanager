@@ -93,7 +93,6 @@ GtkWidget* create_main_window (void)
 void change_list_store_view(void)
 {
 	gtk_tree_view_column_set_visible (column4, full_view);
-	gtk_tree_view_column_set_visible (column_sleep, full_view);
 	gtk_tree_view_column_set_visible (column5, full_view);
 	gtk_tree_view_column_set_visible (column6, full_view);
 }
@@ -135,23 +134,17 @@ void create_list_store(void)
 	gtk_tree_view_column_set_sort_column_id(column5, 4);
 	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), 4, compare_list_item, (void *)4, NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column5);
-	
-	column_sleep = gtk_tree_view_column_new_with_attributes(_("Sleep"), cell_renderer, "text", 5, NULL);
-	gtk_tree_view_column_set_resizable(column_sleep, TRUE);
-	gtk_tree_view_column_set_sort_column_id(column_sleep, 5);
-	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), 5, compare_list_item, (void *)5, NULL);
-	gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column_sleep);
-	
-	column6 = gtk_tree_view_column_new_with_attributes(_("RSS"), cell_renderer, "text", 6, NULL);
+		
+	column6 = gtk_tree_view_column_new_with_attributes(_("RSS"), cell_renderer, "text", 5, NULL);
 	gtk_tree_view_column_set_resizable(column6, TRUE);
-	gtk_tree_view_column_set_sort_column_id(column6, 6);
-	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), 6, compare_list_item, (void *)6, NULL);
+	gtk_tree_view_column_set_sort_column_id(column6, 5);
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), 5, compare_list_item, (void *)5, NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column6);
 		
-	column7 = gtk_tree_view_column_new_with_attributes(_("User"), cell_renderer, "text", 7, NULL);
+	column7 = gtk_tree_view_column_new_with_attributes(_("User"), cell_renderer, "text", 6, NULL);
 	gtk_tree_view_column_set_resizable(column7, TRUE);
-	gtk_tree_view_column_set_sort_column_id(column7, 7);
-	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), 7, compare_list_item, (void *)7, NULL);
+	gtk_tree_view_column_set_sort_column_id(column7, 6);
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), 6, compare_list_item, (void *)6, NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), column7);
 	
 	change_list_store_view();

@@ -34,7 +34,6 @@ struct task
 	gint size;
 	gint rss;
 	gboolean checked;
-	gint sleep;
 };
 
 GtkWidget *main_window;
