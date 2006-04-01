@@ -1,0 +1,83 @@
+# $Id$
+#
+# Japanese translations for xfce4-taskmanager package.
+# Copyright (C) 2005-2006 Johannes Zellner.
+# This file is distributed under the same license as
+#   the xfce4-taskmanager package.
+# Daichi Kawahata <daichi@xfce.org>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-04-01 17:42+0900\n"
+"PO-Revision-Date: 2006-04-01 17:57+0900\n"
+"Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
+"Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/interface.c:41 ../src/interface.c:246
+msgid "xfce4-taskmanager"
+msgstr "xfce4-taskmanager"
+
+#: ../src/interface.c:75
+msgid "more details"
+msgstr "さらに詳しく"
+
+#: ../src/interface.c:108
+msgid "Command"
+msgstr "コマンド"
+
+#: ../src/interface.c:114
+msgid "PID"
+msgstr "PID"
+
+#: ../src/interface.c:120
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/interface.c:126
+msgid "State"
+msgstr "状態"
+
+#: ../src/interface.c:132
+msgid "VM-Size"
+msgstr "VMサイズ"
+
+#: ../src/interface.c:138
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/interface.c:144
+msgid "User"
+msgstr "ユーザー"
+
+#: ../src/interface.c:163
+msgid "Stop"
+msgstr "中止"
+
+#: ../src/interface.c:167
+msgid "Continue"
+msgstr "続行"
+
+#: ../src/interface.c:171
+msgid "Term"
+msgstr "中断"
+
+#: ../src/interface.c:175
+msgid "Kill"
+msgstr "Kill"
+
+#: ../src/interface.c:210
+msgid "Show user tasks"
+msgstr "ユーザータスクを表示"
+
+#: ../src/interface.c:215
+msgid "Show root tasks"
+msgstr "ルートタスクを表示"
+
+#: ../src/interface.c:220
+msgid "Show other tasks"
+msgstr "その他のタスクを表示"
