@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager 0.3.2\n"
+"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-03 11:43+0200\n"
+"POT-Creation-Date: 2006-04-01 17:42+0900\n"
 "PO-Revision-Date: 2006-01-04 20:50+0900\n"
 "Last-Translator: Johannes Zellner <xfce4-taskmanager@nebulon.de>\n"
 "Language-Team: Brazilian Portuguese <xfce4-dev@xfce.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/interface.c:41 ../src/interface.c:247
+#: ../src/interface.c:41 ../src/interface.c:246
 msgid "xfce4-taskmanager"
 msgstr "xfce4-taskmanager"
 
@@ -24,58 +24,58 @@ msgstr "xfce4-taskmanager"
 msgid "more details"
 msgstr "mais detalhes"
 
-#: ../src/interface.c:109
+#: ../src/interface.c:108
 msgid "Command"
 msgstr "Comando"
 
-#: ../src/interface.c:115
+#: ../src/interface.c:114
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:121
+#: ../src/interface.c:120
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:127
+#: ../src/interface.c:126
 msgid "State"
 msgstr "Status"
 
-#: ../src/interface.c:133
+#: ../src/interface.c:132
 msgid "VM-Size"
 msgstr "Tamanho VM"
 
-#: ../src/interface.c:139
+#: ../src/interface.c:138
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:145
+#: ../src/interface.c:144
 msgid "User"
 msgstr "Usuario"
 
-#: ../src/interface.c:164
+#: ../src/interface.c:163
 msgid "Stop"
 msgstr "Parar"
 
-#: ../src/interface.c:168
+#: ../src/interface.c:167
 msgid "Continue"
 msgstr "Continuar"
 
-#: ../src/interface.c:172
+#: ../src/interface.c:171
 msgid "Term"
 msgstr "Terminar"
 
-#: ../src/interface.c:176
+#: ../src/interface.c:175
 msgid "Kill"
 msgstr "Matar"
 
-#: ../src/interface.c:211
+#: ../src/interface.c:210
 msgid "Show user tasks"
 msgstr "Exibir processos do usuario"
 
-#: ../src/interface.c:216
+#: ../src/interface.c:215
 msgid "Show root tasks"
 msgstr "Exibir processos do root"
 
-#: ../src/interface.c:221
+#: ../src/interface.c:220
 msgid "Show other tasks"
 msgstr "Exibir outros processos"
