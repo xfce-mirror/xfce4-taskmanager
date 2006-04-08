@@ -1,5 +1,11 @@
+2006-04-08  Daichi Kawahata <daichi@xfce.org>
+
+	* pl.po: Added Polish translations by Piotr Malinski
+	  <admin@rk.edu.pl>.
+
 2006-04-01  Daichi Kawahata <daichi@xfce.org>
 
+	* xfce4-taskmanager.pot, *.po: Updated.
 	* ja.po: Added Japanese translations.
 
 2006-03-28  Johannes Zellner <webmaster@nebulon.de>
