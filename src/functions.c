@@ -101,8 +101,8 @@ gboolean refresh_task_list(void)
 						&dummy,		// cminflt
 						&dummy,		// majflt
 						&dummy,		// cmajflt
-						&dummy,		// utime the number of jiffies that this process has scheduled in user mode
-						&dummy,		// stime " kernel mode
+						&task.utime,		// utime the number of jiffies that this process has scheduled in user mode
+						&task.stime,		// stime " kernel mode
 						&dummy,		// cutime " waited for children in user
 						&dummy,		// cstime " kernel mode
 						&dummy,		// priority (nice value + fifteen)
@@ -126,12 +126,14 @@ gboolean refresh_task_list(void)
 						&dummy,		// nswap
 						&dummy,		// cnswap
 						&dummy,		// exit_signal
-						&dummy,		// CPU number last executed on
+						&task.cpuid,		// CPU number last executed on
 						&dummy,
 						&dummy
-					);									
+					);
 #endif
 				}
+				
+				//printf("%i - %i\n",task.utime,task.stime);
 				
 				task.uid = status.st_uid;
 				passwdp = getpwuid(task.uid);
@@ -151,12 +153,15 @@ gboolean refresh_task_list(void)
 			
 				if((gint)data->pid == task.pid)
 				{
-					if((gint)data->ppid != task.ppid || (gchar)data->state != task.state || (unsigned int)data->size != task.size || (unsigned int)data->rss != task.rss)
+					if((gint)data->cpuid != task.cpuid || (gint)data->stime != task.stime || (gint)data->utime != task.utime || (gint)data->ppid != task.ppid || (gchar)data->state != task.state || (unsigned int)data->size != task.size || (unsigned int)data->rss != task.rss)
 					{
 						data->ppid = task.ppid;
 						data->state = task.state;
 						data->size = task.size;
 						data->rss = task.rss;
+						data->utime = task.utime;
+						data->stime = task.stime;
+						data->cpuid = task.cpuid;
 						
 						refresh_list_item(i);
 					}
@@ -207,6 +212,9 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		gchar *rss = g_strdup_printf("%i kB", task->rss);
 		gchar *name = g_strdup_printf("%s", task->name);
 		gchar *uname = g_strdup_printf("%s", task->uname);
+		gchar *stime = g_strdup_printf("%i", task->stime);
+		gchar *utime = g_strdup_printf("%i", task->utime);
+		gchar *cpuid = g_strdup_printf("%i", task->cpuid);
 	
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 0, name, -1);
 		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 1, pid, -1);
@@ -223,6 +231,9 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		free(rss);
 		free(name);
 		free(uname);
+		free(stime);
+		free(utime);
+		free(cpuid);
 	}
 }
 

@@ -33,6 +33,9 @@ struct task
 	gchar state;
 	gint size;
 	gint rss;
+	gint utime;
+	gint stime;
+	gint cpuid;
 	gboolean checked;
 };
 
