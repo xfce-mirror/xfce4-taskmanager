@@ -87,53 +87,59 @@ gboolean refresh_task_list(void)
 #else
 					//sscanf(buffer_status, "%d %s %c %d %d %d %d %d %lu %lu %lu %lu %lu %lu %lu %ld %ld %ld %ld %ld %ld %lu %lu %ld %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %d %d",
 					
-					sscanf(buffer_status, "%i %s %c %i %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %i %i %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s",
+					sscanf(buffer_status, "%i %s %c %i %i %i %i %i %s %s %s %s %s %s %s %i %i %i %i %i %i %i %i %i %s %s %s %i %s %s %s %s %s %s %s %s %s %s %i %s %s",
 						&task.pid,	// processid
 						&task.name,	// processname
 						&task.state,	// processstate
 						&task.ppid,	// parentid
 						&dummy,		// processs groupid
+						
 						&dummy,		// session id 
 						&dummy,		// tty id
 						&dummy,		// tpgid: The process group ID of the process running on tty of the process
 						&dummy,		// flags 
 						&dummy,		// minflt minor faults the process has maid
+						
 						&dummy,		// cminflt
 						&dummy,		// majflt
 						&dummy,		// cmajflt
-						&task.utime,		// utime the number of jiffies that this process has scheduled in user mode
-						&task.stime,		// stime " kernel mode
+						&dummy,		// utime the number of jiffies that this process has scheduled in user mode
+						&dummy,		// stime " kernel mode
+						
 						&dummy,		// cutime " waited for children in user
 						&dummy,		// cstime " kernel mode
 						&dummy,		// priority (nice value + fifteen)
 						&dummy,		// nice range from 19 to -19
 						&dummy,		// hardcoded 0
+						
 						&dummy,		// itrealvalue time in jiffies to next SIGALRM send to this process
 						&dummy,		// starttime jiffies the process startet after system boot
 						&task.size,	// vsize in bytes
 						&task.rss,	// rss
 						&dummy,		// rlim limit in bytes for rss
+						
 						&dummy,		// startcode
 						&dummy,		// endcode
 						&dummy,		// startstack
 						&dummy,		// kstkesp value of esp (stack pointer) 
 						&dummy, 	// kstkeip value of EIP (instruction pointer)
+						
 						&dummy,		// signal. bitmap of pending signals
 						&dummy,		// blocked: bitmap of blocked signals
 						&dummy,		// sigignore: bitmap of ignored signals
 						&dummy,		// sigcatch: bitmap of catched signals
 						&dummy,		// wchan 
+						
 						&dummy,		// nswap
 						&dummy,		// cnswap
 						&dummy,		// exit_signal
-						&task.cpuid,		// CPU number last executed on
+						&dummy,		// CPU number last executed on
 						&dummy,
+						
 						&dummy
 					);
 #endif
 				}
-				
-				//printf("%i - %i\n",task.utime,task.stime);
 				
 				task.uid = status.st_uid;
 				passwdp = getpwuid(task.uid);
@@ -153,15 +159,12 @@ gboolean refresh_task_list(void)
 			
 				if((gint)data->pid == task.pid)
 				{
-					if((gint)data->cpuid != task.cpuid || (gint)data->stime != task.stime || (gint)data->utime != task.utime || (gint)data->ppid != task.ppid || (gchar)data->state != task.state || (unsigned int)data->size != task.size || (unsigned int)data->rss != task.rss)
+					if((gint)data->ppid != task.ppid || (gchar)data->state != task.state || (unsigned int)data->size != task.size || (unsigned int)data->rss != task.rss)
 					{
 						data->ppid = task.ppid;
 						data->state = task.state;
 						data->size = task.size;
 						data->rss = task.rss;
-						data->utime = task.utime;
-						data->stime = task.stime;
-						data->cpuid = task.cpuid;
 						
 						refresh_list_item(i);
 					}
@@ -199,175 +202,10 @@ gboolean refresh_task_list(void)
 	return TRUE;
 }
 
-void fill_list_item(gint i, GtkTreeIter *iter)
-{
-	if(iter != NULL)
-	{
-		struct task *task = &g_array_index(task_array, struct task, i);
-		
-		gchar *pid = g_strdup_printf("%i", task->pid);
-		gchar *ppid = g_strdup_printf("%i", task->ppid);
-		gchar *state = g_strdup_printf("%c", task->state);
-		gchar *size = g_strdup_printf("%i kB", task->size);
-		gchar *rss = g_strdup_printf("%i kB", task->rss);
-		gchar *name = g_strdup_printf("%s", task->name);
-		gchar *uname = g_strdup_printf("%s", task->uname);
-		gchar *stime = g_strdup_printf("%i", task->stime);
-		gchar *utime = g_strdup_printf("%i", task->utime);
-		gchar *cpuid = g_strdup_printf("%i", task->cpuid);
-	
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 0, name, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 1, pid, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 2, ppid, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 3, state, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 4, size, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 5, rss, -1);
-		gtk_list_store_set(GTK_LIST_STORE(list_store), iter, 6, uname, -1);
-		
-		free(pid);
-		free(ppid);
-		free(state);
-		free(size);
-		free(rss);
-		free(name);
-		free(uname);
-		free(stime);
-		free(utime);
-		free(cpuid);
-	}
-}
 
-void add_new_list_item(gint i)
-{
-		GtkTreeIter iter;
-	
-		gtk_list_store_append(GTK_LIST_STORE(list_store), &iter);
-	
-		fill_list_item(i, &iter);
-}
-
-void refresh_list_item(gint i)
-{
-	GtkTreeIter iter;
-	
-	gboolean valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(list_store), &iter);
-	
-	struct task task = g_array_index(task_array, struct task, i);
-		
-	while(valid)
-	{
-		gchar *str_data = "";
-		gtk_tree_model_get(GTK_TREE_MODEL(list_store), &iter, 1, &str_data, -1);
-
-		if(task.pid == atoi(str_data))
-		{
-			g_free(str_data);
-			fill_list_item(i, &iter);
-			break;
-		}
-
-		g_free(str_data);
-		valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(list_store), &iter);
-	}
-}
-
-void remove_list_item(gint pid)
-{
-	GtkTreeIter iter;
-	
-	gboolean valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(list_store), &iter);
-	
-	while(valid)
-	{
-		gchar *str_data = "";
-		gtk_tree_model_get(GTK_TREE_MODEL(list_store), &iter, 1, &str_data, -1);
-
-		if(pid == atoi(str_data))
-		{
-			free(str_data);
-			gtk_list_store_remove(GTK_LIST_STORE(list_store), &iter);
-			break;
-		}
-
-		free(str_data);
-		valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(list_store), &iter);
-	}
-}
-
-gint compare_list_item(GtkTreeModel *model, GtkTreeIter *iter1, GtkTreeIter *iter2, gpointer colnum)
-{	
-	gchar *s1 = "";
-	gchar *s2 = "";
-	gint ret = 0;
-
-	gtk_tree_model_get(model, iter1, colnum, &s1, -1);
-	gtk_tree_model_get(model, iter2, colnum, &s2, -1);
-
-	if((gint)colnum == 1 || (gint)colnum == 2 || (gint)colnum == 4 || (gint)colnum == 5)
-	{
-		gint i1 = 0;
-		gint i2 = 0;
-	
-		if(s1 != NULL)
-			i1 = atoi(s1);
-		
-		if(s2 != NULL)
-			i2 = atoi(s2);
-	
-		if(i1 < i2)
-			ret = -1;
-		else
-			ret = 1;
-	}
-	else
-	{
-		if(s1 == NULL)
-			s1 = "";
-		if(s2 == NULL)
-			s2 = "";
-	
-		ret = strcmp(s1, s2);
-	}
-	
-	free(s1);
-	free(s2);
-	
-	return ret;
-}
-
-/* function to send the signal to the current task */
-void send_signal_to_task(gchar *task_id, gchar *signal)
-{
-	if(task_id != "" && signal != NULL)
-	{
-		gchar command[64] = "kill -";
-		g_strlcat(command,signal, sizeof command);
-		g_strlcat(command," ", sizeof command);
-		g_strlcat(command,task_id, sizeof command);
-		
-		if(system(command) != 0)
-			xfce_err("Couldn't %s the task with ID %s", signal, task_id);
-	}
-}
-
-/* change the task view (user, root, other) */
-void change_task_view(void)
-{
-	gtk_list_store_clear(GTK_LIST_STORE(list_store));
-	
-	gint i = 0;
-	
-	for(i = 0; i < tasks; i++)
-	{
-		struct task task = g_array_index(task_array, struct task, i);
-		
-		if((task.uid == own_uid && show_user_tasks) || (task.uid == 0 && show_root_tasks) || (task.uid != own_uid && task.uid != 0 && show_other_tasks))
-			add_new_list_item(i);
-	}
-	
-	refresh_task_list();
-}
-
+/*
+ * configurationfile support
+ */
 void load_config(void)
 {
 	XfceRc *rc_file = xfce_rc_simple_open(config_file, FALSE);
@@ -406,5 +244,4 @@ void save_config(void)
 	xfce_rc_flush(rc_file);
 
 	xfce_rc_close(rc_file);
-	
 }

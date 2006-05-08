@@ -29,7 +29,6 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "types.h"
-
 #include "interface.h"
 #include "functions.h"
 
@@ -58,7 +57,7 @@ int main (int argc, char *argv[])
 	if(!refresh_task_list())
 		return 0;
 
-	g_timeout_add(REFRESH_INTERVAL, refresh_task_list, NULL);
+	g_timeout_add(REFRESH_INTERVAL, (gpointer) refresh_task_list, NULL);
 	
 	gtk_main ();
 	

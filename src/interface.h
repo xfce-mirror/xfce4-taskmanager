@@ -18,11 +18,11 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __INTERFACE_H_
-#define __INTERFACE_H_
+#ifndef INTERFACE_H
+#define INTERFACE_H
 
 #ifdef HAVE_CONFIG_H
-#  include <config.h>
+#include <config.h>
 #endif
 
 #include <sys/types.h>
@@ -33,6 +33,7 @@
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
+
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "functions.h"
@@ -40,11 +41,19 @@
 #include "types.h"
  
 GtkTreeSelection *selection;
-GtkWidget *treeview1;
+GtkWidget *treeview;
 GtkWidget *mainmenu;
 GtkWidget *taskpopup;
 
-GtkTreeViewColumn *column1, *column2, *column3, *column4, *column5, *column_sleep, *column6, *column7;
+#define COLUMN_NAME	0
+#define COLUMN_PID	1
+#define COLUMN_PPID	2
+#define COLUMN_STATE	3
+#define COLUMN_MEM	4
+#define COLUMN_RSS	5
+#define COLUMN_UNAME	6
+
+GtkTreeViewColumn *column;
 
 void change_list_store_view(void);
 void create_list_store(void);
@@ -54,5 +63,13 @@ GtkWidget* create_taskpopup (void);
 GtkWidget* create_mainmenu (void);
 
 void show_about_dialog(void);
+
+void fill_list_item(gint i, GtkTreeIter *iter);
+void add_new_list_item(gint i);
+gint compare_list_item(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
+void remove_list_item(gint i);
+void refresh_list_item(gint i);
+
+void change_task_view(void);
 
 #endif

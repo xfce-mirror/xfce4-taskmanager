@@ -18,8 +18,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __FUNCTIONS_H_
-#define __FUNCTIONS_H_
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 
 #include <gtk/gtk.h>
 #include <dirent.h>
@@ -37,14 +37,9 @@
 #define PROC_DIR_3 "/proc"
 
 gboolean refresh_task_list(void);
-void fill_list_item(gint i, GtkTreeIter *iter);
-void add_new_list_item(gint i);
-gint compare_list_item(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
-void remove_list_item(gint i);
-void refresh_list_item(gint i);
 void send_signal_to_task(gchar *task_id, gchar *signal);
-void change_task_view(void);
 
+/* Configurationfile support */
 void load_config(void);
 void save_config(void);
 
