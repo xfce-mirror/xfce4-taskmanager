@@ -1,7 +1,7 @@
 /*
  *  xfce4-taskmanager - very simple taskmanger
  *
- *  Copyright (c) 2005 Johannes Zellner, <webmaster@nebulon.de>
+ *  Copyright (c) 2006 Johannes Zellner, <webmaster@nebulon.de>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -23,6 +23,8 @@
 gboolean refresh_task_list(void)
 {
 	DIR *dir;
+	struct dirent *dir_entry;
+	gint i;
 
 	/* load the /proc dir */
 	if((dir = opendir(PROC_DIR_1)) == NULL)
@@ -36,9 +38,6 @@ gboolean refresh_task_list(void)
 			}
 		}
 	}
-			
-	struct dirent *dir_entry;
-	gint i;
 		
 	/* markes all tasks to "not checked" */
 	for(i = 0; i < tasks; i++)
@@ -52,22 +51,23 @@ gboolean refresh_task_list(void)
 		if(atoi(dir_entry->d_name) != 0)
 		{
 			FILE *task_file_status;
-			
+			gchar buffer_status[256];
+			struct task task;
+			struct passwd *passwdp;
+			struct stat status;
 			gchar task_file_name_status[64] = "/proc/";
+			
 			g_strlcat(task_file_name_status,dir_entry->d_name, sizeof task_file_name_status);
 #if defined(__NetBSD__)
 			g_strlcat(task_file_name_status,"/status", sizeof task_file_name_status);
 #else
 			g_strlcat(task_file_name_status,"/stat", sizeof task_file_name_status);
 #endif
-			gchar buffer_status[256];
-			struct task task;
-			struct passwd *passwdp;
-			struct stat status;
-					
+				
 			stat(task_file_name_status, &status);
 			
 			memset(&task, 0, sizeof(task));
+			
 			if((task_file_status = fopen(task_file_name_status,"r")) != NULL)
 			{				
 				while(fgets(buffer_status, sizeof buffer_status, task_file_status) != NULL)
@@ -80,10 +80,12 @@ gboolean refresh_task_list(void)
 					 * init 1 0 1 1 -1,-1 sldr 1131254603,930043 0,74940 0,87430 wait 0 0,0
 					 */
 					
-
 					sscanf(buffer_status, "%s %i %i %s %s %s %s %s %s %s %s %i %s",
 					       &task.name, &task.pid, &task.ppid, &dummy, &dummy, &dummy,
-					       &dummy, &dummy, &dummy, &dummy, &dummy, &task.uid, &dummy);
+					       &dummy, &dummy, &dummy, &dummy, &task.state, &task.uid, &dummy);
+					       
+					task.size = -1;
+					task.rss = -1;
 #else
 					//sscanf(buffer_status, "%d %s %c %d %d %d %d %d %lu %lu %lu %lu %lu %lu %lu %ld %ld %ld %ld %ld %ld %lu %lu %ld %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %d %d",
 					
@@ -159,10 +161,10 @@ gboolean refresh_task_list(void)
 			
 				if((gint)data->pid == task.pid)
 				{
-					if((gint)data->ppid != task.ppid || (gchar)data->state != task.state || (unsigned int)data->size != task.size || (unsigned int)data->rss != task.rss)
+					if((gint)data->ppid != task.ppid || strcmp(data->state,task.state) || (unsigned int)data->size != task.size || (unsigned int)data->rss != task.rss)
 					{
 						data->ppid = task.ppid;
-						data->state = task.state;
+						strcpy(data->state, task.state);
 						data->size = task.size;
 						data->rss = task.rss;
 						

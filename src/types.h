@@ -1,7 +1,7 @@
 /*
  *  xfce4-taskmanager - very simple taskmanger
  *
- *  Copyright (c) 2005 Johannes Zellner, <webmaster@nebulon.de>
+ *  Copyright (c) 2006 Johannes Zellner, <webmaster@nebulon.de>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ struct task
 	gint uid;
 	gchar uname[64];
 	gchar name[64];
-	gchar state;
+	gchar state[16];
 	gint size;
 	gint rss;
 	gboolean checked;

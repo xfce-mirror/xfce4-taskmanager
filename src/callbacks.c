@@ -1,7 +1,7 @@
 /*
  *  xfce4-taskmanager - very simple taskmanger
  *
- *  Copyright (c) 2005 Johannes Zellner, <webmaster@nebulon.de>
+ *  Copyright (c) 2006 Johannes Zellner, <webmaster@nebulon.de>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

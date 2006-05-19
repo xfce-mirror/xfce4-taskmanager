@@ -1,7 +1,7 @@
 /*
  *  xfce4-taskmanager - very simple taskmanger
  *
- *  Copyright (c) 2005 Johannes Zellner, <webmaster@nebulon.de>
+ *  Copyright (c) 2006 Johannes Zellner, <webmaster@nebulon.de>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -253,7 +253,7 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		
 		gchar *pid = g_strdup_printf("%i", task->pid);
 		gchar *ppid = g_strdup_printf("%i", task->ppid);
-		gchar *state = g_strdup_printf("%c", task->state);
+		gchar *state = g_strdup_printf("%s", task->state);
 		gchar *size = g_strdup_printf("%i kB", task->size);
 		gchar *rss = g_strdup_printf("%i kB", task->rss);
 		gchar *name = g_strdup_printf("%s", task->name);
@@ -305,9 +305,7 @@ void add_new_list_item(gint i)
 void refresh_list_item(gint i)
 {
 	GtkTreeIter iter;
-	
 	gboolean valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(list_store), &iter);
-	
 	struct task task = g_array_index(task_array, struct task, i);
 		
 	while(valid)
@@ -330,7 +328,6 @@ void refresh_list_item(gint i)
 void remove_list_item(gint pid)
 {
 	GtkTreeIter iter;
-	
 	gboolean valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(list_store), &iter);
 	
 	while(valid)
@@ -395,7 +392,6 @@ gint compare_list_item(GtkTreeModel *model, GtkTreeIter *iter1, GtkTreeIter *ite
 void change_task_view(void)
 {
 	gtk_list_store_clear(GTK_LIST_STORE(list_store));
-	
 	gint i = 0;
 	
 	for(i = 0; i < tasks; i++)
