@@ -18,8 +18,10 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __TYPES_H_
-#define __TYPES_H_
+#ifndef TYPES_H
+#define TYPES_H
+
+#include <gtk/gtk.h>
 
 #define REFRESH_INTERVAL 1000
 
@@ -37,7 +39,6 @@ struct task
 };
 
 GtkWidget *main_window;
-GtkListStore *list_store;
 
 GArray *task_array;
 gint tasks;

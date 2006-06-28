@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([xfce4-taskmanager], [0.4.0-rc1], [xfce4-taskmanger@nebulon.de])
+AC_INIT([xfce4-taskmanager], [0.4.0-rc2], [xfce4-taskmanger@nebulon.de])
 AM_CONFIG_HEADER([config.h])
 AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
 AM_MAINTAINER_MODE

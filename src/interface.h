@@ -39,7 +39,8 @@
 #include "functions.h"
 #include "callbacks.h"
 #include "types.h"
- 
+
+GtkListStore *list_store;
 GtkTreeSelection *selection;
 GtkWidget *treeview;
 GtkWidget *mainmenu;

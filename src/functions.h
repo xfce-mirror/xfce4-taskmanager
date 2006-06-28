@@ -31,6 +31,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "types.h"
+#include "linux.h"
 
 #define PROC_DIR_1 "/compat/linux/proc"
 #define PROC_DIR_2 "/emul/linux/proc"

@@ -7857,10 +7857,24 @@ AC_SUBST([am__untar])
 
 dnl $Id$
 dnl
-dnl Copyright (c) 2002-2005
+dnl Copyright (c) 2002-2006
 dnl         The Xfce development team. All rights reserved.
 dnl
 dnl Written for Xfce by Benedikt Meurer <benny@xfce.org>.
+dnl
+dnl This program is free software; you can redistribute it and/or modify it
+dnl under the terms of the GNU General Public License as published by the Free
+dnl Software Foundation; either version 2 of the License, or (at your option)
+dnl any later version.
+dnl
+dnl This program is distributed in the hope that it will be useful, but WITHOUT
+dnl ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+dnl FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+dnl more details.
+dnl
+dnl You should have received a copy of the GNU General Public License along with
+dnl this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+dnl Place, Suite 330, Boston, MA  02111-1307  USA
 dnl
 dnl xdt-depends
 dnl -----------
@@ -8273,10 +8287,24 @@ AC_DEFUN([BM_LIBXPM_REQUIRE],
 
 dnl $Id$
 dnl
-dnl Copyright (c) 2002-2005
+dnl Copyright (c) 2002-2006
 dnl         The Xfce development team. All rights reserved.
 dnl
 dnl Written for Xfce by Benedikt Meurer <benny@xfce.org>.
+dnl
+dnl This program is free software; you can redistribute it and/or modify it
+dnl under the terms of the GNU General Public License as published by the Free
+dnl Software Foundation; either version 2 of the License, or (at your option)
+dnl any later version.
+dnl
+dnl This program is distributed in the hope that it will be useful, but WITHOUT
+dnl ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+dnl FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+dnl more details.
+dnl
+dnl You should have received a copy of the GNU General Public License along with
+dnl this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+dnl Place, Suite 330, Boston, MA  02111-1307  USA
 dnl
 dnl xdt-depends
 dnl -----------
@@ -8405,10 +8433,24 @@ AC_HELP_STRING([--enable-final], [Build final version]),
 
 dnl $Id$
 dnl
-dnl Copyright (c) 2002-2005
+dnl Copyright (c) 2002-2006
 dnl         The Xfce development team. All rights reserved.
 dnl
 dnl Written for Xfce by Benedikt Meurer <benny@xfce.org>.
+dnl
+dnl This program is free software; you can redistribute it and/or modify it
+dnl under the terms of the GNU General Public License as published by the Free
+dnl Software Foundation; either version 2 of the License, or (at your option)
+dnl any later version.
+dnl
+dnl This program is distributed in the hope that it will be useful, but WITHOUT
+dnl ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+dnl FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+dnl more details.
+dnl
+dnl You should have received a copy of the GNU General Public License along with
+dnl this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+dnl Place, Suite 330, Boston, MA  02111-1307  USA
 dnl
 dnl xdt-i18n
 dnl --------

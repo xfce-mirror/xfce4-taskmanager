@@ -14,7 +14,7 @@
 
 GETTEXT_PACKAGE = xfce4-taskmanager
 PACKAGE = xfce4-taskmanager
-VERSION = 0.4.0-rc1
+VERSION = 0.4.0-rc2
 
 SHELL = /bin/sh
 
@@ -32,7 +32,7 @@ localedir = $(libdir)/locale
 gnulocaledir = $(datadir)/locale
 gettextsrcdir = $(datadir)/glib-2.0/gettext/po
 subdir = po
-install_sh = /home/the_hippie/Projekte/xfce4-taskmanager/trunk/install-sh
+install_sh = /home/the_hippie/xfce4-taskmanager/trunk/install-sh
 mkdir_p = mkdir -p -- .
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 
@@ -59,14 +59,14 @@ INCLUDES = -I.. -I$(top_srcdir)/intl
 COMPILE = $(CC) -c $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) $(XCFLAGS)
 
 SOURCES = 
-POFILES =  de.po eu.po fi.po fr.po hu.po pt_BR.po vi.po
-GMOFILES =  de.gmo eu.gmo fi.gmo fr.gmo hu.gmo pt_BR.gmo vi.gmo
+POFILES =  de.po eu.po fi.po fr.po hu.po ja.po pl.po pt_BR.po ru.po vi.po
+GMOFILES =  de.gmo eu.gmo fi.gmo fr.gmo hu.gmo ja.gmo pl.gmo pt_BR.gmo ru.gmo vi.gmo
 DISTFILES = ChangeLog Makefile.in.in POTFILES.in \
 $(POFILES) $(GMOFILES) $(SOURCES)
 
 POTFILES = \
 
-CATALOGS =  de.gmo eu.gmo fi.gmo fr.gmo hu.gmo pt_BR.gmo vi.gmo
+CATALOGS =  de.gmo eu.gmo fi.gmo fr.gmo hu.gmo ja.gmo pl.gmo pt_BR.gmo ru.gmo vi.gmo
 CATOBJEXT = .gmo
 INSTOBJEXT = .mo
 

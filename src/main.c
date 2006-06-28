@@ -34,6 +34,7 @@
 
 int main (int argc, char *argv[])
 {
+
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -42,25 +43,25 @@ int main (int argc, char *argv[])
 
 	gtk_set_locale ();
 	gtk_init (&argc, &argv);
-	
+
 	own_uid = getuid();
 
 	config_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, "xfce4-taskmanager.rc", FALSE);
 	load_config();
-	
+
 	task_array = g_array_new (FALSE, FALSE, sizeof (struct task));
 	tasks = 0;
 
 	main_window = create_main_window ();
 	gtk_widget_show (main_window);
-	
+
 	if(!refresh_task_list())
 		return 0;
 
 	g_timeout_add(REFRESH_INTERVAL, (gpointer) refresh_task_list, NULL);
-	
+
 	gtk_main ();
-	
+
 	return 0;
 }
 
