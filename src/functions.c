@@ -28,13 +28,6 @@ gboolean refresh_task_list(void)
 	/* gets the new task list */
 	new_task_list = (GArray*) get_task_list();
 
-	/* markes all new_tasks to "not checked" */
-	for(i = 0; i < new_task_list->len; i++)
-	{
-		struct task *new_tmp = &g_array_index(new_task_list, struct task, i);
-		new_tmp->checked = FALSE;
-	}
-
 	/* check if task is new and marks the task that its checked*/
 	for(i = 0; i < task_array->len; i++)
 	{
@@ -53,7 +46,7 @@ gboolean refresh_task_list(void)
 					strcpy(tmp->state, new_tmp->state);
 					tmp->size = new_tmp->size;
 					tmp->rss = new_tmp->rss;
-
+					
 					refresh_list_item(i);
 				}
 				tmp->checked = TRUE;
@@ -72,7 +65,7 @@ gboolean refresh_task_list(void)
 
 		struct task *tmp = &g_array_index(task_array, struct task, i);
 
-		if(tmp->checked == FALSE)
+		if(!tmp->checked)
 		{
 			remove_list_item((gint)tmp->pid);
 			g_array_remove_index(task_array, i);
@@ -91,10 +84,10 @@ gboolean refresh_task_list(void)
 
 		if(!new_tmp->checked)
 		{
-			struct task new_task = *new_tmp;
+			struct task *new_task = new_tmp;
 
-			g_array_append_val(task_array, new_task);
-			if((show_user_tasks && new_task.uid == own_uid) || (show_root_tasks && new_task.uid == 0) ||  (show_other_tasks && new_task.uid != own_uid && new_task.uid != 0))
+			g_array_append_val(task_array, *new_task);
+			if((show_user_tasks && new_task->uid == own_uid) || (show_root_tasks && new_task->uid == 0) ||  (show_other_tasks && new_task->uid != own_uid && new_task->uid != 0))
 				add_new_list_item(tasks);
 			tasks++;
 		}
@@ -123,7 +116,9 @@ void load_config(void)
 
 	win_width = xfce_rc_read_int_entry(rc_file, "win_width", 500);
 	win_height = xfce_rc_read_int_entry(rc_file, "win_height", 400);
-
+	
+	custom_signal_1 = xfce_rc_read_entry(rc_file, "custom_signal_1", "");
+	custom_signal_0 = xfce_rc_read_entry(rc_file, "custom_signal_0", "Hello");
 	xfce_rc_close(rc_file);
 }
 
@@ -143,6 +138,9 @@ void save_config(void)
 
 	xfce_rc_write_int_entry(rc_file, "win_width", win_width);
 	xfce_rc_write_int_entry(rc_file, "win_height", win_height);
+	
+	xfce_rc_write_entry(rc_file, "custom_signal_0", custom_signal_0);
+	xfce_rc_write_entry(rc_file, "custom_signal_1", custom_signal_1);
 
 	xfce_rc_flush(rc_file);
 

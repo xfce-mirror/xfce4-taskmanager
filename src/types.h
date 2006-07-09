@@ -55,4 +55,7 @@ gboolean full_view;
 guint win_width;
 guint win_height;
 
+const gchar *custom_signal_0;
+const gchar *custom_signal_1;
+
 #endif

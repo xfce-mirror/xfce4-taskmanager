@@ -170,6 +170,14 @@ GtkWidget* create_taskpopup (void)
 	gtk_container_add (GTK_CONTAINER (taskpopup), menu_item);
 	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_task_menu), "KILL");
 
+	if(strcmp(custom_signal_0, "") != 0)
+	{
+		menu_item = gtk_menu_item_new_with_label (custom_signal_0);
+		gtk_widget_show (menu_item);
+		gtk_container_add (GTK_CONTAINER (taskpopup), menu_item);
+		g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_task_menu), "OO");
+	}
+	
 	return taskpopup;
 }
 
@@ -227,7 +235,7 @@ void show_about_dialog(void)
 	XfceAboutInfo *about_info;
 	
 	about_info = xfce_about_info_new("xfce4-taskmanager", VERSION, "Xfce4-Taskmanager is a easy to use Taskmanager.",XFCE_COPYRIGHT_TEXT("2005", "Johannes Zellner"), XFCE_LICENSE_GPL);
-	xfce_about_info_set_homepage(about_info, "http://developer.berlios.de/projects/xfce-goodies/");
+	xfce_about_info_set_homepage(about_info, "http://goodies.xfce.org");
 	xfce_about_info_add_credit(about_info, "Johannes Zellner", "webmaster@nebulon.de", "Original Author");
     
 	about_dialog = xfce_about_dialog_new(GTK_WINDOW(main_window), about_info, NULL);

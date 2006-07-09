@@ -32,7 +32,7 @@ localedir = $(libdir)/locale
 gnulocaledir = $(datadir)/locale
 gettextsrcdir = $(datadir)/glib-2.0/gettext/po
 subdir = po
-install_sh = /home/the_hippie/xfce4-taskmanager/trunk/install-sh
+install_sh = /home/the_hippie/Projekte/xfce4-taskmanager/trunk/install-sh
 mkdir_p = mkdir -p -- .
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 

@@ -17,13 +17,16 @@ struct task get_task_details(gint pid)
 
 	stat(filename, &status);
 
-	memset(&task, 0, sizeof(task));
+	memset(&task, 0, sizeof(struct task));
+	
+	task.pid = -1;
+	task.checked = FALSE;
 
 	if((task_file = fopen(filename,"r")) != NULL)
 	{
-		while(fgets(buffer_status, sizeof buffer_status, task_file) != NULL)
+		while(fgets(buffer_status, sizeof(buffer_status), task_file) != NULL)
 		{
-			sscanf(buffer_status, "%i (%255s %c %i %i %i %i %i %255s %255s %255s %255s %255s %255s %255s %i %i %i %i %i %i %i %i %i %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
+			sscanf(buffer_status, "%i (%s %c %i %i %i %i %i %s %s %s %s %s %s %s %i %i %i %i %i %i %i %i %i %s %s %s %i %s %s %s %s %s %s %s %s %s %s %i %s %s",
 						&task.pid,	// processid
 						&task.name,	// processname
 						&task.state,	// processstate
@@ -75,36 +78,37 @@ struct task get_task_details(gint pid)
 						&dummy
 					);
 		}
-
 		task.uid = status.st_uid;
 		passwdp = getpwuid(task.uid);
 		if(passwdp != NULL && passwdp->pw_name != NULL)
 			g_strlcpy(task.uname, passwdp->pw_name, sizeof task.uname);
 	}
+	
 
 	if(task_file != NULL)
 		fclose(task_file);
 
 	if((cmdline_file = fopen(cmdline_filename,"r")) != NULL)
 	{
-		*dummy = NULL;
-		fscanf(cmdline_file, "%s", &dummy);
-		if(*dummy != NULL)
+		gchar dummy[255];
+		strcpy(&dummy, "");
+		fscanf(cmdline_file, "%255s", &dummy);
+		if(strcmp(dummy, "") != 0)
 		{
 			if(g_strrstr(dummy,"/") != NULL)
 				g_strlcpy(task.name, g_strrstr(dummy,"/")+1, 255);
 			else
 				g_strlcpy(task.name, dummy, 255);
-
-			/* workaround for cmd-line entries with leading "-" */
+				
+			// workaround for cmd-line entries with leading "-"
 			if(g_str_has_prefix(task.name, "-"))
 				sscanf(task.name, "-%255s", task.name);
 		}
 	}
-
+	
 	if(cmdline_file != NULL)
 		fclose(cmdline_file);
-
+	
 	if(g_str_has_suffix(task.name, ")"))
 		*g_strrstr(task.name, ")") = '\0';
 
@@ -118,13 +122,15 @@ GArray *get_task_list()
 	GArray *task_list;
 
 	task_list = g_array_new (FALSE, FALSE, sizeof (struct task));
-
+	
 	if((dir = opendir("/proc/")) == NULL)
 	{
 		fprintf(stderr, "Error: couldn't load the /proc directory\n");
 		return NULL;
 	}
 
+	gint count = 0;
+	
 	while((dir_entry = readdir(dir)) != NULL)
 	{
 		if(atoi(dir_entry->d_name) != 0)
@@ -133,10 +139,10 @@ GArray *get_task_list()
 			if(task.pid != -1)
 				g_array_append_val(task_list, task);
 		}
+		count++;
 	}
 
 	closedir(dir);
-
 
 	return task_list;
 }
