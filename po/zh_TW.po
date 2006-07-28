@@ -1,0 +1,81 @@
+# Japanese translations for xfce4-taskmanager package.
+# Copyright (C) 2005-2006 Johannes Zellner.
+# This file is distributed under the same license as
+#   the xfce4-taskmanager package.
+# Cosmo Chene <cosmolax@ubuntu.org.tw>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-04-01 17:42+0900\n"
+"PO-Revision-Date: 2006-07-29 00:09+0800\n"
+"Last-Translator: Cosmo Chene <cosmolax@ubuntu.org.tw>\n"
+"Language-Team: Tradictional Chinese <zh-l10n@linux.org.tw>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/interface.c:41 ../src/interface.c:246
+msgid "xfce4-taskmanager"
+msgstr "xfce4-工作管理員"
+
+#: ../src/interface.c:75
+msgid "more details"
+msgstr "更多細節"
+
+#: ../src/interface.c:108
+msgid "Command"
+msgstr "命令"
+
+#: ../src/interface.c:114
+msgid "PID"
+msgstr "PID"
+
+#: ../src/interface.c:120
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/interface.c:126
+msgid "State"
+msgstr "狀態"
+
+#: ../src/interface.c:132
+msgid "VM-Size"
+msgstr "虛擬記憶體容量"
+
+#: ../src/interface.c:138
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/interface.c:144
+msgid "User"
+msgstr "使用者"
+
+#: ../src/interface.c:163
+msgid "Stop"
+msgstr "停止"
+
+#: ../src/interface.c:167
+msgid "Continue"
+msgstr "繼續"
+
+#: ../src/interface.c:171
+msgid "Term"
+msgstr "Term"
+
+#: ../src/interface.c:175
+msgid "Kill"
+msgstr "強行中止"
+
+#: ../src/interface.c:210
+msgid "Show user tasks"
+msgstr "顯示使用者工作"
+
+#: ../src/interface.c:215
+msgid "Show root tasks"
+msgstr "顯示 root 工作"
+
+#: ../src/interface.c:220
+msgid "Show other tasks"
+msgstr "顯示其他工作"
