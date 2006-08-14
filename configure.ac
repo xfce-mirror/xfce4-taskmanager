@@ -3,6 +3,7 @@ AC_INIT([xfce4-taskmanager], [0.4.0-rc2], [xfce4-taskmanger@nebulon.de])
 AM_CONFIG_HEADER([config.h])
 AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
 AM_MAINTAINER_MODE
+AM_INIT_AUTOMAKE(dist-bzip2)
 
 dnl Check for UNIX variants
 AC_AIX
