@@ -17,7 +17,7 @@ struct task get_task_details(gint pid)
 
 	stat(filename, &status);
 
-	memset(&task, 0, sizeof(struct task));
+	//memset(&task, 0, sizeof(struct task));
 	
 	task.pid = -1;
 	task.checked = FALSE;
@@ -26,7 +26,10 @@ struct task get_task_details(gint pid)
 	{
 		while(fgets(buffer_status, sizeof(buffer_status), task_file) != NULL)
 		{
-			sscanf(buffer_status, "%i (%s %c %i %i %i %i %i %s %s %s %s %s %s %s %i %i %i %i %i %i %i %i %i %s %s %s %i %s %s %s %s %s %s %s %s %s %s %i %s %s",
+			gint utime = 0;
+			gint stime = 0;
+			
+			sscanf(buffer_status, "%i (%s %1s %i %i %i %i %i %s %s %s %s %s %i %i %i %i %i %i %i %i %i %i %i %s %s %s %i %s %s %s %s %s %s %s %s %s %s %i %s %s",
 						&task.pid,	// processid
 						&task.name,	// processname
 						&task.state,	// processstate
@@ -42,8 +45,8 @@ struct task get_task_details(gint pid)
 						&dummy,		// cminflt
 						&dummy,		// majflt
 						&dummy,		// cmajflt
-						&dummy,		// utime the number of jiffies that this process has scheduled in user mode
-						&dummy,		// stime " kernel mode
+						&utime,		// utime the number of jiffies that this process has scheduled in user mode
+						&stime,		// stime " kernel mode
 
 						&dummy,		// cutime " waited for children in user
 						&dummy,		// cstime " kernel mode
@@ -77,6 +80,9 @@ struct task get_task_details(gint pid)
 
 						&dummy
 					);
+			task.time = stime + utime;
+			task.old_time = task.time;
+			task.time_percentage = 0;
 		}
 		task.uid = status.st_uid;
 		passwdp = getpwuid(task.uid);

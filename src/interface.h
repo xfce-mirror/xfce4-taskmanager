@@ -40,7 +40,7 @@
 #include "callbacks.h"
 #include "types.h"
 
-GtkListStore *list_store;
+GtkTreeStore *list_store;
 GtkTreeSelection *selection;
 GtkWidget *treeview;
 GtkWidget *mainmenu;
@@ -53,6 +53,7 @@ GtkWidget *taskpopup;
 #define COLUMN_MEM	4
 #define COLUMN_RSS	5
 #define COLUMN_UNAME	6
+#define COLUMN_TIME	7
 
 GtkTreeViewColumn *column;
 
@@ -68,6 +69,8 @@ void show_about_dialog(void);
 void fill_list_item(gint i, GtkTreeIter *iter);
 void add_new_list_item(gint i);
 gint compare_list_item(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
+gint compare_int_list_item(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
+gint compare_string_list_item(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
 void remove_list_item(gint i);
 void refresh_list_item(gint i);
 

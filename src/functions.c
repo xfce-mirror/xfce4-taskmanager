@@ -40,7 +40,14 @@ gboolean refresh_task_list(void)
 
 			if(new_tmp->pid == tmp->pid)
 			{
-				if((gint)tmp->ppid != (gint)new_tmp->ppid || strcmp(tmp->state,new_tmp->state) || (unsigned int)tmp->size != (unsigned int)new_tmp->size || (unsigned int)tmp->rss != (unsigned int)new_tmp->rss)
+				tmp->old_time = tmp->time;
+				
+				tmp->time = new_tmp->time;
+				
+				
+				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (gdouble)(1000.0 / REFRESH_INTERVAL);
+				
+				if((gint)tmp->ppid != (gint)new_tmp->ppid || strcmp(tmp->state,new_tmp->state) || (unsigned int)tmp->size != (unsigned int)new_tmp->size || (unsigned int)tmp->rss != (unsigned int)new_tmp->rss || (unsigned int)tmp->time != (unsigned int)tmp->old_time)
 				{
 					tmp->ppid = new_tmp->ppid;
 					strcpy(tmp->state, new_tmp->state);
