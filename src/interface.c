@@ -416,14 +416,11 @@ gint compare_string_list_item(GtkTreeModel *model, GtkTreeIter *iter1, GtkTreeIt
 		s2 = "";
 
 	ret = strcmp(s1, s2);
-
-	/* if not commented it produces segfaults
-	if commented it produces mem-leak X-(   ->> have to fix */
 	
-	/*if(s1 == NULL)
+	if(s1 != NULL)
 		g_free(s1);
 	if(s2 != NULL)
-		g_free(s2);*/
+		g_free(s2);
 	
 	return ret;
 }
