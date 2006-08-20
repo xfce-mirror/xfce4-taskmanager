@@ -1,0 +1,81 @@
+# Galician translation for xfce4-taskmanager
+# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
+# This file is distributed under the same license as the xfce4-taskmanager package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2006.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-taskmanager\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2006-05-08 19:44+0000\n"
+"PO-Revision-Date: 2006-08-17 19:43+0000\n"
+"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
+"Language-Team: Galician <gl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/interface.c:41 ../src/interface.c:247
+msgid "xfce4-taskmanager"
+msgstr ""
+
+#: ../src/interface.c:75
+msgid "more details"
+msgstr ""
+
+#: ../src/interface.c:109
+msgid "Command"
+msgstr ""
+
+#: ../src/interface.c:115
+msgid "PID"
+msgstr "PID"
+
+#: ../src/interface.c:121
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/interface.c:127
+msgid "State"
+msgstr "Estado"
+
+#: ../src/interface.c:133
+msgid "VM-Size"
+msgstr ""
+
+#: ../src/interface.c:139
+msgid "RSS"
+msgstr ""
+
+#: ../src/interface.c:145
+msgid "User"
+msgstr "Usuario"
+
+#: ../src/interface.c:164
+msgid "Stop"
+msgstr ""
+
+#: ../src/interface.c:168
+msgid "Continue"
+msgstr ""
+
+#: ../src/interface.c:172
+msgid "Term"
+msgstr ""
+
+#: ../src/interface.c:176
+msgid "Kill"
+msgstr ""
+
+#: ../src/interface.c:211
+msgid "Show user tasks"
+msgstr "Amosar as tarefas do usuario"
+
+#: ../src/interface.c:216
+msgid "Show root tasks"
+msgstr "Amosar as tarefas de root"
+
+#: ../src/interface.c:221
+msgid "Show other tasks"
+msgstr "Amosar outras tarefas"
