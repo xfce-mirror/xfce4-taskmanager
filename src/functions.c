@@ -124,8 +124,6 @@ void load_config(void)
 	win_width = xfce_rc_read_int_entry(rc_file, "win_width", 500);
 	win_height = xfce_rc_read_int_entry(rc_file, "win_height", 400);
 	
-	custom_signal_1 = xfce_rc_read_entry(rc_file, "custom_signal_1", "");
-	custom_signal_0 = xfce_rc_read_entry(rc_file, "custom_signal_0", "Hello");
 	xfce_rc_close(rc_file);
 }
 
@@ -145,9 +143,6 @@ void save_config(void)
 
 	xfce_rc_write_int_entry(rc_file, "win_width", win_width);
 	xfce_rc_write_int_entry(rc_file, "win_height", win_height);
-	
-	xfce_rc_write_entry(rc_file, "custom_signal_0", custom_signal_0);
-	xfce_rc_write_entry(rc_file, "custom_signal_1", custom_signal_1);
 
 	xfce_rc_flush(rc_file);
 

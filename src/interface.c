@@ -175,14 +175,6 @@ GtkWidget* create_taskpopup (void)
 	gtk_widget_show (menu_item);
 	gtk_container_add (GTK_CONTAINER (taskpopup), menu_item);
 	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_task_menu), "KILL");
-
-	if(strcmp(custom_signal_0, "") != 0)
-	{
-		menu_item = gtk_menu_item_new_with_label (custom_signal_0);
-		gtk_widget_show (menu_item);
-		gtk_container_add (GTK_CONTAINER (taskpopup), menu_item);
-		g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_task_menu), "OO");
-	}
 	
 	return taskpopup;
 }
