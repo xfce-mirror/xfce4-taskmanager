@@ -359,11 +359,8 @@ void remove_list_item(gint pid)
 
 gint compare_int_list_item(GtkTreeModel *model, GtkTreeIter *iter1, GtkTreeIter *iter2, gpointer column)
 {	
-	gchar *s1 = NULL;
-	gchar *s2 = NULL;
-	
-        s1 = (gchar*)malloc(sizeof(char) * 100);
-	s2 = (gchar*)malloc(sizeof(char) * 100);
+	gchar *s1 = "";
+	gchar *s2 = "";
         
 	gint ret = 0;
 
@@ -391,23 +388,18 @@ gint compare_int_list_item(GtkTreeModel *model, GtkTreeIter *iter1, GtkTreeIter 
 
 gint compare_string_list_item(GtkTreeModel *model, GtkTreeIter *iter1, GtkTreeIter *iter2, gpointer column)
 {	
-	gchar *s1 = NULL;
-	gchar *s2 = NULL;
-	
-        s1 = (gchar*)malloc(sizeof(gchar) * 100);
-	s2 = (gchar*)malloc(sizeof(gchar) * 100);
+	gchar *s1 = "";
+	gchar *s2 = "";
         
 	gint ret = 0;
 
 	gtk_tree_model_get(model, iter1, GPOINTER_TO_INT(column), &s1, -1);
 	gtk_tree_model_get(model, iter2, GPOINTER_TO_INT(column), &s2, -1);
 
-	if(s1 == NULL)
-		s1 = "";
-	if(s2 == NULL)
-		s2 = "";
-
-	ret = strcmp(s1, s2);
+	if(s1 != NULL && s2 != NULL)
+		ret = strcmp(s1, s2);
+	else
+		ret = 0;
 	
 	if(s1 != NULL)
 		g_free(s1);

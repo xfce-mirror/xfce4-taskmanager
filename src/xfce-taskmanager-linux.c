@@ -81,6 +81,7 @@ struct task get_task_details(gint pid)
 			task.time = stime + utime;
 			task.old_time = task.time;
 			task.time_percentage = 0;
+			task.size = task.size / 1024;
 		}
 		task.uid = status.st_uid;
 		passwdp = getpwuid(task.uid);
