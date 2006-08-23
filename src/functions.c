@@ -101,7 +101,7 @@ gboolean refresh_task_list(void)
 	}
 
 	g_array_free(new_task_list, TRUE);
-
+	
 	return TRUE;
 }
 

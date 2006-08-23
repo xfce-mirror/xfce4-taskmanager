@@ -9,7 +9,7 @@ xfce4_taskmanager_SOURCES = \
 	callbacks.c callbacks.h \
 	functions.c functions.h \
 	interface.c interface.h \
-	linux.c linux.h \
+	xfce-taskmanager-linux.c xfce-taskmanager-linux.h \
 	types.h
 
 xfce4_taskmanager_CFLAGS =							\

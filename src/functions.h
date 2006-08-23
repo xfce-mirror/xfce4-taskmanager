@@ -28,11 +28,17 @@
 #include <sys/stat.h>
 #include <sys/param.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include <libxfce4util/libxfce4util.h>
 
 #include "types.h"
-#include "linux.h"
+#include "interface.h"
+
+#ifdef LINUX
+#include "xfce-taskmanager-linux.h"
+#endif
 
 #define PROC_DIR_1 "/compat/linux/proc"
 #define PROC_DIR_2 "/emul/linux/proc"

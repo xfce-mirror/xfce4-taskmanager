@@ -283,14 +283,14 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_UNAME, uname, -1);
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_TIME, time, -1);
 		
-		free(pid);
-		free(ppid);
-		free(state);
-		free(size);
-		free(rss);
-		free(name);
-		free(uname);
-		free(time);
+		g_free(pid);
+		g_free(ppid);
+		g_free(state);
+		g_free(size);
+		g_free(rss);
+		g_free(name);
+		g_free(uname);
+		g_free(time);
 	}
 }
 
@@ -355,12 +355,12 @@ void remove_list_item(gint pid)
 
 		if(pid == atoi(str_data))
 		{
-			free(str_data);
+			g_free(str_data);
 			gtk_tree_store_remove(GTK_TREE_STORE(list_store), &iter);
 			break;
 		}
 
-		free(str_data);
+		g_free(str_data);
 		valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(list_store), &iter);
 	}
 }
