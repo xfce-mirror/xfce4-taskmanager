@@ -1,0 +1,83 @@
+# Czech translations for xfce4-taskmanager package.
+# Copyright (C) 2006 THE xfce4-taskmanager'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfce4-taskmanager package.
+# Michal Várady <miko.vaji@gmail.com>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-taskmanager 0.4.0-rc2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-04-01 17:42+0900\n"
+"PO-Revision-Date: 2006-08-27 10:22+0100\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
+"Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: ../src/interface.c:41
+#: ../src/interface.c:246
+msgid "xfce4-taskmanager"
+msgstr "xfce4-taskmanager"
+
+#: ../src/interface.c:75
+msgid "more details"
+msgstr "více podrobností"
+
+#: ../src/interface.c:108
+msgid "Command"
+msgstr "Příkaz"
+
+#: ../src/interface.c:114
+msgid "PID"
+msgstr "PID"
+
+#: ../src/interface.c:120
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/interface.c:126
+msgid "State"
+msgstr "Stav"
+
+#: ../src/interface.c:132
+msgid "VM-Size"
+msgstr "Velikost virtuální paměti"
+
+#: ../src/interface.c:138
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/interface.c:144
+msgid "User"
+msgstr "Uživatel"
+
+#: ../src/interface.c:163
+msgid "Stop"
+msgstr "Zastavit"
+
+#: ../src/interface.c:167
+msgid "Continue"
+msgstr "Pokračovat"
+
+#: ../src/interface.c:171
+msgid "Term"
+msgstr "Ukončit signálem TERM"
+
+#: ../src/interface.c:175
+msgid "Kill"
+msgstr "Ukončit signálem KILL"
+
+#: ../src/interface.c:210
+msgid "Show user tasks"
+msgstr "Zobrazit úlohy uživatele"
+
+#: ../src/interface.c:215
+msgid "Show root tasks"
+msgstr "Zobrazit úlohy uživatele root"
+
+#: ../src/interface.c:220
+msgid "Show other tasks"
+msgstr "Zobrazit jiné úlohy"
+
