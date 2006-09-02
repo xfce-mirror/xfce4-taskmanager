@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-01 17:42+0900\n"
+"POT-Creation-Date: 2006-08-25 07:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/interface.c:41 ../src/interface.c:246
+#: ../src/interface.c:41 ../src/interface.c:241
 msgid "xfce4-taskmanager"
 msgstr ""
 
@@ -24,58 +24,62 @@ msgstr ""
 msgid "more details"
 msgstr ""
 
-#: ../src/interface.c:108
+#: ../src/interface.c:101
 msgid "Command"
 msgstr ""
 
-#: ../src/interface.c:114
+#: ../src/interface.c:107
 msgid "PID"
 msgstr ""
 
-#: ../src/interface.c:120
+#: ../src/interface.c:113
 msgid "PPID"
 msgstr ""
 
-#: ../src/interface.c:126
+#: ../src/interface.c:119
 msgid "State"
 msgstr ""
 
-#: ../src/interface.c:132
+#: ../src/interface.c:125
 msgid "VM-Size"
 msgstr ""
 
-#: ../src/interface.c:138
+#: ../src/interface.c:131
 msgid "RSS"
 msgstr ""
 
-#: ../src/interface.c:144
+#: ../src/interface.c:137
 msgid "User"
 msgstr ""
 
-#: ../src/interface.c:163
+#: ../src/interface.c:143
+msgid "CPU%"
+msgstr ""
+
+#: ../src/interface.c:159
 msgid "Stop"
 msgstr ""
 
-#: ../src/interface.c:167
+#: ../src/interface.c:164
 msgid "Continue"
 msgstr ""
 
-#: ../src/interface.c:171
+#: ../src/interface.c:169
 msgid "Term"
 msgstr ""
 
-#: ../src/interface.c:175
+#: ../src/interface.c:174
 msgid "Kill"
 msgstr ""
 
-#: ../src/interface.c:210
+#: ../src/interface.c:205
 msgid "Show user tasks"
 msgstr ""
 
-#: ../src/interface.c:215
+#: ../src/interface.c:210
 msgid "Show root tasks"
 msgstr ""
 
-#: ../src/interface.c:220
+#: ../src/interface.c:215
 msgid "Show other tasks"
 msgstr ""

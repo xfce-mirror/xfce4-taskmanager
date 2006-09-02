@@ -151,3 +151,63 @@ GArray *get_task_list()
 
 	return task_list;
 }
+
+gboolean get_system_status (system_status *sys_stat)
+{
+	FILE *file;
+	gchar *file_name;
+	gchar *buffer;
+	
+	buffer = g_new (gchar, 100);
+	
+	file_name = g_strdup ("/proc/meminfo");
+	
+	if (!g_file_test (file_name, G_FILE_TEST_EXISTS))
+	{
+		g_free(file_name);
+		return FALSE;
+	}
+	
+	file = fopen (file_name, "r");
+	
+	if (file)
+	{
+		while (fgets (buffer, 100, file) != NULL)
+		{
+			sscanf (buffer, "MemTotal:\t%i kB", &sys_stat->mem_total);
+			sscanf (buffer, "MemFree:\t%i kB", &sys_stat->mem_free);
+		}
+		fclose (file);
+	}
+	g_free (buffer);
+	g_free (file_name);
+	
+	buffer = g_new (gchar, 100);
+	
+	file_name = g_strdup ("/proc/cpuinfo");
+	
+	if (!g_file_test (file_name, G_FILE_TEST_EXISTS))
+	{
+		g_free(file_name);
+		return FALSE;
+	}
+	
+	file = fopen (file_name, "r");
+	
+	sys_stat->cpu_count = -1;
+
+	if (file)
+	{
+		
+		while (fgets (buffer, 100, file) != NULL)
+		{
+			sscanf (buffer, "processor : %i", &sys_stat->cpu_count);
+		}
+		fclose (file);
+		sys_stat->cpu_count++;
+	}
+	g_free (buffer);
+	g_free (file_name);
+	
+	return TRUE;
+}

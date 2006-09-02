@@ -102,9 +102,32 @@ gboolean refresh_task_list(void)
 
 	g_array_free(new_task_list, TRUE);
 	
+	system_status *sys_stat = g_new (system_status, 1);
+	get_system_status (sys_stat);
+	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (mem_usage_progress_bar), 1.0 - ( (gdouble) sys_stat->mem_free / sys_stat->mem_total ));
+	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (cpu_usage_progress_bar), get_cpu_usage(sys_stat));
+	g_free (sys_stat);
+	
 	return TRUE;
 }
 
+gdouble get_cpu_usage(system_status *sys_stat)
+{
+	gdouble cpu_usage = 0.0;
+	gint i = 0;
+	
+	for(i = 0; i < task_array->len; i++)
+	{
+		struct task *tmp = &g_array_index(task_array, struct task, i);
+		cpu_usage += tmp->time_percentage;
+	}
+	
+	cpu_usage = cpu_usage / (sys_stat->cpu_count * 100.0);
+	
+	printf("%i\n", sys_stat->cpu_count);
+	
+	return cpu_usage;
+}
 
 /*
  * configurationfile support

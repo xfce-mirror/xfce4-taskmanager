@@ -13,5 +13,6 @@
 
 struct task get_task_details(gint pid);
 GArray *get_task_list();
+gboolean get_system_status(system_status *sys_stat);
 
 #endif

@@ -36,7 +36,9 @@ GtkWidget* create_main_window (void)
 	GtkWidget *button1;
 	GtkWidget *button2;
 	GtkWidget *button3;
-
+	
+	GtkWidget *system_info_box;
+	
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (window), _("xfce4-taskmanager"));
 	gtk_window_set_default_size (GTK_WINDOW (window), win_width, win_height);
@@ -45,6 +47,20 @@ GtkWidget* create_main_window (void)
 	gtk_widget_show (vbox1);
 	gtk_container_add (GTK_CONTAINER (window), vbox1);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox1), 10);
+
+	system_info_box = gtk_hbox_new (FALSE, 10);
+	gtk_widget_show (system_info_box);
+	gtk_box_pack_start (GTK_BOX (vbox1), system_info_box, FALSE, TRUE, 0);
+	
+	cpu_usage_progress_bar = gtk_progress_bar_new ();
+	gtk_progress_bar_set_text (GTK_PROGRESS_BAR (cpu_usage_progress_bar), _("cpu usage"));
+	gtk_widget_show (cpu_usage_progress_bar);
+	gtk_box_pack_start (GTK_BOX (system_info_box), cpu_usage_progress_bar, TRUE, TRUE, 0);
+	
+	mem_usage_progress_bar = gtk_progress_bar_new ();
+	gtk_progress_bar_set_text (GTK_PROGRESS_BAR (mem_usage_progress_bar), _("memory usage"));
+	gtk_widget_show (mem_usage_progress_bar);
+	gtk_box_pack_start (GTK_BOX (system_info_box), mem_usage_progress_bar, TRUE, TRUE, 0);
 
 	scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show (scrolledwindow1);

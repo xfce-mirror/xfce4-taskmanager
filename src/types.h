@@ -41,6 +41,13 @@ struct task
 	gdouble time_percentage;
 };
 
+typedef struct
+{
+	gint mem_total;
+	gint mem_free;
+	gint cpu_count;
+} system_status;
+
 GtkWidget *main_window;
 
 GArray *task_array;

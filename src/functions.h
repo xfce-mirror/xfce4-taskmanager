@@ -22,6 +22,7 @@
 #define FUNCTIONS_H
 
 #include <gtk/gtk.h>
+#include <glib.h>
 #include <dirent.h>
 #include <pwd.h>
 #include <sys/types.h>
@@ -45,6 +46,7 @@
 #define PROC_DIR_3 "/proc"
 
 gboolean refresh_task_list(void);
+gdouble get_cpu_usage(system_status *sys_stat);
 void send_signal_to_task(gchar *task_id, gchar *signal);
 
 /* Configurationfile support */

@@ -46,6 +46,8 @@ GtkTreeSelection *selection;
 GtkWidget *treeview;
 GtkWidget *mainmenu;
 GtkWidget *taskpopup;
+GtkWidget *cpu_usage_progress_bar;
+GtkWidget *mem_usage_progress_bar;
 
 #define COLUMN_NAME	0
 #define COLUMN_PID	1
