@@ -124,8 +124,6 @@ gdouble get_cpu_usage(system_status *sys_stat)
 	
 	cpu_usage = cpu_usage / (sys_stat->cpu_count * 100.0);
 	
-	printf("%i\n", sys_stat->cpu_count);
-	
 	return cpu_usage;
 }
 
