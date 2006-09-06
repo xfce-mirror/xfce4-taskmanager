@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-01 17:42+0900\n"
+"POT-Creation-Date: 2006-08-25 07:22+0200\n"
 "PO-Revision-Date: 2006-07-29 00:09+0800\n"
 "Last-Translator: Cosmo Chene <cosmolax@ubuntu.org.tw>\n"
 "Language-Team: Tradictional Chinese <zh-l10n@linux.org.tw>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/interface.c:41 ../src/interface.c:246
+#: ../src/interface.c:41 ../src/interface.c:241
 msgid "xfce4-taskmanager"
 msgstr "xfce4-工作管理員"
 
@@ -24,58 +24,62 @@ msgstr "xfce4-工作管理員"
 msgid "more details"
 msgstr "更多細節"
 
-#: ../src/interface.c:108
+#: ../src/interface.c:101
 msgid "Command"
 msgstr "命令"
 
-#: ../src/interface.c:114
+#: ../src/interface.c:107
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:120
+#: ../src/interface.c:113
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:126
+#: ../src/interface.c:119
 msgid "State"
 msgstr "狀態"
 
-#: ../src/interface.c:132
+#: ../src/interface.c:125
 msgid "VM-Size"
 msgstr "虛擬記憶體容量"
 
-#: ../src/interface.c:138
+#: ../src/interface.c:131
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:144
+#: ../src/interface.c:137
 msgid "User"
 msgstr "使用者"
 
-#: ../src/interface.c:163
+#: ../src/interface.c:143
+msgid "CPU%"
+msgstr "CPU%"
+
+#: ../src/interface.c:159
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/interface.c:167
+#: ../src/interface.c:164
 msgid "Continue"
 msgstr "繼續"
 
-#: ../src/interface.c:171
+#: ../src/interface.c:169
 msgid "Term"
 msgstr "Term"
 
-#: ../src/interface.c:175
+#: ../src/interface.c:174
 msgid "Kill"
 msgstr "強行中止"
 
-#: ../src/interface.c:210
+#: ../src/interface.c:205
 msgid "Show user tasks"
 msgstr "顯示使用者工作"
 
-#: ../src/interface.c:215
+#: ../src/interface.c:210
 msgid "Show root tasks"
 msgstr "顯示 root 工作"
 
-#: ../src/interface.c:220
+#: ../src/interface.c:215
 msgid "Show other tasks"
 msgstr "顯示其他工作"
