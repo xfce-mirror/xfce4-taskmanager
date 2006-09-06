@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2006-05-08 19:44+0000\n"
-"PO-Revision-Date: 2006-07-08 00:45+0100\n"
+"PO-Revision-Date: 2006-09-07 00:07+0100\n"
 "Last-Translator: SZERVÑC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/interface.c:41
-#: ../src/interface.c:247
+#: ../src/interface.c:241
 msgid "xfce4-taskmanager"
 msgstr "xfce4-folyamatkezelő"
 
@@ -24,59 +24,63 @@ msgstr "xfce4-folyamatkezelő"
 msgid "more details"
 msgstr "részletek"
 
-#: ../src/interface.c:109
+#: ../src/interface.c:101
 msgid "Command"
 msgstr "Parancs"
 
-#: ../src/interface.c:115
+#: ../src/interface.c:107
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:121
+#: ../src/interface.c:113
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:127
+#: ../src/interface.c:119
 msgid "State"
 msgstr "Állapot"
 
-#: ../src/interface.c:133
+#: ../src/interface.c:125
 msgid "VM-Size"
 msgstr "VM-méret"
 
-#: ../src/interface.c:139
+#: ../src/interface.c:131
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:145
+#: ../src/interface.c:137
 msgid "User"
 msgstr "Felhasználó"
 
-#: ../src/interface.c:164
+#: ../src/interface.c:143
+msgid "CPU%"
+msgstr "CPU%"
+
+#: ../src/interface.c:159
 msgid "Stop"
 msgstr "Leállítás"
 
-#: ../src/interface.c:168
+#: ../src/interface.c:164
 msgid "Continue"
 msgstr "Folytatás"
 
-#: ../src/interface.c:172
+#: ../src/interface.c:169
 msgid "Term"
 msgstr "Leállítás"
 
-#: ../src/interface.c:176
+#: ../src/interface.c:174
 msgid "Kill"
 msgstr "Kilövés"
 
-#: ../src/interface.c:211
+#: ../src/interface.c:205
 msgid "Show user tasks"
 msgstr "Felhasználói folyamatok megjelenítése"
 
-#: ../src/interface.c:216
+#: ../src/interface.c:210
 msgid "Show root tasks"
 msgstr "Root folyamatok megjelenítése"
 
-#: ../src/interface.c:221
+#: ../src/interface.c:215
 msgid "Show other tasks"
 msgstr "Más folyamatok megjelenítése"
 
