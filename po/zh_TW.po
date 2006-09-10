@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-25 07:22+0200\n"
+"POT-Creation-Date: 2006-09-10 21:29+0200\n"
 "PO-Revision-Date: 2006-07-29 00:09+0800\n"
 "Last-Translator: Cosmo Chene <cosmolax@ubuntu.org.tw>\n"
 "Language-Team: Tradictional Chinese <zh-l10n@linux.org.tw>\n"
@@ -16,70 +16,78 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/interface.c:41 ../src/interface.c:241
+#: ../src/interface.c:43 ../src/interface.c:257
 msgid "xfce4-taskmanager"
 msgstr "xfce4-工作管理員"
 
-#: ../src/interface.c:75
+#: ../src/interface.c:56
+msgid "cpu usage"
+msgstr ""
+
+#: ../src/interface.c:61
+msgid "memory usage"
+msgstr ""
+
+#: ../src/interface.c:91
 msgid "more details"
 msgstr "更多細節"
 
-#: ../src/interface.c:101
+#: ../src/interface.c:117
 msgid "Command"
 msgstr "命令"
 
-#: ../src/interface.c:107
+#: ../src/interface.c:123
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:113
+#: ../src/interface.c:129
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:119
+#: ../src/interface.c:135
 msgid "State"
 msgstr "狀態"
 
-#: ../src/interface.c:125
+#: ../src/interface.c:141
 msgid "VM-Size"
 msgstr "虛擬記憶體容量"
 
-#: ../src/interface.c:131
+#: ../src/interface.c:147
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:137
+#: ../src/interface.c:153
 msgid "User"
 msgstr "使用者"
 
-#: ../src/interface.c:143
+#: ../src/interface.c:159
 msgid "CPU%"
 msgstr "CPU%"
 
-#: ../src/interface.c:159
+#: ../src/interface.c:175
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/interface.c:164
+#: ../src/interface.c:180
 msgid "Continue"
 msgstr "繼續"
 
-#: ../src/interface.c:169
+#: ../src/interface.c:185
 msgid "Term"
 msgstr "Term"
 
-#: ../src/interface.c:174
+#: ../src/interface.c:190
 msgid "Kill"
 msgstr "強行中止"
 
-#: ../src/interface.c:205
+#: ../src/interface.c:221
 msgid "Show user tasks"
 msgstr "顯示使用者工作"
 
-#: ../src/interface.c:210
+#: ../src/interface.c:226
 msgid "Show root tasks"
 msgstr "顯示 root 工作"
 
-#: ../src/interface.c:215
+#: ../src/interface.c:231
 msgid "Show other tasks"
 msgstr "顯示其他工作"

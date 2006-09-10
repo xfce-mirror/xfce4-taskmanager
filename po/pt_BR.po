@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-01 17:42+0900\n"
+"POT-Creation-Date: 2006-09-10 21:29+0200\n"
 "PO-Revision-Date: 2006-01-04 20:50+0900\n"
 "Last-Translator: Johannes Zellner <xfce4-taskmanager@nebulon.de>\n"
 "Language-Team: Brazilian Portuguese <xfce4-dev@xfce.org>\n"
@@ -16,66 +16,78 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/interface.c:41 ../src/interface.c:246
+#: ../src/interface.c:43 ../src/interface.c:257
 msgid "xfce4-taskmanager"
 msgstr "xfce4-taskmanager"
 
-#: ../src/interface.c:75
+#: ../src/interface.c:56
+msgid "cpu usage"
+msgstr ""
+
+#: ../src/interface.c:61
+msgid "memory usage"
+msgstr ""
+
+#: ../src/interface.c:91
 msgid "more details"
 msgstr "mais detalhes"
 
-#: ../src/interface.c:108
+#: ../src/interface.c:117
 msgid "Command"
 msgstr "Comando"
 
-#: ../src/interface.c:114
+#: ../src/interface.c:123
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:120
+#: ../src/interface.c:129
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:126
+#: ../src/interface.c:135
 msgid "State"
 msgstr "Status"
 
-#: ../src/interface.c:132
+#: ../src/interface.c:141
 msgid "VM-Size"
 msgstr "Tamanho VM"
 
-#: ../src/interface.c:138
+#: ../src/interface.c:147
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:144
+#: ../src/interface.c:153
 msgid "User"
 msgstr "Usuario"
 
-#: ../src/interface.c:163
+#: ../src/interface.c:159
+msgid "CPU%"
+msgstr ""
+
+#: ../src/interface.c:175
 msgid "Stop"
 msgstr "Parar"
 
-#: ../src/interface.c:167
+#: ../src/interface.c:180
 msgid "Continue"
 msgstr "Continuar"
 
-#: ../src/interface.c:171
+#: ../src/interface.c:185
 msgid "Term"
 msgstr "Terminar"
 
-#: ../src/interface.c:175
+#: ../src/interface.c:190
 msgid "Kill"
 msgstr "Matar"
 
-#: ../src/interface.c:210
+#: ../src/interface.c:221
 msgid "Show user tasks"
 msgstr "Exibir processos do usuario"
 
-#: ../src/interface.c:215
+#: ../src/interface.c:226
 msgid "Show root tasks"
 msgstr "Exibir processos do root"
 
-#: ../src/interface.c:220
+#: ../src/interface.c:231
 msgid "Show other tasks"
 msgstr "Exibir outros processos"
