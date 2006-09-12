@@ -8,24 +8,25 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-09-10 21:29+0200\n"
-"PO-Revision-Date: 2006-09-07 00:07+0100\n"
+"PO-Revision-Date: 2006-09-12 08:12+0100\n"
 "Last-Translator: SZERVÑC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/interface.c:43 ../src/interface.c:257
+#: ../src/interface.c:43
+#: ../src/interface.c:257
 msgid "xfce4-taskmanager"
 msgstr "xfce4-folyamatkezelő"
 
 #: ../src/interface.c:56
 msgid "cpu usage"
-msgstr ""
+msgstr "cpu használat"
 
 #: ../src/interface.c:61
 msgid "memory usage"
-msgstr ""
+msgstr "memória használat"
 
 #: ../src/interface.c:91
 msgid "more details"
@@ -90,3 +91,4 @@ msgstr "Root folyamatok megjelenítése"
 #: ../src/interface.c:231
 msgid "Show other tasks"
 msgstr "Más folyamatok megjelenítése"
+
