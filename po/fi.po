@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the
 #   xfce4-taskmanager package.
 # Pasi Sulasalmi <psulasasal@paju.oulu.fi>, 2005.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-10 21:29+0200\n"
-"PO-Revision-Date: 2006-01-04 20:48+0900\n"
-"Last-Translator: Pasi Sulasalmi <psulasal@paju.oulu.fi>\n"
+"POT-Creation-Date: 2006-09-13 15:30+0300\n"
+"PO-Revision-Date: 2006-09-13 15:33+0300\n"
+"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,19 +19,19 @@ msgstr ""
 
 #: ../src/interface.c:43 ../src/interface.c:257
 msgid "xfce4-taskmanager"
-msgstr "xfce4-taskmanager"
+msgstr "xfce4-prosessienhallinta"
 
 #: ../src/interface.c:56
 msgid "cpu usage"
-msgstr ""
+msgstr "prosessorin käyttö"
 
 #: ../src/interface.c:61
 msgid "memory usage"
-msgstr ""
+msgstr "muistin käyttö"
 
 #: ../src/interface.c:91
 msgid "more details"
-msgstr "Lisää tietoja"
+msgstr "Lisätiedot"
 
 #: ../src/interface.c:117
 msgid "Command"
@@ -50,7 +51,7 @@ msgstr "Tila"
 
 #: ../src/interface.c:141
 msgid "VM-Size"
-msgstr "VM-Koko"
+msgstr "VM-koko"
 
 #: ../src/interface.c:147
 msgid "RSS"
@@ -62,7 +63,7 @@ msgstr "Käyttäjä"
 
 #: ../src/interface.c:159
 msgid "CPU%"
-msgstr ""
+msgstr "CPU%"
 
 #: ../src/interface.c:175
 msgid "Stop"
@@ -82,7 +83,7 @@ msgstr "Tapa"
 
 #: ../src/interface.c:221
 msgid "Show user tasks"
-msgstr "Näytä omat prosessit"
+msgstr "Näytä käyttäjän prosessit"
 
 #: ../src/interface.c:226
 msgid "Show root tasks"
