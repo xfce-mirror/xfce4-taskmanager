@@ -39,6 +39,9 @@ GtkWidget* create_main_window (void)
 	
 	GtkWidget *system_info_box;
 	
+	tooltips = gtk_tooltips_new();
+	gtk_tooltips_enable(tooltips);
+	
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (window), _("xfce4-taskmanager"));
 	gtk_window_set_default_size (GTK_WINDOW (window), win_width, win_height);
@@ -52,15 +55,21 @@ GtkWidget* create_main_window (void)
 	gtk_widget_show (system_info_box);
 	gtk_box_pack_start (GTK_BOX (vbox1), system_info_box, FALSE, TRUE, 0);
 	
+	cpu_usage_progress_bar_box = gtk_event_box_new ();
 	cpu_usage_progress_bar = gtk_progress_bar_new ();
 	gtk_progress_bar_set_text (GTK_PROGRESS_BAR (cpu_usage_progress_bar), _("cpu usage"));
 	gtk_widget_show (cpu_usage_progress_bar);
-	gtk_box_pack_start (GTK_BOX (system_info_box), cpu_usage_progress_bar, TRUE, TRUE, 0);
+	gtk_widget_show (cpu_usage_progress_bar_box);
+	gtk_container_add (GTK_CONTAINER (cpu_usage_progress_bar_box), cpu_usage_progress_bar);
+	gtk_box_pack_start (GTK_BOX (system_info_box), cpu_usage_progress_bar_box, TRUE, TRUE, 0);
 	
+	mem_usage_progress_bar_box = gtk_event_box_new ();
 	mem_usage_progress_bar = gtk_progress_bar_new ();
 	gtk_progress_bar_set_text (GTK_PROGRESS_BAR (mem_usage_progress_bar), _("memory usage"));
 	gtk_widget_show (mem_usage_progress_bar);
-	gtk_box_pack_start (GTK_BOX (system_info_box), mem_usage_progress_bar, TRUE, TRUE, 0);
+	gtk_widget_show (mem_usage_progress_bar_box);
+	gtk_container_add (GTK_CONTAINER (mem_usage_progress_bar_box), mem_usage_progress_bar);
+	gtk_box_pack_start (GTK_BOX (system_info_box), mem_usage_progress_bar_box, TRUE, TRUE, 0);
 
 	scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show (scrolledwindow1);
@@ -252,7 +261,7 @@ void show_about_dialog(void)
 	xfce_about_info_set_homepage(about_info, "http://goodies.xfce.org");
 	xfce_about_info_add_credit(about_info, "Johannes Zellner", "webmaster@nebulon.de", "Original Author");
     
-	about_dialog = xfce_about_dialog_new(GTK_WINDOW(main_window), about_info, NULL);
+	about_dialog = xfce_about_dialog_new_with_values(GTK_WINDOW(main_window), about_info, NULL);
 	g_signal_connect(G_OBJECT(about_dialog), "response", G_CALLBACK(gtk_widget_destroy), NULL);
 	gtk_window_set_title (GTK_WINDOW (about_dialog), _("xfce4-taskmanager"));
 	gtk_widget_show(about_dialog);

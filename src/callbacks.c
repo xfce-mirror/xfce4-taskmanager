@@ -55,9 +55,11 @@ void handle_task_menu(GtkWidget *widget, gchar *signal)
 {
 	if(signal != NULL)
 	{
-		gchar s[32];
+		gchar *s;
 
-		sprintf(s, "Really %s the Task?", signal);
+		if (strcmp(signal, "KILL") == 0) s = _("Really kill the task?");
+		else s = _("Really terminate the task?");
+	
 		if(strcmp(signal, "STOP") == 0 || strcmp(signal, "CONT") == 0 || xfce_confirm(s, GTK_STOCK_YES, NULL))
 		{
 			gchar *task_id = "";

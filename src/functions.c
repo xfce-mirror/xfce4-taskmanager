@@ -24,6 +24,9 @@ gboolean refresh_task_list(void)
 {
 	gint i, j;
 	GArray *new_task_list;
+	gchar *cpu_tooltip, *mem_tooltip;
+	gdouble cpu_usage;
+	system_status *sys_stat;
 
 	/* gets the new task list */
 	new_task_list = (GArray*) get_task_list();
@@ -102,10 +105,21 @@ gboolean refresh_task_list(void)
 
 	g_array_free(new_task_list, TRUE);
 	
-	system_status *sys_stat = g_new (system_status, 1);
+	/* update the CPU and memory progress bars */
+	sys_stat = g_new (system_status, 1);
 	get_system_status (sys_stat);
+	
+	mem_tooltip = g_strdup_printf (_("%d kB of %d kB used"), sys_stat->mem_total - sys_stat->mem_free, sys_stat->mem_total);
+	gtk_tooltips_set_tip (tooltips, mem_usage_progress_bar_box, mem_tooltip, NULL);
 	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (mem_usage_progress_bar), 1.0 - ( (gdouble) sys_stat->mem_free / sys_stat->mem_total ));
-	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (cpu_usage_progress_bar), get_cpu_usage(sys_stat));
+	
+	cpu_usage = get_cpu_usage (sys_stat);
+	cpu_tooltip = g_strdup_printf (_("%0.0f %%"), cpu_usage * 100);
+	gtk_tooltips_set_tip (tooltips, cpu_usage_progress_bar_box, cpu_tooltip, NULL);
+	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (cpu_usage_progress_bar), cpu_usage);
+	
+	g_free (mem_tooltip);
+	g_free (cpu_tooltip);
 	g_free (sys_stat);
 	
 	return TRUE;

@@ -45,9 +45,12 @@ GtkTreeStore *list_store;
 GtkTreeSelection *selection;
 GtkWidget *treeview;
 GtkWidget *mainmenu;
+GtkTooltips *tooltips;
 GtkWidget *taskpopup;
 GtkWidget *cpu_usage_progress_bar;
 GtkWidget *mem_usage_progress_bar;
+GtkWidget *cpu_usage_progress_bar_box;
+GtkWidget *mem_usage_progress_bar_box;
 
 #define COLUMN_NAME	0
 #define COLUMN_PID	1
