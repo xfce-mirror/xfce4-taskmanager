@@ -22,11 +22,11 @@ msgstr "xfce4-taskmanager"
 
 #: ../src/interface.c:56
 msgid "cpu usage"
-msgstr ""
+msgstr "wykorzystanie procesora"
 
 #: ../src/interface.c:61
 msgid "memory usage"
-msgstr ""
+msgstr "wykorzystanie pamięci"
 
 #: ../src/interface.c:91
 msgid "more details"
@@ -62,7 +62,7 @@ msgstr "Użytkownik"
 
 #: ../src/interface.c:159
 msgid "CPU%"
-msgstr ""
+msgstr "CPU%"
 
 #: ../src/interface.c:175
 msgid "Stop"
