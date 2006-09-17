@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-09-10 21:29+0200\n"
-"PO-Revision-Date: 2006-08-27 10:22+0100\n"
+"PO-Revision-Date: 2006-09-17 09:48+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -16,17 +16,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../src/interface.c:43 ../src/interface.c:257
+#: ../src/interface.c:43
+#: ../src/interface.c:257
 msgid "xfce4-taskmanager"
 msgstr "xfce4-taskmanager"
 
 #: ../src/interface.c:56
 msgid "cpu usage"
-msgstr ""
+msgstr "využití procesoru"
 
 #: ../src/interface.c:61
 msgid "memory usage"
-msgstr ""
+msgstr "využití paměti"
 
 #: ../src/interface.c:91
 msgid "more details"
@@ -62,7 +63,7 @@ msgstr "Uživatel"
 
 #: ../src/interface.c:159
 msgid "CPU%"
-msgstr ""
+msgstr "CPU%"
 
 #: ../src/interface.c:175
 msgid "Stop"
@@ -91,3 +92,4 @@ msgstr "Zobrazit úlohy uživatele root"
 #: ../src/interface.c:231
 msgid "Show other tasks"
 msgstr "Zobrazit jiné úlohy"
+
