@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the
 #   xfce4-taskmanager package.
 # Johannes Zellner <xfce4-taskmanager@nebulon.de>, 2005.
+# Adriano Winter Bess <adriano@xfce.org>, 2006
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-09-10 21:29+0200\n"
-"PO-Revision-Date: 2006-01-04 20:50+0900\n"
-"Last-Translator: Johannes Zellner <xfce4-taskmanager@nebulon.de>\n"
-"Language-Team: Brazilian Portuguese <xfce4-dev@xfce.org>\n"
+"PO-Revision-Date: 2006-10-22 15:22-0200\n"
+"Last-Translator: Adriano Winter Bess <adriano@xfce.org>\n"
+"Language-Team: Brazilian Portuguese <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,11 +23,11 @@ msgstr "xfce4-taskmanager"
 
 #: ../src/interface.c:56
 msgid "cpu usage"
-msgstr ""
+msgstr "uso de cpu"
 
 #: ../src/interface.c:61
 msgid "memory usage"
-msgstr ""
+msgstr "uso de memória"
 
 #: ../src/interface.c:91
 msgid "more details"
@@ -62,7 +63,7 @@ msgstr "Usuario"
 
 #: ../src/interface.c:159
 msgid "CPU%"
-msgstr ""
+msgstr "CPU%"
 
 #: ../src/interface.c:175
 msgid "Stop"
