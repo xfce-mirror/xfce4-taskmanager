@@ -1,7 +1,7 @@
 # Hungarian translation for xfce4-taskmanager
-# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
+# Copyright (c) Johannes Zellner <webmaster@nebulon.de>
 # This file is distributed under the same license as the xfce4-taskmanager package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2006.
+# SZERVÁC Attila <sas@321>, 2006.
 #
 msgid ""
 msgstr ""
