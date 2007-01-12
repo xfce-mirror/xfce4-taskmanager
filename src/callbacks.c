@@ -85,7 +85,13 @@ void on_show_tasks_toggled (GtkMenuItem *menuitem, gint uid)
 	else
 		show_other_tasks = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menuitem));
 	
-	 change_task_view();
+	change_task_view();
+}
+
+void on_show_cached_as_free_toggled (GtkMenuItem *menuitem, gint uid)
+{
+	show_cached_as_free = !show_cached_as_free;
+	change_task_view();
 }
 
 void on_quit(void)

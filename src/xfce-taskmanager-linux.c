@@ -1,3 +1,4 @@
+
 #include "xfce-taskmanager-linux.h"
 
 struct task get_task_details(gint pid)
@@ -121,7 +122,7 @@ struct task get_task_details(gint pid)
 	return task;
 }
 
-GArray *get_task_list()
+GArray *get_task_list(void)
 {
 	DIR *dir;
 	struct dirent *dir_entry;
@@ -153,6 +154,57 @@ GArray *get_task_list()
 	return task_list;
 }
 
+gboolean get_cpu_usage_from_proc(system_status *sys_stat)
+{
+	const gchar *file_name = "/proc/stat";
+	gchar buffer[100];
+	gboolean retval = FALSE;
+	FILE *file;
+
+	if ( sys_stat->valid_proc_reading == TRUE ) {
+		sys_stat->cpu_old_jiffies =
+			sys_stat->cpu_user +
+			sys_stat->cpu_nice +
+			sys_stat->cpu_system+
+			sys_stat->cpu_idle;
+		sys_stat->cpu_old_used =
+			sys_stat->cpu_user +
+			sys_stat->cpu_nice +
+			sys_stat->cpu_system;
+	} else {
+		sys_stat->cpu_old_jiffies = 0;
+	}
+
+	sys_stat->valid_proc_reading = FALSE;
+
+	if (!g_file_test (file_name, G_FILE_TEST_EXISTS))
+	{
+		return FALSE;
+	}
+
+	
+	file = fopen (file_name, "r");
+	
+	if (file)
+	{
+		if ( fgets (buffer, 100, file) != NULL )
+		{
+			if ( sscanf (buffer, "cpu\t%u %u %u %u",
+				     &sys_stat->cpu_user,
+				     &sys_stat->cpu_nice,
+				     &sys_stat->cpu_system,
+				     &sys_stat->cpu_idle
+				    ) == 4 )
+			{
+				sys_stat->valid_proc_reading = TRUE;
+				retval = TRUE;
+			}
+		}
+		fclose( file );
+	}
+        return retval;
+}
+
 gboolean get_system_status (system_status *sys_stat)
 {
 	FILE *file;
@@ -175,8 +227,9 @@ gboolean get_system_status (system_status *sys_stat)
 	{
 		while (fgets (buffer, 100, file) != NULL)
 		{
-			sscanf (buffer, "MemTotal:\t%i kB", &sys_stat->mem_total);
-			sscanf (buffer, "MemFree:\t%i kB", &sys_stat->mem_free);
+			sscanf (buffer, "MemTotal:\t%u kB", &sys_stat->mem_total);
+			sscanf (buffer, "MemFree:\t%u kB", &sys_stat->mem_free);
+			sscanf (buffer, "Cached:\t%u kB", &sys_stat->mem_cached);
 		}
 		fclose (file);
 	}

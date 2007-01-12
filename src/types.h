@@ -43,9 +43,17 @@ struct task
 
 typedef struct
 {
-	gint mem_total;
-	gint mem_free;
-	gint cpu_count;
+	guint mem_total;
+	guint mem_free;
+	guint mem_cached;
+	guint cpu_count;
+	guint cpu_idle;
+	guint cpu_user;
+	guint cpu_nice;
+	guint cpu_system;
+	guint cpu_old_jiffies;
+	guint cpu_old_used;
+	gboolean valid_proc_reading;
 } system_status;
 
 GtkWidget *main_window;
@@ -59,6 +67,8 @@ gchar *config_file;
 gboolean show_user_tasks;
 gboolean show_root_tasks;
 gboolean show_other_tasks;
+
+gboolean show_cached_as_free; /* Show memory used Cache as free memory */
 
 gboolean full_view;
 

@@ -36,6 +36,7 @@ gboolean on_treeview1_button_press_event(GtkButton *button, GdkEventButton *even
 void on_info1_activate (GtkMenuItem *menuitem,  gpointer user_data);
 void handle_task_menu(GtkWidget *widget, gchar *signal);
 void on_show_tasks_toggled (GtkMenuItem *menuitem, gint uid);
+void on_show_cached_as_free_toggled (GtkMenuItem *menuitem, gint uid);
 
 void on_quit(void);
 

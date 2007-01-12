@@ -12,7 +12,8 @@
 #include "types.h"
 
 struct task get_task_details(gint pid);
-GArray *get_task_list();
+GArray *get_task_list(void);
 gboolean get_system_status(system_status *sys_stat);
+gboolean get_cpu_usage_from_proc(system_status *sys_stat);
 
 #endif

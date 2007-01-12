@@ -1,3 +1,7 @@
+2007-01-12 Nick Schermer <nick@xfce.org>
+	* Apply patch from bug 2714.
+	* Fix all typo and compiler warnings.
+
 2006-06-26 20:20	Johannes
 
 	* rewrite of the taskmanager ;)

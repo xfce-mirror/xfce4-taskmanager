@@ -19,6 +19,9 @@
  */
 
 #include "functions.h"
+#include "xfce-taskmanager-linux.h"
+
+static system_status *sys_stat =NULL;
 
 gboolean refresh_task_list(void)
 {
@@ -26,7 +29,7 @@ gboolean refresh_task_list(void)
 	GArray *new_task_list;
 	gchar *cpu_tooltip, *mem_tooltip;
 	gdouble cpu_usage;
-	system_status *sys_stat;
+	guint memory_used;
 
 	/* gets the new task list */
 	new_task_list = (GArray*) get_task_list();
@@ -49,7 +52,6 @@ gboolean refresh_task_list(void)
 				
 				
 				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (gdouble)(1000.0 / REFRESH_INTERVAL);
-				
 				if((gint)tmp->ppid != (gint)new_tmp->ppid || strcmp(tmp->state,new_tmp->state) || (unsigned int)tmp->size != (unsigned int)new_tmp->size || (unsigned int)tmp->rss != (unsigned int)new_tmp->rss || (unsigned int)tmp->time != (unsigned int)tmp->old_time)
 				{
 					tmp->ppid = new_tmp->ppid;
@@ -106,21 +108,26 @@ gboolean refresh_task_list(void)
 	g_array_free(new_task_list, TRUE);
 	
 	/* update the CPU and memory progress bars */
-	sys_stat = g_new (system_status, 1);
+	if (sys_stat == NULL)
+		sys_stat = g_new (system_status, 1);
 	get_system_status (sys_stat);
 	
-	mem_tooltip = g_strdup_printf (_("%d kB of %d kB used"), sys_stat->mem_total - sys_stat->mem_free, sys_stat->mem_total);
+	memory_used = sys_stat->mem_total - sys_stat->mem_free;
+	if ( show_cached_as_free )
+	{
+		memory_used-=sys_stat->mem_cached;
+	}
+	mem_tooltip = g_strdup_printf (_("%d kB of %d kB used"), memory_used, sys_stat->mem_total);
 	gtk_tooltips_set_tip (tooltips, mem_usage_progress_bar_box, mem_tooltip, NULL);
-	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (mem_usage_progress_bar), 1.0 - ( (gdouble) sys_stat->mem_free / sys_stat->mem_total ));
+	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (mem_usage_progress_bar),  (gdouble)memory_used / sys_stat->mem_total);
 	
 	cpu_usage = get_cpu_usage (sys_stat);
-	cpu_tooltip = g_strdup_printf (_("%0.0f %%"), cpu_usage * 100);
+	cpu_tooltip = g_strdup_printf (_("%0.0f %%"), cpu_usage * 100.0);
 	gtk_tooltips_set_tip (tooltips, cpu_usage_progress_bar_box, cpu_tooltip, NULL);
 	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (cpu_usage_progress_bar), cpu_usage);
 	
 	g_free (mem_tooltip);
 	g_free (cpu_tooltip);
-	g_free (sys_stat);
 	
 	return TRUE;
 }
@@ -128,16 +135,38 @@ gboolean refresh_task_list(void)
 gdouble get_cpu_usage(system_status *sys_stat)
 {
 	gdouble cpu_usage = 0.0;
-	gint i = 0;
-	
-	for(i = 0; i < task_array->len; i++)
+	guint current_jiffies;
+	guint current_used;
+	guint delta_jiffies;
+
+	if ( get_cpu_usage_from_proc( sys_stat ) == FALSE )
 	{
-		struct task *tmp = &g_array_index(task_array, struct task, i);
-		cpu_usage += tmp->time_percentage;
+		gint i = 0;
+
+		for(i = 0; i < task_array->len; i++)
+		{
+			struct task *tmp = &g_array_index(task_array, struct task, i);
+			cpu_usage += tmp->time_percentage;
+		}
+
+		cpu_usage = cpu_usage / (sys_stat->cpu_count * 100.0);
+	} else {
+
+		if ( sys_stat->cpu_old_jiffies > 0 ) {
+			current_used =
+				sys_stat->cpu_user +
+				sys_stat->cpu_nice +
+				sys_stat->cpu_system;
+			current_jiffies =
+				current_used +
+				sys_stat->cpu_idle;
+			delta_jiffies =
+				current_jiffies - (gdouble)sys_stat->cpu_old_jiffies;
+
+			cpu_usage = (gdouble)( current_used - sys_stat->cpu_old_used ) /
+				     (gdouble)delta_jiffies ;
+		}
 	}
-	
-	cpu_usage = cpu_usage / (sys_stat->cpu_count * 100.0);
-	
 	return cpu_usage;
 }
 
@@ -153,6 +182,7 @@ void load_config(void)
 	show_user_tasks = xfce_rc_read_bool_entry(rc_file, "show_user_tasks", TRUE);
 	show_root_tasks = xfce_rc_read_bool_entry(rc_file, "show_root_tasks", FALSE);
 	show_other_tasks = xfce_rc_read_bool_entry(rc_file, "show_other_tasks", FALSE);
+	show_cached_as_free = xfce_rc_read_bool_entry(rc_file, "show_cached_as_free", TRUE);
 
 	full_view = xfce_rc_read_bool_entry(rc_file, "full_view", FALSE);
 
@@ -171,10 +201,11 @@ void save_config(void)
 	xfce_rc_write_bool_entry(rc_file, "show_user_tasks", show_user_tasks);
 	xfce_rc_write_bool_entry(rc_file, "show_root_tasks", show_root_tasks);
 	xfce_rc_write_bool_entry(rc_file, "show_other_tasks", show_other_tasks);
+	xfce_rc_write_bool_entry(rc_file, "show_cached_as_free", show_cached_as_free);
 
 	xfce_rc_write_bool_entry(rc_file, "full_view", full_view);
 
-	gtk_window_get_size(GTK_WINDOW (main_window), &win_width, &win_height);
+	gtk_window_get_size(GTK_WINDOW (main_window), (gint *) &win_width, (gint *) &win_height);
 
 	xfce_rc_write_int_entry(rc_file, "win_width", win_width);
 	xfce_rc_write_int_entry(rc_file, "win_height", win_height);
