@@ -1,21 +1,20 @@
-/*
- *  xfce4-taskmanager - very simple taskmanger
+/* $Id$
  *
- *  Copyright (c) 2006 Johannes Zellner, <webmaster@nebulon.de>
+ * Copyright (c) 2006 Johannes Zellner, <webmaster@nebulon.de>
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
 #include "functions.h"
@@ -29,7 +28,13 @@ gboolean refresh_task_list(void)
 	GArray *new_task_list;
 	gchar *cpu_tooltip, *mem_tooltip;
 	gdouble cpu_usage;
+	guint num_cpus;
 	guint memory_used;
+
+	if (sys_stat!=NULL)
+	    num_cpus = sys_stat->cpu_count;
+	else
+	    num_cpus = 1;
 
 	/* gets the new task list */
 	new_task_list = (GArray*) get_task_list();
@@ -50,8 +55,7 @@ gboolean refresh_task_list(void)
 				
 				tmp->time = new_tmp->time;
 				
-				
-				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (gdouble)(1000.0 / REFRESH_INTERVAL);
+				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (gdouble)(1000.0 / (REFRESH_INTERVAL*num_cpus));
 				if((gint)tmp->ppid != (gint)new_tmp->ppid || strcmp(tmp->state,new_tmp->state) || (unsigned int)tmp->size != (unsigned int)new_tmp->size || (unsigned int)tmp->rss != (unsigned int)new_tmp->rss || (unsigned int)tmp->time != (unsigned int)tmp->old_time)
 				{
 					tmp->ppid = new_tmp->ppid;

@@ -1,0 +1,79 @@
+dnl $Id$
+dnl
+dnl xfce4-taskmanager - A small taskmanager based on the Xfce 4 libraries.
+dnl
+dnl 2005-2007 Johannes Zellner <webmaster@nebulon.de>
+
+dnl ***************************
+dnl *** Version information ***
+dnl ***************************
+m4_define([taskmanager_version], [0.4.0-rc2])
+
+dnl ***************************
+dnl *** Initialize autoconf ***
+dnl ***************************
+AC_COPYRIGHT([Copyright (c) 2006-2007
+        The Xfce development team. All rights reserved.])
+AC_INIT([xfce4-taskmanager], [taskmanager_version()], [http://bugzilla.xfce.org/], [xfce4-taskmanager])
+AC_PREREQ([2.50])
+AC_CANONICAL_TARGET()
+AC_REVISION([$Id])
+
+dnl ***************************
+dnl *** Initialize automake ***
+dnl ***************************
+AM_INIT_AUTOMAKE([1.8 dist-bzip2 tar-ustar])
+AM_CONFIG_HEADER([config.h])
+AM_MAINTAINER_MODE()
+
+dnl *******************************
+dnl *** Check for UNIX variants ***
+dnl *******************************
+AC_AIX()
+AC_ISC_POSIX()
+AC_MINIX()
+
+dnl ********************************
+dnl *** Check for basic programs ***
+dnl ********************************
+AC_PROG_CC()
+AC_PROG_LD()
+AC_PROG_INSTALL()
+AC_PROG_INTLTOOL()
+
+dnl ************************************
+dnl *** Checks for library functions ***
+dnl ************************************
+AC_DISABLE_STATIC()
+AC_C_CONST()
+
+dnl **********************************
+dnl *** Check for standard headers ***
+dnl **********************************.
+AC_HEADER_STDC()
+AC_CHECK_HEADERS([dirent.h pwd.h sys/types.h sys/stat.h sys/param.h \
+                  stdio.h stdlib.h string.h unistd.h stdlib.h signal.h])
+
+dnl ******************************
+dnl *** Check for i18n support ***
+dnl ******************************
+XDT_I18N([@LINGUAS@])
+
+dnl ***********************************
+dnl *** Check for required packages ***
+dnl ***********************************
+XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.2.0])
+XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.2.0])
+
+dnl ***********************************
+dnl *** Check for debugging support ***
+dnl ***********************************
+BM_DEBUG_SUPPORT()
+
+AC_OUTPUT([
+Makefile
+src/Makefile
+po/Makefile.in
+])
+

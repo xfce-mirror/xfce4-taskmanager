@@ -1,27 +1,33 @@
-@SET_MAKE@
+# $Id$
 
-INCLUDES = -I$(top_srcdir)/include
+INCLUDES =								\
+	-I$(top_srcdir)/include						\
+	-DG_LOG_DOMAIN=\"xfce4-taskmanager\"				\
+	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"
 
-bin_PROGRAMS = xfce4-taskmanager
+bin_PROGRAMS =								\
+	xfce4-taskmanager
 
-xfce4_taskmanager_SOURCES = \
-	main.c \
-	callbacks.c callbacks.h \
-	functions.c functions.h \
-	interface.c interface.h \
-	xfce-taskmanager-linux.c xfce-taskmanager-linux.h \
+xfce4_taskmanager_SOURCES =						\
+	main.c								\
+	callbacks.c							\
+	callbacks.h							\
+	functions.c							\
+	functions.h							\
+	interface.c							\
+	interface.h							\
+	xfce-taskmanager-linux.c					\
+	xfce-taskmanager-linux.h					\
 	types.h
 
-xfce4_taskmanager_CFLAGS =							\
-	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"                           \
-	@XFCE4_GUI_CFLAGS@ \
-	@GTK_CFLAGS@ 
+xfce4_taskmanager_CFLAGS =						\
+	$(LIBXFCEGUI4_CFLAGS)						\
+	$(LIBXFCE4UTIL_CFLAGS)						\
+	$(GTK_CFLAGS)
 	
-xfce4_taskmanager_LDADD = 							\
-	@XFCE4_GUI_LIBS@ \
-	@GTK_LIBS@ 
+xfce4_taskmanager_LDADD = 						\
+	$(LIBXFCEGUI4_LIBS)						\
+	$(LIBXFCE4UTIL_LIBS)						\
+	$(GTK_LIBS)
 
-ACLOCAL_AMFLAGS = -I m4
-
-dist-bz2: dist
-	zcat $(PACKAGE)-$(VERSION).tar.gz | bzip2 --best -c > $(PACKAGE)-$(VERSION).tar.bz2
+# vi:set ts=8 sw=8 noet ai nocindent syntax=automake:

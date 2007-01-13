@@ -1,3 +1,8 @@
+2007-01-13  Nick Schermer <nick@xfce.org>
+
+	* LINGUAS: Added LINGUAS support.
+	* *.po: Regenerated po files.
+
 2006-11-11  Maximilian Schleiss <maxschleiss@bluewin.ch>
 
 	* de.po: Updated the German translation
