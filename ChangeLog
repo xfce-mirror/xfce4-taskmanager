@@ -1,5 +1,9 @@
 2007-01-12	Nick Schermer <nick@xfce.org>
 
+	* Change version number and svn revision support in configure.in.in
+
+2007-01-12	Nick Schermer <nick@xfce.org>
+
 	* Apply patch from Álvaro Lopes to fix CPU usage per task, with
 	  more then 1 CPU.
 	* Added a THANKS file.
