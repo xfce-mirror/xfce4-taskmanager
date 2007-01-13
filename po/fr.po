@@ -1,15 +1,15 @@
-# French translations for xfce4-taskmanager package.
+# French translation of the xfce4-taskmanager package.
 # Copyright (C) 2005 Johannes Zellner.
-# This file is distributed under the same license as the
-#   xfce4-taskmanager package.
+# This file is distributed under the same license as the xfce4-taskmanager package.
 # Peggy Kutyla <peggy.kutyla@laposte.net>, 2005.
+# Maximilian Schleiss <maxschleiss@bluewin.ch>, 2006-2007.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
+"Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-13 11:01+0100\n"
-"PO-Revision-Date: 2006-09-11 17:51+0100\n"
+"PO-Revision-Date: 2007-01-13 23:54+0100\n"
 "Last-Translator: Maximilian Schleiss <maxschleiss@bluewin.ch>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,23 +18,24 @@ msgstr ""
 
 #: ../src/callbacks.c:60
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Vraiment tuer la tâche?"
 
 #: ../src/callbacks.c:61
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Vraiment terminer la tâche?"
 
 #: ../src/functions.c:124
 #, c-format
 msgid "%d kB of %d kB used"
-msgstr ""
+msgstr "%d Ko de %d Ko utilisés"
 
 #: ../src/functions.c:129
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
-#: ../src/interface.c:45 ../src/interface.c:272
+#: ../src/interface.c:45
+#: ../src/interface.c:272
 msgid "xfce4-taskmanager"
 msgstr "Gestionnaire de tâches Xfce4"
 
@@ -112,4 +113,5 @@ msgstr "Autres processus"
 
 #: ../src/interface.c:245
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "Afficher la mémoire utilisée par le cache comme étant libre"
+
