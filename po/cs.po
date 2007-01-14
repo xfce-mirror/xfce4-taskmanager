@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-13 11:01+0100\n"
-"PO-Revision-Date: 2006-09-17 09:48+0100\n"
+"PO-Revision-Date: 2007-01-14 19:42+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,23 +18,24 @@ msgstr ""
 
 #: ../src/callbacks.c:60
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Chcete opravdu ukončit tuto úlohu signálem kill?"
 
 #: ../src/callbacks.c:61
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Chcete opravdu ukončit tuto úlohu?"
 
 #: ../src/functions.c:124
 #, c-format
 msgid "%d kB of %d kB used"
-msgstr ""
+msgstr "%d kB z %d kB použito"
 
 #: ../src/functions.c:129
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
-#: ../src/interface.c:45 ../src/interface.c:272
+#: ../src/interface.c:45
+#: ../src/interface.c:272
 msgid "xfce4-taskmanager"
 msgstr "xfce4-taskmanager"
 
@@ -112,4 +113,5 @@ msgstr "Zobrazit jiné úlohy"
 
 #: ../src/interface.c:245
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "Zobrazovat paměť použitou pro cache jako volnou"
+
