@@ -3,13 +3,13 @@
 # Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Piarres Beobide <pi@beobide.net>, 2006.
+# Piarres Beobide <pi@beobide.net>, 2006, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-13 11:01+0100\n"
-"PO-Revision-Date: 2006-09-12 22:31+0200\n"
+"PO-Revision-Date: 2007-01-16 12:48+0100\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: librezale <librezale@librezale.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,25 +20,25 @@ msgstr ""
 
 #: ../src/callbacks.c:60
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Benetan ataza hil nahi duzu?"
 
 #: ../src/callbacks.c:61
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Benetan ataza amaitu nahi duzu?"
 
 #: ../src/functions.c:124
 #, c-format
 msgid "%d kB of %d kB used"
-msgstr ""
+msgstr "%d kB %d kB-tik erabiliak"
 
 #: ../src/functions.c:129
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%% %0.0f "
 
 #: ../src/interface.c:45 ../src/interface.c:272
 msgid "xfce4-taskmanager"
-msgstr "xfce4-atazakudeatzailea"
+msgstr "xfce4-zereginkudeatzailea"
 
 #: ../src/interface.c:59
 msgid "cpu usage"
@@ -114,4 +114,5 @@ msgstr "Beste atazak bistarazi"
 
 #: ../src/interface.c:245
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "Bistarazo katxeak erabilitako memoria libre bezala"
+
