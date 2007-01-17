@@ -9,7 +9,7 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([taskmanager_version_major], [0])
 m4_define([taskmanager_version_minor], [4])
-m4_define([taskmanager_version_micro], [1])
+m4_define([taskmanager_version_micro], [2])
 m4_define([taskmanager_version_build], [r@REVISION@])
 m4_define([taskmanager_version_tag], [svn])
 m4_define([taskmanager_version], [taskmanager_version_major().taskmanager_version_minor().taskmanager_version_micro()ifelse(taskmanager_version_tag(), [svn], [taskmanager_version_tag()-taskmanager_version_build()], [taskmanager_version_tag()])])
