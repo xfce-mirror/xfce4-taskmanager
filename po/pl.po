@@ -18,21 +18,21 @@ msgstr ""
 
 #: ../src/callbacks.c:60
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Na pewno zabić zadanie (przez SIGKILL)?"
 
 #: ../src/callbacks.c:61
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Na pewno zakończyć zadanie (przez SIGTERM)?"
 
 #: ../src/functions.c:124
 #, c-format
 msgid "%d kB of %d kB used"
-msgstr ""
+msgstr "używane %d kB z %d kB"
 
 #: ../src/functions.c:129
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
 #: ../src/interface.c:45 ../src/interface.c:272
 msgid "xfce4-taskmanager"
@@ -112,4 +112,4 @@ msgstr "Pokaż inne procesy"
 
 #: ../src/interface.c:245
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "Pokaż pamięć użytą przez cache jako wolną"
