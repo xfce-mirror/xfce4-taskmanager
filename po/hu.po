@@ -8,32 +8,36 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-13 11:01+0100\n"
-"PO-Revision-Date: 2006-11-26 17:43+0100\n"
+"PO-Revision-Date: 2007-01-19 20:09+0100\n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
 
 #: ../src/callbacks.c:60
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Tényleg megölöd a feladatot?"
 
 #: ../src/callbacks.c:61
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Tényleg lezárod a feladatot?"
 
 #: ../src/functions.c:124
 #, c-format
 msgid "%d kB of %d kB used"
-msgstr ""
+msgstr "%d kB/%d kB használt"
 
 #: ../src/functions.c:129
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
-#: ../src/interface.c:45 ../src/interface.c:272
+#: ../src/interface.c:45
+#: ../src/interface.c:272
 msgid "xfce4-taskmanager"
 msgstr "xfce4-folyamatkezelő"
 
@@ -111,4 +115,5 @@ msgstr "Más folyamatok megjelenítése"
 
 #: ../src/interface.c:245
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "A gyorstár által használt memória mutatása szabadként"
+
