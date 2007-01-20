@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the
 #   xfce4-taskmanager package.
 # Pasi Sulasalmi <psulasasal@paju.oulu.fi>, 2005.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006-2007
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-13 11:01+0100\n"
-"PO-Revision-Date: 2006-09-13 15:33+0300\n"
+"POT-Creation-Date: 2007-01-19 17:46+0200\n"
+"PO-Revision-Date: 2007-01-19 18:00+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,21 +19,21 @@ msgstr ""
 
 #: ../src/callbacks.c:60
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Tapetaanko tehtävä?"
 
 #: ../src/callbacks.c:61
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Haluatko katkaista tehtävän suorittamisen?"
 
 #: ../src/functions.c:124
 #, c-format
 msgid "%d kB of %d kB used"
-msgstr ""
+msgstr "%d kt:sta käytössä %d kt"
 
 #: ../src/functions.c:129
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
 #: ../src/interface.c:45 ../src/interface.c:272
 msgid "xfce4-taskmanager"
@@ -113,4 +113,4 @@ msgstr "Näytä muut prosessit"
 
 #: ../src/interface.c:245
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "Näytä välimuistikäytössä oleva muisti vapaana"
