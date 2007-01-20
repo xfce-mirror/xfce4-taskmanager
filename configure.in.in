@@ -22,7 +22,7 @@ AC_COPYRIGHT([Copyright (c) 2006-2007
 AC_INIT([xfce4-taskmanager], [taskmanager_version()], [http://bugzilla.xfce.org/], [xfce4-taskmanager])
 AC_PREREQ([2.50])
 AC_CANONICAL_TARGET()
-AC_REVISION([$Id])
+AC_REVISION([$Id$])
 
 dnl ***************************
 dnl *** Initialize automake ***
