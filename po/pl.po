@@ -92,7 +92,7 @@ msgstr "Kontynuuj"
 
 #: ../src/interface.c:193
 msgid "Term"
-msgstr "Konsola"
+msgstr "Zakończ"
 
 #: ../src/interface.c:198
 msgid "Kill"
