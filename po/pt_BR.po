@@ -3,39 +3,40 @@
 # This file is distributed under the same license as the
 #   xfce4-taskmanager package.
 # Johannes Zellner <xfce4-taskmanager@nebulon.de>, 2005.
-# Adriano Winter Bess <adriano@xfce.org>, 2006
-#
+# Adriano Winter Bess <adriano@xfce.org>, 2006.
+# Pablo Galletti Vieira <pbgozer@gmail.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-13 11:01+0100\n"
-"PO-Revision-Date: 2006-10-22 15:22-0200\n"
-"Last-Translator: Adriano Winter Bess <adriano@xfce.org>\n"
-"Language-Team: Brazilian Portuguese <xfce-i18n@xfce.org>\n"
+"PO-Revision-Date: 2007-08-30 17:00-0300\n"
+"Last-Translator: Pablo Galletti Vieira <pbgozer@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/callbacks.c:60
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Realmente matar a tarefa?"
 
 #: ../src/callbacks.c:61
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Realmente terminar a tarefa?"
 
 #: ../src/functions.c:124
 #, c-format
 msgid "%d kB of %d kB used"
-msgstr ""
+msgstr "%d kB de %d kB usado"
 
 #: ../src/functions.c:129
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
-#: ../src/interface.c:45 ../src/interface.c:272
+#: ../src/interface.c:45
+#: ../src/interface.c:272
 msgid "xfce4-taskmanager"
 msgstr "xfce4-taskmanager"
 
@@ -65,11 +66,11 @@ msgstr "PPID"
 
 #: ../src/interface.c:143
 msgid "State"
-msgstr "Status"
+msgstr "Estado"
 
 #: ../src/interface.c:149
 msgid "VM-Size"
-msgstr "Tamanho VM"
+msgstr "Tamanho da Memória Virtual"
 
 #: ../src/interface.c:155
 msgid "RSS"
@@ -77,7 +78,7 @@ msgstr "RSS"
 
 #: ../src/interface.c:161
 msgid "User"
-msgstr "Usuario"
+msgstr "Usuário"
 
 #: ../src/interface.c:167
 msgid "CPU%"
@@ -101,16 +102,17 @@ msgstr "Matar"
 
 #: ../src/interface.c:230
 msgid "Show user tasks"
-msgstr "Exibir processos do usuario"
+msgstr "Mostrar tarefas do usuário"
 
 #: ../src/interface.c:235
 msgid "Show root tasks"
-msgstr "Exibir processos do root"
+msgstr "Mostrar tarefas do root"
 
 #: ../src/interface.c:240
 msgid "Show other tasks"
-msgstr "Exibir outros processos"
+msgstr "Mostrar outras tarefas"
 
 #: ../src/interface.c:245
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "Mostrar a memória usada pelo cache como livre"
+
