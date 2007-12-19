@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-13 11:01+0100\n"
-"PO-Revision-Date: 2007-01-18 08:47+0100\n"
+"PO-Revision-Date: 2007-12-19 00:10+0000\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "CPU-Auslastung"
 
 #: ../src/interface.c:67
 msgid "memory usage"
-msgstr "Speicherauslastung"
+msgstr "Speicherverbrauch"
 
 #: ../src/interface.c:99
 msgid "more details"
@@ -102,15 +102,15 @@ msgstr "Kill"
 
 #: ../src/interface.c:230
 msgid "Show user tasks"
-msgstr "Zeige Eigene Prozesse"
+msgstr "Zeige eigene Prozesse"
 
 #: ../src/interface.c:235
 msgid "Show root tasks"
-msgstr "Zeige System-Prozesse"
+msgstr "Zeige Systemprozesse"
 
 #: ../src/interface.c:240
 msgid "Show other tasks"
-msgstr "Zeige Andere Prozesse"
+msgstr "Zeige andere Prozesse"
 
 #: ../src/interface.c:245
 msgid "Show memory used by cache as free"
