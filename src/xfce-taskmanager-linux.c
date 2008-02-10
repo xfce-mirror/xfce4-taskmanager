@@ -36,7 +36,7 @@ struct task get_task_details(gint pid)
 	sprintf(cmdline_filename, "/proc/%i/cmdline", pid);
 
 	stat(filename, &status);
-	
+
 	task.pid = -1;
 	task.checked = FALSE;
 
@@ -46,7 +46,7 @@ struct task get_task_details(gint pid)
 		{
 			gint utime = 0;
 			gint stime = 0;
-			
+
 			sscanf(buffer_status, "%i (%255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %i %i %i %i %i %i %i %i %i %i %i %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
 						&task.pid,	// processid
 						task.name,	// processname
@@ -69,7 +69,7 @@ struct task get_task_details(gint pid)
 						&idummy,	// cutime " waited for children in user
 						&idummy,	// cstime " kernel mode
 						&idummy,	// priority (nice value + fifteen)
-						&idummy,	// nice range from 19 to -19
+						&task.prio,	// nice range from 19 to -19	/* my change */
 						&idummy,	// hardcoded 0
 
 						&idummy,	// itrealvalue time in jiffies to next SIGALRM send to this process
@@ -108,7 +108,7 @@ struct task get_task_details(gint pid)
 		if(passwdp != NULL && passwdp->pw_name != NULL)
 			g_strlcpy(task.uname, passwdp->pw_name, sizeof task.uname);
 	}
-	
+
 
 	if(task_file != NULL)
 		fclose(task_file);
@@ -124,16 +124,16 @@ struct task get_task_details(gint pid)
 				g_strlcpy(task.name, g_strrstr(dummy,"/")+1, 255);
 			else
 				g_strlcpy(task.name, dummy, 255);
-				
+
 			// workaround for cmd-line entries with leading "-"
 			if(g_str_has_prefix(task.name, "-"))
 				sscanf(task.name, "-%255s", task.name);
 		}
 	}
-	
+
 	if(cmdline_file != NULL)
 		fclose(cmdline_file);
-	
+
 	if(g_str_has_suffix(task.name, ")"))
 		*g_strrstr(task.name, ")") = '\0';
 
@@ -147,7 +147,7 @@ GArray *get_task_list(void)
 	GArray *task_list;
 
 	task_list = g_array_new (FALSE, FALSE, sizeof (struct task));
-	
+
 	if((dir = opendir("/proc/")) == NULL)
 	{
 		fprintf(stderr, "Error: couldn't load the /proc directory\n");
@@ -155,7 +155,7 @@ GArray *get_task_list(void)
 	}
 
 	gint count = 0;
-	
+
 	while((dir_entry = readdir(dir)) != NULL)
 	{
 		if(atoi(dir_entry->d_name) != 0)
@@ -200,9 +200,9 @@ gboolean get_cpu_usage_from_proc(system_status *sys_stat)
 		return FALSE;
 	}
 
-	
+
 	file = fopen (file_name, "r");
-	
+
 	if (file)
 	{
 		if ( fgets (buffer, 100, file) != NULL )
@@ -228,19 +228,19 @@ gboolean get_system_status (system_status *sys_stat)
 	FILE *file;
 	gchar *file_name;
 	gchar *buffer;
-	
+
 	buffer = g_new (gchar, 100);
-	
+
 	file_name = g_strdup ("/proc/meminfo");
-	
+
 	if (!g_file_test (file_name, G_FILE_TEST_EXISTS))
 	{
 		g_free(file_name);
 		return FALSE;
 	}
-	
+
 	file = fopen (file_name, "r");
-	
+
 	if (file)
 	{
 		while (fgets (buffer, 100, file) != NULL)
@@ -253,24 +253,24 @@ gboolean get_system_status (system_status *sys_stat)
 	}
 	g_free (buffer);
 	g_free (file_name);
-	
+
 	buffer = g_new (gchar, 100);
-	
+
 	file_name = g_strdup ("/proc/cpuinfo");
-	
+
 	if (!g_file_test (file_name, G_FILE_TEST_EXISTS))
 	{
 		g_free(file_name);
 		return FALSE;
 	}
-	
+
 	file = fopen (file_name, "r");
-	
+
 	sys_stat->cpu_count = -1;
 
 	if (file)
 	{
-		
+
 		while (fgets (buffer, 100, file) != NULL)
 		{
 			sscanf (buffer, "processor : %i", &sys_stat->cpu_count);
@@ -280,6 +280,33 @@ gboolean get_system_status (system_status *sys_stat)
 	}
 	g_free (buffer);
 	g_free (file_name);
-	
+
 	return TRUE;
 }
+
+void send_signal_to_task(gint task_id, gint signal)
+{
+	if(task_id > 0 && signal != 0)
+	{
+		gint ret = 0;
+		
+		ret = kill(task_id, signal);
+
+		if(ret != 0)
+			xfce_err(_("Couldn't send signal to the task with ID %d"), signal, task_id);
+	}
+}
+
+
+void set_priority_to_task(gint task_id, gint prio)
+{
+	if(task_id > 0)
+	{
+		gchar command[128] = "";
+		g_sprintf(command, "renice %d %d > /dev/null", prio, task_id);
+		
+		if(system(command) != 0)
+			xfce_err(_("Couldn't set priority %d to the task with ID %d"), prio, task_id);
+	}
+}
+

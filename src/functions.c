@@ -18,7 +18,6 @@
  */
 
 #include "functions.h"
-#include "xfce-taskmanager-linux.h"
 
 static system_status *sys_stat =NULL;
 
@@ -52,17 +51,25 @@ gboolean refresh_task_list(void)
 			if(new_tmp->pid == tmp->pid)
 			{
 				tmp->old_time = tmp->time;
-				
+
 				tmp->time = new_tmp->time;
-				
+
 				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (gdouble)(1000.0 / (REFRESH_INTERVAL*num_cpus));
-				if((gint)tmp->ppid != (gint)new_tmp->ppid || strcmp(tmp->state,new_tmp->state) || (unsigned int)tmp->size != (unsigned int)new_tmp->size || (unsigned int)tmp->rss != (unsigned int)new_tmp->rss || (unsigned int)tmp->time != (unsigned int)tmp->old_time)
+				if(
+				    (gint)tmp->ppid != (gint)new_tmp->ppid ||
+				    strcmp(tmp->state,new_tmp->state) ||
+				    (unsigned int)tmp->size != (unsigned int)new_tmp->size ||
+				    (unsigned int)tmp->rss != (unsigned int)new_tmp->rss ||
+				    (unsigned int)tmp->time != (unsigned int)tmp->old_time ||
+				    tmp->prio != new_tmp->prio
+				 )
 				{
 					tmp->ppid = new_tmp->ppid;
 					strcpy(tmp->state, new_tmp->state);
 					tmp->size = new_tmp->size;
 					tmp->rss = new_tmp->rss;
-					
+					tmp->prio = new_tmp->prio;
+
 					refresh_list_item(i);
 				}
 				tmp->checked = TRUE;
@@ -110,29 +117,29 @@ gboolean refresh_task_list(void)
 	}
 
 	g_array_free(new_task_list, TRUE);
-	
+
 	/* update the CPU and memory progress bars */
 	if (sys_stat == NULL)
 		sys_stat = g_new (system_status, 1);
 	get_system_status (sys_stat);
-	
+
 	memory_used = sys_stat->mem_total - sys_stat->mem_free;
 	if ( show_cached_as_free )
 	{
 		memory_used-=sys_stat->mem_cached;
 	}
-	mem_tooltip = g_strdup_printf (_("%d kB of %d kB used"), memory_used, sys_stat->mem_total);
+	mem_tooltip = g_strdup_printf (_("%d kB of %d kB used"), memory_used / 1024, sys_stat->mem_total / 1024);
 	gtk_tooltips_set_tip (tooltips, mem_usage_progress_bar_box, mem_tooltip, NULL);
 	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (mem_usage_progress_bar),  (gdouble)memory_used / sys_stat->mem_total);
-	
+
 	cpu_usage = get_cpu_usage (sys_stat);
 	cpu_tooltip = g_strdup_printf (_("%0.0f %%"), cpu_usage * 100.0);
 	gtk_tooltips_set_tip (tooltips, cpu_usage_progress_bar_box, cpu_tooltip, NULL);
 	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (cpu_usage_progress_bar), cpu_usage);
-	
+
 	g_free (mem_tooltip);
 	g_free (cpu_tooltip);
-	
+
 	return TRUE;
 }
 
@@ -192,7 +199,7 @@ void load_config(void)
 
 	win_width = xfce_rc_read_int_entry(rc_file, "win_width", 500);
 	win_height = xfce_rc_read_int_entry(rc_file, "win_height", 400);
-	
+
 	xfce_rc_close(rc_file);
 }
 

@@ -46,6 +46,7 @@ GtkWidget *treeview;
 GtkWidget *mainmenu;
 GtkTooltips *tooltips;
 GtkWidget *taskpopup;
+GtkWidget *priopopup;
 GtkWidget *cpu_usage_progress_bar;
 GtkWidget *mem_usage_progress_bar;
 GtkWidget *cpu_usage_progress_bar_box;
@@ -59,6 +60,7 @@ GtkWidget *mem_usage_progress_bar_box;
 #define COLUMN_RSS	5
 #define COLUMN_UNAME	6
 #define COLUMN_TIME	7
+#define COLUMN_PRIO 	8
 
 GtkTreeViewColumn *column;
 
@@ -68,6 +70,7 @@ void create_list_store(void);
 GtkWidget* create_main_window (void);
 GtkWidget* create_taskpopup (void);
 GtkWidget* create_mainmenu (void);
+GtkWidget *create_prio_submenu(void);
 
 void show_about_dialog(void);
 

@@ -38,6 +38,7 @@ struct task
 	gint time;
 	gint old_time;
 	gdouble time_percentage;
+	gint prio;	/* my change */
 };
 
 typedef struct

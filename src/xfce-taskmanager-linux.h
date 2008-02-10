@@ -17,22 +17,32 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef LINUX_H
-#define LINUX_H
+#ifndef XFCE4_TASKMANAGER_LINUX_H
+#define XFCE4_TASKMANAGER_LINUX_H
 
 #include <glib.h>
+#include <libxfcegui4/libxfcegui4.h>
 #include <dirent.h>
 #include <pwd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 
 #include "types.h"
+
+#define SIGNAL_NO	0
+#define SIGNAL_KILL	SIGKILL
+#define SIGNAL_TERM	SIGINT
+#define SIGNAL_CONT	SIGCONT
+#define SIGNAL_STOP	SIGSTOP
 
 struct task get_task_details(gint pid);
 GArray *get_task_list(void); 
 gboolean get_system_status(system_status *sys_stat);
 gboolean get_cpu_usage_from_proc(system_status *sys_stat);
+void send_signal_to_task(gint task_id, gint signal);
+void set_priority_to_task(gint task_id, gint prio);
 
 #endif

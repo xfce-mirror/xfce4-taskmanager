@@ -22,7 +22,7 @@
 
 void on_button1_button_press_event(GtkButton *button, GdkEventButton *event)
 {
-	GdkEventButton *mouseevent = (GdkEventButton *)event; 
+	GdkEventButton *mouseevent = (GdkEventButton *)event;
 	if(mainmenu == NULL)
 		mainmenu = create_mainmenu ();
 	gtk_menu_popup(GTK_MENU(mainmenu), NULL, NULL, NULL, NULL, mouseevent->button, mouseevent->time);
@@ -35,16 +35,17 @@ void on_button3_toggled_event(GtkButton *button, GdkEventButton *event)
 }
 
 gboolean on_treeview1_button_press_event(GtkButton *button, GdkEventButton *event)
-{	
+{
 	if(event->button == 3)
 	{
-		GdkEventButton *mouseevent = (GdkEventButton *)event; 
+		GdkEventButton *mouseevent = (GdkEventButton *)event;
 		if(taskpopup == NULL)
 			taskpopup = create_taskpopup ();
 		gtk_menu_popup(GTK_MENU(taskpopup), NULL, NULL, NULL, NULL, mouseevent->button, mouseevent->time);
 	}
 	return FALSE;
 }
+
 
 void on_info1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
@@ -55,24 +56,72 @@ void handle_task_menu(GtkWidget *widget, gchar *signal)
 {
 	if(signal != NULL)
 	{
-		gchar *s;
+		gint task_action = SIGNAL_NO;
 
-		if (strcmp(signal, "KILL") == 0) s = _("Really kill the task?");
-		else s = _("Really terminate the task?");
-	
-		if(strcmp(signal, "STOP") == 0 || strcmp(signal, "CONT") == 0 || xfce_confirm(s, GTK_STOCK_YES, NULL))
+		switch(signal[0])
+		{
+			case 'K':
+				if(xfce_confirm(_("Really kill the task?"), GTK_STOCK_YES, NULL))
+					task_action = SIGNAL_KILL;
+				break;
+			case 'T':
+				if(xfce_confirm(_("Really terminate the task?"), GTK_STOCK_YES, NULL))
+					task_action = SIGNAL_TERM;
+				break;
+			case 'S':
+				task_action = SIGNAL_STOP;
+				break;
+			case 'C':
+				task_action = SIGNAL_CONT;
+				break;
+			default:
+				return;
+		}
+		
+		if(task_action != SIGNAL_NO)
 		{
 			gchar *task_id = "";
 			GtkTreeModel *model;
 			GtkTreeIter iter;
-
+			
 			if(gtk_tree_selection_get_selected(selection, &model, &iter))
 			{
 				gtk_tree_model_get(model, &iter, 1, &task_id, -1);
-				send_signal_to_task(task_id, signal);
+				send_signal_to_task(atoi(task_id), task_action);
 				refresh_task_list();
 			}
 		}
+// 		if (strcmp(signal, "KILL") == 0) s = _("Really kill the task?");
+// 		else s = _("Really terminate the task?");
+// 
+// 		if(strcmp(signal, "STOP") == 0 || strcmp(signal, "CONT") == 0 || xfce_confirm(s, GTK_STOCK_YES, NULL))
+// 		{
+// 			gchar *task_id = "";
+// 			GtkTreeModel *model;
+// 			GtkTreeIter iter;
+// 
+// 			if(gtk_tree_selection_get_selected(selection, &model, &iter))
+// 			{
+// 				gtk_tree_model_get(model, &iter, 1, &task_id, -1);
+// 				send_signal_to_task(atoi(task_id), signal);
+// 				refresh_task_list();
+// 			}
+// 		}
+	}
+}
+
+void handle_prio_menu(GtkWidget *widget, gchar *prio)
+{
+	gchar *task_id = "";
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+
+	if(gtk_tree_selection_get_selected(selection, &model, &iter))
+	{
+		gtk_tree_model_get(model, &iter, 1, &task_id, -1);
+
+		set_priority_to_task(atoi(task_id), atoi(prio));
+		refresh_task_list();
 	}
 }
 
@@ -84,7 +133,7 @@ void on_show_tasks_toggled (GtkMenuItem *menuitem, gint uid)
 		show_root_tasks = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menuitem));
 	else
 		show_other_tasks = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menuitem));
-	
+
 	change_task_view();
 }
 
@@ -98,6 +147,6 @@ void on_quit(void)
 {
 	save_config();
 	free(config_file);
-	
+
 	gtk_main_quit();
 }

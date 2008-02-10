@@ -36,7 +36,7 @@
 #include "types.h"
 #include "interface.h"
 
-#ifdef LINUX
+#ifdef __LINUX__
 #include "xfce-taskmanager-linux.h"
 #endif
 
@@ -46,7 +46,6 @@
 
 gboolean refresh_task_list(void);
 gdouble get_cpu_usage(system_status *sys_stat);
-void send_signal_to_task(gchar *task_id, gchar *signal);
 
 /* Configurationfile support */
 void load_config(void);
