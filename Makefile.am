@@ -4,6 +4,11 @@ SUBDIRS =								\
 	po								\
 	src
 
+desktopdir = $(datadir)/applications
+desktop_in_files = xfce4-taskmanager.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+@INTLTOOL_DESKTOP_RULE@
+
 distclean-local:
 	rm -rf *.cache *~
 
@@ -14,11 +19,13 @@ rpm: dist
 EXTRA_DIST =								\
 	intltool-extract.in						\
 	intltool-merge.in						\
-	intltool-update.in
+	intltool-update.in						\
+	$(desktop_in_files)
 	
 DISTCLEANFILES =							\
 	intltool-extract						\
 	intltool-merge							\
-	intltool-update
+	intltool-update							\
+	$(desktop_in_files)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
