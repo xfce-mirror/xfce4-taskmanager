@@ -26,6 +26,6 @@ DISTCLEANFILES =							\
 	intltool-extract						\
 	intltool-merge							\
 	intltool-update							\
-	$(desktop_in_files)
+	$(desktop_DATA)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
