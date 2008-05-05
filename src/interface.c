@@ -222,27 +222,32 @@ GtkWidget *create_prio_submenu(void)
 	GtkWidget *prio_submenu = gtk_menu_new ();
 	GtkWidget *menu_item;
 
-	menu_item = gtk_menu_item_new_with_mnemonic (_("  -10"));
+	menu_item = gtk_menu_item_new_with_label ("-10");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
 	gtk_widget_show (menu_item);
 	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
 	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "-10");
 	
-	menu_item = gtk_menu_item_new_with_mnemonic (_("  -5"));
+	menu_item = gtk_menu_item_new_with_label ("-5");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
 	gtk_widget_show (menu_item);
 	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
 	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "-5");
 
-	menu_item = gtk_menu_item_new_with_mnemonic (_("    0"));
+	menu_item = gtk_menu_item_new_with_label ("0");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
 	gtk_widget_show (menu_item);
 	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
 	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "0");
 
-	menu_item = gtk_menu_item_new_with_mnemonic (_("   5"));
+	menu_item = gtk_menu_item_new_with_label ("5");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
 	gtk_widget_show (menu_item);
 	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
 	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "5");
 
-	menu_item = gtk_menu_item_new_with_mnemonic (_("   10"));
+	menu_item = gtk_menu_item_new_with_label ("10");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
 	gtk_widget_show (menu_item);
 	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
 	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "10");
