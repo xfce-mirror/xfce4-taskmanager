@@ -1,4 +1,0 @@
-	../src/callbacks.c \
-	../src/functions.c \
-	../src/interface.c \
-	../src/main.c
