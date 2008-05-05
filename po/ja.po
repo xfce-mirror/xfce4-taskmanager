@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-13 11:01+0100\n"
+"POT-Creation-Date: 2008-05-05 18:09+0200\n"
 "PO-Revision-Date: 2006-04-01 17:57+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
@@ -18,25 +18,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/callbacks.c:60
+#: ../src/callbacks.c:64
 msgid "Really kill the task?"
 msgstr ""
 
-#: ../src/callbacks.c:61
+#: ../src/callbacks.c:68
 msgid "Really terminate the task?"
 msgstr ""
 
-#: ../src/functions.c:124
+#: ../src/functions.c:131
 #, c-format
 msgid "%d kB of %d kB used"
 msgstr ""
 
-#: ../src/functions.c:129
+#: ../src/functions.c:136
 #, c-format
 msgid "%0.0f %%"
 msgstr ""
 
-#: ../src/interface.c:45 ../src/interface.c:272
+#: ../src/interface.c:45 ../src/interface.c:324
 msgid "xfce4-taskmanager"
 msgstr "xfce4-taskmanager"
 
@@ -52,66 +52,75 @@ msgstr ""
 msgid "more details"
 msgstr "さらに詳しく"
 
-#: ../src/interface.c:125
+#: ../src/interface.c:126
 msgid "Command"
 msgstr "コマンド"
 
-#: ../src/interface.c:131
+#: ../src/interface.c:132
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:137
+#: ../src/interface.c:138
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:143
+#: ../src/interface.c:144
 msgid "State"
 msgstr "状態"
 
-#: ../src/interface.c:149
+#: ../src/interface.c:150
 msgid "VM-Size"
 msgstr "VMサイズ"
 
-#: ../src/interface.c:155
+#: ../src/interface.c:156
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:161
+#: ../src/interface.c:162
 msgid "User"
 msgstr "ユーザー"
 
-#: ../src/interface.c:167
+#: ../src/interface.c:168
 msgid "CPU%"
 msgstr ""
 
-#: ../src/interface.c:183
+#. my change
+#: ../src/interface.c:175
+msgid "Prio"
+msgstr ""
+
+#: ../src/interface.c:192
 msgid "Stop"
 msgstr "中止"
 
-#: ../src/interface.c:188
+#: ../src/interface.c:197
 msgid "Continue"
 msgstr "続行"
 
-#: ../src/interface.c:193
+#: ../src/interface.c:202
 msgid "Term"
 msgstr "中断"
 
-#: ../src/interface.c:198
+#: ../src/interface.c:207
 msgid "Kill"
 msgstr "Kill"
 
-#: ../src/interface.c:230
+#: ../src/interface.c:212
+msgid "Priority"
+msgstr ""
+
+#: ../src/interface.c:282
 msgid "Show user tasks"
 msgstr "ユーザータスクを表示"
 
-#: ../src/interface.c:235
+#: ../src/interface.c:287
 msgid "Show root tasks"
 msgstr "ルートタスクを表示"
 
-#: ../src/interface.c:240
+#: ../src/interface.c:292
 msgid "Show other tasks"
 msgstr "その他のタスクを表示"
 
-#: ../src/interface.c:245
+#: ../src/interface.c:297
 msgid "Show memory used by cache as free"
 msgstr ""
