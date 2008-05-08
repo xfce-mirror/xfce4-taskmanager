@@ -336,6 +336,10 @@ void change_list_store_view(void)
 
 void fill_list_item(gint i, GtkTreeIter *iter)
 {
+	static gint pagesize = 0;
+	if (pagesize == 0)
+		pagesize = getpagesize();
+
 	if(iter != NULL)
 	{
 		struct task *task = &g_array_index(task_array, struct task, i);
@@ -343,8 +347,8 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		gchar *pid = g_strdup_printf("%i", task->pid);
 		gchar *ppid = g_strdup_printf("%i", task->ppid);
 		gchar *state = g_strdup_printf("%s", task->state);
-		gchar *size = g_strdup_printf("%i kB", task->size/1024);
-		gchar *rss = g_strdup_printf("%i kB", task->rss/1024);
+		gchar *vsize = g_strdup_printf("%i MB", task->vsize/1024/1024);
+		gchar *rss = g_strdup_printf("%i MB", task->rss*pagesize/1024/1024);
 		gchar *name = g_strdup_printf("%s", task->name);
 		gchar *uname = g_strdup_printf("%s", task->uname);
 		gchar *time = g_strdup_printf("%0d%%", (guint)task->time_percentage);
@@ -354,7 +358,7 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_PID, pid, -1);
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_PPID, ppid, -1);
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_STATE, state, -1);
-		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_MEM, size, -1);
+		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_MEM, vsize, -1);
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_RSS, rss, -1);
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_UNAME, uname, -1);
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_TIME, time, -1);
@@ -363,7 +367,7 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		g_free(pid);
 		g_free(ppid);
 		g_free(state);
-		g_free(size);
+		g_free(vsize);
 		g_free(rss);
 		g_free(name);
 		g_free(uname);

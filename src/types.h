@@ -32,7 +32,7 @@ struct task
 	gchar uname[64];
 	gchar name[64];
 	gchar state[16];
-	gint size;
+	gint vsize;
 	gint rss;
 	gboolean checked;
 	gint time;

@@ -74,8 +74,8 @@ struct task get_task_details(gint pid)
 
 						&idummy,	// itrealvalue time in jiffies to next SIGALRM send to this process
 						&idummy,	// starttime jiffies the process startet after system boot
-						&task.size,	// vsize in bytes
-						&task.rss,	// rss
+						&task.vsize,	// vsize in bytes
+						&task.rss,	// rss (number of pages in real memory)
 						dummy,		// rlim limit in bytes for rss
 
 						dummy,		// startcode
@@ -101,7 +101,6 @@ struct task get_task_details(gint pid)
 			task.time = stime + utime;
 			task.old_time = task.time;
 			task.time_percentage = 0;
-			task.size = task.size / 1024;
 		}
 		task.uid = status.st_uid;
 		passwdp = getpwuid(task.uid);
