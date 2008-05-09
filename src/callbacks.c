@@ -21,12 +21,11 @@
 #include "callbacks.h"
 #include "menu-positions.h"
 
-void on_button1_button_press_event(GtkButton *button, GdkEventButton *event)
+void on_button1_activate(GtkButton *button)
 {
-	GdkEventButton *mouseevent = (GdkEventButton *)event;
 	if(mainmenu == NULL)
 		mainmenu = create_mainmenu();
-	gtk_menu_popup(GTK_MENU(mainmenu), NULL, NULL, (GtkMenuPositionFunc)position_mainmenu, button, mouseevent->button, mouseevent->time);
+	gtk_menu_popup(GTK_MENU(mainmenu), NULL, NULL, (GtkMenuPositionFunc)position_mainmenu, button, 0, gtk_get_current_event_time());
 }
 
 void on_button3_toggled_event(GtkButton *button, GdkEventButton *event)

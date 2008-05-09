@@ -110,7 +110,7 @@ GtkWidget* create_main_window (void)
 	g_signal_connect ((gpointer) window, "delete-event", G_CALLBACK (on_quit), NULL);
 	g_signal_connect_swapped ((gpointer) treeview, "button-press-event", G_CALLBACK(on_treeview1_button_press_event), NULL);
 	g_signal_connect ((gpointer) button1, "clicked",  G_CALLBACK (on_quit),  NULL);
-	g_signal_connect ((gpointer) button2, "button_release_event",  G_CALLBACK (on_button1_button_press_event),  NULL);
+	g_signal_connect ((gpointer) button2, "clicked",  G_CALLBACK (on_button1_activate),  NULL);
 	g_signal_connect ((gpointer) button3, "toggled",  G_CALLBACK (on_button3_toggled_event),  NULL);
 
 	return window;
