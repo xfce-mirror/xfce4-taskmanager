@@ -1,15 +1,27 @@
 2008-05-09	Mike Massonnet <mmassonnet@xfce.org>
 
+	* Properly display the memory usage and fix signal connected on the
+	  show_cached_as_free menu item
+
+2008-05-09	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Save sort column/type in config
 	* Set command column to expand and ellipsize
-	* Properly refresh on CPU usage
+	* Right align numerical columns
+
+2008-05-09	Mike Massonnet <mmassonnet@xfce.org>
+
 	* Fix the event of the main menu to display on keyboard and mouse
 	* Properly position the main menu
-	* Fix strings
 	* Properly save window size on quit
-	* Right align numerical columns
+
+2008-05-09	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Fix strings
 
 2008-05-08	Mike Massonnet <mmassonnet@xfce.org>
 
+	* Properly refresh processes on CPU usage
 	* Correctly display the memory size of the processes
 
 2008-05-05	Mike Massonnet <mmassonnet@xfce.org>
