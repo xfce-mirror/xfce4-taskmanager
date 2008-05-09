@@ -120,6 +120,7 @@ void create_list_store(void)
 {
 	GtkCellRenderer *cell_renderer;
 	GtkCellRenderer *cell_renderer_right_align;
+	GtkCellRenderer *cell_renderer_command;
 
 	/* my change 8->9 */
 	list_store = gtk_tree_store_new(9, G_TYPE_STRING, G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING);
@@ -127,8 +128,11 @@ void create_list_store(void)
 	cell_renderer = gtk_cell_renderer_text_new();
 	cell_renderer_right_align = gtk_cell_renderer_text_new();
 	g_object_set(G_OBJECT(cell_renderer_right_align), "xalign", 1.0, NULL); 
+	cell_renderer_command = gtk_cell_renderer_text_new();
+	g_object_set(G_OBJECT(cell_renderer_command), "ellipsize", PANGO_ELLIPSIZE_END, NULL); 
 
-	column = gtk_tree_view_column_new_with_attributes(_("Command"), cell_renderer, "text", 0, NULL);
+	column = gtk_tree_view_column_new_with_attributes(_("Command"), cell_renderer_command, "text", 0, NULL);
+	gtk_tree_view_column_set_expand(column, TRUE);
 	gtk_tree_view_column_set_resizable(column, TRUE);
 	gtk_tree_view_column_set_sort_column_id(column, 0);
 	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), 0, compare_string_list_item, (void *)0, NULL);
