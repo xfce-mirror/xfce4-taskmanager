@@ -42,7 +42,7 @@ GtkWidget* create_main_window (void)
 	gtk_tooltips_enable(tooltips);
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title (GTK_WINDOW (window), _("xfce4-taskmanager"));
+	gtk_window_set_title (GTK_WINDOW (window), _("Xfce4 Taskmanager"));
 	gtk_window_set_default_size (GTK_WINDOW (window), win_width, win_height);
 
 	vbox1 = gtk_vbox_new (FALSE, 10);
@@ -56,7 +56,7 @@ GtkWidget* create_main_window (void)
 
 	cpu_usage_progress_bar_box = gtk_event_box_new ();
 	cpu_usage_progress_bar = gtk_progress_bar_new ();
-	gtk_progress_bar_set_text (GTK_PROGRESS_BAR (cpu_usage_progress_bar), _("cpu usage"));
+	gtk_progress_bar_set_text (GTK_PROGRESS_BAR (cpu_usage_progress_bar), _("Cpu usage"));
 	gtk_widget_show (cpu_usage_progress_bar);
 	gtk_widget_show (cpu_usage_progress_bar_box);
 	gtk_container_add (GTK_CONTAINER (cpu_usage_progress_bar_box), cpu_usage_progress_bar);
@@ -64,7 +64,7 @@ GtkWidget* create_main_window (void)
 
 	mem_usage_progress_bar_box = gtk_event_box_new ();
 	mem_usage_progress_bar = gtk_progress_bar_new ();
-	gtk_progress_bar_set_text (GTK_PROGRESS_BAR (mem_usage_progress_bar), _("memory usage"));
+	gtk_progress_bar_set_text (GTK_PROGRESS_BAR (mem_usage_progress_bar), _("Memory usage"));
 	gtk_widget_show (mem_usage_progress_bar);
 	gtk_widget_show (mem_usage_progress_bar_box);
 	gtk_container_add (GTK_CONTAINER (mem_usage_progress_bar_box), mem_usage_progress_bar);
@@ -96,7 +96,9 @@ GtkWidget* create_main_window (void)
 	gtk_widget_show (button2);
 	gtk_box_pack_start (GTK_BOX (bbox1), button2, FALSE, FALSE, 0);
 
-	button3 = gtk_toggle_button_new_with_label (_("more details"));
+	button3 = gtk_toggle_button_new ();
+    gtk_button_set_label (GTK_BUTTON(button3), "gtk-info");
+    gtk_button_set_use_stock (GTK_BUTTON(button3), TRUE);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(button3), full_view);
 	gtk_widget_show (button3);
 	gtk_box_pack_start (GTK_BOX (bbox1), button3, FALSE, FALSE, 0);
