@@ -97,8 +97,8 @@ GtkWidget* create_main_window (void)
 	gtk_box_pack_start (GTK_BOX (bbox1), button2, FALSE, FALSE, 0);
 
 	button3 = gtk_toggle_button_new ();
-    gtk_button_set_label (GTK_BUTTON(button3), "gtk-info");
-    gtk_button_set_use_stock (GTK_BUTTON(button3), TRUE);
+	gtk_button_set_label (GTK_BUTTON(button3), "gtk-info");
+	gtk_button_set_use_stock (GTK_BUTTON(button3), TRUE);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(button3), full_view);
 	gtk_widget_show (button3);
 	gtk_box_pack_start (GTK_BOX (bbox1), button3, FALSE, FALSE, 0);
