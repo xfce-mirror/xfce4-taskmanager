@@ -98,8 +98,8 @@ struct task get_task_details(gint pid)
 
 						dummy
 					);
-			task.time = stime + utime;
 			task.old_time = task.time;
+			task.time = stime + utime;
 			task.time_percentage = 0;
 		}
 		task.uid = status.st_uid;
