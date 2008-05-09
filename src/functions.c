@@ -128,8 +128,9 @@ gboolean refresh_task_list(void)
 	if ( show_cached_as_free )
 	{
 		memory_used-=sys_stat->mem_cached;
+		memory_used-=sys_stat->mem_buffers;
 	}
-	mem_tooltip = g_strdup_printf (_("%d kB of %d kB used"), memory_used / 1024, sys_stat->mem_total / 1024);
+	mem_tooltip = g_strdup_printf (_("%d MB of %d MB used"), memory_used / 1024, sys_stat->mem_total / 1024);
 	gtk_tooltips_set_tip (tooltips, mem_usage_progress_bar_box, mem_tooltip, NULL);
 	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (mem_usage_progress_bar),  (gdouble)memory_used / sys_stat->mem_total);
 

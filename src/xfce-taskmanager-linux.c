@@ -248,6 +248,7 @@ gboolean get_system_status (system_status *sys_stat)
 			sscanf (buffer, "MemTotal:\t%u kB", &sys_stat->mem_total);
 			sscanf (buffer, "MemFree:\t%u kB", &sys_stat->mem_free);
 			sscanf (buffer, "Cached:\t%u kB", &sys_stat->mem_cached);
+			sscanf (buffer, "Buffers:\t%u kB", &sys_stat->mem_buffers);
 		}
 		fclose (file);
 	}
