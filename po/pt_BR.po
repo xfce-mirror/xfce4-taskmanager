@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-09 14:30+0200\n"
-"PO-Revision-Date: 2008-05-05 18:58-0500\n"
+"PO-Revision-Date: 2008-05-09 11:03-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -28,9 +28,9 @@ msgid "Really terminate the task?"
 msgstr "Realmente terminar a tarefa?"
 
 #: ../src/functions.c:133
-#, fuzzy, c-format
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d kB de %d kB usado"
+msgstr "%d MB de %d MB usado"
 
 #: ../src/functions.c:138
 #, c-format
@@ -38,19 +38,16 @@ msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
 #: ../src/interface.c:46 ../src/interface.c:334
-#, fuzzy
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-taskmanager"
+msgstr "Gerenciador de Tarefas do Xfce4"
 
 #: ../src/interface.c:60
-#, fuzzy
 msgid "Cpu usage"
-msgstr "uso de cpu"
+msgstr "Uso de cpu"
 
 #: ../src/interface.c:68
-#, fuzzy
 msgid "Memory usage"
-msgstr "uso de memória"
+msgstr "Uso de memória"
 
 #: ../src/interface.c:135
 msgid "Command"
