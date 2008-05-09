@@ -12,6 +12,8 @@ xfce4_taskmanager_SOURCES =						\
 	main.c								\
 	callbacks.c							\
 	callbacks.h							\
+	menu-positions.c						\
+	menu-positions.h						\
 	functions.c							\
 	functions.h							\
 	interface.c							\
