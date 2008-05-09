@@ -1,3 +1,22 @@
+2008-05-09	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Set command column to expand and ellipsize
+	* Properly refresh on CPU usage
+	* Fix the event of the main menu to display on keyboard and mouse
+	* Properly position the main menu
+	* Fix strings
+	* Properly save window size on quit
+	* Right align numerical columns
+
+2008-05-08	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Correctly display the memory size of the processes
+
+2008-05-05	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Delete automated files
+	* Remove useless gettext() and properly align menu items on the right
+
 2007-01-12	Nick Schermer <nick@xfce.org>
 
 	* Change version number and svn revision support in configure.in.in
