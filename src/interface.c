@@ -310,10 +310,10 @@ GtkWidget* create_mainmenu (void)
 	gtk_menu_shell_append(GTK_MENU_SHELL(mainmenu), show_cached_as_free1);
 
 	g_signal_connect ((gpointer) info1, "activate", G_CALLBACK (on_info1_activate), NULL);
-	g_signal_connect ((gpointer) show_user_tasks1, "toggled", G_CALLBACK (on_show_tasks_toggled), (void *)own_uid);
-	g_signal_connect ((gpointer) show_root_tasks1, "toggled", G_CALLBACK (on_show_tasks_toggled), (void *)0);
-	g_signal_connect ((gpointer) show_other_tasks1, "toggled", G_CALLBACK (on_show_tasks_toggled), (void *)-1);
-	g_signal_connect ((gpointer) show_cached_as_free1, "toggled", G_CALLBACK (on_show_cached_as_free_toggled), (void *)0);
+	g_signal_connect ((gpointer) show_user_tasks1, "toggled", G_CALLBACK (on_show_tasks_toggled), GINT_TO_POINTER(own_uid));
+	g_signal_connect ((gpointer) show_root_tasks1, "toggled", G_CALLBACK (on_show_tasks_toggled), GINT_TO_POINTER(0));
+	g_signal_connect ((gpointer) show_other_tasks1, "toggled", G_CALLBACK (on_show_tasks_toggled), GINT_TO_POINTER(-1));
+	g_signal_connect ((gpointer) show_cached_as_free1, "toggled", G_CALLBACK (on_show_cached_as_free_toggled), GINT_TO_POINTER(0));
 
 	gtk_menu_set_accel_group (GTK_MENU (mainmenu), accel_group);
 

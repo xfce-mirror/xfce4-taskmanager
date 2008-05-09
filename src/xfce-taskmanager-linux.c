@@ -26,7 +26,7 @@ struct task get_task_details(gint pid)
 	FILE *cmdline_file;
 	gchar dummy[255];
 	gint idummy;
-	gchar buffer_status[255];
+	gchar buffer_status[1024];
 	struct task task;
 	struct passwd *passwdp;
 	struct stat status;
