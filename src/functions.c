@@ -58,7 +58,7 @@ gboolean refresh_task_list(void)
 				if(
 				    (gint)tmp->ppid != (gint)new_tmp->ppid ||
 				    strcmp(tmp->state,new_tmp->state) ||
-				    (unsigned int)tmp->size != (unsigned int)new_tmp->size ||
+				    (unsigned int)tmp->vsize != (unsigned int)new_tmp->vsize ||
 				    (unsigned int)tmp->rss != (unsigned int)new_tmp->rss ||
 				    (unsigned int)tmp->time != (unsigned int)tmp->old_time ||
 				    tmp->prio != new_tmp->prio
@@ -66,7 +66,7 @@ gboolean refresh_task_list(void)
 				{
 					tmp->ppid = new_tmp->ppid;
 					strcpy(tmp->state, new_tmp->state);
-					tmp->size = new_tmp->size;
+					tmp->vsize = new_tmp->vsize;
 					tmp->rss = new_tmp->rss;
 					tmp->prio = new_tmp->prio;
 
