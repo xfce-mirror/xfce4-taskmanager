@@ -87,7 +87,7 @@ GtkWidget* create_main_window (void)
 
 	gtk_tree_view_set_model(GTK_TREE_VIEW(treeview), GTK_TREE_MODEL(list_store));
 
-	gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(list_store), 1, GTK_SORT_ASCENDING);
+	gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(list_store), sort_column, sort_type);
 
 	bbox1 = gtk_hbutton_box_new();
 	gtk_box_pack_start(GTK_BOX(vbox1), bbox1, FALSE, TRUE, 0);

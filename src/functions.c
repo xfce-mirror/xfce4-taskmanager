@@ -196,6 +196,9 @@ void load_config(void)
 	show_other_tasks = xfce_rc_read_bool_entry(rc_file, "show_other_tasks", FALSE);
 	show_cached_as_free = xfce_rc_read_bool_entry(rc_file, "show_cached_as_free", TRUE);
 
+	sort_column = xfce_rc_read_int_entry(rc_file, "sort_column", COLUMN_PID);
+	sort_type = xfce_rc_read_int_entry(rc_file, "sort_type", GTK_SORT_ASCENDING);
+
 	full_view = xfce_rc_read_bool_entry(rc_file, "full_view", FALSE);
 
 	win_width = xfce_rc_read_int_entry(rc_file, "win_width", 500);
@@ -214,6 +217,10 @@ void save_config(void)
 	xfce_rc_write_bool_entry(rc_file, "show_root_tasks", show_root_tasks);
 	xfce_rc_write_bool_entry(rc_file, "show_other_tasks", show_other_tasks);
 	xfce_rc_write_bool_entry(rc_file, "show_cached_as_free", show_cached_as_free);
+
+	gtk_tree_sortable_get_sort_column_id(GTK_TREE_SORTABLE(list_store), &sort_column, &sort_type);
+	xfce_rc_write_int_entry(rc_file, "sort_column", sort_column);
+	xfce_rc_write_int_entry(rc_file, "sort_type", sort_type);
 
 	xfce_rc_write_bool_entry(rc_file, "full_view", full_view);
 

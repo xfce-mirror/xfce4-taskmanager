@@ -71,6 +71,9 @@ gboolean show_other_tasks;
 
 gboolean show_cached_as_free; /* Show memory used Cache as free memory */
 
+guint sort_column;
+guint sort_type;
+
 gboolean full_view;
 
 guint win_width;
