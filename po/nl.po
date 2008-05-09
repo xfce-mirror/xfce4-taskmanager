@@ -8,46 +8,44 @@ msgstr ""
 "Project-Id-Version: xfce 4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-09 14:30+0200\n"
-"PO-Revision-Date: 2007-01-08 13:13+0100\n"
-"Last-Translator: Stephan Arts <stephan@xfce.org>\n"
+"PO-Revision-Date: 2008-05-09 23:55+0200\n"
+"Last-Translator: Vincent <msn_vincent@hotmail.com>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/callbacks.c:65
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Weet u zeker dat u deze taak wilt beëindigen?"
 
 #: ../src/callbacks.c:69
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Weet u zeker dat u deze taak wilt stoppen?"
 
 #: ../src/functions.c:133
 #, c-format
 msgid "%d MB of %d MB used"
-msgstr ""
+msgstr "%d van %d MB in gebruik"
 
 #: ../src/functions.c:138
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
-#: ../src/interface.c:46 ../src/interface.c:334
-#, fuzzy
+#: ../src/interface.c:46
+#: ../src/interface.c:334
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-taakbeheer"
+msgstr "Xfce4 Taakbeheerder"
 
 #: ../src/interface.c:60
-#, fuzzy
 msgid "Cpu usage"
-msgstr "cpu gebruik"
+msgstr "Gebruik CPU"
 
 #: ../src/interface.c:68
-#, fuzzy
 msgid "Memory usage"
-msgstr "geheugen gebruik"
+msgstr "Gebruik geheugen"
 
 #: ../src/interface.c:135
 msgid "Command"
@@ -67,7 +65,7 @@ msgstr "Status"
 
 #: ../src/interface.c:160
 msgid "VM-Size"
-msgstr "VM-Grootte"
+msgstr "VM-grootte"
 
 #: ../src/interface.c:166
 msgid "RSS"
@@ -79,12 +77,12 @@ msgstr "Gebruiker"
 
 #: ../src/interface.c:178
 msgid "CPU%"
-msgstr "CPU%"
+msgstr "CPU"
 
 #. my change
 #: ../src/interface.c:185
 msgid "Prio"
-msgstr ""
+msgstr "Prio"
 
 #: ../src/interface.c:202
 msgid "Stop"
@@ -92,27 +90,27 @@ msgstr "Stop"
 
 #: ../src/interface.c:207
 msgid "Continue"
-msgstr "Verder"
+msgstr "Doorgaan"
 
 #: ../src/interface.c:212
 msgid "Term"
-msgstr "Term"
+msgstr "Stoppen"
 
 #: ../src/interface.c:217
 msgid "Kill"
-msgstr "Kill"
+msgstr "Beëindigen"
 
 #: ../src/interface.c:222
 msgid "Priority"
-msgstr ""
+msgstr "Prioriteit"
 
 #: ../src/interface.c:292
 msgid "Show user tasks"
-msgstr "Toon gebruikers taken"
+msgstr "Toon taken van gebruiker"
 
 #: ../src/interface.c:297
 msgid "Show root tasks"
-msgstr "Toon root taken"
+msgstr "Toon taken van root"
 
 #: ../src/interface.c:302
 msgid "Show other tasks"
@@ -120,10 +118,10 @@ msgstr "Toon andere taken"
 
 #: ../src/interface.c:307
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "Toon gecached geheugen als vrij"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "xfce4-taakbeheer"
-
 #~ msgid "more details"
 #~ msgstr "meer details"
+
