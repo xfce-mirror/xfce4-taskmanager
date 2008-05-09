@@ -52,16 +52,17 @@ gboolean refresh_task_list(void)
 			if(new_tmp->pid == tmp->pid)
 			{
 				tmp->old_time = tmp->time;
-
 				tmp->time = new_tmp->time;
 
-				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (gdouble)(1000.0 / (REFRESH_INTERVAL*num_cpus));
+				tmp->old_time_percentage = tmp->time_percentage;
+				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (gdouble)(1/num_cpus);
+
 				if(
-				    (gint)tmp->ppid != (gint)new_tmp->ppid ||
+				    tmp->ppid != new_tmp->ppid ||
 				    strcmp(tmp->state,new_tmp->state) ||
-				    (unsigned int)tmp->vsize != (unsigned int)new_tmp->vsize ||
-				    (unsigned int)tmp->rss != (unsigned int)new_tmp->rss ||
-				    (unsigned int)tmp->time != (unsigned int)tmp->old_time ||
+				    tmp->vsize != new_tmp->vsize ||
+				    tmp->rss != new_tmp->rss ||
+				    tmp->time_percentage != tmp->old_time_percentage ||
 				    tmp->prio != new_tmp->prio
 				 )
 				{

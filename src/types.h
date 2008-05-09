@@ -39,6 +39,7 @@ struct task
 	gint time;
 	gint old_time;
 	gdouble time_percentage;
+	gdouble old_time_percentage;
 	gint prio;	/* my change */
 };
 
