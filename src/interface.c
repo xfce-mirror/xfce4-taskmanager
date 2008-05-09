@@ -325,13 +325,13 @@ void show_about_dialog(void)
 	GtkWidget *about_dialog;
 	XfceAboutInfo *about_info;
 
-	about_info = xfce_about_info_new("xfce4-taskmanager", VERSION, "Xfce4-Taskmanager is a easy to use Taskmanager.",XFCE_COPYRIGHT_TEXT("2005", "Johannes Zellner"), XFCE_LICENSE_GPL);
+	about_info = xfce_about_info_new("Xfce4 Taskmanager", VERSION, "Xfce4-Taskmanager is a easy to use Taskmanager.",XFCE_COPYRIGHT_TEXT("2005", "Johannes Zellner"), XFCE_LICENSE_GPL);
 	xfce_about_info_set_homepage(about_info, "http://goodies.xfce.org");
 	xfce_about_info_add_credit(about_info, "Johannes Zellner", "webmaster@nebulon.de", "Original Author");
 
 	about_dialog = xfce_about_dialog_new_with_values(GTK_WINDOW(main_window), about_info, NULL);
 	g_signal_connect(G_OBJECT(about_dialog), "response", G_CALLBACK(gtk_widget_destroy), NULL);
-	gtk_window_set_title (GTK_WINDOW (about_dialog), _("xfce4-taskmanager"));
+	gtk_window_set_title (GTK_WINDOW (about_dialog), _("Xfce4 Taskmanager"));
 	gtk_widget_show(about_dialog);
 
 	xfce_about_info_free(about_info);
