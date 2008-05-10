@@ -1,5 +1,24 @@
+2008-05-11	Mike Massonnet <mmassonnet@xfce.org>
+
+=== Release 0.4.0 ===
+
+2008-05-11	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Set window icon to "xfce-system" and modify the about dialog
+
+2008-05-10	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Redo what is displayed in More info (PPID, STATE, VM-size), and keep RSS
+	  in normal info
+
+2008-05-10	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Set buffer_status to 1024 (fixes issues with 64bit archs) bug#4059
+	* Use convenience macro GINT_TO_POINTER to pass to user_data
+
 2008-05-09	Mike Massonnet <mmassonnet@xfce.org>
 
+	* Properly refresh the CPU usage of a process
 	* Properly display the memory usage and fix signal connected on the
 	  show_cached_as_free menu item
 
@@ -28,6 +47,11 @@
 
 	* Delete automated files
 	* Remove useless gettext() and properly align menu items on the right
+
+2008-02-10	Johannes Zellner <webmaster@nebulon.de>
+
+	* Initial priority setting
+	* Few bug fixes
 
 2007-01-12	Nick Schermer <nick@xfce.org>
 

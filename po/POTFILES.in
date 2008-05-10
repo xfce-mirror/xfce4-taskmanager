@@ -1,3 +1,4 @@
+xfce4-taskmanager.desktop.in
 src/callbacks.c
 src/functions.c
 src/interface.c

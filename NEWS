@@ -1,0 +1,9 @@
+0.4.0
+
+[ Mike Massonnet <mmassonnet@xfce.org> ]
+- 64bit archs fix (#4059)
+- Clean up and bug fixes
+- Update strings
+
+[ Johannes Zellner <webmaster@nebulon.de> ]
+- Priority setting
