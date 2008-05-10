@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-09 14:30+0200\n"
-"PO-Revision-Date: 2008-04-24 19:25+0300\n"
-"Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
+"PO-Revision-Date: 2008-05-10 02:41+0300\n"
+"Last-Translator: Stavros Giannouris <stavrosg@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: ../src/callbacks.c:65
 msgid "Really kill the task?"
@@ -25,9 +24,9 @@ msgid "Really terminate the task?"
 msgstr "Επιμένετε να τερματιστεί η εργασία;"
 
 #: ../src/functions.c:133
-#, fuzzy, c-format
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d kB από %d kB χρησιμοποιούνται"
+msgstr "%d MB από %d MB χρησιμοποιούνται"
 
 #: ../src/functions.c:138
 #, c-format
@@ -35,19 +34,16 @@ msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
 #: ../src/interface.c:46 ../src/interface.c:334
-#, fuzzy
 msgid "Xfce4 Taskmanager"
 msgstr "Διαχειριστής εργασιών xfce4"
 
 #: ../src/interface.c:60
-#, fuzzy
 msgid "Cpu usage"
-msgstr "χρήση cpu"
+msgstr "Χρήση cpu"
 
 #: ../src/interface.c:68
-#, fuzzy
 msgid "Memory usage"
-msgstr "χρήση μνήμης"
+msgstr "Χρήση μνήμης"
 
 #: ../src/interface.c:135
 msgid "Command"
@@ -84,7 +80,7 @@ msgstr "CPU%"
 #. my change
 #: ../src/interface.c:185
 msgid "Prio"
-msgstr ""
+msgstr "Προτ"
 
 #: ../src/interface.c:202
 msgid "Stop"
@@ -104,7 +100,7 @@ msgstr "Βίαιος τερματισμός"
 
 #: ../src/interface.c:222
 msgid "Priority"
-msgstr ""
+msgstr "Προτεραιότητα"
 
 #: ../src/interface.c:292
 msgid "Show user tasks"
@@ -121,9 +117,3 @@ msgstr "Εμφάνιση άλλων εργασιών"
 #: ../src/interface.c:307
 msgid "Show memory used by cache as free"
 msgstr "Εμφάνιση χρησιμοποιημένης μνήνης από την προσωρινή μνήμη ως ελεύθερη"
-
-#~ msgid "xfce4-taskmanager"
-#~ msgstr "Διαχειριστής εργασιών xfce4"
-
-#~ msgid "more details"
-#~ msgstr "περισσότερες λεπτομέρειες"
