@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the
 #   xfce4-taskmanager package.
 # Johannes Zellner <xfce4-taskmanager@nebulon.de>, 2005.
-# Enrico Tröger <enrico.troeger@uvena.de>, 2006.
+# Enrico Tröger <enrico.troeger@uvena.de>, 2006, 2008.
 # Fabian Nowak <timystery@arcor.de>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-09 14:30+0200\n"
-"PO-Revision-Date: 2007-12-19 00:10+0000\n"
-"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
-"Language-Team: German <xfce4-dev@xfce.org>\n"
+"POT-Creation-Date: 2008-05-10 09:30+0200\n"
+"PO-Revision-Date: 2008-05-10 09:29+0100\n"
+"Last-Translator: Enrico Tröger <enrico.troeger@uvena.de>\n"
+"Language-Team: German <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,28 +26,25 @@ msgstr "Prozess wirklich töten?"
 msgid "Really terminate the task?"
 msgstr "Prozess wirklich beenden?"
 
-#: ../src/functions.c:133
-#, fuzzy, c-format
+#: ../src/functions.c:134
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d kB of %d kB benutzt"
+msgstr "%d MB von %d MB benutzt"
 
-#: ../src/functions.c:138
+#: ../src/functions.c:139
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
 #: ../src/interface.c:46 ../src/interface.c:334
-#, fuzzy
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-taskmanager"
+msgstr "Xfce4 Taskmanager"
 
 #: ../src/interface.c:60
-#, fuzzy
 msgid "Cpu usage"
 msgstr "CPU-Auslastung"
 
 #: ../src/interface.c:68
-#, fuzzy
 msgid "Memory usage"
 msgstr "Speicherverbrauch"
 
@@ -86,7 +83,7 @@ msgstr "CPU%"
 #. my change
 #: ../src/interface.c:185
 msgid "Prio"
-msgstr ""
+msgstr "Prio"
 
 #: ../src/interface.c:202
 msgid "Stop"
@@ -106,7 +103,7 @@ msgstr "Kill"
 
 #: ../src/interface.c:222
 msgid "Priority"
-msgstr ""
+msgstr "Priorität"
 
 #: ../src/interface.c:292
 msgid "Show user tasks"
