@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the
 #   xfce4-taskmanager package.
 # Pasi Sulasalmi <psulasasal@paju.oulu.fi>, 2005.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006-2007
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006-2008
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-09 14:30+0200\n"
-"PO-Revision-Date: 2007-01-19 18:00+0200\n"
+"POT-Creation-Date: 2008-05-10 20:39+0300\n"
+"PO-Revision-Date: 2008-05-10 20:43+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,30 +25,27 @@ msgstr "Tapetaanko tehtävä?"
 msgid "Really terminate the task?"
 msgstr "Haluatko katkaista tehtävän suorittamisen?"
 
-#: ../src/functions.c:133
-#, fuzzy, c-format
+#: ../src/functions.c:134
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d kt:sta käytössä %d kt"
+msgstr "%d mt:sta käytössä %d mt"
 
-#: ../src/functions.c:138
+#: ../src/functions.c:139
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
 #: ../src/interface.c:46 ../src/interface.c:334
-#, fuzzy
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-prosessienhallinta"
+msgstr "Xfce4-tehtävienhallinta"
 
 #: ../src/interface.c:60
-#, fuzzy
 msgid "Cpu usage"
-msgstr "prosessorin käyttö"
+msgstr "Suorittimen käyttö"
 
 #: ../src/interface.c:68
-#, fuzzy
 msgid "Memory usage"
-msgstr "muistin käyttö"
+msgstr "Muistin käyttö"
 
 #: ../src/interface.c:135
 msgid "Command"
@@ -85,7 +82,7 @@ msgstr "CPU%"
 #. my change
 #: ../src/interface.c:185
 msgid "Prio"
-msgstr ""
+msgstr "Prio"
 
 #: ../src/interface.c:202
 msgid "Stop"
@@ -105,7 +102,7 @@ msgstr "Tapa"
 
 #: ../src/interface.c:222
 msgid "Priority"
-msgstr ""
+msgstr "Prioriteetti"
 
 #: ../src/interface.c:292
 msgid "Show user tasks"

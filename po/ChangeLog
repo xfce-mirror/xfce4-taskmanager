@@ -1,12 +1,16 @@
-2008-05-10	Mike Massonnet <mmassonnet@xfce.org>
+2008-05-10  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
+
+	* fi.po: Updated Finnish translation
+
+2008-05-10  Mike Massonnet <mmassonnet@xfce.org>
 
 	* de.po: Update German translation (Enrico Tröger)
 
-2008-05-10	Stavros Giannouris <stavrosg@hellug.gr>
+2008-05-10  Stavros Giannouris <stavrosg@hellug.gr>
 
 	* el.po: Greek translation update.
 
-2008-05-09	Mike Massonnet <mmassonnet@xfce.org>
+2008-05-09  Mike Massonnet <mmassonnet@xfce.org>
 
 	* nl.po: Update Dutch translation (Vincent)
 
@@ -14,7 +18,7 @@
 
 	* pt_BR.po: Updated Brazilian Portuguese translation.
 
-2008-05-09	Mike Massonnet <mmassonnet@xfce.org>
+2008-05-09  Mike Massonnet <mmassonnet@xfce.org>
 
 	* *.po, *.pot: make update-po
 	* fr.po: Update French translation
@@ -23,31 +27,31 @@
 
 	* pt_BR.po: Updated Brazilian Portuguese translation.
 
-2008-05-05	Mike Massonnet <mmassonnet@xfce.org>
+2008-05-05  Mike Massonnet <mmassonnet@xfce.org>
 
 	* *.po, *.pot: make update-po
 	* fr.po: Update French translation
 
-2008-04-24	Stavros Giannouris <stavrosg@hellug.gr>
+2008-04-24  Stavros Giannouris <stavrosg@hellug.gr>
 
 	* el.po, LINGUAS: Added Greek translation by Evaggelos Balaskas
 	  <ebalaskas@ebalaskas.gr>
 
-2008-03-18	Mike Massonnet <mmassonnet@xfce.org>
+2008-03-18  Mike Massonnet <mmassonnet@xfce.org>
 
 	* pt_PT.po: Update Portuguese translation by Nuno Miguel
 
-2007-12-19	Maximilian Schleiss <maximilian@xfce.org>
+2007-12-19  Maximilian Schleiss <maximilian@xfce.org>
 
 	* de.po: German translation update
 	by Fabian Nowak <timystery@arcor.de>
 
-2007-11-18	Maximilian Schleiss <maximilian@xfce.org>
+2007-11-18  Maximilian Schleiss <maximilian@xfce.org>
 
 	* lv.po: Latvian translation added
 	by Rihards Priedītis <rprieditis@inbox.lv>
 
-2007-11-15	Mike Massonnet <mmassonnet@xfce.org>
+2007-11-15  Mike Massonnet <mmassonnet@xfce.org>
 
 	* ur.po: Update translation by Muhammad Ali Makki <makki.ma@gmail.com>
 	* pk.po, ur.po: Rename pk.po to ur.po.
@@ -57,7 +61,7 @@
 	* it.po:  Italian translation update
 	by Fabio Riga <usul@aruba.it>
 
-2007-10-28	Mike Massonnet <mmassonnet@xfce.org>
+2007-10-28  Mike Massonnet <mmassonnet@xfce.org>
 
 	* pk.po: Add new translation by محمد علي المكي <makki.ma@gmail.com>
 
