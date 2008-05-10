@@ -44,6 +44,7 @@ GtkWidget* create_main_window (void)
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (window), _("Xfce4 Taskmanager"));
+	gtk_window_set_icon_name (GTK_WINDOW (window), "xfce-system");
 	gtk_window_set_default_size (GTK_WINDOW (window), win_width, win_height);
 
 	vbox1 = gtk_vbox_new (FALSE, 10);
@@ -323,18 +324,39 @@ GtkWidget* create_mainmenu (void)
 void show_about_dialog(void)
 {
 	GtkWidget *about_dialog;
-	XfceAboutInfo *about_info;
+	const gchar *authors[] = {
+	  _("Original Author:"),
+	  "Johannes Zellner <webmaster@nebulon.de>",
+	  _("Contributors:"),
+	  "Nick Schermer <nick@xfce.org>",
+	  "Mike Massonnet <mmassonnet@xfce.org>",
+	  NULL };
 
-	about_info = xfce_about_info_new("Xfce4 Taskmanager", VERSION, "Xfce4-Taskmanager is a easy to use Taskmanager.",XFCE_COPYRIGHT_TEXT("2005", "Johannes Zellner"), XFCE_LICENSE_GPL);
-	xfce_about_info_set_homepage(about_info, "http://goodies.xfce.org");
-	xfce_about_info_add_credit(about_info, "Johannes Zellner", "webmaster@nebulon.de", "Original Author");
+	about_dialog = gtk_about_dialog_new();
+	gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(about_dialog),
+		PACKAGE_NAME);
+	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(about_dialog),
+		PACKAGE_VERSION);
+	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(about_dialog),
+		_("Xfce4-Taskmanager is an easy to use taskmanager"));
+	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(about_dialog),
+		"http://goodies.xfce.org/projects/applications/xfce4-taskmanager");
+	gtk_about_dialog_set_logo_icon_name(GTK_ABOUT_DIALOG(about_dialog),
+		"xfce-system");
+	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(about_dialog),
+		authors);
+	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(about_dialog),
+		_("translator-credits"));
+	gtk_about_dialog_set_license(GTK_ABOUT_DIALOG(about_dialog),
+		xfce_get_license_text(XFCE_LICENSE_TEXT_GPL));
+	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(about_dialog),
+		"Copyright \302\251 2005-2008 Johannes Zellner");
 
-	about_dialog = xfce_about_dialog_new_with_values(GTK_WINDOW(main_window), about_info, NULL);
-	g_signal_connect(G_OBJECT(about_dialog), "response", G_CALLBACK(gtk_widget_destroy), NULL);
-	gtk_window_set_title (GTK_WINDOW (about_dialog), _("Xfce4 Taskmanager"));
-	gtk_widget_show(about_dialog);
+	gtk_window_set_icon_name(GTK_WINDOW(about_dialog), GTK_STOCK_ABOUT);
 
-	xfce_about_info_free(about_info);
+	gtk_dialog_run(GTK_DIALOG(about_dialog));
+
+	gtk_widget_destroy(about_dialog);
 }
 
 void change_list_store_view(void)
