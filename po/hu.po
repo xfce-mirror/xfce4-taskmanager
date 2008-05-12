@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-09 14:30+0200\n"
-"PO-Revision-Date: 2007-01-19 20:09+0100\n"
+"PO-Revision-Date: 2008-05-12 08:52+0100\n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,36 +20,34 @@ msgstr ""
 
 #: ../src/callbacks.c:65
 msgid "Really kill the task?"
-msgstr "Tényleg megölöd a feladatot?"
+msgstr "Tényleg megölöd a folyamatot?"
 
 #: ../src/callbacks.c:69
 msgid "Really terminate the task?"
-msgstr "Tényleg lezárod a feladatot?"
+msgstr "Tényleg lezárod a folyamatot?"
 
 #: ../src/functions.c:133
-#, fuzzy, c-format
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d kB/%d kB használt"
+msgstr "%d MB/%d MB használt"
 
 #: ../src/functions.c:138
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:46 ../src/interface.c:334
-#, fuzzy
+#: ../src/interface.c:46
+#: ../src/interface.c:334
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-folyamatkezelő"
+msgstr "Xfce4 folyamat-kezelő"
 
 #: ../src/interface.c:60
-#, fuzzy
 msgid "Cpu usage"
-msgstr "cpu használat"
+msgstr "Cpu használat"
 
 #: ../src/interface.c:68
-#, fuzzy
 msgid "Memory usage"
-msgstr "memória használat"
+msgstr "Memória használat"
 
 #: ../src/interface.c:135
 msgid "Command"
@@ -86,7 +84,7 @@ msgstr "CPU%"
 #. my change
 #: ../src/interface.c:185
 msgid "Prio"
-msgstr ""
+msgstr "Első"
 
 #: ../src/interface.c:202
 msgid "Stop"
@@ -106,7 +104,7 @@ msgstr "Kilövés"
 
 #: ../src/interface.c:222
 msgid "Priority"
-msgstr ""
+msgstr "Elsőbbség"
 
 #: ../src/interface.c:292
 msgid "Show user tasks"
@@ -126,6 +124,6 @@ msgstr "A gyorstár által használt memória mutatása szabadként"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "xfce4-folyamatkezelő"
-
 #~ msgid "more details"
 #~ msgstr "részletek"
+
