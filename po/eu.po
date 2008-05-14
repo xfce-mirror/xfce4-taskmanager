@@ -1,17 +1,17 @@
-# translation of eu.po to librezale
+# translation of eu.po to Euskara
 # Basque translations for PACKAGE package.
 # Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Piarres Beobide <pi@beobide.net>, 2006, 2007.
+# Piarres Beobide <pi@beobide.net>, 2006, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-09 14:30+0200\n"
-"PO-Revision-Date: 2007-01-16 12:48+0100\n"
+"PO-Revision-Date: 2008-05-14 11:36+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
-"Language-Team: librezale <librezale@librezale.org>\n"
+"Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,16 +20,16 @@ msgstr ""
 
 #: ../src/callbacks.c:65
 msgid "Really kill the task?"
-msgstr "Benetan ataza hil nahi duzu?"
+msgstr "Benetan zeregina hil nahi duzu?"
 
 #: ../src/callbacks.c:69
 msgid "Really terminate the task?"
-msgstr "Benetan ataza amaitu nahi duzu?"
+msgstr "Benetan zeregina amaitu nahi duzu?"
 
 #: ../src/functions.c:133
-#, fuzzy, c-format
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d kB %d kB-tik erabiliak"
+msgstr "%d MB %d MB-tik erabiliak"
 
 #: ../src/functions.c:138
 #, c-format
@@ -37,19 +37,16 @@ msgid "%0.0f %%"
 msgstr "%% %0.0f "
 
 #: ../src/interface.c:46 ../src/interface.c:334
-#, fuzzy
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-zereginkudeatzailea"
+msgstr "xfce4 zeregin-kudeatzailea"
 
 #: ../src/interface.c:60
-#, fuzzy
 msgid "Cpu usage"
-msgstr "cpu erabilera"
+msgstr "Cpu erabilera"
 
 #: ../src/interface.c:68
-#, fuzzy
 msgid "Memory usage"
-msgstr "memoria erabilera"
+msgstr "Memoria erabilera"
 
 #: ../src/interface.c:135
 msgid "Command"
@@ -57,11 +54,11 @@ msgstr "Komandoa"
 
 #: ../src/interface.c:142
 msgid "PID"
-msgstr "PID-a"
+msgstr "PIDa"
 
 #: ../src/interface.c:148
 msgid "PPID"
-msgstr "PPID-a"
+msgstr "PPIDa"
 
 #: ../src/interface.c:154
 msgid "State"
@@ -73,7 +70,7 @@ msgstr "VM-Tamaina"
 
 #: ../src/interface.c:166
 msgid "RSS"
-msgstr "RSS-a"
+msgstr "RSSa"
 
 #: ../src/interface.c:172
 msgid "User"
@@ -86,7 +83,7 @@ msgstr "CPU%"
 #. my change
 #: ../src/interface.c:185
 msgid "Prio"
-msgstr ""
+msgstr "Leh"
 
 #: ../src/interface.c:202
 msgid "Stop"
@@ -106,26 +103,21 @@ msgstr "Hil"
 
 #: ../src/interface.c:222
 msgid "Priority"
-msgstr ""
+msgstr "Lehentasuna"
 
 #: ../src/interface.c:292
 msgid "Show user tasks"
-msgstr "Erabiltzaile atazak bistarazi"
+msgstr "Ikusi erabiltzaile zereginak"
 
 #: ../src/interface.c:297
 msgid "Show root tasks"
-msgstr "Root atazak bistarazi"
+msgstr "Ikusi root zereginak"
 
 #: ../src/interface.c:302
 msgid "Show other tasks"
-msgstr "Beste atazak bistarazi"
+msgstr "Ikusi beste zereginak"
 
 #: ../src/interface.c:307
 msgid "Show memory used by cache as free"
-msgstr "Bistarazo katxeak erabilitako memoria libre bezala"
+msgstr "Ikusi katxeak erabilitako memoria libre bezala"
 
-#~ msgid "xfce4-taskmanager"
-#~ msgstr "xfce4-zereginkudeatzailea"
-
-#~ msgid "more details"
-#~ msgstr "xehetasun gehiago"
