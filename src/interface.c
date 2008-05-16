@@ -95,11 +95,12 @@ GtkWidget* create_main_window (void)
 	gtk_widget_show (bbox1);
 
 	button2 = gtk_button_new_from_stock ("gtk-preferences");
+	gtk_button_set_focus_on_click (GTK_BUTTON (button2), FALSE);
 	gtk_widget_show (button2);
 	gtk_box_pack_start (GTK_BOX (bbox1), button2, FALSE, FALSE, 0);
 
-	button3 = gtk_toggle_button_new ();
-	gtk_button_set_label (GTK_BUTTON(button3), "gtk-info");
+	button3 = gtk_toggle_button_new_with_label ("gtk-info");
+	gtk_button_set_focus_on_click (GTK_BUTTON (button3), FALSE);
 	gtk_button_set_use_stock (GTK_BUTTON(button3), TRUE);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(button3), full_view);
 	gtk_widget_show (button3);
@@ -183,7 +184,7 @@ void create_list_store(void)
 	gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), column);
 
 	/* my change */
-	column = gtk_tree_view_column_new_with_attributes(_("Prio"), cell_renderer, "text", 8, NULL);
+	column = gtk_tree_view_column_new_with_attributes(_("Prio"), cell_renderer_right_align, "text", 8, NULL);
 	gtk_tree_view_column_set_resizable(column, TRUE);
 	gtk_tree_view_column_set_sort_column_id(column, 8);
 	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), 8, compare_int_list_item, (void *)8, NULL);
@@ -328,7 +329,6 @@ void show_about_dialog(void)
 	  _("Original Author:"),
 	  "Johannes Zellner <webmaster@nebulon.de>",
 	  _("Contributors:"),
-	  "Nick Schermer <nick@xfce.org>",
 	  "Mike Massonnet <mmassonnet@xfce.org>",
 	  NULL };
 
