@@ -22,16 +22,23 @@
 #include "callbacks.h"
 #include "menu-positions.h"
 
-void on_button1_activate(GtkButton *button)
+void on_preferences(GtkButton *button)
 {
 	if(mainmenu == NULL)
 		mainmenu = create_mainmenu();
-	gtk_menu_popup(GTK_MENU(mainmenu), NULL, NULL, (GtkMenuPositionFunc)position_mainmenu, button, 0, gtk_get_current_event_time());
+	gtk_menu_popup(GTK_MENU(mainmenu), NULL, NULL, (GtkMenuPositionFunc)position_menu_cover_widget, button, 0, gtk_get_current_event_time());
 }
 
-void on_button3_toggled_event(GtkButton *button, GdkEventButton *event)
+void on_information(GtkButton *button)
 {
-	full_view = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button));
+	if(infomenu == NULL)
+		infomenu = create_infomenu();
+	gtk_menu_popup(GTK_MENU(infomenu), NULL, NULL, (GtkMenuPositionFunc)position_menu_cover_widget, button, 0, gtk_get_current_event_time());
+}
+
+void on_show_info_toggled(GtkCheckMenuItem *menuitem, gint column_id)
+{
+	show_col[column_id] = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menuitem));
 	change_list_store_view();
 }
 

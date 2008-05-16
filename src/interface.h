@@ -44,6 +44,7 @@ GtkTreeStore *list_store;
 GtkTreeSelection *selection;
 GtkWidget *treeview;
 GtkWidget *mainmenu;
+GtkWidget *infomenu;
 GtkTooltips *tooltips;
 GtkWidget *taskpopup;
 GtkWidget *priopopup;
@@ -51,16 +52,6 @@ GtkWidget *cpu_usage_progress_bar;
 GtkWidget *mem_usage_progress_bar;
 GtkWidget *cpu_usage_progress_bar_box;
 GtkWidget *mem_usage_progress_bar_box;
-
-#define COLUMN_NAME	0
-#define COLUMN_PID	1
-#define COLUMN_PPID	2
-#define COLUMN_STATE	3
-#define COLUMN_MEM	4
-#define COLUMN_RSS	5
-#define COLUMN_UNAME	6
-#define COLUMN_TIME	7
-#define COLUMN_PRIO 	8
 
 GtkTreeViewColumn *column;
 
@@ -70,7 +61,8 @@ void create_list_store(void);
 GtkWidget* create_main_window (void);
 GtkWidget* create_taskpopup (void);
 GtkWidget* create_mainmenu (void);
-GtkWidget *create_prio_submenu(void);
+GtkWidget* create_infomenu (void);
+GtkWidget* create_prio_submenu(void);
 
 void show_about_dialog(void);
 
