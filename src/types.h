@@ -76,7 +76,21 @@ gboolean show_cached_as_free; /* Show memory used Cache as free memory */
 guint sort_column;
 guint sort_type;
 
-gboolean full_view;
+enum
+{
+  COLUMN_NAME = 0,
+  COLUMN_PID,
+  COLUMN_PPID,
+  COLUMN_STATE,
+  COLUMN_MEM,
+  COLUMN_RSS,
+  COLUMN_UNAME,
+  COLUMN_TIME,
+  COLUMN_PRIO,
+  N_COLUMNS,
+};
+
+gboolean show_col[N_COLUMNS];
 
 guint win_width;
 guint win_height;

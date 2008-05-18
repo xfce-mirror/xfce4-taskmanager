@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-09 14:30+0200\n"
-"PO-Revision-Date: 2007-03-31 10:28+1000\n"
+"PO-Revision-Date: 2008-05-10 13:34+1000\n"
 "Last-Translator: Jeff Bailes <thepizzaking@gmail.com>\n"
 "Language-Team: English/GB\n"
 "MIME-Version: 1.0\n"
@@ -26,29 +26,27 @@ msgid "Really terminate the task?"
 msgstr "Really terminate the task?"
 
 #: ../src/functions.c:133
-#, fuzzy, c-format
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d kB of %d kB used"
+msgstr "%d MB of %d MB used"
 
 #: ../src/functions.c:138
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:46 ../src/interface.c:334
-#, fuzzy
+#: ../src/interface.c:46
+#: ../src/interface.c:334
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-taskmanager"
+msgstr "Xfce4 Taskmanager"
 
 #: ../src/interface.c:60
-#, fuzzy
 msgid "Cpu usage"
-msgstr "cpu usage"
+msgstr "CPU usage"
 
 #: ../src/interface.c:68
-#, fuzzy
 msgid "Memory usage"
-msgstr "memory usage"
+msgstr "Memory usage"
 
 #: ../src/interface.c:135
 msgid "Command"
@@ -85,7 +83,7 @@ msgstr "CPU%"
 #. my change
 #: ../src/interface.c:185
 msgid "Prio"
-msgstr ""
+msgstr "Prio"
 
 #: ../src/interface.c:202
 msgid "Stop"
@@ -105,7 +103,7 @@ msgstr "Kill"
 
 #: ../src/interface.c:222
 msgid "Priority"
-msgstr ""
+msgstr "Priority"
 
 #: ../src/interface.c:292
 msgid "Show user tasks"
@@ -125,6 +123,6 @@ msgstr "Show memory used by cache as free"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "xfce4-taskmanager"
-
 #~ msgid "more details"
 #~ msgstr "more details"
+

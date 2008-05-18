@@ -201,10 +201,19 @@ void load_config(void)
 	sort_column = xfce_rc_read_int_entry(rc_file, "sort_column", COLUMN_PID);
 	sort_type = xfce_rc_read_int_entry(rc_file, "sort_type", GTK_SORT_ASCENDING);
 
-	full_view = xfce_rc_read_bool_entry(rc_file, "full_view", FALSE);
-
 	win_width = xfce_rc_read_int_entry(rc_file, "win_width", 500);
 	win_height = xfce_rc_read_int_entry(rc_file, "win_height", 400);
+
+	xfce_rc_set_group (rc_file, "Information");
+
+	show_col[COLUMN_PID] = xfce_rc_read_bool_entry(rc_file, "show_col_pid", TRUE);
+	show_col[COLUMN_PPID] = xfce_rc_read_bool_entry(rc_file, "show_col_ppid", FALSE);
+	show_col[COLUMN_STATE] = xfce_rc_read_bool_entry(rc_file, "show_col_state", FALSE);
+	show_col[COLUMN_MEM] = xfce_rc_read_bool_entry(rc_file, "show_col_mem", FALSE);
+	show_col[COLUMN_RSS] = xfce_rc_read_bool_entry(rc_file, "show_col_rss", TRUE);
+	show_col[COLUMN_UNAME] = xfce_rc_read_bool_entry(rc_file, "show_col_uname", FALSE);
+	show_col[COLUMN_TIME] = xfce_rc_read_bool_entry(rc_file, "show_col_time", TRUE);
+	show_col[COLUMN_PRIO] = xfce_rc_read_bool_entry(rc_file, "show_col_prio", TRUE);
 
 	xfce_rc_close(rc_file);
 }
@@ -224,12 +233,21 @@ void save_config(void)
 	xfce_rc_write_int_entry(rc_file, "sort_column", sort_column);
 	xfce_rc_write_int_entry(rc_file, "sort_type", sort_type);
 
-	xfce_rc_write_bool_entry(rc_file, "full_view", full_view);
-
 	gtk_window_get_size(GTK_WINDOW (main_window), (gint *) &win_width, (gint *) &win_height);
 
 	xfce_rc_write_int_entry(rc_file, "win_width", win_width);
 	xfce_rc_write_int_entry(rc_file, "win_height", win_height);
+
+	xfce_rc_set_group (rc_file, "Information");
+
+	xfce_rc_write_bool_entry(rc_file, "show_col_pid", show_col[COLUMN_PID]);
+	xfce_rc_write_bool_entry(rc_file, "show_col_ppid", show_col[COLUMN_PPID]);
+	xfce_rc_write_bool_entry(rc_file, "show_col_state", show_col[COLUMN_STATE]);
+	xfce_rc_write_bool_entry(rc_file, "show_col_mem", show_col[COLUMN_MEM]);
+	xfce_rc_write_bool_entry(rc_file, "show_col_rss", show_col[COLUMN_RSS]);
+	xfce_rc_write_bool_entry(rc_file, "show_col_uname", show_col[COLUMN_UNAME]);
+	xfce_rc_write_bool_entry(rc_file, "show_col_time", show_col[COLUMN_TIME]);
+	xfce_rc_write_bool_entry(rc_file, "show_col_prio", show_col[COLUMN_PRIO]);
 
 	xfce_rc_flush(rc_file);
 

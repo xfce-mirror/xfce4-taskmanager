@@ -34,8 +34,9 @@
 
 #include "xfce-taskmanager-linux.h"
 
-void on_button1_activate(GtkButton *button);
-void on_button3_toggled_event(GtkButton *button, GdkEventButton *event);
+void on_preferences(GtkButton *button);
+void on_information(GtkButton *button);
+void on_show_info_toggled(GtkCheckMenuItem *menuitem, gint uid);
 gboolean on_treeview1_button_press_event(GtkButton *button, GdkEventButton *event);
 void on_info1_activate (GtkMenuItem *menuitem,  gpointer user_data);
 void handle_task_menu(GtkWidget *widget, gchar *signal);

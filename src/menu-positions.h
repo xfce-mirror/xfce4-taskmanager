@@ -30,6 +30,6 @@
 #include "functions.h"
 #include "interface.h"
 
-void position_mainmenu(GtkMenu *menu, gint *x, gint *y, gboolean *push_in, gpointer user_data);
+void position_menu_cover_widget(GtkMenu *menu, gint *x, gint *y, gboolean *push_in, GtkWidget *widget);
 
 #endif

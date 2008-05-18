@@ -33,9 +33,9 @@ GtkWidget* create_main_window (void)
 	GtkWidget *vbox1;
 	GtkWidget *bbox1;
 	GtkWidget *scrolledwindow1;
-	GtkWidget *button1;
-	GtkWidget *button2;
-	GtkWidget *button3;
+	GtkWidget *button_preferences;
+	GtkWidget *button_information;
+	GtkWidget *button_quit;
 
 	GtkWidget *system_info_box;
 
@@ -79,6 +79,7 @@ GtkWidget* create_main_window (void)
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_SHADOW_IN);
 
 	treeview = gtk_tree_view_new ();
+    gtk_tree_view_set_show_expanders (GTK_TREE_VIEW (treeview), FALSE);
 	gtk_widget_show (treeview);
 	gtk_container_add (GTK_CONTAINER (scrolledwindow1), treeview);
 
@@ -94,26 +95,25 @@ GtkWidget* create_main_window (void)
 	gtk_box_pack_start(GTK_BOX(vbox1), bbox1, FALSE, TRUE, 0);
 	gtk_widget_show (bbox1);
 
-	button2 = gtk_button_new_from_stock ("gtk-preferences");
-	gtk_widget_show (button2);
-	gtk_box_pack_start (GTK_BOX (bbox1), button2, FALSE, FALSE, 0);
+	button_preferences = gtk_button_new_from_stock ("gtk-preferences");
+	gtk_button_set_focus_on_click (GTK_BUTTON (button_preferences), FALSE);
+	gtk_widget_show (button_preferences);
+	gtk_box_pack_start (GTK_BOX (bbox1), button_preferences, FALSE, FALSE, 0);
 
-	button3 = gtk_toggle_button_new ();
-	gtk_button_set_label (GTK_BUTTON(button3), "gtk-info");
-	gtk_button_set_use_stock (GTK_BUTTON(button3), TRUE);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(button3), full_view);
-	gtk_widget_show (button3);
-	gtk_box_pack_start (GTK_BOX (bbox1), button3, FALSE, FALSE, 0);
+	button_information = gtk_button_new_from_stock ("gtk-info");
+	gtk_button_set_focus_on_click (GTK_BUTTON (button_information), FALSE);
+	gtk_widget_show (button_information);
+	gtk_box_pack_start (GTK_BOX (bbox1), button_information, FALSE, FALSE, 0);
 
-	button1 = gtk_button_new_from_stock ("gtk-quit");
-	gtk_widget_show (button1);
-	gtk_box_pack_start (GTK_BOX (bbox1), button1, FALSE, FALSE, 0);
+	button_quit = gtk_button_new_from_stock ("gtk-quit");
+	gtk_widget_show (button_quit);
+	gtk_box_pack_start (GTK_BOX (bbox1), button_quit, FALSE, FALSE, 0);
 
-	g_signal_connect ((gpointer) window, "delete-event", G_CALLBACK (on_quit), NULL);
-	g_signal_connect_swapped ((gpointer) treeview, "button-press-event", G_CALLBACK(on_treeview1_button_press_event), NULL);
-	g_signal_connect ((gpointer) button1, "clicked",  G_CALLBACK (on_quit),  NULL);
-	g_signal_connect ((gpointer) button2, "clicked",  G_CALLBACK (on_button1_activate),  NULL);
-	g_signal_connect ((gpointer) button3, "toggled",  G_CALLBACK (on_button3_toggled_event),  NULL);
+	g_signal_connect_swapped (treeview, "button-press-event", G_CALLBACK(on_treeview1_button_press_event), NULL);
+	g_signal_connect (button_preferences, "clicked",  G_CALLBACK (on_preferences),  NULL);
+	g_signal_connect (button_information, "clicked",  G_CALLBACK (on_information),  NULL);
+	g_signal_connect (button_quit, "clicked",  G_CALLBACK (on_quit),  NULL);
+	g_signal_connect (window, "delete-event", G_CALLBACK (on_quit), NULL);
 
 	return window;
 }
@@ -183,7 +183,7 @@ void create_list_store(void)
 	gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), column);
 
 	/* my change */
-	column = gtk_tree_view_column_new_with_attributes(_("Prio"), cell_renderer, "text", 8, NULL);
+	column = gtk_tree_view_column_new_with_attributes(_("Prio"), cell_renderer_right_align, "text", 8, NULL);
 	gtk_tree_view_column_set_resizable(column, TRUE);
 	gtk_tree_view_column_set_sort_column_id(column, 8);
 	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(list_store), 8, compare_int_list_item, (void *)8, NULL);
@@ -321,6 +321,53 @@ GtkWidget* create_mainmenu (void)
 	return mainmenu;
 }
 
+GtkWidget* create_infomenu (void)
+{
+	GtkWidget *infomenu;
+	GtkWidget *title;
+	GtkWidget *title_image;
+	GtkWidget *separator;
+	GtkWidget *col_items[N_COLUMNS] = { 0 };
+	gint i;
+
+	infomenu = gtk_menu_new ();
+
+	title = gtk_image_menu_item_new_from_stock("gtk-info", NULL);
+	title_image = gtk_image_new_from_stock ("gtk-info", GTK_ICON_SIZE_BUTTON);
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (title), title_image);
+	gtk_widget_show(title);
+	gtk_menu_shell_append(GTK_MENU_SHELL(infomenu), title);
+	gtk_widget_set_sensitive(title, FALSE);
+
+	separator = gtk_separator_menu_item_new();
+	gtk_widget_show(separator);
+	gtk_menu_shell_append(GTK_MENU_SHELL(infomenu), separator);
+	gtk_widget_set_sensitive(separator, FALSE);
+
+	col_items[COLUMN_PID] = gtk_check_menu_item_new_with_label (_("PID"));
+	col_items[COLUMN_PPID] = gtk_check_menu_item_new_with_label (_("PPID"));
+	col_items[COLUMN_STATE] = gtk_check_menu_item_new_with_label (_("State"));
+	col_items[COLUMN_MEM] = gtk_check_menu_item_new_with_label (_("VM-Size"));
+	col_items[COLUMN_RSS] = gtk_check_menu_item_new_with_label (_("RSS"));
+	col_items[COLUMN_UNAME] = gtk_check_menu_item_new_with_label (_("User"));
+	col_items[COLUMN_TIME] = gtk_check_menu_item_new_with_label (_("CPU%"));
+	col_items[COLUMN_PRIO] = gtk_check_menu_item_new_with_label (_("Priority"));
+
+	for (i = 0; i < N_COLUMNS; i++)
+	{
+		if (GTK_IS_WIDGET (col_items[i]))
+		{
+			gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (col_items[i]), show_col[i]);
+			gtk_widget_show(col_items[i]);
+			gtk_menu_shell_append(GTK_MENU_SHELL(infomenu), col_items[i]);
+			g_signal_connect (col_items[i], "toggled",
+				G_CALLBACK (on_show_info_toggled), GINT_TO_POINTER(i));
+		}
+	}
+
+	return infomenu;
+}
+
 void show_about_dialog(void)
 {
 	GtkWidget *about_dialog;
@@ -328,7 +375,6 @@ void show_about_dialog(void)
 	  _("Original Author:"),
 	  "Johannes Zellner <webmaster@nebulon.de>",
 	  _("Contributors:"),
-	  "Nick Schermer <nick@xfce.org>",
 	  "Mike Massonnet <mmassonnet@xfce.org>",
 	  NULL };
 
@@ -361,20 +407,18 @@ void show_about_dialog(void)
 
 void change_list_store_view(void)
 {
-	gtk_tree_view_column_set_visible
-	  (gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_PPID), full_view);
-	gtk_tree_view_column_set_visible
-	  (gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_STATE), full_view);
-	gtk_tree_view_column_set_visible
-	  (gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_MEM), full_view);
+	gtk_tree_view_column_set_visible(gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_PID), show_col[COLUMN_PID]);
+	gtk_tree_view_column_set_visible(gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_PPID), show_col[COLUMN_PPID]);
+	gtk_tree_view_column_set_visible(gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_STATE), show_col[COLUMN_STATE]);
+	gtk_tree_view_column_set_visible(gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_MEM), show_col[COLUMN_MEM]);
+	gtk_tree_view_column_set_visible(gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_RSS), show_col[COLUMN_RSS]);
+	gtk_tree_view_column_set_visible(gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_UNAME), show_col[COLUMN_UNAME]);
+	gtk_tree_view_column_set_visible(gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_TIME), show_col[COLUMN_TIME]);
+	gtk_tree_view_column_set_visible(gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), COLUMN_PRIO), show_col[COLUMN_PRIO]);
 }
 
 void fill_list_item(gint i, GtkTreeIter *iter)
 {
-	static gint pagesize = 0;
-	if (pagesize == 0)
-		pagesize = getpagesize();
-
 	if(iter != NULL)
 	{
 		struct task *task = &g_array_index(task_array, struct task, i);
@@ -383,7 +427,7 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		gchar *ppid = g_strdup_printf("%i", task->ppid);
 		gchar *state = g_strdup_printf("%s", task->state);
 		gchar *vsize = g_strdup_printf("%i MB", task->vsize/1024/1024);
-		gchar *rss = g_strdup_printf("%i MB", task->rss*pagesize/1024/1024);
+		gchar *rss = g_strdup_printf("%i MB", task->rss/1024/1024);
 		gchar *name = g_strdup_printf("%s", task->name);
 		gchar *uname = g_strdup_printf("%s", task->uname);
 		gchar *time = g_strdup_printf("%0d%%", (guint)task->time_percentage);

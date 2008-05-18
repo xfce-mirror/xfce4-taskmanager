@@ -1,5 +1,5 @@
 /*
- *  xfce4-taskmanager - very simple taskmanger
+ *  xfce4-taskmanager - very simple taskmanager
  *
  *  Copyright (c) 2008  Mike Massonnet <mmassonnet@xfce.org>
  *
@@ -20,20 +20,18 @@
 
 #include "menu-positions.h"
 
-void position_mainmenu(GtkMenu *menu, gint *x, gint *y, gboolean *push_in, gpointer user_data)
+void position_menu_cover_widget(GtkMenu *menu, gint *x, gint *y, gboolean *push_in, GtkWidget *widget)
 {
-	GtkWidget *widget;
 	GtkRequisition requisition;
 
-	widget = user_data;
-	gtk_widget_size_request(GTK_WIDGET(menu), &requisition);
 	gdk_window_get_origin(widget->window, x, y);
-
 	*x += widget->allocation.x;
 	*y += widget->allocation.y;
 
-	if(*y + requisition.height > gdk_screen_height ())
-		*y = gdk_screen_height () - requisition.height;
+	gtk_widget_size_request(GTK_WIDGET(menu), &requisition);
+	if(*y + requisition.height > gdk_screen_height())
+		*y = gdk_screen_height() - requisition.height;
 	else if(*y < 0)
 		*y = 0;
 }
+

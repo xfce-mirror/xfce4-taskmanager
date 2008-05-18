@@ -41,6 +41,14 @@ struct task get_task_details(gint pid)
 	task.pid = -1;
 	task.checked = FALSE;
 
+	if (pagesize == 0)
+	  {
+		pagesize = sysconf(_SC_PAGESIZE);
+		if (pagesize == 0)
+			pagesize = 4*1024;
+	  }
+
+
 	if((task_file = fopen(filename,"r")) != NULL)
 	{
 		while(fgets(buffer_status, sizeof(buffer_status), task_file) != NULL)
@@ -102,6 +110,7 @@ struct task get_task_details(gint pid)
 			task.old_time = task.time;
 			task.time = stime + utime;
 			task.time_percentage = 0;
+			task.rss *= pagesize;
 		}
 		task.uid = status.st_uid;
 		passwdp = getpwuid(task.uid);
