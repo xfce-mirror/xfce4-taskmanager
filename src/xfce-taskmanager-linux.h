@@ -26,6 +26,7 @@
 #include <pwd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
@@ -37,6 +38,8 @@
 #define SIGNAL_TERM	SIGINT
 #define SIGNAL_CONT	SIGCONT
 #define SIGNAL_STOP	SIGSTOP
+
+static gint pagesize = 0;
 
 struct task get_task_details(gint pid);
 GArray *get_task_list(void); 

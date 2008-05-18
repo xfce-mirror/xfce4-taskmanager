@@ -325,6 +325,7 @@ GtkWidget* create_infomenu (void)
 {
 	GtkWidget *infomenu;
 	GtkWidget *title;
+	GtkWidget *title_image;
 	GtkWidget *separator;
 	GtkWidget *col_items[N_COLUMNS] = { 0 };
 	gint i;
@@ -332,6 +333,8 @@ GtkWidget* create_infomenu (void)
 	infomenu = gtk_menu_new ();
 
 	title = gtk_image_menu_item_new_from_stock("gtk-info", NULL);
+	title_image = gtk_image_new_from_stock ("gtk-info", GTK_ICON_SIZE_BUTTON);
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (title), title_image);
 	gtk_widget_show(title);
 	gtk_menu_shell_append(GTK_MENU_SHELL(infomenu), title);
 	gtk_widget_set_sensitive(title, FALSE);
@@ -416,10 +419,6 @@ void change_list_store_view(void)
 
 void fill_list_item(gint i, GtkTreeIter *iter)
 {
-	static gint pagesize = 0;
-	if (pagesize == 0)
-		pagesize = getpagesize();
-
 	if(iter != NULL)
 	{
 		struct task *task = &g_array_index(task_array, struct task, i);
@@ -428,7 +427,7 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 		gchar *ppid = g_strdup_printf("%i", task->ppid);
 		gchar *state = g_strdup_printf("%s", task->state);
 		gchar *vsize = g_strdup_printf("%i MB", task->vsize/1024/1024);
-		gchar *rss = g_strdup_printf("%i MB", task->rss*pagesize/1024/1024);
+		gchar *rss = g_strdup_printf("%i MB", task->rss/1024/1024);
 		gchar *name = g_strdup_printf("%s", task->name);
 		gchar *uname = g_strdup_printf("%s", task->uname);
 		gchar *time = g_strdup_printf("%0d%%", (guint)task->time_percentage);
