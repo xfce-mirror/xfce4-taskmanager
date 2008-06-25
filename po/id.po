@@ -1,0 +1,119 @@
+# Indonesian translations for xfce4-taskmanager package.
+# Copyright (C) 2005 Johannes Zellner.
+# This file is distributed under the same license as the xfce4-taskmanager package.
+# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-taskmanager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-09 14:30+0200\n"
+"PO-Revision-Date: 2008-06-21 14:47+0700\n"
+"Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
+"Language-Team: Indonesian <id@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/callbacks.c:65
+msgid "Really kill the task?"
+msgstr "Yakin ingin mematikan tugas?"
+
+#: ../src/callbacks.c:69
+msgid "Really terminate the task?"
+msgstr "Yakin ingin menutup tugas?"
+
+#: ../src/functions.c:133
+#, c-format
+msgid "%d MB of %d MB used"
+msgstr "%d MB dari %d MB yang terpakai"
+
+#: ../src/functions.c:138
+#, c-format
+msgid "%0.0f %%"
+msgstr "%0.0f %%"
+
+#: ../src/interface.c:46 ../src/interface.c:334
+msgid "Xfce4 Taskmanager"
+msgstr "Manajer Tugas Xfce4"
+
+#: ../src/interface.c:60
+msgid "Cpu usage"
+msgstr "Penggunaan cpu"
+
+#: ../src/interface.c:68
+msgid "Memory usage"
+msgstr "Penggunaan memori"
+
+#: ../src/interface.c:135
+msgid "Command"
+msgstr "Perintah"
+
+#: ../src/interface.c:142
+msgid "PID"
+msgstr "PID"
+
+#: ../src/interface.c:148
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/interface.c:154
+msgid "State"
+msgstr "Status"
+
+#: ../src/interface.c:160
+msgid "VM-Size"
+msgstr "Ukuran VM"
+
+#: ../src/interface.c:166
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/interface.c:172
+msgid "User"
+msgstr "Pengguna"
+
+#: ../src/interface.c:178
+msgid "CPU%"
+msgstr "CPU%"
+
+#. my change
+#: ../src/interface.c:185
+msgid "Prio"
+msgstr "Prio"
+
+#: ../src/interface.c:202
+msgid "Stop"
+msgstr "Stop"
+
+#: ../src/interface.c:207
+msgid "Continue"
+msgstr "Lanjutkan"
+
+#: ../src/interface.c:212
+msgid "Term"
+msgstr "Tutup"
+
+#: ../src/interface.c:217
+msgid "Kill"
+msgstr "Matikan"
+
+#: ../src/interface.c:222
+msgid "Priority"
+msgstr "Prioritas"
+
+#: ../src/interface.c:292
+msgid "Show user tasks"
+msgstr "Tampilkan tugas pengguna"
+
+#: ../src/interface.c:297
+msgid "Show root tasks"
+msgstr "Tampilkan tugas root"
+
+#: ../src/interface.c:302
+msgid "Show other tasks"
+msgstr "Tampilkan tugas lainnya"
+
+#: ../src/interface.c:307
+msgid "Show memory used by cache as free"
+msgstr "Tampilkan memori yang digunakan tembolok sebagai bebas"
