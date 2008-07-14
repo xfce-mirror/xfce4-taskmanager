@@ -8,11 +8,11 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-09 14:30+0200\n"
-"PO-Revision-Date: 2007-11-13 10:35+0100\n"
+"PO-Revision-Date: 2008-06-16 22:45+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/callbacks.c:65
@@ -24,29 +24,27 @@ msgid "Really terminate the task?"
 msgstr "Terminar a tarefa?"
 
 #: ../src/functions.c:133
-#, fuzzy, c-format
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d kB de %d kB usados"
+msgstr "%d MB de %d MB usados"
 
 #: ../src/functions.c:138
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:46 ../src/interface.c:334
-#, fuzzy
+#: ../src/interface.c:46
+#: ../src/interface.c:334
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-taskmanager"
+msgstr "Gestor de tarefas Xfce4"
 
 #: ../src/interface.c:60
-#, fuzzy
 msgid "Cpu usage"
-msgstr "uso de cpu"
+msgstr "Uso de cpu"
 
 #: ../src/interface.c:68
-#, fuzzy
 msgid "Memory usage"
-msgstr "uso de memória"
+msgstr "Uso de memória"
 
 #: ../src/interface.c:135
 msgid "Command"
@@ -83,7 +81,7 @@ msgstr "CPU%"
 #. my change
 #: ../src/interface.c:185
 msgid "Prio"
-msgstr ""
+msgstr "Prio"
 
 #: ../src/interface.c:202
 msgid "Stop"
@@ -103,7 +101,7 @@ msgstr "Matar"
 
 #: ../src/interface.c:222
 msgid "Priority"
-msgstr ""
+msgstr "Prioridade"
 
 #: ../src/interface.c:292
 msgid "Show user tasks"
@@ -119,10 +117,10 @@ msgstr "Exibir outros processos"
 
 #: ../src/interface.c:307
 msgid "Show memory used by cache as free"
-msgstr "Mostrar memória de cache como livre"
+msgstr "Mostrar memória usada pela cache como livre"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "xfce4-taskmanager"
-
 #~ msgid "more details"
 #~ msgstr "mais detalhes"
+
