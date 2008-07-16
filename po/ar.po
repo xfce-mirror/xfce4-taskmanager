@@ -29,8 +29,7 @@ msgstr ""
 msgid "%0.0f %%"
 msgstr ""
 
-#: ../src/interface.c:46
-#: ../src/interface.c:334
+#: ../src/interface.c:46 ../src/interface.c:334
 msgid "Xfce4 Taskmanager"
 msgstr ""
 
@@ -114,4 +113,3 @@ msgstr ""
 #: ../src/interface.c:307
 msgid "Show memory used by cache as free"
 msgstr ""
-
