@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-13 11:01+0100\n"
+"POT-Creation-Date: 2008-07-26 18:01-0400\n"
 "PO-Revision-Date: 2007-01-29 17:31+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <translation-team-sq@lists.sourceforge.net>\n"
@@ -14,103 +14,136 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../xfce4-taskmanager.desktop.in.h:1
+msgid "Control your processes"
+msgstr ""
 
-#: ../src/callbacks.c:60
+#: ../xfce4-taskmanager.desktop.in.h:2
+#, fuzzy
+msgid "Process manager"
+msgstr "xfce4-taskmanager"
+
+#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+#, fuzzy
+msgid "Xfce4 Taskmanager"
+msgstr "xfce4-taskmanager"
+
+#: ../src/callbacks.c:72
 msgid "Really kill the task?"
 msgstr "Ta asgjësoj vërtet këtë akt?"
 
-#: ../src/callbacks.c:61
+#: ../src/callbacks.c:76
 msgid "Really terminate the task?"
 msgstr "Ta përfundoj vërtet këtë akt?"
 
-#: ../src/functions.c:124
-#, c-format
-msgid "%d kB of %d kB used"
+#: ../src/functions.c:134
+#, fuzzy, c-format
+msgid "%d MB of %d MB used"
 msgstr "përdorur %d kB nga %d kB"
 
-#: ../src/functions.c:129
+#: ../src/functions.c:139
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:45
-#: ../src/interface.c:272
-msgid "xfce4-taskmanager"
-msgstr "xfce4-taskmanager"
-
-#: ../src/interface.c:59
-msgid "cpu usage"
+#: ../src/interface.c:61
+#, fuzzy
+msgid "Cpu usage"
 msgstr "përdorim cpu-je"
 
-#: ../src/interface.c:67
-msgid "memory usage"
+#: ../src/interface.c:69
+#, fuzzy
+msgid "Memory usage"
 msgstr "përdorim kujtese"
 
-#: ../src/interface.c:99
-msgid "more details"
-msgstr "më tepër hollësi"
-
-#: ../src/interface.c:125
+#: ../src/interface.c:136
 msgid "Command"
 msgstr "Urdhër"
 
-#: ../src/interface.c:131
+#: ../src/interface.c:143 ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:137
+#: ../src/interface.c:149 ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:143
+#: ../src/interface.c:155 ../src/interface.c:349
 msgid "State"
 msgstr "Gjendje"
 
-#: ../src/interface.c:149
+#: ../src/interface.c:161 ../src/interface.c:350
 msgid "VM-Size"
 msgstr "Madhësi VM"
 
-#: ../src/interface.c:155
+#: ../src/interface.c:167 ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:161
+#: ../src/interface.c:173 ../src/interface.c:352
 msgid "User"
 msgstr "Përdorues"
 
-#: ../src/interface.c:167
+#: ../src/interface.c:179 ../src/interface.c:353
 msgid "CPU%"
 msgstr "CPU%"
 
-#: ../src/interface.c:183
+#. my change
+#: ../src/interface.c:186
+msgid "Prio"
+msgstr ""
+
+#: ../src/interface.c:203
 msgid "Stop"
 msgstr "Ndal"
 
-#: ../src/interface.c:188
+#: ../src/interface.c:208
 msgid "Continue"
 msgstr "Vazhdo"
 
-#: ../src/interface.c:193
+#: ../src/interface.c:213
 msgid "Term"
 msgstr "Përfundo"
 
-#: ../src/interface.c:198
+#: ../src/interface.c:218
 msgid "Kill"
 msgstr "Asgjëso"
 
-#: ../src/interface.c:230
+#: ../src/interface.c:223 ../src/interface.c:354
+msgid "Priority"
+msgstr ""
+
+#: ../src/interface.c:293
 msgid "Show user tasks"
 msgstr "Shfaq veprime përdoruesi"
 
-#: ../src/interface.c:235
+#: ../src/interface.c:298
 msgid "Show root tasks"
 msgstr "Shfaq veprime rrënje"
 
-#: ../src/interface.c:240
+#: ../src/interface.c:303
 msgid "Show other tasks"
 msgstr "Shfaq veprime të tjera"
 
-#: ../src/interface.c:245
+#: ../src/interface.c:308
 msgid "Show memory used by cache as free"
 msgstr "Kujtesën e përdorur nga fshehtina shfaqe si të lirë"
 
+#: ../src/interface.c:375
+msgid "Original Author:"
+msgstr ""
+
+#: ../src/interface.c:377
+msgid "Contributors:"
+msgstr ""
+
+#: ../src/interface.c:387
+msgid "Xfce4-Taskmanager is an easy to use taskmanager"
+msgstr ""
+
+#: ../src/interface.c:395
+msgid "translator-credits"
+msgstr ""
+
+#~ msgid "more details"
+#~ msgstr "më tepër hollësi"

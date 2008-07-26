@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-09 14:30+0200\n"
+"POT-Creation-Date: 2008-07-26 18:00-0400\n"
 "PO-Revision-Date: 2008-06-21 14:47+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
@@ -15,105 +15,130 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/callbacks.c:65
+#: ../xfce4-taskmanager.desktop.in.h:1
+msgid "Control your processes"
+msgstr ""
+
+#: ../xfce4-taskmanager.desktop.in.h:2
+#, fuzzy
+msgid "Process manager"
+msgstr "Manajer Tugas Xfce4"
+
+#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+msgid "Xfce4 Taskmanager"
+msgstr "Manajer Tugas Xfce4"
+
+#: ../src/callbacks.c:72
 msgid "Really kill the task?"
 msgstr "Yakin ingin mematikan tugas?"
 
-#: ../src/callbacks.c:69
+#: ../src/callbacks.c:76
 msgid "Really terminate the task?"
 msgstr "Yakin ingin menutup tugas?"
 
-#: ../src/functions.c:133
+#: ../src/functions.c:134
 #, c-format
 msgid "%d MB of %d MB used"
 msgstr "%d MB dari %d MB yang terpakai"
 
-#: ../src/functions.c:138
+#: ../src/functions.c:139
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:46 ../src/interface.c:334
-msgid "Xfce4 Taskmanager"
-msgstr "Manajer Tugas Xfce4"
-
-#: ../src/interface.c:60
+#: ../src/interface.c:61
 msgid "Cpu usage"
 msgstr "Penggunaan cpu"
 
-#: ../src/interface.c:68
+#: ../src/interface.c:69
 msgid "Memory usage"
 msgstr "Penggunaan memori"
 
-#: ../src/interface.c:135
+#: ../src/interface.c:136
 msgid "Command"
 msgstr "Perintah"
 
-#: ../src/interface.c:142
+#: ../src/interface.c:143 ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:148
+#: ../src/interface.c:149 ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:154
+#: ../src/interface.c:155 ../src/interface.c:349
 msgid "State"
 msgstr "Status"
 
-#: ../src/interface.c:160
+#: ../src/interface.c:161 ../src/interface.c:350
 msgid "VM-Size"
 msgstr "Ukuran VM"
 
-#: ../src/interface.c:166
+#: ../src/interface.c:167 ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:172
+#: ../src/interface.c:173 ../src/interface.c:352
 msgid "User"
 msgstr "Pengguna"
 
-#: ../src/interface.c:178
+#: ../src/interface.c:179 ../src/interface.c:353
 msgid "CPU%"
 msgstr "CPU%"
 
 #. my change
-#: ../src/interface.c:185
+#: ../src/interface.c:186
 msgid "Prio"
 msgstr "Prio"
 
-#: ../src/interface.c:202
+#: ../src/interface.c:203
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/interface.c:207
+#: ../src/interface.c:208
 msgid "Continue"
 msgstr "Lanjutkan"
 
-#: ../src/interface.c:212
+#: ../src/interface.c:213
 msgid "Term"
 msgstr "Tutup"
 
-#: ../src/interface.c:217
+#: ../src/interface.c:218
 msgid "Kill"
 msgstr "Matikan"
 
-#: ../src/interface.c:222
+#: ../src/interface.c:223 ../src/interface.c:354
 msgid "Priority"
 msgstr "Prioritas"
 
-#: ../src/interface.c:292
+#: ../src/interface.c:293
 msgid "Show user tasks"
 msgstr "Tampilkan tugas pengguna"
 
-#: ../src/interface.c:297
+#: ../src/interface.c:298
 msgid "Show root tasks"
 msgstr "Tampilkan tugas root"
 
-#: ../src/interface.c:302
+#: ../src/interface.c:303
 msgid "Show other tasks"
 msgstr "Tampilkan tugas lainnya"
 
-#: ../src/interface.c:307
+#: ../src/interface.c:308
 msgid "Show memory used by cache as free"
 msgstr "Tampilkan memori yang digunakan tembolok sebagai bebas"
+
+#: ../src/interface.c:375
+msgid "Original Author:"
+msgstr ""
+
+#: ../src/interface.c:377
+msgid "Contributors:"
+msgstr ""
+
+#: ../src/interface.c:387
+msgid "Xfce4-Taskmanager is an easy to use taskmanager"
+msgstr ""
+
+#: ../src/interface.c:395
+msgid "translator-credits"
+msgstr ""
