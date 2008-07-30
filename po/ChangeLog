@@ -1,6 +1,6 @@
 2008-07-31  Mike Massonnet <mmassonnet@xfce.org>
 
-	* *.po, *.pot: make update-po
+	* *.po, *.pot: make update-po, update-credits
 	* fr.po: Update French translation
 
 2008-07-26  Og Maciel <ogmaciel@gnome.org>
