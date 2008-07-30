@@ -18,9 +18,14 @@ xfce4_taskmanager_SOURCES =						\
 	functions.h							\
 	interface.c							\
 	interface.h							\
-	xfce-taskmanager-linux.c					\
-	xfce-taskmanager-linux.h					\
+	taskmanager.h							\
 	types.h
+
+if OS_BSD_FAMILY
+xfce4_taskmanager_SOURCES += taskmanager-bsd.c
+else
+xfce4_taskmanager_SOURCES += taskmanager-linux.c
+endif
 
 xfce4_taskmanager_CFLAGS =						\
 	$(LIBXFCEGUI4_CFLAGS)						\

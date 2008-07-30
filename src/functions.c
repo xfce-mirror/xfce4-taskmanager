@@ -51,18 +51,22 @@ gboolean refresh_task_list(void)
 
 			if(new_tmp->pid == tmp->pid)
 			{
+/* FIXME refresh me? */
+#ifdef __linux
 				tmp->old_time = tmp->time;
 				tmp->time = new_tmp->time;
 
 				tmp->old_time_percentage = tmp->time_percentage;
 				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (gdouble)(1/num_cpus);
-
+#endif
 				if(
 				    tmp->ppid != new_tmp->ppid ||
 				    strcmp(tmp->state,new_tmp->state) ||
 				    tmp->vsize != new_tmp->vsize ||
 				    tmp->rss != new_tmp->rss ||
+#ifdef __linux
 				    tmp->time_percentage != tmp->old_time_percentage ||
+#endif
 				    tmp->prio != new_tmp->prio
 				 )
 				{

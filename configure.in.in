@@ -72,6 +72,20 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.2.0])
 
 dnl ***********************************
+dnl ******* Check for OS family *******
+dnl ***********************************
+AC_MSG_CHECKING([for operating system family])
+case "$target_os" in
+  dragonfly*|freebsd*|netbsd*|openbsd*|darwin*)
+    ac_taskmanager_os_family=bsd
+    ;;
+  *)
+    ac_taskmanager_os_family=linux
+  esac
+AC_MSG_RESULT([$ac_taskmanager_os_family])
+AM_CONDITIONAL([OS_BSD_FAMILY], [test x"$ac_taskmanager_os_family" = x"bsd"])
+
+dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
 BM_DEBUG_SUPPORT()
@@ -81,4 +95,14 @@ Makefile
 src/Makefile
 po/Makefile.in
 ])
+
+dnl ***************************
+dnl *** Print configuration ***
+dnl ***************************
+echo
+echo "Build Configuration:"
+echo
+echo "* Target OS:     $target_os"
+echo "* Debug Support: $enable_debug"
+echo
 

@@ -35,14 +35,7 @@
 
 #include "types.h"
 #include "interface.h"
-
-#ifdef __LINUX__
-#include "xfce-taskmanager-linux.h"
-#endif
-
-#define PROC_DIR_1 "/compat/linux/proc"
-#define PROC_DIR_2 "/emul/linux/proc"
-#define PROC_DIR_3 "/proc"
+#include "taskmanager.h"
 
 gboolean refresh_task_list(void);
 gdouble get_cpu_usage(system_status *sys_stat);

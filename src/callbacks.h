@@ -32,7 +32,7 @@
 #include "interface.h"
 
 
-#include "xfce-taskmanager-linux.h"
+#include "taskmanager.h"
 
 void on_preferences(GtkButton *button);
 void on_information(GtkButton *button);

@@ -22,14 +22,16 @@
 
 #include <glib.h>
 #include <libxfcegui4/libxfcegui4.h>
+
+#ifdef __linux
 #include <dirent.h>
 #include <pwd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+#endif
 
 #include "types.h"
 

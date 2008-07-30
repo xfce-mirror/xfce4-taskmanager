@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include "xfce-taskmanager-linux.h"
+#include "taskmanager.h"
 
 struct task get_task_details(gint pid)
 {
@@ -51,67 +51,68 @@ struct task get_task_details(gint pid)
 
 	if((task_file = fopen(filename,"r")) != NULL)
 	{
-		while(fgets(buffer_status, sizeof(buffer_status), task_file) != NULL)
-		{
-			gint utime = 0;
-			gint stime = 0;
+		gint utime = 0;
+		gint stime = 0;
 
-			sscanf(buffer_status, "%i (%255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %i %i %i %i %i %i %i %i %i %i %i %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
-						&task.pid,	// processid
-						task.name,	// processname
-						task.state,	// processstate
-						&task.ppid,	// parentid
-						&idummy,	// processs groupid
+		fgets(buffer_status, sizeof(buffer_status), task_file);
 
-						&idummy,	// session id
-						&idummy,	// tty id
-						&idummy,	// tpgid: The process group ID of the process running on tty of the process
-						dummy,		// flags
-						dummy,		// minflt minor faults the process has maid
+		sscanf(buffer_status, "%i (%255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %i %i %i %i %i %i %i %i %i %i %i %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
+				&task.pid,	// processid
+				task.name,	// processname
+				task.state,	// processstate
+				&task.ppid,	// parentid
+				&idummy,	// processs groupid
 
-						dummy,		// cminflt
-						dummy,		// majflt
-						dummy,		// cmajflt
-						&utime,		// utime the number of jiffies that this process has scheduled in user mode
-						&stime,		// stime " kernel mode
+				&idummy,	// session id
+				&idummy,	// tty id
+				&idummy,	// tpgid: The process group ID of the process running on tty of the process
+				dummy,		// flags
+				dummy,		// minflt minor faults the process has maid
 
-						&idummy,	// cutime " waited for children in user
-						&idummy,	// cstime " kernel mode
-						&idummy,	// priority (nice value + fifteen)
-						&task.prio,	// nice range from 19 to -19	/* my change */
-						&idummy,	// hardcoded 0
+				dummy,		// cminflt
+				dummy,		// majflt
+				dummy,		// cmajflt
+				&utime,		// utime the number of jiffies that this process has scheduled in user mode
+				&stime,		// stime " kernel mode
 
-						&idummy,	// itrealvalue time in jiffies to next SIGALRM send to this process
-						&idummy,	// starttime jiffies the process startet after system boot
-						&task.vsize,	// vsize in bytes
-						&task.rss,	// rss (number of pages in real memory)
-						dummy,		// rlim limit in bytes for rss
+				&idummy,	// cutime " waited for children in user
+				&idummy,	// cstime " kernel mode
+				&idummy,	// priority (nice value + fifteen)
+				&task.prio,	// nice range from 19 to -19	/* my change */
+				&idummy,	// hardcoded 0
 
-						dummy,		// startcode
-						dummy,		// endcode
-						&idummy,		// startstack
-						dummy,		// kstkesp value of esp (stack pointer)
-						dummy, 		// kstkeip value of EIP (instruction pointer)
+				&idummy,	// itrealvalue time in jiffies to next SIGALRM send to this process
+				&idummy,	// starttime jiffies the process startet after system boot
+				&task.vsize,	// vsize in bytes
+				&task.rss,	// rss (number of pages in real memory)
+				dummy,		// rlim limit in bytes for rss
 
-						dummy,		// signal. bitmap of pending signals
-						dummy,		// blocked: bitmap of blocked signals
-						dummy,		// sigignore: bitmap of ignored signals
-						dummy,		// sigcatch: bitmap of catched signals
-						dummy,		// wchan
+				dummy,		// startcode
+				dummy,		// endcode
+				&idummy,	// startstack
+				dummy,		// kstkesp value of esp (stack pointer)
+				dummy, 		// kstkeip value of EIP (instruction pointer)
 
-						dummy,		// nswap
-						dummy,		// cnswap
-						dummy,		// exit_signal
-						&idummy,	// CPU number last executed on
-						dummy,
+				dummy,		// signal. bitmap of pending signals
+				dummy,		// blocked: bitmap of blocked signals
+				dummy,		// sigignore: bitmap of ignored signals
+				dummy,		// sigcatch: bitmap of catched signals
+				dummy,		// wchan
 
-						dummy
-					);
-			task.old_time = task.time;
-			task.time = stime + utime;
-			task.time_percentage = 0;
-			task.rss *= pagesize;
-		}
+				dummy,		// nswap
+				dummy,		// cnswap
+				dummy,		// exit_signal
+				&idummy,	// CPU number last executed on
+				dummy,
+
+				dummy
+				);
+
+		task.old_time = task.time;
+		task.time = stime + utime;
+		task.time_percentage = 0;
+		task.rss *= pagesize;
+
 		task.uid = status.st_uid;
 		passwdp = getpwuid(task.uid);
 		if(passwdp != NULL && passwdp->pw_name != NULL)
