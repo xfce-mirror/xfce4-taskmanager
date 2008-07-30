@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-26 18:00-0400\n"
-"PO-Revision-Date: 2008-05-09 14:31+0200\n"
+"POT-Creation-Date: 2008-07-26 17:54-0400\n"
+"PO-Revision-Date: 2008-07-31 00:38+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,12 +18,11 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Contrôler vos processus"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "Gestionnaire de tâches Xfce4"
+msgstr "Gestionnaire de tâches"
 
 #: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
@@ -130,16 +129,16 @@ msgstr "Afficher la mémoire cache comme libre"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Auteur Original :"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "Contributeurs :"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Xfce4-Taskmanager est un gestionnaire de tâche simple"
 
 #: ../src/interface.c:395
 msgid "translator-credits"
-msgstr ""
+msgstr "Mike Massonnet"
