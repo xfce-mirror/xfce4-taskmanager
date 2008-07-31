@@ -1,0 +1,154 @@
+# Ukrainian translation of xfce4-taskmanager.
+# Copyright (C) 2005-2006 Johannes Zellner.
+# This file is distributed under the same license as the xfce4-taskmanager package.
+#
+# Dmitry Nikitin <luckas_fb@mail.ru>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-taskmanager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-31 15:10+0000\n"
+"PO-Revision-Date: 2008-07-14 13:50+0300\n"
+"Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
+"Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../xfce4-taskmanager.desktop.in.h:1
+msgid "Control your processes"
+msgstr "Керування процесами"
+
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Process manager"
+msgstr "Менеджер процесів"
+
+#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+msgid "Xfce4 Taskmanager"
+msgstr "Диспетчер задач Xfce4"
+
+#: ../src/callbacks.c:72
+msgid "Really kill the task?"
+msgstr "Дійсно знищити задачу?"
+
+#: ../src/callbacks.c:76
+msgid "Really terminate the task?"
+msgstr "Дійсно завершити задачу?"
+
+#: ../src/functions.c:138
+#, c-format
+msgid "%d MB of %d MB used"
+msgstr "Використано %d МБ з %d МБ"
+
+#: ../src/functions.c:143
+#, c-format
+msgid "%0.0f %%"
+msgstr "%0.0f %%"
+
+#: ../src/interface.c:61
+msgid "Cpu usage"
+msgstr "Використання процесора"
+
+#: ../src/interface.c:69
+msgid "Memory usage"
+msgstr "Використання пам'яті"
+
+#: ../src/interface.c:136
+msgid "Command"
+msgstr "Команда"
+
+#: ../src/interface.c:143 ../src/interface.c:347
+msgid "PID"
+msgstr "Ідентифікатор PID"
+
+#: ../src/interface.c:149 ../src/interface.c:348
+msgid "PPID"
+msgstr "Пріоритет PPID"
+
+#: ../src/interface.c:155 ../src/interface.c:349
+msgid "State"
+msgstr "Стан"
+
+#: ../src/interface.c:161 ../src/interface.c:350
+msgid "VM-Size"
+msgstr "Розмір VM"
+
+#: ../src/interface.c:167 ../src/interface.c:351
+msgid "RSS"
+msgstr "Стрічка RSS"
+
+#: ../src/interface.c:173 ../src/interface.c:352
+msgid "User"
+msgstr "Користувач"
+
+#: ../src/interface.c:179 ../src/interface.c:353
+msgid "CPU%"
+msgstr "ЦПУ%"
+
+#. my change
+#: ../src/interface.c:186
+msgid "Prio"
+msgstr "Пріоритет"
+
+#: ../src/interface.c:203
+msgid "Stop"
+msgstr "Зупинити"
+
+#: ../src/interface.c:208
+msgid "Continue"
+msgstr "Продовжити"
+
+#: ../src/interface.c:213
+msgid "Term"
+msgstr "Завершити"
+
+#: ../src/interface.c:218
+msgid "Kill"
+msgstr "Знищити"
+
+#: ../src/interface.c:223 ../src/interface.c:354
+msgid "Priority"
+msgstr "Пріоритет"
+
+#: ../src/interface.c:293
+msgid "Show user tasks"
+msgstr "Відображати задачі користувача"
+
+#: ../src/interface.c:298
+msgid "Show root tasks"
+msgstr "Відображати задачі адміністратора"
+
+#: ../src/interface.c:303
+msgid "Show other tasks"
+msgstr "Відображати інші задачі"
+
+#: ../src/interface.c:308
+msgid "Show memory used by cache as free"
+msgstr "Показувати використану кешем пам'ять як вільну"
+
+#: ../src/interface.c:375
+msgid "Original Author:"
+msgstr "Перший автор:"
+
+#: ../src/interface.c:377
+msgid "Contributors:"
+msgstr "Помічники:"
+
+#: ../src/interface.c:387
+msgid "Xfce4-Taskmanager is an easy to use taskmanager"
+msgstr "Xfce4-Taskmanager простий у використанні диспетчер задач"
+
+#: ../src/interface.c:395
+msgid "translator-credits"
+msgstr "Dmitry Nikitin <luckas_fb@mail.ru>"
+
+#: ../src/taskmanager-linux.c:307 ../src/taskmanager-bsd.c:153
+#, c-format
+msgid "Couldn't send signal to the task with ID %d"
+msgstr "Не вдається надіслати сигнал до задачі з ідентифікатором %d"
+
+#: ../src/taskmanager-linux.c:320 ../src/taskmanager-bsd.c:166
+#, c-format
+msgid "Couldn't set priority %d to the task with ID %d"
+msgstr "Не вдається встановити пріоритет %d задачі з ідентифікатором %d"
