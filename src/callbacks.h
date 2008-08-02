@@ -31,8 +31,18 @@
 #include "functions.h"
 #include "interface.h"
 
-
 #include "taskmanager.h"
+
+#ifdef HAVE_SIGNAL_H
+#include <signal.h>
+#define SIGNAL_NO	0
+#define SIGNAL_KILL	SIGKILL
+#define SIGNAL_TERM	SIGINT
+#define SIGNAL_CONT	SIGCONT
+#define SIGNAL_STOP	SIGSTOP
+#else
+/* FIXME */
+#endif
 
 void on_preferences(GtkButton *button);
 void on_information(GtkButton *button);

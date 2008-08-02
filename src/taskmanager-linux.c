@@ -18,20 +18,29 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <dirent.h>
+#include <pwd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "taskmanager.h"
 
-struct task get_task_details(gint pid)
+static gint pagesize = 0;
+
+static struct task get_task_details(gint pid)
 {
-	FILE *task_file;
-	FILE *cmdline_file;
-	gchar dummy[255];
-	gint idummy;
-	gchar buffer_status[1024];
-	struct task task;
-	struct passwd *passwdp;
-	struct stat status;
-	gchar filename[255];
-	gchar cmdline_filename[255];
+	FILE		*task_file;
+	FILE		*cmdline_file;
+	gchar		dummy[255];
+	gint		idummy;
+	gchar		buffer_status[1024];
+	struct task	task;
+	struct passwd	*passwdp;
+	struct stat	status;
+	gchar		filename[255];
+	gchar		cmdline_filename[255];
 
 	sprintf(filename, "/proc/%i/stat", pid);
 	sprintf(cmdline_filename, "/proc/%i/cmdline", pid);
@@ -116,7 +125,7 @@ struct task get_task_details(gint pid)
 		task.uid = status.st_uid;
 		passwdp = getpwuid(task.uid);
 		if(passwdp != NULL && passwdp->pw_name != NULL)
-			g_strlcpy(task.uname, passwdp->pw_name, sizeof task.uname);
+			g_strlcpy(task.uname, passwdp->pw_name, sizeof(task.uname));
 	}
 
 

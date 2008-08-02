@@ -20,13 +20,6 @@
 
 #include "interface.h"
 
-#define GLADE_HOOKUP_OBJECT(component,widget,name) \
-  g_object_set_data_full (G_OBJECT (component), name, \
-    gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
-
-#define GLADE_HOOKUP_OBJECT_NO_REF(component,widget,name) \
-  g_object_set_data (G_OBJECT (component), name, widget)
-
 GtkWidget* create_main_window (void)
 {
 	GtkWidget *window;
@@ -79,7 +72,7 @@ GtkWidget* create_main_window (void)
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_SHADOW_IN);
 
 	treeview = gtk_tree_view_new ();
-    gtk_tree_view_set_show_expanders (GTK_TREE_VIEW (treeview), FALSE);
+	gtk_tree_view_set_show_expanders (GTK_TREE_VIEW (treeview), FALSE);
 	gtk_widget_show (treeview);
 	gtk_container_add (GTK_CONTAINER (scrolledwindow1), treeview);
 
@@ -379,23 +372,29 @@ void show_about_dialog(void)
 	  NULL };
 
 	about_dialog = gtk_about_dialog_new();
-	gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(about_dialog),
-		PACKAGE_NAME);
-	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(about_dialog),
+	gtk_about_dialog_set_version(
+		GTK_ABOUT_DIALOG(about_dialog),
 		PACKAGE_VERSION);
-	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(about_dialog),
+	gtk_about_dialog_set_comments(
+		GTK_ABOUT_DIALOG(about_dialog),
 		_("Xfce4-Taskmanager is an easy to use taskmanager"));
-	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(about_dialog),
+	gtk_about_dialog_set_website(
+		GTK_ABOUT_DIALOG(about_dialog),
 		"http://goodies.xfce.org/projects/applications/xfce4-taskmanager");
-	gtk_about_dialog_set_logo_icon_name(GTK_ABOUT_DIALOG(about_dialog),
+	gtk_about_dialog_set_logo_icon_name(
+		GTK_ABOUT_DIALOG(about_dialog),
 		"xfce-system");
-	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(about_dialog),
+	gtk_about_dialog_set_authors(
+		GTK_ABOUT_DIALOG(about_dialog),
 		authors);
-	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(about_dialog),
+	gtk_about_dialog_set_translator_credits(
+		GTK_ABOUT_DIALOG(about_dialog),
 		_("translator-credits"));
-	gtk_about_dialog_set_license(GTK_ABOUT_DIALOG(about_dialog),
+	gtk_about_dialog_set_license(
+		GTK_ABOUT_DIALOG(about_dialog),
 		xfce_get_license_text(XFCE_LICENSE_TEXT_GPL));
-	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(about_dialog),
+	gtk_about_dialog_set_copyright(
+		GTK_ABOUT_DIALOG(about_dialog),
 		"Copyright \302\251 2005-2008 Johannes Zellner");
 
 	gtk_window_set_icon_name(GTK_WINDOW(about_dialog), GTK_STOCK_ABOUT);
@@ -419,19 +418,32 @@ void change_list_store_view(void)
 
 void fill_list_item(gint i, GtkTreeIter *iter)
 {
+	struct task *task;
+	gchar *pid;
+	gchar *ppid;
+	gchar *state;
+	gchar *vsize;
+	gchar *rss;
+	gchar *name;
+	gchar *uname;
+	gchar *time;
+	gchar *prio;
+
 	if(iter != NULL)
 	{
-		struct task *task = &g_array_index(task_array, struct task, i);
+		task = &g_array_index(task_array, struct task, i);
 
-		gchar *pid = g_strdup_printf("%i", task->pid);
-		gchar *ppid = g_strdup_printf("%i", task->ppid);
-		gchar *state = g_strdup_printf("%s", task->state);
-		gchar *vsize = g_strdup_printf("%i MB", task->vsize/1024/1024);
-		gchar *rss = g_strdup_printf("%i MB", task->rss/1024/1024);
-		gchar *name = g_strdup_printf("%s", task->name);
-		gchar *uname = g_strdup_printf("%s", task->uname);
-		gchar *time = g_strdup_printf("%0d%%", (guint)task->time_percentage);
-		gchar *prio = g_strdup_printf("%i", task->prio);	/* my change */
+		pid = g_strdup_printf("%i", task->pid);
+		ppid = g_strdup_printf("%i", task->ppid);
+		state = g_strdup_printf("%s", task->state);
+		vsize = g_strdup_printf((task->vsize/1024/1024 > 0) ? "%.0f MB" : "%.2f MB",
+					(gdouble)(task->vsize)/1024/1024);
+		rss = g_strdup_printf((task->rss/1024/1024 > 0) ? "%.0f MB" : "%.2f MB",
+					(gdouble)(task->rss)/1024/1024);
+		name = g_strdup_printf("%s", task->name);
+		uname = g_strdup_printf("%s", task->uname);
+		time = g_strdup_printf("%0d%%", (guint)task->time_percentage);
+		prio = g_strdup_printf("%i", task->prio);	/* my change */
 
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_NAME, name, -1);
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_PID, pid, -1);

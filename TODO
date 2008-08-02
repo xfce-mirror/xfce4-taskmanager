@@ -1,4 +1,9 @@
-+ menu to check the columns to display instead of normal/more info
++ drop old gtk_tooltips
++ display mem < 0MB (we can't show in KB unless we rewrite the sort function
+		which I think is not worth the effort)
++ support multi core (show cpu usage per process)
++ move get_cpu_usage() out from functions.c, it is an os-dependant function
+
 + *BSD support with the 'kvm' files
 + ability to switch to a tree-store
 + sending custom signals
