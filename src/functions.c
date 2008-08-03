@@ -57,7 +57,7 @@ gboolean refresh_task_list(void)
 				tmp->time = new_tmp->time;
 
 				tmp->old_time_percentage = tmp->time_percentage;
-				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (gdouble)(1/num_cpus);
+				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (1.0/num_cpus);
 #endif
 				if(
 				    tmp->ppid != new_tmp->ppid ||

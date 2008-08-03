@@ -526,19 +526,19 @@ gint compare_int_list_item(GtkTreeModel *model, GtkTreeIter *iter1, GtkTreeIter 
 	gchar *s1 = "";
 	gchar *s2 = "";
 
+	gdouble i1 = 0;
+	gdouble i2 = 0;
+
 	gint ret = 0;
 
 	gtk_tree_model_get(model, iter1, column, &s1, -1);
 	gtk_tree_model_get(model, iter2, column, &s2, -1);
 
-	gint i1 = 0;
-	gint i2 = 0;
-
 	if(s1 != NULL)
-		i1 = atoi(s1);
+		i1 = 100 * g_strtod(s1, NULL);
 
 	if(s2 != NULL)
-		i2 = atoi(s2);
+		i2 = 100 * g_strtod(s2, NULL);
 
 	ret = i2 - i1;
 
@@ -561,7 +561,7 @@ gint compare_string_list_item(GtkTreeModel *model, GtkTreeIter *iter1, GtkTreeIt
 	gtk_tree_model_get(model, iter2, GPOINTER_TO_INT(column), &s2, -1);
 
 	if(s1 != NULL && s2 != NULL)
-		ret = strcmp(s2, s1);
+		ret = strcasecmp(s2, s1);
 	else
 		ret = 0;
 
