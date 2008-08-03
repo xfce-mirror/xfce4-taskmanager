@@ -32,6 +32,7 @@ struct task
 	gint uid;
 	gchar uname[64];
 	gchar name[64];
+	gchar fullname[255];
 	gchar state[16];
 	gint vsize;
 	gint rss;

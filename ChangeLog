@@ -1,3 +1,7 @@
+2008-08-03	Mike Massonnet <mmassonnet@xfce.org>
+
+	* New function to get the full and short cmdline (Linux)
+
 2008-08-02	Mike Massonnet <mmassonnet@xfce.org>
 
 	* Display memory less than 1 MB with two decimals like 0.00 MB
