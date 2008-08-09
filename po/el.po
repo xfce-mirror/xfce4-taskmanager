@@ -3,26 +3,28 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Evaggelos Balaskas <ebalaskas@ebalaskas.gr>, 2008.
+# Stavros Giannouris <stavrosg@hellug.gr>, 2008.
+
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2008-07-31 01:00+0200\n"
-"Last-Translator: Stavros Giannouris <stavrosg@hellug.gr>\n"
+"PO-Revision-Date: 2008-08-09 20:35+0300\n"
+"Last-Translator: Stavros Giannouris <stavrosg@hellug.gr>>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Έλεγχος των διεργασιών σας"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "Διαχειριστής εργασιών xfce4"
+msgstr "Διαχειριστής διεργασιών"
 
 #: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
@@ -39,7 +41,7 @@ msgstr "Επιμένετε να τερματιστεί η εργασία;"
 #: ../src/functions.c:134
 #, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d MB από %d MB χρησιμοποιούνται"
+msgstr "Χρησιμοποιούνται %d MB από %d MB"
 
 #: ../src/functions.c:139
 #, c-format
@@ -129,18 +131,19 @@ msgstr "Εμφάνιση χρησιμοποιημένης μνήνης από τ
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Αρχικός Συγγραφέας:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "Συντελεστές:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Ο διαχειριστής εργασιών xfce4 είναι ένας εύχρηστος διαχειριστής εργασιων."
 
 #: ../src/interface.c:395
 msgid "translator-credits"
 msgstr ""
-"Evaggelos Balaskas\n"
-"Stavros Giannouris"
+"Ευάγγελος Μπαλάσκας\n"
+"Σταύρος Γιαννούρης"
+
