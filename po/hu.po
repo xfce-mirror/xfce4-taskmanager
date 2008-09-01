@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2008-07-31 01:00+0200\n"
+"PO-Revision-Date: 2008-09-01 05:17+0100\n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,14 +20,14 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Felügyeld a folyamatokat!"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "Xfce4 folyamat-kezelő"
+msgstr "Folyamat-kezelő"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+#: ../xfce4-taskmanager.desktop.in.h:3
+#: ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
 msgstr "Xfce4 folyamat-kezelő"
 
@@ -61,31 +61,38 @@ msgstr "Memória használat"
 msgid "Command"
 msgstr "Parancs"
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/interface.c:143
+#: ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/interface.c:149
+#: ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/interface.c:155
+#: ../src/interface.c:349
 msgid "State"
 msgstr "Állapot"
 
-#: ../src/interface.c:161 ../src/interface.c:350
+#: ../src/interface.c:161
+#: ../src/interface.c:350
 msgid "VM-Size"
 msgstr "VM-méret"
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/interface.c:167
+#: ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
+#: ../src/interface.c:173
+#: ../src/interface.c:352
 msgid "User"
 msgstr "Felhasználó"
 
-#: ../src/interface.c:179 ../src/interface.c:353
+#: ../src/interface.c:179
+#: ../src/interface.c:353
 msgid "CPU%"
 msgstr "CPU%"
 
@@ -110,7 +117,8 @@ msgstr "Leállítás"
 msgid "Kill"
 msgstr "Kilövés"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/interface.c:223
+#: ../src/interface.c:354
 msgid "Priority"
 msgstr "Elsőbbség"
 
@@ -132,23 +140,22 @@ msgstr "A gyorstár által használt memória mutatása szabadként"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Eredeti szerző:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "Közreműködők:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Az Xfce4-Taskmanager egy könnyen használható feladatkezelő"
 
 #: ../src/interface.c:395
 msgid "translator-credits"
-msgstr ""
-"SZERVÁC Attila"
+msgstr "SZERVÁC Attila"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "xfce4-folyamatkezelő"
-
 #~ msgid "more details"
 #~ msgstr "részletek"
+
