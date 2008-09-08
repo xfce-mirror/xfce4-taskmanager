@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2008-07-31 01:01+0200\n"
+"PO-Revision-Date: 2008-08-28 12:30+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,14 +17,14 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Controle os seus processos"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "Gestor de tarefas Xfce4"
+msgstr "Gestor de processos"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+#: ../xfce4-taskmanager.desktop.in.h:3
+#: ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
 msgstr "Gestor de tarefas Xfce4"
 
@@ -58,31 +58,38 @@ msgstr "Uso de memória"
 msgid "Command"
 msgstr "Comando"
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/interface.c:143
+#: ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/interface.c:149
+#: ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/interface.c:155
+#: ../src/interface.c:349
 msgid "State"
 msgstr "Estado"
 
-#: ../src/interface.c:161 ../src/interface.c:350
+#: ../src/interface.c:161
+#: ../src/interface.c:350
 msgid "VM-Size"
 msgstr "Tamanho VM"
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/interface.c:167
+#: ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
+#: ../src/interface.c:173
+#: ../src/interface.c:352
 msgid "User"
 msgstr "Utilizador"
 
-#: ../src/interface.c:179 ../src/interface.c:353
+#: ../src/interface.c:179
+#: ../src/interface.c:353
 msgid "CPU%"
 msgstr "CPU%"
 
@@ -107,7 +114,8 @@ msgstr "Terminar"
 msgid "Kill"
 msgstr "Matar"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/interface.c:223
+#: ../src/interface.c:354
 msgid "Priority"
 msgstr "Prioridade"
 
@@ -129,23 +137,22 @@ msgstr "Mostrar memória usada pela cache como livre"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Autor Original:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "Contribuidores:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Xfce4-Taskmanager é um gestor de tarefas fácil de usar"
 
 #: ../src/interface.c:395
 msgid "translator-credits"
-msgstr ""
-"Nuno Miguel"
+msgstr "Nuno Miguel"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "xfce4-taskmanager"
-
 #~ msgid "more details"
 #~ msgstr "mais detalhes"
+
