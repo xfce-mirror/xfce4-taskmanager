@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2008-07-31 01:00+0200\n"
+"PO-Revision-Date: 2008-09-03 04:43+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,11 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Kendalikan proses anda"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "Manajer Tugas Xfce4"
+msgstr "Manajer proses"
 
 #: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
@@ -129,17 +128,16 @@ msgstr "Tampilkan memori yang digunakan tembolok sebagai bebas"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Penulis Asli:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "Kontributor:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Xfce4-Taskmanager adalah manajer tugas yang mudah digunakan"
 
 #: ../src/interface.c:395
 msgid "translator-credits"
-msgstr ""
-"Andhika Padmawan"
+msgstr "Andhika Padmawan <andhika.padmawan@gmail.com>, 2008"
