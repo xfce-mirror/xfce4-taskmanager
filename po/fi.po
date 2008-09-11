@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2008-07-31 01:00+0200\n"
+"POT-Creation-Date: 2008-09-11 10:12+0300\n"
+"PO-Revision-Date: 2008-09-11 10:20+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,16 +19,15 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Hallitse prosessejasi"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "Xfce4-tehtävienhallinta"
+msgstr "Tehtävienhallinta"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:39
 msgid "Xfce4 Taskmanager"
-msgstr "Xfce4-tehtävienhallinta"
+msgstr "Xfce4 tehtävienhallinta"
 
 #: ../src/callbacks.c:72
 msgid "Really kill the task?"
@@ -38,117 +37,122 @@ msgstr "Tapetaanko tehtävä?"
 msgid "Really terminate the task?"
 msgstr "Haluatko katkaista tehtävän suorittamisen?"
 
-#: ../src/functions.c:134
+#: ../src/functions.c:138
 #, c-format
 msgid "%d MB of %d MB used"
 msgstr "%d mt:sta käytössä %d mt"
 
-#: ../src/functions.c:139
+#: ../src/functions.c:143
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:61
+#: ../src/interface.c:54
 msgid "Cpu usage"
 msgstr "Suorittimen käyttö"
 
-#: ../src/interface.c:69
+#: ../src/interface.c:62
 msgid "Memory usage"
 msgstr "Muistin käyttö"
 
-#: ../src/interface.c:136
+#: ../src/interface.c:129
 msgid "Command"
 msgstr "Komento"
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/interface.c:136 ../src/interface.c:340
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/interface.c:142 ../src/interface.c:341
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/interface.c:148 ../src/interface.c:342
 msgid "State"
 msgstr "Tila"
 
-#: ../src/interface.c:161 ../src/interface.c:350
+#: ../src/interface.c:154 ../src/interface.c:343
 msgid "VM-Size"
 msgstr "VM-koko"
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/interface.c:160 ../src/interface.c:344
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
+#: ../src/interface.c:166 ../src/interface.c:345
 msgid "User"
 msgstr "Käyttäjä"
 
-#: ../src/interface.c:179 ../src/interface.c:353
+#: ../src/interface.c:172 ../src/interface.c:346
 msgid "CPU%"
 msgstr "CPU%"
 
 #. my change
-#: ../src/interface.c:186
+#: ../src/interface.c:179
 msgid "Prio"
 msgstr "Prio"
 
-#: ../src/interface.c:203
+#: ../src/interface.c:196
 msgid "Stop"
 msgstr "Pysäytä"
 
-#: ../src/interface.c:208
+#: ../src/interface.c:201
 msgid "Continue"
 msgstr "Jatka"
 
-#: ../src/interface.c:213
+#: ../src/interface.c:206
 msgid "Term"
 msgstr "Lopeta"
 
-#: ../src/interface.c:218
+#: ../src/interface.c:211
 msgid "Kill"
 msgstr "Tapa"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/interface.c:216 ../src/interface.c:347
 msgid "Priority"
 msgstr "Prioriteetti"
 
-#: ../src/interface.c:293
+#: ../src/interface.c:286
 msgid "Show user tasks"
 msgstr "Näytä käyttäjän prosessit"
 
-#: ../src/interface.c:298
+#: ../src/interface.c:291
 msgid "Show root tasks"
 msgstr "Näytä pääkäyttäjän prosessit"
 
-#: ../src/interface.c:303
+#: ../src/interface.c:296
 msgid "Show other tasks"
 msgstr "Näytä muut prosessit"
 
-#: ../src/interface.c:308
+#: ../src/interface.c:301
 msgid "Show memory used by cache as free"
 msgstr "Näytä välimuistikäytössä oleva muisti vapaana"
 
-#: ../src/interface.c:375
+#: ../src/interface.c:368
 msgid "Original Author:"
-msgstr ""
+msgstr "Alkuperäinen kehittäjä:"
 
-#: ../src/interface.c:377
+#: ../src/interface.c:370
 msgid "Contributors:"
-msgstr ""
+msgstr "Avustavat kehittäjät:"
 
-#: ../src/interface.c:387
+#: ../src/interface.c:380
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
 msgstr ""
+"Xfce4 tehtävienhallinta on helppokäyttöinen tehtävienhallintasovellus"
 
-#: ../src/interface.c:395
+#: ../src/interface.c:392
 msgid "translator-credits"
 msgstr ""
 "Pasi Sulasalmi\n"
 "Jari Rahkonen"
 
-#~ msgid "xfce4-taskmanager"
-#~ msgstr "xfce4-prosessienhallinta"
+#: ../src/taskmanager-bsd.c:153 ../src/taskmanager-linux.c:376
+#, c-format
+msgid "Couldn't send signal to the task with ID %d"
+msgstr "Signaalin lähetys epäonnistui tehtävälle %d"
 
-#~ msgid "more details"
-#~ msgstr "Lisätiedot"
+#: ../src/taskmanager-bsd.c:166 ../src/taskmanager-linux.c:389
+#, c-format
+msgid "Couldn't set priority %d to the task with ID %d"
+msgstr "Prioriteetin %d asetus epäonnistui tehtävälle %d"
