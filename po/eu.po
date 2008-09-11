@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2008-07-31 01:00+0200\n"
+"PO-Revision-Date: 2008-09-11 22:08+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,11 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Kontrolatu zure prozesuak"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "xfce4 zeregin-kudeatzailea"
+msgstr "Prozesu kudeatzailea"
 
 #: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
@@ -132,17 +131,17 @@ msgstr "Ikusi katxeak erabilitako memoria libre bezala"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Jatorrizko garatzailea:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "Laguntzaileak:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Xfce4 Zeregin-kudeatzaile zeregin kudeatzaile erabilerraz bat da"
 
 #: ../src/interface.c:395
 msgid "translator-credits"
-msgstr ""
-"Piarres Beobide"
+msgstr "itzultzaile-kreditua"
+
