@@ -23,7 +23,7 @@
 GtkWidget* create_main_window (void)
 {
 	GtkWidget *window;
-	GtkWidget *vbox1;
+	GtkWidget *vbox1, *vbox2;
 	GtkWidget *bbox1;
 	GtkWidget *scrolledwindow1;
 	GtkWidget *button_preferences;
@@ -32,22 +32,28 @@ GtkWidget* create_main_window (void)
 
 	GtkWidget *system_info_box;
 
+#if !GTK_CHECK_VERSION (2, 12, 0)
 	tooltips = gtk_tooltips_new();
 	gtk_tooltips_enable(tooltips);
+#endif
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (window), _("Xfce4 Taskmanager"));
-	gtk_window_set_icon_name (GTK_WINDOW (window), "xfce-system");
+	gtk_window_set_icon_name (GTK_WINDOW (window), "utilities-system-monitor");
 	gtk_window_set_default_size (GTK_WINDOW (window), win_width, win_height);
 
-	vbox1 = gtk_vbox_new (FALSE, 10);
+	vbox1 = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (vbox1);
 	gtk_container_add (GTK_CONTAINER (window), vbox1);
-	gtk_container_set_border_width (GTK_CONTAINER (vbox1), 10);
 
-	system_info_box = gtk_hbox_new (FALSE, 10);
+	vbox2 = gtk_vbox_new (FALSE, BORDER);
+	gtk_widget_show (vbox2);
+	gtk_container_add (GTK_CONTAINER (vbox1), vbox2);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox2), BORDER);
+
+	system_info_box = gtk_hbox_new (FALSE, BORDER/2);
 	gtk_widget_show (system_info_box);
-	gtk_box_pack_start (GTK_BOX (vbox1), system_info_box, FALSE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox2), system_info_box, FALSE, TRUE, 0);
 
 	cpu_usage_progress_bar_box = gtk_event_box_new ();
 	cpu_usage_progress_bar = gtk_progress_bar_new ();
@@ -68,7 +74,7 @@ GtkWidget* create_main_window (void)
 	scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show (scrolledwindow1);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox2), scrolledwindow1, TRUE, TRUE, 0);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_SHADOW_IN);
 
 	treeview = gtk_tree_view_new ();
@@ -85,7 +91,7 @@ GtkWidget* create_main_window (void)
 	gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(list_store), sort_column, sort_type);
 
 	bbox1 = gtk_hbutton_box_new();
-	gtk_box_pack_start(GTK_BOX(vbox1), bbox1, FALSE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(vbox2), bbox1, FALSE, TRUE, 0);
 	gtk_widget_show (bbox1);
 
 	button_preferences = gtk_button_new_from_stock ("gtk-preferences");
@@ -101,6 +107,12 @@ GtkWidget* create_main_window (void)
 	button_quit = gtk_button_new_from_stock ("gtk-quit");
 	gtk_widget_show (button_quit);
 	gtk_box_pack_start (GTK_BOX (bbox1), button_quit, FALSE, FALSE, 0);
+
+#if 0
+	statusbar = gtk_statusbar_new ();
+	gtk_widget_show (statusbar);
+	gtk_box_pack_start (GTK_BOX (vbox1), statusbar, FALSE, FALSE, 0);
+#endif
 
 	g_signal_connect_swapped (treeview, "button-press-event", G_CALLBACK(on_treeview1_button_press_event), NULL);
 	g_signal_connect (button_preferences, "clicked",  G_CALLBACK (on_preferences),  NULL);
@@ -365,8 +377,8 @@ void show_about_dialog(void)
 {
 	GtkWidget *about_dialog;
 	const gchar *authors[] = {
-	  _("Original Author:"),
 	  "Johannes Zellner <webmaster@nebulon.de>",
+      "",
 	  _("Contributors:"),
 	  "Mike Massonnet <mmassonnet@xfce.org>",
 	  NULL };
@@ -381,9 +393,6 @@ void show_about_dialog(void)
 	gtk_about_dialog_set_website(
 		GTK_ABOUT_DIALOG(about_dialog),
 		"http://goodies.xfce.org/projects/applications/xfce4-taskmanager");
-	gtk_about_dialog_set_logo_icon_name(
-		GTK_ABOUT_DIALOG(about_dialog),
-		"xfce-system");
 	gtk_about_dialog_set_authors(
 		GTK_ABOUT_DIALOG(about_dialog),
 		authors);

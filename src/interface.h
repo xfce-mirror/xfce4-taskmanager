@@ -40,12 +40,16 @@
 #include "callbacks.h"
 #include "types.h"
 
+#define BORDER 8
+
 GtkTreeStore *list_store;
 GtkTreeSelection *selection;
 GtkWidget *treeview;
 GtkWidget *mainmenu;
 GtkWidget *infomenu;
+#if !GTK_CHECK_VERSION (2, 12, 0)
 GtkTooltips *tooltips;
+#endif
 GtkWidget *taskpopup;
 GtkWidget *priopopup;
 GtkWidget *cpu_usage_progress_bar;

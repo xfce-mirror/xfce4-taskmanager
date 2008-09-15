@@ -51,7 +51,7 @@ gboolean refresh_task_list(void)
 
 			if(new_tmp->pid == tmp->pid)
 			{
-/* FIXME refresh me? */
+/* FIXME */
 #ifdef __linux
 				tmp->old_time = tmp->time;
 				tmp->time = new_tmp->time;
@@ -135,13 +135,22 @@ gboolean refresh_task_list(void)
 		memory_used-=sys_stat->mem_cached;
 		memory_used-=sys_stat->mem_buffers;
 	}
-	mem_tooltip = g_strdup_printf (_("%d MB of %d MB used"), memory_used / 1024, sys_stat->mem_total / 1024);
+
+	mem_tooltip = g_strdup_printf (_("%d MB of %d MB used"), memory_used/1024, sys_stat->mem_total/1024);
+#if !GTK_CHECK_VERSION (2, 12, 0)
 	gtk_tooltips_set_tip (tooltips, mem_usage_progress_bar_box, mem_tooltip, NULL);
-	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (mem_usage_progress_bar),  (gdouble)memory_used / sys_stat->mem_total);
+#else
+	gtk_widget_set_tooltip_text (mem_usage_progress_bar_box, mem_tooltip);
+#endif
+	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (mem_usage_progress_bar),  (gdouble)memory_used/sys_stat->mem_total);
 
 	cpu_usage = get_cpu_usage (sys_stat);
-	cpu_tooltip = g_strdup_printf (_("%0.0f %%"), cpu_usage * 100.0);
+	cpu_tooltip = g_strdup_printf (_("%0.0f %%"), cpu_usage*100.0);
+#if !GTK_CHECK_VERSION (2, 12, 0)
 	gtk_tooltips_set_tip (tooltips, cpu_usage_progress_bar_box, cpu_tooltip, NULL);
+#else
+	gtk_widget_set_tooltip_text (cpu_usage_progress_bar_box, cpu_tooltip);
+#endif
 	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (cpu_usage_progress_bar), cpu_usage);
 
 	g_free (mem_tooltip);

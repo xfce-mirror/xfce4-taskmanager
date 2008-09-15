@@ -27,8 +27,6 @@
 
 #include "taskmanager.h"
 
-static gint pagesize = 0;
-
 static void get_cmdline(gint pid, gchar *cmdline, gint length, gchar *cmdline_full, gint length_full)
 {
 	FILE *file;
@@ -127,6 +125,7 @@ static struct task get_task_details(gint pid)
 	struct stat	status;
 	gchar		filename[255];
 	gchar		cmdline_filename[255];
+	static gint	pagesize = 0;
 
 	gint utime = 0;
 	gint stime = 0;

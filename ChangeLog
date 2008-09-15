@@ -1,9 +1,17 @@
+2008-09-15	Mike Massonnet <mmassonnet@xfce.org>
+
+=== Release 0.4.1 ===
+
+2008-08-08	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Refresh deprecated GtkTooltips against new GtkTooltip code
+	* Rework the border size between the GtkBox's
+
 2008-08-03	Mike Massonnet <mmassonnet@xfce.org>
 
 	* New function to get the full and short cmdline (Linux)
-	* Fix int compare function (to work with floats)
-	* Drop useless cast which makes the CPU usage per process worky again
-	for multi-cores
+	* Fix compare functions (now works with floats and insensitive text)
+	* Fix cast which makes the CPU usage per process worky for multi-cores
 
 2008-08-02	Mike Massonnet <mmassonnet@xfce.org>
 
