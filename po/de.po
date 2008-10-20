@@ -4,15 +4,15 @@
 #   xfce4-taskmanager package.
 # Johannes Zellner <xfce4-taskmanager@nebulon.de>, 2005.
 # Enrico Tröger <enrico.troeger@uvena.de>, 2006, 2008.
-# Fabian Nowak <timystery@arcor.de>, 2007.
+# Fabian Nowak <timystery@arcor.de>, 2007, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-26 17:54-0400\n"
+"POT-Creation-Date: 2008-10-18 18:06+0200\n"
 "PO-Revision-Date: 2008-07-31 01:00+0200\n"
-"Last-Translator: Enrico Tröger <enrico.troeger@uvena.de>\n"
+"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -20,14 +20,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Verwalten Sie Ihre Prozesse"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "Xfce4 Taskmanager"
+msgstr "Prozessmanager"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:41
 msgid "Xfce4 Taskmanager"
 msgstr "Xfce4 Taskmanager"
 
@@ -39,115 +38,121 @@ msgstr "Prozess wirklich töten?"
 msgid "Really terminate the task?"
 msgstr "Prozess wirklich beenden?"
 
-#: ../src/functions.c:134
+#: ../src/functions.c:139
 #, c-format
 msgid "%d MB of %d MB used"
 msgstr "%d MB von %d MB benutzt"
 
-#: ../src/functions.c:139
+#: ../src/functions.c:148
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:61
+#: ../src/interface.c:60
 msgid "Cpu usage"
 msgstr "CPU-Auslastung"
 
-#: ../src/interface.c:69
+#: ../src/interface.c:68
 msgid "Memory usage"
 msgstr "Speicherverbrauch"
 
-#: ../src/interface.c:136
+#: ../src/interface.c:141
 msgid "Command"
 msgstr "Befehl"
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/interface.c:148 ../src/interface.c:352
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/interface.c:154 ../src/interface.c:353
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/interface.c:160 ../src/interface.c:354
 msgid "State"
 msgstr "Status"
 
-#: ../src/interface.c:161 ../src/interface.c:350
+#: ../src/interface.c:166 ../src/interface.c:355
 msgid "VM-Size"
 msgstr "Speicher"
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/interface.c:172 ../src/interface.c:356
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
+#: ../src/interface.c:178 ../src/interface.c:357
 msgid "User"
 msgstr "Benutzer"
 
-#: ../src/interface.c:179 ../src/interface.c:353
+#: ../src/interface.c:184 ../src/interface.c:358
 msgid "CPU%"
 msgstr "CPU%"
 
 #. my change
-#: ../src/interface.c:186
+#: ../src/interface.c:191
 msgid "Prio"
 msgstr "Prio"
 
-#: ../src/interface.c:203
+#: ../src/interface.c:208
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/interface.c:208
+#: ../src/interface.c:213
 msgid "Continue"
 msgstr "Fortsetzen"
 
-#: ../src/interface.c:213
+#: ../src/interface.c:218
 msgid "Term"
 msgstr "Beenden"
 
-#: ../src/interface.c:218
+#: ../src/interface.c:223
 msgid "Kill"
 msgstr "Kill"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/interface.c:228 ../src/interface.c:359
 msgid "Priority"
 msgstr "Priorität"
 
-#: ../src/interface.c:293
+#: ../src/interface.c:298
 msgid "Show user tasks"
 msgstr "Zeige eigene Prozesse"
 
-#: ../src/interface.c:298
+#: ../src/interface.c:303
 msgid "Show root tasks"
 msgstr "Zeige Systemprozesse"
 
-#: ../src/interface.c:303
+#: ../src/interface.c:308
 msgid "Show other tasks"
 msgstr "Zeige andere Prozesse"
 
-#: ../src/interface.c:308
+#: ../src/interface.c:313
 msgid "Show memory used by cache as free"
 msgstr "Zeige vom Cache verwendeten Speicher als freien Speicher an"
 
-#: ../src/interface.c:375
-msgid "Original Author:"
-msgstr ""
-
-#: ../src/interface.c:377
+#: ../src/interface.c:382
 msgid "Contributors:"
-msgstr ""
+msgstr "Mitwirkende"
 
-#: ../src/interface.c:387
+#: ../src/interface.c:392
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Xfce4-Taskmanager ist ein einfach benutzbarer Taskmanager"
 
-#: ../src/interface.c:395
+#: ../src/interface.c:401
 msgid "translator-credits"
 msgstr ""
 "Enrico Tröger\n"
 "Fabian Nowak\n"
 "Johannes Zellner"
+
+#: ../src/taskmanager-bsd.c:153 ../src/taskmanager-linux.c:375
+#, c-format
+msgid "Couldn't send signal to the task with ID %d"
+msgstr "Konnte der Anwendung mit ID %d kein Signal senden"
+
+#: ../src/taskmanager-bsd.c:166 ../src/taskmanager-linux.c:388
+#, c-format
+msgid "Couldn't set priority %d to the task with ID %d"
+msgstr "Konnte Priorität %d der Anwendunge mit ID %d nicht setzen"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "xfce4-taskmanager"
