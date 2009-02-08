@@ -2,12 +2,13 @@
 # Copyright (C) 2007 THE xfce4-taskmanager'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce4-taskmanager package.
 # Terje Uriansrud <ter@operamail.com>, 2007.
+# Terje Uriansrud <terje@uriansrud.com>, 2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.3.2svn-r02842\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-26 17:54-0400\n"
+"POT-Creation-Date: 2009-01-28 00:34+0100\n"
 "PO-Revision-Date: 2008-07-31 01:01+0200\n"
 "Last-Translator: Terje Uriansrud <ter@operamail.com>\n"
 "Language-Team: Norwegian Bokmal\n"
@@ -18,17 +19,15 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Kontroller prosesser"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "xfce4-oppgavebehandler"
+msgstr "Oppgavebehandler"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
-#, fuzzy
+#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:41
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-oppgavebehandler"
+msgstr "Xfce4 Oppgavebehandler"
 
 #: ../src/callbacks.c:72
 msgid "Really kill the task?"
@@ -38,118 +37,115 @@ msgstr "Virkelig avslutte oppgaven?"
 msgid "Really terminate the task?"
 msgstr "Virkelig terminere oppgaven?"
 
-#: ../src/functions.c:134
-#, fuzzy, c-format
-msgid "%d MB of %d MB used"
-msgstr "%d kB av %d kB brukt"
-
 #: ../src/functions.c:139
+#, c-format
+msgid "%d MB of %d MB used"
+msgstr "%d MB av %d MB brukt"
+
+#: ../src/functions.c:148
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:61
-#, fuzzy
+#: ../src/interface.c:60
 msgid "Cpu usage"
 msgstr "Prosessorbruk"
 
-#: ../src/interface.c:69
-#, fuzzy
+#: ../src/interface.c:68
 msgid "Memory usage"
 msgstr "Minnebruk"
 
-#: ../src/interface.c:136
+#: ../src/interface.c:141
 msgid "Command"
 msgstr "Kommando"
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/interface.c:148 ../src/interface.c:352
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/interface.c:154 ../src/interface.c:353
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/interface.c:160 ../src/interface.c:354
 msgid "State"
 msgstr "Status"
 
-#: ../src/interface.c:161 ../src/interface.c:350
+#: ../src/interface.c:166 ../src/interface.c:355
 msgid "VM-Size"
 msgstr "VM-størrelse"
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/interface.c:172 ../src/interface.c:356
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
+#: ../src/interface.c:178 ../src/interface.c:357
 msgid "User"
 msgstr "Bruker"
 
-#: ../src/interface.c:179 ../src/interface.c:353
+#: ../src/interface.c:184 ../src/interface.c:358
 msgid "CPU%"
 msgstr "CPU%"
 
 #. my change
-#: ../src/interface.c:186
+#: ../src/interface.c:191
 msgid "Prio"
-msgstr ""
+msgstr "Pri"
 
-#: ../src/interface.c:203
+#: ../src/interface.c:208
 msgid "Stop"
 msgstr "Stopp"
 
-#: ../src/interface.c:208
+#: ../src/interface.c:213
 msgid "Continue"
 msgstr "Fortsett"
 
-#: ../src/interface.c:213
+#: ../src/interface.c:218
 msgid "Term"
 msgstr "Term"
 
-#: ../src/interface.c:218
+#: ../src/interface.c:223
 msgid "Kill"
 msgstr "Avsl"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/interface.c:228 ../src/interface.c:359
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
-#: ../src/interface.c:293
+#: ../src/interface.c:298
 msgid "Show user tasks"
 msgstr "Vis brukeroppgaver"
 
-#: ../src/interface.c:298
+#: ../src/interface.c:303
 msgid "Show root tasks"
 msgstr "Vis superbrukeroppgaver"
 
-#: ../src/interface.c:303
+#: ../src/interface.c:308
 msgid "Show other tasks"
 msgstr "Vis andre oppgaver"
 
-#: ../src/interface.c:308
+#: ../src/interface.c:313
 msgid "Show memory used by cache as free"
 msgstr "Vis minne benyttet av hurtiglager som ledig"
 
-#: ../src/interface.c:375
-msgid "Original Author:"
-msgstr ""
-
-#: ../src/interface.c:377
+#: ../src/interface.c:382
 msgid "Contributors:"
-msgstr ""
+msgstr "Bidragsytere:"
 
-#: ../src/interface.c:387
+#: ../src/interface.c:392
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Xfce-Oppgavebehandler er en oppgavebehandler som er lett å bruke"
 
-#: ../src/interface.c:395
+#: ../src/interface.c:401
 msgid "translator-credits"
-msgstr ""
-"Terje Uriansrud"
+msgstr "Terje Uriansrud <terje@uriansrud.net>"
 
-#~ msgid "xfce4-taskmanager"
-#~ msgstr "xfce4-oppgavebehandler"
+#: ../src/taskmanager-bsd.c:153 ../src/taskmanager-linux.c:375
+#, c-format
+msgid "Couldn't send signal to the task with ID %d"
+msgstr "Klarte ikke sende signal til oppgaven med ID %d"
 
-#~ msgid "more details"
-#~ msgstr "flere detaljer"
+#: ../src/taskmanager-bsd.c:166 ../src/taskmanager-linux.c:388
+#, c-format
+msgid "Couldn't set priority %d to the task with ID %d"
+msgstr "Klarte ikke sette prioritet %d til oppgaven med ID %d"
