@@ -1,47 +1,46 @@
 # Polish translations for xfce4-taskmanager package.
 # Copyright (C) 2005-2006 Johannes Zellner.
-# This file is distributed under the same license as
-#   the xfce4-taskmanager package.
+# This file is distributed under the same license as the xfce4-taskmanager package.
 # Piotr Maliński <admin@rk.edu.pl>, 2006.
+# Piotr Sokół <piotr.sokol@10g.pl>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
+"Project-Id-Version: xfce4-taskmanager 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2008-07-31 01:01+0200\n"
-"Last-Translator: Piotr Maliński <admin@rk.edu.pl>\n"
-"Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2009-02-10 19:57+0100\n"
+"Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
+"Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Zarządza procesami"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "xfce4-taskmanager"
+msgstr "Menedżer procesów"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
-#, fuzzy
+#: ../xfce4-taskmanager.desktop.in.h:3
+#: ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-taskmanager"
+msgstr "Menedżer zadań"
 
 #: ../src/callbacks.c:72
 msgid "Really kill the task?"
-msgstr "Na pewno zabić zadanie (przez SIGKILL)?"
+msgstr "Zniszczyć zadanie?"
 
 #: ../src/callbacks.c:76
 msgid "Really terminate the task?"
-msgstr "Na pewno zakończyć zadanie (przez SIGTERM)?"
+msgstr "Zakończyć zadanie?"
 
 #: ../src/functions.c:134
-#, fuzzy, c-format
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "używane %d kB z %d kB"
+msgstr "Używane %d MB z %d MB"
 
 #: ../src/functions.c:139
 #, c-format
@@ -49,51 +48,56 @@ msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
 #: ../src/interface.c:61
-#, fuzzy
 msgid "Cpu usage"
-msgstr "wykorzystanie procesora"
+msgstr "Wykorzystanie procesora"
 
 #: ../src/interface.c:69
-#, fuzzy
 msgid "Memory usage"
-msgstr "wykorzystanie pamięci"
+msgstr "Wykorzystanie pamięci"
 
 #: ../src/interface.c:136
 msgid "Command"
 msgstr "Polecenie"
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/interface.c:143
+#: ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/interface.c:149
+#: ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/interface.c:155
+#: ../src/interface.c:349
 msgid "State"
 msgstr "Stan"
 
-#: ../src/interface.c:161 ../src/interface.c:350
+#: ../src/interface.c:161
+#: ../src/interface.c:350
 msgid "VM-Size"
 msgstr "VM-Rozmiar"
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/interface.c:167
+#: ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
+#: ../src/interface.c:173
+#: ../src/interface.c:352
 msgid "User"
 msgstr "Użytkownik"
 
-#: ../src/interface.c:179 ../src/interface.c:353
+#: ../src/interface.c:179
+#: ../src/interface.c:353
 msgid "CPU%"
 msgstr "CPU%"
 
 #. my change
 #: ../src/interface.c:186
 msgid "Prio"
-msgstr ""
+msgstr "Priorytet"
 
 #: ../src/interface.c:203
 msgid "Stop"
@@ -109,31 +113,32 @@ msgstr "Zakończ"
 
 #: ../src/interface.c:218
 msgid "Kill"
-msgstr "Zabij"
+msgstr "Zniszcz"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/interface.c:223
+#: ../src/interface.c:354
 msgid "Priority"
-msgstr ""
+msgstr "Priorytet"
 
 #: ../src/interface.c:293
 msgid "Show user tasks"
-msgstr "Pokaż procesy użytkownika"
+msgstr "Procesy użytkownika"
 
 #: ../src/interface.c:298
 msgid "Show root tasks"
-msgstr "Pokaż procesy roota"
+msgstr "Procesy roota"
 
 #: ../src/interface.c:303
 msgid "Show other tasks"
-msgstr "Pokaż inne procesy"
+msgstr "Inne procesy"
 
 #: ../src/interface.c:308
 msgid "Show memory used by cache as free"
-msgstr "Pokaż pamięć użytą przez cache jako wolną"
+msgstr "Ignorowanie pamięci podręcznej"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Twórca:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
@@ -141,15 +146,16 @@ msgstr ""
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Menedżer zadań dla środowiska Xfce"
 
 #: ../src/interface.c:395
 msgid "translator-credits"
 msgstr ""
-"Piotr Maliński"
+"Piotr Maliński <admin@rk.edu.pl>\n"
+"Piotr Sokół <piotr.sokol@10g.pl>"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "xfce4-taskmanager"
-
 #~ msgid "more details"
 #~ msgstr "więcej szczegółów"
+
