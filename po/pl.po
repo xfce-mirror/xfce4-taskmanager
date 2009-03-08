@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2009-02-10 19:57+0100\n"
+"PO-Revision-Date: 2009-03-08 14:55+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Menedżer procesów"
 #: ../xfce4-taskmanager.desktop.in.h:3
 #: ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
-msgstr "Menedżer zadań"
+msgstr "Menedżer zadań Xfce"
 
 #: ../src/callbacks.c:72
 msgid "Really kill the task?"
