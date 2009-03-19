@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-09 16:05+0900\n"
-"PO-Revision-Date: 2008-12-09 16:17+0900\n"
+"POT-Creation-Date: 2008-07-26 17:54-0400\n"
+"PO-Revision-Date: 2009-03-15 23:31+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,7 @@ msgstr "プロセスをコントロールします"
 msgid "Process manager"
 msgstr "プロセスマネージャ"
 
-#: ../xfce4-taskmanager.desktop.in.h:3
-#: ../src/interface.c:41
+#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
 msgstr "xfce4 タスクマネージャ"
 
@@ -40,128 +39,118 @@ msgstr "本当にタスクを kill しますか?"
 msgid "Really terminate the task?"
 msgstr "本当にタスクを終了しますか?"
 
-#: ../src/functions.c:139
+#: ../src/functions.c:134
 #, c-format
 msgid "%d MB of %d MB used"
 msgstr "%2$d MB 中 %1$d MB 使用"
 
-#: ../src/functions.c:148
+#: ../src/functions.c:139
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:60
+#: ../src/interface.c:61
 msgid "Cpu usage"
 msgstr "CPU 使用量"
 
-#: ../src/interface.c:68
+#: ../src/interface.c:69
 msgid "Memory usage"
 msgstr "メモリ使用量"
 
-#: ../src/interface.c:141
+#: ../src/interface.c:136
 msgid "Command"
 msgstr "コマンド"
 
-#: ../src/interface.c:148
-#: ../src/interface.c:352
+#: ../src/interface.c:143 ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:154
-#: ../src/interface.c:353
+#: ../src/interface.c:149 ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:160
-#: ../src/interface.c:354
+#: ../src/interface.c:155 ../src/interface.c:349
 msgid "State"
 msgstr "状態"
 
-#: ../src/interface.c:166
-#: ../src/interface.c:355
+#: ../src/interface.c:161 ../src/interface.c:350
 msgid "VM-Size"
 msgstr "VM サイズ"
 
-#: ../src/interface.c:172
-#: ../src/interface.c:356
+#: ../src/interface.c:167 ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:178
-#: ../src/interface.c:357
+#: ../src/interface.c:173 ../src/interface.c:352
 msgid "User"
 msgstr "ユーザ"
 
-#: ../src/interface.c:184
-#: ../src/interface.c:358
+#: ../src/interface.c:179 ../src/interface.c:353
 msgid "CPU%"
 msgstr "CPU%"
 
 #. my change
-#: ../src/interface.c:191
+#: ../src/interface.c:186
 msgid "Prio"
 msgstr "Prio"
 
-#: ../src/interface.c:208
+#: ../src/interface.c:203
 msgid "Stop"
 msgstr "中止"
 
-#: ../src/interface.c:213
+#: ../src/interface.c:208
 msgid "Continue"
 msgstr "続行"
 
-#: ../src/interface.c:218
+#: ../src/interface.c:213
 msgid "Term"
 msgstr "中断"
 
-#: ../src/interface.c:223
+#: ../src/interface.c:218
 msgid "Kill"
 msgstr "Kill"
 
-#: ../src/interface.c:228
-#: ../src/interface.c:359
+#: ../src/interface.c:223 ../src/interface.c:354
 msgid "Priority"
 msgstr "優先度"
 
-#: ../src/interface.c:298
+#: ../src/interface.c:293
 msgid "Show user tasks"
 msgstr "ユーザタスクを表示する"
 
-#: ../src/interface.c:303
+#: ../src/interface.c:298
 msgid "Show root tasks"
 msgstr "ルートタスクを表示する"
 
-#: ../src/interface.c:308
+#: ../src/interface.c:303
 msgid "Show other tasks"
 msgstr "その他のタスクを表示する"
 
-#: ../src/interface.c:313
+#: ../src/interface.c:308
 msgid "Show memory used by cache as free"
 msgstr "キャッシュが使うメモリを空きとして表示する"
 
-#: ../src/interface.c:382
+#: ../src/interface.c:375
+msgid "Original Author:"
+msgstr "オリジナルの作者:"
+
+#: ../src/interface.c:377
 msgid "Contributors:"
 msgstr "協力者:"
 
-#: ../src/interface.c:392
+#: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
 msgstr "Xfce4 タスクマネージャは 使いやすいタスクマネージャです"
 
-#: ../src/interface.c:401
+#: ../src/interface.c:395
 msgid "translator-credits"
 msgstr ""
 "Daichi Kawahata\n"
 "Nobuhiro Iwamatsu\n"
 "Masato Hashimoto"
 
-#: ../src/taskmanager-bsd.c:153
-#: ../src/taskmanager-linux.c:375
-#, c-format
-msgid "Couldn't send signal to the task with ID %d"
-msgstr "ID %d のタスクにシグナルを送れませんでした"
+#~ msgid "Couldn't send signal to the task with ID %d"
+#~ msgstr "ID %d のタスクにシグナルを送れませんでした"
 
-#: ../src/taskmanager-bsd.c:166
-#: ../src/taskmanager-linux.c:388
-#, c-format
-msgid "Couldn't set priority %d to the task with ID %d"
-msgstr "ID %d のタスクの優先度を %d へ設定できませんでした"
+#~ msgid "Couldn't set priority %d to the task with ID %d"
+#~ msgstr "ID %d のタスクの優先度を %d へ設定できませんでした"
