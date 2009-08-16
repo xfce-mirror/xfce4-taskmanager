@@ -9,24 +9,25 @@ msgstr ""
 "Project-Id-Version: xfce 4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2008-07-31 01:01+0200\n"
-"Last-Translator: Vincent <msn_vincent@hotmail.com>\n"
+"PO-Revision-Date: 2009-08-16 11:08-0800\n"
+"Last-Translator: Auke Kok <auke-jan.h.kok@intel.com>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Dutch\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Controleer processen"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
 msgstr "Xfce4 Taakbeheerder"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+#: ../xfce4-taskmanager.desktop.in.h:3
+#: ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
 msgstr "Xfce4 Taakbeheerder"
 
@@ -60,31 +61,38 @@ msgstr "Gebruik geheugen"
 msgid "Command"
 msgstr "Commando"
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/interface.c:143
+#: ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/interface.c:149
+#: ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/interface.c:155
+#: ../src/interface.c:349
 msgid "State"
 msgstr "Status"
 
-#: ../src/interface.c:161 ../src/interface.c:350
+#: ../src/interface.c:161
+#: ../src/interface.c:350
 msgid "VM-Size"
 msgstr "VSZ"
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/interface.c:167
+#: ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
+#: ../src/interface.c:173
+#: ../src/interface.c:352
 msgid "User"
 msgstr "Gebruiker"
 
-#: ../src/interface.c:179 ../src/interface.c:353
+#: ../src/interface.c:179
+#: ../src/interface.c:353
 msgid "CPU%"
 msgstr "CPU"
 
@@ -109,7 +117,8 @@ msgstr "Stoppen"
 msgid "Kill"
 msgstr "Beëindigen"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/interface.c:223
+#: ../src/interface.c:354
 msgid "Priority"
 msgstr "Prioriteit"
 
@@ -131,15 +140,15 @@ msgstr "Toon gecached geheugen als vrij"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Originele Auteurs:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "Contributies van:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Xfce4-Taakbeheerder is een gemakkelijk te gebruiken taakbeheerder"
 
 #: ../src/interface.c:395
 msgid "translator-credits"
@@ -149,6 +158,6 @@ msgstr ""
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "xfce4-taakbeheer"
-
 #~ msgid "more details"
 #~ msgstr "meer details"
+
