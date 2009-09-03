@@ -1,5 +1,4 @@
-/* $Id$
- *
+/*
  * Copyright (c) 2008 Landry Breuil <landry@xfce.org>
  *
  * This program is free software; you can redistribute it and/or modify

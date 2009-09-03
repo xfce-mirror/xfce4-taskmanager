@@ -23,7 +23,11 @@ xfce4_taskmanager_SOURCES =						\
 
 if OS_BSD_FAMILY
 xfce4_taskmanager_SOURCES += taskmanager-bsd.c
-else
+endif
+if OS_SOLARIS
+xfce4_taskmanager_SOURCES += taskmanager-linux.c
+endif
+if OS_LINUX
 xfce4_taskmanager_SOURCES += taskmanager-linux.c
 endif
 
