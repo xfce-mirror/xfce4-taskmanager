@@ -1,5 +1,3 @@
-# $Id$
-
 INCLUDES =								\
 	-I$(top_srcdir)/include						\
 	-DG_LOG_DOMAIN=\"xfce4-taskmanager\"				\
@@ -25,7 +23,7 @@ if OS_BSD_FAMILY
 xfce4_taskmanager_SOURCES += taskmanager-bsd.c
 endif
 if OS_SOLARIS
-xfce4_taskmanager_SOURCES += taskmanager-linux.c
+xfce4_taskmanager_SOURCES += taskmanager-solaris.c
 endif
 if OS_LINUX
 xfce4_taskmanager_SOURCES += taskmanager-linux.c

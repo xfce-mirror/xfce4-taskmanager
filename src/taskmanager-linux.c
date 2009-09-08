@@ -371,7 +371,7 @@ void send_signal_to_task(gint task_id, gint signal)
 		ret = kill(task_id, signal);
 
 		if(ret != 0)
-			xfce_err(_("Couldn't send signal to the task with ID %d"), signal, task_id);
+			xfce_err(_("Couldn't send signal %d to the task with ID %d"), signal, task_id);
 	}
 }
 
@@ -381,7 +381,7 @@ void set_priority_to_task(gint task_id, gint prio)
 	if(task_id > 0)
 	{
 		gchar command[128] = "";
-		g_sprintf(command, "renice %d %d > /dev/null", prio, task_id);
+		g_snprintf(command, 128, "renice %d %d > /dev/null", prio, task_id);
 		
 		if(system(command) != 0)
 			xfce_err(_("Couldn't set priority %d to the task with ID %d"), prio, task_id);

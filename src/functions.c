@@ -59,12 +59,19 @@ gboolean refresh_task_list(void)
 				tmp->old_time_percentage = tmp->time_percentage;
 				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) * (1.0/num_cpus);
 #endif
+#ifdef __sun
+				tmp->old_time = tmp->time;
+				tmp->time = new_tmp->time;
+
+				tmp->old_time_percentage = tmp->time_percentage;
+				tmp->time_percentage = (gdouble)(tmp->time - tmp->old_time) / (100.0*num_cpus);
+#endif
 				if(
 				    tmp->ppid != new_tmp->ppid ||
 				    strcmp(tmp->state,new_tmp->state) ||
 				    tmp->vsize != new_tmp->vsize ||
 				    tmp->rss != new_tmp->rss ||
-#ifdef __linux
+#ifdef __linux || __sun
 				    tmp->time_percentage != tmp->old_time_percentage ||
 #endif
 				    tmp->prio != new_tmp->prio

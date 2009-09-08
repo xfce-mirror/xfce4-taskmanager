@@ -18,6 +18,19 @@
 
 #include "taskmanager.h"
 
+#include <dirent.h>
+#include <pwd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+#include <string.h>
+#include <kstat.h>
+#include <fcntl.h>
+#include <procfs.h>
+#include <sys/procfs.h>
+
+kstat_ctl_t *kc;
+
 static void init_stats()
 {
 	kc = kstat_open();
@@ -45,8 +58,9 @@ struct task get_task_details(gint pid)
 	sprintf(pstate, "%c", thisproc.pr_lwp.pr_sname);
 	g_strlcpy(task.state, pstate, 16);
 	task.ppid = (gint) thisproc.pr_ppid;
-	task.size = (gint) thisproc.pr_size;
-	task.rss = (gint) thisproc.pr_rssize;
+	task.prio = (gint) thisproc.pr_lwp.pr_pri;
+	task.vsize = (gint) thisproc.pr_size*1024;
+	task.rss = (gint) thisproc.pr_rssize*1024;
 	task.uid = (gint) thisproc.pr_uid;
 		passwdp = getpwuid(thisproc.pr_uid);
 		if(passwdp != NULL && passwdp->pw_name != NULL)
@@ -55,8 +69,8 @@ struct task get_task_details(gint pid)
 	 * To get the appropriate precision we need to multiply up by 10000
 	 * so that when we convert to a percentage we can represent 0.01%.
 	 */
-	task.time = 10000*thisproc.pr_time.tv_sec + thisproc.pr_time.tv_nsec/100000;
 	task.old_time = task.time;
+	task.time = 10000*thisproc.pr_time.tv_sec + thisproc.pr_time.tv_nsec/100000;
 	task.time_percentage = 0;
 	}
 	close(fd);
@@ -188,7 +202,7 @@ void send_signal_to_task(gint task_id, gint signal)
 		ret = kill(task_id, signal);
 
 		if(ret != 0)
-			xfce_err(_("Couldn't send signal to the task with ID %d"), signal, task_id);
+			xfce_err(_("Couldn't send signal %d to the task with ID %d"), signal, task_id);
 	}
 }
 
@@ -198,8 +212,11 @@ void set_priority_to_task(gint task_id, gint prio)
 	if(task_id > 0)
 	{
 		gchar command[128] = "";
-		g_sprintf(command, "renice %d %d > /dev/null", prio, task_id);
-		
+		g_snprintf(command, 128, "/usr/bin/priocntl -s -p %d -i pid %d > /dev/null", prio, task_id);
+		/*
+		 * priocntl always returns 0, so this test is useless until
+		 * priocntl gets fixed
+		 */
 		if(system(command) != 0)
 			xfce_err(_("Couldn't set priority %d to the task with ID %d"), prio, task_id);
 	}

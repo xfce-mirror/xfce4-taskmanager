@@ -238,6 +238,37 @@ GtkWidget *create_prio_submenu(void)
 	GtkWidget *prio_submenu = gtk_menu_new ();
 	GtkWidget *menu_item;
 
+#ifdef __sun
+	menu_item = gtk_menu_item_new_with_label ("0");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
+	gtk_widget_show (menu_item);
+	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
+	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "0");
+	
+	menu_item = gtk_menu_item_new_with_label ("-5");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
+	gtk_widget_show (menu_item);
+	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
+	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "-5");
+
+	menu_item = gtk_menu_item_new_with_label ("-10");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
+	gtk_widget_show (menu_item);
+	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
+	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "-10");
+
+	menu_item = gtk_menu_item_new_with_label ("-15");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
+	gtk_widget_show (menu_item);
+	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
+	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "-15");
+
+	menu_item = gtk_menu_item_new_with_label ("-20");
+	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
+	gtk_widget_show (menu_item);
+	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
+	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "-20");
+#else
 	menu_item = gtk_menu_item_new_with_label ("-10");
 	gtk_misc_set_alignment (GTK_MISC (GTK_BIN (menu_item)->child), 1.0, 0.5);
 	gtk_widget_show (menu_item);
@@ -267,6 +298,7 @@ GtkWidget *create_prio_submenu(void)
 	gtk_widget_show (menu_item);
 	gtk_container_add (GTK_CONTAINER (prio_submenu), menu_item);
 	g_signal_connect ((gpointer) menu_item, "activate", G_CALLBACK (handle_prio_menu), "10");
+#endif
 	
 	return prio_submenu;
 }
@@ -451,7 +483,7 @@ void fill_list_item(gint i, GtkTreeIter *iter)
 					(gdouble)(task->rss)/1024/1024);
 		name = g_strdup_printf("%s", task->name);
 		uname = g_strdup_printf("%s", task->uname);
-		time = g_strdup_printf("%0d%%", (guint)task->time_percentage);
+		time = g_strdup_printf("%.0f%%", task->time_percentage);
 		prio = g_strdup_printf("%i", task->prio);	/* my change */
 
 		gtk_tree_store_set(GTK_TREE_STORE(list_store), iter, COLUMN_NAME, name, -1);

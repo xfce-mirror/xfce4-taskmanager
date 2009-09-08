@@ -22,12 +22,12 @@ AC_INIT([Xfce4 Taskmanager], [taskmanager_version], [http://bugzilla.xfce.org/],
         [http://goodies.xfce.org/projects/applications/xfce4-taskmanager])
 AC_PREREQ([2.50])
 AC_CANONICAL_TARGET()
-AC_REVISION([$Id: configure.in.in 5430 2008-09-21 19:49:06Z mmassonnet $])
+AC_REVISION([taskmanager_version_build])
 
 dnl ***************************
 dnl *** Initialize automake ***
 dnl ***************************
-AM_INIT_AUTOMAKE([1.8 dist-bzip2 tar-ustar])
+AM_INIT_AUTOMAKE([1.8 dist-bzip2])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
 
@@ -82,6 +82,7 @@ case "$target_os" in
     ;;
   solaris*)
     ac_taskmanager_os_family="solaris"
+    AC_CHECK_LIB([kstat], [kstat_open])
     ;;
   *)
     ac_taskmanager_os_family="linux"
@@ -109,7 +110,7 @@ dnl ***************************
 echo
 echo "Build Configuration:"
 echo
-echo "* Target OS:     $target_os"
+echo "* Target OS:     $ac_taskmanager_os_family"
 echo "* Debug Support: $enable_debug"
 echo
 
