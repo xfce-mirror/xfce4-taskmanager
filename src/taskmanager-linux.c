@@ -31,8 +31,9 @@ static void get_cmdline(gint pid, gchar *cmdline, gint length, gchar *cmdline_fu
 	FILE *file;
 	char filename[255];
 	char *p;
+	char *args = NULL;
 	int c;
-	int i = 0;
+	int i = 0, j = 0;
 	char buffer[4096];
 	int idummy;
 
@@ -47,6 +48,9 @@ static void get_cmdline(gint pid, gchar *cmdline, gint length, gchar *cmdline_fu
 		if (c != 0) {
 			cmdline_full[i++] = c;
 		} else {
+			if (args == NULL) {
+				args = cmdline_full + i;
+			}
 			cmdline_full[i++] = ' ';
 		}
 
@@ -59,6 +63,9 @@ static void get_cmdline(gint pid, gchar *cmdline, gint length, gchar *cmdline_fu
 	} else {
 		cmdline_full[i] = '\0';
 	}
+
+	if (args != NULL && args[0] == '\0')
+		args = NULL;
 
 	fclose (file);
 
@@ -103,6 +110,13 @@ static void get_cmdline(gint pid, gchar *cmdline, gint length, gchar *cmdline_fu
 		if (NULL != p) {
 			strncpy (cmdline, p+1, length);
 		}
+	}
+
+	if (args != NULL) {
+		for (i = strlen(cmdline), j = 0; args[j] != '\0' && i < length - 1; i++, j++) {
+			cmdline[i] = args[j];
+		}
+		cmdline[i] = '\0';
 	}
 
 	if (cmdline[0] == '-') {

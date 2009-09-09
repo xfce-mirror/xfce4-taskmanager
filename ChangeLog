@@ -1,3 +1,16 @@
+2009-09-09	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Show command line arguments in Linux.
+
+2009-09-08	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Update Solaris patch from Peter Tribble.
+	* Check for the lib kstat in the autoconf script.
+	* Build with the correct file for Solaris in the automake script.
+	* Fixed the xfce_err messages and switched to g_snprintf for the
+	  command strings.
+	* Updated the TODO file.
+
 2009-09-03	Mike Massonnet <mmassonnet@xfce.org>
 
 	* Add support for Solaris from Peter Tribble

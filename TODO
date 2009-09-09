@@ -1,4 +1,3 @@
-+ drop old gtk_tooltips
 + support multi core (show cpu usage per process)
 + move get_cpu_usage() out from functions.c, it is an os-dependant function
 + change priority numbers against an enum with text labels Low Medium Normal
