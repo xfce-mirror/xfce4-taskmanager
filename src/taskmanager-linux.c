@@ -34,6 +34,7 @@ static void get_cmdline(gint pid, gchar *cmdline, gint length, gchar *cmdline_fu
 	char *args = NULL;
 	int c;
 	int i = 0, j = 0;
+	int cmdline_found = 0;
 	char buffer[4096];
 	int idummy;
 
@@ -44,15 +45,19 @@ static void get_cmdline(gint pid, gchar *cmdline, gint length, gchar *cmdline_fu
 	}
 
 	/* read byte per byte until EOF */
-	while (EOF != (c = fgetc (file))) {
-		if (c != 0) {
-			cmdline_full[i++] = c;
-		} else {
+	for (i = 0; (c = fgetc (file)) != EOF; i++) {
+		if (c == 0) {
+			c = ' ';
+			cmdline_found = 1;
 			if (args == NULL) {
 				args = cmdline_full + i;
 			}
-			cmdline_full[i++] = ' ';
 		}
+		if (!cmdline_found) {
+			cmdline[i] = c;
+			cmdline[i+1] = '\0';
+		}
+		cmdline_full[i] = c;
 
 		if (i == length_full - 1) {
 			break;
@@ -97,18 +102,16 @@ static void get_cmdline(gint pid, gchar *cmdline, gint length, gchar *cmdline_fu
 	}
 
 	/* get the short version */
-	snprintf (filename, 255, "/proc/%i/cmdline", pid);
-	file = fopen (filename, "r");
-	fgets (cmdline, length, file);
-	fclose (file);
-
 	p = strchr (cmdline, ':');
 	if (NULL != p) {
 		*p = '\0';
 	} else {
 		p = strrchr (cmdline, '/');
 		if (NULL != p) {
-			strncpy (cmdline, p+1, length);
+			for (i = p - cmdline + 1, j = 0; cmdline[i] != '\0'; i++, j++) {
+				cmdline[j] = cmdline[i];
+			}
+			cmdline[j] = '\0';
 		}
 	}
 

@@ -1,3 +1,7 @@
+2009-09-11	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Small factorize on cmdline reading.
+
 2009-09-09	Mike Massonnet <mmassonnet@xfce.org>
 
 	* Show command line arguments in Linux.
