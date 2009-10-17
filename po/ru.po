@@ -9,39 +9,41 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2008-07-31 01:01+0200\n"
-"Last-Translator: Andrey Fedoseev <andrey.fedoseev@gmail.com>\n"
+"PO-Revision-Date: 2009-10-17 23:19+0300\n"
+"Last-Translator: Vlad Vasilev <lortwer@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1
+#, fuzzy
 msgid "Control your processes"
-msgstr ""
+msgstr "Управление процессами"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
 #, fuzzy
 msgid "Process manager"
 msgstr "Диспетчер задач Xfce 4"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+#: ../xfce4-taskmanager.desktop.in.h:3
+#: ../src/interface.c:46
 #, fuzzy
 msgid "Xfce4 Taskmanager"
 msgstr "Диспетчер задач Xfce 4"
 
 #: ../src/callbacks.c:72
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Действительно убить процесс?"
 
 #: ../src/callbacks.c:76
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Действительно завершить процесс?"
 
 #: ../src/functions.c:134
 #, c-format
 msgid "%d MB of %d MB used"
-msgstr ""
+msgstr "%d MB из %d MB использовано"
 
 #: ../src/functions.c:139
 #, c-format
@@ -50,43 +52,50 @@ msgstr ""
 
 #: ../src/interface.c:61
 msgid "Cpu usage"
-msgstr ""
+msgstr "Использование ЦПУ"
 
 #: ../src/interface.c:69
 msgid "Memory usage"
-msgstr ""
+msgstr "Использование памяти"
 
 #: ../src/interface.c:136
 msgid "Command"
 msgstr "Команда"
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/interface.c:143
+#: ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/interface.c:149
+#: ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/interface.c:155
+#: ../src/interface.c:349
 msgid "State"
 msgstr "Состояние"
 
-#: ../src/interface.c:161 ../src/interface.c:350
+#: ../src/interface.c:161
+#: ../src/interface.c:350
 msgid "VM-Size"
 msgstr "Память"
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/interface.c:167
+#: ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
+#: ../src/interface.c:173
+#: ../src/interface.c:352
 msgid "User"
 msgstr "Пользователь"
 
-#: ../src/interface.c:179 ../src/interface.c:353
+#: ../src/interface.c:179
+#: ../src/interface.c:353
 msgid "CPU%"
-msgstr ""
+msgstr "ЦПУ%"
 
 #. my change
 #: ../src/interface.c:186
@@ -109,9 +118,10 @@ msgstr "Завершить"
 msgid "Kill"
 msgstr "Убить"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/interface.c:223
+#: ../src/interface.c:354
 msgid "Priority"
-msgstr ""
+msgstr "Приоритет"
 
 #: ../src/interface.c:293
 msgid "Show user tasks"
@@ -127,27 +137,26 @@ msgstr "Показать другие задачи"
 
 #: ../src/interface.c:308
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "Показывать память используемую кэшем, как свободную"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Оригинальный автор"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "Участники:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Удобный в использовании менеджер процессов"
 
 #: ../src/interface.c:395
 msgid "translator-credits"
-msgstr ""
-"Andrey Fedoseev"
+msgstr "Andrey Fedoseev"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "Диспетчер задач Xfce 4"
-
 #~ msgid "more details"
 #~ msgstr "подробнее"
+
