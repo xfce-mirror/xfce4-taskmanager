@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2009-10-17 23:19+0300\n"
+"PO-Revision-Date: 2009-10-17 23:23+0300\n"
 "Last-Translator: Vlad Vasilev <lortwer@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1
-#, fuzzy
 msgid "Control your processes"
 msgstr "Управление процессами"
 
@@ -48,7 +47,7 @@ msgstr "%d MB из %d MB использовано"
 #: ../src/functions.c:139
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
 #: ../src/interface.c:61
 msgid "Cpu usage"
@@ -100,7 +99,7 @@ msgstr "ЦПУ%"
 #. my change
 #: ../src/interface.c:186
 msgid "Prio"
-msgstr ""
+msgstr "Prio"
 
 #: ../src/interface.c:203
 msgid "Stop"
