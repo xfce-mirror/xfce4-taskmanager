@@ -2,46 +2,49 @@
 # Copyright (C) 2007 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 # Fabio Riga <usul@aruba.it>, 2007.
+# Cristian Marchi <cri.penta@gmail.com>, 2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-26 18:00-0400\n"
-"PO-Revision-Date: 2008-07-31 01:00+0200\n"
-"Last-Translator: Fabio Riga <usul@aruba.it>\n"
-"Language-Team: Italian <xfce-i18n@xfce.org>\n"
+"POT-Creation-Date: 2008-07-26 17:54-0400\n"
+"PO-Revision-Date: 2009-11-21 08:10+0100\n"
+"Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
+"Language-Team: Italian Translation Team <xfce-it-translators@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+# GLOSSARIO
+# kill = interrompi
+# term = termina
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Controllo dei processi"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
-msgstr "xfce4-taskmanager"
+msgstr "Gestore dei processi"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
-#, fuzzy
+#: ../xfce4-taskmanager.desktop.in.h:3
+#: ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
-msgstr "xfce4-taskmanager"
+msgstr "Xfce4 Taskmanager"
 
 #: ../src/callbacks.c:72
 msgid "Really kill the task?"
-msgstr "Uccidere il processo?"
+msgstr "Interrompere davvero il processo?"
 
 #: ../src/callbacks.c:76
 msgid "Really terminate the task?"
-msgstr "Terminare il processo?"
+msgstr "Terminare davvero il processo?"
 
 #: ../src/functions.c:134
-#, fuzzy, c-format
+#, c-format
 msgid "%d MB of %d MB used"
-msgstr "%d kB su %d kB usati"
+msgstr "%d MB su %d MB usati"
 
 #: ../src/functions.c:139
 #, c-format
@@ -49,51 +52,56 @@ msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
 #: ../src/interface.c:61
-#, fuzzy
 msgid "Cpu usage"
-msgstr "uso cpu"
+msgstr "Utilizzo della CPU"
 
 #: ../src/interface.c:69
-#, fuzzy
 msgid "Memory usage"
-msgstr "uso memoria"
+msgstr "Utilizzo di memoria"
 
 #: ../src/interface.c:136
 msgid "Command"
 msgstr "Comando"
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/interface.c:143
+#: ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/interface.c:149
+#: ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/interface.c:155
+#: ../src/interface.c:349
 msgid "State"
 msgstr "Stato"
 
-#: ../src/interface.c:161 ../src/interface.c:350
+#: ../src/interface.c:161
+#: ../src/interface.c:350
 msgid "VM-Size"
-msgstr "Memoria"
+msgstr "Dimensione VM"
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/interface.c:167
+#: ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
+#: ../src/interface.c:173
+#: ../src/interface.c:352
 msgid "User"
 msgstr "Utente"
 
-#: ../src/interface.c:179 ../src/interface.c:353
+#: ../src/interface.c:179
+#: ../src/interface.c:353
 msgid "CPU%"
 msgstr "% CPU"
 
 #. my change
 #: ../src/interface.c:186
 msgid "Prio"
-msgstr ""
+msgstr "Prio"
 
 #: ../src/interface.c:203
 msgid "Stop"
@@ -109,44 +117,47 @@ msgstr "Termina"
 
 #: ../src/interface.c:218
 msgid "Kill"
-msgstr "Uccidi"
+msgstr "Interrompi"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/interface.c:223
+#: ../src/interface.c:354
 msgid "Priority"
-msgstr ""
+msgstr "Priorità"
 
 #: ../src/interface.c:293
 msgid "Show user tasks"
-msgstr "Mostra processi dell'utente"
+msgstr "Mostra i processi dell'utente"
 
 #: ../src/interface.c:298
 msgid "Show root tasks"
-msgstr "Mostra processi di root"
+msgstr "Mostra i processi di root"
 
 #: ../src/interface.c:303
 msgid "Show other tasks"
-msgstr "Mostra altri processi"
+msgstr "Mostra gli altri processi"
 
 #: ../src/interface.c:308
 msgid "Show memory used by cache as free"
-msgstr "Mostra la memoria usata per la scorta come libera"
+msgstr "Mostra la memoria usata per la cache come libera"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "Autore originale:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "Collaboratori:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Xfce4-Taskmanager è un gestore dei processi facile da usare"
 
 #: ../src/interface.c:395
 msgid "translator-credits"
 msgstr ""
-"Fabio Riga"
+"Fabio Riga\n"
+"Cristian Marchi, 2009"
 
 #~ msgid "more details"
 #~ msgstr "Maggiori dettagli"
+
