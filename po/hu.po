@@ -1,14 +1,14 @@
 # Hungarian translation for xfce4-taskmanager
 # Copyright 2006, 2009. Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfce4-taskmanager package.
-#
+# 
 # SZERVÁC Attila <sas@321>, 2006.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2006, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-24 18:32+0200\n"
+"POT-Creation-Date: 2008-07-26 17:54-0400\n"
 "PO-Revision-Date: 2009-07-24 22:09+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at gnome dot hu>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2009-07-23 16:56+0000\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
@@ -27,7 +27,7 @@ msgstr "Folyamatok felügyelete"
 msgid "Process manager"
 msgstr "Folyamatkezelő"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:41
+#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
 msgstr "Xfce 4 folyamatkezelő"
 
@@ -39,116 +39,115 @@ msgstr "Valóban kilövi a feladatot?"
 msgid "Really terminate the task?"
 msgstr "Valóban befejezteti a feladatot?"
 
-#: ../src/functions.c:139
+#: ../src/functions.c:134
 #, c-format
 msgid "%d MB of %d MB used"
 msgstr "$%2d MB-ból $%1d MB használt"
 
-#: ../src/functions.c:148
+#: ../src/functions.c:139
 #, c-format
 msgid "%0.0f %%"
 msgstr "%0.0f %%"
 
-#: ../src/interface.c:60
+#: ../src/interface.c:61
 msgid "Cpu usage"
 msgstr "CPU használat"
 
-#: ../src/interface.c:68
+#: ../src/interface.c:69
 msgid "Memory usage"
 msgstr "Memóriahasználat"
 
-#: ../src/interface.c:141
+#: ../src/interface.c:136
 msgid "Command"
 msgstr "Parancs"
 
-#: ../src/interface.c:148 ../src/interface.c:352
+#: ../src/interface.c:143 ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:154 ../src/interface.c:353
+#: ../src/interface.c:149 ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:160 ../src/interface.c:354
+#: ../src/interface.c:155 ../src/interface.c:349
 msgid "State"
 msgstr "Állapot"
 
-#: ../src/interface.c:166 ../src/interface.c:355
+#: ../src/interface.c:161 ../src/interface.c:350
 msgid "VM-Size"
 msgstr "VM-méret"
 
-#: ../src/interface.c:172 ../src/interface.c:356
+#: ../src/interface.c:167 ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:178 ../src/interface.c:357
+#: ../src/interface.c:173 ../src/interface.c:352
 msgid "User"
 msgstr "Felhasználó"
 
-#: ../src/interface.c:184 ../src/interface.c:358
+#: ../src/interface.c:179 ../src/interface.c:353
 msgid "CPU%"
 msgstr "CPU %"
 
 #. my change
-#: ../src/interface.c:191
+#: ../src/interface.c:186
 msgid "Prio"
 msgstr "Prioritás"
 
-#: ../src/interface.c:208
+#: ../src/interface.c:203
 msgid "Stop"
 msgstr "Leállítás"
 
-#: ../src/interface.c:213
+#: ../src/interface.c:208
 msgid "Continue"
 msgstr "Folytatás"
 
-#: ../src/interface.c:218
+#: ../src/interface.c:213
 msgid "Term"
 msgstr "Leállítás"
 
-#: ../src/interface.c:223
+#: ../src/interface.c:218
 msgid "Kill"
 msgstr "Kilövés"
 
-#: ../src/interface.c:228 ../src/interface.c:359
+#: ../src/interface.c:223 ../src/interface.c:354
 msgid "Priority"
 msgstr "Prioritás"
 
-#: ../src/interface.c:298
+#: ../src/interface.c:293
 msgid "Show user tasks"
 msgstr "Felhasználói folyamatok megjelenítése"
 
-#: ../src/interface.c:303
+#: ../src/interface.c:298
 msgid "Show root tasks"
 msgstr "Root folyamatok megjelenítése"
 
-#: ../src/interface.c:308
+#: ../src/interface.c:303
 msgid "Show other tasks"
 msgstr "Egyéb folyamatok megjelenítése"
 
-#: ../src/interface.c:313
+#: ../src/interface.c:308
 msgid "Show memory used by cache as free"
 msgstr "Gyorsítótár által használt memória megjelenítése szabadként"
 
-#: ../src/interface.c:382
+#: ../src/interface.c:375
+msgid "Original Author:"
+msgstr "Eredeti szerző:"
+
+#: ../src/interface.c:377
 msgid "Contributors:"
 msgstr "Hozzájárultak:"
 
-#: ../src/interface.c:392
+#: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
 msgstr "Xfce 4 feladatkezelő - egy egyszerűen használható feladatkezelő"
 
-#: ../src/interface.c:401
+#: ../src/interface.c:395
 msgid "translator-credits"
 msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 
-#: ../src/taskmanager-bsd.c:153 ../src/taskmanager-linux.c:375
-#, c-format
-msgid "Couldn't send signal to the task with ID %d"
-msgstr "Nem küldhető szignál a(z) %d azonosítójú feladatnak"
+#~ msgid "Couldn't send signal to the task with ID %d"
+#~ msgstr "Nem küldhető szignál a(z) %d azonosítójú feladatnak"
 
-#: ../src/taskmanager-bsd.c:166 ../src/taskmanager-linux.c:388
-#, c-format
-msgid "Couldn't set priority %d to the task with ID %d"
-msgstr "Nem állítható be a prioritás (%d) a(z) %d azonosítójú feladathoz"
-
+#~ msgid "Couldn't set priority %d to the task with ID %d"
+#~ msgstr "Nem állítható be a prioritás (%d) a(z) %d azonosítójú feladathoz"
