@@ -3,7 +3,7 @@
 # This file is distributed under the same license as
 #   the xfce4-taskmanager package.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
@@ -21,13 +21,10 @@ msgid "Control your processes"
 msgstr "Управление процессами"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
-#, fuzzy
 msgid "Process manager"
 msgstr "Диспетчер задач Xfce 4"
 
-#: ../xfce4-taskmanager.desktop.in.h:3
-#: ../src/interface.c:46
-#, fuzzy
+#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
 msgstr "Диспетчер задач Xfce 4"
 
@@ -61,38 +58,31 @@ msgstr "Использование памяти"
 msgid "Command"
 msgstr "Команда"
 
-#: ../src/interface.c:143
-#: ../src/interface.c:347
+#: ../src/interface.c:143 ../src/interface.c:347
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149
-#: ../src/interface.c:348
+#: ../src/interface.c:149 ../src/interface.c:348
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155
-#: ../src/interface.c:349
+#: ../src/interface.c:155 ../src/interface.c:349
 msgid "State"
 msgstr "Состояние"
 
-#: ../src/interface.c:161
-#: ../src/interface.c:350
+#: ../src/interface.c:161 ../src/interface.c:350
 msgid "VM-Size"
 msgstr "Память"
 
-#: ../src/interface.c:167
-#: ../src/interface.c:351
+#: ../src/interface.c:167 ../src/interface.c:351
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173
-#: ../src/interface.c:352
+#: ../src/interface.c:173 ../src/interface.c:352
 msgid "User"
 msgstr "Пользователь"
 
-#: ../src/interface.c:179
-#: ../src/interface.c:353
+#: ../src/interface.c:179 ../src/interface.c:353
 msgid "CPU%"
 msgstr "ЦПУ%"
 
@@ -117,8 +107,7 @@ msgstr "Завершить"
 msgid "Kill"
 msgstr "Убить"
 
-#: ../src/interface.c:223
-#: ../src/interface.c:354
+#: ../src/interface.c:223 ../src/interface.c:354
 msgid "Priority"
 msgstr "Приоритет"
 
@@ -156,6 +145,6 @@ msgstr "Andrey Fedoseev"
 
 #~ msgid "xfce4-taskmanager"
 #~ msgstr "Диспетчер задач Xfce 4"
+
 #~ msgid "more details"
 #~ msgstr "подробнее"
-
