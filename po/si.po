@@ -119,28 +119,30 @@ msgstr "පරිශීලක කාර්යයන් පෙන්වන්න"
 
 #: ../src/interface.c:298
 msgid "Show root tasks"
-msgstr ""
+msgstr "මූල කාර්යයන් පෙන්වන්න"
 
 #: ../src/interface.c:303
 msgid "Show other tasks"
-msgstr ""
+msgstr "අනෙක් කාර්යයන් පෙන්වන්න"
 
 #: ../src/interface.c:308
+#, fuzzy
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "කැෂය මගින් භාවිත කල මතකය නිදහස් ලෙස පෙන්වන්න"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
-msgstr ""
+msgstr "මුල් කර්තෘ:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr ""
+msgstr "දායකයන්:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
-msgstr ""
+msgstr "Xfce4-කාර්ය කළමනාකරු භාවිතය පහසු කාර්ය කළමනාකරුවෙකි"
 
 #: ../src/interface.c:395
+#, fuzzy
 msgid "translator-credits"
-msgstr ""
+msgstr "පරිවර්තන ස්තූතිය"
