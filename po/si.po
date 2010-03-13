@@ -1,6 +1,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Danishka Navin, 2010.
 msgid ""
 msgstr ""
@@ -13,50 +13,50 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "ඔබගේ ක්‍රියාවලි පාලනය කරන්න"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
 msgid "Process manager"
-msgstr ""
+msgstr "ක්‍රියාවලි කළමනාකරු"
 
 #: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
-msgstr ""
+msgstr "Xfce4 කාර්ය කළමනාකරු"
 
 #: ../src/callbacks.c:72
 msgid "Really kill the task?"
-msgstr ""
+msgstr "ඇත්තටම කාර්යය මරන්නද?"
 
 #: ../src/callbacks.c:76
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "ඇත්තටම කාර්යය අවසාන කරනන්නද?"
 
 #: ../src/functions.c:134
-#, c-format
+#, c-format, fuzzy
 msgid "%d MB of %d MB used"
-msgstr ""
+msgstr "%d MB ගෙන් %d MB භාවිතව ඇත"
 
 #: ../src/functions.c:139
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
 #: ../src/interface.c:61
 msgid "Cpu usage"
-msgstr ""
+msgstr "Cpu භාවිතාව"
 
 #: ../src/interface.c:69
 msgid "Memory usage"
-msgstr ""
+msgstr "මතක භාවිතාව"
 
 #: ../src/interface.c:136
 msgid "Command"
-msgstr ""
+msgstr "විධානය"
 
 #: ../src/interface.c:143 ../src/interface.c:347
 msgid "PID"
@@ -68,11 +68,11 @@ msgstr "PPID"
 
 #: ../src/interface.c:155 ../src/interface.c:349
 msgid "State"
-msgstr ""
+msgstr "තත්වය"
 
 #: ../src/interface.c:161 ../src/interface.c:350
 msgid "VM-Size"
-msgstr ""
+msgstr "VM-ප්‍රමාණය"
 
 #: ../src/interface.c:167 ../src/interface.c:351
 msgid "RSS"
@@ -80,7 +80,7 @@ msgstr "RSS"
 
 #: ../src/interface.c:173 ../src/interface.c:352
 msgid "User"
-msgstr ""
+msgstr "පරිශීලක"
 
 #: ../src/interface.c:179 ../src/interface.c:353
 msgid "CPU%"
@@ -88,32 +88,34 @@ msgstr "CPU%"
 
 #. my change
 #: ../src/interface.c:186
+#, fuzzy
 msgid "Prio"
-msgstr ""
+msgstr "Prio"
 
 #: ../src/interface.c:203
 msgid "Stop"
-msgstr ""
+msgstr "නවත්වන්න"
 
 #: ../src/interface.c:208
 msgid "Continue"
-msgstr ""
+msgstr "කරගෙන යන්න"
 
 #: ../src/interface.c:213
 msgid "Term"
-msgstr ""
+msgstr "නවත්වන්න"
 
 #: ../src/interface.c:218
+#, fuzzy
 msgid "Kill"
-msgstr ""
+msgstr "මරන්න"
 
 #: ../src/interface.c:223 ../src/interface.c:354
 msgid "Priority"
-msgstr ""
+msgstr "ප්‍රමුඛතාව"
 
 #: ../src/interface.c:293
 msgid "Show user tasks"
-msgstr ""
+msgstr "පරිශීලක කාර්යයන් පෙන්වන්න"
 
 #: ../src/interface.c:298
 msgid "Show root tasks"
@@ -142,4 +144,3 @@ msgstr ""
 #: ../src/interface.c:395
 msgid "translator-credits"
 msgstr ""
-
