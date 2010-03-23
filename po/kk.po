@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-26 17:54-0400\n"
-"PO-Revision-Date: 2010-03-16 11:48+0600\n"
+"PO-Revision-Date: 2010-03-24 02:46+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,42 +18,42 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1
 msgid "Control your processes"
-msgstr ""
+msgstr "Жүйе үрдістерін басқару"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
 msgid "Process manager"
-msgstr ""
+msgstr "Үрдістерді басқарушысы"
 
 #: ../xfce4-taskmanager.desktop.in.h:3
 #: ../src/interface.c:46
 msgid "Xfce4 Taskmanager"
-msgstr ""
+msgstr "Xfce4 Taskmanager"
 
 #: ../src/callbacks.c:72
 msgid "Really kill the task?"
-msgstr ""
+msgstr "Үрдісті шынымен өлтіру керек пе?"
 
 #: ../src/callbacks.c:76
 msgid "Really terminate the task?"
-msgstr ""
+msgstr "Үрдісті шынымен аяқтау керек пе?"
 
 #: ../src/functions.c:134
 #, c-format
 msgid "%d MB of %d MB used"
-msgstr ""
+msgstr "%d Мб қолдануда, барлығы %d Мб"
 
 #: ../src/functions.c:139
 #, c-format
 msgid "%0.0f %%"
-msgstr ""
+msgstr "%0.0f %%"
 
 #: ../src/interface.c:61
 msgid "Cpu usage"
-msgstr ""
+msgstr "Cpu қолд."
 
 #: ../src/interface.c:69
 msgid "Memory usage"
-msgstr ""
+msgstr "Жады қолд."
 
 #: ../src/interface.c:136
 msgid "Command"
@@ -109,11 +109,11 @@ msgstr "Жалғастыру"
 
 #: ../src/interface.c:213
 msgid "Term"
-msgstr ""
+msgstr "Аяқтау"
 
 #: ../src/interface.c:218
 msgid "Kill"
-msgstr ""
+msgstr "Өлтіру"
 
 #: ../src/interface.c:223
 #: ../src/interface.c:354
@@ -122,19 +122,19 @@ msgstr "Приоритеті"
 
 #: ../src/interface.c:293
 msgid "Show user tasks"
-msgstr ""
+msgstr "Пайдаланушы есептері"
 
 #: ../src/interface.c:298
 msgid "Show root tasks"
-msgstr ""
+msgstr "Әкімші есептері"
 
 #: ../src/interface.c:303
 msgid "Show other tasks"
-msgstr ""
+msgstr "Басқа есептер"
 
 #: ../src/interface.c:308
 msgid "Show memory used by cache as free"
-msgstr ""
+msgstr "Кэштегі жадыны бос деп көрсету"
 
 #: ../src/interface.c:375
 msgid "Original Author:"
