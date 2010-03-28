@@ -5,7 +5,7 @@
 # Johannes Zellner <xfce4-taskmanager@nebulon.de>, 2005.
 # Enrico Tröger <enrico.troeger@uvena.de>, 2006, 2008.
 # Fabian Nowak <timystery@arcor.de>, 2007, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
@@ -123,7 +123,7 @@ msgstr "Zeige Systemprozesse"
 
 #: ../src/interface.c:303
 msgid "Show other tasks"
-msgstr "Zeige andere Prozesse"
+msgstr "Zeige fremde Prozesse"
 
 #: ../src/interface.c:308
 msgid "Show memory used by cache as free"
@@ -135,7 +135,7 @@ msgstr "Initialer Autor:"
 
 #: ../src/interface.c:377
 msgid "Contributors:"
-msgstr "Mitwirkende"
+msgstr "Mitwirkende:"
 
 #: ../src/interface.c:387
 msgid "Xfce4-Taskmanager is an easy to use taskmanager"
