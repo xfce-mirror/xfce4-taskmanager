@@ -131,15 +131,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkStatusbar" id="process-statusbar">
-            <property name="visible">True</property>
-            <property name="spacing">2</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="pack_type">end</property>
-            <property name="position">2</property>
-          </packing>
+          <placeholder/>
         </child>
       </object>
     </child>

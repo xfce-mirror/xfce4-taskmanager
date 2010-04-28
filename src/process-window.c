@@ -19,15 +19,10 @@
 #include "process-window.h"
 #include "process-window_ui.h"
 #include "process-tree-view.h"
+#include "process-statusbar.h"
 
 
 
-enum
-{
-	PROP_CPU = 1,
-	PROP_MEMORY,
-	PROP_NUM_PROCESSES,
-};
 typedef struct _XtmProcessWindowClass XtmProcessWindowClass;
 typedef struct _XtmProcessWindowPriv XtmProcessWindowPriv;
 struct _XtmProcessWindowClass
@@ -46,12 +41,6 @@ struct _XtmProcessWindowPriv
 	GtkWidget *		window;
 	GtkWidget *		treeview;
 	GtkWidget *		statusbar;
-	guint			statusbar_context_id;
-
-	gushort			cpu;
-	guint64			memory;
-	guint			num_processes;
-
 	XtmSettings *		settings;
 };
 #define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XTM_TYPE_PROCESS_WINDOW, XtmProcessWindowPriv))
@@ -67,7 +56,6 @@ static void	emit_destroy_signal				(XtmProcessWindow *window);
 static void	show_menu_execute_task				(XtmProcessWindow *window);
 static void	show_menu_information				(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
-static void	update_status_bar				(XtmProcessWindow *window);
 
 
 
@@ -118,8 +106,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_show (window->priv->treeview);
 	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->priv->builder, "scrolledwindow")), window->priv->treeview);
 
-	window->priv->statusbar = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "process-statusbar"));
-	window->priv->statusbar_context_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (window->priv->statusbar), "System information");
+	window->priv->statusbar = xtm_process_statusbar_new ();
+	gtk_widget_show (window->priv->statusbar);
+	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->priv->builder, "process-vbox")), window->priv->statusbar, FALSE, FALSE, 0);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-execute"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_menu_execute_task), window);
@@ -169,18 +158,6 @@ xtm_process_window_get_property (GObject *object, guint property_id, GValue *val
 
 	switch (property_id)
 	{
-		case PROP_CPU:
-		g_value_set_uint (value, priv->cpu);
-		break;
-
-		case PROP_MEMORY:
-		g_value_set_uint64 (value, priv->memory);
-		break;
-
-		case PROP_NUM_PROCESSES:
-		g_value_set_uint (value, priv->num_processes);
-		break;
-
 		default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 		break;
@@ -197,18 +174,18 @@ xtm_process_window_set_property (GObject *object, guint property_id, const GValu
 		case PROP_CPU:
 		priv->cpu = g_value_get_uint (value);
 		// TODO update_cpu_monitor ();
-		update_status_bar (XTM_PROCESS_WINDOW (object));
+		g_object_set (priv->statusbar, "cpu", priv->cpu, NULL);
 		break;
 
 		case PROP_MEMORY:
 		priv->memory = g_value_get_uint64 (value);
 		// TODO update_memory_monitor ();
-		update_status_bar (XTM_PROCESS_WINDOW (object));
+		g_object_set (priv->statusbar, "memory", priv->memory, NULL);
 		break;
 
 		case PROP_NUM_PROCESSES:
 		priv->num_processes = g_value_get_uint (value);
-		update_status_bar (XTM_PROCESS_WINDOW (object));
+		g_object_set (priv->statusbar, "num_processes", priv->num_processes, NULL);
 		break;
 
 		default:
@@ -378,17 +355,6 @@ show_about_dialog (XtmProcessWindow *window)
 		"website", "http://goodies.xfce.org/projects/applications/xfce4-taskmanager",
 		"website-label", "goodies.xfce.org",
 		NULL);
-}
-
-static void
-update_status_bar (XtmProcessWindow *window)
-{
-	gchar *text = NULL;
-
-	text = g_strdup_printf (_("Processes: %d \t CPU: %d%% \t Memory: %d%%"),
-		window->priv->num_processes, window->priv->cpu, window->priv->memory);
-	gtk_statusbar_pop (GTK_STATUSBAR (window->priv->statusbar), window->priv->statusbar_context_id);
-	gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar), window->priv->statusbar_context_id, text);
 }
 
 
