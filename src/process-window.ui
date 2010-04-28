@@ -30,11 +30,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="toolbutton-information">
+              <object class="GtkToolButton" id="toolbutton-preferences">
                 <property name="visible">True</property>
                 <property name="is_important">True</property>
                 <property name="use_underline">True</property>
-                <property name="stock_id">gtk-info</property>
+                <property name="stock_id">gtk-preferences</property>
               </object>
               <packing>
                 <property name="expand">False</property>

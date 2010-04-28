@@ -54,7 +54,7 @@ static void	xtm_process_window_hide				(GtkWidget *widget);
 
 static void	emit_destroy_signal				(XtmProcessWindow *window);
 static void	show_menu_execute_task				(XtmProcessWindow *window);
-static void	show_menu_information				(XtmProcessWindow *window);
+static void	show_menu_preferences				(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
 
 
@@ -113,8 +113,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-execute"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_menu_execute_task), window);
 
-	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-information"));
-	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_menu_information), window);
+	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-preferences"));
+	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_menu_preferences), window);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-about"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
@@ -256,7 +256,7 @@ show_menu_execute_task (XtmProcessWindow *window)
 }
 
 static void
-information_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
+preferences_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
 {
 	gchar *setting_name;
 	gboolean active;
@@ -267,7 +267,7 @@ information_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
 }
 
 static void
-menu_information_append_item (GtkMenu *menu, gchar *title, gchar *setting_name, XtmSettings *settings)
+menu_preferences_append_item (GtkMenu *menu, gchar *title, gchar *setting_name, XtmSettings *settings)
 {
 	GtkWidget *mi;
 	gboolean active = FALSE;
@@ -278,11 +278,11 @@ menu_information_append_item (GtkMenu *menu, gchar *title, gchar *setting_name, 
 	gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (mi), active);
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 	g_object_set_data (G_OBJECT (mi), "setting-name", setting_name);
-	g_signal_connect (mi, "toggled", G_CALLBACK (information_toggled), settings);
+	g_signal_connect (mi, "toggled", G_CALLBACK (preferences_toggled), settings);
 }
 
 static void
-show_menu_information (XtmProcessWindow *window)
+show_menu_preferences (XtmProcessWindow *window)
 {
 	static GtkWidget *menu = NULL;
 	GtkWidget *mi;
@@ -293,19 +293,19 @@ show_menu_information (XtmProcessWindow *window)
 	}
 
 	menu = gtk_menu_new ();
-	menu_information_append_item (GTK_MENU (menu), _("Show system processes"), "show-system-processes", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("Show system processes"), "show-system-processes", window->priv->settings);
 
 	mi = gtk_separator_menu_item_new ();
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
-	menu_information_append_item (GTK_MENU (menu), _("PID"), "column-pid", window->priv->settings);
-	menu_information_append_item (GTK_MENU (menu), _("PPID"), "column-ppid", window->priv->settings);
-	menu_information_append_item (GTK_MENU (menu), _("State"), "column-state", window->priv->settings);
-	menu_information_append_item (GTK_MENU (menu), _("Virtual Bytes"), "column-vsz", window->priv->settings);
-	menu_information_append_item (GTK_MENU (menu), _("Private Bytes"), "column-rss", window->priv->settings);
-	menu_information_append_item (GTK_MENU (menu), _("UID"), "column-uid", window->priv->settings);
-	menu_information_append_item (GTK_MENU (menu), _("CPU"), "column-cpu", window->priv->settings);
-	menu_information_append_item (GTK_MENU (menu), _("Priority"), "column-priority", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("PID"), "column-pid", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("PPID"), "column-ppid", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("State"), "column-state", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("Virtual Bytes"), "column-vsz", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("Private Bytes"), "column-rss", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("UID"), "column-uid", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("CPU"), "column-cpu", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("Priority"), "column-priority", window->priv->settings);
 
 	gtk_widget_show_all (menu);
 	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, 0, gtk_get_current_event_time ());
