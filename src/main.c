@@ -1,38 +1,24 @@
-/* $Id$
- *
- * Copyright (c) 2006 Johannes Zellner, <webmaster@nebulon.de>
+/*
+ * Copyright (c) 2005-2006 Johannes Zellner, <webmaster@nebulon.de>
+ * Copyright (c) 2010 Mike Massonnet, <mmassonnet@xfce.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Library General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
 #ifdef HAVE_CONFIG_H
-#  include <config.h>
+#include <config.h>
 #endif
 
 #include <gtk/gtk.h>
-#include <glib.h>
-#include <signal.h>
 
-#include <libxfce4util/libxfce4util.h>
-
-#include "types.h"
-#include "interface.h"
-#include "functions.h"
+#include "process-window.h"
 
 int main (int argc, char *argv[])
 {
+	GtkWidget *window;
 
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -40,26 +26,16 @@ int main (int argc, char *argv[])
 	textdomain (GETTEXT_PACKAGE);
 #endif
 
-	gtk_set_locale ();
 	gtk_init (&argc, &argv);
 
-	own_uid = getuid();
+	window = xtm_process_window_new ();
+	gtk_widget_show (window);
 
-	config_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, "xfce4-taskmanager.rc", FALSE);
-	load_config();
-
-	task_array = g_array_new (FALSE, FALSE, sizeof (struct task));
-	tasks = 0;
-
-	main_window = create_main_window ();
-	gtk_widget_show (main_window);
-
-	if(!refresh_task_list())
-		return 0;
-
-	g_timeout_add(REFRESH_INTERVAL, (gpointer) refresh_task_list, NULL);
+	g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 
 	gtk_main ();
+
+	g_object_unref (window);
 
 	return 0;
 }

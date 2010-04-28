@@ -1,5 +1,3 @@
-# $Id$
-
 SUBDIRS =								\
 	po								\
 	src
@@ -9,12 +7,8 @@ desktop_in_files = xfce4-taskmanager.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-distclean-local:
-	rm -rf *.cache *~
-
-rpm: dist
-	rpmbuild -ta $(PACKAGE)-$(VERSION).tar.gz
-	@rm -f $(PACKAGE)-$(VERSION).tar.gz
+ChangeLog:
+	ChangeLog-git.sh > $(srcdir)/ChangeLog || touch $(srcdir)/ChangeLog
 
 EXTRA_DIST =								\
 	intltool-extract.in						\
