@@ -19,6 +19,7 @@ xfce4_taskmanager_SOURCES =						\
 	process-window.c		process-window.h		\
 	process-tree-view.c		process-tree-view.h		\
 	process-statusbar.c		process-statusbar.h		\
+	task-manager.c			task-manager.h			\
 	settings.c			settings.h			\
 	$(NULL)
 

@@ -23,6 +23,7 @@ enum
 {
 	PROP_CPU = 1,
 	PROP_MEMORY,
+	PROP_SWAP,
 	PROP_NUM_PROCESSES,
 };
 typedef struct _XtmProcessStatusbarClass XtmProcessStatusbarClass;
@@ -37,9 +38,11 @@ struct _XtmProcessStatusbar
 	GtkWidget *		label_num_processes;
 	GtkWidget *		label_cpu;
 	GtkWidget *		label_memory;
+	GtkWidget *		label_swap;
 
 	gushort			cpu;
-	guint64			memory;
+	gushort			memory;
+	gushort			swap;
 	guint			num_processes;
 };
 G_DEFINE_TYPE (XtmProcessStatusbar, xtm_process_statusbar, GTK_TYPE_STATUSBAR)
@@ -57,7 +60,9 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 	g_object_class_install_property (class, PROP_CPU,
 		g_param_spec_uint ("cpu", "CPU", "CPU usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_MEMORY,
-		g_param_spec_uint64 ("memory", "Memory", "Memory usage", 0, G_MAXUINT64, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+		g_param_spec_uint ("memory", "Memory", "Memory usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+	g_object_class_install_property (class, PROP_SWAP,
+		g_param_spec_uint ("swap", "Swap", "Swap usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_NUM_PROCESSES,
 		g_param_spec_uint ("num-processes", "NumProcesses", "Number of processes", 0, G_MAXUINT, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 }
@@ -85,7 +90,7 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	}
 #endif
 
-	hbox = gtk_hbox_new (FALSE, 24);
+	hbox = gtk_hbox_new (FALSE, 16);
 	gtk_box_pack_start (GTK_BOX (area), hbox, TRUE, TRUE, 0);
 
 	statusbar->label_num_processes = gtk_label_new (NULL);
@@ -96,6 +101,9 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 
 	statusbar->label_memory = gtk_label_new (NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), statusbar->label_memory, FALSE, FALSE, 0);
+
+	statusbar->label_swap = gtk_label_new (NULL);
+	gtk_box_pack_start (GTK_BOX (hbox), statusbar->label_swap, FALSE, FALSE, 0);
 
 	gtk_widget_show_all (hbox);
 }
@@ -116,9 +124,16 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		break;
 
 		case PROP_MEMORY:
-		statusbar->memory = g_value_get_uint64 (value);
+		statusbar->memory = g_value_get_uint (value);
 		text = g_strdup_printf (_("Memory: %d%%"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
+		g_free (text);
+		break;
+
+		case PROP_SWAP:
+		statusbar->swap = g_value_get_uint (value);
+		text = g_strdup_printf (_("Swap: %d%%"), statusbar->swap);
+		gtk_label_set_text (GTK_LABEL (statusbar->label_swap), text);
 		g_free (text);
 		break;
 

@@ -29,6 +29,6 @@ typedef struct _XtmProcessWindow XtmProcessWindow;
 GType		xtm_process_window_get_type			(void);
 GtkWidget *	xtm_process_window_new				();
 GtkTreeModel *	xtm_process_window_get_model			(XtmProcessWindow *window);
-void		xtm_process_window_set_system_info		(XtmProcessWindow *window, guint num_processes, gushort cpu, guint64 mem);
+void		xtm_process_window_set_system_info		(XtmProcessWindow *window, guint num_processes, gushort cpu, gushort memory, gushort swap);
 
 #endif /* !PROCESS_WINDOW_H */

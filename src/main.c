@@ -15,10 +15,12 @@
 #include <gtk/gtk.h>
 
 #include "process-window.h"
+#include "task-manager.h"
 
 int main (int argc, char *argv[])
 {
 	GtkWidget *window;
+	XtmTaskManager *task_manager;
 
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -30,6 +32,9 @@ int main (int argc, char *argv[])
 
 	window = xtm_process_window_new ();
 	gtk_widget_show (window);
+
+	task_manager = xtm_task_manager_new ();
+	g_message ("Running as %s on %s", xtm_task_manager_get_username (task_manager), xtm_task_manager_get_hostname (task_manager));
 
 	g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 

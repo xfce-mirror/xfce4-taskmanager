@@ -75,12 +75,6 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 
 	class->get_property = xtm_process_window_get_property;
 	class->set_property = xtm_process_window_set_property;
-	g_object_class_install_property (class, PROP_CPU,
-		g_param_spec_uint ("cpu", "CPU", "CPU usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
-	g_object_class_install_property (class, PROP_MEMORY,
-		g_param_spec_uint64 ("memory", "Memory", "Memory usage", 0, G_MAXUINT64, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
-	g_object_class_install_property (class, PROP_NUM_PROCESSES,
-		g_param_spec_uint ("num-processes", "NumProcesses", "Number of processes", 0, G_MAXUINT, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 }
 
 static void
@@ -171,23 +165,6 @@ xtm_process_window_set_property (GObject *object, guint property_id, const GValu
 
 	switch (property_id)
 	{
-		case PROP_CPU:
-		priv->cpu = g_value_get_uint (value);
-		// TODO update_cpu_monitor ();
-		g_object_set (priv->statusbar, "cpu", priv->cpu, NULL);
-		break;
-
-		case PROP_MEMORY:
-		priv->memory = g_value_get_uint64 (value);
-		// TODO update_memory_monitor ();
-		g_object_set (priv->statusbar, "memory", priv->memory, NULL);
-		break;
-
-		case PROP_NUM_PROCESSES:
-		priv->num_processes = g_value_get_uint (value);
-		g_object_set (priv->statusbar, "num_processes", priv->num_processes, NULL);
-		break;
-
 		default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 		break;
@@ -225,11 +202,8 @@ execute_command (const gchar *command)
 static void
 menu_execute_append_item (GtkMenu *menu, gchar *title, gchar *command, gchar *icon_name)
 {
-	GtkWidget *mi;
-	GtkWidget *image;
-
-	image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
-	mi = gtk_image_menu_item_new_with_label (title);
+	GtkWidget *image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
+	GtkWidget *mi = gtk_image_menu_item_new_with_label (title);
 	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 	g_signal_connect_swapped (mi, "activate", G_CALLBACK (execute_command), command);
@@ -258,11 +232,8 @@ show_menu_execute_task (XtmProcessWindow *window)
 static void
 preferences_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
 {
-	gchar *setting_name;
-	gboolean active;
-
-	active = gtk_check_menu_item_get_active (mi);
-	setting_name = g_object_get_data (G_OBJECT (mi), "setting-name");
+	gboolean active = gtk_check_menu_item_get_active (mi);
+	gchar *setting_name = g_object_get_data (G_OBJECT (mi), "setting-name");
 	g_object_set (settings, setting_name, active, NULL);
 }
 
@@ -385,14 +356,6 @@ xtm_process_window_hide (GtkWidget *widget)
 	gtk_widget_hide (XTM_PROCESS_WINDOW (widget)->priv->window);
 }
 
-void
-xtm_process_window_set_model (XtmProcessWindow *window, GtkTreeModel *model)
-{
-	g_return_if_fail (G_LIKELY (XTM_IS_PROCESS_WINDOW (window)));
-	g_return_if_fail (G_LIKELY (GTK_IS_TREE_VIEW (window->priv->treeview)));
-	gtk_tree_view_set_model (GTK_TREE_VIEW (window->priv->treeview), model);
-}
-
 GtkTreeModel *
 xtm_process_window_get_model (XtmProcessWindow *window)
 {
@@ -402,10 +365,11 @@ xtm_process_window_get_model (XtmProcessWindow *window)
 }
 
 void
-xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gushort cpu, guint64 memory)
+xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gushort cpu, gushort memory, gushort swap)
 {
 	g_return_if_fail (G_LIKELY (XTM_IS_PROCESS_WINDOW (window)));
 	g_return_if_fail (G_LIKELY (GTK_IS_STATUSBAR (window->priv->statusbar)));
-	g_object_set (window, "num-processes", num_processes, "cpu", cpu, "memory", memory, NULL);
+	g_object_set (window->priv->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory, "swap", swap, NULL);
+	// TODO update cpu/memory monitors
 }
 
