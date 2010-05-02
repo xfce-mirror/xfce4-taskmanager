@@ -24,7 +24,7 @@ static gboolean
 timeout_cb ()
 {
 	guint num_processes;
-	gushort cpu, memory, swap;
+	gfloat cpu, memory, swap;
 	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory, &swap);
 	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory, swap);
 }

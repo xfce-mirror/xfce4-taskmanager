@@ -370,7 +370,7 @@ xtm_process_window_get_model (XtmProcessWindow *window)
 }
 
 void
-xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gushort cpu, gushort memory, gushort swap)
+xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gfloat swap)
 {
 	g_return_if_fail (G_LIKELY (XTM_IS_PROCESS_WINDOW (window)));
 	g_return_if_fail (G_LIKELY (GTK_IS_STATUSBAR (window->priv->statusbar)));

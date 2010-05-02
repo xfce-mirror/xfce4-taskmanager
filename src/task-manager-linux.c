@@ -49,7 +49,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 }
 
 gboolean
-get_cpu_usage (gushort *cpu_count, gushort *cpu_user, gushort *cpu_system)
+get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 {
 	FILE *file;
 	gchar *filename = "/proc/stat";
@@ -84,8 +84,8 @@ get_cpu_usage (gushort *cpu_count, gushort *cpu_user, gushort *cpu_system)
 	cur_jiffies_system = system;
 	cur_jiffies = cur_jiffies_user + cur_jiffies_system + idle;
 
-	*cpu_user = (old_jiffies > 0) ? (cur_jiffies_user - old_jiffies_user) * 100 / (cur_jiffies - old_jiffies) : 0;
-	*cpu_system = (old_jiffies > 0) ? (cur_jiffies_system - old_jiffies_system) * 100 / (cur_jiffies - old_jiffies) : 0;
+	*cpu_user = (old_jiffies > 0) ? (cur_jiffies_user - old_jiffies_user) * 100 / (gdouble)(cur_jiffies - old_jiffies) : 0;
+	*cpu_system = (old_jiffies > 0) ? (cur_jiffies_system - old_jiffies_system) * 100 / (gdouble)(cur_jiffies - old_jiffies) : 0;
 	*cpu_count = (count != 0) ? count : 1;
 
 	return TRUE;

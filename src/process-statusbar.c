@@ -40,9 +40,9 @@ struct _XtmProcessStatusbar
 	GtkWidget *		label_memory;
 	GtkWidget *		label_swap;
 
-	gushort			cpu;
-	gushort			memory;
-	gushort			swap;
+	gfloat			cpu;
+	gfloat			memory;
+	gfloat			swap;
 	guint			num_processes;
 };
 G_DEFINE_TYPE (XtmProcessStatusbar, xtm_process_statusbar, GTK_TYPE_STATUSBAR)
@@ -58,11 +58,11 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 	xtm_process_statusbar_parent_class = g_type_class_peek_parent (klass);
 	class->set_property = xtm_process_statusbar_set_property;
 	g_object_class_install_property (class, PROP_CPU,
-		g_param_spec_uint ("cpu", "CPU", "CPU usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+		g_param_spec_float ("cpu", "CPU", "CPU usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_MEMORY,
-		g_param_spec_uint ("memory", "Memory", "Memory usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+		g_param_spec_float ("memory", "Memory", "Memory usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_SWAP,
-		g_param_spec_uint ("swap", "Swap", "Swap usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+		g_param_spec_float ("swap", "Swap", "Swap usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_NUM_PROCESSES,
 		g_param_spec_uint ("num-processes", "NumProcesses", "Number of processes", 0, G_MAXUINT, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 }
@@ -117,22 +117,22 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 	switch (property_id)
 	{
 		case PROP_CPU:
-		statusbar->cpu = g_value_get_uint (value);
-		text = g_strdup_printf (_("CPU: %d%%"), statusbar->cpu);
+		statusbar->cpu = g_value_get_float (value);
+		text = g_strdup_printf (_("CPU: %.2f%%"), statusbar->cpu);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_cpu), text);
 		g_free (text);
 		break;
 
 		case PROP_MEMORY:
-		statusbar->memory = g_value_get_uint (value);
-		text = g_strdup_printf (_("Memory: %d%%"), statusbar->memory);
+		statusbar->memory = g_value_get_float (value);
+		text = g_strdup_printf (_("Memory: %.2f%%"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
 		g_free (text);
 		break;
 
 		case PROP_SWAP:
-		statusbar->swap = g_value_get_uint (value);
-		text = g_strdup_printf (_("Swap: %d%%"), statusbar->swap);
+		statusbar->swap = g_value_get_float (value);
+		text = g_strdup_printf (_("Swap: %.2f%%"), statusbar->swap);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_swap), text);
 		g_free (text);
 		break;

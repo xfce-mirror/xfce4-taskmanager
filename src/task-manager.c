@@ -37,8 +37,8 @@ struct _XtmTaskManager
 	gchar *			owner_uid_name;
 	gchar *			hostname;
 	gushort			cpu_count;
-	gushort			cpu_user;
-	gushort			cpu_system;
+	gfloat			cpu_user;
+	gfloat			cpu_system;
 	guint64			memory_total;
 	guint64			memory_free;
 	guint64			memory_cache;
@@ -134,7 +134,7 @@ xtm_task_manager_get_tasklist (XtmTaskManager *manager)
 }
 
 void
-xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gushort *cpu, gushort *memory, gushort *swap)
+xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gfloat *cpu, gfloat *memory, gfloat *swap)
 {
 	guint64 memory_used, swap_used;
 
@@ -148,8 +148,8 @@ xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes,
 	memory_used = manager->memory_total - manager->memory_free - manager->memory_cache - manager->memory_buffers;
 	swap_used = manager->swap_total - manager->swap_free;
 
-	*memory = (manager->memory_total != 0) ? memory_used * 100 / manager->memory_total : 0;
-	*swap = (manager->swap_total != 0) ? swap_used * 100 / manager->swap_total : 0;
+	*memory = (manager->memory_total != 0) ? memory_used * 100 / (gdouble)manager->memory_total : 0;
+	*swap = (manager->swap_total != 0) ? swap_used * 100 / (gdouble)manager->swap_total : 0;
 
 	/* Set CPU usage */
 	get_cpu_usage (&manager->cpu_count, &manager->cpu_user, &manager->cpu_system);

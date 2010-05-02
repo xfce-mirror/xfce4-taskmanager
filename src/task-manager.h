@@ -30,7 +30,7 @@ struct _Task
 	gchar program_name[64];
 	gchar full_cmdline[255];
 	gchar state[16];
-	gushort cpu;
+	gfloat cpu;
 	guint64 memory_vsz;
 	guint64 memory_rss;
 	gushort priority;
@@ -41,7 +41,7 @@ struct _Task
  */
 
 gboolean	get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);
-gboolean	get_cpu_usage (gushort *cpu_count, gushort *cpu_user, gushort *cpu_system);
+gboolean	get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system);
 //gboolean	get_task_list (GArray *task_list);
 //void		send_signal_to_task (gint task_id, gint signal);
 //void		set_priority_to_task (gint task_id, gint prio);
@@ -63,6 +63,6 @@ GType			xtm_task_manager_get_type			(void);
 XtmTaskManager *	xtm_task_manager_new				();
 const gchar *		xtm_task_manager_get_username			(XtmTaskManager *manager);
 const gchar *		xtm_task_manager_get_hostname			(XtmTaskManager *manager);
-void			xtm_task_manager_get_system_info		(XtmTaskManager *manager, guint *num_processes, gushort *cpu, gushort *memory, gushort *swap);
+void			xtm_task_manager_get_system_info		(XtmTaskManager *manager, guint *num_processes, gfloat *cpu, gfloat *memory, gfloat *swap);
 
 #endif /* !TASK_MANAGER_H */
