@@ -136,6 +136,24 @@ xtm_task_manager_get_tasklist (XtmTaskManager *manager)
 void
 xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gushort *cpu, gushort *memory, gushort *swap)
 {
+	guint64 memory_used, swap_used;
+
+	/* Set number of processes */
+	*num_processes = 0;//manager->tasks->len;
+
+	/* Set memory and swap usage */
+	get_memory_usage (&manager->memory_total, &manager->memory_free, &manager->memory_cache, &manager->memory_buffers,
+			&manager->swap_total, &manager->swap_free);
+
+	memory_used = manager->memory_total - manager->memory_free - manager->memory_cache - manager->memory_buffers;
+	swap_used = manager->swap_total - manager->swap_free;
+
+	*memory = (manager->memory_total != 0) ? memory_used * 100 / manager->memory_total : 0;
+	*swap = (manager->swap_total != 0) ? swap_used * 100 / manager->swap_total : 0;
+
+	/* Set CPU usage */
+	get_cpu_usage (&manager->cpu_count, &manager->cpu_user, &manager->cpu_system);
+	*cpu = manager->cpu_user + manager->cpu_system;
 }
 
 void

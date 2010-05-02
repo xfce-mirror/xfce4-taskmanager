@@ -39,6 +39,8 @@ struct _XtmProcessWindowPriv
 {
 	GtkBuilder *		builder;
 	GtkWidget *		window;
+	GtkWidget *		cpu_monitor;
+	GtkWidget *		memory_monitor;
 	GtkWidget *		treeview;
 	GtkWidget *		statusbar;
 	XtmSettings *		settings;
@@ -95,6 +97,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 	if (width >= 1 && height >= 1)
 		gtk_window_resize (GTK_WINDOW (window->priv->window), width, height);
 	g_signal_connect_swapped (window->priv->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
+
+	window->priv->cpu_monitor = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "cpu-monitor"));
+	window->priv->memory_monitor = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "mem-monitor"));
 
 	window->priv->treeview = xtm_process_tree_view_new ();
 	gtk_widget_show (window->priv->treeview);
@@ -371,5 +376,7 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 	g_return_if_fail (G_LIKELY (GTK_IS_STATUSBAR (window->priv->statusbar)));
 	g_object_set (window->priv->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory, "swap", swap, NULL);
 	// TODO update cpu/memory monitors
+	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->priv->memory_monitor), memory / 100.0);
+	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->priv->cpu_monitor), cpu / 100.0);
 }
 

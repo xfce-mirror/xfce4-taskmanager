@@ -17,11 +17,20 @@
 #include "process-window.h"
 #include "task-manager.h"
 
+static GtkWidget *window;
+static XtmTaskManager *task_manager;
+
+static gboolean
+timeout_cb ()
+{
+	guint num_processes;
+	gushort cpu, memory, swap;
+	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory, &swap);
+	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory, swap);
+}
+
 int main (int argc, char *argv[])
 {
-	GtkWidget *window;
-	XtmTaskManager *task_manager;
-
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -35,6 +44,8 @@ int main (int argc, char *argv[])
 
 	task_manager = xtm_task_manager_new ();
 	g_message ("Running as %s on %s", xtm_task_manager_get_username (task_manager), xtm_task_manager_get_hostname (task_manager));
+
+	g_timeout_add (1000, timeout_cb, NULL);
 
 	g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 

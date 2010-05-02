@@ -16,6 +16,10 @@
 
 #include <glib-object.h>
 
+/**
+ * Task struct used as elements of a task list GArray.
+ */
+
 typedef struct _Task Task;
 struct _Task
 {
@@ -32,6 +36,20 @@ struct _Task
 	gushort priority;
 };
 
+/**
+ * OS specific implementation.
+ */
+
+gboolean	get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);
+gboolean	get_cpu_usage (gushort *cpu_count, gushort *cpu_user, gushort *cpu_system);
+//gboolean	get_task_list (GArray *task_list);
+//void		send_signal_to_task (gint task_id, gint signal);
+//void		set_priority_to_task (gint task_id, gint prio);
+
+/**
+ * GObject class used to update the graphical widgets.
+ */
+
 #define XTM_TYPE_TASK_MANAGER			(xtm_task_manager_get_type ())
 #define XTM_TASK_MANAGER(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), XTM_TYPE_TASK_MANAGER, XtmTaskManager))
 #define XTM_TASK_MANAGER_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), XTM_TYPE_TASK_MANAGER, XtmTaskManagerClass))
@@ -45,5 +63,6 @@ GType			xtm_task_manager_get_type			(void);
 XtmTaskManager *	xtm_task_manager_new				();
 const gchar *		xtm_task_manager_get_username			(XtmTaskManager *manager);
 const gchar *		xtm_task_manager_get_hostname			(XtmTaskManager *manager);
+void			xtm_task_manager_get_system_info		(XtmTaskManager *manager, guint *num_processes, gushort *cpu, gushort *memory, gushort *swap);
 
 #endif /* !TASK_MANAGER_H */
