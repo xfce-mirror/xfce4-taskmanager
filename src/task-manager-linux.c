@@ -161,8 +161,8 @@ get_cpu_percent (guint pid, gulong jiffies_user, gfloat *cpu_user, gulong jiffie
 
 	jiffies_user_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_user, GUINT_TO_POINTER (pid)));
 	jiffies_system_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_system, GUINT_TO_POINTER (pid)));
-	g_hash_table_insert (hash_user, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_cpu_user));
-	g_hash_table_insert (hash_system, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_cpu_system));
+	g_hash_table_insert (hash_cpu_user, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_user));
+	g_hash_table_insert (hash_cpu_system, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_system));
 
 	if (_cpu_count > 0)
 	{
