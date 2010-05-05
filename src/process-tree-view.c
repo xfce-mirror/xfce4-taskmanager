@@ -34,20 +34,6 @@ struct _XtmProcessTreeView
 };
 G_DEFINE_TYPE (XtmProcessTreeView, xtm_process_tree_view, GTK_TYPE_TREE_VIEW)
 
-enum
-{
-	COLUMN_COMMAND,
-	COLUMN_PID,
-	COLUMN_PPID,
-	COLUMN_STATE,
-	COLUMN_VSZ,
-	COLUMN_RSS,
-	COLUMN_UID,
-	COLUMN_CPU,
-	COLUMN_PRIORITY,
-	N_COLUMNS,
-};
-
 static gboolean	treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
 static void	settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
 static int	sort_by_string					(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
@@ -74,10 +60,10 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_object_get (treeview->settings, "sort-column-id", &sort_column_id, "sort-type", &sort_type, NULL);
 	g_signal_connect (treeview->settings, "notify", G_CALLBACK (settings_changed), treeview);
 
-	treeview->model = gtk_list_store_new (9, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
-		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
+		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT);
 
-	g_object_set (treeview, "search-column", COLUMN_COMMAND, "model", treeview->model, NULL);
+	g_object_set (treeview, "search-column", XTM_PTV_COLUMN_COMMAND, "model", treeview->model, NULL);
 
 	cell_text = gtk_cell_renderer_text_new();
 
@@ -87,61 +73,60 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	cell_cmdline = gtk_cell_renderer_text_new ();
 	g_object_set (cell_cmdline, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
-	column = gtk_tree_view_column_new_with_attributes (_("Task"), cell_cmdline, "text", COLUMN_COMMAND, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("Task"), cell_cmdline, "text", XTM_PTV_COLUMN_COMMAND, NULL);
 	g_object_set (column, "expand", TRUE, "reorderable", FALSE, "resizable", TRUE, "visible", TRUE, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), COLUMN_COMMAND);
+	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_COMMAND);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-pid", &visible, NULL);
-	column = gtk_tree_view_column_new_with_attributes (_("PID"), cell_right_aligned, "text", COLUMN_PID, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("PID"), cell_right_aligned, "text", XTM_PTV_COLUMN_PID, NULL);
 	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), COLUMN_PID);
+	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_PID);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-ppid", &visible, NULL);
-	column = gtk_tree_view_column_new_with_attributes (_("PPID"), cell_right_aligned, "text", COLUMN_PPID, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("PPID"), cell_right_aligned, "text", XTM_PTV_COLUMN_PPID, NULL);
 	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), COLUMN_PPID);
+	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_PPID);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-state", &visible, NULL);
-	column = gtk_tree_view_column_new_with_attributes (_("State"), cell_text, "text", COLUMN_STATE, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("State"), cell_text, "text", XTM_PTV_COLUMN_STATE, NULL);
 	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), COLUMN_STATE);
+	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_STATE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-vsz", &visible, NULL);
-	column = gtk_tree_view_column_new_with_attributes (_("VSZ"), cell_right_aligned, "text", COLUMN_VSZ, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("VSZ"), cell_right_aligned, "text", XTM_PTV_COLUMN_VSZ_STR, NULL);
 	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), COLUMN_VSZ);
+	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_VSZ);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-rss", &visible, NULL);
-	column = gtk_tree_view_column_new_with_attributes (_("RSS"), cell_right_aligned, "text", COLUMN_RSS, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("RSS"), cell_right_aligned, "text", XTM_PTV_COLUMN_RSS_STR, NULL);
 	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), COLUMN_RSS);
+	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_RSS);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-uid", &visible, NULL);
-	column = gtk_tree_view_column_new_with_attributes (_("UID"), cell_text, "text", COLUMN_UID, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("UID"), cell_text, "text", XTM_PTV_COLUMN_UID, NULL);
 	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), COLUMN_UID);
+	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_UID);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-cpu", &visible, NULL);
-	column = gtk_tree_view_column_new_with_attributes (_("CPU"), cell_right_aligned, "text", COLUMN_CPU, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("CPU"), cell_right_aligned, "text", XTM_PTV_COLUMN_CPU_STR, NULL);
 	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), COLUMN_CPU);
+	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_CPU);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-priority", &visible, NULL);
 	/* TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header. */
-	column = gtk_tree_view_column_new_with_attributes (_("Prio."), cell_right_aligned, "text", COLUMN_PRIORITY, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("Prio."), cell_right_aligned, "text", XTM_PTV_COLUMN_PRIORITY, NULL);
 	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), COLUMN_PRIORITY);
+	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_PRIORITY);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-	gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (treeview->model), sort_by_string, NULL, NULL);
 	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (treeview->model), sort_column_id, sort_type);
 
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
@@ -165,27 +150,27 @@ treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 static void
 settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview)
 {
-	if (g_strstr_len (pspec->name, -1, "column-") != NULL)
+	if (g_str_has_prefix (pspec->name, "column-"))
 	{
 		gboolean visible;
 		gushort column_id;
 
 		if (!g_strcmp0 (pspec->name, "column-uid"))
-			column_id = COLUMN_UID;
+			column_id = XTM_PTV_COLUMN_UID;
 		else if (!g_strcmp0 (pspec->name, "column-pid"))
-			column_id = COLUMN_PID;
+			column_id = XTM_PTV_COLUMN_PID;
 		else if (!g_strcmp0 (pspec->name, "column-ppid"))
-			column_id = COLUMN_PPID;
+			column_id = XTM_PTV_COLUMN_PPID;
 		else if (!g_strcmp0 (pspec->name, "column-state"))
-			column_id = COLUMN_STATE;
+			column_id = XTM_PTV_COLUMN_STATE;
 		else if (!g_strcmp0 (pspec->name, "column-vsz"))
-			column_id = COLUMN_VSZ;
+			column_id = XTM_PTV_COLUMN_VSZ_STR;
 		else if (!g_strcmp0 (pspec->name, "column-rss"))
-			column_id = COLUMN_RSS;
+			column_id = XTM_PTV_COLUMN_RSS_STR;
 		else if (!g_strcmp0 (pspec->name, "column-cpu"))
-			column_id = COLUMN_CPU;
+			column_id = XTM_PTV_COLUMN_CPU_STR;
 		else if (!g_strcmp0 (pspec->name, "column-priority"))
-			column_id = COLUMN_PRIORITY;
+			column_id = XTM_PTV_COLUMN_PRIORITY;
 
 		g_object_get (object, pspec->name, &visible, NULL);
 		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), column_id), visible);
@@ -196,46 +181,6 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 		g_object_get (object, pspec->name, &visible, NULL);
 		// TODO show/hide system processes from treeview
 	}
-}
-
-static int
-sort_by_string (GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data)
-{
-	gint sort_column_id;
-	GtkSortType order;
-	gchar *str1 = NULL, *str2 = NULL;
-	gchar *cstr1 = NULL, *cstr2 = NULL;
-	gint ret = 0;
-
-	g_debug (__func__);
-
-	if (!gtk_tree_sortable_get_sort_column_id (GTK_TREE_SORTABLE (model), &sort_column_id, &order))
-	{
-		g_debug ("sort column default or unsorted: %d", sort_column_id);
-		return ret;
-	}
-
-	gtk_tree_model_get(model, a, sort_column_id, &str1, -1);
-	gtk_tree_model_get(model, b, sort_column_id, &str2, -1);
-
-	cstr1 = g_utf8_collate_key_for_filename (str1, -1);
-	cstr2 = g_utf8_collate_key_for_filename (str2, -1);
-
-	if (cstr1 != NULL && cstr2 != NULL)
-	{
-		ret = g_utf8_collate (cstr1, cstr2);
-	}
-	else if ((cstr1 == NULL && cstr2 != NULL) || (cstr1 != NULL && cstr2 == NULL))
-	{
-		ret = (cstr1 == NULL) ? -1 : 1;
-	}
-
-	g_free (str1);
-	g_free (str2);
-	g_free (cstr1);
-	g_free (cstr2);
-
-	return ret;
 }
 
 

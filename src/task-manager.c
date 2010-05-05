@@ -66,6 +66,7 @@ xtm_task_manager_class_init (XtmTaskManagerClass *klass)
 static void
 xtm_task_manager_init (XtmTaskManager *manager)
 {
+	manager->tasks = g_array_new (FALSE, FALSE, sizeof (Task));
 	get_owner_uid (&(manager->owner_uid), &(manager->owner_uid_name));
 	manager->hostname = get_hostname ();
 }
@@ -74,6 +75,7 @@ static void
 xtm_task_manager_finalize (GObject *object)
 {
 	XtmTaskManager *manager = XTM_TASK_MANAGER (object);
+	g_array_free (manager->tasks, TRUE);
 	g_free (manager->owner_uid_name);
 	g_free (manager->hostname);
 }
@@ -128,18 +130,13 @@ xtm_task_manager_get_hostname (XtmTaskManager *manager)
 	return manager->hostname;
 }
 
-GArray *
-xtm_task_manager_get_tasklist (XtmTaskManager *manager)
-{
-}
-
 void
 xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gfloat *cpu, gfloat *memory, gfloat *swap)
 {
 	guint64 memory_used, swap_used;
 
 	/* Set number of processes */
-	*num_processes = 0;//manager->tasks->len;
+	*num_processes = manager->tasks->len;
 
 	/* Set memory and swap usage */
 	get_memory_usage (&manager->memory_total, &manager->memory_free, &manager->memory_cache, &manager->memory_buffers,
@@ -154,6 +151,87 @@ xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes,
 	/* Set CPU usage */
 	get_cpu_usage (&manager->cpu_count, &manager->cpu_user, &manager->cpu_system);
 	*cpu = manager->cpu_user + manager->cpu_system;
+}
+
+const GArray *
+xtm_task_manager_get_task_list (XtmTaskManager *manager)
+{
+	GArray *array;
+	guint i;
+
+	if (manager->tasks->len == 0)
+	{
+		get_task_list (manager->tasks);
+#if 1|DEBUG
+		{
+			gint i;
+			for (i = 0; i < manager->tasks->len; i++)
+			{
+				Task *task = &g_array_index (manager->tasks, Task, i);
+				g_print ("%5d %5s %15s %.50s\n", task->pid, task->uid_name, task->name, task->cmdline);
+			}
+		}
+#endif
+		return manager->tasks;
+	}
+
+	/* Retrieve new task list */
+	array = g_array_new (FALSE, FALSE, sizeof (Task));
+	get_task_list (array);
+
+	/* Remove terminated tasks */
+	for (i = 0; i < manager->tasks->len; i++)
+	{
+		guint j;
+		Task *task = &g_array_index (manager->tasks, Task, i);
+		gboolean found = FALSE;
+
+		for (j = 0; j < array->len; j++)
+		{
+			Task *tasktmp = &g_array_index (array, Task, j);
+			if (task->pid != tasktmp->pid)
+				continue;
+			found = TRUE;
+			break;
+		}
+
+		if (found == FALSE)
+			g_array_remove_index (manager->tasks, i);
+	}
+
+	/* Append started tasks and update existing ones */
+	for (i = 0; i < array->len; i++)
+	{
+		guint j;
+		Task *tasktmp = &g_array_index (array, Task, i);
+		gboolean found = FALSE;
+
+		for (j = 0; j < manager->tasks->len; j++)
+		{
+			Task *task = &g_array_index (manager->tasks, Task, j);
+			if (task->pid != tasktmp->pid)
+				continue;
+
+			found = TRUE;
+
+			task->ppid = tasktmp->ppid;
+			if (g_strcmp0 (task->state, tasktmp->state))
+				g_strlcpy (task->state, tasktmp->state, sizeof (task->state));
+			task->cpu_user = tasktmp->cpu_user;
+			task->cpu_system = tasktmp->cpu_system;
+			task->rss = tasktmp->rss;
+			task->vsz = tasktmp->vsz;
+			task->prio = tasktmp->prio;
+			break;
+		}
+
+		if (found == FALSE)
+			g_array_append_val (manager->tasks, tasktmp);
+	}
+
+	g_array_free (array, TRUE);
+
+	return manager->tasks;
 }
 
 void

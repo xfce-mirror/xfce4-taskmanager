@@ -23,17 +23,18 @@
 typedef struct _Task Task;
 struct _Task
 {
-	guint uid;
-	gchar uid_name[64];
-	guint pid;
-	guint ppid;
-	gchar program_name[64];
-	gchar full_cmdline[255];
-	gchar state[16];
-	gfloat cpu;
-	guint64 memory_vsz;
-	guint64 memory_rss;
-	gushort priority;
+	guint		uid;
+	gchar		uid_name[256];
+	guint		pid;
+	guint		ppid;
+	gchar		name[256];
+	gchar		cmdline[1024];
+	gchar		state[16];
+	gfloat		cpu_user;
+	gfloat		cpu_system;
+	guint64		vsz;
+	guint64		rss;
+	gshort		prio;
 };
 
 /**
@@ -42,7 +43,7 @@ struct _Task
 
 gboolean	get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);
 gboolean	get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system);
-//gboolean	get_task_list (GArray *task_list);
+gboolean	get_task_list (GArray *task_list);
 //void		send_signal_to_task (gint task_id, gint signal);
 //void		set_priority_to_task (gint task_id, gint prio);
 
@@ -64,5 +65,6 @@ XtmTaskManager *	xtm_task_manager_new				();
 const gchar *		xtm_task_manager_get_username			(XtmTaskManager *manager);
 const gchar *		xtm_task_manager_get_hostname			(XtmTaskManager *manager);
 void			xtm_task_manager_get_system_info		(XtmTaskManager *manager, guint *num_processes, gfloat *cpu, gfloat *memory, gfloat *swap);
+const GArray *		xtm_task_manager_get_task_list			(XtmTaskManager *manager);
 
 #endif /* !TASK_MANAGER_H */
