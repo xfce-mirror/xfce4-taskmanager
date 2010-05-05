@@ -146,6 +146,35 @@ get_task_cmdline (Task *task)
 	}
 }
 
+static void
+get_cpu_percent (guint pid, gulong jiffles_user, gfloat *cpu_user, gulong jiffles_system, gfloat *cpu_system)
+{
+	static GHashTable *hash_cpu_user = NULL;
+	static GHashTable *hash_cpu_system = NULL;
+	gulong jiffles_user_old, jiffles_system_old;
+
+	if (hash_cpu_user == NULL)
+	{
+		hash_cpu_user = g_hash_table_new (NULL, NULL);
+		hash_cpu_system = g_hash_table_new (NULL, NULL);
+	}
+
+	jiffles_user_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_user, GUINT_TO_POINTER (pid)));
+	jiffles_system_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_system, GUINT_TO_POINTER (pid)));
+	g_hash_table_insert (hash_user, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffles_cpu_user));
+	g_hash_table_insert (hash_system, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffles_cpu_system));
+
+	if (_cpu_count > 0)
+	{
+		*cpu_user = (jiffles_user_old > 0) ? (jiffles_user - jiffles_user_old) / (gfloat)_cpu_count : 0;
+		*cpu_system = (jiffles_system_old > 0) ? (jiffles_system - jiffles_system_old) / (gfloat)_cpu_count : 0;
+	}
+	else
+	{
+		*cpu_user = *cpu_system = 0;
+	}
+}
+
 static gboolean
 get_task_details (guint pid, Task *task)
 {
@@ -163,8 +192,7 @@ get_task_details (guint pid, Task *task)
 	{
 		gchar dummy[255];
 		gint idummy;
-		static gulong cur_j_user, cur_j_system;
-		static gulong old_j_user, old_j_system;
+		gulong jiffles_user, jiffles_system;
 		struct passwd *pw;
 		struct stat sstat;
 
@@ -184,8 +212,8 @@ get_task_details (guint pid, Task *task)
 			 dummy,		// cminflt
 			 dummy,		// majflt
 			 dummy,		// cmajflt
-			&cur_j_user,	// utime the number of jiffies that this process has scheduled in user mode
-			&cur_j_system,	// stime " system mode
+			&jiffles_user,	// utime the number of jiffies that this process has scheduled in user mode
+			&jiffles_system,// stime " system mode
 
 			 &idummy,	// cutime " waited for children in user mode
 			 &idummy,	// cstime " system mode
@@ -221,8 +249,7 @@ get_task_details (guint pid, Task *task)
 		);
 
 		task->rss *= get_pagesize ();
-		task->cpu_user = (old_j_user > 0 && _cpu_count > 0) ? (cur_j_user - old_j_user) / (gfloat)_cpu_count : 0;
-		task->cpu_system = (old_j_system > 0 && _cpu_count > 0) ? (cur_j_system - old_j_system) / (gfloat)_cpu_count : 0;
+		get_cpu_percent (task->pid, jiffles_user, &task->cpu_user, jiffles_system, &task->cpu_system);
 
 		stat (filename, &sstat);
 		pw = getpwuid (sstat.st_uid);
