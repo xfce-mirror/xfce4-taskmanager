@@ -116,19 +116,9 @@ get_task_cmdline (Task *task)
 	gchar c;
 
 	snprintf (filename, 96, "/proc/%i/cmdline", task->pid);
-	if ((file = fopen (filename, "r")) == NULL)
-		return;
-
-	/* Drop parentheses around task->name */
-	// FIXME comm concats the name to 15 chars
-	{
-		gchar *p;
-		g_strlcpy (task->name, &task->name[1], sizeof (task->name));
-		p = g_strrstr (task->name, ")");
-		*p = '\0';
-	}
 
 	/* Read byte per byte until EOF */
+	file = fopen (filename, "r");
 	for (i = 0; (c = fgetc (file)) != EOF && i < sizeof (task->cmdline) - 1; i++)
 		task->cmdline[i] = (c == '\0') ? ' ' : c;
 	if (task->cmdline[i-1] == ' ')
@@ -181,6 +171,7 @@ get_task_details (guint pid, Task *task)
 	FILE *file;
 	gchar filename[96];
 	gchar buffer[1024];
+	gchar *p1, *p2;
 
 	snprintf (filename, 96, "/proc/%d/stat", pid);
 	if ((file = fopen (filename, "r")) == NULL)
@@ -189,19 +180,34 @@ get_task_details (guint pid, Task *task)
 	fgets (buffer, 1024, file);
 	fclose (file);
 
+	/* Scanning the short process name is unreliable with scanf when it contains spaces */
+	p1 = g_strrstr (buffer, "(");
+	p2 = g_strrstr (buffer, ")");
+	while (p1 <= p2)
 	{
-		gchar dummy[255];
+		*p1 = 'x';
+		p1++;
+	}
+
+	/* Retrieve the short name from the comm file */
+	snprintf (filename, 96, "/proc/%d/comm", pid);
+	file = fopen (filename, "r");
+	fscanf (file, "%255s", task->name);
+	fclose (file);
+
+	/* Parse the stat file */
+	{
+		gchar dummy[256];
 		gint idummy;
 		gulong jiffies_user, jiffies_system;
 		struct passwd *pw;
 		struct stat sstat;
-		guint ppid = 0;
 
 		sscanf(buffer, "%i %255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %i %i %i %i %i %i %i %i %i %i %i %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
 			&task->pid,	// processid
-			task->name,	// processname
+			 dummy,		// processname
 			task->state,	// processstate
-			&ppid,		// parentid
+			&task->ppid,	// parentid
 			 &idummy,	// processs groupid
 
 			 &idummy,	// session id
@@ -249,11 +255,6 @@ get_task_details (guint pid, Task *task)
 			 dummy
 		);
 
-		// FIXME sscanf sucks, big news, process names with spaces don't pass
-		if (ppid == 0)
-			return FALSE;
-
-		task->ppid = ppid;
 		task->rss *= get_pagesize ();
 		get_cpu_percent (task->pid, jiffies_user, &task->cpu_user, jiffies_system, &task->cpu_system);
 
@@ -263,6 +264,7 @@ get_task_details (guint pid, Task *task)
 		g_strlcpy (task->uid_name, (pw != NULL) ? pw->pw_name : "nobody", sizeof (task->uid_name));
 	}
 
+	/* Read the full command line */
 	get_task_cmdline (task);
 
 	return TRUE;
