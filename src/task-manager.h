@@ -66,5 +66,6 @@ const gchar *		xtm_task_manager_get_username			(XtmTaskManager *manager);
 const gchar *		xtm_task_manager_get_hostname			(XtmTaskManager *manager);
 void			xtm_task_manager_get_system_info		(XtmTaskManager *manager, guint *num_processes, gfloat *cpu, gfloat *memory, gfloat *swap);
 const GArray *		xtm_task_manager_get_task_list			(XtmTaskManager *manager);
+void			xtm_task_manager_update_model			(XtmTaskManager *manager);
 
 #endif /* !TASK_MANAGER_H */

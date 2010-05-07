@@ -20,6 +20,7 @@
 #include <gtk/gtk.h>
 
 #include "task-manager.h"
+#include "process-tree-view.h" /* for the columns of the model */
 
 
 
@@ -32,6 +33,7 @@ struct _XtmTaskManager
 {
 	GObject			parent;
 	/*<private>*/
+	GtkTreeModel *		model;
 	GArray *		tasks;
 	guint			owner_uid;
 	gchar *			owner_uid_name;
@@ -52,6 +54,10 @@ static void	xtm_task_manager_finalize			(GObject *object);
 
 static void	get_owner_uid					(guint *owner_uid, gchar **owner_uid_name);
 static gchar *	get_hostname					();
+static void	model_add_task					(GtkTreeModel *model, Task *task);
+static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, Task *task);
+static void	model_update_task				(GtkTreeModel *model, Task *task);
+static void	model_remove_task				(GtkTreeModel *model, Task *task);
 
 
 
@@ -78,6 +84,14 @@ xtm_task_manager_finalize (GObject *object)
 	g_array_free (manager->tasks, TRUE);
 	g_free (manager->owner_uid_name);
 	g_free (manager->hostname);
+}
+
+static void
+_xtm_task_manager_set_model (XtmTaskManager *manager, GtkTreeModel *model)
+{
+	g_return_if_fail (G_LIKELY (XTM_IS_TASK_MANAGER (manager)));
+	g_return_if_fail (G_LIKELY (GTK_IS_TREE_MODEL (model)));
+	manager->model = model;
 }
 
 static void
@@ -108,12 +122,84 @@ get_hostname ()
 	return g_strdup_printf ("%s", hostname);
 }
 
+static void
+model_add_task (GtkTreeModel *model, Task *task)
+{
+	GtkTreeIter iter;
+	gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+	gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+		XTM_PTV_COLUMN_COMMAND, task->cmdline,
+		XTM_PTV_COLUMN_PID, task->pid,
+		XTM_PTV_COLUMN_STATE, task->state,
+		XTM_PTV_COLUMN_UID, task->uid_name,
+		-1);
+	model_update_tree_iter (model, &iter, task);
+}
+
+static void
+model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
+{
+	gchar vsz[64], rss[64], cpu[16];
+
+	// TODO show values < 1 MB in KB or B
+	g_snprintf (vsz, 64, _("%lu MB"), task->vsz / 1024 / 1024);
+	g_snprintf (rss, 64, _("%lu MB"), task->rss / 1024 / 1024);
+	// TODO make precision optional
+	g_snprintf (cpu, 16, _("%.2f%%"), task->cpu_user + task->cpu_system);
+
+	gtk_list_store_set (GTK_LIST_STORE (model), iter,
+		XTM_PTV_COLUMN_PPID, task->ppid,
+		XTM_PTV_COLUMN_STATE, task->state,
+		XTM_PTV_COLUMN_VSZ, task->vsz,
+		XTM_PTV_COLUMN_VSZ_STR, vsz,
+		XTM_PTV_COLUMN_RSS, task->rss,
+		XTM_PTV_COLUMN_RSS_STR, rss,
+		XTM_PTV_COLUMN_CPU, task->cpu_user + task->cpu_system,
+		XTM_PTV_COLUMN_CPU_STR, cpu,
+		XTM_PTV_COLUMN_PRIORITY, task->prio,
+		-1);
+}
+
+static void
+model_find_tree_iter_for_pid (GtkTreeModel *model, guint pid, GtkTreeIter *iter)
+{
+	gboolean valid;
+	guint pid_iter;
+
+	valid = gtk_tree_model_get_iter_first (model, iter);
+	while (valid)
+	{
+		gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_PID, &pid_iter, -1);
+		if (pid == pid_iter)
+			break;
+		valid = gtk_tree_model_iter_next (model, iter);
+	}
+}
+
+static void
+model_update_task (GtkTreeModel *model, Task *task)
+{
+	GtkTreeIter iter;
+	model_find_tree_iter_for_pid (model, task->pid, &iter);
+	model_update_tree_iter (model, &iter, task);
+}
+
+static void
+model_remove_task (GtkTreeModel *model, Task *task)
+{
+	GtkTreeIter iter;
+	model_find_tree_iter_for_pid (model, task->pid, &iter);
+	gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+}
+
 
 
 XtmTaskManager *
-xtm_task_manager_new ()
+xtm_task_manager_new (GtkTreeModel *model)
 {
-	return g_object_new (XTM_TYPE_TASK_MANAGER, NULL);
+	XtmTaskManager *manager = g_object_new (XTM_TYPE_TASK_MANAGER, NULL);
+	_xtm_task_manager_set_model (manager, model);
+	return manager;
 }
 
 const gchar *
@@ -156,23 +242,31 @@ xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes,
 const GArray *
 xtm_task_manager_get_task_list (XtmTaskManager *manager)
 {
+	xtm_task_manager_update_model (manager);
+	return manager->tasks;
+}
+
+void
+xtm_task_manager_update_model (XtmTaskManager *manager)
+{
 	GArray *array;
+	GtkTreeIter iter;
+	gboolean valid;
 	guint i;
 
+	/* Retrieve initial task list and return */
 	if (manager->tasks->len == 0)
 	{
 		get_task_list (manager->tasks);
-#if 1|DEBUG
+		for (i = 0; i < manager->tasks->len; i++)
 		{
-			gint i;
-			for (i = 0; i < manager->tasks->len; i++)
-			{
-				Task *task = &g_array_index (manager->tasks, Task, i);
-				g_print ("%5d %5s %15s %.50s\n", task->pid, task->uid_name, task->name, task->cmdline);
-			}
-		}
+			Task *task = &g_array_index (manager->tasks, Task, i);
+			model_add_task (manager->model, task);
+#if 1|DEBUG
+			g_print ("%5d %5s %15s %.50s\n", task->pid, task->uid_name, task->name, task->cmdline);
 #endif
-		return manager->tasks;
+		}
+		return;
 	}
 
 	/* Retrieve new task list */
@@ -183,12 +277,13 @@ xtm_task_manager_get_task_list (XtmTaskManager *manager)
 	for (i = 0; i < manager->tasks->len; i++)
 	{
 		guint j;
+		Task *tasktmp;
 		Task *task = &g_array_index (manager->tasks, Task, i);
 		gboolean found = FALSE;
 
 		for (j = 0; j < array->len; j++)
 		{
-			Task *tasktmp = &g_array_index (array, Task, j);
+			tasktmp = &g_array_index (array, Task, j);
 			if (task->pid != tasktmp->pid)
 				continue;
 			found = TRUE;
@@ -196,7 +291,13 @@ xtm_task_manager_get_task_list (XtmTaskManager *manager)
 		}
 
 		if (found == FALSE)
+		{
+#if DEBUG
+			g_debug ("Remove old task %d %s", task->pid, task->name);
+#endif
+			model_remove_task (manager->model, task);
 			g_array_remove_index (manager->tasks, i);
+		}
 	}
 
 	/* Append started tasks and update existing ones */
@@ -214,24 +315,41 @@ xtm_task_manager_get_task_list (XtmTaskManager *manager)
 
 			found = TRUE;
 
-			task->ppid = tasktmp->ppid;
-			if (g_strcmp0 (task->state, tasktmp->state))
+			/* Update the model (with the rest) only if needed, this keeps the CPU cool */
+			if (task->ppid != tasktmp->ppid
+				|| g_strcmp0 (task->state, tasktmp->state)
+				|| task->cpu_user != tasktmp->cpu_user
+				|| task->cpu_system != tasktmp->cpu_system
+				|| task->rss != tasktmp->rss
+				|| task->vsz != tasktmp->vsz
+				|| task->prio != tasktmp->prio)
+			{
+				task->ppid = tasktmp->ppid;
 				g_strlcpy (task->state, tasktmp->state, sizeof (task->state));
-			task->cpu_user = tasktmp->cpu_user;
-			task->cpu_system = tasktmp->cpu_system;
-			task->rss = tasktmp->rss;
-			task->vsz = tasktmp->vsz;
-			task->prio = tasktmp->prio;
+				task->cpu_user = tasktmp->cpu_user;
+				task->cpu_system = tasktmp->cpu_system;
+				task->rss = tasktmp->rss;
+				task->vsz = tasktmp->vsz;
+				task->prio = tasktmp->prio;
+				model_update_task (manager->model, tasktmp);
+			}
+
 			break;
 		}
 
 		if (found == FALSE)
-			g_array_append_val (manager->tasks, tasktmp);
+		{
+#if DEBUG
+			g_debug ("Add new task %d %s", tasktmp->pid, tasktmp->name);
+#endif
+			model_add_task (manager->model, tasktmp);
+			g_array_append_val (manager->tasks, *tasktmp);
+		}
 	}
 
 	g_array_free (array, TRUE);
 
-	return manager->tasks;
+	return;
 }
 
 void
