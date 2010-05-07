@@ -195,12 +195,13 @@ get_task_details (guint pid, Task *task)
 		gulong jiffies_user, jiffies_system;
 		struct passwd *pw;
 		struct stat sstat;
+		guint ppid = 0;
 
 		sscanf(buffer, "%i %255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %i %i %i %i %i %i %i %i %i %i %i %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
 			&task->pid,	// processid
 			task->name,	// processname
 			task->state,	// processstate
-			&task->ppid,	// parentid
+			&ppid,		// parentid
 			 &idummy,	// processs groupid
 
 			 &idummy,	// session id
@@ -248,6 +249,11 @@ get_task_details (guint pid, Task *task)
 			 dummy
 		);
 
+		// FIXME sscanf sucks, big news, process names with spaces don't pass
+		if (ppid == 0)
+			return FALSE;
+
+		task->ppid = ppid;
 		task->rss *= get_pagesize ();
 		get_cpu_percent (task->pid, jiffies_user, &task->cpu_user, jiffies_system, &task->cpu_system);
 
