@@ -310,7 +310,23 @@ get_task_list (GArray *task_list)
 gboolean
 pid_is_sleeping (guint pid)
 {
-	return TRUE;
+	FILE *file;
+	gchar filename[96];
+	gchar buffer[1024];
+	gchar state[2];
+
+	snprintf (filename, 96, "/proc/%i/status", pid);
+	if ((file = fopen (filename, "r")) == NULL)
+		return FALSE;
+
+	while (fgets (buffer, 1024, file) != NULL)
+	{
+		if (sscanf (buffer, "State:\t%1s", state) > 0)
+			break;
+	}
+	fclose (file);
+
+	return (state[0] == 'T') ? TRUE : FALSE;
 }
 
 gboolean

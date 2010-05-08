@@ -185,17 +185,20 @@ build_context_menu (guint pid)
 	gtk_container_add (GTK_CONTAINER (menu), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
 
-	// TODO look up task for building menu with either Stop or Continue and in an OS-independent way
-	// if (pid_is_sleeping (pid))
-	mi = gtk_menu_item_new_with_label (_("Stop"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_STOP));
-
-	mi = gtk_menu_item_new_with_label (_("Continue"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_CONTINUE));
+	if (!pid_is_sleeping (pid))
+	{
+		mi = gtk_menu_item_new_with_label (_("Stop"));
+		g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+		gtk_container_add (GTK_CONTAINER (menu), mi);
+		g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_STOP));
+	}
+	else
+	{
+		mi = gtk_menu_item_new_with_label (_("Continue"));
+		g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+		gtk_container_add (GTK_CONTAINER (menu), mi);
+		g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_CONTINUE));
+	}
 
 	mi = gtk_menu_item_new_with_label (_("Kill"));
 	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
