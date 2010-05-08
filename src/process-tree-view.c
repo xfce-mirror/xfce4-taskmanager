@@ -16,6 +16,7 @@
 #include <gtk/gtk.h>
 
 #include "process-tree-view.h"
+#include "task-manager.h"
 #include "settings.h"
 
 
@@ -34,9 +35,9 @@ struct _XtmProcessTreeView
 };
 G_DEFINE_TYPE (XtmProcessTreeView, xtm_process_tree_view, GTK_TYPE_TREE_VIEW)
 
-static gboolean	treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
-static void	settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
-static int	sort_by_string					(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
+static gboolean		treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
+static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
+static int		sort_by_string					(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
 
 
 
@@ -136,13 +137,144 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
  * Helper functions
  */
 
+static void
+cb_send_signal (GtkMenuItem *mi, gpointer user_data)
+{
+	guint pid = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "pid"));
+	gint signal = GPOINTER_TO_INT (user_data);
+
+	if (!send_signal_to_pid (pid, signal))
+	{
+		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+			_("Error sending signal"));
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), _("An error was encountered by sending a signal to the PID %d. "
+			"It is likely you don't have the required privileges."), pid);
+		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+	}
+}
+
+static void
+cb_set_priority (GtkMenuItem *mi, gpointer user_data)
+{
+	guint pid = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "pid"));
+	gint priority = GPOINTER_TO_INT (user_data);
+
+	if (!set_priority_to_pid (pid, priority))
+	{
+		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+			_("Error setting priority"));
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), _("An error was encountered by setting a priority to the PID %d. "
+			"It is likely you don't have the required privileges."), pid);
+		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+	}
+}
+
+static GtkWidget *
+build_context_menu (guint pid)
+{
+	GtkWidget *menu, *menu_priority, *mi;
+
+	menu = gtk_menu_new ();
+
+	mi = gtk_menu_item_new_with_label (_("Terminate"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
+
+	// TODO look up task for building menu with either Stop or Continue and in an OS-independent way
+	// if (pid_is_sleeping (pid))
+	mi = gtk_menu_item_new_with_label (_("Stop"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_STOP));
+
+	mi = gtk_menu_item_new_with_label (_("Continue"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_CONTINUE));
+
+	mi = gtk_menu_item_new_with_label (_("Kill"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_KILL));
+
+	menu_priority = gtk_menu_new ();
+
+	mi = gtk_menu_item_new_with_label (_("Very low"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_VERY_LOW));
+
+	mi = gtk_menu_item_new_with_label (_("Low"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_LOW));
+
+	mi = gtk_menu_item_new_with_label (_("Normal"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_NORMAL));
+
+	mi = gtk_menu_item_new_with_label (_("High"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_HIGH));
+
+	mi = gtk_menu_item_new_with_label (_("Very high"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_VERY_HIGH));
+
+	mi = gtk_menu_item_new_with_label (_("Priority"));
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), menu_priority);
+	gtk_container_add (GTK_CONTAINER (menu), mi);
+
+	gtk_widget_show_all (menu);
+
+	return menu;
+}
+
 static gboolean
 treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 {
+	static GtkWidget *menu = NULL;
+	guint pid;
+
 	if (event->button != 3)
 		return FALSE;
 
-	g_debug ("popup menu");
+	if (menu != NULL)
+		gtk_widget_destroy (menu);
+
+	{
+		GtkTreeModel *model;
+		GtkTreeSelection *selection;
+		GtkTreePath *path;
+		GtkTreeIter iter;
+
+		model = GTK_TREE_MODEL (treeview->model);
+		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+		gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (treeview), (gint)event->x, (gint)event->y, &path, NULL, NULL, NULL);
+
+		if (path == NULL)
+			return;
+
+		gtk_tree_model_get_iter (model, &iter, path);
+		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid, -1);
+		gtk_tree_selection_select_path (selection, path);
+		gtk_tree_path_free (path);
+
+#if DEBUG
+		g_debug ("Found iter with pid %d", pid);
+#endif
+	}
+
+	menu = build_context_menu (pid);
+	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, event->button, event->time);
 
 	return TRUE;
 }

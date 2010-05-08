@@ -352,13 +352,3 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	return;
 }
 
-void
-xtm_task_manager_send_signal_to_pid (XtmTaskManager *manager)
-{
-}
-
-void
-xtm_task_manager_set_priority_to_pid (XtmTaskManager *manager)
-{
-}
-

@@ -15,6 +15,7 @@
 #endif
 
 #include <glib-object.h>
+#include <gtk/gtk.h>
 
 /**
  * Task struct used as elements of a task list GArray.
@@ -38,14 +39,36 @@ struct _Task
 };
 
 /**
+ * Enumerations of virtual values between the interface and the OS implementation.
+ */
+
+enum
+{
+	XTM_SIGNAL_TERMINATE = 0,
+	XTM_SIGNAL_STOP,
+	XTM_SIGNAL_CONTINUE,
+	XTM_SIGNAL_KILL,
+};
+
+enum
+{
+	XTM_PRIORITY_VERY_LOW = 0,
+	XTM_PRIORITY_LOW,
+	XTM_PRIORITY_NORMAL,
+	XTM_PRIORITY_HIGH,
+	XTM_PRIORITY_VERY_HIGH,
+};
+
+/**
  * OS specific implementation.
  */
 
 gboolean	get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);
 gboolean	get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system);
 gboolean	get_task_list (GArray *task_list);
-//void		send_signal_to_task (gint task_id, gint signal);
-//void		set_priority_to_task (gint task_id, gint prio);
+gboolean	pid_is_sleeping (guint pid);
+gboolean	send_signal_to_pid (guint pid, gint signal);
+gboolean	set_priority_to_pid (guint pid, gint priority);
 
 /**
  * GObject class used to update the graphical widgets.
@@ -61,7 +84,7 @@ gboolean	get_task_list (GArray *task_list);
 typedef struct _XtmTaskManager XtmTaskManager;
 
 GType			xtm_task_manager_get_type			(void);
-XtmTaskManager *	xtm_task_manager_new				();
+XtmTaskManager *	xtm_task_manager_new				(GtkTreeModel *model);
 const gchar *		xtm_task_manager_get_username			(XtmTaskManager *manager);
 const gchar *		xtm_task_manager_get_hostname			(XtmTaskManager *manager);
 void			xtm_task_manager_get_system_info		(XtmTaskManager *manager, guint *num_processes, gfloat *cpu, gfloat *memory, gfloat *swap);
