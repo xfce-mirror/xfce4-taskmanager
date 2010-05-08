@@ -107,7 +107,7 @@ static inline int get_pagesize ()
 	return pagesize;
 }
 
-static void
+static gboolean
 get_task_cmdline (Task *task)
 {
 	FILE *file;
@@ -116,11 +116,13 @@ get_task_cmdline (Task *task)
 	gchar c;
 
 	snprintf (filename, 96, "/proc/%i/cmdline", task->pid);
+	if ((file = fopen (filename, "r")) == NULL)
+		return FALSE;
 
-	/* Read byte per byte until EOF */
-	file = fopen (filename, "r");
+	/* Read full command byte per byte until EOF */
 	for (i = 0; (c = fgetc (file)) != EOF && i < sizeof (task->cmdline) - 1; i++)
 		task->cmdline[i] = (c == '\0') ? ' ' : c;
+	task->cmdline[i] = '\0';
 	if (task->cmdline[i-1] == ' ')
 		task->cmdline[i-1] = '\0';
 	fclose (file);
@@ -134,6 +136,8 @@ get_task_cmdline (Task *task)
 		task->cmdline[len+1] = ']';
 		task->cmdline[len+2] = '\0';
 	}
+
+	return TRUE;
 }
 
 static void
@@ -171,7 +175,6 @@ get_task_details (guint pid, Task *task)
 	FILE *file;
 	gchar filename[96];
 	gchar buffer[1024];
-	gchar *p1, *p2;
 
 	snprintf (filename, 96, "/proc/%d/stat", pid);
 	if ((file = fopen (filename, "r")) == NULL)
@@ -180,20 +183,24 @@ get_task_details (guint pid, Task *task)
 	fgets (buffer, 1024, file);
 	fclose (file);
 
-	/* Scanning the short process name is unreliable with scanf when it contains spaces */
-	p1 = g_strrstr (buffer, "(");
-	p2 = g_strrstr (buffer, ")");
-	while (p1 <= p2)
+	/* Scanning the short process name is unreliable with scanf when it contains
+	 * spaces, retrieve it manually and fill the buffer */
 	{
-		*p1 = 'x';
-		p1++;
+		gchar *p1, *po, *p2;
+		guint i = 0;
+		p1 = po = g_strstr_len (buffer, -1, "(");
+		p2 = g_strrstr (buffer, ")");
+		while (po <= p2)
+		{
+			if (po > p1 && po < p2)
+			{
+				task->name[i++] = *po;
+				task->name[i] = '\0';
+			}
+			*po = 'x';
+			po++;
+		}
 	}
-
-	/* Retrieve the short name from the comm file */
-	snprintf (filename, 96, "/proc/%d/comm", pid);
-	file = fopen (filename, "r");
-	fscanf (file, "%255s", task->name);
-	fclose (file);
 
 	/* Parse the stat file */
 	{
@@ -265,7 +272,8 @@ get_task_details (guint pid, Task *task)
 	}
 
 	/* Read the full command line */
-	get_task_cmdline (task);
+	if (!get_task_cmdline (task))
+		return FALSE;
 
 	return TRUE;
 }
