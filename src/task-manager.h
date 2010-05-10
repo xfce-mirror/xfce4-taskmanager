@@ -91,4 +91,11 @@ void			xtm_task_manager_get_system_info		(XtmTaskManager *manager, guint *num_pr
 const GArray *		xtm_task_manager_get_task_list			(XtmTaskManager *manager);
 void			xtm_task_manager_update_model			(XtmTaskManager *manager);
 
+/**
+ * Helper functions.
+ */
+
+void			get_owner_uid					(guint *owner_uid, gchar **owner_uid_name);
+gchar *			get_hostname					();
+
 #endif /* !TASK_MANAGER_H */

@@ -49,11 +49,14 @@ struct _XtmProcessTreeView
 	GtkTreeModel *		model_filter;
 	GtkTreeViewColumn *	sort_column;
 	XtmSettings *		settings;
+	guint			owner_uid;
+	gboolean		show_all_processes_cached;
 };
 G_DEFINE_TYPE (XtmProcessTreeView, xtm_process_tree_view, GTK_TYPE_TREE_VIEW)
 
 static gboolean		treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
 static void		column_clicked					(GtkTreeViewColumn *column, XtmProcessTreeView *treeview);
+static gboolean		visible_func					(GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treeview);
 static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
 
 
@@ -74,12 +77,19 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	treeview->settings = xtm_settings_get_default ();
 	g_signal_connect (treeview->settings, "notify", G_CALLBACK (settings_changed), treeview);
 
+	{
+		gchar *uid_name;
+		get_owner_uid (&treeview->owner_uid, &uid_name);
+		g_object_get (treeview->settings, "show-all-processes", &treeview->show_all_processes_cached, NULL);
+		g_debug ("wtf all processes: %d", treeview->show_all_processes_cached);
+	}
+
 	/* Create tree view model */
 	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
-		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT);
+		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT);
 
 	treeview->model_filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (treeview->model), NULL);
-	//gtk_tree_model_filter_set_visible_func (treeview->model_filter, ...);
+	gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (treeview->model_filter), (GtkTreeModelFilterVisibleFunc)visible_func, treeview, NULL);
 
 	g_object_set (treeview, "search-column", XTM_PTV_COLUMN_COMMAND, "model", treeview->model_filter, NULL);
 
@@ -145,7 +155,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-uid", &visible, NULL);
-	column = gtk_tree_view_column_new_with_attributes (_("UID"), cell_text, "text", XTM_PTV_COLUMN_UID, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("UID"), cell_text, "text", XTM_PTV_COLUMN_UID_STR, NULL);
 	g_object_set (column, COLUMN_PROPERTIES, NULL);
 	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_UID));
 	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_UID));
@@ -366,6 +376,18 @@ column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview)
 	treeview->sort_column = column;
 }
 
+static gboolean
+visible_func (GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treeview)
+{
+	guint uid;
+
+	if (treeview->show_all_processes_cached)
+		return TRUE;
+
+	gtk_tree_model_get (GTK_TREE_MODEL (treeview->model), iter, XTM_PTV_COLUMN_UID, &uid, -1);
+	return (treeview->owner_uid == uid) ? TRUE : FALSE;
+}
+
 static void
 settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview)
 {
@@ -396,9 +418,9 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 	}
 	else if (!g_strcmp0 (pspec->name, "show-all-processes"))
 	{
-		gboolean visible;
-		g_object_get (object, pspec->name, &visible, NULL);
+		g_object_get (object, pspec->name, &treeview->show_all_processes_cached, NULL);
 		// TODO show/hide system processes from treeview
+		gtk_tree_model_filter_refilter (GTK_TREE_MODEL_FILTER (treeview->model_filter));
 	}
 }
 

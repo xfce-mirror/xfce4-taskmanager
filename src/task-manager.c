@@ -52,8 +52,6 @@ G_DEFINE_TYPE (XtmTaskManager, xtm_task_manager, G_TYPE_OBJECT)
 
 static void	xtm_task_manager_finalize			(GObject *object);
 
-static void	get_owner_uid					(guint *owner_uid, gchar **owner_uid_name);
-static gchar *	get_hostname					();
 static void	model_add_task					(GtkTreeModel *model, Task *task);
 static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, Task *task);
 static void	model_update_task				(GtkTreeModel *model, Task *task);
@@ -94,7 +92,7 @@ _xtm_task_manager_set_model (XtmTaskManager *manager, GtkTreeModel *model)
 	manager->model = model;
 }
 
-static void
+void
 get_owner_uid (guint *owner_uid, gchar **owner_uid_name)
 {
 	uid_t uid;
@@ -110,7 +108,7 @@ get_owner_uid (guint *owner_uid, gchar **owner_uid_name)
 	*owner_uid_name = username;
 }
 
-static gchar *
+gchar *
 get_hostname ()
 {
 #ifndef HOST_NAME_MAX
@@ -131,7 +129,8 @@ model_add_task (GtkTreeModel *model, Task *task)
 		XTM_PTV_COLUMN_COMMAND, task->cmdline,
 		XTM_PTV_COLUMN_PID, task->pid,
 		XTM_PTV_COLUMN_STATE, task->state,
-		XTM_PTV_COLUMN_UID, task->uid_name,
+		XTM_PTV_COLUMN_UID, task->uid,
+		XTM_PTV_COLUMN_UID_STR, task->uid_name,
 		-1);
 	model_update_tree_iter (model, &iter, task);
 }
