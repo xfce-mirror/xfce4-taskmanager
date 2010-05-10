@@ -136,13 +136,34 @@ model_add_task (GtkTreeModel *model, Task *task)
 }
 
 static void
+memory_human_size (guint64 mem, gchar *mem_str)
+{
+	guint64 mem_tmp;
+
+	mem_tmp = mem / 1024 / 1024;
+	if (mem_tmp > 3)
+	{
+		g_snprintf (mem_str, 64, _("%lu MiB"), mem_tmp);
+		return;
+	}
+
+	mem_tmp = mem / 1024;
+	if (mem_tmp > 8)
+	{
+		g_snprintf (mem_str, 64, _("%lu KiB"), mem_tmp);
+		return;
+	}
+
+	g_snprintf (mem_str, 64, _("%lu B"), mem);
+}
+
+static void
 model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 {
 	gchar vsz[64], rss[64], cpu[16];
 
-	// TODO show values < 1 MB in KB or B
-	g_snprintf (vsz, 64, _("%lu MB"), task->vsz / 1024 / 1024);
-	g_snprintf (rss, 64, _("%lu MB"), task->rss / 1024 / 1024);
+	memory_human_size (task->vsz, vsz);
+	memory_human_size (task->rss, rss);
 	// TODO make precision optional
 	g_snprintf (cpu, 16, _("%.2f%%"), task->cpu_user + task->cpu_system);
 
