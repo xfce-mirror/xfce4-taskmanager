@@ -16,6 +16,7 @@ xfce4_taskmanager_LDADD = 						\
 
 xfce4_taskmanager_SOURCES =						\
 	main.c								\
+	process-window_ui.h						\
 	process-window.c		process-window.h		\
 	process-tree-view.c		process-tree-view.h		\
 	process-statusbar.c		process-statusbar.h		\
@@ -38,4 +39,6 @@ BUILT_SOURCES = process-window_ui.h
 process-window_ui.h: process-window.ui
 	$(AM_V_GEN) exo-csource --static --strip-comments --strip-content --name=process_window_ui $< >$@
 endif
+
+EXTRA_DIST = process-window.ui
 
