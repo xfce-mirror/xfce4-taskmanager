@@ -204,7 +204,8 @@ msgid "translator-credits"
 msgstr ""
 "Enrico Tröger\n"
 "Fabian Nowak\n"
-"Johannes Zellner"
+"Johannes Zellner\n"
+"Paul Seyfert"
 
 #: ../src/task-manager.c:146
 #, c-format
