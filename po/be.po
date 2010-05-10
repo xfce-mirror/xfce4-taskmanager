@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-26 17:54-0400\n"
+"POT-Creation-Date: 2010-05-10 22:23+0200\n"
 "PO-Revision-Date: 2008-11-08 00:00+0200\n"
 "Last-Translator: Alexander Nyakhaychyk <nyakhaychyk@gmail.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -24,121 +23,252 @@ msgstr "Кантроль над вашымі працэсамі"
 msgid "Process manager"
 msgstr "Манаджэр працэсаў"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+#: ../xfce4-taskmanager.desktop.in.h:3
 msgid "Xfce4 Taskmanager"
 msgstr "Мэнаджэр працэсўа Xfce4"
 
-#: ../src/callbacks.c:72
-msgid "Really kill the task?"
-msgstr "Насамрэч забіць працэс?"
-
-#: ../src/callbacks.c:76
-msgid "Really terminate the task?"
-msgstr "Насамрэч завяршыць працэс?"
-
-#: ../src/functions.c:134
+#: ../src/process-statusbar.c:121
 #, c-format
-msgid "%d MB of %d MB used"
-msgstr "%d Мб з %d Мб ужыта"
+msgid "CPU: %.2f%%"
+msgstr ""
 
-#: ../src/functions.c:139
+#: ../src/process-statusbar.c:128
 #, c-format
-msgid "%0.0f %%"
-msgstr "%0.0f %%"
+msgid "Memory: %.2f%%"
+msgstr ""
 
-#: ../src/interface.c:61
-msgid "Cpu usage"
-msgstr "Выкарыстаньне ЦП"
+#: ../src/process-statusbar.c:135
+#, c-format
+msgid "Swap: %.2f%%"
+msgstr ""
 
-#: ../src/interface.c:69
-msgid "Memory usage"
-msgstr "Выкарыстаньне памяці"
+#: ../src/process-statusbar.c:142
+#, c-format
+msgid "Processes: %d"
+msgstr ""
 
-#: ../src/interface.c:136
-msgid "Command"
-msgstr "Загад"
+#: ../src/process-tree-view.c:106
+msgid "Task"
+msgstr ""
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/process-tree-view.c:116 ../src/process-window.c:276
 msgid "PID"
 msgstr "PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/process-tree-view.c:124 ../src/process-window.c:277
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/process-tree-view.c:132 ../src/process-window.c:278
 msgid "State"
 msgstr "Стан"
 
-#: ../src/interface.c:161 ../src/interface.c:350
-msgid "VM-Size"
-msgstr "VM"
+#: ../src/process-tree-view.c:141
+msgid "VSZ"
+msgstr ""
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/process-tree-view.c:149
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
-msgid "User"
-msgstr "Карыстальнік"
+#: ../src/process-tree-view.c:157 ../src/process-window.c:281
+#, fuzzy
+msgid "UID"
+msgstr "PID"
 
-#: ../src/interface.c:179 ../src/interface.c:353
-msgid "CPU%"
+#: ../src/process-tree-view.c:165 ../src/process-window.c:282
+#, fuzzy
+msgid "CPU"
 msgstr "ЦП%"
 
-#. my change
-#: ../src/interface.c:186
-msgid "Prio"
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#: ../src/process-tree-view.c:174
+#, fuzzy
+msgid "Prio."
 msgstr "Prio"
 
-#: ../src/interface.c:203
+#: ../src/process-tree-view.c:212
+#, fuzzy
+msgid "Terminate task"
+msgstr "Насамрэч завяршыць працэс?"
+
+#: ../src/process-tree-view.c:212
+#, fuzzy
+msgid "Kill task"
+msgstr "Kill"
+
+#: ../src/process-tree-view.c:214
+#, c-format
+msgid "Are you sure you want to send a signal to the PID %d?"
+msgstr ""
+
+#: ../src/process-tree-view.c:215 ../src/process-tree-view.c:229
+#: ../src/process-tree-view.c:247 ../src/process-window.c:199
+#: ../src/process-window.c:321
+#, fuzzy
+msgid "Task Manager"
+msgstr "Мэнаджэр працэсўа Xfce4"
+
+#: ../src/process-tree-view.c:225
+msgid "Error sending signal"
+msgstr ""
+
+#: ../src/process-tree-view.c:227
+#, c-format
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you "
+"don't have the required privileges."
+msgstr ""
+
+#: ../src/process-tree-view.c:244
+msgid "Error setting priority"
+msgstr ""
+
+#: ../src/process-tree-view.c:245
+#, c-format
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr ""
+
+#: ../src/process-tree-view.c:260
+#, fuzzy
+msgid "Terminate"
+msgstr "Term"
+
+#: ../src/process-tree-view.c:267
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/interface.c:208
+#: ../src/process-tree-view.c:274
 msgid "Continue"
 msgstr "Continue"
 
-#: ../src/interface.c:213
-msgid "Term"
-msgstr "Term"
-
-#: ../src/interface.c:218
+#: ../src/process-tree-view.c:280
 msgid "Kill"
 msgstr "Kill"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/process-tree-view.c:287
+msgid "Very low"
+msgstr ""
+
+#: ../src/process-tree-view.c:292
+msgid "Low"
+msgstr ""
+
+#: ../src/process-tree-view.c:297
+msgid "Normal"
+msgstr ""
+
+#: ../src/process-tree-view.c:302
+msgid "High"
+msgstr ""
+
+#: ../src/process-tree-view.c:307
+msgid "Very high"
+msgstr ""
+
+#: ../src/process-tree-view.c:312 ../src/process-window.c:283
 msgid "Priority"
 msgstr "Прыярытэт"
 
-#: ../src/interface.c:293
-msgid "Show user tasks"
-msgstr "Паказваць працэсы карыстальніка"
+#: ../src/process-window.c:197
+msgid "Execution error"
+msgstr ""
 
-#: ../src/interface.c:298
-msgid "Show root tasks"
-msgstr "Паказваць працэсы root"
+#: ../src/process-window.c:226
+msgid "Run Program..."
+msgstr ""
 
-#: ../src/interface.c:303
-msgid "Show other tasks"
-msgstr "Паказваць іншыя працэсы"
+#: ../src/process-window.c:227
+msgid "Application Finder"
+msgstr ""
 
-#: ../src/interface.c:308
-msgid "Show memory used by cache as free"
-msgstr "Лічыць кэш, як вольную памяць"
-
-#: ../src/interface.c:375
-msgid "Original Author:"
+#: ../src/process-window.c:228
+#, fuzzy
+msgid "Terminal emulator"
 msgstr "Аўтар:"
 
-#: ../src/interface.c:377
-msgid "Contributors:"
-msgstr "Укладальнікі"
+#: ../src/process-window.c:229
+#, fuzzy
+msgid "XTerm"
+msgstr "Term"
 
-#: ../src/interface.c:387
-msgid "Xfce4-Taskmanager is an easy to use taskmanager"
+#: ../src/process-window.c:271
+#, fuzzy
+msgid "Show all processes"
+msgstr "Кантроль над вашымі працэсамі"
+
+#: ../src/process-window.c:279
+msgid "Virtual Bytes"
+msgstr ""
+
+#: ../src/process-window.c:280
+msgid "Private Bytes"
+msgstr ""
+
+#: ../src/process-window.c:326
+#, fuzzy
+msgid "Easy to use task manager"
 msgstr "Просты ў выкарыстаньні мэнаджэр працэсаў"
 
-#: ../src/interface.c:395
+#: ../src/process-window.c:329
 msgid "translator-credits"
 msgstr "Alexander Nyakhaychyk <nab@mail.by>, 2008"
+
+#: ../src/task-manager.c:146
+#, c-format
+msgid "%lu MiB"
+msgstr ""
+
+#: ../src/task-manager.c:153
+#, c-format
+msgid "%lu KiB"
+msgstr ""
+
+#: ../src/task-manager.c:157
+#, c-format
+msgid "%lu B"
+msgstr ""
+
+#. TODO make precision optional
+#: ../src/task-manager.c:168
+#, fuzzy, c-format
+msgid "%.2f%%"
+msgstr "%0.0f %%"
+
+#~ msgid "Really kill the task?"
+#~ msgstr "Насамрэч забіць працэс?"
+
+#~ msgid "%d MB of %d MB used"
+#~ msgstr "%d Мб з %d Мб ужыта"
+
+#~ msgid "Cpu usage"
+#~ msgstr "Выкарыстаньне ЦП"
+
+#~ msgid "Memory usage"
+#~ msgstr "Выкарыстаньне памяці"
+
+#~ msgid "Command"
+#~ msgstr "Загад"
+
+#~ msgid "VM-Size"
+#~ msgstr "VM"
+
+#~ msgid "User"
+#~ msgstr "Карыстальнік"
+
+#~ msgid "Show user tasks"
+#~ msgstr "Паказваць працэсы карыстальніка"
+
+#~ msgid "Show root tasks"
+#~ msgstr "Паказваць працэсы root"
+
+#~ msgid "Show other tasks"
+#~ msgstr "Паказваць іншыя працэсы"
+
+#~ msgid "Show memory used by cache as free"
+#~ msgstr "Лічыць кэш, як вольную памяць"
+
+#~ msgid "Contributors:"
+#~ msgstr "Укладальнікі"

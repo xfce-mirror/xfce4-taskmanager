@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-31 15:10+0000\n"
+"POT-Creation-Date: 2010-05-10 22:23+0200\n"
 "PO-Revision-Date: 2008-07-14 13:50+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -24,131 +24,255 @@ msgstr "Керування процесами"
 msgid "Process manager"
 msgstr "Менеджер процесів"
 
-#: ../xfce4-taskmanager.desktop.in.h:3 ../src/interface.c:46
+#: ../xfce4-taskmanager.desktop.in.h:3
 msgid "Xfce4 Taskmanager"
 msgstr "Диспетчер задач Xfce4"
 
-#: ../src/callbacks.c:72
-msgid "Really kill the task?"
-msgstr "Дійсно знищити задачу?"
-
-#: ../src/callbacks.c:76
-msgid "Really terminate the task?"
-msgstr "Дійсно завершити задачу?"
-
-#: ../src/functions.c:138
+#: ../src/process-statusbar.c:121
 #, c-format
-msgid "%d MB of %d MB used"
-msgstr "Використано %d МБ з %d МБ"
+msgid "CPU: %.2f%%"
+msgstr ""
 
-#: ../src/functions.c:143
+#: ../src/process-statusbar.c:128
 #, c-format
-msgid "%0.0f %%"
-msgstr "%0.0f %%"
+msgid "Memory: %.2f%%"
+msgstr ""
 
-#: ../src/interface.c:61
-msgid "Cpu usage"
-msgstr "Використання процесора"
+#: ../src/process-statusbar.c:135
+#, c-format
+msgid "Swap: %.2f%%"
+msgstr ""
 
-#: ../src/interface.c:69
-msgid "Memory usage"
-msgstr "Використання пам'яті"
+#: ../src/process-statusbar.c:142
+#, c-format
+msgid "Processes: %d"
+msgstr ""
 
-#: ../src/interface.c:136
-msgid "Command"
-msgstr "Команда"
+#: ../src/process-tree-view.c:106
+msgid "Task"
+msgstr ""
 
-#: ../src/interface.c:143 ../src/interface.c:347
+#: ../src/process-tree-view.c:116 ../src/process-window.c:276
 msgid "PID"
 msgstr "Ідентифікатор PID"
 
-#: ../src/interface.c:149 ../src/interface.c:348
+#: ../src/process-tree-view.c:124 ../src/process-window.c:277
 msgid "PPID"
 msgstr "Пріоритет PPID"
 
-#: ../src/interface.c:155 ../src/interface.c:349
+#: ../src/process-tree-view.c:132 ../src/process-window.c:278
 msgid "State"
 msgstr "Стан"
 
-#: ../src/interface.c:161 ../src/interface.c:350
-msgid "VM-Size"
-msgstr "Розмір VM"
+#: ../src/process-tree-view.c:141
+msgid "VSZ"
+msgstr ""
 
-#: ../src/interface.c:167 ../src/interface.c:351
+#: ../src/process-tree-view.c:149
 msgid "RSS"
 msgstr "Стрічка RSS"
 
-#: ../src/interface.c:173 ../src/interface.c:352
-msgid "User"
-msgstr "Користувач"
+#: ../src/process-tree-view.c:157 ../src/process-window.c:281
+#, fuzzy
+msgid "UID"
+msgstr "Ідентифікатор PID"
 
-#: ../src/interface.c:179 ../src/interface.c:353
-msgid "CPU%"
+#: ../src/process-tree-view.c:165 ../src/process-window.c:282
+#, fuzzy
+msgid "CPU"
 msgstr "ЦПУ%"
 
-#. my change
-#: ../src/interface.c:186
-msgid "Prio"
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#: ../src/process-tree-view.c:174
+#, fuzzy
+msgid "Prio."
 msgstr "Пріоритет"
 
-#: ../src/interface.c:203
+#: ../src/process-tree-view.c:212
+#, fuzzy
+msgid "Terminate task"
+msgstr "Дійсно завершити задачу?"
+
+#: ../src/process-tree-view.c:212
+#, fuzzy
+msgid "Kill task"
+msgstr "Знищити"
+
+#: ../src/process-tree-view.c:214
+#, fuzzy, c-format
+msgid "Are you sure you want to send a signal to the PID %d?"
+msgstr "Не вдається надіслати сигнал до задачі з ідентифікатором %d"
+
+#: ../src/process-tree-view.c:215 ../src/process-tree-view.c:229
+#: ../src/process-tree-view.c:247 ../src/process-window.c:199
+#: ../src/process-window.c:321
+#, fuzzy
+msgid "Task Manager"
+msgstr "Диспетчер задач Xfce4"
+
+#: ../src/process-tree-view.c:225
+msgid "Error sending signal"
+msgstr ""
+
+#: ../src/process-tree-view.c:227
+#, c-format
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you "
+"don't have the required privileges."
+msgstr ""
+
+#: ../src/process-tree-view.c:244
+msgid "Error setting priority"
+msgstr ""
+
+#: ../src/process-tree-view.c:245
+#, c-format
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr ""
+
+#: ../src/process-tree-view.c:260
+#, fuzzy
+msgid "Terminate"
+msgstr "Завершити"
+
+#: ../src/process-tree-view.c:267
 msgid "Stop"
 msgstr "Зупинити"
 
-#: ../src/interface.c:208
+#: ../src/process-tree-view.c:274
 msgid "Continue"
 msgstr "Продовжити"
 
-#: ../src/interface.c:213
-msgid "Term"
-msgstr "Завершити"
-
-#: ../src/interface.c:218
+#: ../src/process-tree-view.c:280
 msgid "Kill"
 msgstr "Знищити"
 
-#: ../src/interface.c:223 ../src/interface.c:354
+#: ../src/process-tree-view.c:287
+msgid "Very low"
+msgstr ""
+
+#: ../src/process-tree-view.c:292
+msgid "Low"
+msgstr ""
+
+#: ../src/process-tree-view.c:297
+msgid "Normal"
+msgstr ""
+
+#: ../src/process-tree-view.c:302
+msgid "High"
+msgstr ""
+
+#: ../src/process-tree-view.c:307
+msgid "Very high"
+msgstr ""
+
+#: ../src/process-tree-view.c:312 ../src/process-window.c:283
 msgid "Priority"
 msgstr "Пріоритет"
 
-#: ../src/interface.c:293
-msgid "Show user tasks"
-msgstr "Відображати задачі користувача"
+#: ../src/process-window.c:197
+msgid "Execution error"
+msgstr ""
 
-#: ../src/interface.c:298
-msgid "Show root tasks"
-msgstr "Відображати задачі адміністратора"
+#: ../src/process-window.c:226
+msgid "Run Program..."
+msgstr ""
 
-#: ../src/interface.c:303
-msgid "Show other tasks"
-msgstr "Відображати інші задачі"
+#: ../src/process-window.c:227
+msgid "Application Finder"
+msgstr ""
 
-#: ../src/interface.c:308
-msgid "Show memory used by cache as free"
-msgstr "Показувати використану кешем пам'ять як вільну"
-
-#: ../src/interface.c:375
-msgid "Original Author:"
+#: ../src/process-window.c:228
+#, fuzzy
+msgid "Terminal emulator"
 msgstr "Перший автор:"
 
-#: ../src/interface.c:377
-msgid "Contributors:"
-msgstr "Помічники:"
+#: ../src/process-window.c:229
+#, fuzzy
+msgid "XTerm"
+msgstr "Завершити"
 
-#: ../src/interface.c:387
-msgid "Xfce4-Taskmanager is an easy to use taskmanager"
+#: ../src/process-window.c:271
+#, fuzzy
+msgid "Show all processes"
+msgstr "Керування процесами"
+
+#: ../src/process-window.c:279
+msgid "Virtual Bytes"
+msgstr ""
+
+#: ../src/process-window.c:280
+msgid "Private Bytes"
+msgstr ""
+
+#: ../src/process-window.c:326
+#, fuzzy
+msgid "Easy to use task manager"
 msgstr "Xfce4-Taskmanager простий у використанні диспетчер задач"
 
-#: ../src/interface.c:395
+#: ../src/process-window.c:329
 msgid "translator-credits"
 msgstr "Dmitry Nikitin <luckas_fb@mail.ru>"
 
-#: ../src/taskmanager-linux.c:307 ../src/taskmanager-bsd.c:153
+#: ../src/task-manager.c:146
 #, c-format
-msgid "Couldn't send signal to the task with ID %d"
-msgstr "Не вдається надіслати сигнал до задачі з ідентифікатором %d"
+msgid "%lu MiB"
+msgstr ""
 
-#: ../src/taskmanager-linux.c:320 ../src/taskmanager-bsd.c:166
+#: ../src/task-manager.c:153
 #, c-format
-msgid "Couldn't set priority %d to the task with ID %d"
-msgstr "Не вдається встановити пріоритет %d задачі з ідентифікатором %d"
+msgid "%lu KiB"
+msgstr ""
+
+#: ../src/task-manager.c:157
+#, c-format
+msgid "%lu B"
+msgstr ""
+
+#. TODO make precision optional
+#: ../src/task-manager.c:168
+#, fuzzy, c-format
+msgid "%.2f%%"
+msgstr "%0.0f %%"
+
+#~ msgid "Really kill the task?"
+#~ msgstr "Дійсно знищити задачу?"
+
+#~ msgid "%d MB of %d MB used"
+#~ msgstr "Використано %d МБ з %d МБ"
+
+#~ msgid "Cpu usage"
+#~ msgstr "Використання процесора"
+
+#~ msgid "Memory usage"
+#~ msgstr "Використання пам'яті"
+
+#~ msgid "Command"
+#~ msgstr "Команда"
+
+#~ msgid "VM-Size"
+#~ msgstr "Розмір VM"
+
+#~ msgid "User"
+#~ msgstr "Користувач"
+
+#~ msgid "Show user tasks"
+#~ msgstr "Відображати задачі користувача"
+
+#~ msgid "Show root tasks"
+#~ msgstr "Відображати задачі адміністратора"
+
+#~ msgid "Show other tasks"
+#~ msgstr "Відображати інші задачі"
+
+#~ msgid "Show memory used by cache as free"
+#~ msgstr "Показувати використану кешем пам'ять як вільну"
+
+#~ msgid "Contributors:"
+#~ msgstr "Помічники:"
+
+#~ msgid "Couldn't set priority %d to the task with ID %d"
+#~ msgstr "Не вдається встановити пріоритет %d задачі з ідентифікатором %d"
