@@ -62,7 +62,6 @@ msgid "State"
 msgstr "Tilstand"
 
 #: ../src/process-tree-view.c:141
-#, fuzzy
 msgid "VSZ"
 msgstr "VSZ"
 
