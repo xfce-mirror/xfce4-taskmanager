@@ -202,14 +202,30 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 static void
 cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 {
+	GtkWidget *dialog;
 	guint pid = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "pid"));
 	gint signal = GPOINTER_TO_INT (user_data);
 
+	if (signal == XTM_SIGNAL_TERMINATE || signal == XTM_SIGNAL_KILL)
+	{
+		gint res;
+		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
+			(signal == XTM_SIGNAL_TERMINATE) ? _("Terminate task") : _("Kill task"));
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+			_("Are you sure you want to send a signal to the PID %d?"), pid);
+		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
+		res = gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+		if (res != GTK_RESPONSE_YES)
+			return;
+	}
+
 	if (!send_signal_to_pid (pid, signal))
 	{
-		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
 			_("Error sending signal"));
-		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), _("An error was encountered by sending a signal to the PID %d. "
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+			_("An error was encountered by sending a signal to the PID %d. "
 			"It is likely you don't have the required privileges."), pid);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
 		gtk_dialog_run (GTK_DIALOG (dialog));
