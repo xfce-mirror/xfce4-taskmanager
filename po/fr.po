@@ -4,12 +4,12 @@
 # Peggy Kutyla <peggy.kutyla@laposte.net>, 2005.
 # Maximilian Schleiss <maximilian@xfce.org>, 2006-2007.
 # Mike Massonnet <mmassonnet@xfce.org>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 23:04+0200\n"
+"POT-Creation-Date: 2010-05-10 22:07+0000\n"
 "PO-Revision-Date: 2010-05-10 22:30+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
 msgid "Easy to use task manager"
-msgstr "Gestionnaire de tâche très simple"
+msgstr "Gestionnaire de tâches simple et léger"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
@@ -79,7 +79,8 @@ msgstr "UID"
 msgid "CPU"
 msgstr "CPU"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
 #: ../src/process-tree-view.c:174
 msgid "Prio."
 msgstr "Prio."
@@ -103,12 +104,8 @@ msgstr "Erreur envoie de signal"
 
 #: ../src/process-tree-view.c:227
 #, c-format
-msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
-msgstr ""
-"Une erreur est survenue lors de l'envoie d'un signal au PID %d. Il est "
-"probable que vous ne possédez pas des privilèges requis."
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
+msgstr "Une erreur est survenue lors de l'envoie d'un signal au PID %d. Il est probable que vous ne possédez pas des privilèges requis."
 
 #: ../src/process-tree-view.c:244
 msgid "Error setting priority"
@@ -116,12 +113,8 @@ msgstr "Erreur changement de priorité"
 
 #: ../src/process-tree-view.c:245
 #, c-format
-msgid ""
-"An error was encountered by setting a priority to the PID %d. It is likely "
-"you don't have the required privileges."
-msgstr ""
-"Une erreur est survenue lors du changement de priorité sur le PID %d. Il est "
-"probable que vous ne possédez pas des privilèges requis."
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
+msgstr "Une erreur est survenue lors du changement de priorité sur le PID %d. Il est probable que vous ne possédez pas des privilèges requis."
 
 #: ../src/process-tree-view.c:260
 msgid "Terminate"
