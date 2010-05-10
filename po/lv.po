@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 22:23+0200\n"
+"POT-Creation-Date: 2010-05-10 23:04+0200\n"
 "PO-Revision-Date: 2009-10-16 15:21+0100\n"
 "Last-Translator: Rihards Prieditis <rprieditis@gmail.com>\n"
 "Language-Team: Latvian <translation-team-lv@lists.sourceforge.net>\n"
@@ -19,16 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1
-msgid "Control your processes"
-msgstr "Kontrolējiet savus procesus"
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
+#, fuzzy
+msgid "Easy to use task manager"
+msgstr "Xfce4-taskmanager ir viegli lietojams uzdevumu pārvaldnieks"
 
-#: ../xfce4-taskmanager.desktop.in.h:2
-msgid "Process manager"
-msgstr "Procesu pārvaldnieks"
-
-#: ../xfce4-taskmanager.desktop.in.h:3
-msgid "Xfce4 Taskmanager"
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
+#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
+#: ../src/process-window.c:199 ../src/process-window.c:321
+#, fuzzy
+msgid "Task Manager"
 msgstr "Xfce4 uzdevumu pārvaldnieks"
 
 #: ../src/process-statusbar.c:121
@@ -105,13 +105,6 @@ msgstr "Nokaut"
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr ""
-
-#: ../src/process-tree-view.c:215 ../src/process-tree-view.c:229
-#: ../src/process-tree-view.c:247 ../src/process-window.c:199
-#: ../src/process-window.c:321
-#, fuzzy
-msgid "Task Manager"
-msgstr "Xfce4 uzdevumu pārvaldnieks"
 
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
@@ -211,11 +204,6 @@ msgstr ""
 msgid "Private Bytes"
 msgstr ""
 
-#: ../src/process-window.c:326
-#, fuzzy
-msgid "Easy to use task manager"
-msgstr "Xfce4-taskmanager ir viegli lietojams uzdevumu pārvaldnieks"
-
 #: ../src/process-window.c:329
 msgid "translator-credits"
 msgstr "Rihards Priedītis"
@@ -240,6 +228,15 @@ msgstr ""
 #, fuzzy, c-format
 msgid "%.2f%%"
 msgstr "%0.0f %%"
+
+#~ msgid "Control your processes"
+#~ msgstr "Kontrolējiet savus procesus"
+
+#~ msgid "Process manager"
+#~ msgstr "Procesu pārvaldnieks"
+
+#~ msgid "Xfce4 Taskmanager"
+#~ msgstr "Xfce4 uzdevumu pārvaldnieks"
 
 #~ msgid "Really kill the task?"
 #~ msgstr "Patiešām nobeidzēt uzdevumu?"

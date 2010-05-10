@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 22:23+0200\n"
+"POT-Creation-Date: 2010-05-10 23:04+0200\n"
 "PO-Revision-Date: 2008-07-31 00:58+0200\n"
 "Last-Translator: Mohamed Magdy <mohamedmk@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -11,16 +11,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Arabic\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1
-msgid "Control your processes"
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
+msgid "Easy to use task manager"
 msgstr ""
 
-#: ../xfce4-taskmanager.desktop.in.h:2
-msgid "Process manager"
-msgstr ""
-
-#: ../xfce4-taskmanager.desktop.in.h:3
-msgid "Xfce4 Taskmanager"
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
+#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
+#: ../src/process-window.c:199 ../src/process-window.c:321
+msgid "Task Manager"
 msgstr ""
 
 #: ../src/process-statusbar.c:121
@@ -91,12 +89,6 @@ msgstr ""
 #: ../src/process-tree-view.c:214
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr ""
-
-#: ../src/process-tree-view.c:215 ../src/process-tree-view.c:229
-#: ../src/process-tree-view.c:247 ../src/process-window.c:199
-#: ../src/process-window.c:321
-msgid "Task Manager"
 msgstr ""
 
 #: ../src/process-tree-view.c:225
@@ -191,10 +183,6 @@ msgstr ""
 
 #: ../src/process-window.c:280
 msgid "Private Bytes"
-msgstr ""
-
-#: ../src/process-window.c:326
-msgid "Easy to use task manager"
 msgstr ""
 
 #: ../src/process-window.c:329

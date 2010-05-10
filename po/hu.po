@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 22:23+0200\n"
+"POT-Creation-Date: 2010-05-10 23:04+0200\n"
 "PO-Revision-Date: 2009-07-24 22:09+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at gnome dot hu>\n"
@@ -19,16 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1
-msgid "Control your processes"
-msgstr "Folyamatok felügyelete"
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
+#, fuzzy
+msgid "Easy to use task manager"
+msgstr "Xfce 4 feladatkezelő - egy egyszerűen használható feladatkezelő"
 
-#: ../xfce4-taskmanager.desktop.in.h:2
-msgid "Process manager"
-msgstr "Folyamatkezelő"
-
-#: ../xfce4-taskmanager.desktop.in.h:3
-msgid "Xfce4 Taskmanager"
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
+#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
+#: ../src/process-window.c:199 ../src/process-window.c:321
+#, fuzzy
+msgid "Task Manager"
 msgstr "Xfce 4 folyamatkezelő"
 
 #: ../src/process-statusbar.c:121
@@ -105,13 +105,6 @@ msgstr "Kilövés"
 #, fuzzy, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Nem küldhető szignál a(z) %d azonosítójú feladatnak"
-
-#: ../src/process-tree-view.c:215 ../src/process-tree-view.c:229
-#: ../src/process-tree-view.c:247 ../src/process-window.c:199
-#: ../src/process-window.c:321
-#, fuzzy
-msgid "Task Manager"
-msgstr "Xfce 4 folyamatkezelő"
 
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
@@ -211,11 +204,6 @@ msgstr ""
 msgid "Private Bytes"
 msgstr ""
 
-#: ../src/process-window.c:326
-#, fuzzy
-msgid "Easy to use task manager"
-msgstr "Xfce 4 feladatkezelő - egy egyszerűen használható feladatkezelő"
-
 #: ../src/process-window.c:329
 msgid "translator-credits"
 msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
@@ -240,6 +228,15 @@ msgstr ""
 #, fuzzy, c-format
 msgid "%.2f%%"
 msgstr "%0.0f %%"
+
+#~ msgid "Control your processes"
+#~ msgstr "Folyamatok felügyelete"
+
+#~ msgid "Process manager"
+#~ msgstr "Folyamatkezelő"
+
+#~ msgid "Xfce4 Taskmanager"
+#~ msgstr "Xfce 4 folyamatkezelő"
 
 #~ msgid "Really kill the task?"
 #~ msgstr "Valóban kilövi a feladatot?"

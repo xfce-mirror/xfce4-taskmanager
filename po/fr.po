@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 22:23+0200\n"
+"POT-Creation-Date: 2010-05-10 23:04+0200\n"
 "PO-Revision-Date: 2010-05-10 22:30+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -17,17 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1
-msgid "Control your processes"
-msgstr "Contrôler vos processus"
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
+msgid "Easy to use task manager"
+msgstr "Gestionnaire de tâche très simple"
 
-#: ../xfce4-taskmanager.desktop.in.h:2
-msgid "Process manager"
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
+#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
+#: ../src/process-window.c:199 ../src/process-window.c:321
+msgid "Task Manager"
 msgstr "Gestionnaire de tâches"
-
-#: ../xfce4-taskmanager.desktop.in.h:3
-msgid "Xfce4 Taskmanager"
-msgstr "Gestionnaire de tâches Xfce4"
 
 #: ../src/process-statusbar.c:121
 #, c-format
@@ -99,12 +97,6 @@ msgstr "Tuer une tâche"
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Êtes-vous certain(e) de vouloir envoyer un signal au PID %d ?"
 
-#: ../src/process-tree-view.c:215 ../src/process-tree-view.c:229
-#: ../src/process-tree-view.c:247 ../src/process-window.c:199
-#: ../src/process-window.c:321
-msgid "Task Manager"
-msgstr "Gestionnaire de tâches"
-
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
 msgstr "Erreur envoie de signal"
@@ -115,8 +107,8 @@ msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
 "don't have the required privileges."
 msgstr ""
-"Une erreur est survenue lors de l'envoie d'un signal au PID %d. Il est probable "
-"que vous ne possédez pas des privilèges requis."
+"Une erreur est survenue lors de l'envoie d'un signal au PID %d. Il est "
+"probable que vous ne possédez pas des privilèges requis."
 
 #: ../src/process-tree-view.c:244
 msgid "Error setting priority"
@@ -203,10 +195,6 @@ msgstr "Mémoire virtuelle"
 msgid "Private Bytes"
 msgstr "Mémoire privée"
 
-#: ../src/process-window.c:326
-msgid "Easy to use task manager"
-msgstr "Gestionnaire de tâche très simple"
-
 #: ../src/process-window.c:329
 msgid "translator-credits"
 msgstr ""
@@ -231,6 +219,15 @@ msgstr "%lu B"
 
 #. TODO make precision optional
 #: ../src/task-manager.c:168
+#, c-format
 msgid "%.2f%%"
 msgstr "%.2f%%"
 
+#~ msgid "Control your processes"
+#~ msgstr "Contrôler vos processus"
+
+#~ msgid "Process manager"
+#~ msgstr "Gestionnaire de tâches"
+
+#~ msgid "Xfce4 Taskmanager"
+#~ msgstr "Gestionnaire de tâches Xfce4"

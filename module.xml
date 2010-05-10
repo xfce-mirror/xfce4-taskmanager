@@ -1,6 +1,6 @@
 <Project>
 	<name xml:lang="en">xfce4-taskmanager</name>
-	<shortdesc xml:lang="en">Small taskmanager for the Xfce desktop</shortdesc>
+	<shortdesc xml:lang="en">Easy to use task manager</shortdesc>
 	<homepage rdf:resource="http://goodies.xfce.org/projects/applications/xfce4-taskmanager"/>
 	<mailing-list rdf:resource="http://foo-projects.org/mailman/listinfo/xfce"/>
 	<maintainer>

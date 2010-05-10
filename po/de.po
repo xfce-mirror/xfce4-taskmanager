@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 22:23+0200\n"
+"POT-Creation-Date: 2010-05-10 23:04+0200\n"
 "PO-Revision-Date: 2008-07-31 01:00+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
@@ -18,16 +18,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1
-msgid "Control your processes"
-msgstr "Verwalten Sie Ihre Prozesse"
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
+#, fuzzy
+msgid "Easy to use task manager"
+msgstr "Xfce4-Taskmanager ist ein einfach benutzbarer Taskmanager"
 
-#: ../xfce4-taskmanager.desktop.in.h:2
-msgid "Process manager"
-msgstr "Prozessmanager"
-
-#: ../xfce4-taskmanager.desktop.in.h:3
-msgid "Xfce4 Taskmanager"
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
+#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
+#: ../src/process-window.c:199 ../src/process-window.c:321
+#, fuzzy
+msgid "Task Manager"
 msgstr "Xfce4 Taskmanager"
 
 #: ../src/process-statusbar.c:121
@@ -104,13 +104,6 @@ msgstr "Kill"
 #, fuzzy, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Konnte der Anwendung mit ID %d kein Signal senden"
-
-#: ../src/process-tree-view.c:215 ../src/process-tree-view.c:229
-#: ../src/process-tree-view.c:247 ../src/process-window.c:199
-#: ../src/process-window.c:321
-#, fuzzy
-msgid "Task Manager"
-msgstr "Xfce4 Taskmanager"
 
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
@@ -210,11 +203,6 @@ msgstr ""
 msgid "Private Bytes"
 msgstr ""
 
-#: ../src/process-window.c:326
-#, fuzzy
-msgid "Easy to use task manager"
-msgstr "Xfce4-Taskmanager ist ein einfach benutzbarer Taskmanager"
-
 #: ../src/process-window.c:329
 msgid "translator-credits"
 msgstr ""
@@ -242,6 +230,15 @@ msgstr ""
 #, fuzzy, c-format
 msgid "%.2f%%"
 msgstr "%0.0f %%"
+
+#~ msgid "Control your processes"
+#~ msgstr "Verwalten Sie Ihre Prozesse"
+
+#~ msgid "Process manager"
+#~ msgstr "Prozessmanager"
+
+#~ msgid "Xfce4 Taskmanager"
+#~ msgstr "Xfce4 Taskmanager"
 
 #~ msgid "Really kill the task?"
 #~ msgstr "Prozess wirklich töten?"
