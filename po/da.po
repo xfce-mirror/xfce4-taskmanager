@@ -62,8 +62,9 @@ msgid "State"
 msgstr "Tilstand"
 
 #: ../src/process-tree-view.c:141
+#, fuzzy
 msgid "VSZ"
-msgstr ""
+msgstr "VSZ"
 
 #: ../src/process-tree-view.c:149
 msgid "RSS"
@@ -139,7 +140,6 @@ msgid "Low"
 msgstr "Lav"
 
 #: ../src/process-tree-view.c:297
-#, fuzzy
 msgid "Normal"
 msgstr "Normal"
 
@@ -197,23 +197,23 @@ msgstr ""
 "Mere info: http://www.dansk-gruppen.dk"
 
 #: ../src/task-manager.c:146
-#, c-format, fuzzy
+#, c-format
 msgid "%lu MiB"
 msgstr "%lu MiB"
 
 #: ../src/task-manager.c:153
-#, c-format, fuzzy
+#, c-format
 msgid "%lu KiB"
 msgstr "%lu KiB"
 
 #: ../src/task-manager.c:157
-#, c-format, fuzzy
+#, c-format
 msgid "%lu B"
 msgstr "%lu B"
 
 #. TODO make precision optional
 #: ../src/task-manager.c:168
-#, fuzzy, c-format
+#, c-format
 msgid "%.2f%%"
 msgstr "%.2f%%"
 
