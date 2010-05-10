@@ -21,6 +21,21 @@
 
 
 
+/* Static positions of columns in tree view */
+// TODO get the columns reorderable (more tree view hell)
+enum
+{
+	COLUMN_COMMAND = 0,
+	COLUMN_PID,
+	COLUMN_PPID,
+	COLUMN_STATE,
+	COLUMN_VSZ,
+	COLUMN_RSS,
+	COLUMN_UID,
+	COLUMN_CPU,
+	COLUMN_PRIORITY,
+};
+
 typedef struct _XtmProcessTreeViewClass XtmProcessTreeViewClass;
 struct _XtmProcessTreeViewClass
 {
@@ -31,20 +46,21 @@ struct _XtmProcessTreeView
 	GtkTreeView		parent;
 	/*<private>*/
 	GtkListStore *		model;
+	GtkTreeModel *		model_filter;
+	GtkTreeViewColumn *	sort_column;
 	XtmSettings *		settings;
 };
 G_DEFINE_TYPE (XtmProcessTreeView, xtm_process_tree_view, GTK_TYPE_TREE_VIEW)
 
 static gboolean		treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
+static void		column_clicked					(GtkTreeViewColumn *column, XtmProcessTreeView *treeview);
 static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
-static int		sort_by_string					(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data);
 
 
 
 static void
 xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
 {
-	GObjectClass *class = G_OBJECT_CLASS (klass);
 	xtm_process_tree_view_parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -54,18 +70,20 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	GtkCellRenderer *cell_text, *cell_right_aligned, *cell_cmdline;
 	GtkTreeViewColumn *column;
 	gboolean visible;
-	guint sort_column_id;
-	GtkSortType sort_type;
 
 	treeview->settings = xtm_settings_get_default ();
-	g_object_get (treeview->settings, "sort-column-id", &sort_column_id, "sort-type", &sort_type, NULL);
 	g_signal_connect (treeview->settings, "notify", G_CALLBACK (settings_changed), treeview);
 
+	/* Create tree view model */
 	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
 		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT);
 
-	g_object_set (treeview, "search-column", XTM_PTV_COLUMN_COMMAND, "model", treeview->model, NULL);
+	treeview->model_filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (treeview->model), NULL);
+	//gtk_tree_model_filter_set_visible_func (treeview->model_filter, ...);
 
+	g_object_set (treeview, "search-column", XTM_PTV_COLUMN_COMMAND, "model", treeview->model_filter, NULL);
+
+	/* Create cell renderer for tree view columns */
 	cell_text = gtk_cell_renderer_text_new();
 
 	cell_right_aligned = gtk_cell_renderer_text_new ();
@@ -74,61 +92,95 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	cell_cmdline = gtk_cell_renderer_text_new ();
 	g_object_set (cell_cmdline, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
+	/* Create tree view columns */
+#define COLUMN_PROPERTIES "expand", TRUE, "clickable", TRUE, "reorderable", FALSE, "resizable", TRUE, "visible", TRUE
 	column = gtk_tree_view_column_new_with_attributes (_("Task"), cell_cmdline, "text", XTM_PTV_COLUMN_COMMAND, NULL);
-	g_object_set (column, "expand", TRUE, "reorderable", FALSE, "resizable", TRUE, "visible", TRUE, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_COMMAND);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_COMMAND));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_COMMAND));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
+#undef COLUMN_PROPERTIES
+#define COLUMN_PROPERTIES "expand", FALSE, "clickable", TRUE, "reorderable", FALSE, "resizable", TRUE, "visible", visible
 	g_object_get (treeview->settings, "column-pid", &visible, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("PID"), cell_right_aligned, "text", XTM_PTV_COLUMN_PID, NULL);
-	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_PID);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_PID));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_PID));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-ppid", &visible, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("PPID"), cell_right_aligned, "text", XTM_PTV_COLUMN_PPID, NULL);
-	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_PPID);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_PPID));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_PPID));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-state", &visible, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("State"), cell_text, "text", XTM_PTV_COLUMN_STATE, NULL);
-	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_STATE);
+	gtk_tree_view_column_set_min_width (GTK_TREE_VIEW_COLUMN (column), 32);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_STATE));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_STATE));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-vsz", &visible, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("VSZ"), cell_right_aligned, "text", XTM_PTV_COLUMN_VSZ_STR, NULL);
-	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_VSZ);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_VSZ));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_VSZ));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-rss", &visible, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("RSS"), cell_right_aligned, "text", XTM_PTV_COLUMN_RSS_STR, NULL);
-	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_RSS);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_RSS));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_RSS));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-uid", &visible, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("UID"), cell_text, "text", XTM_PTV_COLUMN_UID, NULL);
-	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_UID);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_UID));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_UID));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-cpu", &visible, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("CPU"), cell_right_aligned, "text", XTM_PTV_COLUMN_CPU_STR, NULL);
-	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_CPU);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_CPU));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_CPU));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
 	g_object_get (treeview->settings, "column-priority", &visible, NULL);
 	/* TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header. */
 	column = gtk_tree_view_column_new_with_attributes (_("Prio."), cell_right_aligned, "text", XTM_PTV_COLUMN_PRIORITY, NULL);
-	g_object_set (column, "expand", FALSE, "reorderable", FALSE, "resizable", TRUE, "visible", visible, NULL);
-	gtk_tree_view_column_set_sort_column_id (GTK_TREE_VIEW_COLUMN (column), XTM_PTV_COLUMN_PRIORITY);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_PRIORITY));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_PRIORITY));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (treeview->model), sort_column_id, sort_type);
+	/* Set initial sort column */
+	{
+		guint sort_column_id;
+		GtkSortType sort_type;
+
+		g_object_get (treeview->settings, "sort-column-id", &sort_column_id, "sort-type", &sort_type, NULL);
+		treeview->sort_column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), sort_column_id);
+		gtk_tree_view_column_set_sort_indicator (treeview->sort_column, TRUE);
+		gtk_tree_view_column_set_sort_order (treeview->sort_column, sort_type);
+		sort_column_id = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (treeview->sort_column), "sort-column-id"));
+		gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (treeview->model), sort_column_id, sort_type);
+	}
 
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
 }
@@ -264,7 +316,7 @@ treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 		gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (treeview), (gint)event->x, (gint)event->y, &path, NULL, NULL, NULL);
 
 		if (path == NULL)
-			return;
+			return FALSE;
 
 		gtk_tree_model_get_iter (model, &iter, path);
 		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid, -1);
@@ -283,6 +335,38 @@ treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 }
 
 static void
+column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview)
+{
+	gint sort_column_id;
+	GtkSortType sort_type;
+
+	gtk_tree_sortable_get_sort_column_id (GTK_TREE_SORTABLE (treeview->model), &sort_column_id, &sort_type);
+#if DEBUG
+	g_debug ("Last sort column %d; sort type: %d", sort_column_id, sort_type);
+#endif
+
+	if (treeview->sort_column != column)
+	{
+		gtk_tree_view_column_set_sort_indicator (treeview->sort_column, FALSE);
+		gtk_tree_view_column_set_sort_indicator (column, TRUE);
+		sort_column_id = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (column), "sort-column-id"));
+		sort_type = GTK_SORT_ASCENDING;
+	}
+	else
+	{
+		sort_type = (sort_type == GTK_SORT_ASCENDING) ? GTK_SORT_DESCENDING : GTK_SORT_ASCENDING;
+	}
+
+#if DEBUG
+	g_debug ("New sort column %d; sort type: %d", sort_column_id, sort_type);
+#endif
+	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (treeview->model), sort_column_id, sort_type);
+	gtk_tree_view_column_set_sort_order (column, sort_type);
+
+	treeview->sort_column = column;
+}
+
+static void
 settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview)
 {
 	if (g_str_has_prefix (pspec->name, "column-"))
@@ -291,26 +375,26 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 		gushort column_id;
 
 		if (!g_strcmp0 (pspec->name, "column-uid"))
-			column_id = XTM_PTV_COLUMN_UID;
+			column_id = COLUMN_UID;
 		else if (!g_strcmp0 (pspec->name, "column-pid"))
-			column_id = XTM_PTV_COLUMN_PID;
+			column_id = COLUMN_PID;
 		else if (!g_strcmp0 (pspec->name, "column-ppid"))
-			column_id = XTM_PTV_COLUMN_PPID;
+			column_id = COLUMN_PPID;
 		else if (!g_strcmp0 (pspec->name, "column-state"))
-			column_id = XTM_PTV_COLUMN_STATE;
+			column_id = COLUMN_STATE;
 		else if (!g_strcmp0 (pspec->name, "column-vsz"))
-			column_id = XTM_PTV_COLUMN_VSZ_STR;
+			column_id = COLUMN_VSZ;
 		else if (!g_strcmp0 (pspec->name, "column-rss"))
-			column_id = XTM_PTV_COLUMN_RSS_STR;
+			column_id = COLUMN_RSS;
 		else if (!g_strcmp0 (pspec->name, "column-cpu"))
-			column_id = XTM_PTV_COLUMN_CPU_STR;
+			column_id = COLUMN_CPU;
 		else if (!g_strcmp0 (pspec->name, "column-priority"))
-			column_id = XTM_PTV_COLUMN_PRIORITY;
+			column_id = COLUMN_PRIORITY;
 
 		g_object_get (object, pspec->name, &visible, NULL);
 		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), column_id), visible);
 	}
-	else if (!g_strcmp0 (pspec->name, "show-system-processes"))
+	else if (!g_strcmp0 (pspec->name, "show-all-processes"))
 	{
 		gboolean visible;
 		g_object_get (object, pspec->name, &visible, NULL);
@@ -324,5 +408,12 @@ GtkWidget *
 xtm_process_tree_view_new ()
 {
 	return g_object_new (XTM_TYPE_PROCESS_TREE_VIEW, NULL);
+}
+
+void
+xtm_process_tree_view_get_sort_column_id (XtmProcessTreeView *treeview, gint *sort_column_id, GtkSortType *sort_type)
+{
+	*sort_column_id = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (treeview->sort_column), "column-id"));
+	*sort_type = gtk_tree_view_column_get_sort_order (treeview->sort_column);
 }
 

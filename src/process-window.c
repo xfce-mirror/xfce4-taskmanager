@@ -137,8 +137,7 @@ xtm_process_window_finalize (GObject *object)
 		GtkSortType sort_type;
 
 		gtk_window_get_size (GTK_WINDOW (priv->window), &width, &height);
-		gtk_tree_sortable_get_sort_column_id (GTK_TREE_SORTABLE (gtk_tree_view_get_model (GTK_TREE_VIEW (priv->treeview))),
-				&sort_column_id, &sort_type);
+		xtm_process_tree_view_get_sort_column_id (XTM_PROCESS_TREE_VIEW (priv->treeview), &sort_column_id, &sort_type);
 
 		g_object_set (priv->settings, "window-width", width, "window-height", height,
 				"sort-column-id", sort_column_id, "sort-type", sort_type, NULL);
@@ -269,7 +268,7 @@ show_menu_preferences (XtmProcessWindow *window)
 	}
 
 	menu = gtk_menu_new ();
-	menu_preferences_append_item (GTK_MENU (menu), _("Show system processes"), "show-system-processes", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("Show all processes"), "show-all-processes", window->priv->settings);
 
 	mi = gtk_separator_menu_item_new ();
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
@@ -366,7 +365,7 @@ xtm_process_window_get_model (XtmProcessWindow *window)
 {
 	g_return_val_if_fail (G_LIKELY (XTM_IS_PROCESS_WINDOW (window)), NULL);
 	g_return_val_if_fail (G_LIKELY (GTK_IS_TREE_VIEW (window->priv->treeview)), NULL);
-	return gtk_tree_view_get_model (GTK_TREE_VIEW (window->priv->treeview));
+	return gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (gtk_tree_view_get_model (GTK_TREE_VIEW (window->priv->treeview))));
 }
 
 void

@@ -23,7 +23,7 @@
 
 enum
 {
-	PROP_SHOW_SYSTEM_PROCESSES = 1,
+	PROP_SHOW_ALL_PROCESSES = 1,
 	PROP_COLUMN_UID,
 	PROP_COLUMN_PID,
 	PROP_COLUMN_PPID,
@@ -67,8 +67,8 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 	xtm_settings_parent_class = g_type_class_peek_parent (klass);
 	class->get_property = xtm_settings_get_property;
 	class->set_property = xtm_settings_set_property;
-	g_object_class_install_property (class, PROP_SHOW_SYSTEM_PROCESSES,
-		g_param_spec_boolean ("show-system-processes", "ShowSystemProcesses", "Show system processes", FALSE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_SHOW_ALL_PROCESSES,
+		g_param_spec_boolean ("show-all-processes", "ShowAllProcesses", "Show all processes", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_UID,
 		g_param_spec_boolean ("column-uid", "ColumnUID", "Show column UID", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_PID,
