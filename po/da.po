@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 23:04+0200\n"
+"POT-Creation-Date: 2010-05-10 21:04+0000\n"
 "PO-Revision-Date: 2008-09-30 12:32+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -16,40 +16,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
-#, fuzzy
 msgid "Easy to use task manager"
-msgstr "Xfce4-proceshåndtering er en let anvendelig proceshåndtering"
+msgstr "En nem opgavehåndtering"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
 #: ../src/process-window.c:199 ../src/process-window.c:321
-#, fuzzy
 msgid "Task Manager"
-msgstr "Xfce4-proceshåndtering"
+msgstr "Opgaverhåndtering"
 
 #: ../src/process-statusbar.c:121
 #, c-format
 msgid "CPU: %.2f%%"
-msgstr ""
+msgstr "CPU: %.2f%%"
 
 #: ../src/process-statusbar.c:128
 #, c-format
 msgid "Memory: %.2f%%"
-msgstr ""
+msgstr "Hukommelse: %.2f%%"
 
 #: ../src/process-statusbar.c:135
 #, c-format
 msgid "Swap: %.2f%%"
-msgstr ""
+msgstr "Swap: %.2f%%"
 
 #: ../src/process-statusbar.c:142
 #, c-format
 msgid "Processes: %d"
-msgstr ""
+msgstr "Proces: %d"
 
 #: ../src/process-tree-view.c:106
 msgid "Task"
-msgstr ""
+msgstr "Opgave"
 
 #: ../src/process-tree-view.c:116 ../src/process-window.c:276
 msgid "PID"
@@ -72,60 +70,51 @@ msgid "RSS"
 msgstr "RSS"
 
 #: ../src/process-tree-view.c:157 ../src/process-window.c:281
-#, fuzzy
 msgid "UID"
-msgstr "PID"
+msgstr "UID"
 
 #: ../src/process-tree-view.c:165 ../src/process-window.c:282
-#, fuzzy
 msgid "CPU"
-msgstr "CPU%"
+msgstr "CPU"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
 #: ../src/process-tree-view.c:174
-#, fuzzy
 msgid "Prio."
-msgstr "Prioritet"
+msgstr "Prio."
 
 #: ../src/process-tree-view.c:212
-#, fuzzy
 msgid "Terminate task"
-msgstr "Vil du virkelig terminere processen?"
+msgstr "Afbryd opgave"
 
 #: ../src/process-tree-view.c:212
-#, fuzzy
 msgid "Kill task"
-msgstr "Dræb"
+msgstr "Dræb opgave"
 
 #: ../src/process-tree-view.c:214
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr ""
+msgstr "Er du sikker på, at du vil sende et signal til PID'en %d?"
 
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
-msgstr ""
+msgstr "Fejl ved afsendelse af signal"
 
 #: ../src/process-tree-view.c:227
 #, c-format
-msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
-msgstr ""
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
+msgstr "En fejl opstod ved afsendelse af signal til PID'en %d. Det skyldes sandsynligvis manglende rettigheder."
 
 #: ../src/process-tree-view.c:244
 msgid "Error setting priority"
-msgstr ""
+msgstr "Fejl ved indstilling af prioritetet"
 
 #: ../src/process-tree-view.c:245
 #, c-format
-msgid ""
-"An error was encountered by setting a priority to the PID %d. It is likely "
-"you don't have the required privileges."
-msgstr ""
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
+msgstr "En fejl opstod ved indstilling af PID'en %d.Det skyldes sandsynligvis manglende rettigheder."
 
 #: ../src/process-tree-view.c:260
-#, fuzzy
 msgid "Terminate"
 msgstr "Terminér"
 
@@ -143,23 +132,24 @@ msgstr "Dræb"
 
 #: ../src/process-tree-view.c:287
 msgid "Very low"
-msgstr ""
+msgstr "Meget lav"
 
 #: ../src/process-tree-view.c:292
 msgid "Low"
-msgstr ""
+msgstr "Lav"
 
 #: ../src/process-tree-view.c:297
+#, fuzzy
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: ../src/process-tree-view.c:302
 msgid "High"
-msgstr ""
+msgstr "Høj"
 
 #: ../src/process-tree-view.c:307
 msgid "Very high"
-msgstr ""
+msgstr "Meget høj"
 
 #: ../src/process-tree-view.c:312 ../src/process-window.c:283
 msgid "Priority"
@@ -167,38 +157,35 @@ msgstr "Prioritet"
 
 #: ../src/process-window.c:197
 msgid "Execution error"
-msgstr ""
+msgstr "Fejl under udførsel"
 
 #: ../src/process-window.c:226
 msgid "Run Program..."
-msgstr ""
+msgstr "Kør årogram..."
 
 #: ../src/process-window.c:227
 msgid "Application Finder"
-msgstr ""
+msgstr "Programfinder"
 
 #: ../src/process-window.c:228
-#, fuzzy
 msgid "Terminal emulator"
-msgstr "Originale forfatter:"
+msgstr "Terminalemulering"
 
 #: ../src/process-window.c:229
-#, fuzzy
 msgid "XTerm"
-msgstr "Terminér"
+msgstr "Xterm"
 
 #: ../src/process-window.c:271
-#, fuzzy
 msgid "Show all processes"
-msgstr "Kontrollér dine processer"
+msgstr "Vis alle processer"
 
 #: ../src/process-window.c:279
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "Virtuelle bit"
 
 #: ../src/process-window.c:280
 msgid "Private Bytes"
-msgstr ""
+msgstr "Private bit"
 
 #: ../src/process-window.c:329
 msgid "translator-credits"
@@ -210,25 +197,25 @@ msgstr ""
 "Mere info: http://www.dansk-gruppen.dk"
 
 #: ../src/task-manager.c:146
-#, c-format
+#, c-format, fuzzy
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
 #: ../src/task-manager.c:153
-#, c-format
+#, c-format, fuzzy
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
 #: ../src/task-manager.c:157
-#, c-format
+#, c-format, fuzzy
 msgid "%lu B"
-msgstr ""
+msgstr "%lu B"
 
 #. TODO make precision optional
 #: ../src/task-manager.c:168
 #, fuzzy, c-format
 msgid "%.2f%%"
-msgstr "%0.0f %%"
+msgstr "%.2f%%"
 
 #~ msgid "Control your processes"
 #~ msgstr "Kontrollér dine processer"
