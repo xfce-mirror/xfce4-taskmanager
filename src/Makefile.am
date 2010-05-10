@@ -20,9 +20,18 @@ xfce4_taskmanager_SOURCES =						\
 	process-tree-view.c		process-tree-view.h		\
 	process-statusbar.c		process-statusbar.h		\
 	task-manager.c			task-manager.h			\
-	task-manager-linux.c						\
 	settings.c			settings.h			\
 	$(NULL)
+
+if OS_BSD
+xfce4_taskmanager_SOURCES += task-manager-bsd.c
+endif
+if OS_SOLARIS
+xfce4_taskmanager_SOURCES += task-manager-solaris.c
+endif
+if OS_LINUX
+xfce4_taskmanager_SOURCES += task-manager-linux.c
+endif
 
 if MAINTAINER_MODE
 BUILT_SOURCES = process-window_ui.h

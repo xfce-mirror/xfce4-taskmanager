@@ -1,7 +1,7 @@
 xfce4-taskmanager.desktop.in
-src/callbacks.c
-src/functions.c
-src/interface.c
-src/taskmanager-bsd.c
-src/taskmanager-linux.c
+src/process-statusbar.c
+src/process-tree-view.c
+src/process-window.c
+src/process-window.ui
+src/task-manager.c
 src/main.c

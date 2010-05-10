@@ -1,1 +1,3 @@
-src/menu-positions.c
+src/taskmanager-bsd.c
+src/task-manager-linux.c
+src/taskmanager-solaris.c

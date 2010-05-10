@@ -81,7 +81,6 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 		gchar *uid_name;
 		get_owner_uid (&treeview->owner_uid, &uid_name);
 		g_object_get (treeview->settings, "show-all-processes", &treeview->show_all_processes_cached, NULL);
-		g_debug ("wtf all processes: %d", treeview->show_all_processes_cached);
 	}
 
 	/* Create tree view model */
@@ -435,7 +434,6 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 	else if (!g_strcmp0 (pspec->name, "show-all-processes"))
 	{
 		g_object_get (object, pspec->name, &treeview->show_all_processes_cached, NULL);
-		// TODO show/hide system processes from treeview
 		gtk_tree_model_filter_refilter (GTK_TREE_MODEL_FILTER (treeview->model_filter));
 	}
 }
