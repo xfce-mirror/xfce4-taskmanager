@@ -17,16 +17,14 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
-#, fuzzy
 msgid "Easy to use task manager"
-msgstr "Xfce4-Taskmanager қолдануғы ыңғайлы үрдістерді басқару"
+msgstr "Жүйе үрдістерін ыңғайлы басқару"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
 #: ../src/process-window.c:199 ../src/process-window.c:321
-#, fuzzy
 msgid "Task Manager"
-msgstr "Xfce4 Taskmanager"
+msgstr "Үрдістерді басқарушысы"
 
 #: ../src/process-statusbar.c:121
 #, c-format
@@ -39,7 +37,7 @@ msgid "Memory: %.2f%%"
 msgstr "Жедел жады: %.2f%%"
 
 #: ../src/process-statusbar.c:135
-#, c-format, fuzzy
+#, c-format
 msgid "Swap: %.2f%%"
 msgstr "Swap: %.2f%%"
 
@@ -65,7 +63,6 @@ msgid "State"
 msgstr "Күйі"
 
 #: ../src/process-tree-view.c:141
-#, fuzzy
 msgid "VSZ"
 msgstr "VSZ"
 
@@ -74,26 +71,22 @@ msgid "RSS"
 msgstr "RSS"
 
 #: ../src/process-tree-view.c:157 ../src/process-window.c:281
-#, fuzzy
 msgid "UID"
-msgstr "PID"
+msgstr "UID"
 
 #: ../src/process-tree-view.c:165 ../src/process-window.c:282
-#, fuzzy
 msgid "CPU"
-msgstr "CPU%"
+msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
 #: ../src/process-tree-view.c:174
-#, fuzzy
 msgid "Prio."
-msgstr "Prio"
+msgstr "Prio."
 
 #: ../src/process-tree-view.c:212
-#, fuzzy
 msgid "Terminate task"
-msgstr "Үрдісті шынымен аяқтау керек пе?"
+msgstr "Үрдісті аяқтау"
 
 #: ../src/process-tree-view.c:212
 msgid "Kill task"
@@ -123,7 +116,6 @@ msgid "An error was encountered by setting a priority to the PID %d. It is likel
 msgstr "PID %d үшін приоритет орнату кезінде қате орын алған. Сізде керек рұқсаттар жоқ сияқты."
 
 #: ../src/process-tree-view.c:260
-#, fuzzy
 msgid "Terminate"
 msgstr "Аяқтау"
 
