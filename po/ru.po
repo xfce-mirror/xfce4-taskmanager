@@ -17,9 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
-#, fuzzy
 msgid "Easy to use task manager"
-msgstr "Удобный в использовании менеджер процессов"
+msgstr "Простой менеджер процессов"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
@@ -31,26 +30,26 @@ msgstr "Диспетчер задач Xfce 4"
 #: ../src/process-statusbar.c:121
 #, c-format
 msgid "CPU: %.2f%%"
-msgstr ""
+msgstr "ЦП: %.2f%%"
 
 #: ../src/process-statusbar.c:128
 #, c-format
 msgid "Memory: %.2f%%"
-msgstr ""
+msgstr "Память: %.2f%%"
 
 #: ../src/process-statusbar.c:135
 #, c-format
 msgid "Swap: %.2f%%"
-msgstr ""
+msgstr "Подкач.: %.2f%%"
 
 #: ../src/process-statusbar.c:142
 #, c-format
 msgid "Processes: %d"
-msgstr ""
+msgstr "Процессы: %d"
 
 #: ../src/process-tree-view.c:106
 msgid "Task"
-msgstr ""
+msgstr "Задача"
 
 #: ../src/process-tree-view.c:116 ../src/process-window.c:276
 msgid "PID"
@@ -65,17 +64,17 @@ msgid "State"
 msgstr "Состояние"
 
 #: ../src/process-tree-view.c:141
+#, fuzzy
 msgid "VSZ"
-msgstr ""
+msgstr "ВРаз"
 
 #: ../src/process-tree-view.c:149
 msgid "RSS"
 msgstr "RSS"
 
 #: ../src/process-tree-view.c:157 ../src/process-window.c:281
-#, fuzzy
 msgid "UID"
-msgstr "PID"
+msgstr "UID"
 
 #: ../src/process-tree-view.c:165 ../src/process-window.c:282
 msgid "CPU"
@@ -84,23 +83,21 @@ msgstr "ЦПУ"
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
 #: ../src/process-tree-view.c:174
-#, fuzzy
 msgid "Prio."
-msgstr "Prio"
+msgstr "Прио"
 
 #: ../src/process-tree-view.c:212
 msgid "Terminate task"
 msgstr "Завершить процесс"
 
 #: ../src/process-tree-view.c:212
-#, fuzzy
 msgid "Kill task"
-msgstr "Убить"
+msgstr "Принудительно завершить"
 
 #: ../src/process-tree-view.c:214
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr ""
+msgstr "Вы хотите послать сигнал процессу %d?"
 
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
@@ -109,7 +106,7 @@ msgstr "Не удалось отправить сигнал"
 #: ../src/process-tree-view.c:227
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgstr "Произошла ошибка при отправке сигнала процессу %d. Вероятнее всего, у вас нет необходимых прав."
 
 #: ../src/process-tree-view.c:244
 msgid "Error setting priority"
@@ -118,7 +115,7 @@ msgstr "Не удалось задать приоритет"
 #: ../src/process-tree-view.c:245
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgstr "Произошла ошибка при задании приоритета процесса %d. Вероятнее всего, у вас нет необходимых прав."
 
 #: ../src/process-tree-view.c:260
 msgid "Terminate"
@@ -138,11 +135,11 @@ msgstr "Убить"
 
 #: ../src/process-tree-view.c:287
 msgid "Very low"
-msgstr ""
+msgstr "Очень низкий"
 
 #: ../src/process-tree-view.c:292
 msgid "Low"
-msgstr ""
+msgstr "Низкий"
 
 #: ../src/process-tree-view.c:297
 msgid "Normal"
@@ -150,11 +147,11 @@ msgstr "Обычный"
 
 #: ../src/process-tree-view.c:302
 msgid "High"
-msgstr ""
+msgstr "Высокий"
 
 #: ../src/process-tree-view.c:307
 msgid "Very high"
-msgstr ""
+msgstr "Очень высокий"
 
 #: ../src/process-tree-view.c:312 ../src/process-window.c:283
 msgid "Priority"
@@ -162,7 +159,7 @@ msgstr "Приоритет"
 
 #: ../src/process-window.c:197
 msgid "Execution error"
-msgstr ""
+msgstr "Ошибка выполнения"
 
 #: ../src/process-window.c:226
 msgid "Run Program..."
@@ -181,17 +178,16 @@ msgid "XTerm"
 msgstr "XTerm"
 
 #: ../src/process-window.c:271
-#, fuzzy
 msgid "Show all processes"
 msgstr "Показывать все процессы"
 
 #: ../src/process-window.c:279
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "Вирт"
 
 #: ../src/process-window.c:280
 msgid "Private Bytes"
-msgstr ""
+msgstr "Личн"
 
 #: ../src/process-window.c:329
 msgid "translator-credits"
@@ -200,12 +196,12 @@ msgstr "Andrey Fedoseev"
 #: ../src/task-manager.c:146
 #, c-format
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu Миб"
 
 #: ../src/task-manager.c:153
 #, c-format
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu Киб"
 
 #: ../src/task-manager.c:157
 #, c-format
