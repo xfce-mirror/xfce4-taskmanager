@@ -3,12 +3,12 @@
 # This file is distributed under the same license as
 #   the xfce4-taskmanager package.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 23:04+0200\n"
+"POT-Creation-Date: 2010-05-11 04:07+0000\n"
 "PO-Revision-Date: 2009-10-17 23:23+0300\n"
 "Last-Translator: Vlad Vasilev <lortwer@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -78,20 +78,19 @@ msgid "UID"
 msgstr "PID"
 
 #: ../src/process-tree-view.c:165 ../src/process-window.c:282
-#, fuzzy
 msgid "CPU"
-msgstr "ЦПУ%"
+msgstr "ЦПУ"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
 #: ../src/process-tree-view.c:174
 #, fuzzy
 msgid "Prio."
 msgstr "Prio"
 
 #: ../src/process-tree-view.c:212
-#, fuzzy
 msgid "Terminate task"
-msgstr "Действительно завершить процесс?"
+msgstr "Завершить процесс"
 
 #: ../src/process-tree-view.c:212
 #, fuzzy
@@ -105,28 +104,23 @@ msgstr ""
 
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
-msgstr ""
+msgstr "Не удалось отправить сигнал"
 
 #: ../src/process-tree-view.c:227
 #, c-format
-msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr ""
 
 #: ../src/process-tree-view.c:244
 msgid "Error setting priority"
-msgstr ""
+msgstr "Не удалось задать приоритет"
 
 #: ../src/process-tree-view.c:245
 #, c-format
-msgid ""
-"An error was encountered by setting a priority to the PID %d. It is likely "
-"you don't have the required privileges."
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr ""
 
 #: ../src/process-tree-view.c:260
-#, fuzzy
 msgid "Terminate"
 msgstr "Завершить"
 
@@ -152,7 +146,7 @@ msgstr ""
 
 #: ../src/process-tree-view.c:297
 msgid "Normal"
-msgstr ""
+msgstr "Обычный"
 
 #: ../src/process-tree-view.c:302
 msgid "High"
@@ -172,26 +166,24 @@ msgstr ""
 
 #: ../src/process-window.c:226
 msgid "Run Program..."
-msgstr ""
+msgstr "Выполнить..."
 
 #: ../src/process-window.c:227
 msgid "Application Finder"
-msgstr ""
+msgstr "Поиск приложений"
 
 #: ../src/process-window.c:228
-#, fuzzy
 msgid "Terminal emulator"
-msgstr "Оригинальный автор"
+msgstr "Эмулятор терминала"
 
 #: ../src/process-window.c:229
-#, fuzzy
 msgid "XTerm"
-msgstr "Завершить"
+msgstr "XTerm"
 
 #: ../src/process-window.c:271
 #, fuzzy
 msgid "Show all processes"
-msgstr "Управление процессами"
+msgstr "Показывать все процессы"
 
 #: ../src/process-window.c:279
 msgid "Virtual Bytes"
@@ -218,13 +210,13 @@ msgstr ""
 #: ../src/task-manager.c:157
 #, c-format
 msgid "%lu B"
-msgstr ""
+msgstr "%lu б"
 
 #. TODO make precision optional
 #: ../src/task-manager.c:168
-#, fuzzy, c-format
+#, c-format
 msgid "%.2f%%"
-msgstr "%0.0f %%"
+msgstr "%.2f%%"
 
 #~ msgid "Control your processes"
 #~ msgstr "Управление процессами"
