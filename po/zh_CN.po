@@ -1,14 +1,14 @@
 # Chinese translations for xfce package.
 # Copyright (C) 2008 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
-# Hunt Xu <huntxu@live.cn>", 2008.
+# Hunt Xu <huntxu@live.cn>, 2008, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 23:04+0200\n"
-"PO-Revision-Date: 2008-12-06 16:44+0800\n"
+"POT-Creation-Date: 2010-05-10 22:07+0000\n"
+"PO-Revision-Date: 2010-05-11 12:02+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Chinese (simplified)\n"
 "MIME-Version: 1.0\n"
@@ -16,40 +16,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
-#, fuzzy
 msgid "Easy to use task manager"
-msgstr "Xfce4-任务管理器是一款方便使用的任务管理器"
+msgstr "易用的任务管理器"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
 #: ../src/process-window.c:199 ../src/process-window.c:321
-#, fuzzy
 msgid "Task Manager"
-msgstr "Xfce4 任务管理器"
+msgstr "任务管理器"
 
 #: ../src/process-statusbar.c:121
 #, c-format
 msgid "CPU: %.2f%%"
-msgstr ""
+msgstr "CPU: %.2f%%"
 
 #: ../src/process-statusbar.c:128
 #, c-format
 msgid "Memory: %.2f%%"
-msgstr ""
+msgstr "内存: %.2f%%"
 
 #: ../src/process-statusbar.c:135
 #, c-format
 msgid "Swap: %.2f%%"
-msgstr ""
+msgstr "交换分区: %.2f%%"
 
 #: ../src/process-statusbar.c:142
 #, c-format
 msgid "Processes: %d"
-msgstr ""
+msgstr "进程数: %d"
 
 #: ../src/process-tree-view.c:106
 msgid "Task"
-msgstr ""
+msgstr "任务"
 
 #: ../src/process-tree-view.c:116 ../src/process-window.c:276
 msgid "PID"
@@ -65,46 +63,41 @@ msgstr "状态"
 
 #: ../src/process-tree-view.c:141
 msgid "VSZ"
-msgstr ""
+msgstr "VSZ"
 
 #: ../src/process-tree-view.c:149
 msgid "RSS"
 msgstr "RSS"
 
 #: ../src/process-tree-view.c:157 ../src/process-window.c:281
-#, fuzzy
 msgid "UID"
-msgstr "PID"
+msgstr "UID"
 
 #: ../src/process-tree-view.c:165 ../src/process-window.c:282
-#, fuzzy
 msgid "CPU"
-msgstr "CPU%"
+msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
 #: ../src/process-tree-view.c:174
-#, fuzzy
 msgid "Prio."
-msgstr "优先"
+msgstr "优先级"
 
 #: ../src/process-tree-view.c:212
-#, fuzzy
 msgid "Terminate task"
-msgstr "确认中止这个任务吗？"
+msgstr "终止任务"
 
 #: ../src/process-tree-view.c:212
-#, fuzzy
 msgid "Kill task"
-msgstr "杀死"
+msgstr "杀死任务"
 
 #: ../src/process-tree-view.c:214
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr ""
+msgstr "您确认要发送一个信号至 PID 为 %d 的进程吗？"
 
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
-msgstr ""
+msgstr "发送信号时发生错误"
 
 #: ../src/process-tree-view.c:227
 #, c-format
@@ -112,10 +105,11 @@ msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
 "don't have the required privileges."
 msgstr ""
+"发送信号至 PID 为 %d 的进程时发生一个错误。您可能没有足够的权限进行该操作。"
 
 #: ../src/process-tree-view.c:244
 msgid "Error setting priority"
-msgstr ""
+msgstr "设置优先级时发生错误"
 
 #: ../src/process-tree-view.c:245
 #, c-format
@@ -123,11 +117,11 @@ msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr ""
+"设置 PID 为 %d 的进程的优先级时发生一个错误。您可能没有足够的权限进行该操作。"
 
 #: ../src/process-tree-view.c:260
-#, fuzzy
 msgid "Terminate"
-msgstr "中止"
+msgstr "终止"
 
 #: ../src/process-tree-view.c:267
 msgid "Stop"
@@ -143,23 +137,23 @@ msgstr "杀死"
 
 #: ../src/process-tree-view.c:287
 msgid "Very low"
-msgstr ""
+msgstr "非常低"
 
 #: ../src/process-tree-view.c:292
 msgid "Low"
-msgstr ""
+msgstr "低"
 
 #: ../src/process-tree-view.c:297
 msgid "Normal"
-msgstr ""
+msgstr "正常"
 
 #: ../src/process-tree-view.c:302
 msgid "High"
-msgstr ""
+msgstr "高"
 
 #: ../src/process-tree-view.c:307
 msgid "Very high"
-msgstr ""
+msgstr "非常高"
 
 #: ../src/process-tree-view.c:312 ../src/process-window.c:283
 msgid "Priority"
@@ -167,63 +161,61 @@ msgstr "优先级"
 
 #: ../src/process-window.c:197
 msgid "Execution error"
-msgstr ""
+msgstr "执行错误"
 
 #: ../src/process-window.c:226
 msgid "Run Program..."
-msgstr ""
+msgstr "运行程序..."
 
 #: ../src/process-window.c:227
 msgid "Application Finder"
-msgstr ""
+msgstr "应用程序查找器"
 
 #: ../src/process-window.c:228
-#, fuzzy
 msgid "Terminal emulator"
-msgstr "初始开发者："
+msgstr "终端模拟器"
 
 #: ../src/process-window.c:229
-#, fuzzy
 msgid "XTerm"
-msgstr "中止"
+msgstr "XTerm"
 
 #: ../src/process-window.c:271
-#, fuzzy
 msgid "Show all processes"
-msgstr "管理您的进程"
+msgstr "显示所有进程"
 
 #: ../src/process-window.c:279
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "虚拟占用内存"
 
 #: ../src/process-window.c:280
 msgid "Private Bytes"
-msgstr ""
+msgstr "私有占用内存"
 
 #: ../src/process-window.c:329
 msgid "translator-credits"
-msgstr "HuntXu <huntxu@live.cn>"
+msgstr ""
+"HuntXu <huntxu@live.cn>, 2008, 2010."
 
 #: ../src/task-manager.c:146
 #, c-format
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
 #: ../src/task-manager.c:153
 #, c-format
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
 #: ../src/task-manager.c:157
 #, c-format
 msgid "%lu B"
-msgstr ""
+msgstr "%lu B"
 
 #. TODO make precision optional
 #: ../src/task-manager.c:168
-#, fuzzy, c-format
+#, c-format
 msgid "%.2f%%"
-msgstr "%0.0f %%"
+msgstr "%.2f%%"
 
 #~ msgid "Control your processes"
 #~ msgstr "管理您的进程"
