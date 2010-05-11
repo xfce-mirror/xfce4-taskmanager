@@ -19,9 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
-#, fuzzy
 msgid "Easy to use task manager"
-msgstr "xfce4-taskmanager és un gestor de processos f'àcil d'emprar"
+msgstr "Gestor de tasques fàcil d'usar"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
