@@ -1,18 +1,18 @@
 # Galician translation of xfce4-taskmanager
 # Copyright (C) 2008-2009 Leandro Regueiro
 # This file is distributed under the same license as the xfce4-taskmanager package.
-#
+# 
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2006, 2008, 2009.
 # Miguel Anxo Bouzada <mbouzada@gmail.com>, 2008.
-#
+# 
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 23:04+0200\n"
+"POT-Creation-Date: 2010-05-12 10:07+0000\n"
 "PO-Revision-Date: 2009-07-15 18:07+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -22,40 +22,38 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
-#, fuzzy
 msgid "Easy to use task manager"
-msgstr "Xfce4-Taskmanager é un xestor de tarefas fácil de usar"
+msgstr "Xestor de tarefas fácil de usar"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
 #: ../src/process-window.c:199 ../src/process-window.c:321
-#, fuzzy
 msgid "Task Manager"
-msgstr "Xestor de tarefas de Xfce4"
+msgstr "Xestor de tarefas"
 
 #: ../src/process-statusbar.c:121
 #, c-format
 msgid "CPU: %.2f%%"
-msgstr ""
+msgstr "CPU: %.2f%%"
 
 #: ../src/process-statusbar.c:128
 #, c-format
 msgid "Memory: %.2f%%"
-msgstr ""
+msgstr "Memoria: %.2f%%"
 
 #: ../src/process-statusbar.c:135
 #, c-format
 msgid "Swap: %.2f%%"
-msgstr ""
+msgstr "Espazo de intercambio: %.2f%%"
 
 #: ../src/process-statusbar.c:142
 #, c-format
 msgid "Processes: %d"
-msgstr ""
+msgstr "Procesos: %d"
 
 #: ../src/process-tree-view.c:106
 msgid "Task"
-msgstr ""
+msgstr "Tarefa"
 
 #: ../src/process-tree-view.c:116 ../src/process-window.c:276
 msgid "PID"
@@ -78,60 +76,51 @@ msgid "RSS"
 msgstr "RSS"
 
 #: ../src/process-tree-view.c:157 ../src/process-window.c:281
-#, fuzzy
 msgid "UID"
-msgstr "PID"
+msgstr "UID"
 
 #: ../src/process-tree-view.c:165 ../src/process-window.c:282
-#, fuzzy
 msgid "CPU"
-msgstr "CPU%"
+msgstr "CPU"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
 #: ../src/process-tree-view.c:174
-#, fuzzy
 msgid "Prio."
-msgstr "Prio"
+msgstr "Prio."
 
 #: ../src/process-tree-view.c:212
-#, fuzzy
 msgid "Terminate task"
-msgstr "Desexa rematar a tarefa?"
+msgstr "Rematar a tarefa"
 
 #: ../src/process-tree-view.c:212
-#, fuzzy
 msgid "Kill task"
-msgstr "Matar"
+msgstr "Matar a tarefa"
 
 #: ../src/process-tree-view.c:214
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr ""
+msgstr "Está seguro de que desexa enviar un sinal ao PID %d?"
 
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
-msgstr ""
+msgstr "Produciuse un erro ao enviar o sinal"
 
 #: ../src/process-tree-view.c:227
 #, c-format
-msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
-msgstr ""
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
+msgstr "Produciuse un erro ao enviar un sinal ao PID %d. O máis probable é que non teña os permisos necesarios."
 
 #: ../src/process-tree-view.c:244
 msgid "Error setting priority"
-msgstr ""
+msgstr "Produciuse un erro ao definir a prioridade"
 
 #: ../src/process-tree-view.c:245
 #, c-format
-msgid ""
-"An error was encountered by setting a priority to the PID %d. It is likely "
-"you don't have the required privileges."
-msgstr ""
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
+msgstr "Produciuse un erro ao definir a prioridade do PID %d. O máis probable é que non teña os permisos necesarios."
 
 #: ../src/process-tree-view.c:260
-#, fuzzy
 msgid "Terminate"
 msgstr "Rematar"
 
@@ -149,23 +138,23 @@ msgstr "Matar"
 
 #: ../src/process-tree-view.c:287
 msgid "Very low"
-msgstr ""
+msgstr "Moi baixa"
 
 #: ../src/process-tree-view.c:292
 msgid "Low"
-msgstr ""
+msgstr "Baixa"
 
 #: ../src/process-tree-view.c:297
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: ../src/process-tree-view.c:302
 msgid "High"
-msgstr ""
+msgstr "Alta"
 
 #: ../src/process-tree-view.c:307
 msgid "Very high"
-msgstr ""
+msgstr "Moi alta"
 
 #: ../src/process-tree-view.c:312 ../src/process-window.c:283
 msgid "Priority"
@@ -173,30 +162,27 @@ msgstr "Prioridade"
 
 #: ../src/process-window.c:197
 msgid "Execution error"
-msgstr ""
+msgstr "Erro de execución"
 
 #: ../src/process-window.c:226
 msgid "Run Program..."
-msgstr ""
+msgstr "Executar programa..."
 
 #: ../src/process-window.c:227
 msgid "Application Finder"
-msgstr ""
+msgstr "Buscador de aplicativos"
 
 #: ../src/process-window.c:228
-#, fuzzy
 msgid "Terminal emulator"
-msgstr "Autor orixinal:"
+msgstr "Emulador de terminal"
 
 #: ../src/process-window.c:229
-#, fuzzy
 msgid "XTerm"
-msgstr "Rematar"
+msgstr "XTerm"
 
 #: ../src/process-window.c:271
-#, fuzzy
 msgid "Show all processes"
-msgstr "Controle os seus procesos"
+msgstr "Mostrar todos os procesos"
 
 #: ../src/process-window.c:279
 msgid "Virtual Bytes"
@@ -217,23 +203,23 @@ msgstr ""
 #: ../src/task-manager.c:146
 #, c-format
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
 #: ../src/task-manager.c:153
 #, c-format
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
 #: ../src/task-manager.c:157
 #, c-format
 msgid "%lu B"
-msgstr ""
+msgstr "%lu B"
 
 #. TODO make precision optional
 #: ../src/task-manager.c:168
-#, fuzzy, c-format
+#, c-format
 msgid "%.2f%%"
-msgstr "%0.0f %%"
+msgstr "%.2f%%"
 
 #~ msgid "Control your processes"
 #~ msgstr "Controle os seus procesos"
