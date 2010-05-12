@@ -195,10 +195,10 @@ msgstr "Bytes privados"
 #: ../src/process-window.c:329
 msgid "translator-credits"
 msgstr ""
-"Leandro Regueiro <leandro.regueiro@gmail.com>, 2006, 2008, 2009.\n"
+"Leandro Regueiro <leandro.regueiro@gmail.com>, 2006, 2008, 2009, 2010.\n"
 "Miguel Anxo Bouzada <mbouzada@gmail.com>, 2008.\n"
 "\n"
-"Proxecto Trasno http://trasno.net"
+"Proxecto Trasno http://www.trasno.net"
 
 #: ../src/task-manager.c:146
 #, c-format
