@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008 Landry Breuil <landry@xfce.org>
+ * Copyright (c) 2008-2010 Landry Breuil <landry@xfce.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,28 +16,30 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include "taskmanager.h"
+#include <stdlib.h>
 /* for getpwuid() */
 #include <sys/types.h>
 #include <pwd.h>
 /* for sysctl() */
 #include <sys/param.h>
+#include <sys/sched.h>
 #include <sys/sysctl.h>
 /* for kill() */
 #include <signal.h>
 #include <err.h>
 
+#include "task-manager.h"
+
 char	*state_abbrev[] = {
 	"", "start", "run", "sleep", "stop", "zomb", "dead", "onproc"
 };
 
-GArray *get_task_list(void)
+gboolean get_task_list (GArray *task_list)
 {
-	GArray *task_list;
 	int mib[6];
 	size_t size;
 	struct kinfo_proc2 *kp;
-	struct task t;
+	Task t;
 	struct passwd *passwdp;
 	double d;
 	char **args, **ptr;
@@ -46,7 +48,7 @@ GArray *get_task_list(void)
 	fixpt_t ccpu; /* The scheduler exponential decay value. */
 	int fscale; /* The kernel fixed-point scale factor. */
 
-	task_list = g_array_new (FALSE, FALSE, sizeof (struct task));
+//	task_list = g_array_new (FALSE, FALSE, sizeof (struct task));
 
 	mib[0] = CTL_KERN;
 	mib[1] = KERN_PROC2;
@@ -66,59 +68,98 @@ GArray *get_task_list(void)
 	for (i=0 ; i < nproc ; i++)
 	{
 		struct kinfo_proc2 p = kp[i];
-		t.checked = FALSE;
 		t.pid = p.p_pid;
 		t.ppid = p.p_ppid;
 		t.uid = p.p_uid;
-		t.prio = p.p_priority - 22;
-		t.vsize = p.p_vm_dsize + p.p_vm_ssize + p.p_vm_tsize;
-		t.vsize *= getpagesize();
-		t.rss = p.p_vm_rssize;
+		t.prio = p.p_priority - PZERO;
+		t.vsz = p.p_vm_dsize + p.p_vm_ssize + p.p_vm_tsize;
+		t.vsz *= getpagesize();
+		t.rss = p.p_vm_rssize * getpagesize();
 		g_snprintf(t.state, sizeof t.state, "%s", state_abbrev[p.p_stat]);
 		/* shamelessly stolen from top/machine.c */
 		/* short version: g_strlcpy(t.name, p.p_comm, strlen(p.p_comm) + 1); */
-		size = 128;
-		if ((args = malloc(size)) == NULL)
-			errx(1,"failed to allocate memory for argv structures");
-		for (;; size *= 2) {
-			if ((args = realloc(args, size)) == NULL)
+		if (P_ZOMBIE(&p)) {
+			g_strlcpy(t.name, p.p_comm, strlen(p.p_comm) + 1);
+		} else {
+			size = 128;
+			if ((args = malloc(size)) == NULL)
 				errx(1,"failed to allocate memory for argv structures");
-			mib[0] = CTL_KERN;
-			mib[1] = KERN_PROC_ARGS;
-			mib[2] = t.pid;
-			mib[3] = KERN_PROC_ARGV;
-			if (sysctl(mib, 4, args, &size, NULL, 0) == 0)
-				break;
+			for (;; size *= 2) {
+				if ((args = realloc(args, size)) == NULL)
+					errx(1,"failed to allocate memory for argv structures of pid %d",t.pid);
+				mib[0] = CTL_KERN;
+				mib[1] = KERN_PROC_ARGS;
+				mib[2] = t.pid;
+				mib[3] = KERN_PROC_ARGV;
+				if (sysctl(mib, 4, args, &size, NULL, 0) == 0)
+					break;
+			}
+			buf[0] = '\0';
+			for (ptr = args; *ptr != NULL; ptr++) {
+				if (ptr != args)
+					strlcat(buf, " ", sizeof(buf));
+				strlcat(buf, *ptr, sizeof(buf));
+			}
+			free(args);
+			/* TODO: set difference */
+			g_snprintf(t.name, sizeof t.name, "%s", buf);
+			g_strlcpy(t.cmdline, t.name, sizeof t.name);
 		}
-		buf[0] = '\0';
-		for (ptr = args; *ptr != NULL; ptr++) {
-			if (ptr != args)
-				strlcat(buf, " ", sizeof(buf));
-			strlcat(buf, *ptr, sizeof(buf));
-		}
-		g_snprintf(t.name, sizeof t.name, "%s", buf);
 
-		t.time_percentage = (100.0 * ((double) p.p_pctcpu / FSCALE));
+		t.cpu_user = (100.0 * ((double) p.p_pctcpu / FSCALE));
+		t.cpu_system = 0; /* TODO ? */
 		/* get username from uid */
 		passwdp = getpwuid(t.uid);
 		if(passwdp != NULL && passwdp->pw_name != NULL)
-			g_strlcpy(t.uname, passwdp->pw_name, sizeof t.uname);
+			g_strlcpy(t.uid_name, passwdp->pw_name, sizeof t.uid_name);
 		g_array_append_val(task_list, t);
 	}
+	free(kp);
 
-	return task_list;
+	return TRUE;
 }
 
-gboolean get_cpu_usage_from_proc(system_status *sys_stat)
+gboolean
+pid_is_sleeping (guint pid)
 {
-	/* tosee: remove this, get cpu perc from CPTIME */
 	return FALSE;
+}
+
+gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
+{
+	static gulong cur_user = 0, cur_system = 0, cur_total = 0;
+	static gulong old_user = 0, old_system = 0, old_total = 0;
+
+	int mib[] = {CTL_KERN, KERN_CPTIME};
+ 	glong cp_time[CPUSTATES];
+ 	gsize size = sizeof( cp_time );
+	if (sysctl(mib, 2, &cp_time, &size, NULL, 0) < 0)
+		errx(1,"failed to get kern.cptime");
+
+	old_user = cur_user;
+	old_system = cur_system;
+	old_total = cur_total;
+
+	cur_user = cp_time[CP_USER] + cp_time[CP_NICE];
+	cur_system = cp_time[CP_SYS] + cp_time[CP_INTR];
+	cur_total = cur_user + cur_system + cp_time[CP_IDLE];
+
+	*cpu_user = (old_total > 0) ? (cur_user - old_user) * 100 / (gdouble)(cur_total - old_total) : 0;
+	*cpu_system = (old_total > 0) ? (cur_system - old_system) * 100 / (gdouble)(cur_total - old_total) : 0;
+
+	/* get #cpu */
+	size = sizeof(&cpu_count);
+	mib[0] = CTL_HW;
+	mib[1] = HW_NCPU;
+	if (sysctl(mib, 2, cpu_count, &size, NULL, 0) == -1)
+		errx(1,"failed to get cpu count");
+	return TRUE;
 }
 
 /* vmtotal values in #pg, mem wanted in kB */
 #define pagetok(nb) ((nb) * (getpagesize() / 1024))
 
-gboolean get_system_status (system_status *sys_stat)
+gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
 {
 	int mib[] = {CTL_VM, VM_METER};
 	struct vmtotal vmtotal;
@@ -127,42 +168,41 @@ gboolean get_system_status (system_status *sys_stat)
 	if (sysctl(mib, 2, &vmtotal, &size, NULL, 0) < 0)
 		errx(1,"failed to get vm.meter");
 	/* cheat : rm = tot used, add free to get total */
-	sys_stat->mem_total = pagetok(vmtotal.t_rm + vmtotal.t_free);
-	sys_stat->mem_free = pagetok(vmtotal.t_free);
-	sys_stat->mem_cached = 0;
-	sys_stat->mem_buffers = pagetok(vmtotal.t_rm - vmtotal.t_arm);
-	size = sizeof(sys_stat->cpu_count);
-	mib[0] = CTL_HW;
-	mib[1] = HW_NCPU;
-	if (sysctl(mib, 2, &sys_stat->cpu_count, &size, NULL, 0) == -1)
-		errx(1,"failed to get cpu count");
-	/* cpu_user/idle/system unused atm so we don't care */
+	*memory_total = pagetok(vmtotal.t_rm + vmtotal.t_free);
+	*memory_free = pagetok(vmtotal.t_free);
+	*memory_cache = 0;
+	*memory_buffers = pagetok(vmtotal.t_rm - vmtotal.t_arm);
+	/* XXX:TODO */
+	*swap_total = 0;
+	*swap_free = 0;
 	return TRUE;
 }
 
-void send_signal_to_task(gint task_id, gint signal)
+gboolean send_signal_to_pid (guint task_id, gint signal)
 {
+	gint ret = 0;
 	if(task_id > 0 && signal != 0)
 	{
-		gint ret = 0;
 		
 		ret = kill(task_id, signal);
-
+/*
 		if(ret != 0)
 			xfce_err(_("Couldn't send signal %d to the task with ID %d"), signal, task_id);
-	}
+*/	}
+	return ret;
 }
 
 
-void set_priority_to_task(gint task_id, gint prio)
+gboolean set_priority_to_pid (guint task_id, gint prio)
 {
 	if(task_id > 0)
 	{
 		gchar command[128] = "";
+		/* TODO : syscall */
 		g_snprintf(command, 128, "renice %d %d > /dev/null", prio, task_id);
 		
 		if(system(command) != 0)
-			xfce_err(_("Couldn't set priority %d to the task with ID %d"), prio, task_id);
+			;//xfce_err(_("Couldn't set priority %d to the task with ID %d"), prio, task_id);
 	}
 }
 
