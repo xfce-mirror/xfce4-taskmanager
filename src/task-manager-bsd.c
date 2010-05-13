@@ -76,11 +76,9 @@ gboolean get_task_list (GArray *task_list)
 		t.vsz *= getpagesize();
 		t.rss = p.p_vm_rssize * getpagesize();
 		g_snprintf(t.state, sizeof t.state, "%s", state_abbrev[p.p_stat]);
+		g_strlcpy(t.name, p.p_comm, strlen(p.p_comm) + 1);
 		/* shamelessly stolen from top/machine.c */
-		/* short version: g_strlcpy(t.name, p.p_comm, strlen(p.p_comm) + 1); */
-		if (P_ZOMBIE(&p)) {
-			g_strlcpy(t.name, p.p_comm, strlen(p.p_comm) + 1);
-		} else {
+		if (!P_ZOMBIE(&p)) {
 			size = 128;
 			if ((args = malloc(size)) == NULL)
 				errx(1,"failed to allocate memory for argv structures");
@@ -101,9 +99,7 @@ gboolean get_task_list (GArray *task_list)
 				strlcat(buf, *ptr, sizeof(buf));
 			}
 			free(args);
-			/* TODO: set difference */
-			g_snprintf(t.name, sizeof t.name, "%s", buf);
-			g_strlcpy(t.cmdline, t.name, sizeof t.name);
+			g_snprintf(t.cmdline, sizeof t.cmdline, "%s", buf);
 		}
 
 		t.cpu_user = (100.0 * ((double) p.p_pctcpu / FSCALE));
