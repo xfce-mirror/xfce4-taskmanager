@@ -203,27 +203,35 @@ gboolean send_signal_to_pid (guint task_id, gint signal)
 {
 	gint ret = 0;
 	if(task_id > 0 && signal != 0)
-	{
-		
 		ret = kill(task_id, signal);
-/*
-		if(ret != 0)
-			xfce_err(_("Couldn't send signal %d to the task with ID %d"), signal, task_id);
-*/	}
-	return ret;
+	return (ret == 0) ? TRUE : FALSE;
 }
 
 
 gboolean set_priority_to_pid (guint task_id, gint prio)
 {
-	if(task_id > 0)
+	gint res;
+	switch (prio)
 	{
-		gchar command[128] = "";
-		/* TODO : syscall */
-		g_snprintf(command, 128, "renice %d %d > /dev/null", prio, task_id);
-		
-		if(system(command) != 0)
-			;//xfce_err(_("Couldn't set priority %d to the task with ID %d"), prio, task_id);
+		case XTM_PRIORITY_VERY_LOW:
+			prio = 15;
+			break;
+		case XTM_PRIORITY_LOW:
+			prio = 5;
+			break;
+		case XTM_PRIORITY_NORMAL:
+			prio = 0;
+			break;
+		case XTM_PRIORITY_HIGH:
+			prio = -5;
+			break;
+		case XTM_PRIORITY_VERY_HIGH:
+			prio = -15;
+			break;
+		default:
+			return TRUE;
 	}
+	res = setpriority (PRIO_PROCESS, task_id, prio);
+	return (res == 0) ? TRUE : FALSE;
 }
 
