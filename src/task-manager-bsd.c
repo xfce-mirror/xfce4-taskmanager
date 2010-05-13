@@ -24,10 +24,15 @@
 #include <sys/param.h>
 #include <sys/sched.h>
 #include <sys/sysctl.h>
+/* for swapctl() */
+#include <sys/swap.h>
 /* for kill() */
 #include <signal.h>
 #include <err.h>
-
+/* for strlcpy() */
+#include <string.h>
+/* for getpagesize() */
+#include <unistd.h>
 #include "task-manager.h"
 
 char	*state_abbrev[] = {
@@ -41,14 +46,9 @@ gboolean get_task_list (GArray *task_list)
 	struct kinfo_proc2 *kp;
 	Task t;
 	struct passwd *passwdp;
-	double d;
 	char **args, **ptr;
 	char buf[127];
 	int nproc, i;
-	fixpt_t ccpu; /* The scheduler exponential decay value. */
-	int fscale; /* The kernel fixed-point scale factor. */
-
-//	task_list = g_array_new (FALSE, FALSE, sizeof (struct task));
 
 	mib[0] = CTL_KERN;
 	mib[1] = KERN_PROC2;
