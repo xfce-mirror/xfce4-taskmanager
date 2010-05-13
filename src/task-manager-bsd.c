@@ -163,6 +163,8 @@ gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 
 {
 	int mib[] = {CTL_VM, VM_METER};
 	struct vmtotal vmtotal;
+	struct swapent *swdev;
+	int nswap, i;
 	size_t size;
 	size = sizeof(vmtotal);
 	if (sysctl(mib, 2, &vmtotal, &size, NULL, 0) < 0)
@@ -172,9 +174,28 @@ gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 
 	*memory_free = pagetok(vmtotal.t_free);
 	*memory_cache = 0;
 	*memory_buffers = pagetok(vmtotal.t_rm - vmtotal.t_arm);
-	/* XXX:TODO */
-	*swap_total = 0;
-	*swap_free = 0;
+
+	/* get swap stats */
+	if ((nswap = swapctl(SWAP_NSWAP, 0, 0)) == 0)
+		errx(1,"failed to get swap device count");
+
+	if ((swdev = calloc(nswap, sizeof(*swdev))) == NULL)
+		errx(1,"failed to allocate memory for swdev structures");
+
+	if (swapctl(SWAP_STATS, swdev, nswap) == -1) {
+		free(swdev);
+		errx(1,"failed to get swap stats");
+	}
+
+	/* Total things up */
+	*swap_total = *swap_free = 0;
+	for (i = 0; i < nswap; i++) {
+		if (swdev[i].se_flags & SWF_ENABLE) {
+			*swap_free += ((swdev[i].se_nblks - swdev[i].se_inuse) / (1024 / DEV_BSIZE));
+			*swap_total += (swdev[i].se_nblks / (1024 / DEV_BSIZE));
+		}
+	}
+	free(swdev);
 	return TRUE;
 }
 
