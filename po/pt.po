@@ -115,7 +115,6 @@ msgid "An error was encountered by setting a priority to the PID %d. It is likel
 msgstr "Ocorreu um erro ao definir a prioridade para o PID %d. É possível que não tenha os privilégios necessários."
 
 #: ../src/process-tree-view.c:260
-#, fuzzy
 msgid "Terminate"
 msgstr "Terminar"
 
