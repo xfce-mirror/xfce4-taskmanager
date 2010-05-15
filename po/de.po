@@ -67,9 +67,8 @@ msgid "State"
 msgstr "Status"
 
 #: ../src/process-tree-view.c:141
-#, fuzzy
 msgid "VSZ"
-msgstr "Größe des virtuellen Speichers"
+msgstr ""
 
 #: ../src/process-tree-view.c:149
 msgid "RSS"
