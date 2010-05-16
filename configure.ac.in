@@ -68,7 +68,10 @@ dnl ***********************************
 dnl ******* Check for OS family *******
 dnl ***********************************
 case "$target_os" in
-	dragonfly*|freebsd*|netbsd*|openbsd*|darwin*)
+	freebsd*)
+		AC_MSG_ERROR([Support for FreeBSD is missing])
+	;;
+	dragonfly*|netbsd*|openbsd*|darwin*)
 		ac_os_implementation="bsd"
 	;;
 	solaris*)
