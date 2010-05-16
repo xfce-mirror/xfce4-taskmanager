@@ -70,13 +70,19 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	fgets (buffer, 1024, file);
 	sscanf (buffer, "cpu\t%u %u %u %u", &user, &user_nice, &system, &idle);
 
-	_cpu_count = 0;
-	while (fgets (buffer, 1024, file) != NULL)
+	if (_cpu_count == 0)
 	{
-		if (buffer[0] != 'c' && buffer[1] != 'p' && buffer[2] != 'u')
-			break;
-		_cpu_count += 1;
+		_cpu_count = 0;
+		while (fgets (buffer, 1024, file) != NULL)
+		{
+			if (buffer[0] != 'c' && buffer[1] != 'p' && buffer[2] != 'u')
+				break;
+			_cpu_count += 1;
+		}
+		if (_cpu_count == 0)
+			_cpu_count += 1;
 	}
+
 	fclose (file);
 
 	old_jiffies_user = cur_jiffies_user;
@@ -89,8 +95,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 
 	*cpu_user = (old_jiffies > 0) ? (cur_jiffies_user - old_jiffies_user) * 100 / (gdouble)(cur_jiffies - old_jiffies) : 0;
 	*cpu_system = (old_jiffies > 0) ? (cur_jiffies_system - old_jiffies_system) * 100 / (gdouble)(cur_jiffies - old_jiffies) : 0;
-	*cpu_count = (_cpu_count > 0) ? _cpu_count : 1;
-	_cpu_count = *cpu_count;
+	*cpu_count = _cpu_count;
 
 	return TRUE;
 }
@@ -157,6 +162,9 @@ get_cpu_percent (guint pid, gulong jiffies_user, gfloat *cpu_user, gulong jiffie
 	jiffies_system_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_system, GUINT_TO_POINTER (pid)));
 	g_hash_table_insert (hash_cpu_user, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_user));
 	g_hash_table_insert (hash_cpu_system, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_system));
+
+	if (jiffies_user < jiffies_user_old || jiffies_system < jiffies_system_old)
+		return;
 
 	if (_cpu_count > 0)
 	{
