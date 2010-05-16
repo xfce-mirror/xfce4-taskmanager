@@ -63,12 +63,10 @@ enum
  * OS specific implementation.
  */
 
-gboolean	get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);
-gboolean	get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system);
-gboolean	get_task_list (GArray *task_list);
-gboolean	pid_is_sleeping (guint pid);
-gboolean	send_signal_to_pid (guint pid, gint signal);
-gboolean	set_priority_to_pid (guint pid, gint priority);
+gboolean	get_memory_usage	(guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);
+gboolean	get_cpu_usage		(gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system);
+gboolean	get_task_list		(GArray *task_list);
+gboolean	pid_is_sleeping		(guint pid);
 
 /**
  * GObject class used to update the graphical widgets.
@@ -95,7 +93,9 @@ void			xtm_task_manager_update_model			(XtmTaskManager *manager);
  * Helper functions.
  */
 
-void			get_owner_uid					(guint *owner_uid, gchar **owner_uid_name);
-gchar *			get_hostname					();
+void		get_owner_uid		(guint *owner_uid, gchar **owner_uid_name);
+gchar *		get_hostname		();
+gboolean	send_signal_to_pid	(guint pid, gint signal);
+gboolean	set_priority_to_pid	(guint pid, gint priority);
 
 #endif /* !TASK_MANAGER_H */

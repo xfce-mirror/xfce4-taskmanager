@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-11 04:07+0000\n"
+"POT-Creation-Date: 2010-05-16 04:07+0000\n"
 "PO-Revision-Date: 2009-10-17 23:23+0300\n"
 "Last-Translator: Vlad Vasilev <lortwer@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -23,7 +23,6 @@ msgstr "Простой менеджер процессов"
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
 #: ../src/process-window.c:199 ../src/process-window.c:321
-#, fuzzy
 msgid "Task Manager"
 msgstr "Диспетчер задач Xfce 4"
 

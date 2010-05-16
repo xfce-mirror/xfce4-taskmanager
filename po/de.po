@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 21:04+0000\n"
+"POT-Creation-Date: 2010-05-15 10:07+0000\n"
 "PO-Revision-Date: 2008-07-31 01:00+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
@@ -41,9 +41,9 @@ msgid "Memory: %.2f%%"
 msgstr "Speicher: %.2f%%"
 
 #: ../src/process-statusbar.c:135
-#, c-format
+#, c-format, fuzzy
 msgid "Swap: %.2f%%"
-msgstr ""
+msgstr "Auslagerungsspeicher: %.2f%%"
 
 #: ../src/process-statusbar.c:142
 #, c-format
@@ -110,16 +110,17 @@ msgid "Error sending signal"
 msgstr "Signal konnte nicht gesendet werden"
 
 #: ../src/process-tree-view.c:227
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr "Beim Senden eines Signals an die Anwendung mit der ID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die notwendigen Rechte."
 
 #: ../src/process-tree-view.c:244
+#, fuzzy
 msgid "Error setting priority"
-msgstr ""
+msgstr "Fehler beim Setzen der Priorität"
 
 #: ../src/process-tree-view.c:245
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr "Beim Senden eines Signals an die Anwendung mit der ID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die notwendigen Rechte."
 
@@ -167,8 +168,9 @@ msgid "Priority"
 msgstr "Priorität"
 
 #: ../src/process-window.c:197
+#, fuzzy
 msgid "Execution error"
-msgstr ""
+msgstr "Ausführungsfehler"
 
 #: ../src/process-window.c:226
 #, fuzzy
@@ -184,8 +186,9 @@ msgid "Terminal emulator"
 msgstr ""
 
 #: ../src/process-window.c:229
+#, fuzzy
 msgid "XTerm"
-msgstr ""
+msgstr "XTerm"
 
 #: ../src/process-window.c:271
 msgid "Show all processes"
@@ -208,19 +211,19 @@ msgstr ""
 "Paul Seyfert"
 
 #: ../src/task-manager.c:146
-#, c-format
+#, c-format, fuzzy
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
 #: ../src/task-manager.c:153
-#, c-format
+#, c-format, fuzzy
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
 #: ../src/task-manager.c:157
-#, c-format
+#, c-format, fuzzy
 msgid "%lu B"
-msgstr ""
+msgstr "%lu B"
 
 #. TODO make precision optional
 #: ../src/task-manager.c:168
