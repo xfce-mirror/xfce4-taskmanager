@@ -1,0 +1,217 @@
+/*
+ * Copyright (c) 2010  Mike Massonnet <mmassonnet@xfce.org>
+ * Copyright (c) 2009  Peter Tribble <peter.tribble@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ */
+
+#include <kstat.h>
+#include <pwd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <procfs.h>
+#include <sys/procfs.h>
+
+#include <glib.h>
+
+#include "task-manager.h"
+
+static kstat_ctl_t *kc;
+static gushort _cpu_count = 0;
+
+static void
+init_stats ()
+{
+	kc = kstat_open ();
+}
+
+gboolean
+get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
+{
+	kstat_t *ksp;
+	kstat_named_t *knp;
+
+	if (!kc)
+		init_stats();
+
+	if (!(ksp = kstat_lookup (kc, "unix", 0, "system_pages")))
+		return FALSE;
+	kstat_read (kc, ksp, NULL);
+	knp = kstat_data_lookup (ksp, "physmem");
+	*memory_total = getpagesize () * knp->value.ui64;
+	knp = kstat_data_lookup (ksp, "freemem");
+	*memory_free = getpagesize () * knp->value.ui64;
+	*memory_cache = 0;
+
+	if (!(ksp = kstat_lookup (kc, "unix", 0, "vminfo")))
+		return FALSE;
+	kstat_read (kc, ksp, NULL);
+	// TODO read swap usage
+	//knp = kstat_data_lookup (ksp, "...");
+	*swap_total = 0;
+	*swap_free = 0;
+
+	return TRUE;
+}
+
+static void
+get_cpu_percent (guint pid, gulong ticks_user, gfloat *cpu_user, gulong ticks_system, gfloat *cpu_system)
+{
+	static GHashTable *hash_cpu_user = NULL;
+	static GHashTable *hash_cpu_system = NULL;
+	gulong ticks_user_old, ticks_system_old;
+
+	if (hash_cpu_user == NULL)
+	{
+		hash_cpu_user = g_hash_table_new (NULL, NULL);
+		hash_cpu_system = g_hash_table_new (NULL, NULL);
+	}
+
+	ticks_user_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_user, GUINT_TO_POINTER (pid)));
+	ticks_system_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_system, GUINT_TO_POINTER (pid)));
+	g_hash_table_insert (hash_cpu_user, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (ticks_user));
+	g_hash_table_insert (hash_cpu_system, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (ticks_system));
+
+	if (ticks_user < ticks_user_old || ticks_system < ticks_system_old)
+		return;
+
+	if (_cpu_count > 0)
+	{
+		*cpu_user = (ticks_user_old > 0) ? (ticks_user - ticks_user_old) / (gfloat)_cpu_count : 0;
+		*cpu_system = (ticks_system_old > 0) ? (ticks_system - ticks_system_old) / (gfloat)_cpu_count : 0;
+	}
+	else
+	{
+		*cpu_user = *cpu_system = 0;
+	}
+}
+
+gboolean
+get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
+{
+	kstat_t *ksp;
+	kstat_named_t *knp;
+	gulong ticks_user = 0, ticks_system = 0;
+
+	if (!kc)
+		init_stats ();
+
+	_cpu_count = 0;
+	kstat_chain_update (kc);
+
+	for (ksp = kc->kc_chain; ksp != NULL; ksp = ksp->ks_next)
+	{
+		if (!g_strcmp0 (ksp->ks_module, "cpu_info"))
+		{
+			_cpu_count += 1;
+		}
+		else if (!g_strcmp0 (ksp->ks_module, "cpu") && !g_strcmp0 (ksp->ks_name, "sys"))
+		{
+			// TODO switch ticks to nsec for better precision
+			kstat_read (kc, ksp, NULL);
+			knp = kstat_data_lookup (ksp, "cpu_ticks_user");
+			ticks_user += knp->value.ul;
+			knp = kstat_data_lookup (ksp, "cpu_ticks_kernel");
+			ticks_system += knp->value.ul;
+		}
+	}
+
+	get_cpu_percent (0, ticks_user, cpu_user, ticks_system, cpu_system);
+	*cpu_count = _cpu_count;
+
+        return TRUE;
+}
+
+static gboolean
+get_task_details (guint pid, Task *task)
+{
+	FILE *file;
+	gchar filename[96];
+	gchar pstate[2];
+	struct passwd *pw;
+	psinfo_t process;
+
+	snprintf (filename, 96, "/proc/%d/psinfo", pid);
+	if ((file = fopen (filename, "r")) == NULL)
+		return FALSE;
+
+	if (fread (&process, sizeof (psinfo_t), 1, file) != 1)
+	{
+		fclose (file);
+		return FALSE;
+	}
+
+	task->pid = (guint)process.pr_pid;
+	task->ppid = (guint)process.pr_ppid;
+	g_strlcpy (task->name, process.pr_fname, 256);
+	snprintf (task->cmdline, 1024, "%s", process.pr_psargs);
+	snprintf (task->state, 16, "%c", process.pr_lwp.pr_sname);
+	task->vsz = (guint64)process.pr_size * 1024;
+	task->rss = (guint64)process.pr_rssize * 1024;
+	task->prio = (gushort)process.pr_lwp.pr_pri;
+	pw = getpwuid (process.pr_uid);
+	task->uid = (guint)process.pr_uid;
+	g_strlcpy (task->uid_name, (pw != NULL) ? pw->pw_name : "nobody", sizeof (task->uid_name));
+	get_cpu_percent (task->pid, process.pr_time.tv_sec * 100000 + process.pr_time.tv_nsec / 1000, &task->cpu_user, 0, &task->cpu_system);
+	task->cpu_user /= 10000;
+
+	fclose (file);
+
+	return TRUE;
+}
+
+gboolean
+get_task_list (GArray *task_list)
+{
+	GDir *dir;
+	const gchar *name;
+	guint pid;
+	Task task = { 0 };
+
+	if ((dir = g_dir_open ("/proc", 0, NULL)) == NULL)
+		return FALSE;
+
+	while ((name = g_dir_read_name(dir)) != NULL)
+	{
+		if ((pid = (guint)g_ascii_strtoull (name, NULL, 0)) > 0)
+		{
+			if (get_task_details (pid, &task))
+				g_array_append_val(task_list, task);
+		}
+	}
+
+	g_dir_close (dir);
+
+	return FALSE;
+}
+
+gboolean
+pid_is_sleeping (guint pid)
+{
+	FILE *file;
+	gchar filename[96];
+	gchar state[2];
+	psinfo_t process;
+
+	snprintf (filename, 96, "/proc/%d/psinfo", pid);
+	if ((file = fopen (filename, "r")) == NULL)
+		return FALSE;
+
+	if (fread (&process, sizeof (psinfo_t), 1, file) != 1)
+	{
+		fclose (file);
+		return FALSE;
+	}
+
+	snprintf (state, 2, "%c", process.pr_lwp.pr_sname);
+	fclose (file);
+
+	return (state[0] == 'T') ? TRUE : FALSE;
+}
+
