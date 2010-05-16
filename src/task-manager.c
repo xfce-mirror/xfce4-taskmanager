@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <pwd.h>
+#include <signal.h>
+#include <sys/resource.h>
 
 #include <glib-object.h>
 #include <glib/gi18n.h>
@@ -90,34 +92,6 @@ _xtm_task_manager_set_model (XtmTaskManager *manager, GtkTreeModel *model)
 	g_return_if_fail (G_LIKELY (XTM_IS_TASK_MANAGER (manager)));
 	g_return_if_fail (G_LIKELY (GTK_IS_TREE_MODEL (model)));
 	manager->model = model;
-}
-
-void
-get_owner_uid (guint *owner_uid, gchar **owner_uid_name)
-{
-	uid_t uid;
-	struct passwd *pw;
-	gchar *username = NULL;
-
-	uid = getuid ();
-	pw = getpwuid (uid);
-
-	username = g_strdup ((pw != NULL) ? pw->pw_name : "nobody");
-
-	*owner_uid = (guint) uid;
-	*owner_uid_name = username;
-}
-
-gchar *
-get_hostname ()
-{
-#ifndef HOST_NAME_MAX
-#define HOST_NAME_MAX 255
-#endif
-	char hostname[HOST_NAME_MAX];
-	if (gethostname (hostname, HOST_NAME_MAX))
-		return g_strdup ("(unknown)");
-	return g_strdup_printf ("%s", hostname);
 }
 
 static void
@@ -370,5 +344,90 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	g_array_free (array, TRUE);
 
 	return;
+}
+
+
+
+void
+get_owner_uid (guint *owner_uid, gchar **owner_uid_name)
+{
+	uid_t uid;
+	struct passwd *pw;
+	gchar *username = NULL;
+
+	uid = getuid ();
+	pw = getpwuid (uid);
+
+	username = g_strdup ((pw != NULL) ? pw->pw_name : "nobody");
+
+	*owner_uid = (guint) uid;
+	*owner_uid_name = username;
+}
+
+gchar *
+get_hostname ()
+{
+#ifndef HOST_NAME_MAX
+#define HOST_NAME_MAX 255
+#endif
+	char hostname[HOST_NAME_MAX];
+	if (gethostname (hostname, HOST_NAME_MAX))
+		return g_strdup ("(unknown)");
+	return g_strdup_printf ("%s", hostname);
+}
+
+gboolean
+send_signal_to_pid (guint pid, gint signal)
+{
+	gint sig;
+	gint res;
+	switch (signal)
+	{
+		case XTM_SIGNAL_TERMINATE:
+			sig = SIGTERM;
+			break;
+		case XTM_SIGNAL_STOP:
+			sig = SIGSTOP;
+			break;
+		case XTM_SIGNAL_CONTINUE:
+			sig = SIGCONT;
+			break;
+		case XTM_SIGNAL_KILL:
+			sig = SIGKILL;
+			break;
+		default:
+			return TRUE;
+	}
+	res = kill (pid, sig);
+	return (res == 0) ? TRUE : FALSE;
+}
+
+gboolean
+set_priority_to_pid (guint pid, gint priority)
+{
+	gint prio;
+	gint res;
+	switch (priority)
+	{
+		case XTM_PRIORITY_VERY_LOW:
+			prio = 15;
+			break;
+		case XTM_PRIORITY_LOW:
+			prio = 5;
+			break;
+		case XTM_PRIORITY_NORMAL:
+			prio = 0;
+			break;
+		case XTM_PRIORITY_HIGH:
+			prio = -5;
+			break;
+		case XTM_PRIORITY_VERY_HIGH:
+			prio = -15;
+			break;
+		default:
+			return TRUE;
+	}
+	res = setpriority (PRIO_PROCESS, pid, prio);
+	return (res == 0) ? TRUE : FALSE;
 }
 

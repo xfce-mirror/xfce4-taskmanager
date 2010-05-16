@@ -17,6 +17,7 @@
  */
 
 #include <stdlib.h>
+#include <err.h>
 /* for getpwuid() */
 #include <sys/types.h>
 #include <pwd.h>
@@ -26,9 +27,6 @@
 #include <sys/sysctl.h>
 /* for swapctl() */
 #include <sys/swap.h>
-/* for kill() */
-#include <signal.h>
-#include <err.h>
 /* for strlcpy() */
 #include <string.h>
 /* for getpagesize() */
@@ -193,41 +191,5 @@ gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 
 	}
 	free(swdev);
 	return TRUE;
-}
-
-gboolean send_signal_to_pid (guint task_id, gint signal)
-{
-	gint ret = 0;
-	if(task_id > 0 && signal != 0)
-		ret = kill(task_id, signal);
-	return (ret == 0) ? TRUE : FALSE;
-}
-
-
-gboolean set_priority_to_pid (guint task_id, gint prio)
-{
-	gint res;
-	switch (prio)
-	{
-		case XTM_PRIORITY_VERY_LOW:
-			prio = 15;
-			break;
-		case XTM_PRIORITY_LOW:
-			prio = 5;
-			break;
-		case XTM_PRIORITY_NORMAL:
-			prio = 0;
-			break;
-		case XTM_PRIORITY_HIGH:
-			prio = -5;
-			break;
-		case XTM_PRIORITY_VERY_HIGH:
-			prio = -15;
-			break;
-		default:
-			return TRUE;
-	}
-	res = setpriority (PRIO_PROCESS, task_id, prio);
-	return (res == 0) ? TRUE : FALSE;
 }
 
