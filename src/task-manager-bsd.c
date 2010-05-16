@@ -118,7 +118,19 @@ gboolean get_task_list (GArray *task_list)
 gboolean
 pid_is_sleeping (guint pid)
 {
-	return FALSE;
+	int mib[6];
+	struct kinfo_proc2 kp;
+	size_t size = sizeof(struct kinfo_proc2);
+
+	mib[0] = CTL_KERN;
+	mib[1] = KERN_PROC2;
+	mib[2] = KERN_PROC_PID;
+	mib[3] = pid;
+	mib[4] = sizeof(struct kinfo_proc2);
+	mib[5] = 1;
+	if (sysctl(mib, 6, &kp, &size, NULL, 0) < 0)
+		errx(1, "could not read kern.proc2 for pid %d", pid);
+	return (kp.p_stat == SSLEEP ? TRUE : FALSE);
 }
 
 gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
@@ -195,11 +207,27 @@ gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 
 	return TRUE;
 }
 
-gboolean send_signal_to_pid (guint task_id, gint signal)
+gboolean send_signal_to_pid (guint task_id, gint sig)
 {
-	gint ret = 0;
-	if(task_id > 0 && signal != 0)
-		ret = kill(task_id, signal);
+	gint ret;
+	switch (sig)
+	{
+		case XTM_SIGNAL_TERMINATE:
+			sig = SIGTERM;
+			break;
+		case XTM_SIGNAL_STOP:
+			sig = SIGSTOP;
+			break;
+		case XTM_SIGNAL_CONTINUE:
+			sig = SIGCONT;
+			break;
+		case XTM_SIGNAL_KILL:
+			sig = SIGKILL;
+			break;
+		default:
+			return TRUE;
+	}
+	ret = kill (task_id, sig);
 	return (ret == 0) ? TRUE : FALSE;
 }
 
