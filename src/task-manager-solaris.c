@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <procfs.h>
 #include <sys/procfs.h>
+#include <sys/swap.h>
 
 #include <glib.h>
 
@@ -36,6 +37,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 {
 	kstat_t *ksp;
 	kstat_named_t *knp;
+	gint n;
 
 	if (!kc)
 		init_stats();
@@ -49,13 +51,37 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 	*memory_free = getpagesize () * knp->value.ui64;
 	*memory_cache = 0;
 
-	if (!(ksp = kstat_lookup (kc, "unix", 0, "vminfo")))
-		return FALSE;
-	kstat_read (kc, ksp, NULL);
-	// TODO read swap usage
-	//knp = kstat_data_lookup (ksp, "...");
-	*swap_total = 0;
-	*swap_free = 0;
+	*swap_total = *swap_free = 0;
+	if ((n = swapctl (SC_GETNSWP, NULL)) > 0)
+	{
+		struct swaptable *st;
+		struct swapent *swapent;
+		gchar path[MAXPATHLEN];
+		gint i;
+
+		if ((st = malloc (sizeof (int) + n * sizeof (swapent_t))) == NULL)
+			return FALSE;
+		st->swt_n = n;
+
+		swapent = st->swt_ent;
+		for (i = 0; i < n; i++, swapent++)
+			swapent->ste_path = path;
+
+		if ((swapctl (SC_LIST, st)) == -1)
+		{
+			free (st);
+			return FALSE;
+		}
+
+		swapent = st->swt_ent;
+		for (i = 0; i < n; i++, swapent++)
+		{
+			*swap_total += swapent->ste_pages * getpagesize ();
+			*swap_free += swapent->ste_free * getpagesize ();
+		}
+
+		free (st);
+	}
 
 	return TRUE;
 }
@@ -113,16 +139,17 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 		}
 		else if (!g_strcmp0 (ksp->ks_module, "cpu") && !g_strcmp0 (ksp->ks_name, "sys"))
 		{
-			// TODO switch ticks to nsec for better precision
 			kstat_read (kc, ksp, NULL);
-			knp = kstat_data_lookup (ksp, "cpu_ticks_user");
-			ticks_user += knp->value.ul;
-			knp = kstat_data_lookup (ksp, "cpu_ticks_kernel");
-			ticks_system += knp->value.ul;
+			knp = kstat_data_lookup (ksp, "cpu_nsec_user");
+			ticks_user += knp->value.ul / 100000;
+			knp = kstat_data_lookup (ksp, "cpu_nsec_kernel");
+			ticks_system += knp->value.ul / 100000;
 		}
 	}
 
 	get_cpu_percent (0, ticks_user, cpu_user, ticks_system, cpu_system);
+	*cpu_user /= 100.0;
+	*cpu_system /= 100.0;
 	*cpu_count = _cpu_count;
 
         return TRUE;
