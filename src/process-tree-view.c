@@ -203,13 +203,13 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 {
 	GtkWidget *dialog;
 	guint pid = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "pid"));
-	gint signal = GPOINTER_TO_INT (user_data);
+	gint xtm_signal = GPOINTER_TO_INT (user_data);
 
-	if (signal == XTM_SIGNAL_TERMINATE || signal == XTM_SIGNAL_KILL)
+	if (xtm_signal == XTM_SIGNAL_TERMINATE || xtm_signal == XTM_SIGNAL_KILL)
 	{
 		gint res;
 		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
-			(signal == XTM_SIGNAL_TERMINATE) ? _("Terminate task") : _("Kill task"));
+			(xtm_signal == XTM_SIGNAL_TERMINATE) ? _("Terminate task") : _("Kill task"));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 			_("Are you sure you want to send a signal to the PID %d?"), pid);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
@@ -219,7 +219,7 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 			return;
 	}
 
-	if (!send_signal_to_pid (pid, signal))
+	if (!send_signal_to_pid (pid, xtm_signal))
 	{
 		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
 			_("Error sending signal"));
@@ -411,9 +411,8 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 		gboolean visible;
 		gushort column_id;
 
-		if (!g_strcmp0 (pspec->name, "column-uid"))
-			column_id = COLUMN_UID;
-		else if (!g_strcmp0 (pspec->name, "column-pid"))
+		column_id = COLUMN_UID;
+		if (!g_strcmp0 (pspec->name, "column-pid"))
 			column_id = COLUMN_PID;
 		else if (!g_strcmp0 (pspec->name, "column-ppid"))
 			column_id = COLUMN_PPID;
@@ -441,7 +440,7 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 
 
 GtkWidget *
-xtm_process_tree_view_new ()
+xtm_process_tree_view_new (void)
 {
 	return g_object_new (XTM_TYPE_PROCESS_TREE_VIEW, NULL);
 }

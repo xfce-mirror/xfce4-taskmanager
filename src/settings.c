@@ -14,6 +14,14 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+
 #include <glib-object.h>
 #include <glib.h>
 
@@ -105,7 +113,7 @@ static void
 xtm_settings_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec)
 {
 	GValue *src = XTM_SETTINGS (object)->values + property_id;
-	if (G_LIKELY (G_IS_VALUE (src)))
+	if (G_IS_VALUE (src))
 		g_value_copy (src, value);
 	else
 		g_param_value_set_default (pspec, value);
@@ -115,12 +123,12 @@ static void
 xtm_settings_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
 {
 	GValue *dest = XTM_SETTINGS (object)->values + property_id;
-	if (G_UNLIKELY (!G_IS_VALUE(dest)))
+	if (!G_IS_VALUE(dest))
 	{
 		g_value_init (dest, pspec->value_type);
 		g_param_value_set_default (pspec, dest);
 	}
-	if (G_LIKELY (g_param_values_cmp (pspec, value, dest) != 0))
+	if (g_param_values_cmp (pspec, value, dest) != 0)
 	{
 		g_value_copy (value, dest);
 		xtm_settings_save_settings (XTM_SETTINGS (object));
@@ -148,7 +156,7 @@ transform_string_to_uint (const GValue *src, GValue *dst)
 }
 
 static void
-register_transformable ()
+register_transformable (void)
 {
 	if (!g_value_type_transformable (G_TYPE_STRING, G_TYPE_BOOLEAN))
 		g_value_register_transform_func (G_TYPE_STRING, G_TYPE_BOOLEAN, transform_string_to_boolean);
@@ -188,7 +196,7 @@ xtm_settings_load_settings (XtmSettings *settings)
 		{
 			spec = specs[n];
 			string = g_key_file_get_string (rc, "Settings", g_param_spec_get_nick (spec), NULL);
-			if (G_UNLIKELY (string == NULL))
+			if (string == NULL)
 				continue;
 
 			g_value_init (&src, G_TYPE_STRING);
@@ -257,7 +265,7 @@ xtm_settings_save_settings (XtmSettings *settings)
 			}
 			string = g_value_get_string (&dst);
 
-			if (G_LIKELY (string != NULL))
+			if (string != NULL)
 				g_key_file_set_string (rc, "Settings", g_param_spec_get_nick (spec), string);
 
 			g_value_unset (&dst);
@@ -294,10 +302,10 @@ xtm_settings_save_settings (XtmSettings *settings)
 
 
 XtmSettings *
-xtm_settings_get_default ()
+xtm_settings_get_default (void)
 {
 	static XtmSettings *settings = NULL;
-	if (G_UNLIKELY (settings == NULL))
+	if (settings == NULL)
 	{
 		settings = g_object_new (XTM_TYPE_SETTINGS, NULL);
 		g_object_add_weak_pointer (G_OBJECT (settings), (gpointer)&settings);

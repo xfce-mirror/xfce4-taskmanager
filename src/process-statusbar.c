@@ -153,7 +153,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 
 
 GtkWidget *
-xtm_process_statusbar_new ()
+xtm_process_statusbar_new (void)
 {
 	return g_object_new (XTM_TYPE_PROCESS_STATUSBAR, NULL);
 }

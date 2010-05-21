@@ -23,11 +23,10 @@ static XtmTaskManager *task_manager;
 static gboolean timeout = 0;
 
 static gboolean
-init_timeout ()
+init_timeout (void)
 {
 	guint num_processes;
 	gfloat cpu, memory, swap;
-	const GArray *task_list;
 
 	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory, &swap);
 	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory, swap);
@@ -35,7 +34,7 @@ init_timeout ()
 	xtm_task_manager_update_model (task_manager);
 
 	if (timeout == 0)
-		timeout = g_timeout_add (1000, init_timeout, NULL);
+		timeout = g_timeout_add (1000, (GSourceFunc)init_timeout, NULL);
 
 	return TRUE;
 }

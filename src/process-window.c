@@ -49,8 +49,6 @@ struct _XtmProcessWindowPriv
 G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 
 static void	xtm_process_window_finalize			(GObject *object);
-static void	xtm_process_window_get_property			(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
-static void	xtm_process_window_set_property			(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 static void	xtm_process_window_show				(GtkWidget *widget);
 static void	xtm_process_window_hide				(GtkWidget *widget);
 
@@ -74,9 +72,6 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 	widget_class = GTK_WIDGET_CLASS (klass);
 	widget_class->show = xtm_process_window_show;
 	widget_class->hide = xtm_process_window_hide;
-
-	class->get_property = xtm_process_window_get_property;
-	class->set_property = xtm_process_window_set_property;
 }
 
 static void
@@ -137,7 +132,7 @@ xtm_process_window_finalize (GObject *object)
 		GtkSortType sort_type;
 
 		gtk_window_get_size (GTK_WINDOW (priv->window), &width, &height);
-		xtm_process_tree_view_get_sort_column_id (XTM_PROCESS_TREE_VIEW (priv->treeview), &sort_column_id, &sort_type);
+		xtm_process_tree_view_get_sort_column_id (XTM_PROCESS_TREE_VIEW (priv->treeview), (gint*)&sort_column_id, &sort_type);
 
 		g_object_set (priv->settings, "window-width", width, "window-height", height,
 				"sort-column-id", sort_column_id, "sort-type", sort_type, NULL);
@@ -146,32 +141,6 @@ xtm_process_window_finalize (GObject *object)
 	if (XTM_IS_SETTINGS (priv->settings))
 	{
 		g_object_unref (priv->settings);
-	}
-}
-
-static void
-xtm_process_window_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec)
-{
-	XtmProcessWindowPriv *priv = XTM_PROCESS_WINDOW (object)->priv;
-
-	switch (property_id)
-	{
-		default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-		break;
-	}
-}
-
-static void
-xtm_process_window_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
-{
-	XtmProcessWindowPriv *priv = XTM_PROCESS_WINDOW (object)->priv;
-
-	switch (property_id)
-	{
-		default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-		break;
 	}
 }
 
@@ -218,7 +187,6 @@ show_menu_execute_task (XtmProcessWindow *window)
 {
 	// TODO check if xfrun4, xfce4-appfinder, etc are installed and pull them in the menu
 	static GtkWidget *menu = NULL;
-	GtkWidget *mi;
 
 	if (menu == NULL)
 	{
@@ -339,7 +307,7 @@ show_about_dialog (XtmProcessWindow *window)
  */
 
 GtkWidget *
-xtm_process_window_new ()
+xtm_process_window_new (void)
 {
 	return g_object_new (XTM_TYPE_PROCESS_WINDOW, NULL);
 }
@@ -347,32 +315,32 @@ xtm_process_window_new ()
 static void
 xtm_process_window_show (GtkWidget *widget)
 {
-	g_return_if_fail (G_LIKELY (GTK_IS_WIDGET (widget)));
-	g_return_if_fail (G_LIKELY (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->priv->window)));
+	g_return_if_fail (GTK_IS_WIDGET (widget));
+	g_return_if_fail (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->priv->window));
 	gtk_widget_show (XTM_PROCESS_WINDOW (widget)->priv->window);
 }
 
 static void
 xtm_process_window_hide (GtkWidget *widget)
 {
-	g_return_if_fail (G_LIKELY (GTK_IS_WIDGET (widget)));
-	g_return_if_fail (G_LIKELY (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->priv->window)));
+	g_return_if_fail (GTK_IS_WIDGET (widget));
+	g_return_if_fail (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->priv->window));
 	gtk_widget_hide (XTM_PROCESS_WINDOW (widget)->priv->window);
 }
 
 GtkTreeModel *
 xtm_process_window_get_model (XtmProcessWindow *window)
 {
-	g_return_val_if_fail (G_LIKELY (XTM_IS_PROCESS_WINDOW (window)), NULL);
-	g_return_val_if_fail (G_LIKELY (GTK_IS_TREE_VIEW (window->priv->treeview)), NULL);
+	g_return_val_if_fail (XTM_IS_PROCESS_WINDOW (window), NULL);
+	g_return_val_if_fail (GTK_IS_TREE_VIEW (window->priv->treeview), NULL);
 	return gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (gtk_tree_view_get_model (GTK_TREE_VIEW (window->priv->treeview))));
 }
 
 void
 xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gfloat swap)
 {
-	g_return_if_fail (G_LIKELY (XTM_IS_PROCESS_WINDOW (window)));
-	g_return_if_fail (G_LIKELY (GTK_IS_STATUSBAR (window->priv->statusbar)));
+	g_return_if_fail (XTM_IS_PROCESS_WINDOW (window));
+	g_return_if_fail (GTK_IS_STATUSBAR (window->priv->statusbar));
 	g_object_set (window->priv->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory, "swap", swap, NULL);
 	// TODO update cpu/memory monitors
 	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->priv->memory_monitor), memory / 100.0);

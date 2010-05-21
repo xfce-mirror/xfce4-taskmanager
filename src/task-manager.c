@@ -89,8 +89,8 @@ xtm_task_manager_finalize (GObject *object)
 static void
 _xtm_task_manager_set_model (XtmTaskManager *manager, GtkTreeModel *model)
 {
-	g_return_if_fail (G_LIKELY (XTM_IS_TASK_MANAGER (manager)));
-	g_return_if_fail (G_LIKELY (GTK_IS_TREE_MODEL (model)));
+	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
+	g_return_if_fail (GTK_IS_TREE_MODEL (model));
 	manager->model = model;
 }
 
@@ -117,18 +117,18 @@ memory_human_size (guint64 mem, gchar *mem_str)
 	mem_tmp = mem / 1024 / 1024;
 	if (mem_tmp > 3)
 	{
-		g_snprintf (mem_str, 64, _("%lu MiB"), mem_tmp);
+		g_snprintf (mem_str, 64, _("%lu MiB"), (gulong)mem_tmp);
 		return;
 	}
 
 	mem_tmp = mem / 1024;
 	if (mem_tmp > 8)
 	{
-		g_snprintf (mem_str, 64, _("%lu KiB"), mem_tmp);
+		g_snprintf (mem_str, 64, _("%lu KiB"), (gulong)mem_tmp);
 		return;
 	}
 
-	g_snprintf (mem_str, 64, _("%lu B"), mem);
+	g_snprintf (mem_str, 64, _("%lu B"), (gulong)mem);
 }
 
 static void
@@ -199,14 +199,14 @@ xtm_task_manager_new (GtkTreeModel *model)
 const gchar *
 xtm_task_manager_get_username (XtmTaskManager *manager)
 {
-	g_return_val_if_fail (G_LIKELY (XTM_IS_TASK_MANAGER (manager)), NULL);
+	g_return_val_if_fail (XTM_IS_TASK_MANAGER (manager), NULL);
 	return manager->owner_uid_name;
 }
 
 const gchar *
 xtm_task_manager_get_hostname (XtmTaskManager *manager)
 {
-	g_return_val_if_fail (G_LIKELY (XTM_IS_TASK_MANAGER (manager)), NULL);
+	g_return_val_if_fail (XTM_IS_TASK_MANAGER (manager), NULL);
 	return manager->hostname;
 }
 
@@ -244,8 +244,6 @@ void
 xtm_task_manager_update_model (XtmTaskManager *manager)
 {
 	GArray *array;
-	GtkTreeIter iter;
-	gboolean valid;
 	guint i;
 
 	/* Retrieve initial task list and return */
@@ -365,7 +363,7 @@ get_owner_uid (guint *owner_uid, gchar **owner_uid_name)
 }
 
 gchar *
-get_hostname ()
+get_hostname (void)
 {
 #ifndef HOST_NAME_MAX
 #define HOST_NAME_MAX 255
@@ -377,11 +375,11 @@ get_hostname ()
 }
 
 gboolean
-send_signal_to_pid (guint pid, gint signal)
+send_signal_to_pid (guint pid, gint xtm_signal)
 {
 	gint sig;
 	gint res;
-	switch (signal)
+	switch (xtm_signal)
 	{
 		case XTM_SIGNAL_TERMINATE:
 			sig = SIGTERM;
