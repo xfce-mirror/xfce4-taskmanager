@@ -275,6 +275,21 @@ show_about_dialog (XtmProcessWindow *window)
 	const gchar *authors[] = {
 		"(c) 2008-2010 Mike Massonnet",
 		"(c) 2005-2008 Johannes Zellner",
+		"",
+		"FreeBSD",
+		"  \342\200\242 Mike Massonnet",
+		"  \342\200\242 Oliver Lehmann",
+		"",
+		"OpenBSD",
+		"  \342\200\242 Landry Breuil",
+		"",
+		"Linux",
+		"  \342\200\242 Johannes Zellner",
+		"  \342\200\242 Mike Massonnet",
+		"",
+		"OpenSolaris",
+		"  \342\200\242 Mike Massonnet",
+		"  \342\200\242 Peter Tribble",
 		NULL };
 	const gchar *license =
 		"This program is free software; you can redistribute it and/or modify\n"
