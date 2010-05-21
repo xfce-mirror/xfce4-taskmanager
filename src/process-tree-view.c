@@ -336,7 +336,7 @@ treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 		GtkTreePath *path;
 		GtkTreeIter iter;
 
-		model = GTK_TREE_MODEL (treeview->model);
+		model = GTK_TREE_MODEL (treeview->model_filter);
 		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
 		gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (treeview), (gint)event->x, (gint)event->y, &path, NULL, NULL, NULL);
 
