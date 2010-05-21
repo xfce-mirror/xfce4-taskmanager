@@ -1,0 +1,266 @@
+# $Id$
+#
+# Uyghur translations for xfce4-taskmanager package.
+# Copyright (C) 2005-2006 Johannes Zellner.
+# This file is distributed under the same license as
+#   the xfce4-taskmanager package.
+# Gheyret T.Kenji <gheyret@gmail.com>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-11 23:01+0900\n"
+"PO-Revision-Date: 2010-05-11 23:00+0900\n"
+"Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
+"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
+msgid "Easy to use task manager"
+msgstr ""
+
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
+#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
+#: ../src/process-window.c:199 ../src/process-window.c:321
+msgid "Task Manager"
+msgstr ""
+
+#: ../src/process-statusbar.c:121
+#, c-format
+msgid "CPU: %.2f%%"
+msgstr ""
+
+#: ../src/process-statusbar.c:128
+#, c-format
+msgid "Memory: %.2f%%"
+msgstr ""
+
+#: ../src/process-statusbar.c:135
+#, c-format
+msgid "Swap: %.2f%%"
+msgstr ""
+
+#: ../src/process-statusbar.c:142
+#, c-format
+msgid "Processes: %d"
+msgstr ""
+
+#: ../src/process-tree-view.c:106
+msgid "Task"
+msgstr ""
+
+#: ../src/process-tree-view.c:116 ../src/process-window.c:276
+msgid "PID"
+msgstr "PID"
+
+#: ../src/process-tree-view.c:124 ../src/process-window.c:277
+msgid "PPID"
+msgstr ""
+
+#: ../src/process-tree-view.c:132 ../src/process-window.c:278
+msgid "State"
+msgstr ""
+
+#: ../src/process-tree-view.c:141
+msgid "VSZ"
+msgstr ""
+
+#: ../src/process-tree-view.c:149
+msgid "RSS"
+msgstr ""
+
+#: ../src/process-tree-view.c:157 ../src/process-window.c:281
+msgid "UID"
+msgstr ""
+
+#: ../src/process-tree-view.c:165 ../src/process-window.c:282
+msgid "CPU"
+msgstr ""
+
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#: ../src/process-tree-view.c:174
+msgid "Prio."
+msgstr ""
+
+#: ../src/process-tree-view.c:212
+msgid "Terminate task"
+msgstr ""
+
+#: ../src/process-tree-view.c:212
+msgid "Kill task"
+msgstr ""
+
+#: ../src/process-tree-view.c:214
+#, c-format
+msgid "Are you sure you want to send a signal to the PID %d?"
+msgstr ""
+
+#: ../src/process-tree-view.c:225
+msgid "Error sending signal"
+msgstr ""
+
+#: ../src/process-tree-view.c:227
+#, c-format
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you "
+"don't have the required privileges."
+msgstr ""
+
+#: ../src/process-tree-view.c:244
+msgid "Error setting priority"
+msgstr ""
+
+#: ../src/process-tree-view.c:245
+#, c-format
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr ""
+
+#: ../src/process-tree-view.c:260
+msgid "Terminate"
+msgstr ""
+
+#: ../src/process-tree-view.c:267
+msgid "Stop"
+msgstr ""
+
+#: ../src/process-tree-view.c:274
+msgid "Continue"
+msgstr ""
+
+#: ../src/process-tree-view.c:280
+msgid "Kill"
+msgstr ""
+
+#: ../src/process-tree-view.c:287
+msgid "Very low"
+msgstr ""
+
+#: ../src/process-tree-view.c:292
+msgid "Low"
+msgstr ""
+
+#: ../src/process-tree-view.c:297
+msgid "Normal"
+msgstr "نورمال"
+
+#: ../src/process-tree-view.c:302
+msgid "High"
+msgstr ""
+
+#: ../src/process-tree-view.c:307
+msgid "Very high"
+msgstr ""
+
+#: ../src/process-tree-view.c:312 ../src/process-window.c:283
+msgid "Priority"
+msgstr ""
+
+#: ../src/process-window.c:197
+msgid "Execution error"
+msgstr ""
+
+#: ../src/process-window.c:226
+msgid "Run Program..."
+msgstr "پروگرامما ئىجرا قىلىش..."
+
+#: ../src/process-window.c:227
+msgid "Application Finder"
+msgstr "پروگرامما ئىزدىگۈ"
+
+#: ../src/process-window.c:228
+msgid "Terminal emulator"
+msgstr "تېرمىنال emulator"
+
+#: ../src/process-window.c:229
+msgid "XTerm"
+msgstr ""
+
+#: ../src/process-window.c:271
+msgid "Show all processes"
+msgstr ""
+
+#: ../src/process-window.c:279
+msgid "Virtual Bytes"
+msgstr ""
+
+#: ../src/process-window.c:280
+msgid "Private Bytes"
+msgstr ""
+
+#: ../src/process-window.c:329
+msgid "translator-credits"
+msgstr "Gheyret T.Kenji <gheyret@gmail.com> 2010"
+
+#: ../src/task-manager.c:146
+#, c-format
+msgid "%lu MiB"
+msgstr ""
+
+#: ../src/task-manager.c:153
+#, c-format
+msgid "%lu KiB"
+msgstr ""
+
+#: ../src/task-manager.c:157
+#, c-format
+msgid "%lu B"
+msgstr ""
+
+#. TODO make precision optional
+#: ../src/task-manager.c:168
+#, c-format
+msgid "%.2f%%"
+msgstr ""
+
+#~ msgid "Control your processes"
+#~ msgstr "プロセスをコントロールします"
+
+#~ msgid "Process manager"
+#~ msgstr "プロセスマネージャ"
+
+#~ msgid "Xfce4 Taskmanager"
+#~ msgstr "xfce4 タスクマネージャ"
+
+#~ msgid "Really kill the task?"
+#~ msgstr "本当にタスクを kill しますか?"
+
+#~ msgid "%d MB of %d MB used"
+#~ msgstr "%2$d MB 中 %1$d MB 使用"
+
+#~ msgid "Cpu usage"
+#~ msgstr "CPU 使用量"
+
+#~ msgid "Memory usage"
+#~ msgstr "メモリ使用量"
+
+#~ msgid "Command"
+#~ msgstr "コマンド"
+
+#~ msgid "VM-Size"
+#~ msgstr "VM サイズ"
+
+#~ msgid "User"
+#~ msgstr "ユーザ"
+
+#~ msgid "Show user tasks"
+#~ msgstr "ユーザタスクを表示する"
+
+#~ msgid "Show root tasks"
+#~ msgstr "ルートタスクを表示する"
+
+#~ msgid "Show other tasks"
+#~ msgstr "その他のタスクを表示する"
+
+#~ msgid "Show memory used by cache as free"
+#~ msgstr "キャッシュが使うメモリを空きとして表示する"
+
+#~ msgid "Contributors:"
+#~ msgstr "協力者:"
+
+#~ msgid "Couldn't set priority %d to the task with ID %d"
+#~ msgstr "ID %d のタスクの優先度を %d へ設定できませんでした"
