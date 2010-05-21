@@ -87,8 +87,12 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 		cp_system = cpu_state[CP_SYS] + cpu_state[CP_INTR];
 		cp_total = cpu_state[CP_IDLE] + cp_user + cp_system;
 
-		*cpu_user = (cp_user > cp_user_old) ? (cp_user - cp_user_old) * 100 / (gdouble)(cp_total - cp_total_old) : 0;
-		*cpu_system = (cp_system > cp_system_old) ? (cp_system - cp_system_old) * 100 / (gdouble)(cp_total - cp_total_old) : 0;
+		*cpu_user = *cpu_system = 0.0;
+		if (cp_total > cp_total_old)
+		{
+			*cpu_user = (cp_user - cp_user_old) * 100 / (gdouble)(cp_total - cp_total_old);
+			*cpu_system = (cp_system - cp_system_old) * 100 / (gdouble)(cp_total - cp_total_old);
+		}
 	}
 
 	return TRUE;

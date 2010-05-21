@@ -93,8 +93,12 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	cur_jiffies_system = system;
 	cur_jiffies = cur_jiffies_user + cur_jiffies_system + idle;
 
-	*cpu_user = (old_jiffies > 0) ? (cur_jiffies_user - old_jiffies_user) * 100 / (gdouble)(cur_jiffies - old_jiffies) : 0;
-	*cpu_system = (old_jiffies > 0) ? (cur_jiffies_system - old_jiffies_system) * 100 / (gdouble)(cur_jiffies - old_jiffies) : 0;
+	*cpu_user = *cpu_system = 0.0;
+	if (cur_jiffies > old_jiffies)
+	{
+		*cpu_user = (cur_jiffies_user - old_jiffies_user) * 100 / (gdouble)(cur_jiffies - old_jiffies);
+		*cpu_system = (cur_jiffies_system - old_jiffies_system) * 100 / (gdouble)(cur_jiffies - old_jiffies);
+	}
 	*cpu_count = _cpu_count;
 
 	return TRUE;
