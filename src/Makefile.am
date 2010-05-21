@@ -24,6 +24,9 @@ xfce4_taskmanager_SOURCES =						\
 	settings.c			settings.h			\
 	$(NULL)
 
+if OS_FREEBSD
+xfce4_taskmanager_SOURCES += task-manager-freebsd.c
+endif
 if OS_BSD
 xfce4_taskmanager_SOURCES += task-manager-bsd.c
 endif

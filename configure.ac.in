@@ -1,8 +1,8 @@
 dnl
 dnl xfce4-taskmanager - A small taskmanager based on the Xfce 4 libraries.
 dnl
-dnl 2005-2007 Johannes Zellner <webmaster@nebulon.de>
 dnl 2010 Mike Massonnet <mmassonnet@xfce.org>
+dnl 2005-2007 Johannes Zellner <webmaster@nebulon.de>
 
 dnl ***************************
 dnl *** Version information ***
@@ -69,7 +69,8 @@ dnl ******* Check for OS family *******
 dnl ***********************************
 case "$target_os" in
 	freebsd*)
-		AC_MSG_ERROR([Support for FreeBSD is missing])
+		ac_os_implementation="freebsd"
+		AC_CHECK_LIB([kvm], [kvm_openfiles])
 	;;
 	dragonfly*|netbsd*|openbsd*|darwin*)
 		ac_os_implementation="bsd"
@@ -91,6 +92,7 @@ esac
 AC_MSG_CHECKING([for OS implementation])
 AC_MSG_RESULT([$ac_os_implementation])
 
+AM_CONDITIONAL([OS_FREEBSD], [test x"$ac_os_implementation" = x"freebsd"])
 AM_CONDITIONAL([OS_BSD], [test x"$ac_os_implementation" = x"bsd"])
 AM_CONDITIONAL([OS_SOLARIS], [test x"$ac_os_implementation" = x"solaris"])
 AM_CONDITIONAL([OS_LINUX], [test x"$ac_os_implementation" = x"linux"])
