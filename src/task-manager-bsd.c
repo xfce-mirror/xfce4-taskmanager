@@ -162,8 +162,8 @@ gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system
 	return TRUE;
 }
 
-/* vmtotal values in #pg, mem wanted in kB */
-#define pagetok(nb) ((nb) * (getpagesize() / 1024))
+/* vmtotal values in #pg */
+#define pagetok(nb) ((nb) * (getpagesize()))
 
 gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
 {
@@ -197,8 +197,8 @@ gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 
 	*swap_total = *swap_free = 0;
 	for (i = 0; i < nswap; i++) {
 		if (swdev[i].se_flags & SWF_ENABLE) {
-			*swap_free += ((swdev[i].se_nblks - swdev[i].se_inuse) / (1024 / DEV_BSIZE));
-			*swap_total += (swdev[i].se_nblks / (1024 / DEV_BSIZE));
+			*swap_free += ((swdev[i].se_nblks - swdev[i].se_inuse) / DEV_BSIZE);
+			*swap_total += (swdev[i].se_nblks / DEV_BSIZE);
 		}
 	}
 	free(swdev);
