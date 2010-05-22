@@ -16,6 +16,7 @@
 #include <gtk/gtk.h>
 
 #include "process-statusbar.h"
+#include "settings.h"
 
 
 
@@ -35,6 +36,8 @@ struct _XtmProcessStatusbar
 {
 	GtkStatusbar		parent;
 	/*<private>*/
+	XtmSettings *		settings;
+
 	GtkWidget *		label_num_processes;
 	GtkWidget *		label_cpu;
 	GtkWidget *		label_memory;
@@ -72,6 +75,8 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 {
 	GtkWidget *area, *hbox;
 
+	statusbar->settings = xtm_settings_get_default ();
+
 #if GTK_CHECK_VERSION(2,20,0)
 	area = gtk_statusbar_get_message_area (GTK_STATUSBAR (statusbar));
 #else
@@ -108,32 +113,47 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	gtk_widget_show_all (hbox);
 }
 
+static gchar *
+rounded_float_value (gfloat value, XtmSettings *settings)
+{
+	gboolean precision;
+	g_object_get (settings, "more-precision", &precision, NULL);
+	return g_strdup_printf ((precision) ? "%.2f" : "%.0f", value);
+}
+
 static void
 xtm_process_statusbar_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
 {
 	XtmProcessStatusbar *statusbar = XTM_PROCESS_STATUSBAR (object);
 	gchar *text;
+	gchar *float_value;
 
 	switch (property_id)
 	{
 		case PROP_CPU:
 		statusbar->cpu = g_value_get_float (value);
-		text = g_strdup_printf (_("CPU: %.2f%%"), statusbar->cpu);
+		float_value = rounded_float_value (statusbar->cpu, statusbar->settings);
+		text = g_strdup_printf (_("CPU: %s%%"), float_value);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_cpu), text);
+		g_free (float_value);
 		g_free (text);
 		break;
 
 		case PROP_MEMORY:
 		statusbar->memory = g_value_get_float (value);
-		text = g_strdup_printf (_("Memory: %.2f%%"), statusbar->memory);
+		float_value = rounded_float_value (statusbar->memory, statusbar->settings);
+		text = g_strdup_printf (_("Memory: %s%%"), float_value);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
+		g_free (float_value);
 		g_free (text);
 		break;
 
 		case PROP_SWAP:
 		statusbar->swap = g_value_get_float (value);
-		text = g_strdup_printf (_("Swap: %.2f%%"), statusbar->swap);
+		float_value = rounded_float_value (statusbar->swap, statusbar->settings);
+		text = g_strdup_printf (_("Swap: %s%%"), float_value);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_swap), text);
+		g_free (float_value);
 		g_free (text);
 		break;
 

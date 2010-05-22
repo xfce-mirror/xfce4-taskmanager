@@ -23,6 +23,12 @@
 
 #include "task-manager.h"
 #include "process-tree-view.h" /* for the columns of the model */
+#include "settings.h" /* for the more-precision setting */
+
+
+
+static XtmSettings *settings = NULL;
+static gboolean more_precision = FALSE;
 
 
 
@@ -36,6 +42,7 @@ struct _XtmTaskManager
 	GObject			parent;
 	/*<private>*/
 	GtkTreeModel *		model;
+	gboolean		model_update_forced;
 	GArray *		tasks;
 	guint			owner_uid;
 	gchar *			owner_uid_name;
@@ -54,6 +61,7 @@ G_DEFINE_TYPE (XtmTaskManager, xtm_task_manager, G_TYPE_OBJECT)
 
 static void	xtm_task_manager_finalize			(GObject *object);
 
+static void	setting_more_precision_changed			(GObject *object, GParamSpec *pspec, XtmTaskManager *manager);
 static void	model_add_task					(GtkTreeModel *model, Task *task);
 static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, Task *task);
 static void	model_update_task				(GtkTreeModel *model, Task *task);
@@ -75,6 +83,11 @@ xtm_task_manager_init (XtmTaskManager *manager)
 	manager->tasks = g_array_new (FALSE, FALSE, sizeof (Task));
 	get_owner_uid (&(manager->owner_uid), &(manager->owner_uid_name));
 	manager->hostname = get_hostname ();
+
+	/* Listen to changes on more-preicision and force an update on the whole model */
+	settings = xtm_settings_get_default ();
+	g_object_get (settings, "more-precision", &more_precision, NULL);
+	g_signal_connect (settings, "notify::more-precision", G_CALLBACK (setting_more_precision_changed), manager);
 }
 
 static void
@@ -84,6 +97,13 @@ xtm_task_manager_finalize (GObject *object)
 	g_array_free (manager->tasks, TRUE);
 	g_free (manager->owner_uid_name);
 	g_free (manager->hostname);
+}
+
+static void
+setting_more_precision_changed (GObject *object, GParamSpec *pspec, XtmTaskManager *manager)
+{
+	g_object_get (object, "more-precision", &more_precision, NULL);
+	manager->model_update_forced = TRUE;
 }
 
 static void
@@ -135,11 +155,13 @@ static void
 model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 {
 	gchar vsz[64], rss[64], cpu[16];
+	gchar value[14];
 
 	memory_human_size (task->vsz, vsz);
 	memory_human_size (task->rss, rss);
-	// TODO make precision optional
-	g_snprintf (cpu, 16, _("%.2f%%"), task->cpu_user + task->cpu_system);
+
+	g_snprintf (value, 14, (more_precision) ? "%.2f" : "%.0f", task->cpu_user + task->cpu_system);
+	g_snprintf (cpu, 16, _("%s%%"), value);
 
 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
 		XTM_PTV_COLUMN_PPID, task->ppid,
@@ -308,7 +330,8 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 			found = TRUE;
 
 			/* Update the model (with the rest) only if needed, this keeps the CPU cool */
-			if (task->ppid != tasktmp->ppid
+			if (manager->model_update_forced
+				|| task->ppid != tasktmp->ppid
 				|| g_strcmp0 (task->state, tasktmp->state)
 				|| task->cpu_user != tasktmp->cpu_user
 				|| task->cpu_system != tasktmp->cpu_system
@@ -340,6 +363,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	}
 
 	g_array_free (array, TRUE);
+	manager->model_update_forced = FALSE;
 
 	return;
 }

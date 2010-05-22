@@ -46,6 +46,12 @@ init_timeout (void)
 }
 
 static void
+force_timeout_update (void)
+{
+	init_timeout ();
+}
+
+static void
 refresh_rate_changed (XtmSettings *settings)
 {
 	if (!g_source_remove (timeout))
@@ -77,6 +83,7 @@ int main (int argc, char *argv[])
 
 	init_timeout ();
 	g_signal_connect (settings, "notify::refresh-rate", G_CALLBACK (refresh_rate_changed), NULL);
+	g_signal_connect_after (settings, "notify::more-precision", G_CALLBACK (force_timeout_update), NULL);
 
 	g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 
