@@ -15,9 +15,11 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
+#include "settings.h"
 #include "process-window.h"
 #include "task-manager.h"
 
+static XtmSettings *settings;
 static GtkWidget *window;
 static XtmTaskManager *task_manager;
 static gboolean timeout = 0;
@@ -34,9 +36,25 @@ init_timeout (void)
 	xtm_task_manager_update_model (task_manager);
 
 	if (timeout == 0)
-		timeout = g_timeout_add (1000, (GSourceFunc)init_timeout, NULL);
+	{
+		guint refresh_rate;
+		g_object_get (settings, "refresh-rate", &refresh_rate, NULL);
+		timeout = g_timeout_add (refresh_rate, (GSourceFunc)init_timeout, NULL);
+	}
 
 	return TRUE;
+}
+
+static void
+refresh_rate_changed (XtmSettings *settings)
+{
+	if (!g_source_remove (timeout))
+	{
+		g_critical ("Unable to remove source");
+		return;
+	}
+	timeout = 0;
+	init_timeout ();
 }
 
 int main (int argc, char *argv[])
@@ -49,6 +67,8 @@ int main (int argc, char *argv[])
 
 	gtk_init (&argc, &argv);
 
+	settings = xtm_settings_get_default ();
+
 	window = xtm_process_window_new ();
 	gtk_widget_show (window);
 
@@ -56,6 +76,7 @@ int main (int argc, char *argv[])
 	g_message ("Running as %s on %s", xtm_task_manager_get_username (task_manager), xtm_task_manager_get_hostname (task_manager));
 
 	init_timeout ();
+	g_signal_connect (settings, "notify::refresh-rate", G_CALLBACK (refresh_rate_changed), NULL);
 
 	g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 
