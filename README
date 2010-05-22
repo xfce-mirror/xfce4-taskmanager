@@ -1,8 +1,8 @@
 *********************************************
-************  xfce4-taskmanager  ************
-*********************************************
 
-xfce4-taskmanager is a small taskmanager for the Xfce 4 desktop.
+xfce4-taskmanager -- Easy to use task manager
+
+*********************************************
 
 ** Retrieving **
 
@@ -12,14 +12,13 @@ see if there is a newer version available before reporting bugs.
 
 ** Requirements **
 
-xfce4-taskmanager needs the Xfce 4's GUI library libxfcegui4.
-Xfce's core libraries can be obtained from http://www.xfce.org/.
+GTK+ 2.12
 
 ** Building **
 
 ./configure
 make
-make install (as root)
+make install (as root if needed)
 
 ** Usage **
 

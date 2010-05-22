@@ -1,3 +1,11 @@
+0.5.91 ~ 1.0.0 beta2
+
+- (Re)Add support for OpenSolaris, FreeBSD and OpenBSD
+
+0.5.90 ~ 1.0.0 beta1
+
+- Completely rewritten with GObjects and introduce a new interface
+
 0.4.1
 
 - Bug fix release and first non-Linux support (OpenBSD from Landry Breuil)
