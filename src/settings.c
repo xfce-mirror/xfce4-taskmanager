@@ -32,6 +32,9 @@
 enum
 {
 	PROP_SHOW_ALL_PROCESSES = 1,
+	PROP_MORE_PRECISION,
+	PROP_FULL_COMMAND_LINE,
+	PROP_REFRESH_RATE,
 	PROP_COLUMN_UID,
 	PROP_COLUMN_PID,
 	PROP_COLUMN_PPID,
@@ -77,6 +80,12 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 	class->set_property = xtm_settings_set_property;
 	g_object_class_install_property (class, PROP_SHOW_ALL_PROCESSES,
 		g_param_spec_boolean ("show-all-processes", "ShowAllProcesses", "Show all processes", FALSE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_MORE_PRECISION,
+		g_param_spec_boolean ("more-precision", "MorePrecision", "More precision", TRUE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_FULL_COMMAND_LINE,
+		g_param_spec_boolean ("full-command-line", "FullCommandLine", "Full command line", TRUE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_REFRESH_RATE,
+		g_param_spec_uint ("refresh-rate", "RefreshRate", "Refresh rate in milliseconds", 0, G_MAXUINT, 1000, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_UID,
 		g_param_spec_boolean ("column-uid", "ColumnUID", "Show column UID", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_PID,

@@ -202,6 +202,51 @@ show_menu_execute_task (XtmProcessWindow *window)
 }
 
 static void
+refresh_rate_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
+{
+	guint refresh_rate = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "refresh-rate"));
+	g_object_set (settings, "refresh-rate", refresh_rate, NULL);
+}
+
+static void
+menu_refresh_rate_append_item (GtkMenu *menu, gchar *title, guint refresh_rate, XtmSettings *settings)
+{
+	GtkWidget *mi;
+	guint cur_refresh_rate;
+
+	g_object_get (settings, "refresh-rate", &cur_refresh_rate, NULL);
+
+	mi = gtk_image_menu_item_new_with_label (title);
+	if (cur_refresh_rate == refresh_rate)
+	{
+		GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_GO_FORWARD, GTK_ICON_SIZE_MENU);
+		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
+	}
+	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
+	g_object_set_data (G_OBJECT (mi), "refresh-rate", GUINT_TO_POINTER (refresh_rate));
+	g_signal_connect (mi, "activate", G_CALLBACK (refresh_rate_toggled), settings);
+}
+
+static GtkWidget *
+build_refresh_rate_menu (XtmSettings *settings)
+{
+	GtkWidget *menu;
+
+	menu = gtk_menu_new ();
+
+	/* TRANSLATORS: The next values are in seconds or milliseconds */
+	menu_refresh_rate_append_item (GTK_MENU (menu), _("250ms"), 250, settings);
+	menu_refresh_rate_append_item (GTK_MENU (menu), _("500ms"), 500, settings);
+	menu_refresh_rate_append_item (GTK_MENU (menu), _("750ms"), 750, settings);
+	menu_refresh_rate_append_item (GTK_MENU (menu), _("1s"), 1000, settings);
+	menu_refresh_rate_append_item (GTK_MENU (menu), _("2s"), 2000, settings);
+	menu_refresh_rate_append_item (GTK_MENU (menu), _("5s"), 5000, settings);
+	menu_refresh_rate_append_item (GTK_MENU (menu), _("10s"), 10000, settings);
+
+	return menu;
+}
+
+static void
 preferences_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
 {
 	gboolean active = gtk_check_menu_item_get_active (mi);
@@ -228,6 +273,7 @@ static void
 show_menu_preferences (XtmProcessWindow *window)
 {
 	static GtkWidget *menu = NULL;
+	GtkWidget *refresh_rate_menu;
 	GtkWidget *mi;
 
 	if (menu != NULL)
@@ -237,6 +283,13 @@ show_menu_preferences (XtmProcessWindow *window)
 
 	menu = gtk_menu_new ();
 	menu_preferences_append_item (GTK_MENU (menu), _("Show all processes"), "show-all-processes", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("More precision"), "more-precision", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("Full command line"), "full-command-line", window->priv->settings);
+
+	refresh_rate_menu = build_refresh_rate_menu (window->priv->settings);
+	mi = gtk_menu_item_new_with_label (_("Refresh rate"));
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), refresh_rate_menu);
+	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
 	mi = gtk_separator_menu_item_new ();
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
