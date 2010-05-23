@@ -23,12 +23,14 @@
 
 #include "task-manager.h"
 #include "process-tree-view.h" /* for the columns of the model */
-#include "settings.h" /* for the more-precision setting */
+#include "settings.h"
 
 
 
 static XtmSettings *settings = NULL;
-static gboolean more_precision = FALSE;
+static gboolean model_update_forced = FALSE;
+static gboolean more_precision;
+static gboolean full_cmdline;
 
 
 
@@ -42,7 +44,6 @@ struct _XtmTaskManager
 	GObject			parent;
 	/*<private>*/
 	GtkTreeModel *		model;
-	gboolean		model_update_forced;
 	GArray *		tasks;
 	guint			owner_uid;
 	gchar *			owner_uid_name;
@@ -61,7 +62,7 @@ G_DEFINE_TYPE (XtmTaskManager, xtm_task_manager, G_TYPE_OBJECT)
 
 static void	xtm_task_manager_finalize			(GObject *object);
 
-static void	setting_more_precision_changed			(GObject *object, GParamSpec *pspec, XtmTaskManager *manager);
+static void	setting_changed					(GObject *object, GParamSpec *pspec, XtmTaskManager *manager);
 static void	model_add_task					(GtkTreeModel *model, Task *task);
 static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, Task *task);
 static void	model_update_task				(GtkTreeModel *model, Task *task);
@@ -84,10 +85,12 @@ xtm_task_manager_init (XtmTaskManager *manager)
 	get_owner_uid (&(manager->owner_uid), &(manager->owner_uid_name));
 	manager->hostname = get_hostname ();
 
-	/* Listen to changes on more-preicision and force an update on the whole model */
+	/* Listen to settings changes and force an update on the whole model */
 	settings = xtm_settings_get_default ();
 	g_object_get (settings, "more-precision", &more_precision, NULL);
-	g_signal_connect (settings, "notify::more-precision", G_CALLBACK (setting_more_precision_changed), manager);
+	g_object_get (settings, "full-command-line", &full_cmdline, NULL);
+	g_signal_connect (settings, "notify::more-precision", G_CALLBACK (setting_changed), manager);
+	g_signal_connect (settings, "notify::full-command-line", G_CALLBACK (setting_changed), manager);
 }
 
 static void
@@ -100,10 +103,30 @@ xtm_task_manager_finalize (GObject *object)
 }
 
 static void
-setting_more_precision_changed (GObject *object, GParamSpec *pspec, XtmTaskManager *manager)
+setting_changed (GObject *object, GParamSpec *pspec, XtmTaskManager *manager)
 {
 	g_object_get (object, "more-precision", &more_precision, NULL);
-	manager->model_update_forced = TRUE;
+	g_object_get (object, "full-command-line", &full_cmdline, NULL);
+	model_update_forced = TRUE;
+}
+
+static gchar *
+pretty_cmdline (gchar *cmdline, gchar *comm)
+{
+	gchar *text = g_strchomp (g_strdup (cmdline));
+	if (!full_cmdline && sizeof (text) > 3)
+	{
+		/* Shorten full path to commands and wine applications */
+		if (text[0] == '/' || (g_ascii_isupper (text[0]) && text[1] == ':' && text[2] == '\\'))
+		{
+			gchar *p = g_strstr_len (text, -1, comm);
+			if (p != NULL)
+			{
+				g_snprintf (text, g_utf8_strlen (text, -1), p);
+			}
+		}
+	}
+	return text;
 }
 
 static void
@@ -118,15 +141,17 @@ static void
 model_add_task (GtkTreeModel *model, Task *task)
 {
 	GtkTreeIter iter;
+	gchar *cmdline = pretty_cmdline (task->cmdline, task->name);
 	gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 	gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-		XTM_PTV_COLUMN_COMMAND, task->cmdline,
+		XTM_PTV_COLUMN_COMMAND, cmdline,
 		XTM_PTV_COLUMN_PID, task->pid,
 		XTM_PTV_COLUMN_STATE, task->state,
 		XTM_PTV_COLUMN_UID, task->uid,
 		XTM_PTV_COLUMN_UID_STR, task->uid_name,
 		-1);
 	model_update_tree_iter (model, &iter, task);
+	g_free (cmdline);
 }
 
 static void
@@ -162,6 +187,13 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 
 	g_snprintf (value, 14, (more_precision) ? "%.2f" : "%.0f", task->cpu_user + task->cpu_system);
 	g_snprintf (cpu, 16, _("%s%%"), value);
+
+	if (model_update_forced)
+	{
+		gchar *cmdline = pretty_cmdline (task->cmdline, task->name);
+		gtk_list_store_set (GTK_LIST_STORE (model), iter, XTM_PTV_COLUMN_COMMAND, cmdline, -1);
+		g_free (cmdline);
+	}
 
 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
 		XTM_PTV_COLUMN_PPID, task->ppid,
@@ -330,7 +362,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 			found = TRUE;
 
 			/* Update the model (with the rest) only if needed, this keeps the CPU cool */
-			if (manager->model_update_forced
+			if (model_update_forced
 				|| task->ppid != tasktmp->ppid
 				|| g_strcmp0 (task->state, tasktmp->state)
 				|| task->cpu_user != tasktmp->cpu_user
@@ -363,7 +395,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	}
 
 	g_array_free (array, TRUE);
-	manager->model_update_forced = FALSE;
+	model_update_forced = FALSE;
 
 	return;
 }
