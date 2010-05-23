@@ -294,6 +294,7 @@ show_menu_preferences (XtmProcessWindow *window)
 	menu_preferences_append_item (GTK_MENU (menu), _("Show all processes"), "show-all-processes", window->priv->settings);
 	menu_preferences_append_item (GTK_MENU (menu), _("More precision"), "more-precision", window->priv->settings);
 	menu_preferences_append_item (GTK_MENU (menu), _("Full command line"), "full-command-line", window->priv->settings);
+	menu_preferences_append_item (GTK_MENU (menu), _("Show status icon"), "show-status-icon", window->priv->settings);
 
 	refresh_rate_menu = build_refresh_rate_menu (window->priv->settings);
 	mi = gtk_menu_item_new_with_label (_("Refresh rate"));

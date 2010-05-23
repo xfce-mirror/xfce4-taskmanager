@@ -34,6 +34,14 @@ status_icon_activated ()
 		gtk_widget_hide (window);
 }
 
+static void
+show_hide_status_icon ()
+{
+	gboolean show_status_icon;
+	g_object_get (settings, "show-status-icon", &show_status_icon, NULL);
+	gtk_status_icon_set_visible (status_icon, show_status_icon);
+}
+
 static gboolean
 init_timeout (void)
 {
@@ -90,6 +98,7 @@ int main (int argc, char *argv[])
 	settings = xtm_settings_get_default ();
 
 	status_icon = gtk_status_icon_new_from_icon_name ("utilities-system-monitor");
+	show_hide_status_icon ();
 	g_signal_connect (status_icon, "activate", G_CALLBACK (status_icon_activated), NULL);
 
 	window = xtm_process_window_new ();
@@ -102,6 +111,7 @@ int main (int argc, char *argv[])
 	g_signal_connect (settings, "notify::refresh-rate", G_CALLBACK (refresh_rate_changed), NULL);
 	g_signal_connect_after (settings, "notify::more-precision", G_CALLBACK (force_timeout_update), NULL);
 	g_signal_connect_after (settings, "notify::full-command-line", G_CALLBACK (force_timeout_update), NULL);
+	g_signal_connect (settings, "notify::show-status-icon", G_CALLBACK (show_hide_status_icon), NULL);
 
 	g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 

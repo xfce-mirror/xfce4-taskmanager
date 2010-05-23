@@ -34,6 +34,7 @@ enum
 	PROP_SHOW_ALL_PROCESSES = 1,
 	PROP_MORE_PRECISION,
 	PROP_FULL_COMMAND_LINE,
+	PROP_SHOW_STATUS_ICON,
 	PROP_REFRESH_RATE,
 	PROP_COLUMN_UID,
 	PROP_COLUMN_PID,
@@ -84,6 +85,8 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_boolean ("more-precision", "MorePrecision", "More precision", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_FULL_COMMAND_LINE,
 		g_param_spec_boolean ("full-command-line", "FullCommandLine", "Full command line", TRUE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_SHOW_STATUS_ICON,
+		g_param_spec_boolean ("show-status-icon", "ShowStatusIcon", "Show/hide the status icon", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_REFRESH_RATE,
 		g_param_spec_uint ("refresh-rate", "RefreshRate", "Refresh rate in milliseconds", 0, G_MAXUINT, 1000, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_UID,
