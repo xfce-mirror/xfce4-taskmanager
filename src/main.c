@@ -21,8 +21,18 @@
 
 static XtmSettings *settings;
 static GtkWidget *window;
+static GtkStatusIcon *status_icon;
 static XtmTaskManager *task_manager;
 static gboolean timeout = 0;
+
+static void
+status_icon_activated ()
+{
+	if (!(GTK_WIDGET_VISIBLE (window)))
+		gtk_widget_show (window);
+	else
+		gtk_widget_hide (window);
+}
 
 static gboolean
 init_timeout (void)
@@ -78,6 +88,9 @@ int main (int argc, char *argv[])
 	gtk_init (&argc, &argv);
 
 	settings = xtm_settings_get_default ();
+
+	status_icon = gtk_status_icon_new_from_icon_name ("utilities-system-monitor");
+	g_signal_connect (status_icon, "activate", G_CALLBACK (status_icon_activated), NULL);
 
 	window = xtm_process_window_new ();
 	gtk_widget_show (window);
