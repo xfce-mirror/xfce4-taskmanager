@@ -96,6 +96,15 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->priv->cpu_monitor = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "cpu-monitor"));
 	window->priv->memory_monitor = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "mem-monitor"));
 
+	if (geteuid () == 0)
+	{
+		gtk_rc_parse_string ("style\"root-warning-style\"{bg[NORMAL]=\"#b4254b\"\nfg[NORMAL]=\"#fefefe\"}\n"
+				"widget\"GtkWindow.*.root-warning\"style\"root-warning-style\"\n"
+				"widget\"GtkWindow.*.root-warning.GtkLabel\"style\"root-warning-style\"");
+		gtk_widget_set_name (GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "root-warning-ebox")), "root-warning");
+		gtk_widget_show_all (GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "root-warning-box")));
+	}
+
 	window->priv->treeview = xtm_process_tree_view_new ();
 	gtk_widget_show (window->priv->treeview);
 	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->priv->builder, "scrolledwindow")), window->priv->treeview);

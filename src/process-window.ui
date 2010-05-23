@@ -105,6 +105,43 @@
           </packing>
         </child>
         <child>
+          <object class="GtkVBox" id="root-warning-box">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkEventBox" id="root-warning-ebox">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkLabel" id="root-warning-label">
+                    <property name="visible">True</property>
+                    <property name="xpad">6</property>
+                    <property name="ypad">3</property>
+                    <property name="label" translatable="yes">Warning, you are using the root account, you may harm your system.</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkHSeparator" id="root-warning-separator">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkVBox" id="mainview-vbox">
             <property name="visible">True</property>
             <property name="border_width">6</property>
@@ -127,7 +164,7 @@
             </child>
           </object>
           <packing>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
