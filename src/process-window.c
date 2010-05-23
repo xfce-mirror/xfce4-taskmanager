@@ -424,3 +424,11 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->priv->cpu_monitor), cpu / 100.0);
 }
 
+void
+xtm_process_window_show_swap_usage (XtmProcessWindow *window, gboolean show_swap_usage)
+{
+	g_return_if_fail (XTM_IS_PROCESS_WINDOW (window));
+	g_return_if_fail (GTK_IS_STATUSBAR (window->priv->statusbar));
+	g_object_set (window->priv->statusbar, "show-swap", show_swap_usage, NULL);
+}
+

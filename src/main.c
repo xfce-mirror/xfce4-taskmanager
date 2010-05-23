@@ -29,9 +29,13 @@ init_timeout (void)
 {
 	guint num_processes;
 	gfloat cpu, memory, swap;
+	guint64 swap_free, swap_total;
 
 	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory, &swap);
 	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory, swap);
+
+	xtm_task_manager_get_swap_usage (task_manager, &swap_free, &swap_total);
+	xtm_process_window_show_swap_usage (XTM_PROCESS_WINDOW (window), (swap_total > 0));
 
 	xtm_task_manager_update_model (task_manager);
 

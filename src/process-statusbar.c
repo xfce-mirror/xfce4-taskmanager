@@ -25,6 +25,7 @@ enum
 	PROP_CPU = 1,
 	PROP_MEMORY,
 	PROP_SWAP,
+	PROP_SHOW_SWAP,
 	PROP_NUM_PROCESSES,
 };
 typedef struct _XtmProcessStatusbarClass XtmProcessStatusbarClass;
@@ -66,6 +67,8 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 		g_param_spec_float ("memory", "Memory", "Memory usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_SWAP,
 		g_param_spec_float ("swap", "Swap", "Swap usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+	g_object_class_install_property (class, PROP_SHOW_SWAP,
+		g_param_spec_boolean ("show-swap", "ShowSwap", "Show or hide swap usage", TRUE, G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_NUM_PROCESSES,
 		g_param_spec_uint ("num-processes", "NumProcesses", "Number of processes", 0, G_MAXUINT, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 }
@@ -155,6 +158,13 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		gtk_label_set_text (GTK_LABEL (statusbar->label_swap), text);
 		g_free (float_value);
 		g_free (text);
+		break;
+
+		case PROP_SHOW_SWAP:
+		if (g_value_get_boolean (value))
+			gtk_widget_show (statusbar->label_swap);
+		else
+			gtk_widget_hide (statusbar->label_swap);
 		break;
 
 		case PROP_NUM_PROCESSES:

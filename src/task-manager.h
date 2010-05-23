@@ -86,6 +86,7 @@ XtmTaskManager *	xtm_task_manager_new				(GtkTreeModel *model);
 const gchar *		xtm_task_manager_get_username			(XtmTaskManager *manager);
 const gchar *		xtm_task_manager_get_hostname			(XtmTaskManager *manager);
 void			xtm_task_manager_get_system_info		(XtmTaskManager *manager, guint *num_processes, gfloat *cpu, gfloat *memory, gfloat *swap);
+void			xtm_task_manager_get_swap_usage			(XtmTaskManager *manager, guint64 *swap_free, guint64 *swap_total);
 const GArray *		xtm_task_manager_get_task_list			(XtmTaskManager *manager);
 void			xtm_task_manager_update_model			(XtmTaskManager *manager);
 

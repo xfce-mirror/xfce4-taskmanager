@@ -269,6 +269,8 @@ xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes,
 {
 	guint64 memory_used, swap_used;
 
+	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
+
 	/* Set number of processes */
 	*num_processes = manager->tasks->len;
 
@@ -287,9 +289,18 @@ xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes,
 	*cpu = manager->cpu_user + manager->cpu_system;
 }
 
+void
+xtm_task_manager_get_swap_usage (XtmTaskManager *manager, guint64 *swap_free, guint64 *swap_total)
+{
+	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
+	*swap_free = manager->swap_free;
+	*swap_total = manager->swap_total;
+}
+
 const GArray *
 xtm_task_manager_get_task_list (XtmTaskManager *manager)
 {
+	g_return_val_if_fail (XTM_IS_TASK_MANAGER (manager), NULL);
 	xtm_task_manager_update_model (manager);
 	return manager->tasks;
 }
@@ -299,6 +310,8 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 {
 	GArray *array;
 	guint i;
+
+	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
 
 	/* Retrieve initial task list and return */
 	if (manager->tasks->len == 0)
