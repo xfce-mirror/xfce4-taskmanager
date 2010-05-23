@@ -257,11 +257,6 @@ build_context_menu (guint pid)
 
 	menu = gtk_menu_new ();
 
-	mi = gtk_menu_item_new_with_label (_("Terminate"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
-
 	if (!pid_is_sleeping (pid))
 	{
 		mi = gtk_menu_item_new_with_label (_("Stop"));
@@ -281,6 +276,11 @@ build_context_menu (guint pid)
 	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
 	gtk_container_add (GTK_CONTAINER (menu), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_KILL));
+
+	mi = gtk_menu_item_new_with_label (_("Terminate"));
+	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
 
 	menu_priority = gtk_menu_new ();
 
