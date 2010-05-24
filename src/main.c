@@ -48,12 +48,31 @@ init_timeout (void)
 	guint num_processes;
 	gfloat cpu, memory, swap;
 	guint64 swap_free, swap_total;
+	gchar tooltip[1024];
 
 	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory, &swap);
 	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory, swap);
 
 	xtm_task_manager_get_swap_usage (task_manager, &swap_free, &swap_total);
 	xtm_process_window_show_swap_usage (XTM_PROCESS_WINDOW (window), (swap_total > 0));
+
+#if GTK_CHECK_VERSION (2,16,0)
+	g_snprintf (tooltip, 1024,
+			_("<b>Processes:</b> %u\n"
+			"<b>CPU:</b> %.0f%%\n"
+			"<b>Memory:</b> %.0f%%\n"
+			"<b>Swap:</b> %.0f%%"),
+			num_processes, cpu, memory, swap);
+	gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon), tooltip);
+#else
+	g_snprintf (tooltip, 1024,
+			_("Processes: %u\n"
+			"CPU: %.0f%%\n"
+			"Memory: %.0f%%\n"
+			"Swap: %.0f%%"),
+			cpu, num_processes, memory, swap);
+	gtk_status_icon_set_tooltip (GTK_STATUS_ICON (status_icon), tooltip);
+#endif
 
 	xtm_task_manager_update_model (task_manager);
 
