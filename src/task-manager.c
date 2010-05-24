@@ -321,7 +321,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		{
 			Task *task = &g_array_index (manager->tasks, Task, i);
 			model_add_task (manager->model, task);
-#if 1|DEBUG
+#if DEBUG
 			g_print ("%5d %5s %15s %.50s\n", task->pid, task->uid_name, task->name, task->cmdline);
 #endif
 		}
