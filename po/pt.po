@@ -176,37 +176,30 @@ msgstr "XTerm"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/process-window.c:247
-#, fuzzy
 msgid "250ms"
 msgstr "250ms"
 
 #: ../src/process-window.c:248
-#, fuzzy
 msgid "500ms"
 msgstr "500ms"
 
 #: ../src/process-window.c:249
-#, fuzzy
 msgid "750ms"
 msgstr "750ms"
 
 #: ../src/process-window.c:250
-#, fuzzy
 msgid "1s"
 msgstr "1s"
 
 #: ../src/process-window.c:251
-#, fuzzy
 msgid "2s"
 msgstr "2s"
 
 #: ../src/process-window.c:252
-#, fuzzy
 msgid "5s"
 msgstr "5s"
 
 #: ../src/process-window.c:253
-#, fuzzy
 msgid "10s"
 msgstr "10s"
 
