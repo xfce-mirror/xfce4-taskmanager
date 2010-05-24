@@ -25,6 +25,7 @@
 
 static kstat_ctl_t *kc;
 static gushort _cpu_count = 0;
+static gulong ticks_total_delta = 0;
 
 static void
 init_stats ()
@@ -107,10 +108,10 @@ get_cpu_percent (guint pid, gulong ticks_user, gfloat *cpu_user, gulong ticks_sy
 	if (ticks_user < ticks_user_old || ticks_system < ticks_system_old)
 		return;
 
-	if (_cpu_count > 0)
+	if (_cpu_count > 0 && ticks_total_delta > 0)
 	{
-		*cpu_user = (ticks_user_old > 0) ? (ticks_user - ticks_user_old) / (gfloat)_cpu_count : 0;
-		*cpu_system = (ticks_system_old > 0) ? (ticks_system - ticks_system_old) / (gfloat)_cpu_count : 0;
+		*cpu_user = (ticks_user - ticks_user_old) * 100 / (gdouble)ticks_total_delta;
+		*cpu_system = (ticks_system - ticks_system_old) * 100 / (gdouble)ticks_total_delta;
 	}
 	else
 	{
@@ -123,6 +124,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 {
 	kstat_t *ksp;
 	kstat_named_t *knp;
+	static gulong ticks_total = 0, ticks_total_old = 0;
 	gulong ticks_user = 0, ticks_system = 0;
 
 	if (!kc)
@@ -130,6 +132,9 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 
 	_cpu_count = 0;
 	kstat_chain_update (kc);
+
+	ticks_total_old = ticks_total;
+	ticks_total = 0;
 
 	for (ksp = kc->kc_chain; ksp != NULL; ksp = ksp->ks_next)
 	{
@@ -144,12 +149,18 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 			ticks_user += knp->value.ul / 100000;
 			knp = kstat_data_lookup (ksp, "cpu_nsec_kernel");
 			ticks_system += knp->value.ul / 100000;
+			knp = kstat_data_lookup (ksp, "cpu_nsec_intr");
+			ticks_system += knp->value.ul / 100000;
+			knp = kstat_data_lookup (ksp, "cpu_nsec_idle");
+			ticks_total += knp->value.ul / 100000;
+			ticks_total += ticks_user + ticks_system;
 		}
 	}
 
+	if (ticks_total > ticks_total_old)
+		ticks_total_delta = ticks_total - ticks_total_old;
+
 	get_cpu_percent (0, ticks_user, cpu_user, ticks_system, cpu_system);
-	*cpu_user /= 100.0;
-	*cpu_system /= 100.0;
 	*cpu_count = _cpu_count;
 
         return TRUE;
@@ -185,8 +196,7 @@ get_task_details (guint pid, Task *task)
 	pw = getpwuid (process.pr_uid);
 	task->uid = (guint)process.pr_uid;
 	g_strlcpy (task->uid_name, (pw != NULL) ? pw->pw_name : "nobody", sizeof (task->uid_name));
-	get_cpu_percent (task->pid, process.pr_time.tv_sec * 100000 + process.pr_time.tv_nsec / 1000, &task->cpu_user, 0, &task->cpu_system);
-	task->cpu_user /= 10000;
+	get_cpu_percent (task->pid, process.pr_time.tv_sec * 1000 + process.pr_time.tv_nsec / 100000, &task->cpu_user, 0, &task->cpu_system);
 
 	fclose (file);
 

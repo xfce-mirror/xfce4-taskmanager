@@ -20,6 +20,7 @@
 #include "task-manager.h"
 
 static gushort _cpu_count = 0;
+static gulong jiffies_total_delta = 0;
 
 gboolean
 get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
@@ -59,9 +60,8 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	FILE *file;
 	gchar *filename = "/proc/stat";
 	gchar buffer[1024];
-	static gulong cur_jiffies_user = 0, old_jiffies_user = 0;
-	static gulong cur_jiffies_system = 0, old_jiffies_system = 0;
-	static gulong cur_jiffies = 0, old_jiffies = 0;
+	static gulong jiffies_user = 0, jiffies_system = 0, jiffies_total = 0;
+	static gulong jiffies_user_old = 0, jiffies_system_old = 0, jiffies_total_old = 0;
 	gulong user, user_nice, system, idle;
 
 	if ((file = fopen (filename, "r")) == NULL)
@@ -72,7 +72,6 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 
 	if (_cpu_count == 0)
 	{
-		_cpu_count = 0;
 		while (fgets (buffer, 1024, file) != NULL)
 		{
 			if (buffer[0] != 'c' && buffer[1] != 'p' && buffer[2] != 'u')
@@ -80,24 +79,25 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 			_cpu_count += 1;
 		}
 		if (_cpu_count == 0)
-			_cpu_count += 1;
+			_cpu_count = 1;
 	}
 
 	fclose (file);
 
-	old_jiffies_user = cur_jiffies_user;
-	old_jiffies_system = cur_jiffies_system;
-	old_jiffies = cur_jiffies;
+	jiffies_user_old = jiffies_user;
+	jiffies_system_old = jiffies_system;
+	jiffies_total_old = jiffies_total;
 
-	cur_jiffies_user = user + user_nice;
-	cur_jiffies_system = system;
-	cur_jiffies = cur_jiffies_user + cur_jiffies_system + idle;
+	jiffies_user = user + user_nice;
+	jiffies_system = system;
+	jiffies_total = jiffies_user + jiffies_system + idle;
 
 	*cpu_user = *cpu_system = 0.0;
-	if (cur_jiffies > old_jiffies)
+	if (jiffies_total > jiffies_total_old)
 	{
-		*cpu_user = (cur_jiffies_user - old_jiffies_user) * 100 / (gdouble)(cur_jiffies - old_jiffies);
-		*cpu_system = (cur_jiffies_system - old_jiffies_system) * 100 / (gdouble)(cur_jiffies - old_jiffies);
+		jiffies_total_delta = jiffies_total - jiffies_total_old;
+		*cpu_user = (jiffies_user - jiffies_user_old) * 100 / (gdouble)(jiffies_total_delta);
+		*cpu_system = (jiffies_system - jiffies_system_old) * 100 / (gdouble)(jiffies_total_delta);
 	}
 	*cpu_count = _cpu_count;
 
@@ -170,10 +170,10 @@ get_cpu_percent (guint pid, gulong jiffies_user, gfloat *cpu_user, gulong jiffie
 	if (jiffies_user < jiffies_user_old || jiffies_system < jiffies_system_old)
 		return;
 
-	if (_cpu_count > 0)
+	if (_cpu_count > 0 && jiffies_total_delta > 0)
 	{
-		*cpu_user = (jiffies_user_old > 0) ? (jiffies_user - jiffies_user_old) / (gfloat)_cpu_count : 0;
-		*cpu_system = (jiffies_system_old > 0) ? (jiffies_system - jiffies_system_old) / (gfloat)_cpu_count : 0;
+		*cpu_user = (jiffies_user - jiffies_user_old) * 100 / (gdouble)jiffies_total_delta;
+		*cpu_system = (jiffies_system - jiffies_system_old) * 100 / (gdouble)jiffies_total_delta;
 	}
 	else
 	{
