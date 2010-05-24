@@ -227,7 +227,7 @@ msgstr "Mostrar a icona de estado"
 
 #: ../src/process-window.c:300
 msgid "Refresh rate"
-msgstr ""
+msgstr "Frecuencia de actualización"
 
 #: ../src/process-window.c:310
 msgid "Virtual Bytes"
