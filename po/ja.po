@@ -11,40 +11,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-11 23:01+0900\n"
-"PO-Revision-Date: 2010-05-11 23:00+0900\n"
+"POT-Creation-Date: 2010-05-24 21:39+0900\n"
+"PO-Revision-Date: 2010-05-24 21:39+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:372
 msgid "Easy to use task manager"
 msgstr "使いやすいタスクマネージャ"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
-#: ../src/process-window.c:199 ../src/process-window.c:321
+#: ../src/process-window.c:177 ../src/process-window.c:367
 msgid "Task Manager"
 msgstr "タスクマネージャ"
 
-#: ../src/process-statusbar.c:121
+#: ../src/process-statusbar.c:139
 #, c-format
-msgid "CPU: %.2f%%"
-msgstr "CPU: %.2f%%"
+msgid "CPU: %s%%"
+msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:128
+#: ../src/process-statusbar.c:148
 #, c-format
-msgid "Memory: %.2f%%"
-msgstr "メモリ: %.2f%%"
+msgid "Memory: %s%%"
+msgstr "メモリ: %s%%"
 
-#: ../src/process-statusbar.c:135
+#: ../src/process-statusbar.c:157
 #, c-format
-msgid "Swap: %.2f%%"
-msgstr "スワップ: %.2f%%"
+msgid "Swap: %s%%"
+msgstr "スワップ: %s%%"
 
-#: ../src/process-statusbar.c:142
+#: ../src/process-statusbar.c:172
 #, c-format
 msgid "Processes: %d"
 msgstr "プロセス: %d"
@@ -53,15 +54,15 @@ msgstr "プロセス: %d"
 msgid "Task"
 msgstr "タスク"
 
-#: ../src/process-tree-view.c:116 ../src/process-window.c:276
+#: ../src/process-tree-view.c:116 ../src/process-window.c:307
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:124 ../src/process-window.c:277
+#: ../src/process-tree-view.c:124 ../src/process-window.c:308
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:132 ../src/process-window.c:278
+#: ../src/process-tree-view.c:132 ../src/process-window.c:309
 msgid "State"
 msgstr "状態"
 
@@ -73,11 +74,11 @@ msgstr "VSZ"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:157 ../src/process-window.c:281
+#: ../src/process-tree-view.c:157 ../src/process-window.c:312
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:165 ../src/process-window.c:282
+#: ../src/process-tree-view.c:165 ../src/process-window.c:313
 msgid "CPU"
 msgstr "CPU"
 
@@ -123,21 +124,21 @@ msgid ""
 msgstr ""
 "PID %d への優先度設定でエラーが発生しました。必要な権限がないと思われます。"
 
-#: ../src/process-tree-view.c:260
-msgid "Terminate"
-msgstr "終了"
-
-#: ../src/process-tree-view.c:267
+#: ../src/process-tree-view.c:262
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/process-tree-view.c:274
+#: ../src/process-tree-view.c:269
 msgid "Continue"
 msgstr "再開"
 
-#: ../src/process-tree-view.c:280
+#: ../src/process-tree-view.c:275
 msgid "Kill"
 msgstr "Kill"
+
+#: ../src/process-tree-view.c:280
+msgid "Terminate"
+msgstr "終了"
 
 #: ../src/process-tree-view.c:287
 msgid "Very low"
@@ -159,69 +160,142 @@ msgstr "高い"
 msgid "Very high"
 msgstr "とても高い"
 
-#: ../src/process-tree-view.c:312 ../src/process-window.c:283
+#: ../src/process-tree-view.c:312 ../src/process-window.c:314
 msgid "Priority"
 msgstr "優先度"
 
-#: ../src/process-window.c:197
+#: ../src/process-window.c:175
 msgid "Execution error"
 msgstr "実行エラー"
 
-#: ../src/process-window.c:226
+#: ../src/process-window.c:203
 msgid "Run Program..."
 msgstr "プログラムの実行..."
 
-#: ../src/process-window.c:227
+#: ../src/process-window.c:204
 msgid "Application Finder"
 msgstr "アプリケーションファインダ"
 
-#: ../src/process-window.c:228
+#: ../src/process-window.c:205
 msgid "Terminal emulator"
 msgstr "ターミナルエミュレータ"
 
-#: ../src/process-window.c:229
+#: ../src/process-window.c:206
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/process-window.c:271
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/process-window.c:247
+msgid "250ms"
+msgstr "250ms"
+
+#: ../src/process-window.c:248
+msgid "500ms"
+msgstr "500ms"
+
+#: ../src/process-window.c:249
+msgid "750ms"
+msgstr "750ms"
+
+#: ../src/process-window.c:250
+msgid "1s"
+msgstr "1秒"
+
+#: ../src/process-window.c:251
+msgid "2s"
+msgstr "2秒"
+
+#: ../src/process-window.c:252
+msgid "5s"
+msgstr "5秒"
+
+#: ../src/process-window.c:253
+msgid "10s"
+msgstr "10秒"
+
+#: ../src/process-window.c:294
 msgid "Show all processes"
 msgstr "全てのプロセスを表示する"
 
-#: ../src/process-window.c:279
+#: ../src/process-window.c:295
+msgid "More precision"
+msgstr "もっと正確に"
+
+#: ../src/process-window.c:296
+msgid "Full command line"
+msgstr "完全なコマンドライン"
+
+#: ../src/process-window.c:297
+msgid "Show status icon"
+msgstr "状態アイコンの表示"
+
+#: ../src/process-window.c:300
+msgid "Refresh rate"
+msgstr "リフレッシュ間隔"
+
+#: ../src/process-window.c:310
 msgid "Virtual Bytes"
 msgstr "仮想メモリ"
 
-#: ../src/process-window.c:280
+#: ../src/process-window.c:311
 msgid "Private Bytes"
 msgstr "プライベートメモリ"
 
-#: ../src/process-window.c:329
+#: ../src/process-window.c:375
 msgid "translator-credits"
 msgstr ""
 "Daichi Kawahata\n"
 "Nobuhiro Iwamatsu\n"
 "Masato Hashimoto"
 
-#: ../src/task-manager.c:146
+#: ../src/task-manager.c:165
 #, c-format
 msgid "%lu MiB"
 msgstr "%lu MiB"
 
-#: ../src/task-manager.c:153
+#: ../src/task-manager.c:172
 #, c-format
 msgid "%lu KiB"
 msgstr "%lu KiB"
 
-#: ../src/task-manager.c:157
+#: ../src/task-manager.c:176
 #, c-format
 msgid "%lu B"
 msgstr "%lu B"
 
-#. TODO make precision optional
-#: ../src/task-manager.c:168
+#: ../src/task-manager.c:189
 #, c-format
-msgid "%.2f%%"
-msgstr "%.2f%%"
+msgid "%s%%"
+msgstr "%s%%"
+
+#: ../src/main.c:61
+#, c-format
+msgid ""
+"<b>Processes:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Memory:</b> %.0f%%\n"
+"<b>Swap:</b> %.0f%%"
+msgstr ""
+"<b>プロセス数:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>メモリ:</b> %.0f%%\n"
+"<b>スワップ:</b> %.0f%%"
+
+#: ../src/main.c:69
+#, c-format
+msgid ""
+"Processes: %u\n"
+"CPU: %.0f%%\n"
+"Memory: %.0f%%\n"
+"Swap: %.0f%%"
+msgstr ""
+"プロセス数: %u\n"
+"CPU: %.0f%%\n"
+"メモリ: %.0f%%\n"
+"スワップ: %.0f%%"
+
+#~ msgid "%.2f%%"
+#~ msgstr "%.2f%%"
 
 #~ msgid "Control your processes"
 #~ msgstr "プロセスをコントロールします"
