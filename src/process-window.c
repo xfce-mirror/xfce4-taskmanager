@@ -191,19 +191,39 @@ menu_execute_append_item (GtkMenu *menu, gchar *title, gchar *command, gchar *ic
 	g_signal_connect_swapped (mi, "activate", G_CALLBACK (execute_command), command);
 }
 
+static gboolean
+program_exists (gchar *program)
+{
+	gchar *program_path = g_find_program_in_path (program);
+	if (program_path == NULL)
+		return FALSE;
+	g_free (program_path);
+	return TRUE;
+}
+
 static void
 show_menu_execute_task (XtmProcessWindow *window)
 {
-	// TODO check if xfrun4, xfce4-appfinder, etc are installed and pull them in the menu
 	static GtkWidget *menu = NULL;
 
 	if (menu == NULL)
 	{
 		menu = gtk_menu_new ();
-		menu_execute_append_item (GTK_MENU (menu), _("Run Program..."), "xfrun4", "system-run");
-		menu_execute_append_item (GTK_MENU (menu), _("Application Finder"), "xfce4-appfinder", "xfce4-appfinder");
-		menu_execute_append_item (GTK_MENU (menu), _("Terminal emulator"), "exo-open --launch TerminalEmulator", "terminal");
-		menu_execute_append_item (GTK_MENU (menu), _("XTerm"), "xterm -fg grey -bg black", "terminal");
+		/* Find a runner program */
+		if (program_exists ("xfrun4"))
+			menu_execute_append_item (GTK_MENU (menu), _("Run Program..."), "xfrun4", "system-run");
+		else if (program_exists ("gmrun"))
+			menu_execute_append_item (GTK_MENU (menu), _("Run Program..."), "gmrun", "system-run");
+		else if (program_exists ("gexec"))
+			menu_execute_append_item (GTK_MENU (menu), _("Run Program..."), "gexec", "system-run");
+		/* Find an applications list program */
+		if (program_exists ("xfce4-appfinder"))
+			menu_execute_append_item (GTK_MENU (menu), _("Application Finder"), "xfce4-appfinder", "xfce4-appfinder");
+		/* Find a terminal emulator */
+		if (program_exists ("exo-open"))
+			menu_execute_append_item (GTK_MENU (menu), _("Terminal emulator"), "exo-open --launch TerminalEmulator", "terminal");
+		else if (program_exists ("xterm"))
+			menu_execute_append_item (GTK_MENU (menu), _("XTerm"), "xterm -fg grey -bg black", "terminal");
 		gtk_widget_show_all (menu);
 	}
 
