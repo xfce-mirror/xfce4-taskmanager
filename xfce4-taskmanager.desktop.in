@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 _Name=Task Manager
 _Comment=Easy to use task manager
 _GenericName=Task Manager
@@ -8,4 +7,4 @@ Icon=utilities-system-monitor
 Terminal=false
 StartupNotify=true
 Type=Application
-Categories=Application;System;Utility;
+Categories=System;Utility;
