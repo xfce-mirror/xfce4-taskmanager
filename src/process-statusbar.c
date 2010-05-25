@@ -99,7 +99,7 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 #endif
 
 	hbox = gtk_hbox_new (FALSE, 16);
-	gtk_box_pack_start (GTK_BOX (area), hbox, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (area), hbox, TRUE, TRUE, 6);
 
 	statusbar->label_num_processes = gtk_label_new (NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), statusbar->label_num_processes, FALSE, FALSE, 0);
