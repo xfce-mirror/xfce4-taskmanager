@@ -25,6 +25,8 @@
 #include "process-tree-view.h" /* for the columns of the model */
 #include "settings.h"
 
+#define TIMESTAMP_DELTA 4
+
 
 
 static XtmSettings *settings = NULL;
@@ -63,10 +65,12 @@ G_DEFINE_TYPE (XtmTaskManager, xtm_task_manager, G_TYPE_OBJECT)
 static void	xtm_task_manager_finalize			(GObject *object);
 
 static void	setting_changed					(GObject *object, GParamSpec *pspec, XtmTaskManager *manager);
-static void	model_add_task					(GtkTreeModel *model, Task *task);
+static void	model_add_task					(GtkTreeModel *model, Task *task, glong timestamp);
+static void	model_remove_task				(GtkTreeModel *model, Task *task);
 static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, Task *task);
 static void	model_update_task				(GtkTreeModel *model, Task *task);
-static void	model_remove_task				(GtkTreeModel *model, Task *task);
+static void	model_find_tree_iter_for_pid			(GtkTreeModel *model, guint pid, GtkTreeIter *iter);
+static glong	__current_timestamp				();
 
 
 
@@ -138,7 +142,7 @@ _xtm_task_manager_set_model (XtmTaskManager *manager, GtkTreeModel *model)
 }
 
 static void
-model_add_task (GtkTreeModel *model, Task *task)
+model_add_task (GtkTreeModel *model, Task *task, glong timestamp)
 {
 	GtkTreeIter iter;
 	gchar *cmdline = pretty_cmdline (task->cmdline, task->name);
@@ -149,9 +153,20 @@ model_add_task (GtkTreeModel *model, Task *task)
 		XTM_PTV_COLUMN_STATE, task->state,
 		XTM_PTV_COLUMN_UID, task->uid,
 		XTM_PTV_COLUMN_UID_STR, task->uid_name,
+		XTM_PTV_COLUMN_BACKGROUND, NULL,
+		XTM_PTV_COLUMN_FOREGROUND, NULL,
+		XTM_PTV_COLUMN_TIMESTAMP, timestamp,
 		-1);
 	model_update_tree_iter (model, &iter, task);
 	g_free (cmdline);
+}
+
+static void
+model_remove_task (GtkTreeModel *model, Task *task)
+{
+	GtkTreeIter iter;
+	model_find_tree_iter_for_pid (model, task->pid, &iter);
+	gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
 }
 
 static void
@@ -181,6 +196,8 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 {
 	gchar vsz[64], rss[64], cpu[16];
 	gchar value[14];
+	gchar *background = NULL, *foreground = NULL;
+	glong old_timestamp;
 
 	memory_human_size (task->vsz, vsz);
 	memory_human_size (task->rss, rss);
@@ -195,6 +212,13 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 		g_free (cmdline);
 	}
 
+	gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, -1);
+	if (__current_timestamp () - old_timestamp <= TIMESTAMP_DELTA)
+	{
+		background = "#73d216";
+		foreground = "#000000";
+	}
+
 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
 		XTM_PTV_COLUMN_PPID, task->ppid,
 		XTM_PTV_COLUMN_STATE, task->state,
@@ -205,7 +229,17 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 		XTM_PTV_COLUMN_CPU, task->cpu_user + task->cpu_system,
 		XTM_PTV_COLUMN_CPU_STR, cpu,
 		XTM_PTV_COLUMN_PRIORITY, task->prio,
+		XTM_PTV_COLUMN_BACKGROUND, background,
+		XTM_PTV_COLUMN_FOREGROUND, foreground,
 		-1);
+}
+
+static void
+model_update_task (GtkTreeModel *model, Task *task)
+{
+	GtkTreeIter iter;
+	model_find_tree_iter_for_pid (model, task->pid, &iter);
+	model_update_tree_iter (model, &iter, task);
 }
 
 static void
@@ -224,20 +258,12 @@ model_find_tree_iter_for_pid (GtkTreeModel *model, guint pid, GtkTreeIter *iter)
 	}
 }
 
-static void
-model_update_task (GtkTreeModel *model, Task *task)
+static glong
+__current_timestamp ()
 {
-	GtkTreeIter iter;
-	model_find_tree_iter_for_pid (model, task->pid, &iter);
-	model_update_tree_iter (model, &iter, task);
-}
-
-static void
-model_remove_task (GtkTreeModel *model, Task *task)
-{
-	GtkTreeIter iter;
-	model_find_tree_iter_for_pid (model, task->pid, &iter);
-	gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+	GTimeVal time;
+	g_get_current_time (&time);
+	return time.tv_sec;
 }
 
 
@@ -320,7 +346,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		for (i = 0; i < manager->tasks->len; i++)
 		{
 			Task *task = &g_array_index (manager->tasks, Task, i);
-			model_add_task (manager->model, task);
+			model_add_task (manager->model, task, 0);
 #if DEBUG
 			g_print ("%5d %5s %15s %.50s\n", task->pid, task->uid_name, task->name, task->cmdline);
 #endif
@@ -394,6 +420,23 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 				model_update_task (manager->model, tasktmp);
 			}
 
+			/* Update colors when timestamp is overlapped but the iter wasn't updated because of previous condition */
+			{
+				GtkTreeIter iter;
+				glong old_timestamp;
+				gchar *color = NULL;
+				model_find_tree_iter_for_pid (manager->model, task->pid, &iter);
+				gtk_tree_model_get (manager->model, &iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_BACKGROUND, &color, -1);
+				if (__current_timestamp () - old_timestamp > TIMESTAMP_DELTA && color != NULL)
+				{
+#if DEBUG
+					g_debug ("Remove color from running PID %d", task->pid);
+#endif
+					model_update_task (manager->model, tasktmp);
+				}
+				g_free (color);
+			}
+
 			break;
 		}
 
@@ -402,7 +445,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 #if DEBUG
 			g_debug ("Add new task %d %s", tasktmp->pid, tasktmp->name);
 #endif
-			model_add_task (manager->model, tasktmp);
+			model_add_task (manager->model, tasktmp, __current_timestamp ());
 			g_array_append_val (manager->tasks, *tasktmp);
 		}
 	}
