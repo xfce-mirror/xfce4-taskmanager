@@ -66,36 +66,48 @@ dnl ***********************************
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.12.0])
 
 dnl ***********************************
+dnl ********** Check for skel *********
+dnl ***********************************
+AC_ARG_WITH([skel],
+		AC_HELP_STRING([--with-skel], [build with task-manager-skel.c]),
+		[ac_skel="$withval"],
+		[ac_skel=no])
+
+dnl ***********************************
 dnl ******* Check for OS family *******
 dnl ***********************************
-case "$target_os" in
-	freebsd*)
+if test x"$ac_skel" = x"yes"; then
+	ac_os_implementation="skel"
+else
+	case "$target_os" in
+		freebsd*)
 		ac_os_implementation="freebsd"
 		AC_CHECK_LIB([kvm], [kvm_openfiles])
 		AC_CHECK_HEADERS([fcntl.h kvm.h paths.h pwd.h sys/param.h sys/proc.h \
 				sys/sysctl.h sys/types.h sys/user.h unistd.h])
-	;;
-	dragonfly*|netbsd*|openbsd*|darwin*)
+		;;
+		dragonfly*|netbsd*|openbsd*|darwin*)
 		ac_os_implementation="bsd"
 		AC_CHECK_HEADERS([err.h pwd.h stdlib.h string.h sys/param.h sys/sched.h \
 				sys/swap.h sys/sysctl.h sys/types.h unistd.h])
-	;;
-	solaris*)
+		;;
+		solaris*)
 		ac_os_implementation="solaris"
 		AC_CHECK_LIB([kstat], [kstat_open])
 		AC_CHECK_HEADERS([fcntl.h kstat.h procfs.h pwd.h stdlib.h string.h \
 				sys/procfs.h sys/stat.h sys/swap.h sys/types.h])
-	;;
-	linux*)
+		;;
+		linux*)
 		ac_os_implementation="linux"
 		AC_CHECK_HEADERS([pwd.h signal.h stdio.h string.h sys/resource.h \
 				sys/stat.h sys/types.h unistd.h])
-	;;
-	*)
+		;;
+		*)
 		AC_MSG_CHECKING([for OS implementation])
 		AC_MSG_ERROR([no OS implementation for $target_os is available])
-	;;
-esac
+		;;
+	esac
+fi
 AC_MSG_CHECKING([for OS implementation])
 AC_MSG_RESULT([$ac_os_implementation])
 
@@ -103,6 +115,7 @@ AM_CONDITIONAL([OS_FREEBSD], [test x"$ac_os_implementation" = x"freebsd"])
 AM_CONDITIONAL([OS_BSD], [test x"$ac_os_implementation" = x"bsd"])
 AM_CONDITIONAL([OS_SOLARIS], [test x"$ac_os_implementation" = x"solaris"])
 AM_CONDITIONAL([OS_LINUX], [test x"$ac_os_implementation" = x"linux"])
+AM_CONDITIONAL([OS_SKEL], [test x"$ac_os_implementation" = x"skel"])
 
 dnl ***********************************
 dnl *** Check for debugging support ***

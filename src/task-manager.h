@@ -39,27 +39,6 @@ struct _Task
 };
 
 /**
- * Enumerations of virtual values between the interface and the OS implementation.
- */
-
-enum
-{
-	XTM_SIGNAL_TERMINATE = 0,
-	XTM_SIGNAL_STOP,
-	XTM_SIGNAL_CONTINUE,
-	XTM_SIGNAL_KILL,
-};
-
-enum
-{
-	XTM_PRIORITY_VERY_LOW = 0,
-	XTM_PRIORITY_LOW,
-	XTM_PRIORITY_NORMAL,
-	XTM_PRIORITY_HIGH,
-	XTM_PRIORITY_VERY_HIGH,
-};
-
-/**
  * OS specific implementation.
  */
 
@@ -93,6 +72,23 @@ void			xtm_task_manager_update_model			(XtmTaskManager *manager);
 /**
  * Helper functions.
  */
+
+enum
+{
+	XTM_SIGNAL_TERMINATE = 0,
+	XTM_SIGNAL_STOP,
+	XTM_SIGNAL_CONTINUE,
+	XTM_SIGNAL_KILL,
+};
+
+enum
+{
+	XTM_PRIORITY_VERY_LOW = 0,
+	XTM_PRIORITY_LOW,
+	XTM_PRIORITY_NORMAL,
+	XTM_PRIORITY_HIGH,
+	XTM_PRIORITY_VERY_HIGH,
+};
 
 void		get_owner_uid		(guint *owner_uid, gchar **owner_uid_name);
 gchar *		get_hostname		();

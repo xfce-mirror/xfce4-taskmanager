@@ -1,0 +1,39 @@
+If you are reading this file it's good news, it may imply you are interested in coding, but
+maybe even into adding support for a new operating system.
+
+The bare minimum to implement can be copied from the file src/task-manager-skel.c, knowing
+the existing implementations can serve as good examples. All the needed headers are declared
+inside the file src/task-manager.h.
+
+If you have trouble to add compilation to the build-env (autotools) you can run the
+configure script (./autogen.sh or ./configure) with the flag --with-skel and put your
+modifications inside the task-manager-skel.c file directly.
+
+When done, send a patch to Bugzilla (bugzilla.xfce.org).
+
+Some tips
+---------
+
+You may cache values, declare 'static <TYPE> <VARIABLE>' under the includes for global
+access, or inside functions for local access.
+
+You may need a local function to calculate the CPU usage in percent for the system and/or
+the processes, for this have a look at the function get_cpu_percent() from the linux and
+solaris files.
+
+The refresh rate can be different than one second, make sure the CPU keeps correct by
+changing it.
+
+Implementing the function pid_is_sleeping() is needed to show either the signal Stop or
+Continue inside the graphical interface.
+
+The function get_task_list provides an empty but initialized GArray pointer as argument that
+just has to be filled in with the current list of tasks.
+
+If there are information you are unable to provide because unexistent on the system, fill in
+these values with 0. A good example is the swap (sometimes because there is no swap set,
+doesn't mean we have to show swap information), when the total equals to zero it is hidden
+from the interface. The same can be applied to some of the CPU (system or user may be
+useless) and memory information (buffer and/or cache may be left out).
+
+That's it!
