@@ -408,11 +408,20 @@ visible_func (GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treevi
 static gboolean
 search_func (GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data)
 {
-	gchar *cmdline;
+	gchar *cmdline, *cmdline_lower;
+	gchar *key_lower;
 	gchar *p;
+
 	gtk_tree_model_get (GTK_TREE_MODEL (model), iter, XTM_PTV_COLUMN_COMMAND, &cmdline, -1);
-	p = g_strrstr_len (cmdline, -1, key);
+	cmdline_lower = g_ascii_strdown (cmdline, -1);
+	key_lower = g_ascii_strdown (key, -1);
+
+	p = g_strrstr_len (cmdline_lower, -1, key_lower);
+
+	g_free (key_lower);
+	g_free (cmdline_lower);
 	g_free (cmdline);
+
 	return (p == NULL) ? TRUE : FALSE;
 }
 
