@@ -66,7 +66,8 @@ static void	xtm_task_manager_finalize			(GObject *object);
 
 static void	setting_changed					(GObject *object, GParamSpec *pspec, XtmTaskManager *manager);
 static void	model_add_task					(GtkTreeModel *model, Task *task, glong timestamp);
-static void	model_remove_task				(GtkTreeModel *model, Task *task);
+static void	model_mark_tree_iter_as_removed			(GtkTreeModel *model, GtkTreeIter *iter);
+static void	model_remove_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter);
 static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, Task *task);
 static void	model_update_task				(GtkTreeModel *model, Task *task);
 static void	model_find_tree_iter_for_pid			(GtkTreeModel *model, guint pid, GtkTreeIter *iter);
@@ -162,11 +163,21 @@ model_add_task (GtkTreeModel *model, Task *task, glong timestamp)
 }
 
 static void
-model_remove_task (GtkTreeModel *model, Task *task)
+model_mark_tree_iter_as_removed (GtkTreeModel *model, GtkTreeIter *iter)
 {
-	GtkTreeIter iter;
-	model_find_tree_iter_for_pid (model, task->pid, &iter);
-	gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+	gtk_list_store_set (GTK_LIST_STORE (model), iter,
+		XTM_PTV_COLUMN_CPU, 0.0,
+		XTM_PTV_COLUMN_CPU_STR, "-",
+		XTM_PTV_COLUMN_BACKGROUND, "#a40000",
+		XTM_PTV_COLUMN_FOREGROUND, "#ffffff",
+		XTM_PTV_COLUMN_TIMESTAMP, __current_timestamp (),
+		-1);
+}
+
+static void
+model_remove_tree_iter (GtkTreeModel *model, GtkTreeIter *iter)
+{
+	gtk_list_store_remove (GTK_LIST_STORE (model), iter);
 }
 
 static void
@@ -334,10 +345,14 @@ xtm_task_manager_get_task_list (XtmTaskManager *manager)
 void
 xtm_task_manager_update_model (XtmTaskManager *manager)
 {
+	static GArray *removed_tasks = NULL;
 	GArray *array;
 	guint i;
 
 	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
+
+	if (removed_tasks == NULL)
+		removed_tasks = g_array_new (FALSE, FALSE, sizeof (GtkTreeIter));
 
 	/* Retrieve initial task list and return */
 	if (manager->tasks->len == 0)
@@ -359,6 +374,23 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	get_task_list (array);
 
 	/* Remove terminated tasks */
+	for (i = 0; i < removed_tasks->len; i++)
+	{
+		GtkTreeIter *iter = &g_array_index (removed_tasks, GtkTreeIter, i);
+		glong old_timestamp;
+		gtk_tree_model_get (manager->model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, -1);
+		if (__current_timestamp () - old_timestamp > TIMESTAMP_DELTA)
+		{
+#if DEBUG
+			gint pid;
+			gtk_tree_model_get (manager->model, iter, XTM_PTV_COLUMN_PID, &pid, -1);
+			g_debug ("Remove old task %d", pid);
+#endif
+			model_remove_tree_iter (manager->model, iter);
+			g_array_remove_index (removed_tasks, i);
+		}
+	}
+
 	for (i = 0; i < manager->tasks->len; i++)
 	{
 		guint j;
@@ -377,10 +409,13 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 
 		if (found == FALSE)
 		{
+			GtkTreeIter iter;
 #if DEBUG
-			g_debug ("Remove old task %d %s", task->pid, task->name);
+			g_debug ("Task %d '%s' terminated, marking as removed", task->pid, task->name);
 #endif
-			model_remove_task (manager->model, task);
+			model_find_tree_iter_for_pid (manager->model, task->pid, &iter);
+			model_mark_tree_iter_as_removed (manager->model, &iter);
+			g_array_append_val (removed_tasks, iter);
 			g_array_remove_index (manager->tasks, i);
 		}
 	}
