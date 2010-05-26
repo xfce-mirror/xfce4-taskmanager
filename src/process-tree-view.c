@@ -57,6 +57,7 @@ G_DEFINE_TYPE (XtmProcessTreeView, xtm_process_tree_view, GTK_TYPE_TREE_VIEW)
 static gboolean		treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
 static void		column_clicked					(GtkTreeViewColumn *column, XtmProcessTreeView *treeview);
 static gboolean		visible_func					(GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treeview);
+static gboolean		search_func					(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data);
 static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
 
 
@@ -191,6 +192,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 		gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (treeview->model), sort_column_id, sort_type);
 	}
 
+	gtk_tree_view_set_search_equal_func (GTK_TREE_VIEW (treeview), (GtkTreeViewSearchEqualFunc)search_func, NULL, NULL);
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
 }
 
@@ -401,6 +403,17 @@ visible_func (GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treevi
 
 	gtk_tree_model_get (GTK_TREE_MODEL (treeview->model), iter, XTM_PTV_COLUMN_UID, &uid, -1);
 	return (treeview->owner_uid == uid) ? TRUE : FALSE;
+}
+
+static gboolean
+search_func (GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data)
+{
+	gchar *cmdline;
+	gchar *p;
+	gtk_tree_model_get (GTK_TREE_MODEL (model), iter, XTM_PTV_COLUMN_COMMAND, &cmdline, -1);
+	p = g_strrstr_len (cmdline, -1, key);
+	g_free (cmdline);
+	return (p == NULL) ? TRUE : FALSE;
 }
 
 static void
