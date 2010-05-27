@@ -20,37 +20,37 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
 msgid "Easy to use task manager"
-msgstr ""
+msgstr "ئىشلىتىشكە ئەپلىك ۋەزىپە باشقۇرغۇ"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
 #: ../src/process-window.c:199 ../src/process-window.c:321
 msgid "Task Manager"
-msgstr ""
+msgstr "ۋەزىپە باشقۇرغۇ"
 
 #: ../src/process-statusbar.c:121
 #, c-format
 msgid "CPU: %.2f%%"
-msgstr ""
+msgstr "CPU: %.2f%%"
 
 #: ../src/process-statusbar.c:128
 #, c-format
 msgid "Memory: %.2f%%"
-msgstr ""
+msgstr "ئەسلەك: %.2f%%"
 
 #: ../src/process-statusbar.c:135
 #, c-format
 msgid "Swap: %.2f%%"
-msgstr ""
+msgstr "Swap: %.2f%%"
 
 #: ../src/process-statusbar.c:142
 #, c-format
 msgid "Processes: %d"
-msgstr ""
+msgstr "Processes: %d"
 
 #: ../src/process-tree-view.c:106
 msgid "Task"
-msgstr ""
+msgstr "ۋەزىپە"
 
 #: ../src/process-tree-view.c:116 ../src/process-window.c:276
 msgid "PID"
@@ -58,91 +58,91 @@ msgstr "PID"
 
 #: ../src/process-tree-view.c:124 ../src/process-window.c:277
 msgid "PPID"
-msgstr ""
+msgstr "PPID"
 
 #: ../src/process-tree-view.c:132 ../src/process-window.c:278
 msgid "State"
-msgstr ""
+msgstr "ھالەت"
 
 #: ../src/process-tree-view.c:141
 msgid "VSZ"
-msgstr ""
+msgstr "VSZ"
 
 #: ../src/process-tree-view.c:149
 msgid "RSS"
-msgstr ""
+msgstr "RSS"
 
 #: ../src/process-tree-view.c:157 ../src/process-window.c:281
 msgid "UID"
-msgstr ""
+msgstr "UID"
 
 #: ../src/process-tree-view.c:165 ../src/process-window.c:282
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
 #: ../src/process-tree-view.c:174
 msgid "Prio."
-msgstr ""
+msgstr "Prio."
 
 #: ../src/process-tree-view.c:212
 msgid "Terminate task"
-msgstr ""
+msgstr "ۋەزىپىنى ئاخىرلاشتۇر"
 
 #: ../src/process-tree-view.c:212
 msgid "Kill task"
-msgstr ""
+msgstr "ۋەزىپىنى ئولتۇر"
 
 #: ../src/process-tree-view.c:214
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr ""
+msgstr "PID %d غا راستلا سىگنال ئەۋەتەمدۇ؟"
 
 #: ../src/process-tree-view.c:225
 msgid "Error sending signal"
-msgstr ""
+msgstr "سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى"
 
 #: ../src/process-tree-view.c:227
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
 "don't have the required privileges."
-msgstr ""
+msgstr "PID %d غا سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك ئەمەستەك قىلىدۇ."
 
 #: ../src/process-tree-view.c:244
 msgid "Error setting priority"
-msgstr ""
+msgstr "priority نى بەلگىلەشتە خاتالىق كۆرۈلدى"
 
 #: ../src/process-tree-view.c:245
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
+msgstr "PID %d نىڭ priority نى بەلگىلەشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك ئەمەستەك قىلىدۇ."
 
 #: ../src/process-tree-view.c:260
 msgid "Terminate"
-msgstr ""
+msgstr "ئاخىرلاشتۇر"
 
 #: ../src/process-tree-view.c:267
 msgid "Stop"
-msgstr ""
+msgstr "توختا"
 
 #: ../src/process-tree-view.c:274
 msgid "Continue"
-msgstr ""
+msgstr "داۋاملاشتۇر"
 
 #: ../src/process-tree-view.c:280
 msgid "Kill"
-msgstr ""
+msgstr "ئولتۇر"
 
 #: ../src/process-tree-view.c:287
 msgid "Very low"
-msgstr ""
+msgstr "بەك تۆۋەن"
 
 #: ../src/process-tree-view.c:292
 msgid "Low"
-msgstr ""
+msgstr "تۆۋەن"
 
 #: ../src/process-tree-view.c:297
 msgid "Normal"
@@ -150,19 +150,19 @@ msgstr "نورمال"
 
 #: ../src/process-tree-view.c:302
 msgid "High"
-msgstr ""
+msgstr "يۇقىرى"
 
 #: ../src/process-tree-view.c:307
 msgid "Very high"
-msgstr ""
+msgstr "بەك يۇقىرى"
 
 #: ../src/process-tree-view.c:312 ../src/process-window.c:283
 msgid "Priority"
-msgstr ""
+msgstr "ئالدىنلىق"
 
 #: ../src/process-window.c:197
 msgid "Execution error"
-msgstr ""
+msgstr "ئىجرا خاتالىقى"
 
 #: ../src/process-window.c:226
 msgid "Run Program..."
@@ -178,19 +178,19 @@ msgstr "تېرمىنال emulator"
 
 #: ../src/process-window.c:229
 msgid "XTerm"
-msgstr ""
+msgstr "XTerm"
 
 #: ../src/process-window.c:271
 msgid "Show all processes"
-msgstr ""
+msgstr "ھەممە processes نى كۆرسەت"
 
 #: ../src/process-window.c:279
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "مەۋھۇم بايتلار"
 
 #: ../src/process-window.c:280
 msgid "Private Bytes"
-msgstr ""
+msgstr "Private بايتلار"
 
 #: ../src/process-window.c:329
 msgid "translator-credits"
@@ -199,23 +199,23 @@ msgstr "Gheyret T.Kenji <gheyret@gmail.com> 2010"
 #: ../src/task-manager.c:146
 #, c-format
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
 #: ../src/task-manager.c:153
 #, c-format
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
 #: ../src/task-manager.c:157
 #, c-format
 msgid "%lu B"
-msgstr ""
+msgstr "%lu B"
 
 #. TODO make precision optional
 #: ../src/task-manager.c:168
 #, c-format
 msgid "%.2f%%"
-msgstr ""
+msgstr "%.2f%%"
 
 #~ msgid "Control your processes"
 #~ msgstr "プロセスをコントロールします"
