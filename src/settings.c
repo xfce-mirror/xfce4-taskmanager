@@ -36,6 +36,7 @@ enum
 	PROP_FULL_COMMAND_LINE,
 	PROP_SHOW_STATUS_ICON,
 	PROP_REFRESH_RATE,
+	PROP_COLUMNS_POSITIONS,
 	PROP_COLUMN_UID,
 	PROP_COLUMN_PID,
 	PROP_COLUMN_PPID,
@@ -89,6 +90,8 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_boolean ("show-status-icon", "ShowStatusIcon", "Show/hide the status icon", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_REFRESH_RATE,
 		g_param_spec_uint ("refresh-rate", "RefreshRate", "Refresh rate in milliseconds", 0, G_MAXUINT, 750, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_COLUMNS_POSITIONS,
+		g_param_spec_string ("columns-positions", "ColumnsPositions", "Positions of the tree view columns", NULL, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_UID,
 		g_param_spec_boolean ("column-uid", "ColumnUID", "Show column UID", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_PID,
