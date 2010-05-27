@@ -207,8 +207,9 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 {
 	gchar vsz[64], rss[64], cpu[16];
 	gchar value[14];
-	gchar *background = NULL, *foreground = NULL;
 	glong old_timestamp;
+	gchar *old_state;
+	gchar *background, *foreground;
 
 	memory_human_size (task->vsz, vsz);
 	memory_human_size (task->rss, rss);
@@ -223,11 +224,29 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 		g_free (cmdline);
 	}
 
-	gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, -1);
+	/* Retrieve values needed for tweaking background/foreground color */
+	gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_STATE, &old_state,
+			XTM_PTV_COLUMN_BACKGROUND, &background, XTM_PTV_COLUMN_FOREGROUND, &foreground, -1);
+
+	if (g_strcmp0 (task->state, old_state) != 0 && background == NULL)
+	{
+		/* Set yellow color for changing state */
+		background = g_strdup ("#edd400");
+		foreground = g_strdup ("#000000");
+		old_timestamp = __current_timestamp () - TIMESTAMP_DELTA + 3;
+	}
+
 	if (__current_timestamp () - old_timestamp <= TIMESTAMP_DELTA)
 	{
-		background = "#73d216";
-		foreground = "#000000";
+		/* Set green color for started task */
+		background = (background == NULL) ? g_strdup ("#73d216") : background;
+		foreground = (foreground == NULL) ? g_strdup ("#000000") : foreground;
+	}
+	else
+	{
+		/* Reset color */
+		background = NULL;
+		foreground = NULL;
 	}
 
 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
@@ -242,7 +261,11 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 		XTM_PTV_COLUMN_PRIORITY, task->prio,
 		XTM_PTV_COLUMN_BACKGROUND, background,
 		XTM_PTV_COLUMN_FOREGROUND, foreground,
+		XTM_PTV_COLUMN_TIMESTAMP, old_timestamp,
 		-1);
+
+	g_free (background);
+	g_free (foreground);
 }
 
 static void
@@ -430,6 +453,8 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		for (j = 0; j < manager->tasks->len; j++)
 		{
 			Task *task = &g_array_index (manager->tasks, Task, j);
+			gboolean updated = FALSE;
+
 			if (task->pid != tasktmp->pid)
 				continue;
 
@@ -445,6 +470,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 				|| task->vsz != tasktmp->vsz
 				|| task->prio != tasktmp->prio)
 			{
+				updated = TRUE;
 				task->ppid = tasktmp->ppid;
 				g_strlcpy (task->state, tasktmp->state, sizeof (task->state));
 				task->cpu_user = tasktmp->cpu_user;
@@ -455,20 +481,24 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 				model_update_task (manager->model, tasktmp);
 			}
 
-			/* Update colors when timestamp is overlapped but the iter wasn't updated because of previous condition */
+			/* Update color if needed */
+			if (updated == FALSE)
 			{
 				GtkTreeIter iter;
+				gchar *color;
 				glong old_timestamp;
-				gchar *color = NULL;
+
 				model_find_tree_iter_for_pid (manager->model, task->pid, &iter);
-				gtk_tree_model_get (manager->model, &iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_BACKGROUND, &color, -1);
-				if (__current_timestamp () - old_timestamp > TIMESTAMP_DELTA && color != NULL)
+				gtk_tree_model_get (manager->model, &iter, XTM_PTV_COLUMN_BACKGROUND, &color, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, -1);
+
+				if (color != NULL && __current_timestamp () - old_timestamp > TIMESTAMP_DELTA)
 				{
 #if DEBUG
 					g_debug ("Remove color from running PID %d", task->pid);
 #endif
 					model_update_task (manager->model, tasktmp);
 				}
+
 				g_free (color);
 			}
 
