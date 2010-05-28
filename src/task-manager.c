@@ -118,7 +118,7 @@ setting_changed (GObject *object, GParamSpec *pspec, XtmTaskManager *manager)
 static gchar *
 pretty_cmdline (gchar *cmdline, gchar *comm)
 {
-	gchar *text = g_strchomp (g_strdup (cmdline));
+	gchar *text = g_strchomp (g_strdelimit (g_strdup (cmdline), "\n\r", ' '));
 	if (!full_cmdline && sizeof (text) > 3)
 	{
 		/* Shorten full path to commands and wine applications */
