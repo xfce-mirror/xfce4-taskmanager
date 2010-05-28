@@ -2,8 +2,9 @@ If you are reading this file it's good news, it may imply you are interested in 
 maybe even into adding support for a new operating system.
 
 The bare minimum to implement can be copied from the file src/task-manager-skel.c, knowing
-the existing implementations can serve as good examples. All the needed headers are declared
-inside the file src/task-manager.h.
+the existing implementations can serve as good examples. The src/task-manager.h file
+contains the declaration of the Task structure and the four functions that must be
+implemented.
 
 If you have trouble to add compilation to the build-env (autotools) you can run the
 configure script (./autogen.sh or ./configure) with the flag --with-skel and put your
@@ -18,22 +19,23 @@ You may cache values, declare 'static <TYPE> <VARIABLE>' under the includes for 
 access, or inside functions for local access.
 
 You may need a local function to calculate the CPU usage in percent for the system and/or
-the processes, for this have a look at the function get_cpu_percent() from the linux and
-solaris files.
+the processes (usually OSes that report the usage with an incrementing time-like value), for
+this have a look at the function get_cpu_percent() from the linux and solaris files.
 
 The refresh rate can be different than one second, make sure the CPU keeps correct by
-changing it.
+changing it or the algorithm may simply be wrong.
 
 Implementing the function pid_is_sleeping() is needed to show either the signal Stop or
 Continue inside the graphical interface.
 
-The function get_task_list provides an empty but initialized GArray pointer as argument that
-just has to be filled in with the current list of tasks.
+The function get_task_list() provides an empty but initialized GArray pointer as argument
+that just has to be filled in with the current list of tasks. Note that GArray makes a copy
+of the data type that it is passed to, don't allocate or free memory instead declare a Task
+structure and pass it as is/as a copy to g_array_append_value().
 
 If there are information you are unable to provide because unexistent on the system, fill in
-these values with 0. A good example is the swap (sometimes because there is no swap set,
-doesn't mean we have to show swap information), when the total equals to zero it is hidden
-from the interface. The same can be applied to some of the CPU (system or user may be
-useless) and memory information (buffer and/or cache may be left out).
+these values with 0. A good example is the swap, when the total equals to zero it is hidden
+from the interface. This can be applied to the CPU (system may be useless) and the memory
+information (buffer and/or cache may be left out).
 
 That's it!

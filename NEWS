@@ -1,3 +1,14 @@
+0.5.92 ~ 1.0.0 beta3
+
+- New settings “More precision,” “Full command line,” “Show status icon” and
+  “Refresh rate”
+- Swap usage is hidden from status bar when there is no swap present
+- Show a warning banner inside the window when running as root
+- Make default search function of tree view case insensitive and match key
+  within names (e.g. settings matches xfsettingsd and xfce4-settings-helper)
+- Highlight started/terminated tasks and tasks with changed state in color
+- Tree view columns are reorderable
+
 0.5.91 ~ 1.0.0 beta2
 
 - (Re)Add support for OpenSolaris, FreeBSD and OpenBSD
