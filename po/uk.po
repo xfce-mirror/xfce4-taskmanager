@@ -63,7 +63,6 @@ msgid "State"
 msgstr "Стан"
 
 #: ../src/process-tree-view.c:150
-#, fuzzy
 msgid "VSZ"
 msgstr "VSZ"
 
@@ -72,7 +71,6 @@ msgid "RSS"
 msgstr "Стрічка RSS"
 
 #: ../src/process-tree-view.c:166 ../src/process-window.c:332
-#, fuzzy
 msgid "UID"
 msgstr "UID"
 
@@ -130,7 +128,6 @@ msgid "Kill"
 msgstr "Знищити"
 
 #: ../src/process-tree-view.c:349
-#, fuzzy
 msgid "Terminate"
 msgstr "Завершити"
 
@@ -176,7 +173,6 @@ msgid "Terminal emulator"
 msgstr "Емулятор терміналу"
 
 #: ../src/process-window.c:226
-#, fuzzy
 msgid "XTerm"
 msgstr "XTerm"
 
@@ -242,22 +238,22 @@ msgid "translator-credits"
 msgstr "Dmitry Nikitin <luckas_fb@mail.ru>"
 
 #: ../src/task-manager.c:191
-#, c-format, fuzzy
+#, c-format
 msgid "%lu MiB"
 msgstr "%lu MiB"
 
 #: ../src/task-manager.c:198
-#, c-format, fuzzy
+#, c-format
 msgid "%lu KiB"
 msgstr "%lu KiB"
 
 #: ../src/task-manager.c:202
-#, c-format, fuzzy
+#, c-format
 msgid "%lu B"
 msgstr "%lu B"
 
 #: ../src/task-manager.c:218
-#, fuzzy, c-format
+#, c-format
 msgid "%s%%"
 msgstr "%s%%"
 
