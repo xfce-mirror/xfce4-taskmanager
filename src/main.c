@@ -70,7 +70,7 @@ init_timeout (void)
 			"CPU: %.0f%%\n"
 			"Memory: %.0f%%\n"
 			"Swap: %.0f%%"),
-			cpu, num_processes, memory, swap);
+			num_processes, cpu, memory, swap);
 	gtk_status_icon_set_tooltip (GTK_STATUS_ICON (status_icon), tooltip);
 #endif
 
