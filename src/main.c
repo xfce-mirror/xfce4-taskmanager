@@ -113,6 +113,7 @@ int main (int argc, char *argv[])
 #endif
 
 	gtk_init (&argc, &argv);
+	g_set_application_name (_("Task Manager"));
 
 	settings = xtm_settings_get_default ();
 
