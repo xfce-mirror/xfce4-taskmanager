@@ -245,11 +245,14 @@ menu_refresh_rate_append_item (GtkMenu *menu, gchar *title, guint refresh_rate, 
 
 	g_object_get (settings, "refresh-rate", &cur_refresh_rate, NULL);
 
-	mi = gtk_image_menu_item_new_with_label (title);
 	if (cur_refresh_rate == refresh_rate)
 	{
-		GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_GO_FORWARD, GTK_ICON_SIZE_MENU);
-		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
+		mi = gtk_radio_menu_item_new_with_label (NULL, title);
+		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (mi), TRUE);
+	}
+	else
+	{
+		mi = gtk_menu_item_new_with_label (title);
 	}
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 	g_object_set_data (G_OBJECT (mi), "refresh-rate", GUINT_TO_POINTER (refresh_rate));
