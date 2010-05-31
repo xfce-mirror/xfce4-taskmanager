@@ -2,28 +2,27 @@
 # Copyright (C) 2010 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #  Ivica KOlić<ikoli@yahoo.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-24 16:08+0000\n"
+"POT-Creation-Date: 2010-05-31 04:09+0000\n"
 "PO-Revision-Date: 2010-05-25 00:04+0200\n"
-"Last-Translator:  Ivica Kolić<ikoli@yahoo.com>\n"
+"Last-Translator: Ivica Kolić<ikoli@yahoo.com>\n"
 "Language-Team: Croatian <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:372
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:395
 msgid "Easy to use task manager"
 msgstr "Lagan za upotrebu upravitelj zadacima"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
-#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
-#: ../src/process-window.c:177 ../src/process-window.c:367
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:284
+#: ../src/process-tree-view.c:298 ../src/process-tree-view.c:316
+#: ../src/process-window.c:177 ../src/process-window.c:390 ../src/main.c:116
 msgid "Task Manager"
 msgstr "Upravitelj zadacima"
 
@@ -40,122 +39,119 @@ msgstr "Memorija: %s%%"
 #: ../src/process-statusbar.c:157
 #, c-format
 msgid "Swap: %s%%"
-msgstr ""
+msgstr "Swap:% s% s%"
 
 #: ../src/process-statusbar.c:172
 #, c-format
 msgid "Processes: %d"
 msgstr "Procesi:  %d"
 
-#: ../src/process-tree-view.c:106
+#: ../src/process-tree-view.c:115
 msgid "Task"
 msgstr "Zadatak"
 
-#: ../src/process-tree-view.c:116 ../src/process-window.c:307
+#: ../src/process-tree-view.c:125 ../src/process-window.c:330
 msgid "PID"
-msgstr ""
+msgstr "PID"
 
-#: ../src/process-tree-view.c:124 ../src/process-window.c:308
+#: ../src/process-tree-view.c:133 ../src/process-window.c:331
 msgid "PPID"
-msgstr ""
+msgstr "PPID"
 
-#: ../src/process-tree-view.c:132 ../src/process-window.c:309
+#: ../src/process-tree-view.c:141 ../src/process-window.c:332
 msgid "State"
-msgstr ""
+msgstr "Stanje"
 
-#: ../src/process-tree-view.c:141
+#: ../src/process-tree-view.c:150
 msgid "VSZ"
-msgstr ""
+msgstr "VSZ"
 
-#: ../src/process-tree-view.c:149
+#: ../src/process-tree-view.c:158
 msgid "RSS"
-msgstr ""
+msgstr "RSS"
 
-#: ../src/process-tree-view.c:157 ../src/process-window.c:312
+#: ../src/process-tree-view.c:166 ../src/process-window.c:335
 msgid "UID"
-msgstr ""
+msgstr "UID"
 
-#: ../src/process-tree-view.c:165 ../src/process-window.c:313
+#: ../src/process-tree-view.c:174 ../src/process-window.c:336
 msgid "CPU"
 msgstr "Procesor"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
-#: ../src/process-tree-view.c:174
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: ../src/process-tree-view.c:183
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:212
+#: ../src/process-tree-view.c:281
 msgid "Terminate task"
 msgstr "Prekini zadatak"
 
-#: ../src/process-tree-view.c:212
+#: ../src/process-tree-view.c:281
 msgid "Kill task"
 msgstr "Ubij zadatak"
 
-#: ../src/process-tree-view.c:214
+#: ../src/process-tree-view.c:283
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr ""
 
-#: ../src/process-tree-view.c:225
+#: ../src/process-tree-view.c:294
 msgid "Error sending signal"
 msgstr "Greška u slanju signala"
 
-#: ../src/process-tree-view.c:227
+#: ../src/process-tree-view.c:296
 #, c-format
-msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr ""
 
-#: ../src/process-tree-view.c:244
+#: ../src/process-tree-view.c:313
 msgid "Error setting priority"
 msgstr "Greška u postavljanju prioriteta"
 
-#: ../src/process-tree-view.c:245
+#: ../src/process-tree-view.c:314
 #, c-format
-msgid ""
-"An error was encountered by setting a priority to the PID %d. It is likely "
-"you don't have the required privileges."
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr ""
 
-#: ../src/process-tree-view.c:262
+#: ../src/process-tree-view.c:331
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/process-tree-view.c:269
+#: ../src/process-tree-view.c:338
 msgid "Continue"
 msgstr "Nastavi"
 
-#: ../src/process-tree-view.c:275
+#: ../src/process-tree-view.c:344
 msgid "Kill"
 msgstr "Ubij"
 
-#: ../src/process-tree-view.c:280
+#: ../src/process-tree-view.c:349
 msgid "Terminate"
 msgstr "Prekini"
 
-#: ../src/process-tree-view.c:287
+#: ../src/process-tree-view.c:356
 msgid "Very low"
 msgstr "Vrlo nisko"
 
-#: ../src/process-tree-view.c:292
+#: ../src/process-tree-view.c:361
 msgid "Low"
 msgstr "Nisko"
 
-#: ../src/process-tree-view.c:297
+#: ../src/process-tree-view.c:366
 msgid "Normal"
 msgstr "Normalno"
 
-#: ../src/process-tree-view.c:302
+#: ../src/process-tree-view.c:371
 msgid "High"
 msgstr "Visoko"
 
-#: ../src/process-tree-view.c:307
+#: ../src/process-tree-view.c:376
 msgid "Very high"
 msgstr "Vrlo visoko"
 
-#: ../src/process-tree-view.c:312 ../src/process-window.c:314
+#: ../src/process-tree-view.c:381 ../src/process-window.c:337
 msgid "Priority"
 msgstr "Prioritet"
 
@@ -163,99 +159,100 @@ msgstr "Prioritet"
 msgid "Execution error"
 msgstr "Greška u izvršavanju"
 
-#: ../src/process-window.c:203
+#: ../src/process-window.c:214 ../src/process-window.c:216
+#: ../src/process-window.c:218
 msgid "Run Program..."
 msgstr "Pokreni program"
 
-#: ../src/process-window.c:204
+#: ../src/process-window.c:221
 msgid "Application Finder"
 msgstr "Tražitelj aplikacija"
 
-#: ../src/process-window.c:205
+#: ../src/process-window.c:224
 msgid "Terminal emulator"
 msgstr ""
 
-#: ../src/process-window.c:206
+#: ../src/process-window.c:226
 msgid "XTerm"
 msgstr ""
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/process-window.c:247
+#: ../src/process-window.c:270
 msgid "250ms"
 msgstr "250ms"
 
-#: ../src/process-window.c:248
+#: ../src/process-window.c:271
 msgid "500ms"
 msgstr "500ms"
 
-#: ../src/process-window.c:249
+#: ../src/process-window.c:272
 msgid "750ms"
 msgstr "750ms"
 
-#: ../src/process-window.c:250
+#: ../src/process-window.c:273
 msgid "1s"
 msgstr "1s"
 
-#: ../src/process-window.c:251
+#: ../src/process-window.c:274
 msgid "2s"
 msgstr "2s"
 
-#: ../src/process-window.c:252
+#: ../src/process-window.c:275
 msgid "5s"
 msgstr "5s"
 
-#: ../src/process-window.c:253
+#: ../src/process-window.c:276
 msgid "10s"
 msgstr "10s"
 
-#: ../src/process-window.c:294
+#: ../src/process-window.c:317
 msgid "Show all processes"
 msgstr "Pokaži sve procese"
 
-#: ../src/process-window.c:295
+#: ../src/process-window.c:318
 msgid "More precision"
 msgstr "Više preciznosti"
 
-#: ../src/process-window.c:296
+#: ../src/process-window.c:319
 msgid "Full command line"
 msgstr "Cijeli naredbeni redak"
 
-#: ../src/process-window.c:297
+#: ../src/process-window.c:320
 msgid "Show status icon"
 msgstr "Pokaži statusnu ikonu"
 
-#: ../src/process-window.c:300
+#: ../src/process-window.c:323
 msgid "Refresh rate"
-msgstr ""
+msgstr "Brzina osvježavanja"
 
-#: ../src/process-window.c:310
+#: ../src/process-window.c:333
 msgid "Virtual Bytes"
 msgstr ""
 
-#: ../src/process-window.c:311
+#: ../src/process-window.c:334
 msgid "Private Bytes"
 msgstr ""
 
-#: ../src/process-window.c:375
+#: ../src/process-window.c:398
 msgid "translator-credits"
 msgstr "Ivica Kolić ikoli@yahoo.com"
 
-#: ../src/task-manager.c:165
+#: ../src/task-manager.c:191
 #, c-format
 msgid "%lu MiB"
 msgstr "%lu MiB"
 
-#: ../src/task-manager.c:172
+#: ../src/task-manager.c:198
 #, c-format
 msgid "%lu KiB"
 msgstr "%lu KiB"
 
-#: ../src/task-manager.c:176
+#: ../src/task-manager.c:202
 #, c-format
 msgid "%lu B"
 msgstr "%lu B"
 
-#: ../src/task-manager.c:189
+#: ../src/task-manager.c:218
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
@@ -267,7 +264,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
+msgstr "<b>Procesi:%</b> u \\ n <b>CPU:%</b> .0 f%% \\ n <b>Memorija:%</b> .0 f%% \\ n <b>swap:%</b> .0 f%%"
 
 #: ../src/main.c:69
 #, c-format
@@ -276,4 +273,4 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
+msgstr "Procesi:% u \\ nCPU:% .0 f%% \\ nMemorija:% .0 f%% \\ nSwap:% .0 f%%"
