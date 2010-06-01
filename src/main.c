@@ -140,6 +140,9 @@ int main (int argc, char *argv[])
 	if (timeout > 0)
 		g_source_remove (timeout);
 	g_object_unref (window);
+	g_object_unref (status_icon);
+	g_object_unref (task_manager);
+	g_object_unref (settings);
 
 	return 0;
 }

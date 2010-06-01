@@ -266,6 +266,7 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 
 	g_free (background);
 	g_free (foreground);
+	g_free (old_state);
 }
 
 static void

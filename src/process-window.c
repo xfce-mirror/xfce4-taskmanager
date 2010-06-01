@@ -147,10 +147,14 @@ xtm_process_window_finalize (GObject *object)
 				"sort-column-id", sort_column_id, "sort-type", sort_type, NULL);
 	}
 
+	if (GTK_IS_TREE_VIEW (priv->treeview))
+		gtk_widget_destroy (priv->treeview);
+
+	if (GTK_IS_STATUSBAR (priv->statusbar))
+		gtk_widget_destroy (priv->statusbar);
+
 	if (XTM_IS_SETTINGS (priv->settings))
-	{
 		g_object_unref (priv->settings);
-	}
 }
 
 /**

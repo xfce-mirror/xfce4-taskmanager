@@ -55,6 +55,8 @@ struct _XtmProcessTreeView
 };
 G_DEFINE_TYPE (XtmProcessTreeView, xtm_process_tree_view, GTK_TYPE_TREE_VIEW)
 
+static void		xtm_process_tree_view_finalize			(GObject *object);
+
 static gboolean		treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
 static void		columns_changed					(XtmProcessTreeView *treeview);
 static void		read_columns_positions				(XtmProcessTreeView *treeview);
@@ -69,7 +71,9 @@ static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcess
 static void
 xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
 {
+	GObjectClass *class = G_OBJECT_CLASS (klass);
 	xtm_process_tree_view_parent_class = g_type_class_peek_parent (klass);
+	class->finalize = xtm_process_tree_view_finalize;
 }
 
 static void
@@ -85,6 +89,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	{
 		gchar *uid_name;
 		get_owner_uid (&treeview->owner_uid, &uid_name);
+		g_free (uid_name);
 		g_object_get (treeview->settings, "show-all-processes", &treeview->show_all_processes_cached, NULL);
 	}
 
@@ -203,6 +208,31 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	gtk_tree_view_set_search_equal_func (GTK_TREE_VIEW (treeview), (GtkTreeViewSearchEqualFunc)search_func, NULL, NULL);
 	g_signal_connect (treeview, "columns-changed", G_CALLBACK (columns_changed), NULL);
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
+}
+
+static void
+xtm_process_tree_view_finalize (GObject *object)
+{
+	XtmProcessTreeView *treeview = XTM_PROCESS_TREE_VIEW (object);
+
+	if (GTK_IS_TREE_MODEL (treeview->model))
+	{
+		g_object_unref (treeview->model);
+		treeview->model = NULL;
+	}
+
+	if (GTK_IS_TREE_MODEL (treeview->model_filter))
+	{
+		g_object_unref (treeview->model_filter);
+		treeview->model_filter = NULL;
+	}
+
+	if (XTM_IS_SETTINGS (treeview->settings))
+	{
+		g_object_unref (treeview->settings);
+	}
+
+	G_OBJECT_CLASS (xtm_process_tree_view_parent_class)->finalize (object);
 }
 
 /**

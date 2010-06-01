@@ -198,7 +198,7 @@ xtm_settings_load_settings (XtmSettings *settings)
 
 	if (g_key_file_load_from_file (rc, filename, G_KEY_FILE_NONE, NULL))
 	{
-		const gchar *string;
+		gchar *string;
 		GValue dst = {0};
 		GValue src = {0};
 		GParamSpec **specs;
@@ -215,7 +215,8 @@ xtm_settings_load_settings (XtmSettings *settings)
 				continue;
 
 			g_value_init (&src, G_TYPE_STRING);
-			g_value_set_static_string (&src, string);
+			g_value_set_string (&src, string);
+			g_free (string);
 
 			if (spec->value_type == G_TYPE_STRING)
 			{

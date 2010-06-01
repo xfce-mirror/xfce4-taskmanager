@@ -51,6 +51,7 @@ struct _XtmProcessStatusbar
 };
 G_DEFINE_TYPE (XtmProcessStatusbar, xtm_process_statusbar, GTK_TYPE_STATUSBAR)
 
+static void	xtm_process_statusbar_finalize			(GObject *object);
 static void	xtm_process_statusbar_set_property		(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 
 
@@ -60,6 +61,7 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 {
 	GObjectClass *class = G_OBJECT_CLASS (klass);
 	xtm_process_statusbar_parent_class = g_type_class_peek_parent (klass);
+	class->finalize = xtm_process_statusbar_finalize;
 	class->set_property = xtm_process_statusbar_set_property;
 	g_object_class_install_property (class, PROP_CPU,
 		g_param_spec_float ("cpu", "CPU", "CPU usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
@@ -114,6 +116,13 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	gtk_box_pack_start (GTK_BOX (hbox), statusbar->label_swap, FALSE, FALSE, 0);
 
 	gtk_widget_show_all (hbox);
+}
+
+static void
+xtm_process_statusbar_finalize (GObject *object)
+{
+	g_object_unref (XTM_PROCESS_STATUSBAR (object)->settings);
+	G_OBJECT_CLASS (xtm_process_statusbar_parent_class)->finalize (object);
 }
 
 static gchar *
