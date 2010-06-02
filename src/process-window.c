@@ -432,7 +432,8 @@ xtm_process_window_hide (GtkWidget *widget)
 {
 	gint winx, winy;
 	g_return_if_fail (GTK_IS_WIDGET (widget));
-	g_return_if_fail (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->priv->window));
+	if (!GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->priv->window))
+		return;
 	gtk_window_get_position (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->priv->window), &winx, &winy);
 	gtk_widget_hide (XTM_PROCESS_WINDOW (widget)->priv->window);
 	gtk_window_move (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->priv->window), winx, winy);
