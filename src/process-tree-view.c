@@ -248,14 +248,20 @@ columns_changed (XtmProcessTreeView *treeview)
 	gint i;
 
 	columns = gtk_tree_view_get_columns (GTK_TREE_VIEW (treeview));
+	if (g_list_length (columns) < N_COLUMNS)
+	{
+		g_list_free (columns);
+		return;
+	}
+
 	for (l = columns, i = 0; l != NULL; l = l->next, i++)
 	{
 		column = GTK_TREE_VIEW_COLUMN (l->data);
 		column_id = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (column), "column-id"));
 		treeview->columns_positions[column_id] = i;
 	}
-	g_list_free (columns);
 
+	g_list_free (columns);
 	save_columns_positions (treeview);
 }
 
