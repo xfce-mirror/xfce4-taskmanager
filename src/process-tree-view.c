@@ -483,7 +483,7 @@ column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview)
 		gtk_tree_view_column_set_sort_indicator (treeview->sort_column, FALSE);
 		gtk_tree_view_column_set_sort_indicator (column, TRUE);
 		sort_column_id = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (column), "sort-column-id"));
-		sort_type = GTK_SORT_ASCENDING;
+		sort_type = GTK_SORT_DESCENDING;
 	}
 	else
 	{
