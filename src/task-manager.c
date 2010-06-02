@@ -224,7 +224,7 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 		g_free (cmdline);
 	}
 
-	/* Retrieve values needed for tweaking background/foreground color */
+	/* Retrieve values for tweaking background/foreground color */
 	gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_STATE, &old_state,
 			XTM_PTV_COLUMN_BACKGROUND, &background, XTM_PTV_COLUMN_FOREGROUND, &foreground, -1);
 
@@ -480,6 +480,18 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 				task->vsz = tasktmp->vsz;
 				task->prio = tasktmp->prio;
 				model_update_task (manager->model, tasktmp);
+			}
+
+			/* Update command name if needed (can happen) */
+			if (!model_update_forced && g_strcmp0 (task->cmdline, tasktmp->cmdline))
+			{
+				GtkTreeIter iter;
+				gchar *cmdline;
+
+				cmdline = pretty_cmdline (tasktmp->cmdline, tasktmp->name);
+				model_find_tree_iter_for_pid (manager->model, task->pid, &iter);
+				gtk_list_store_set (GTK_LIST_STORE (manager->model), &iter, XTM_PTV_COLUMN_COMMAND, cmdline, -1);
+				g_free (cmdline);
 			}
 
 			/* Update color if needed */
