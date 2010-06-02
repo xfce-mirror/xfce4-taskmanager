@@ -318,6 +318,7 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 			_("Are you sure you want to send a signal to the PID %d?"), pid);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
+		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 		res = gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 		if (res != GTK_RESPONSE_YES)
@@ -332,6 +333,7 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 			_("An error was encountered by sending a signal to the PID %d. "
 			"It is likely you don't have the required privileges."), pid);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
+		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 	}
@@ -350,6 +352,7 @@ cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), _("An error was encountered by setting a priority to the PID %d. "
 			"It is likely you don't have the required privileges."), pid);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
+		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 	}
