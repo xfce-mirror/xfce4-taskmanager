@@ -2,26 +2,26 @@
 # Copyright (C) 2005 Johannes Zellner.
 # This file is distributed under the same license as the xfce4-taskmanager package.
 # Nuno Miguel <nunis@netcabo.pt>, 2007.
-# 
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
+"Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-24 16:08+0000\n"
-"PO-Revision-Date: 2008-08-28 12:30+0100\n"
+"POT-Creation-Date: 2010-05-25 14:48+0100\n"
+"PO-Revision-Date: 2010-05-25 14:47+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:372
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:392
 msgid "Easy to use task manager"
-msgstr "Gestor de tarefas fácil de utilizar"
+msgstr "Gestor de tarefas fácil de usar"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
 #: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
-#: ../src/process-window.c:177 ../src/process-window.c:367
+#: ../src/process-window.c:177 ../src/process-window.c:387
 msgid "Task Manager"
 msgstr "Gestor de Tarefas"
 
@@ -49,15 +49,15 @@ msgstr "Processos: %d"
 msgid "Task"
 msgstr "Tarefa"
 
-#: ../src/process-tree-view.c:116 ../src/process-window.c:307
+#: ../src/process-tree-view.c:116 ../src/process-window.c:327
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:124 ../src/process-window.c:308
+#: ../src/process-tree-view.c:124 ../src/process-window.c:328
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:132 ../src/process-window.c:309
+#: ../src/process-tree-view.c:132 ../src/process-window.c:329
 msgid "State"
 msgstr "Estado"
 
@@ -69,16 +69,15 @@ msgstr "VSZ"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:157 ../src/process-window.c:312
+#: ../src/process-tree-view.c:157 ../src/process-window.c:332
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:165 ../src/process-window.c:313
+#: ../src/process-tree-view.c:165 ../src/process-window.c:333
 msgid "CPU"
 msgstr "CPU"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
-#. header.
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
 #: ../src/process-tree-view.c:174
 msgid "Prio."
 msgstr "Prio."
@@ -102,8 +101,12 @@ msgstr "Erro ao enviar o sinal"
 
 #: ../src/process-tree-view.c:227
 #, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "Ocorreu um erro ao enviar o sinal ao PID %d. É possível que não tenha os privilégios necessários."
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you "
+"don't have the required privileges."
+msgstr ""
+"Ocorreu um erro ao enviar o sinal ao PID %d. É possível que não tenha os "
+"privilégios necessários."
 
 #: ../src/process-tree-view.c:244
 msgid "Error setting priority"
@@ -111,8 +114,12 @@ msgstr "Erro ao definir a prioridade"
 
 #: ../src/process-tree-view.c:245
 #, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "Ocorreu um erro ao definir a prioridade para o PID %d. É possível que não tenha os privilégios necessários."
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr ""
+"Ocorreu um erro ao definir a prioridade para o PID %d. É possível que não "
+"tenha os privilégios necessários."
 
 #: ../src/process-tree-view.c:262
 msgid "Stop"
@@ -150,7 +157,7 @@ msgstr "Alta"
 msgid "Very high"
 msgstr "Muito alta"
 
-#: ../src/process-tree-view.c:312 ../src/process-window.c:314
+#: ../src/process-tree-view.c:312 ../src/process-window.c:334
 msgid "Priority"
 msgstr "Prioridade"
 
@@ -158,80 +165,81 @@ msgstr "Prioridade"
 msgid "Execution error"
 msgstr "Erro de execução"
 
-#: ../src/process-window.c:203
+#: ../src/process-window.c:214 ../src/process-window.c:216
+#: ../src/process-window.c:218
 msgid "Run Program..."
 msgstr "Executar Programa..."
 
-#: ../src/process-window.c:204
+#: ../src/process-window.c:221
 msgid "Application Finder"
-msgstr "Descobridor de Aplicações"
+msgstr "Localizar Aplicações"
 
-#: ../src/process-window.c:205
+#: ../src/process-window.c:224
 msgid "Terminal emulator"
 msgstr "Emulador de terminal"
 
-#: ../src/process-window.c:206
+#: ../src/process-window.c:226
 msgid "XTerm"
 msgstr "XTerm"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/process-window.c:247
+#: ../src/process-window.c:267
 msgid "250ms"
 msgstr "250ms"
 
-#: ../src/process-window.c:248
+#: ../src/process-window.c:268
 msgid "500ms"
 msgstr "500ms"
 
-#: ../src/process-window.c:249
+#: ../src/process-window.c:269
 msgid "750ms"
 msgstr "750ms"
 
-#: ../src/process-window.c:250
+#: ../src/process-window.c:270
 msgid "1s"
 msgstr "1s"
 
-#: ../src/process-window.c:251
+#: ../src/process-window.c:271
 msgid "2s"
 msgstr "2s"
 
-#: ../src/process-window.c:252
+#: ../src/process-window.c:272
 msgid "5s"
 msgstr "5s"
 
-#: ../src/process-window.c:253
+#: ../src/process-window.c:273
 msgid "10s"
 msgstr "10s"
 
-#: ../src/process-window.c:294
+#: ../src/process-window.c:314
 msgid "Show all processes"
 msgstr "Mostrar todos os processos"
 
-#: ../src/process-window.c:295
+#: ../src/process-window.c:315
 msgid "More precision"
 msgstr "Mais precisão"
 
-#: ../src/process-window.c:296
+#: ../src/process-window.c:316
 msgid "Full command line"
-msgstr "Linha de comandos total"
+msgstr "Linha de comando completa"
 
-#: ../src/process-window.c:297
+#: ../src/process-window.c:317
 msgid "Show status icon"
 msgstr "Mostrar ícone de estado"
 
-#: ../src/process-window.c:300
+#: ../src/process-window.c:320
 msgid "Refresh rate"
-msgstr "Actualizar taxa"
+msgstr "Taxa de actualização"
 
-#: ../src/process-window.c:310
+#: ../src/process-window.c:330
 msgid "Virtual Bytes"
 msgstr "Bytes Virtuais"
 
-#: ../src/process-window.c:311
+#: ../src/process-window.c:331
 msgid "Private Bytes"
 msgstr "Bytes Privados"
 
-#: ../src/process-window.c:375
+#: ../src/process-window.c:395
 msgid "translator-credits"
 msgstr "Nuno Miguel"
 
@@ -280,54 +288,3 @@ msgstr ""
 "CPU: %.0f%%\n"
 "Memória: %.0f%%\n"
 "Swap: %.0f%%"
-
-#~ msgid "Control your processes"
-#~ msgstr "Controle os seus processos"
-
-#~ msgid "Process manager"
-#~ msgstr "Gestor de processos"
-
-#~ msgid "Xfce4 Taskmanager"
-#~ msgstr "Gestor de tarefas Xfce4"
-
-#~ msgid "Really kill the task?"
-#~ msgstr "Matar a tarefa?"
-
-#~ msgid "%d MB of %d MB used"
-#~ msgstr "%d MB de %d MB usados"
-
-#~ msgid "Cpu usage"
-#~ msgstr "Uso de cpu"
-
-#~ msgid "Memory usage"
-#~ msgstr "Uso de memória"
-
-#~ msgid "Command"
-#~ msgstr "Comando"
-
-#~ msgid "VM-Size"
-#~ msgstr "Tamanho VM"
-
-#~ msgid "User"
-#~ msgstr "Utilizador"
-
-#~ msgid "Show user tasks"
-#~ msgstr "Exibir processos do utilizador"
-
-#~ msgid "Show root tasks"
-#~ msgstr "Exibir processos do root"
-
-#~ msgid "Show other tasks"
-#~ msgstr "Exibir outros processos"
-
-#~ msgid "Show memory used by cache as free"
-#~ msgstr "Mostrar memória usada pela cache como livre"
-
-#~ msgid "Contributors:"
-#~ msgstr "Contribuidores:"
-
-#~ msgid "xfce4-taskmanager"
-#~ msgstr "xfce4-taskmanager"
-
-#~ msgid "more details"
-#~ msgstr "mais detalhes"
