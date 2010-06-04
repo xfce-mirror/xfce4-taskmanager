@@ -79,7 +79,11 @@ xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
 static void
 xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 {
+#ifdef HAVE_WNCK
+	GtkCellRenderer *cell_text, *cell_right_aligned, *cell_icon, *cell_cmdline;
+#else
 	GtkCellRenderer *cell_text, *cell_right_aligned, *cell_cmdline;
+#endif
 	GtkTreeViewColumn *column;
 	gboolean visible;
 
@@ -94,7 +98,11 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	}
 
 	/* Create tree view model */
+#ifdef HAVE_WNCK
+	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
+#else
 	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
+#endif
 		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT,
 		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_LONG);
 
@@ -117,7 +125,15 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 
 	/* Create tree view columns */
 #define COLUMN_PROPERTIES "expand", TRUE, "clickable", TRUE, "reorderable", TRUE, "resizable", TRUE, "visible", TRUE
-	column = gtk_tree_view_column_new_with_attributes (_("Task"), cell_cmdline, "text", XTM_PTV_COLUMN_COMMAND, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
+	column = gtk_tree_view_column_new ();
+	gtk_tree_view_column_set_title (GTK_TREE_VIEW_COLUMN (column), _("Task"));
+#ifdef HAVE_WNCK
+	cell_icon = gtk_cell_renderer_pixbuf_new ();
+	gtk_tree_view_column_pack_start (GTK_TREE_VIEW_COLUMN (column), cell_icon, FALSE);
+	gtk_tree_view_column_set_attributes (GTK_TREE_VIEW_COLUMN (column), cell_icon, "pixbuf", XTM_PTV_COLUMN_ICON, "cell-background", XTM_PTV_COLUMN_BACKGROUND, NULL);
+#endif
+	gtk_tree_view_column_pack_start (GTK_TREE_VIEW_COLUMN (column), cell_cmdline, TRUE);
+	gtk_tree_view_column_set_attributes (GTK_TREE_VIEW_COLUMN (column), cell_cmdline, "text", XTM_PTV_COLUMN_COMMAND, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
 	g_object_set (column, COLUMN_PROPERTIES, NULL);
 	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_COMMAND));
 	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_COMMAND));

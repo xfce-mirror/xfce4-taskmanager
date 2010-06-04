@@ -22,6 +22,9 @@
 #include <gtk/gtk.h>
 
 #include "task-manager.h"
+#ifdef HAVE_WNCK
+#include "app-manager.h"
+#endif
 #include "process-tree-view.h" /* for the columns of the model */
 #include "settings.h"
 
@@ -45,6 +48,9 @@ struct _XtmTaskManager
 {
 	GObject			parent;
 	/*<private>*/
+#ifdef HAVE_WNCK
+	XtmAppManager *		app_manager;
+#endif
 	GtkTreeModel *		model;
 	GArray *		tasks;
 	guint			owner_uid;
@@ -65,11 +71,17 @@ G_DEFINE_TYPE (XtmTaskManager, xtm_task_manager, G_TYPE_OBJECT)
 static void	xtm_task_manager_finalize			(GObject *object);
 
 static void	setting_changed					(GObject *object, GParamSpec *pspec, XtmTaskManager *manager);
+#ifdef HAVE_WNCK
+static void	model_add_task					(GtkTreeModel *model, Task *task, App *app, glong timestamp);
+static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, Task *task, App *app);
+static void	model_update_task				(GtkTreeModel *model, Task *task, App *app);
+#else
 static void	model_add_task					(GtkTreeModel *model, Task *task, glong timestamp);
-static void	model_mark_tree_iter_as_removed			(GtkTreeModel *model, GtkTreeIter *iter);
-static void	model_remove_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter);
 static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, Task *task);
 static void	model_update_task				(GtkTreeModel *model, Task *task);
+#endif
+static void	model_mark_tree_iter_as_removed			(GtkTreeModel *model, GtkTreeIter *iter);
+static void	model_remove_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter);
 static void	model_find_tree_iter_for_pid			(GtkTreeModel *model, guint pid, GtkTreeIter *iter);
 static glong	__current_timestamp				();
 
@@ -86,6 +98,9 @@ xtm_task_manager_class_init (XtmTaskManagerClass *klass)
 static void
 xtm_task_manager_init (XtmTaskManager *manager)
 {
+#ifdef HAVE_WNCK
+	manager->app_manager = xtm_app_manager_new ();
+#endif
 	manager->tasks = g_array_new (FALSE, FALSE, sizeof (Task));
 	get_owner_uid (&(manager->owner_uid), &(manager->owner_uid_name));
 	manager->hostname = get_hostname ();
@@ -105,6 +120,10 @@ xtm_task_manager_finalize (GObject *object)
 	g_array_free (manager->tasks, TRUE);
 	g_free (manager->owner_uid_name);
 	g_free (manager->hostname);
+#ifdef HAVE_WNCK
+	g_object_unref (manager->app_manager);
+#endif
+	g_object_unref (settings);
 }
 
 static void
@@ -143,10 +162,24 @@ _xtm_task_manager_set_model (XtmTaskManager *manager, GtkTreeModel *model)
 }
 
 static void
+#ifdef HAVE_WNCK
+model_add_task (GtkTreeModel *model, Task *task, App *app, glong timestamp)
+#else
 model_add_task (GtkTreeModel *model, Task *task, glong timestamp)
+#endif
 {
 	GtkTreeIter iter;
-	gchar *cmdline = pretty_cmdline (task->cmdline, task->name);
+	gchar *cmdline;
+
+#ifdef HAVE_WNCK
+	if (app != NULL && full_cmdline == FALSE)
+		cmdline = g_strdup (app->name);
+	else
+		cmdline = pretty_cmdline (task->cmdline, task->name);
+#else
+	cmdline = pretty_cmdline (task->cmdline, task->name);
+#endif
+
 	gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 	gtk_list_store_set (GTK_LIST_STORE (model), &iter,
 		XTM_PTV_COLUMN_COMMAND, cmdline,
@@ -158,7 +191,12 @@ model_add_task (GtkTreeModel *model, Task *task, glong timestamp)
 		XTM_PTV_COLUMN_FOREGROUND, NULL,
 		XTM_PTV_COLUMN_TIMESTAMP, timestamp,
 		-1);
+#ifdef HAVE_WNCK
+	model_update_tree_iter (model, &iter, task, app);
+#else
 	model_update_tree_iter (model, &iter, task);
+#endif
+
 	g_free (cmdline);
 }
 
@@ -203,13 +241,20 @@ memory_human_size (guint64 mem, gchar *mem_str)
 }
 
 static void
+#ifdef HAVE_WNCK
+model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task, App *app)
+#else
 model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
+#endif
 {
 	gchar vsz[64], rss[64], cpu[16];
 	gchar value[14];
 	glong old_timestamp;
 	gchar *old_state;
 	gchar *background, *foreground;
+#ifdef HAVE_WNCK
+	GdkPixbuf *icon;
+#endif
 
 	memory_human_size (task->vsz, vsz);
 	memory_human_size (task->rss, rss);
@@ -217,16 +262,33 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 	g_snprintf (value, 14, (more_precision) ? "%.2f" : "%.0f", task->cpu_user + task->cpu_system);
 	g_snprintf (cpu, 16, _("%s%%"), value);
 
+	/* Retrieve values for tweaking background/foreground color and updating content as needed */
+	gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_STATE, &old_state,
+			XTM_PTV_COLUMN_BACKGROUND, &background, XTM_PTV_COLUMN_FOREGROUND, &foreground,
+#ifdef HAVE_WNCK
+			XTM_PTV_COLUMN_ICON, &icon,
+#endif
+			-1);
+
+#ifdef HAVE_WNCK
+	if (app != NULL && icon == NULL)
+		gtk_list_store_set (GTK_LIST_STORE (model), iter, XTM_PTV_COLUMN_ICON, app->icon, -1);
+
+	if (app != NULL && full_cmdline == FALSE)
+	{
+		gchar *cmdline = g_strdup (app->name);
+		gtk_list_store_set (GTK_LIST_STORE (model), iter, XTM_PTV_COLUMN_COMMAND, cmdline, -1);
+		g_free (cmdline);
+	}
+	else if (model_update_forced)
+#else
 	if (model_update_forced)
+#endif
 	{
 		gchar *cmdline = pretty_cmdline (task->cmdline, task->name);
 		gtk_list_store_set (GTK_LIST_STORE (model), iter, XTM_PTV_COLUMN_COMMAND, cmdline, -1);
 		g_free (cmdline);
 	}
-
-	/* Retrieve values for tweaking background/foreground color */
-	gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_STATE, &old_state,
-			XTM_PTV_COLUMN_BACKGROUND, &background, XTM_PTV_COLUMN_FOREGROUND, &foreground, -1);
 
 	if (g_strcmp0 (task->state, old_state) != 0 && background == NULL)
 	{
@@ -270,11 +332,19 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 }
 
 static void
+#ifdef HAVE_WNCK
+model_update_task (GtkTreeModel *model, Task *task, App *app)
+#else
 model_update_task (GtkTreeModel *model, Task *task)
+#endif
 {
 	GtkTreeIter iter;
 	model_find_tree_iter_for_pid (model, task->pid, &iter);
+#ifdef HAVE_WNCK
+	model_update_tree_iter (model, &iter, task, app);
+#else
 	model_update_tree_iter (model, &iter, task);
+#endif
 }
 
 static void
@@ -385,7 +455,12 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		for (i = 0; i < manager->tasks->len; i++)
 		{
 			Task *task = &g_array_index (manager->tasks, Task, i);
+#ifdef HAVE_WNCK
+			App *app = xtm_app_manager_get_app_from_pid (manager->app_manager, task->pid);
+			model_add_task (manager->model, task, app, 0);
+#else
 			model_add_task (manager->model, task, 0);
+#endif
 #if DEBUG
 			g_print ("%5d %5s %15s %.50s\n", task->pid, task->uid_name, task->name, task->cmdline);
 #endif
@@ -454,11 +529,17 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		for (j = 0; j < manager->tasks->len; j++)
 		{
 			Task *task = &g_array_index (manager->tasks, Task, j);
+#ifdef HAVE_WNCK
+			App *app;
+#endif
 			gboolean updated = FALSE;
 
 			if (task->pid != tasktmp->pid)
 				continue;
 
+#ifdef HAVE_WNCK
+			app = xtm_app_manager_get_app_from_pid (manager->app_manager, task->pid);
+#endif
 			found = TRUE;
 
 			/* Update the model (with the rest) only if needed, this keeps the CPU cool */
@@ -479,7 +560,11 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 				task->rss = tasktmp->rss;
 				task->vsz = tasktmp->vsz;
 				task->prio = tasktmp->prio;
+#ifdef HAVE_WNCK
+				model_update_task (manager->model, tasktmp, app);
+#else
 				model_update_task (manager->model, tasktmp);
+#endif
 			}
 
 			/* Update command name if needed (can happen) */
@@ -509,7 +594,11 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 #if DEBUG
 					g_debug ("Remove color from running PID %d", task->pid);
 #endif
+#ifdef HAVE_WNCK
+					model_update_task (manager->model, tasktmp, app);
+#else
 					model_update_task (manager->model, tasktmp);
+#endif
 				}
 
 				g_free (color);
@@ -523,7 +612,12 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 #if DEBUG
 			g_debug ("Add new task %d %s", tasktmp->pid, tasktmp->name);
 #endif
+#ifdef HAVE_WNCK
+			App *app = xtm_app_manager_get_app_from_pid (manager->app_manager, tasktmp->pid);
+			model_add_task (manager->model, tasktmp, app, __current_timestamp ());
+#else
 			model_add_task (manager->model, tasktmp, __current_timestamp ());
+#endif
 			g_array_append_val (manager->tasks, *tasktmp);
 		}
 	}

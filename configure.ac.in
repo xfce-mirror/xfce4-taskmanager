@@ -65,6 +65,12 @@ dnl *** Check for required packages ***
 dnl ***********************************
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.12.0])
 
+dnl ******************************************
+dnl *** Check for optional package libwnck ***
+dnl ******************************************
+XDT_CHECK_OPTIONAL_PACKAGE([WNCK], [libwnck-1.0], [2.0], [wnck], [building with libwnck for window icons/names], [yes])
+AM_CONDITIONAL([HAVE_WNCK], [test x"$WNCK_FOUND" = x"yes"])
+
 dnl ***********************************
 dnl ********** Check for skel *********
 dnl ***********************************
@@ -137,6 +143,7 @@ dnl ***************************
 echo
 echo "Build Configuration:"
 echo
+echo "* Wnck:          ${WNCK_FOUND:-no} ${WNCK_VERSION:+(libwnck $WNCK_VERSION)}"
 echo "* Target OS:     $target_os ($ac_os_implementation)"
 echo "* Debug Support: $enable_debug"
 echo

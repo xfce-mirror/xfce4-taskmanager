@@ -9,10 +9,14 @@ bin_PROGRAMS =								\
 	xfce4-taskmanager
 
 xfce4_taskmanager_CFLAGS =						\
-	$(GTK_CFLAGS)
-	
+	$(GTK_CFLAGS)							\
+	$(WNCK_CFLAGS)							\
+	$(NULL)
+
 xfce4_taskmanager_LDADD = 						\
-	$(GTK_LIBS)
+	$(GTK_LIBS)							\
+	$(WNCK_LIBS)							\
+	$(NULL)
 
 xfce4_taskmanager_SOURCES =						\
 	main.c								\
@@ -23,6 +27,10 @@ xfce4_taskmanager_SOURCES =						\
 	task-manager.c			task-manager.h			\
 	settings.c			settings.h			\
 	$(NULL)
+
+if HAVE_WNCK
+xfce4_taskmanager_SOURCES += app-manager.c app-manager.h
+endif
 
 if OS_FREEBSD
 xfce4_taskmanager_SOURCES += task-manager-freebsd.c
