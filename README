@@ -13,6 +13,7 @@ see if there is a newer version available before reporting bugs.
 ** Requirements **
 
 GTK+ 2.12
+Libwnck 2.0 (optional)
 
 ** Building **
 
