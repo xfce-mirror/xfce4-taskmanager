@@ -30,5 +30,6 @@ GType		xtm_process_window_get_type			(void);
 GtkWidget *	xtm_process_window_new				();
 GtkTreeModel *	xtm_process_window_get_model			(XtmProcessWindow *window);
 void		xtm_process_window_set_system_info		(XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gfloat swap);
+void		xtm_process_window_show_swap_usage		(XtmProcessWindow *window, gboolean show_swap_usage);
 
 #endif /* !PROCESS_WINDOW_H */

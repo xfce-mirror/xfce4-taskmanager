@@ -11,6 +11,10 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
 #include <glib-object.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>

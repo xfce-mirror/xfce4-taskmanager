@@ -56,8 +56,6 @@ xtm_app_manager_init (XtmAppManager *manager)
 {
 	WnckScreen *screen = wnck_screen_get_default ();
 	GList *windows, *l;
-	gint i;
-	App app;
 
 	/* Retrieve initial applications */
 	while (gtk_events_pending ())
@@ -123,9 +121,8 @@ apps_add_application (GArray *apps, WnckApplication *application)
 static void
 apps_remove_application (GArray *apps, WnckApplication *application)
 {
-	App *app;
-	gint pid;
-	gint i;
+	App *app = NULL;
+	guint i;
 
 	for (i = 0; i < apps->len; i++)
 	{
@@ -134,20 +131,23 @@ apps_remove_application (GArray *apps, WnckApplication *application)
 			break;
 	}
 
-	g_object_unref (app->icon);
-	g_array_remove_index (apps, i);
+	if (app != NULL)
+	{
+		g_object_unref (app->icon);
+		g_array_remove_index (apps, i);
+	}
 }
 
 static App *
 apps_lookup_pid (GArray *apps, gint pid)
 {
 	App *app;
-	gint i;
+	guint i;
 
 	for (app = NULL, i = 0; i < apps->len; i++)
 	{
 		app = &g_array_index (apps, App, i);
-		if (app->pid == pid)
+		if (app->pid == (guint)pid)
 			break;
 		app = NULL;
 	}
@@ -176,7 +176,7 @@ application_closed (WnckScreen *screen, WnckApplication *application, XtmAppMana
 
 
 XtmAppManager *
-xtm_app_manager_new ()
+xtm_app_manager_new (void)
 {
 	return g_object_new (XTM_TYPE_APP_MANAGER, NULL);
 }

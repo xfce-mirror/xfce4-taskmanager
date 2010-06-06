@@ -26,7 +26,7 @@ static XtmTaskManager *task_manager;
 static gboolean timeout = 0;
 
 static void
-status_icon_activated ()
+status_icon_activated (void)
 {
 	if (!(GTK_WIDGET_VISIBLE (window)))
 		gtk_widget_show (window);
@@ -35,7 +35,7 @@ status_icon_activated ()
 }
 
 static void
-show_hide_status_icon ()
+show_hide_status_icon (void)
 {
 	gboolean show_status_icon;
 	g_object_get (settings, "show-status-icon", &show_status_icon, NULL);
@@ -96,7 +96,7 @@ force_timeout_update (void)
 }
 
 static void
-refresh_rate_changed (XtmSettings *settings)
+refresh_rate_changed (void)
 {
 	if (!g_source_remove (timeout))
 	{

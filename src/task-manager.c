@@ -364,11 +364,11 @@ model_find_tree_iter_for_pid (GtkTreeModel *model, guint pid, GtkTreeIter *iter)
 }
 
 static glong
-__current_timestamp ()
+__current_timestamp (void)
 {
-	GTimeVal time;
-	g_get_current_time (&time);
-	return time.tv_sec;
+	GTimeVal current_time;
+	g_get_current_time (&current_time);
+	return current_time.tv_sec;
 }
 
 
@@ -609,9 +609,6 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 
 		if (found == FALSE)
 		{
-#if DEBUG
-			g_debug ("Add new task %d %s", tasktmp->pid, tasktmp->name);
-#endif
 #ifdef HAVE_WNCK
 			App *app = xtm_app_manager_get_app_from_pid (manager->app_manager, tasktmp->pid);
 			model_add_task (manager->model, tasktmp, app, __current_timestamp ());
@@ -619,6 +616,9 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 			model_add_task (manager->model, tasktmp, __current_timestamp ());
 #endif
 			g_array_append_val (manager->tasks, *tasktmp);
+#if DEBUG
+			g_debug ("Add new task %d %s", tasktmp->pid, tasktmp->name);
+#endif
 		}
 	}
 
