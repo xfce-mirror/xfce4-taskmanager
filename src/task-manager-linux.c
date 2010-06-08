@@ -33,6 +33,13 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
 
+	*memory_total = 0;
+	*memory_free = 0;
+	*memory_cache = 0;
+	*memory_buffers = 0;
+	*swap_total = 0;
+	*swap_free = 0;
+
 	while (found < 6 && fgets (buffer, 1024, file) != NULL)
 	{
 		found += sscanf (buffer, "MemTotal:\t%u kB", memory_total);
@@ -62,7 +69,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	gchar buffer[1024];
 	static gulong jiffies_user = 0, jiffies_system = 0, jiffies_total = 0;
 	static gulong jiffies_user_old = 0, jiffies_system_old = 0, jiffies_total_old = 0;
-	gulong user, user_nice, system, idle;
+	gulong user = 0, user_nice = 0, system = 0, idle = 0;
 
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
@@ -218,7 +225,7 @@ get_task_details (guint pid, Task *task)
 	{
 		gchar dummy[256];
 		gint idummy;
-		gulong jiffies_user, jiffies_system;
+		gulong jiffies_user = 0, jiffies_system = 0;
 		struct passwd *pw;
 		struct stat sstat;
 
