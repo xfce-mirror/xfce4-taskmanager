@@ -42,12 +42,12 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 
 	while (found < 6 && fgets (buffer, 1024, file) != NULL)
 	{
-		found += sscanf (buffer, "MemTotal:\t%u kB", memory_total);
-		found += sscanf (buffer, "MemFree:\t%u kB", memory_free);
-		found += sscanf (buffer, "Cached:\t%u kB", memory_cache);
-		found += sscanf (buffer, "Buffers:\t%u kB", memory_buffers);
-		found += sscanf (buffer, "SwapTotal:\t%u kB", swap_total);
-		found += sscanf (buffer, "SwapFree:\t%u kB", swap_free);
+		found += sscanf (buffer, "MemTotal:\t%llu kB", memory_total);
+		found += sscanf (buffer, "MemFree:\t%llu kB", memory_free);
+		found += sscanf (buffer, "Cached:\t%llu kB", memory_cache);
+		found += sscanf (buffer, "Buffers:\t%llu kB", memory_buffers);
+		found += sscanf (buffer, "SwapTotal:\t%llu kB", swap_total);
+		found += sscanf (buffer, "SwapFree:\t%llu kB", swap_free);
 	}
 	fclose (file);
 
@@ -71,11 +71,10 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	static gulong jiffies_user_old = 0, jiffies_system_old = 0, jiffies_total_old = 0;
 	gulong user = 0, user_nice = 0, system = 0, idle = 0;
 
-	if ((file = fopen (filename, "r")) == NULL)
+	if ((file = fopen (filename, "r")) == NULL || fgets (buffer, 1024, file) == NULL)
 		return FALSE;
 
-	fgets (buffer, 1024, file);
-	sscanf (buffer, "cpu\t%u %u %u %u", &user, &user_nice, &system, &idle);
+	sscanf (buffer, "cpu\t%lu %lu %lu %lu", &user, &user_nice, &system, &idle);
 
 	if (_cpu_count == 0)
 	{
@@ -111,7 +110,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	return TRUE;
 }
 
-static inline int get_pagesize ()
+static inline int get_pagesize (void)
 {
 	static int pagesize = 0;
 	if (pagesize == 0)
@@ -128,7 +127,7 @@ get_task_cmdline (Task *task)
 {
 	FILE *file;
 	gchar filename[96];
-	gint i;
+	guint i;
 	gchar c;
 
 	snprintf (filename, 96, "/proc/%i/cmdline", task->pid);
@@ -196,10 +195,8 @@ get_task_details (guint pid, Task *task)
 	gchar buffer[1024];
 
 	snprintf (filename, 96, "/proc/%d/stat", pid);
-	if ((file = fopen (filename, "r")) == NULL)
+	if ((file = fopen (filename, "r")) == NULL || fgets (buffer, 1024, file) == NULL)
 		return FALSE;
-
-	fgets (buffer, 1024, file);
 	fclose (file);
 
 	/* Scanning the short process name is unreliable with scanf when it contains
@@ -229,7 +226,7 @@ get_task_details (guint pid, Task *task)
 		struct passwd *pw;
 		struct stat sstat;
 
-		sscanf(buffer, "%i %255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %i %i %i %i %i %i %i %i %i %i %i %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
+		sscanf(buffer, "%i %255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %lu %lu %i %i %i %d %i %i %i %llu %llu %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
 			&task->pid,	// processid
 			 dummy,		// processname
 			task->state,	// processstate
@@ -251,7 +248,7 @@ get_task_details (guint pid, Task *task)
 			 &idummy,	// cutime " waited for children in user mode
 			 &idummy,	// cstime " system mode
 			 &idummy,	// priority (nice value + fifteen)
-			&task->prio,	// nice range from 19 to -19
+			(gint*)&task->prio, // nice range from 19 to -19
 			 &idummy,	// hardcoded 0
 
 			 &idummy,	// itrealvalue time in jiffies to next SIGALRM send to this process
