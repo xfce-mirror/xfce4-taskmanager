@@ -35,6 +35,24 @@ status_icon_activated (void)
 }
 
 static void
+status_icon_popup_menu (GtkStatusIcon *_status_icon, guint button, guint activate_time)
+{
+	static GtkWidget *menu = NULL;
+
+	if (menu == NULL)
+	{
+		GtkWidget *mi;
+		menu = gtk_menu_new ();
+		mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_QUIT, NULL);
+		g_signal_connect (mi, "activate", G_CALLBACK (gtk_main_quit), NULL);
+		gtk_container_add (GTK_CONTAINER (menu), mi);
+		gtk_widget_show_all (menu);
+	}
+
+	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, gtk_status_icon_position_menu, _status_icon, button, activate_time);
+}
+
+static void
 show_hide_status_icon (void)
 {
 	gboolean show_status_icon;
@@ -45,7 +63,8 @@ show_hide_status_icon (void)
 static void
 destroy_window (void)
 {
-	gtk_main_quit ();
+	if (gtk_main_level () > 0)
+		gtk_main_quit ();
 }
 
 static gboolean
@@ -141,6 +160,7 @@ int main (int argc, char *argv[])
 	status_icon = gtk_status_icon_new_from_icon_name ("utilities-system-monitor");
 	show_hide_status_icon ();
 	g_signal_connect (status_icon, "activate", G_CALLBACK (status_icon_activated), NULL);
+	g_signal_connect (status_icon, "popup-menu", G_CALLBACK (status_icon_popup_menu), NULL);
 
 	window = xtm_process_window_new ();
 	gtk_widget_show (window);
