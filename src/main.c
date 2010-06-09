@@ -42,6 +42,24 @@ show_hide_status_icon (void)
 	gtk_status_icon_set_visible (status_icon, show_status_icon);
 }
 
+static void
+destroy_window (void)
+{
+	gtk_main_quit ();
+}
+
+static gboolean
+delete_window (void)
+{
+	if (!gtk_status_icon_get_visible (status_icon))
+	{
+		gtk_main_quit ();
+		return FALSE;
+	}
+	gtk_widget_hide (window);
+	return TRUE;
+}
+
 static gboolean
 init_timeout (void)
 {
@@ -136,7 +154,8 @@ int main (int argc, char *argv[])
 	g_signal_connect_after (settings, "notify::full-command-line", G_CALLBACK (force_timeout_update), NULL);
 	g_signal_connect (settings, "notify::show-status-icon", G_CALLBACK (show_hide_status_icon), NULL);
 
-	g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
+	g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
+	g_signal_connect (window, "delete-event", G_CALLBACK (delete_window), NULL);
 
 	gtk_main ();
 

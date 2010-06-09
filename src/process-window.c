@@ -57,6 +57,7 @@ static void	xtm_process_window_show				(GtkWidget *widget);
 static void	xtm_process_window_hide				(GtkWidget *widget);
 
 static void	emit_destroy_signal				(XtmProcessWindow *window);
+static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *event);
 static void	show_menu_execute_task				(XtmProcessWindow *window);
 static void	show_menu_preferences				(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
@@ -96,6 +97,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	if (width >= 1 && height >= 1)
 		gtk_window_resize (GTK_WINDOW (window->priv->window), width, height);
 	g_signal_connect_swapped (window->priv->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
+	g_signal_connect_swapped (window->priv->window, "delete-event", G_CALLBACK (emit_delete_event_signal), window);
 
 	window->priv->cpu_monitor = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "cpu-monitor"));
 	window->priv->memory_monitor = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "mem-monitor"));
@@ -169,6 +171,14 @@ static void
 emit_destroy_signal (XtmProcessWindow *window)
 {
 	g_signal_emit_by_name (window, "destroy", G_TYPE_NONE);
+}
+
+static gboolean
+emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event)
+{
+	gboolean ret;
+	g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
+	return ret;
 }
 
 static void
