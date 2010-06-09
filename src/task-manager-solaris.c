@@ -13,6 +13,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
 #include <procfs.h>
@@ -28,7 +29,7 @@ static gushort _cpu_count = 0;
 static gulong ticks_total_delta = 0;
 
 static void
-init_stats ()
+init_stats (void)
 {
 	kc = kstat_open ();
 }
@@ -171,7 +172,6 @@ get_task_details (guint pid, Task *task)
 {
 	FILE *file;
 	gchar filename[96];
-	gchar pstate[2];
 	struct passwd *pw;
 	psinfo_t process;
 

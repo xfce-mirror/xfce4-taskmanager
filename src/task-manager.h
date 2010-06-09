@@ -92,7 +92,7 @@ enum
 
 void		get_owner_uid		(guint *owner_uid, gchar **owner_uid_name);
 gchar *		get_hostname		();
-gboolean	send_signal_to_pid	(guint pid, gint signal);
+gboolean	send_signal_to_pid	(guint pid, gint xtm_signal);
 gboolean	set_priority_to_pid	(guint pid, gint priority);
 
 #endif /* !TASK_MANAGER_H */
