@@ -14,6 +14,7 @@
 #include <glib-object.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 
 #include "process-tree-view.h"
 #include "task-manager.h"
@@ -58,6 +59,7 @@ G_DEFINE_TYPE (XtmProcessTreeView, xtm_process_tree_view, GTK_TYPE_TREE_VIEW)
 static void		xtm_process_tree_view_finalize			(GObject *object);
 
 static gboolean		treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
+static gboolean		treeview_key_pressed				(XtmProcessTreeView *treeview, GdkEventKey *event);
 static void		columns_changed					(XtmProcessTreeView *treeview);
 static void		read_columns_positions				(XtmProcessTreeView *treeview);
 static void		save_columns_positions				(XtmProcessTreeView *treeview);
@@ -224,6 +226,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	gtk_tree_view_set_search_equal_func (GTK_TREE_VIEW (treeview), (GtkTreeViewSearchEqualFunc)search_func, NULL, NULL);
 	g_signal_connect (treeview, "columns-changed", G_CALLBACK (columns_changed), NULL);
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
+	g_signal_connect (treeview, "key-press-event", G_CALLBACK (treeview_key_pressed), NULL);
 }
 
 static void
@@ -442,17 +445,38 @@ build_context_menu (guint pid)
 	return menu;
 }
 
+static void
+position_menu (GtkMenu *menu, gint *x, gint *y, gboolean *push_in, XtmProcessTreeView *treeview)
+{
+	gdk_window_get_origin (gtk_tree_view_get_bin_window (GTK_TREE_VIEW (treeview)), x, y);
+	*x += 5;
+	*y += 5;
+	*push_in = TRUE;
+}
+
+static void
+popup_menu (XtmProcessTreeView *treeview, guint pid, guint activate_time, gboolean at_pointer_position)
+{
+	static GtkWidget *menu = NULL;
+	GtkMenuPositionFunc position_func = NULL;
+
+	if (at_pointer_position == FALSE)
+		position_func = (GtkMenuPositionFunc)position_menu;
+
+	if (menu != NULL)
+		gtk_widget_destroy (menu);
+
+	menu = build_context_menu (pid);
+	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, position_func, treeview, 1, activate_time);
+}
+
 static gboolean
 treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 {
-	static GtkWidget *menu = NULL;
 	guint pid;
 
 	if (event->button != 3)
 		return FALSE;
-
-	if (menu != NULL)
-		gtk_widget_destroy (menu);
 
 	{
 		GtkTreeModel *model;
@@ -477,8 +501,33 @@ treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 #endif
 	}
 
-	menu = build_context_menu (pid);
-	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, event->button, event->time);
+	popup_menu (treeview, pid, event->time, TRUE);
+
+	return TRUE;
+}
+
+static gboolean
+treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event)
+{
+	guint pid;
+
+	if (event->keyval != GDK_Menu)
+		return FALSE;
+
+	{
+		GtkTreeModel *model;
+		GtkTreeSelection *selection;
+		GtkTreeIter iter;
+
+		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
+		if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+			return FALSE;
+
+		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid, -1);
+	}
+
+	popup_menu (treeview, pid, event->time, FALSE);
 
 	return TRUE;
 }
