@@ -148,7 +148,7 @@ xtm_process_monitor_expose (GtkWidget *widget, GdkEventExpose *event)
 
 	minimum_history_length = widget->allocation.width / monitor->step_size;
 	if (monitor->history->len < minimum_history_length)
-		g_array_set_size (monitor->history, minimum_history_length);
+		g_array_set_size (monitor->history, minimum_history_length + 1);
 
 	xtm_process_monitor_paint (monitor);
 	return FALSE;
@@ -189,7 +189,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor)
 
 	cairo_move_to (cr, width, height);
 	cairo_translate (cr, step_size, 0);
-	for (i = 0; step_size * i < width; i++)
+	for (i = 0; (step_size * (i - 1)) <= width; i++)
 	{
 		peak = &g_array_index (monitor->history, gfloat, i);
 		cairo_translate (cr, -step_size, 0);
@@ -209,7 +209,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor)
 	cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
 	cairo_set_antialias (cr, CAIRO_ANTIALIAS_DEFAULT);
 	cairo_move_to (cr, width, height);
-	for (i = 0; step_size * i < width; i++)
+	for (i = 0; (step_size * (i - 1)) <= width; i++)
 	{
 		peak = &g_array_index (monitor->history, gfloat, i);
 		cairo_translate (cr, -step_size, 0);
