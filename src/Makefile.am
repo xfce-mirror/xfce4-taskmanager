@@ -1,7 +1,7 @@
 NULL = 
 
 INCLUDES =								\
-	-I$(top_srcdir)/include						\
+	-I$(top_srcdir)							\
 	-DG_LOG_DOMAIN=\"xfce4-taskmanager\"				\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"
 

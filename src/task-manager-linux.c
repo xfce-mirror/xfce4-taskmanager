@@ -42,12 +42,12 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 
 	while (found < 6 && fgets (buffer, 1024, file) != NULL)
 	{
-		found += sscanf (buffer, "MemTotal:\t%llu kB", memory_total);
-		found += sscanf (buffer, "MemFree:\t%llu kB", memory_free);
-		found += sscanf (buffer, "Cached:\t%llu kB", memory_cache);
-		found += sscanf (buffer, "Buffers:\t%llu kB", memory_buffers);
-		found += sscanf (buffer, "SwapTotal:\t%llu kB", swap_total);
-		found += sscanf (buffer, "SwapFree:\t%llu kB", swap_free);
+		found += sscanf (buffer, "MemTotal:\t%llu kB", (unsigned long long*)memory_total);
+		found += sscanf (buffer, "MemFree:\t%llu kB", (unsigned long long*)memory_free);
+		found += sscanf (buffer, "Cached:\t%llu kB", (unsigned long long*)memory_cache);
+		found += sscanf (buffer, "Buffers:\t%llu kB", (unsigned long long*)memory_buffers);
+		found += sscanf (buffer, "SwapTotal:\t%llu kB", (unsigned long long*)swap_total);
+		found += sscanf (buffer, "SwapFree:\t%llu kB", (unsigned long long*)swap_free);
 	}
 	fclose (file);
 
@@ -127,7 +127,7 @@ get_task_cmdline (Task *task)
 {
 	FILE *file;
 	gchar filename[96];
-	guint i;
+	gint i;
 	gchar c;
 
 	snprintf (filename, 96, "/proc/%i/cmdline", task->pid);
@@ -135,7 +135,7 @@ get_task_cmdline (Task *task)
 		return FALSE;
 
 	/* Read full command byte per byte until EOF */
-	for (i = 0; (c = fgetc (file)) != EOF && i < sizeof (task->cmdline) - 1; i++)
+	for (i = 0; (c = fgetc (file)) != EOF && i < (gint)sizeof (task->cmdline) - 1; i++)
 		task->cmdline[i] = (c == '\0') ? ' ' : c;
 	task->cmdline[i] = '\0';
 	if (task->cmdline[i-1] == ' ')
@@ -253,8 +253,8 @@ get_task_details (guint pid, Task *task)
 
 			 &idummy,	// itrealvalue time in jiffies to next SIGALRM send to this process
 			 &idummy,	// starttime jiffies the process startet after system boot
-			&task->vsz,	// vsize in bytes
-			&task->rss,	// rss (number of pages in real memory)
+			(unsigned long long*)&task->vsz, // vsize in bytes
+			(unsigned long long*)&task->rss, // rss (number of pages in real memory)
 			 dummy,		// rlim limit in bytes for rss
 
 			 dummy,		// startcode
