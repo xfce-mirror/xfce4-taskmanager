@@ -46,13 +46,7 @@
                 <property name="visible">True</property>
                 <property name="border_width">2</property>
                 <child>
-                  <object class="GtkProgressBar" id="cpu-monitor">
-                    <property name="width_request">60</property>
-                    <property name="visible">True</property>
-                    <property name="show_text">True</property>
-                    <property name="text" translatable="yes">CPU</property>
-                    <property name="ellipsize">start</property>
-                  </object>
+                  <placeholder/>
                 </child>
               </object>
               <packing>
@@ -65,13 +59,7 @@
                 <property name="visible">True</property>
                 <property name="border_width">2</property>
                 <child>
-                  <object class="GtkProgressBar" id="mem-monitor">
-                    <property name="width_request">60</property>
-                    <property name="visible">True</property>
-                    <property name="show_text">True</property>
-                    <property name="text" translatable="yes">Memory</property>
-                    <property name="ellipsize">start</property>
-                  </object>
+                  <placeholder/>
                 </child>
               </object>
               <packing>

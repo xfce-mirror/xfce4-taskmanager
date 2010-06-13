@@ -22,6 +22,7 @@
 #include "settings.h"
 #include "process-window.h"
 #include "process-window_ui.h"
+#include "process-monitor.h"
 #include "process-tree-view.h"
 #include "process-statusbar.h"
 
@@ -44,7 +45,7 @@ struct _XtmProcessWindowPriv
 	GtkBuilder *		builder;
 	GtkWidget *		window;
 	GtkWidget *		cpu_monitor;
-	GtkWidget *		memory_monitor;
+	GtkWidget *		mem_monitor;
 	GtkWidget *		treeview;
 	GtkWidget *		statusbar;
 	XtmSettings *		settings;
@@ -58,6 +59,7 @@ static void	xtm_process_window_hide				(GtkWidget *widget);
 
 static void	emit_destroy_signal				(XtmProcessWindow *window);
 static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *event);
+static void	monitor_update_step_size			(XtmProcessWindow *window);
 static void	show_menu_execute_task				(XtmProcessWindow *window);
 static void	show_menu_preferences				(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
@@ -99,8 +101,26 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect_swapped (window->priv->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
 	g_signal_connect_swapped (window->priv->window, "delete-event", G_CALLBACK (emit_delete_event_signal), window);
 
-	window->priv->cpu_monitor = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "cpu-monitor"));
-	window->priv->memory_monitor = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "mem-monitor"));
+	{
+		GtkWidget *toolitem;
+		guint refresh_rate;
+
+		g_object_get (window->priv->settings, "refresh-rate", &refresh_rate, NULL);
+
+		toolitem = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "cpu-toolitem"));
+		window->priv->cpu_monitor = xtm_process_monitor_new ();
+		xtm_process_monitor_set_step_size (XTM_PROCESS_MONITOR (window->priv->cpu_monitor), refresh_rate / 1000.0);
+		gtk_widget_show (window->priv->cpu_monitor);
+		gtk_container_add (GTK_CONTAINER (toolitem), window->priv->cpu_monitor);
+
+		toolitem = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "mem-toolitem"));
+		window->priv->mem_monitor = xtm_process_monitor_new ();
+		xtm_process_monitor_set_step_size (XTM_PROCESS_MONITOR (window->priv->mem_monitor), refresh_rate / 1000.0);
+		gtk_widget_show (window->priv->mem_monitor);
+		gtk_container_add (GTK_CONTAINER (toolitem), window->priv->mem_monitor);
+
+		g_signal_connect_swapped (window->priv->settings, "notify::refresh-rate", G_CALLBACK (monitor_update_step_size), window);
+	}
 
 	if (geteuid () == 0)
 	{
@@ -179,6 +199,15 @@ emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event)
 	gboolean ret;
 	g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
 	return ret;
+}
+
+static void
+monitor_update_step_size (XtmProcessWindow *window)
+{
+	guint refresh_rate;
+	g_object_get (window->priv->settings, "refresh-rate", &refresh_rate, NULL);
+	g_object_set (window->priv->cpu_monitor, "step-size", refresh_rate / 1000.0, NULL);
+	g_object_set (window->priv->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
 }
 
 static void
@@ -465,12 +494,20 @@ xtm_process_window_get_model (XtmProcessWindow *window)
 void
 xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gfloat swap)
 {
+	gchar text[100];
+
 	g_return_if_fail (XTM_IS_PROCESS_WINDOW (window));
 	g_return_if_fail (GTK_IS_STATUSBAR (window->priv->statusbar));
+
 	g_object_set (window->priv->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory, "swap", swap, NULL);
-	// TODO update cpu/memory monitors
-	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->priv->memory_monitor), memory / 100.0);
-	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->priv->cpu_monitor), cpu / 100.0);
+
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->priv->cpu_monitor), cpu / 100.0);
+	g_snprintf (text, 100, _("CPU: %.0f%%"), cpu);
+	gtk_widget_set_tooltip_text (window->priv->cpu_monitor, text);
+
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->priv->mem_monitor), memory / 100.0);
+	g_snprintf (text, 100, _("Memory: %.0f%%"), memory);
+	gtk_widget_set_tooltip_text (window->priv->mem_monitor, text);
 }
 
 void

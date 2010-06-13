@@ -10,11 +10,13 @@ bin_PROGRAMS =								\
 
 xfce4_taskmanager_CFLAGS =						\
 	$(GTK_CFLAGS)							\
+	$(CAIRO_CFLAGS)							\
 	$(WNCK_CFLAGS)							\
 	$(NULL)
 
 xfce4_taskmanager_LDADD = 						\
 	$(GTK_LIBS)							\
+	$(CAIRO_LIBS)							\
 	$(WNCK_LIBS)							\
 	$(NULL)
 
@@ -22,6 +24,7 @@ xfce4_taskmanager_SOURCES =						\
 	main.c								\
 	process-window_ui.h						\
 	process-window.c		process-window.h		\
+	process-monitor.c		process-monitor.h		\
 	process-tree-view.c		process-tree-view.h		\
 	process-statusbar.c		process-statusbar.h		\
 	task-manager.c			task-manager.h			\
