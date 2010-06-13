@@ -1,7 +1,10 @@
 xfce4-taskmanager.desktop.in
+src/app-manager.c
+src/main.c
+src/process-monitor.c
 src/process-statusbar.c
 src/process-tree-view.c
 src/process-window.c
 src/process-window.ui
+src/settings.c
 src/task-manager.c
-src/main.c

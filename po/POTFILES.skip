@@ -1,3 +1,5 @@
-src/taskmanager-bsd.c
+src/task-manager-bsd.c
+src/task-manager-freebsd.c
 src/task-manager-linux.c
-src/taskmanager-solaris.c
+src/task-manager-skel.c
+src/task-manager-solaris.c
