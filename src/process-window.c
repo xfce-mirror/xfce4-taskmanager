@@ -314,7 +314,6 @@ build_refresh_rate_menu (XtmSettings *settings)
 	menu = gtk_menu_new ();
 
 	/* TRANSLATORS: The next values are in seconds or milliseconds */
-	menu_refresh_rate_append_item (GTK_MENU (menu), _("250ms"), 250, settings);
 	menu_refresh_rate_append_item (GTK_MENU (menu), _("500ms"), 500, settings);
 	menu_refresh_rate_append_item (GTK_MENU (menu), _("750ms"), 750, settings);
 	menu_refresh_rate_append_item (GTK_MENU (menu), _("1s"), 1000, settings);
