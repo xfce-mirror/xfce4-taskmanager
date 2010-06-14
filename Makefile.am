@@ -7,7 +7,7 @@ desktop_in_files = xfce4-taskmanager.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-ChangeLog:
+ChangeLog: Makefile
 	ChangeLog-git.sh > $(srcdir)/ChangeLog || touch $(srcdir)/ChangeLog
 
 EXTRA_DIST =								\

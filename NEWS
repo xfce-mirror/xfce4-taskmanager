@@ -1,3 +1,13 @@
+1.0.0
+
+- Replaced progress bars against monitors
+- Display window icons/names with libwnck (optional)
+- Display the tree view context menu on Menu key press
+- On tree view column click sort first by descending order
+- Context menu on the status icon to quit the application
+- Hide window on window close when the status icon is visible
+- Several fixes
+
 0.5.92 ~ 1.0.0 beta3
 
 - New settings “More precision,” “Full command line,” “Show status icon” and
