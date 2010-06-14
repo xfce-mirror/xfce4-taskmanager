@@ -144,7 +144,7 @@ dnl ***************************
 echo
 echo "Build Configuration:"
 echo
-echo "* Wnck:          ${WNCK_FOUND:-no} ${WNCK_VERSION:+(libwnck $WNCK_VERSION)}"
+echo "* Wnck:          ${WNCK_FOUND:-no} "${WNCK_VERSION:+"(libwnck $WNCK_VERSION)"}
 echo "* Target OS:     $target_os ($ac_os_implementation)"
 echo "* Debug Support: $enable_debug"
 echo
