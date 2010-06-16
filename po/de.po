@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-16 04:08+0000\n"
+"POT-Creation-Date: 2010-06-16 10:08+0000\n"
 "PO-Revision-Date: 2008-07-31 01:00+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
@@ -29,10 +29,10 @@ msgstr "Xfce4-Taskmanager ist ein einfach benutzbarer Taskmanager"
 #: ../src/process-window.c:436
 #, fuzzy
 msgid "Task Manager"
-msgstr "Xfce4 Taskmanager"
+msgstr "Taskmanager"
 
 #: ../src/main.c:100
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
 "<b>CPU:</b> %.0f%%\n"
@@ -45,7 +45,7 @@ msgstr ""
 "<b>Auslagerungsspeicher:</b> %.0f%%"
 
 #: ../src/main.c:108
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Processes: %u\n"
 "CPU: %.0f%%\n"
@@ -58,19 +58,19 @@ msgstr ""
 "Auslagerungsspeicher: %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:506
-#, fuzzy, c-format
+#, c-format
 msgid "CPU: %s%%"
-msgstr "CPU: %.2f%%"
+msgstr "CPU: %s%%"
 
 #: ../src/process-statusbar.c:157 ../src/process-window.c:511
-#, fuzzy, c-format
+#, c-format
 msgid "Memory: %s%%"
-msgstr "Speicher: %.2f%%"
+msgstr "Speicher:%s%%"
 
 #: ../src/process-statusbar.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Swap: %s%%"
-msgstr "Auslagerungsspeicher: %.2f%%"
+msgstr "Auslagerungsspeicher: %s%%"
 
 #: ../src/process-statusbar.c:181
 #, c-format
@@ -94,7 +94,6 @@ msgid "State"
 msgstr "Status"
 
 #: ../src/process-tree-view.c:173
-#, fuzzy
 msgid "VSZ"
 msgstr "VSZ"
 
@@ -103,19 +102,16 @@ msgid "RSS"
 msgstr "RSS"
 
 #: ../src/process-tree-view.c:189 ../src/process-window.c:381
-#, fuzzy
 msgid "UID"
-msgstr "PID"
+msgstr "UID"
 
 #: ../src/process-tree-view.c:197 ../src/process-window.c:382
-#, fuzzy
 msgid "CPU"
-msgstr "CPU%"
+msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
 #: ../src/process-tree-view.c:206
-#, fuzzy
 msgid "Prio."
 msgstr "Prio."
 
@@ -126,7 +122,7 @@ msgstr "Anwendung beenden"
 #: ../src/process-tree-view.c:336
 #, fuzzy
 msgid "Kill task"
-msgstr "Kill"
+msgstr "Prozess töten"
 
 #: ../src/process-tree-view.c:338
 #, c-format
@@ -138,22 +134,20 @@ msgid "Error sending signal"
 msgstr "Signal konnte nicht gesendet werden"
 
 #: ../src/process-tree-view.c:352
-#, fuzzy, c-format
+#, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "Beim Senden eines Signals an die Anwendung mit der ID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die notwendigen Rechte."
+msgstr "Beim Senden eines Signals an die Anwendung mit der ID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
 
 #: ../src/process-tree-view.c:370
-#, fuzzy
 msgid "Error setting priority"
 msgstr "Fehler beim Setzen der Priorität"
 
 #: ../src/process-tree-view.c:371
-#, fuzzy, c-format
+#, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "Beim Senden eines Signals an die Anwendung mit der ID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die notwendigen Rechte."
+msgstr "Beim Senden eines Signals an die Anwendung mit der ID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
 
 #: ../src/process-tree-view.c:389
-#, fuzzy
 msgid "Stop"
 msgstr "Anhalten"
 
@@ -164,7 +158,7 @@ msgstr "Fortsetzen"
 #: ../src/process-tree-view.c:402
 #, fuzzy
 msgid "Kill"
-msgstr "Kill"
+msgstr "Töten"
 
 #: ../src/process-tree-view.c:407
 #, fuzzy
@@ -196,27 +190,23 @@ msgid "Priority"
 msgstr "Priorität"
 
 #: ../src/process-window.c:222
-#, fuzzy
 msgid "Execution error"
-msgstr "Ausführungsfehler"
+msgstr "Fehler beim Ausführen"
 
 #: ../src/process-window.c:261 ../src/process-window.c:263
 #: ../src/process-window.c:265
-#, fuzzy
 msgid "Run Program..."
-msgstr "Befehl ausführen"
+msgstr "Befehl ausführen…"
 
 #: ../src/process-window.c:268
 msgid "Application Finder"
 msgstr "Anwendungsfinder"
 
 #: ../src/process-window.c:271
-#, fuzzy
 msgid "Terminal emulator"
-msgstr "Terminalemulator"
+msgstr "Terminal-Emulator"
 
 #: ../src/process-window.c:273
-#, fuzzy
 msgid "XTerm"
 msgstr "XTerm"
 
@@ -250,30 +240,29 @@ msgid "Show all processes"
 msgstr "Alle Prozesse anzeigen"
 
 #: ../src/process-window.c:364
-#, fuzzy
 msgid "More precision"
 msgstr "Höhere Genauigkeit"
 
 #: ../src/process-window.c:365
-#, fuzzy
 msgid "Full command line"
 msgstr "Vollständige Befehlszeile"
 
 #: ../src/process-window.c:366
 msgid "Show status icon"
-msgstr ""
+msgstr "Statussymbol anzeigen"
 
 #: ../src/process-window.c:369
 msgid "Refresh rate"
-msgstr ""
+msgstr "Wiederholrate"
 
 #: ../src/process-window.c:379
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "Virtuelle Bytes"
 
 #: ../src/process-window.c:380
+#, fuzzy
 msgid "Private Bytes"
-msgstr ""
+msgstr "Private Bytes"
 
 #: ../src/process-window.c:444
 msgid "translator-credits"
@@ -299,9 +288,9 @@ msgid "%lu B"
 msgstr "%lu B"
 
 #: ../src/task-manager.c:263
-#, fuzzy, c-format
+#, c-format
 msgid "%s%%"
-msgstr "%0.0f %%"
+msgstr "%s%%"
 
 #~ msgid "250ms"
 #~ msgstr "250ms"
