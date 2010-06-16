@@ -136,7 +136,6 @@
         <child>
           <object class="GtkVBox" id="mainview-vbox">
             <property name="visible">True</property>
-            <property name="border_width">6</property>
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
