@@ -19,6 +19,10 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
+#ifdef HAVE_GKSU
+#include <libgksu/libgksu.h>
+#endif
+
 #include "settings.h"
 #include "process-window.h"
 #include "process-window_ui.h"
@@ -210,6 +214,16 @@ monitor_update_step_size (XtmProcessWindow *window)
 	g_object_set (window->priv->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
 }
 
+#ifdef HAVE_GKSU
+static void
+run_as_root (XtmProcessWindow *window)
+{
+	gtk_widget_hide (window->priv->window);
+	gksu_run (g_get_prgname (), NULL);
+	gtk_widget_show (window->priv->window);
+}
+#endif
+
 static void
 execute_command (const gchar *command)
 {
@@ -256,6 +270,22 @@ show_menu_execute_task (XtmProcessWindow *window)
 	if (menu == NULL)
 	{
 		menu = gtk_menu_new ();
+
+#ifdef HAVE_GKSU
+		/* Run task manager as root */
+		if (geteuid () != 0)
+		{
+			GtkWidget *image = gtk_image_new_from_icon_name ("utilities-system-monitor", GTK_ICON_SIZE_MENU);
+			GtkWidget *mi = gtk_image_menu_item_new_with_label ("Run Task Manager as root");
+			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
+			gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
+			g_signal_connect_swapped (mi, "activate", G_CALLBACK (run_as_root), window);
+
+			mi = gtk_separator_menu_item_new ();
+			gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
+		}
+#endif
+
 		/* Find a runner program */
 		if (program_exists ("xfrun4"))
 			menu_execute_append_item (GTK_MENU (menu), _("Run Program..."), "xfrun4", "system-run");

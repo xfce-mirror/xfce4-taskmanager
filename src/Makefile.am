@@ -12,12 +12,14 @@ xfce4_taskmanager_CFLAGS =						\
 	$(GTK_CFLAGS)							\
 	$(CAIRO_CFLAGS)							\
 	$(WNCK_CFLAGS)							\
+	$(GKSU_CFLAGS)							\
 	$(NULL)
 
 xfce4_taskmanager_LDADD = 						\
 	$(GTK_LIBS)							\
 	$(CAIRO_LIBS)							\
 	$(WNCK_LIBS)							\
+	$(GKSU_LIBS)							\
 	$(NULL)
 
 xfce4_taskmanager_SOURCES =						\
