@@ -64,8 +64,8 @@ static void	xtm_process_window_hide				(GtkWidget *widget);
 static void	emit_destroy_signal				(XtmProcessWindow *window);
 static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *event);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
-static void	show_menu_execute_task				(XtmProcessWindow *window);
-static void	show_menu_preferences				(XtmProcessWindow *window);
+static void	show_menu_execute_task				(XtmProcessWindow *window, GtkButton *button);
+static void	show_menu_preferences				(XtmProcessWindow *window, GtkButton *button);
 static void	show_about_dialog				(XtmProcessWindow *window);
 
 
@@ -214,6 +214,15 @@ monitor_update_step_size (XtmProcessWindow *window)
 	g_object_set (window->priv->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
 }
 
+static void
+menu_position_func (GtkMenu *menu, gint *x, gint *y, gboolean *push_in, GtkWidget *widget)
+{
+	gdk_window_get_origin (widget->window, x, y);
+	*x += widget->allocation.x;
+	*y += widget->allocation.height;
+	*push_in = TRUE;
+}
+
 #ifdef HAVE_GKSU
 static void
 run_as_root (XtmProcessWindow *window)
@@ -263,7 +272,7 @@ program_exists (gchar *program)
 }
 
 static void
-show_menu_execute_task (XtmProcessWindow *window)
+show_menu_execute_task (XtmProcessWindow *window, GtkButton *button)
 {
 	static GtkWidget *menu = NULL;
 
@@ -304,7 +313,7 @@ show_menu_execute_task (XtmProcessWindow *window)
 		gtk_widget_show_all (menu);
 	}
 
-	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, 0, gtk_get_current_event_time ());
+	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, (GtkMenuPositionFunc)menu_position_func, button, 0, gtk_get_current_event_time ());
 }
 
 static void
@@ -378,7 +387,7 @@ menu_preferences_append_item (GtkMenu *menu, gchar *title, gchar *setting_name, 
 }
 
 static void
-show_menu_preferences (XtmProcessWindow *window)
+show_menu_preferences (XtmProcessWindow *window, GtkButton *button)
 {
 	static GtkWidget *menu = NULL;
 	GtkWidget *refresh_rate_menu;
@@ -413,7 +422,7 @@ show_menu_preferences (XtmProcessWindow *window)
 	menu_preferences_append_item (GTK_MENU (menu), _("Priority"), "column-priority", window->priv->settings);
 
 	gtk_widget_show_all (menu);
-	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, 0, gtk_get_current_event_time ());
+	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, (GtkMenuPositionFunc)menu_position_func, button, 0, gtk_get_current_event_time ());
 }
 
 #if !GTK_CHECK_VERSION(2,18,0)
