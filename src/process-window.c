@@ -285,7 +285,7 @@ show_menu_execute_task (XtmProcessWindow *window, GtkButton *button)
 		if (geteuid () != 0)
 		{
 			GtkWidget *image = gtk_image_new_from_icon_name ("utilities-system-monitor", GTK_ICON_SIZE_MENU);
-			GtkWidget *mi = gtk_image_menu_item_new_with_label ("Run Task Manager as root");
+			GtkWidget *mi = gtk_image_menu_item_new_with_label (_("Run Task Manager as root"));
 			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
 			gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 			g_signal_connect_swapped (mi, "activate", G_CALLBACK (run_as_root), window);
