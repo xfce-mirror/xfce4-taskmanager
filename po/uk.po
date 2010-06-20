@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-28 10:08+0000\n"
+"POT-Creation-Date: 2010-06-20 04:09+0000\n"
 "PO-Revision-Date: 2008-07-14 13:50+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -16,248 +16,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:392
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:480
 msgid "Easy to use task manager"
 msgstr "Простий у використанні диспетчер задач"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:284
-#: ../src/process-tree-view.c:298 ../src/process-tree-view.c:316
-#: ../src/process-window.c:177 ../src/process-window.c:387
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
+#: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
+#: ../src/process-tree-view.c:373 ../src/process-window.c:247
+#: ../src/process-window.c:475 ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Диспетчер задач"
 
-#: ../src/process-statusbar.c:139
-#, c-format
-msgid "CPU: %s%%"
-msgstr "Проц: %s%%"
-
-#: ../src/process-statusbar.c:148
-#, c-format
-msgid "Memory: %s%%"
-msgstr "Пам'ять: %s%%"
-
-#: ../src/process-statusbar.c:157
-#, c-format
-msgid "Swap: %s%%"
-msgstr "Своп: %s%%"
-
-#: ../src/process-statusbar.c:172
-#, c-format
-msgid "Processes: %d"
-msgstr "Процеси: %d"
-
-#: ../src/process-tree-view.c:115
-msgid "Task"
-msgstr "Задача"
-
-#: ../src/process-tree-view.c:125 ../src/process-window.c:327
-msgid "PID"
-msgstr "Ідентифікатор PID"
-
-#: ../src/process-tree-view.c:133 ../src/process-window.c:328
-msgid "PPID"
-msgstr "Пріоритет PPID"
-
-#: ../src/process-tree-view.c:141 ../src/process-window.c:329
-msgid "State"
-msgstr "Стан"
-
-#: ../src/process-tree-view.c:150
-msgid "VSZ"
-msgstr "VSZ"
-
-#: ../src/process-tree-view.c:158
-msgid "RSS"
-msgstr "Стрічка RSS"
-
-#: ../src/process-tree-view.c:166 ../src/process-window.c:332
-msgid "UID"
-msgstr "UID"
-
-#: ../src/process-tree-view.c:174 ../src/process-window.c:333
-msgid "CPU"
-msgstr "Проц"
-
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
-#. header.
-#: ../src/process-tree-view.c:183
-msgid "Prio."
-msgstr "Пріоритет"
-
-#: ../src/process-tree-view.c:281
-msgid "Terminate task"
-msgstr "Завершити задачу"
-
-#: ../src/process-tree-view.c:281
-msgid "Kill task"
-msgstr "Знищити задачу"
-
-#: ../src/process-tree-view.c:283
-#, c-format
-msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Ви впевнені, що бажаєте надіслати сигнал для PID %d?"
-
-#: ../src/process-tree-view.c:294
-msgid "Error sending signal"
-msgstr "Помилка при відсилці сигналу"
-
-#: ../src/process-tree-view.c:296
-#, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "Помилку було отримано при відсиланні сигналу для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
-
-#: ../src/process-tree-view.c:313
-msgid "Error setting priority"
-msgstr "Помилка у налаштуванні пріоритету"
-
-#: ../src/process-tree-view.c:314
-#, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "Помилку було отримано при встановленні пріорітету для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
-
-#: ../src/process-tree-view.c:331
-msgid "Stop"
-msgstr "Зупинити"
-
-#: ../src/process-tree-view.c:338
-msgid "Continue"
-msgstr "Продовжити"
-
-#: ../src/process-tree-view.c:344
-msgid "Kill"
-msgstr "Знищити"
-
-#: ../src/process-tree-view.c:349
-msgid "Terminate"
-msgstr "Завершити"
-
-#: ../src/process-tree-view.c:356
-msgid "Very low"
-msgstr "Дуже низько"
-
-#: ../src/process-tree-view.c:361
-msgid "Low"
-msgstr "Низько"
-
-#: ../src/process-tree-view.c:366
-msgid "Normal"
-msgstr "Нормально"
-
-#: ../src/process-tree-view.c:371
-msgid "High"
-msgstr "Високо"
-
-#: ../src/process-tree-view.c:376
-msgid "Very high"
-msgstr "Дуже високо"
-
-#: ../src/process-tree-view.c:381 ../src/process-window.c:334
-msgid "Priority"
-msgstr "Пріоритет"
-
-#: ../src/process-window.c:175
-msgid "Execution error"
-msgstr "Помилка при виконанні"
-
-#: ../src/process-window.c:214 ../src/process-window.c:216
-#: ../src/process-window.c:218
-msgid "Run Program..."
-msgstr "Запустити програму..."
-
-#: ../src/process-window.c:221
-msgid "Application Finder"
-msgstr "Шукач програм"
-
-#: ../src/process-window.c:224
-msgid "Terminal emulator"
-msgstr "Емулятор терміналу"
-
-#: ../src/process-window.c:226
-msgid "XTerm"
-msgstr "XTerm"
-
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/process-window.c:267
-msgid "250ms"
-msgstr "250мс"
-
-#: ../src/process-window.c:268
-msgid "500ms"
-msgstr "500мс"
-
-#: ../src/process-window.c:269
-msgid "750ms"
-msgstr "750мс"
-
-#: ../src/process-window.c:270
-msgid "1s"
-msgstr "1с"
-
-#: ../src/process-window.c:271
-msgid "2s"
-msgstr "2с"
-
-#: ../src/process-window.c:272
-msgid "5s"
-msgstr "5с"
-
-#: ../src/process-window.c:273
-msgid "10s"
-msgstr "10с"
-
-#: ../src/process-window.c:314
-msgid "Show all processes"
-msgstr "Показати всі процеси"
-
-#: ../src/process-window.c:315
-msgid "More precision"
-msgstr "Більше точності"
-
-#: ../src/process-window.c:316
-msgid "Full command line"
-msgstr "Командна стрічка повністю"
-
-#: ../src/process-window.c:317
-msgid "Show status icon"
-msgstr "Показати значок статусу"
-
-#: ../src/process-window.c:320
-msgid "Refresh rate"
-msgstr "Період оновлення"
-
-#: ../src/process-window.c:330
-msgid "Virtual Bytes"
-msgstr "Віртуальні байти"
-
-#: ../src/process-window.c:331
-msgid "Private Bytes"
-msgstr "Приватні байти"
-
-#: ../src/process-window.c:395
-msgid "translator-credits"
-msgstr "Dmitry Nikitin <luckas_fb@mail.ru>"
-
-#: ../src/task-manager.c:191
-#, c-format
-msgid "%lu MiB"
-msgstr "%lu MiB"
-
-#: ../src/task-manager.c:198
-#, c-format
-msgid "%lu KiB"
-msgstr "%lu KiB"
-
-#: ../src/task-manager.c:202
-#, c-format
-msgid "%lu B"
-msgstr "%lu B"
-
-#: ../src/task-manager.c:218
-#, c-format
-msgid "%s%%"
-msgstr "%s%%"
-
-#: ../src/main.c:61
+#: ../src/main.c:100
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -270,7 +40,7 @@ msgstr ""
 "<b>Пам'ять:</b> %.0f%%\n"
 "<b>Своп:</b> %.0f%%"
 
-#: ../src/main.c:69
+#: ../src/main.c:108
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -282,6 +52,240 @@ msgstr ""
 "Проц: %.0f%%\n"
 "Пам'ять: %.0f%%\n"
 "Своп: %.0f%%"
+
+#: ../src/process-statusbar.c:148 ../src/process-window.c:545
+#, c-format
+msgid "CPU: %s%%"
+msgstr "Проц: %s%%"
+
+#: ../src/process-statusbar.c:157 ../src/process-window.c:550
+#, c-format
+msgid "Memory: %s%%"
+msgstr "Пам'ять: %s%%"
+
+#: ../src/process-statusbar.c:166
+#, c-format
+msgid "Swap: %s%%"
+msgstr "Своп: %s%%"
+
+#: ../src/process-statusbar.c:181
+#, c-format
+msgid "Processes: %d"
+msgstr "Процеси: %d"
+
+#: ../src/process-tree-view.c:131
+msgid "Task"
+msgstr "Задача"
+
+#: ../src/process-tree-view.c:148 ../src/process-window.c:415
+msgid "PID"
+msgstr "Ідентифікатор PID"
+
+#: ../src/process-tree-view.c:156 ../src/process-window.c:416
+msgid "PPID"
+msgstr "Пріоритет PPID"
+
+#: ../src/process-tree-view.c:164 ../src/process-window.c:417
+msgid "State"
+msgstr "Стан"
+
+#: ../src/process-tree-view.c:173
+msgid "VSZ"
+msgstr "VSZ"
+
+#: ../src/process-tree-view.c:181
+msgid "RSS"
+msgstr "Стрічка RSS"
+
+#: ../src/process-tree-view.c:189 ../src/process-window.c:420
+msgid "UID"
+msgstr "UID"
+
+#: ../src/process-tree-view.c:197 ../src/process-window.c:421
+msgid "CPU"
+msgstr "Проц"
+
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: ../src/process-tree-view.c:206
+msgid "Prio."
+msgstr "Пріоритет"
+
+#: ../src/process-tree-view.c:336
+msgid "Terminate task"
+msgstr "Завершити задачу"
+
+#: ../src/process-tree-view.c:336
+msgid "Kill task"
+msgstr "Знищити задачу"
+
+#: ../src/process-tree-view.c:338
+#, c-format
+msgid "Are you sure you want to send a signal to the PID %d?"
+msgstr "Ви впевнені, що бажаєте надіслати сигнал для PID %d?"
+
+#: ../src/process-tree-view.c:350
+msgid "Error sending signal"
+msgstr "Помилка при відсилці сигналу"
+
+#: ../src/process-tree-view.c:352
+#, c-format
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
+msgstr "Помилку було отримано при відсиланні сигналу для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
+
+#: ../src/process-tree-view.c:370
+msgid "Error setting priority"
+msgstr "Помилка у налаштуванні пріоритету"
+
+#: ../src/process-tree-view.c:371
+#, c-format
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
+msgstr "Помилку було отримано при встановленні пріорітету для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
+
+#: ../src/process-tree-view.c:389
+msgid "Stop"
+msgstr "Зупинити"
+
+#: ../src/process-tree-view.c:396
+msgid "Continue"
+msgstr "Продовжити"
+
+#: ../src/process-tree-view.c:402
+msgid "Kill"
+msgstr "Знищити"
+
+#: ../src/process-tree-view.c:407
+msgid "Terminate"
+msgstr "Завершити"
+
+#: ../src/process-tree-view.c:414
+msgid "Very low"
+msgstr "Дуже низько"
+
+#: ../src/process-tree-view.c:419
+msgid "Low"
+msgstr "Низько"
+
+#: ../src/process-tree-view.c:424
+msgid "Normal"
+msgstr "Нормально"
+
+#: ../src/process-tree-view.c:429
+msgid "High"
+msgstr "Високо"
+
+#: ../src/process-tree-view.c:434
+msgid "Very high"
+msgstr "Дуже високо"
+
+#: ../src/process-tree-view.c:439 ../src/process-window.c:422
+msgid "Priority"
+msgstr "Пріоритет"
+
+#: ../src/process-window.c:245
+msgid "Execution error"
+msgstr "Помилка при виконанні"
+
+#: ../src/process-window.c:300 ../src/process-window.c:302
+#: ../src/process-window.c:304
+msgid "Run Program..."
+msgstr "Запустити програму..."
+
+#: ../src/process-window.c:307
+msgid "Application Finder"
+msgstr "Шукач програм"
+
+#: ../src/process-window.c:310
+msgid "Terminal emulator"
+msgstr "Емулятор терміналу"
+
+#: ../src/process-window.c:312
+msgid "XTerm"
+msgstr "XTerm"
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/process-window.c:356
+msgid "500ms"
+msgstr "500мс"
+
+#: ../src/process-window.c:357
+msgid "750ms"
+msgstr "750мс"
+
+#: ../src/process-window.c:358
+msgid "1s"
+msgstr "1с"
+
+#: ../src/process-window.c:359
+msgid "2s"
+msgstr "2с"
+
+#: ../src/process-window.c:360
+msgid "5s"
+msgstr "5с"
+
+#: ../src/process-window.c:361
+msgid "10s"
+msgstr "10с"
+
+#: ../src/process-window.c:402
+msgid "Show all processes"
+msgstr "Показати всі процеси"
+
+#: ../src/process-window.c:403
+msgid "More precision"
+msgstr "Більше точності"
+
+#: ../src/process-window.c:404
+msgid "Full command line"
+msgstr "Командна стрічка повністю"
+
+#: ../src/process-window.c:405
+msgid "Show status icon"
+msgstr "Показати значок статусу"
+
+#: ../src/process-window.c:408
+msgid "Refresh rate"
+msgstr "Період оновлення"
+
+#: ../src/process-window.c:418
+msgid "Virtual Bytes"
+msgstr "Віртуальні байти"
+
+#: ../src/process-window.c:419
+msgid "Private Bytes"
+msgstr "Приватні байти"
+
+#: ../src/process-window.c:483
+msgid "translator-credits"
+msgstr "Dmitry Nikitin <luckas_fb@mail.ru>"
+
+#: ../src/process-window.ui.h:2
+msgid "Warning, you are using the root account, you may harm your system."
+msgstr "Попередження: Ви використовуєте рахунок суперкористувача, Ви можете пошкодити Вашу систему."
+
+#: ../src/task-manager.c:229
+#, c-format
+msgid "%lu MiB"
+msgstr "%lu MiB"
+
+#: ../src/task-manager.c:236
+#, c-format
+msgid "%lu KiB"
+msgstr "%lu KiB"
+
+#: ../src/task-manager.c:240
+#, c-format
+msgid "%lu B"
+msgstr "%lu B"
+
+#: ../src/task-manager.c:263
+#, c-format
+msgid "%s%%"
+msgstr "%s%%"
+
+#~ msgid "250ms"
+#~ msgstr "250мс"
 
 #~ msgid "Control your processes"
 #~ msgstr "Керування процесами"
