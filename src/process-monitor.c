@@ -235,7 +235,7 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor)
 	height = GTK_WIDGET (monitor)->allocation.height;
 
 	/* Paint a box */
-	gtk_paint_box (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_NORMAL, GTK_SHADOW_IN,
+	gtk_paint_box (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
 			NULL, GTK_WIDGET (monitor), "trough", 0, 0, width, height);
 
 	/* Paint the graph */
@@ -272,7 +272,7 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor)
 	cairo_stroke (cr);
 
 	/* Repaint a shadow on top of everything to clear corners */
-	gtk_paint_shadow (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_NORMAL, GTK_SHADOW_IN,
+	gtk_paint_shadow (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
 			NULL, GTK_WIDGET (monitor), "trough", 0, 0, width, height);
 
 	cairo_destroy (cr);
