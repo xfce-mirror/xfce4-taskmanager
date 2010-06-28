@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-20 04:09+0000\n"
+"POT-Creation-Date: 2010-06-28 22:08+0000\n"
 "PO-Revision-Date: 2008-07-14 13:50+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -185,6 +185,10 @@ msgstr "Пріоритет"
 #: ../src/process-window.c:245
 msgid "Execution error"
 msgstr "Помилка при виконанні"
+
+#: ../src/process-window.c:288
+msgid "Run Task Manager as root"
+msgstr "Запустити менеджер завдань з правами root'а"
 
 #: ../src/process-window.c:300 ../src/process-window.c:302
 #: ../src/process-window.c:304
