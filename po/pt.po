@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-21 04:08+0000\n"
+"POT-Creation-Date: 2010-07-11 10:08+0000\n"
 "PO-Revision-Date: 2010-05-25 14:47+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "Language-Team: \n"
@@ -184,6 +184,10 @@ msgstr "Prioridade"
 #: ../src/process-window.c:245
 msgid "Execution error"
 msgstr "Erro de execução"
+
+#: ../src/process-window.c:288
+msgid "Run Task Manager as root"
+msgstr "Executar Gestor de Tarefas como root"
 
 #: ../src/process-window.c:300 ../src/process-window.c:302
 #: ../src/process-window.c:304
