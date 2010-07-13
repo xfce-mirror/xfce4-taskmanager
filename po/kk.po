@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-24 00:53+0000\n"
+"POT-Creation-Date: 2010-07-12 22:08+0000\n"
 "PO-Revision-Date: 2010-03-24 02:46+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
@@ -16,247 +16,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:372
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:480
 msgid "Easy to use task manager"
 msgstr "Жүйе үрдістерін ыңғайлы басқару"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
-#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
-#: ../src/process-window.c:177 ../src/process-window.c:367
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
+#: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
+#: ../src/process-tree-view.c:373 ../src/process-window.c:247
+#: ../src/process-window.c:475 ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Үрдістерді басқарушысы"
 
-#: ../src/process-statusbar.c:139
-#, c-format
-msgid "CPU: %s%%"
-msgstr "CPU: %s%%"
-
-#: ../src/process-statusbar.c:148
-#, c-format
-msgid "Memory: %s%%"
-msgstr "Жады: %s%%"
-
-#: ../src/process-statusbar.c:157
-#, c-format
-msgid "Swap: %s%%"
-msgstr "Swap: %s%%"
-
-#: ../src/process-statusbar.c:172
-#, c-format
-msgid "Processes: %d"
-msgstr "Үрдістер: %d"
-
-#: ../src/process-tree-view.c:106
-msgid "Task"
-msgstr "Үрдіс"
-
-#: ../src/process-tree-view.c:116 ../src/process-window.c:307
-msgid "PID"
-msgstr "PID"
-
-#: ../src/process-tree-view.c:124 ../src/process-window.c:308
-msgid "PPID"
-msgstr "PPID"
-
-#: ../src/process-tree-view.c:132 ../src/process-window.c:309
-msgid "State"
-msgstr "Күйі"
-
-#: ../src/process-tree-view.c:141
-msgid "VSZ"
-msgstr "VSZ"
-
-#: ../src/process-tree-view.c:149
-msgid "RSS"
-msgstr "RSS"
-
-#: ../src/process-tree-view.c:157 ../src/process-window.c:312
-msgid "UID"
-msgstr "UID"
-
-#: ../src/process-tree-view.c:165 ../src/process-window.c:313
-msgid "CPU"
-msgstr "CPU"
-
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
-#. header.
-#: ../src/process-tree-view.c:174
-msgid "Prio."
-msgstr "Prio."
-
-#: ../src/process-tree-view.c:212
-msgid "Terminate task"
-msgstr "Үрдісті аяқтау"
-
-#: ../src/process-tree-view.c:212
-msgid "Kill task"
-msgstr "Үрдісті құрту"
-
-#: ../src/process-tree-view.c:214
-#, c-format
-msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "PID %d үшін сигналды жіберу керек екеніне сенімдісіз бе?"
-
-#: ../src/process-tree-view.c:225
-msgid "Error sending signal"
-msgstr "Сигналды жіберу қатесі"
-
-#: ../src/process-tree-view.c:227
-#, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "PID %d үшін сигналды жіберу кезінде қате орын алған. Сізде керек рұқсаттар жоқ сияқты."
-
-#: ../src/process-tree-view.c:244
-msgid "Error setting priority"
-msgstr "Приоритет орнату қатесі"
-
-#: ../src/process-tree-view.c:245
-#, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "PID %d үшін приоритет орнату кезінде қате орын алған. Сізде керек рұқсаттар жоқ сияқты."
-
-#: ../src/process-tree-view.c:262
-msgid "Stop"
-msgstr "Тоқтату"
-
-#: ../src/process-tree-view.c:269
-msgid "Continue"
-msgstr "Жалғастыру"
-
-#: ../src/process-tree-view.c:275
-msgid "Kill"
-msgstr "Құрту"
-
-#: ../src/process-tree-view.c:280
-msgid "Terminate"
-msgstr "Аяқтау"
-
-#: ../src/process-tree-view.c:287
-msgid "Very low"
-msgstr "Өте төмен"
-
-#: ../src/process-tree-view.c:292
-msgid "Low"
-msgstr "Төмен"
-
-#: ../src/process-tree-view.c:297
-msgid "Normal"
-msgstr "Қалыпты"
-
-#: ../src/process-tree-view.c:302
-msgid "High"
-msgstr "Жоғары"
-
-#: ../src/process-tree-view.c:307
-msgid "Very high"
-msgstr "Өте жоғары"
-
-#: ../src/process-tree-view.c:312 ../src/process-window.c:314
-msgid "Priority"
-msgstr "Приоритеті"
-
-#: ../src/process-window.c:175
-msgid "Execution error"
-msgstr "Орындау қатесі"
-
-#: ../src/process-window.c:203
-msgid "Run Program..."
-msgstr "Бағдарламаны жіберу..."
-
-#: ../src/process-window.c:204
-msgid "Application Finder"
-msgstr "Қолданбалар табушы"
-
-#: ../src/process-window.c:205
-msgid "Terminal emulator"
-msgstr "Терминал эмуляторы"
-
-#: ../src/process-window.c:206
-msgid "XTerm"
-msgstr "XTerm"
-
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/process-window.c:247
-msgid "250ms"
-msgstr "250 мс"
-
-#: ../src/process-window.c:248
-msgid "500ms"
-msgstr "500 мс"
-
-#: ../src/process-window.c:249
-msgid "750ms"
-msgstr "750 мс"
-
-#: ../src/process-window.c:250
-msgid "1s"
-msgstr "1 с"
-
-#: ../src/process-window.c:251
-msgid "2s"
-msgstr "2 с"
-
-#: ../src/process-window.c:252
-msgid "5s"
-msgstr "5 с"
-
-#: ../src/process-window.c:253
-msgid "10s"
-msgstr "10 с"
-
-#: ../src/process-window.c:294
-msgid "Show all processes"
-msgstr "Барлық үрдістерді көрсету"
-
-#: ../src/process-window.c:295
-msgid "More precision"
-msgstr "Толығырақ ақпарат"
-
-#: ../src/process-window.c:296
-msgid "Full command line"
-msgstr "Толық командалық жол"
-
-#: ../src/process-window.c:297
-msgid "Show status icon"
-msgstr "Трей таңбашасын көрсету"
-
-#: ../src/process-window.c:300
-msgid "Refresh rate"
-msgstr "Жаңарту жиілігі"
-
-#: ../src/process-window.c:310
-msgid "Virtual Bytes"
-msgstr "Виртуал байттар"
-
-#: ../src/process-window.c:311
-msgid "Private Bytes"
-msgstr "Меншік байттар"
-
-#: ../src/process-window.c:375
-msgid "translator-credits"
-msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com> 2010"
-
-#: ../src/task-manager.c:165
-#, c-format
-msgid "%lu MiB"
-msgstr "%lu МБ"
-
-#: ../src/task-manager.c:172
-#, c-format
-msgid "%lu KiB"
-msgstr "%lu КБ"
-
-#: ../src/task-manager.c:176
-#, c-format
-msgid "%lu B"
-msgstr "%lu Б"
-
-#: ../src/task-manager.c:189
-#, c-format
-msgid "%s%%"
-msgstr "%s%%"
-
-#: ../src/main.c:61
+#: ../src/main.c:100
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -269,7 +40,7 @@ msgstr ""
 "<b>Жады:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
 
-#: ../src/main.c:69
+#: ../src/main.c:108
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -280,6 +51,244 @@ msgstr ""
 "Үрдістер: %u\n"
 "CPU: %.0f%%\\Жады: %.0f%%\n"
 "Swap: %.0f%%"
+
+#: ../src/process-statusbar.c:148 ../src/process-window.c:545
+#, c-format
+msgid "CPU: %s%%"
+msgstr "CPU: %s%%"
+
+#: ../src/process-statusbar.c:157 ../src/process-window.c:550
+#, c-format
+msgid "Memory: %s%%"
+msgstr "Жады: %s%%"
+
+#: ../src/process-statusbar.c:166
+#, c-format
+msgid "Swap: %s%%"
+msgstr "Swap: %s%%"
+
+#: ../src/process-statusbar.c:181
+#, c-format
+msgid "Processes: %d"
+msgstr "Үрдістер: %d"
+
+#: ../src/process-tree-view.c:131
+msgid "Task"
+msgstr "Үрдіс"
+
+#: ../src/process-tree-view.c:148 ../src/process-window.c:415
+msgid "PID"
+msgstr "PID"
+
+#: ../src/process-tree-view.c:156 ../src/process-window.c:416
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/process-tree-view.c:164 ../src/process-window.c:417
+msgid "State"
+msgstr "Күйі"
+
+#: ../src/process-tree-view.c:173
+msgid "VSZ"
+msgstr "VSZ"
+
+#: ../src/process-tree-view.c:181
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/process-tree-view.c:189 ../src/process-window.c:420
+msgid "UID"
+msgstr "UID"
+
+#: ../src/process-tree-view.c:197 ../src/process-window.c:421
+msgid "CPU"
+msgstr "CPU"
+
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: ../src/process-tree-view.c:206
+msgid "Prio."
+msgstr "Prio."
+
+#: ../src/process-tree-view.c:336
+msgid "Terminate task"
+msgstr "Үрдісті аяқтау"
+
+#: ../src/process-tree-view.c:336
+msgid "Kill task"
+msgstr "Үрдісті құрту"
+
+#: ../src/process-tree-view.c:338
+#, c-format
+msgid "Are you sure you want to send a signal to the PID %d?"
+msgstr "PID %d үшін сигналды жіберу керек екеніне сенімдісіз бе?"
+
+#: ../src/process-tree-view.c:350
+msgid "Error sending signal"
+msgstr "Сигналды жіберу қатесі"
+
+#: ../src/process-tree-view.c:352
+#, c-format
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
+msgstr "PID %d үшін сигналды жіберу кезінде қате орын алған. Сізде керек рұқсаттар жоқ сияқты."
+
+#: ../src/process-tree-view.c:370
+msgid "Error setting priority"
+msgstr "Приоритет орнату қатесі"
+
+#: ../src/process-tree-view.c:371
+#, c-format
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
+msgstr "PID %d үшін приоритет орнату кезінде қате орын алған. Сізде керек рұқсаттар жоқ сияқты."
+
+#: ../src/process-tree-view.c:389
+msgid "Stop"
+msgstr "Тоқтату"
+
+#: ../src/process-tree-view.c:396
+msgid "Continue"
+msgstr "Жалғастыру"
+
+#: ../src/process-tree-view.c:402
+msgid "Kill"
+msgstr "Құрту"
+
+#: ../src/process-tree-view.c:407
+msgid "Terminate"
+msgstr "Аяқтау"
+
+#: ../src/process-tree-view.c:414
+msgid "Very low"
+msgstr "Өте төмен"
+
+#: ../src/process-tree-view.c:419
+msgid "Low"
+msgstr "Төмен"
+
+#: ../src/process-tree-view.c:424
+msgid "Normal"
+msgstr "Қалыпты"
+
+#: ../src/process-tree-view.c:429
+msgid "High"
+msgstr "Жоғары"
+
+#: ../src/process-tree-view.c:434
+msgid "Very high"
+msgstr "Өте жоғары"
+
+#: ../src/process-tree-view.c:439 ../src/process-window.c:422
+msgid "Priority"
+msgstr "Приоритеті"
+
+#: ../src/process-window.c:245
+msgid "Execution error"
+msgstr "Орындау қатесі"
+
+#: ../src/process-window.c:288
+msgid "Run Task Manager as root"
+msgstr "Task Manager-ді root атынан жіберу"
+
+#: ../src/process-window.c:300 ../src/process-window.c:302
+#: ../src/process-window.c:304
+msgid "Run Program..."
+msgstr "Бағдарламаны жіберу..."
+
+#: ../src/process-window.c:307
+msgid "Application Finder"
+msgstr "Қолданбалар табушы"
+
+#: ../src/process-window.c:310
+msgid "Terminal emulator"
+msgstr "Терминал эмуляторы"
+
+#: ../src/process-window.c:312
+msgid "XTerm"
+msgstr "XTerm"
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/process-window.c:356
+msgid "500ms"
+msgstr "500 мс"
+
+#: ../src/process-window.c:357
+msgid "750ms"
+msgstr "750 мс"
+
+#: ../src/process-window.c:358
+msgid "1s"
+msgstr "1 с"
+
+#: ../src/process-window.c:359
+msgid "2s"
+msgstr "2 с"
+
+#: ../src/process-window.c:360
+msgid "5s"
+msgstr "5 с"
+
+#: ../src/process-window.c:361
+msgid "10s"
+msgstr "10 с"
+
+#: ../src/process-window.c:402
+msgid "Show all processes"
+msgstr "Барлық үрдістерді көрсету"
+
+#: ../src/process-window.c:403
+msgid "More precision"
+msgstr "Толығырақ ақпарат"
+
+#: ../src/process-window.c:404
+msgid "Full command line"
+msgstr "Толық командалық жол"
+
+#: ../src/process-window.c:405
+msgid "Show status icon"
+msgstr "Трей таңбашасын көрсету"
+
+#: ../src/process-window.c:408
+msgid "Refresh rate"
+msgstr "Жаңарту жиілігі"
+
+#: ../src/process-window.c:418
+msgid "Virtual Bytes"
+msgstr "Виртуал байттар"
+
+#: ../src/process-window.c:419
+msgid "Private Bytes"
+msgstr "Меншік байттар"
+
+#: ../src/process-window.c:483
+msgid "translator-credits"
+msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com> 2010"
+
+#: ../src/process-window.ui.h:2
+msgid "Warning, you are using the root account, you may harm your system."
+msgstr "Ескерту, сіз root тіркелгісін қолданудасыз, жүйеңізге зақым келтіруге болады."
+
+#: ../src/task-manager.c:229
+#, c-format
+msgid "%lu MiB"
+msgstr "%lu МБ"
+
+#: ../src/task-manager.c:236
+#, c-format
+msgid "%lu KiB"
+msgstr "%lu КБ"
+
+#: ../src/task-manager.c:240
+#, c-format
+msgid "%lu B"
+msgstr "%lu Б"
+
+#: ../src/task-manager.c:263
+#, c-format
+msgid "%s%%"
+msgstr "%s%%"
+
+#~ msgid "250ms"
+#~ msgstr "250 мс"
 
 #~ msgid "Control your processes"
 #~ msgstr "Жүйе үрдістерін басқару"
