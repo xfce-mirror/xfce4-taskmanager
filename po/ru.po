@@ -17,8 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:480
+#, fuzzy
 msgid "Easy to use task manager"
-msgstr "Простой менеджер процессов"
+msgstr "Простой диспетчер задач"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
 #: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
