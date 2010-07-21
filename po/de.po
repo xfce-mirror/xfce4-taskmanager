@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-22 04:08+0000\n"
+"POT-Creation-Date: 2010-07-21 16:08+0000\n"
 "PO-Revision-Date: 2008-07-31 01:00+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
@@ -278,8 +278,9 @@ msgstr ""
 "Paul Seyfert"
 
 #: ../src/process-window.ui.h:2
+#, fuzzy
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
+msgstr "Achtung, sie sind als root angemeldet und könnten ihr System beschädigen."
 
 #: ../src/task-manager.c:229
 #, fuzzy, c-format
