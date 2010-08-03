@@ -29,6 +29,7 @@
 #include "process-monitor.h"
 #include "process-tree-view.h"
 #include "process-statusbar.h"
+#include "exec-tool-button.h"
 
 
 
@@ -143,8 +144,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_show (window->priv->statusbar);
 	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->priv->builder, "process-vbox")), window->priv->statusbar, FALSE, FALSE, 0);
 
-	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-execute"));
-	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_menu_execute_task), window);
+	button = xtm_exec_tool_button_new ();
+	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->priv->builder, "toolbutton-execute")), button);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-preferences"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_menu_preferences), window);
@@ -221,99 +222,6 @@ menu_position_func (GtkMenu *menu, gint *x, gint *y, gboolean *push_in, GtkWidge
 	*x += widget->allocation.x;
 	*y += widget->allocation.height;
 	*push_in = TRUE;
-}
-
-#ifdef HAVE_GKSU
-static void
-run_as_root (XtmProcessWindow *window)
-{
-	gtk_widget_hide (window->priv->window);
-	gksu_run (g_get_prgname (), NULL);
-	gtk_widget_show (window->priv->window);
-}
-#endif
-
-static void
-execute_command (const gchar *command)
-{
-	GError *error = NULL;
-
-	gdk_spawn_command_line_on_screen (gdk_screen_get_default (), command, &error);
-	if (error != NULL)
-	{
-		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
-			_("Execution error"));
-		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
-		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
-		gtk_dialog_run (GTK_DIALOG (dialog));
-		gtk_widget_destroy (dialog);
-		g_error_free (error);
-	}
-}
-
-static void
-menu_execute_append_item (GtkMenu *menu, gchar *title, gchar *command, gchar *icon_name)
-{
-	GtkWidget *image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
-	GtkWidget *mi = gtk_image_menu_item_new_with_label (title);
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
-	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-	g_signal_connect_swapped (mi, "activate", G_CALLBACK (execute_command), command);
-}
-
-static gboolean
-program_exists (gchar *program)
-{
-	gchar *program_path = g_find_program_in_path (program);
-	if (program_path == NULL)
-		return FALSE;
-	g_free (program_path);
-	return TRUE;
-}
-
-static void
-show_menu_execute_task (XtmProcessWindow *window, GtkButton *button)
-{
-	static GtkWidget *menu = NULL;
-
-	if (menu == NULL)
-	{
-		menu = gtk_menu_new ();
-
-#ifdef HAVE_GKSU
-		/* Run task manager as root */
-		if (geteuid () != 0)
-		{
-			GtkWidget *image = gtk_image_new_from_icon_name ("utilities-system-monitor", GTK_ICON_SIZE_MENU);
-			GtkWidget *mi = gtk_image_menu_item_new_with_label (_("Run Task Manager as root"));
-			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
-			gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-			g_signal_connect_swapped (mi, "activate", G_CALLBACK (run_as_root), window);
-
-			mi = gtk_separator_menu_item_new ();
-			gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-		}
-#endif
-
-		/* Find a runner program */
-		if (program_exists ("xfrun4"))
-			menu_execute_append_item (GTK_MENU (menu), _("Run Program..."), "xfrun4", "system-run");
-		else if (program_exists ("gmrun"))
-			menu_execute_append_item (GTK_MENU (menu), _("Run Program..."), "gmrun", "system-run");
-		else if (program_exists ("gexec"))
-			menu_execute_append_item (GTK_MENU (menu), _("Run Program..."), "gexec", "system-run");
-		/* Find an applications list program */
-		if (program_exists ("xfce4-appfinder"))
-			menu_execute_append_item (GTK_MENU (menu), _("Application Finder"), "xfce4-appfinder", "xfce4-appfinder");
-		/* Find a terminal emulator */
-		if (program_exists ("exo-open"))
-			menu_execute_append_item (GTK_MENU (menu), _("Terminal emulator"), "exo-open --launch TerminalEmulator", "terminal");
-		else if (program_exists ("xterm"))
-			menu_execute_append_item (GTK_MENU (menu), _("XTerm"), "xterm -fg grey -bg black", "terminal");
-		gtk_widget_show_all (menu);
-	}
-
-	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, (GtkMenuPositionFunc)menu_position_func, button, 0, gtk_get_current_event_time ());
 }
 
 static void
