@@ -29,10 +29,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="toolbutton-preferences">
+              <object class="GtkToolItem" id="toolbutton-settings">
                 <property name="visible">True</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-preferences</property>
+                <property name="is_important">True</property>
+                <child>
+                  <placeholder/>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>

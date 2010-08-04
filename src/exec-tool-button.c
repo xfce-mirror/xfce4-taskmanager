@@ -15,6 +15,10 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
+#ifdef HAVE_GKSU
+#include <libgksu/libgksu.h>
+#endif
+
 #include "exec-tool-button.h"
 
 
@@ -31,8 +35,6 @@ struct _XtmExecToolButton
 };
 G_DEFINE_TYPE (XtmExecToolButton, xtm_exec_tool_button, GTK_TYPE_MENU_TOOL_BUTTON)
 
-static void		xtm_exec_tool_button_finalize			(GObject *object);
-
 static GtkWidget *	construct_menu					();
 static void		execute_default_command				();
 
@@ -41,9 +43,7 @@ static void		execute_default_command				();
 static void
 xtm_exec_tool_button_class_init (XtmExecToolButtonClass *klass)
 {
-	GObjectClass *class = G_OBJECT_CLASS (klass);
 	xtm_exec_tool_button_parent_class = g_type_class_peek_parent (klass);
-	class->finalize = xtm_exec_tool_button_finalize;
 }
 
 static void
@@ -59,12 +59,6 @@ xtm_exec_tool_button_init (XtmExecToolButton *button)
 	g_signal_connect (button, "clicked", G_CALLBACK (execute_default_command), NULL);
 
 	gtk_widget_show_all (GTK_WIDGET (button));
-}
-
-static void
-xtm_exec_tool_button_finalize (GObject *object)
-{
-	G_OBJECT_CLASS (xtm_exec_tool_button_parent_class)->finalize (object);
 }
 
 
@@ -191,18 +185,10 @@ construct_menu ()
 		menu_append_item (GTK_MENU (menu), _("Terminal emulator"), "exo-open --launch TerminalEmulator", "terminal");
 	else if (program_exists ("xterm"))
 		menu_append_item (GTK_MENU (menu), _("XTerm"), "xterm -fg grey -bg black", "terminal");
+
 	gtk_widget_show_all (menu);
 
 	return menu;
-}
-
-static void
-position_menu (GtkMenu *menu, gint *x, gint *y, gboolean *push_in, GtkWidget *widget)
-{
-	gdk_window_get_origin (widget->window, x, y);
-	*x += widget->allocation.x;
-	*y += widget->allocation.height;
-	*push_in = TRUE;
 }
 
 

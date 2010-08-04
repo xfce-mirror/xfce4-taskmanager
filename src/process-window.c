@@ -19,10 +19,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#ifdef HAVE_GKSU
-#include <libgksu/libgksu.h>
-#endif
-
 #include "settings.h"
 #include "process-window.h"
 #include "process-window_ui.h"
@@ -30,6 +26,7 @@
 #include "process-tree-view.h"
 #include "process-statusbar.h"
 #include "exec-tool-button.h"
+#include "settings-tool-button.h"
 
 
 
@@ -53,6 +50,8 @@ struct _XtmProcessWindowPriv
 	GtkWidget *		mem_monitor;
 	GtkWidget *		treeview;
 	GtkWidget *		statusbar;
+	GtkWidget *		exec_button;
+	GtkWidget *		settings_button;
 	XtmSettings *		settings;
 };
 #define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XTM_TYPE_PROCESS_WINDOW, XtmProcessWindowPriv))
@@ -65,8 +64,6 @@ static void	xtm_process_window_hide				(GtkWidget *widget);
 static void	emit_destroy_signal				(XtmProcessWindow *window);
 static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *event);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
-static void	show_menu_execute_task				(XtmProcessWindow *window, GtkButton *button);
-static void	show_menu_preferences				(XtmProcessWindow *window, GtkButton *button);
 static void	show_about_dialog				(XtmProcessWindow *window);
 
 
@@ -144,11 +141,11 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_show (window->priv->statusbar);
 	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->priv->builder, "process-vbox")), window->priv->statusbar, FALSE, FALSE, 0);
 
-	button = xtm_exec_tool_button_new ();
-	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->priv->builder, "toolbutton-execute")), button);
+	window->priv->exec_button = xtm_exec_tool_button_new ();
+	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->priv->builder, "toolbutton-execute")), window->priv->exec_button);
 
-	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-preferences"));
-	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_menu_preferences), window);
+	window->priv->settings_button = xtm_settings_tool_button_new ();
+	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->priv->builder, "toolbutton-settings")), window->priv->settings_button);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-about"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
@@ -184,6 +181,12 @@ xtm_process_window_finalize (GObject *object)
 	if (GTK_IS_STATUSBAR (priv->statusbar))
 		gtk_widget_destroy (priv->statusbar);
 
+	if (GTK_IS_TOOL_ITEM (priv->exec_button))
+		gtk_widget_destroy (priv->exec_button);
+
+	if (GTK_IS_TOOL_ITEM (priv->settings_button))
+		gtk_widget_destroy (priv->settings_button);
+
 	if (XTM_IS_SETTINGS (priv->settings))
 		g_object_unref (priv->settings);
 }
@@ -213,124 +216,6 @@ monitor_update_step_size (XtmProcessWindow *window)
 	g_object_get (window->priv->settings, "refresh-rate", &refresh_rate, NULL);
 	g_object_set (window->priv->cpu_monitor, "step-size", refresh_rate / 1000.0, NULL);
 	g_object_set (window->priv->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
-}
-
-static void
-menu_position_func (GtkMenu *menu, gint *x, gint *y, gboolean *push_in, GtkWidget *widget)
-{
-	gdk_window_get_origin (widget->window, x, y);
-	*x += widget->allocation.x;
-	*y += widget->allocation.height;
-	*push_in = TRUE;
-}
-
-static void
-refresh_rate_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
-{
-	guint refresh_rate = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "refresh-rate"));
-	g_object_set (settings, "refresh-rate", refresh_rate, NULL);
-}
-
-static void
-menu_refresh_rate_append_item (GtkMenu *menu, gchar *title, guint refresh_rate, XtmSettings *settings)
-{
-	GtkWidget *mi;
-	guint cur_refresh_rate;
-
-	g_object_get (settings, "refresh-rate", &cur_refresh_rate, NULL);
-
-	if (cur_refresh_rate == refresh_rate)
-	{
-		mi = gtk_radio_menu_item_new_with_label (NULL, title);
-		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (mi), TRUE);
-	}
-	else
-	{
-		mi = gtk_menu_item_new_with_label (title);
-	}
-	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-	g_object_set_data (G_OBJECT (mi), "refresh-rate", GUINT_TO_POINTER (refresh_rate));
-	g_signal_connect (mi, "activate", G_CALLBACK (refresh_rate_toggled), settings);
-}
-
-static GtkWidget *
-build_refresh_rate_menu (XtmSettings *settings)
-{
-	GtkWidget *menu;
-
-	menu = gtk_menu_new ();
-
-	/* TRANSLATORS: The next values are in seconds or milliseconds */
-	menu_refresh_rate_append_item (GTK_MENU (menu), _("500ms"), 500, settings);
-	menu_refresh_rate_append_item (GTK_MENU (menu), _("750ms"), 750, settings);
-	menu_refresh_rate_append_item (GTK_MENU (menu), _("1s"), 1000, settings);
-	menu_refresh_rate_append_item (GTK_MENU (menu), _("2s"), 2000, settings);
-	menu_refresh_rate_append_item (GTK_MENU (menu), _("5s"), 5000, settings);
-	menu_refresh_rate_append_item (GTK_MENU (menu), _("10s"), 10000, settings);
-
-	return menu;
-}
-
-static void
-preferences_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
-{
-	gboolean active = gtk_check_menu_item_get_active (mi);
-	gchar *setting_name = g_object_get_data (G_OBJECT (mi), "setting-name");
-	g_object_set (settings, setting_name, active, NULL);
-}
-
-static void
-menu_preferences_append_item (GtkMenu *menu, gchar *title, gchar *setting_name, XtmSettings *settings)
-{
-	GtkWidget *mi;
-	gboolean active = FALSE;
-
-	g_object_get (settings, setting_name, &active, NULL);
-
-	mi = gtk_check_menu_item_new_with_label (title);
-	gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (mi), active);
-	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-	g_object_set_data (G_OBJECT (mi), "setting-name", setting_name);
-	g_signal_connect (mi, "toggled", G_CALLBACK (preferences_toggled), settings);
-}
-
-static void
-show_menu_preferences (XtmProcessWindow *window, GtkButton *button)
-{
-	static GtkWidget *menu = NULL;
-	GtkWidget *refresh_rate_menu;
-	GtkWidget *mi;
-
-	if (menu != NULL)
-	{
-		gtk_widget_destroy (menu);
-	}
-
-	menu = gtk_menu_new ();
-	menu_preferences_append_item (GTK_MENU (menu), _("Show all processes"), "show-all-processes", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("More precision"), "more-precision", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("Full command line"), "full-command-line", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("Show status icon"), "show-status-icon", window->priv->settings);
-
-	refresh_rate_menu = build_refresh_rate_menu (window->priv->settings);
-	mi = gtk_menu_item_new_with_label (_("Refresh rate"));
-	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), refresh_rate_menu);
-	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-
-	mi = gtk_separator_menu_item_new ();
-	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-
-	menu_preferences_append_item (GTK_MENU (menu), _("PID"), "column-pid", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("PPID"), "column-ppid", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("State"), "column-state", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("Virtual Bytes"), "column-vsz", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("Private Bytes"), "column-rss", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("UID"), "column-uid", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("CPU"), "column-cpu", window->priv->settings);
-	menu_preferences_append_item (GTK_MENU (menu), _("Priority"), "column-priority", window->priv->settings);
-
-	gtk_widget_show_all (menu);
-	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, (GtkMenuPositionFunc)menu_position_func, button, 0, gtk_get_current_event_time ());
 }
 
 #if !GTK_CHECK_VERSION(2,18,0)
