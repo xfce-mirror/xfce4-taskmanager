@@ -16,6 +16,7 @@
 #include <gtk/gtk.h>
 
 #include "settings-tool-button.h"
+#include "settings-dialog.h"
 #include "settings.h"
 
 
@@ -61,9 +62,12 @@ xtm_settings_tool_button_init (XtmSettingsToolButton *button)
 
 
 static void
-show_settings_dialog ()
+show_settings_dialog (XtmSettingsToolButton *button)
 {
-	g_debug ("show settings dialog");
+	GtkWidget *parent_window = gtk_widget_get_ancestor (GTK_WIDGET (button), GTK_TYPE_WINDOW);
+	GtkWidget *dialog = xtm_settings_dialog_new (GTK_WINDOW (parent_window));
+	xtm_settings_dialog_run (XTM_SETTINGS_DIALOG (dialog));
+	g_object_unref (dialog);
 }
 
 static void
@@ -158,9 +162,6 @@ construct_menu ()
 	GtkWidget *mi;
 
 	menu_append_item (GTK_MENU (menu), _("Show all processes"), "show-all-processes", settings);
-	//menu_append_item (GTK_MENU (menu), _("More precision"), "more-precision", settings);
-	//menu_append_item (GTK_MENU (menu), _("Full command line"), "full-command-line", settings);
-	//menu_append_item (GTK_MENU (menu), _("Show status icon"), "show-status-icon", settings);
 
 	refresh_rate_menu = build_refresh_rate_menu (settings);
 	mi = gtk_menu_item_new_with_label (_("Refresh rate"));

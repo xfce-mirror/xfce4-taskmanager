@@ -31,8 +31,10 @@ xfce4_taskmanager_SOURCES =						\
 	process-statusbar.c		process-statusbar.h		\
 	exec-tool-button.c		exec-tool-button.h		\
 	settings-tool-button.c		settings-tool-button.h		\
-	task-manager.c			task-manager.h			\
+	settings-dialog_ui.h						\
+	settings-dialog.c		settings-dialog.h		\
 	settings.c			settings.h			\
+	task-manager.c			task-manager.h			\
 	$(NULL)
 
 if HAVE_WNCK
@@ -56,10 +58,12 @@ xfce4_taskmanager_SOURCES += task-manager-skel.c
 endif
 
 if MAINTAINER_MODE
-BUILT_SOURCES = process-window_ui.h
+BUILT_SOURCES = process-window_ui.h settings-dialog_ui.h
 process-window_ui.h: process-window.ui
 	$(AM_V_GEN) exo-csource --static --strip-comments --strip-content --name=process_window_ui $< >$@
+settings-dialog_ui.h: settings-dialog.ui
+	$(AM_V_GEN) exo-csource --static --strip-comments --strip-content --name=settings_dialog_ui $< >$@
 endif
 
-EXTRA_DIST = process-window.ui
+EXTRA_DIST = process-window.ui settings-dialog.ui
 
