@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-21 16:08+0000\n"
+"POT-Creation-Date: 2010-08-22 10:08+0000\n"
 "PO-Revision-Date: 2008-07-31 01:00+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
@@ -18,16 +18,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:480
-#, fuzzy
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:273
 msgid "Easy to use task manager"
 msgstr "Xfce4-Taskmanager ist ein einfach benutzbarer Taskmanager"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
 #: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
-#: ../src/process-tree-view.c:373 ../src/process-window.c:247
-#: ../src/process-window.c:475 ../src/process-window.ui.h:1
-#, fuzzy
+#: ../src/process-tree-view.c:373 ../src/process-window.c:268
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Taskmanager"
 
@@ -57,15 +55,15 @@ msgstr ""
 "Speicher: %.0f%%\n"
 "Auslagerungsspeicher: %.0f%%"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:545
+#: ../src/process-statusbar.c:148 ../src/process-window.c:338
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:550
+#: ../src/process-statusbar.c:157 ../src/process-window.c:343
 #, c-format
 msgid "Memory: %s%%"
-msgstr "Speicher:%s%%"
+msgstr "Speicher: %s%%"
 
 #: ../src/process-statusbar.c:166
 #, c-format
@@ -81,15 +79,15 @@ msgstr "Prozesse: %d"
 msgid "Task"
 msgstr "Anwendung"
 
-#: ../src/process-tree-view.c:148 ../src/process-window.c:415
+#: ../src/process-tree-view.c:148
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/process-window.c:416
+#: ../src/process-tree-view.c:156
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/process-window.c:417
+#: ../src/process-tree-view.c:164
 msgid "State"
 msgstr "Status"
 
@@ -101,11 +99,11 @@ msgstr "VSZ"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189 ../src/process-window.c:420
+#: ../src/process-tree-view.c:189
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/process-window.c:421
+#: ../src/process-tree-view.c:197
 msgid "CPU"
 msgstr "CPU"
 
@@ -120,14 +118,13 @@ msgid "Terminate task"
 msgstr "Anwendung beenden"
 
 #: ../src/process-tree-view.c:336
-#, fuzzy
 msgid "Kill task"
 msgstr "Prozess töten"
 
 #: ../src/process-tree-view.c:338
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Soll der Anwendung mit ID %d ein Signal gesendet werden?"
+msgstr "Soll der Anwendung mit PID %d ein Signal gesendet werden?"
 
 #: ../src/process-tree-view.c:350
 msgid "Error sending signal"
@@ -136,7 +133,7 @@ msgstr "Signal konnte nicht gesendet werden"
 #: ../src/process-tree-view.c:352
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "Beim Senden eines Signals an die Anwendung mit der ID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
+msgstr "Beim Senden eines Signals an die Anwendung mit der PID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
 
 #: ../src/process-tree-view.c:370
 msgid "Error setting priority"
@@ -145,7 +142,7 @@ msgstr "Fehler beim Setzen der Priorität"
 #: ../src/process-tree-view.c:371
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "Beim Senden eines Signals an die Anwendung mit der ID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
+msgstr "Beim Setzen der Priorität für die Anwendung mit der PID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
 
 #: ../src/process-tree-view.c:389
 msgid "Stop"
@@ -156,12 +153,10 @@ msgid "Continue"
 msgstr "Fortsetzen"
 
 #: ../src/process-tree-view.c:402
-#, fuzzy
 msgid "Kill"
 msgstr "Töten"
 
 #: ../src/process-tree-view.c:407
-#, fuzzy
 msgid "Terminate"
 msgstr "Beenden"
 
@@ -185,91 +180,11 @@ msgstr "Hoch"
 msgid "Very high"
 msgstr "Sehr hoch"
 
-#: ../src/process-tree-view.c:439 ../src/process-window.c:422
+#: ../src/process-tree-view.c:439
 msgid "Priority"
 msgstr "Priorität"
 
-#: ../src/process-window.c:245
-msgid "Execution error"
-msgstr "Fehler beim Ausführen"
-
-#: ../src/process-window.c:288
-#, fuzzy
-msgid "Run Task Manager as root"
-msgstr "Taskmanager mit root Rechten starten"
-
-#: ../src/process-window.c:300 ../src/process-window.c:302
-#: ../src/process-window.c:304
-msgid "Run Program..."
-msgstr "Befehl ausführen…"
-
-#: ../src/process-window.c:307
-msgid "Application Finder"
-msgstr "Anwendungsfinder"
-
-#: ../src/process-window.c:310
-msgid "Terminal emulator"
-msgstr "Terminal-Emulator"
-
-#: ../src/process-window.c:312
-msgid "XTerm"
-msgstr "XTerm"
-
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/process-window.c:356
-msgid "500ms"
-msgstr "500ms"
-
-#: ../src/process-window.c:357
-msgid "750ms"
-msgstr "750ms"
-
-#: ../src/process-window.c:358
-msgid "1s"
-msgstr "1s"
-
-#: ../src/process-window.c:359
-msgid "2s"
-msgstr "2s"
-
-#: ../src/process-window.c:360
-msgid "5s"
-msgstr "5s"
-
-#: ../src/process-window.c:361
-msgid "10s"
-msgstr "10s"
-
-#: ../src/process-window.c:402
-msgid "Show all processes"
-msgstr "Alle Prozesse anzeigen"
-
-#: ../src/process-window.c:403
-msgid "More precision"
-msgstr "Höhere Genauigkeit"
-
-#: ../src/process-window.c:404
-msgid "Full command line"
-msgstr "Vollständige Befehlszeile"
-
-#: ../src/process-window.c:405
-msgid "Show status icon"
-msgstr "Statussymbol anzeigen"
-
-#: ../src/process-window.c:408
-msgid "Refresh rate"
-msgstr "Wiederholrate"
-
-#: ../src/process-window.c:418
-msgid "Virtual Bytes"
-msgstr "Virtuelle Bytes"
-
-#: ../src/process-window.c:419
-#, fuzzy
-msgid "Private Bytes"
-msgstr "Private Bytes"
-
-#: ../src/process-window.c:483
+#: ../src/process-window.c:276
 msgid "translator-credits"
 msgstr ""
 "Enrico Tröger\n"
@@ -278,22 +193,21 @@ msgstr ""
 "Paul Seyfert"
 
 #: ../src/process-window.ui.h:2
-#, fuzzy
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Achtung, sie sind als root angemeldet und könnten ihr System beschädigen."
+msgstr "Achtung, Sie sind als root angemeldet und könnten Ihr System beschädigen."
 
 #: ../src/task-manager.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "%lu MiB"
 msgstr "%lu MiB"
 
 #: ../src/task-manager.c:236
-#, fuzzy, c-format
+#, c-format
 msgid "%lu KiB"
 msgstr "%lu KiB"
 
 #: ../src/task-manager.c:240
-#, fuzzy, c-format
+#, c-format
 msgid "%lu B"
 msgstr "%lu B"
 
@@ -301,6 +215,63 @@ msgstr "%lu B"
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
+
+#~ msgid "Execution error"
+#~ msgstr "Fehler beim Ausführen"
+
+#~ msgid "Run Task Manager as root"
+#~ msgstr "Taskmanager mit root Rechten starten"
+
+#~ msgid "Run Program..."
+#~ msgstr "Befehl ausführen…"
+
+#~ msgid "Application Finder"
+#~ msgstr "Anwendungsfinder"
+
+#~ msgid "Terminal emulator"
+#~ msgstr "Terminal-Emulator"
+
+#~ msgid "XTerm"
+#~ msgstr "XTerm"
+
+#~ msgid "500ms"
+#~ msgstr "500ms"
+
+#~ msgid "750ms"
+#~ msgstr "750ms"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "10s"
+#~ msgstr "10s"
+
+#~ msgid "Show all processes"
+#~ msgstr "Alle Prozesse anzeigen"
+
+#~ msgid "More precision"
+#~ msgstr "Höhere Genauigkeit"
+
+#~ msgid "Full command line"
+#~ msgstr "Vollständige Befehlszeile"
+
+#~ msgid "Show status icon"
+#~ msgstr "Statussymbol anzeigen"
+
+#~ msgid "Refresh rate"
+#~ msgstr "Wiederholrate"
+
+#~ msgid "Virtual Bytes"
+#~ msgstr "Virtuelle Bytes"
+
+#~ msgid "Private Bytes"
+#~ msgstr "Private Bytes"
 
 #~ msgid "250ms"
 #~ msgstr "250ms"
