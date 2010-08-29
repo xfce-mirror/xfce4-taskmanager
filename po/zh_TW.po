@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-26 16:08+0000\n"
+"POT-Creation-Date: 2010-08-28 22:08+0000\n"
 "PO-Revision-Date: 2008-07-31 01:01+0200\n"
 "Last-Translator: Cosmo Chene <cosmolax@ubuntu.org.tw>\n"
 "Language-Team: Tradictional Chinese <zh-l10n@linux.org.tw>\n"
@@ -183,24 +183,24 @@ msgid "Warning, you are using the root account, you may harm your system."
 msgstr ""
 
 #: ../src/task-manager.c:229
-#, c-format
+#, c-format, fuzzy
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
 #: ../src/task-manager.c:236
-#, c-format
+#, c-format, fuzzy
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
 #: ../src/task-manager.c:240
-#, c-format
+#, c-format, fuzzy
 msgid "%lu B"
-msgstr ""
+msgstr "%lu B"
 
 #: ../src/task-manager.c:263
-#, c-format
+#, c-format, fuzzy
 msgid "%s%%"
-msgstr ""
+msgstr "%s%%"
 
 #~ msgid "XTerm"
 #~ msgstr "Term"
