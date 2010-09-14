@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-21 10:08+0000\n"
+"POT-Creation-Date: 2010-09-14 04:11+0000\n"
 "PO-Revision-Date: 2009-10-17 23:23+0300\n"
 "Last-Translator: Vlad Vasilev <lortwer@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -16,15 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:480
-#, fuzzy
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:273
 msgid "Easy to use task manager"
 msgstr "Простой диспетчер задач"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
 #: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
-#: ../src/process-tree-view.c:373 ../src/process-window.c:247
-#: ../src/process-window.c:475 ../src/process-window.ui.h:1
+#: ../src/process-tree-view.c:373 ../src/process-window.c:268
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Диспетчер задач Xfce 4"
 
@@ -54,12 +53,12 @@ msgstr ""
 "Память: %.0f%%\n"
 "Подкач.: %.0f%%"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:545
+#: ../src/process-statusbar.c:148 ../src/process-window.c:338
 #, c-format
 msgid "CPU: %s%%"
 msgstr "ЦП: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:550
+#: ../src/process-statusbar.c:157 ../src/process-window.c:343
 #, c-format
 msgid "Memory: %s%%"
 msgstr "Память: %s%%"
@@ -78,15 +77,15 @@ msgstr "Процессы: %d"
 msgid "Task"
 msgstr "Задача"
 
-#: ../src/process-tree-view.c:148 ../src/process-window.c:415
+#: ../src/process-tree-view.c:148
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/process-window.c:416
+#: ../src/process-tree-view.c:156
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/process-window.c:417
+#: ../src/process-tree-view.c:164
 msgid "State"
 msgstr "Состояние"
 
@@ -98,11 +97,11 @@ msgstr "ВРазм"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189 ../src/process-window.c:420
+#: ../src/process-tree-view.c:189
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/process-window.c:421
+#: ../src/process-tree-view.c:197
 msgid "CPU"
 msgstr "ЦПУ"
 
@@ -179,89 +178,11 @@ msgstr "Высокий"
 msgid "Very high"
 msgstr "Очень высокий"
 
-#: ../src/process-tree-view.c:439 ../src/process-window.c:422
+#: ../src/process-tree-view.c:439
 msgid "Priority"
 msgstr "Приоритет"
 
-#: ../src/process-window.c:245
-msgid "Execution error"
-msgstr "Ошибка выполнения"
-
-#: ../src/process-window.c:288
-msgid "Run Task Manager as root"
-msgstr "Запустить диспетчер задач от суперпользователя"
-
-#: ../src/process-window.c:300 ../src/process-window.c:302
-#: ../src/process-window.c:304
-msgid "Run Program..."
-msgstr "Выполнить..."
-
-#: ../src/process-window.c:307
-msgid "Application Finder"
-msgstr "Поиск приложений"
-
-#: ../src/process-window.c:310
-msgid "Terminal emulator"
-msgstr "Эмулятор терминала"
-
-#: ../src/process-window.c:312
-msgid "XTerm"
-msgstr "XTerm"
-
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/process-window.c:356
-msgid "500ms"
-msgstr "500 мс"
-
-#: ../src/process-window.c:357
-msgid "750ms"
-msgstr "750 мс"
-
-#: ../src/process-window.c:358
-msgid "1s"
-msgstr "1 с"
-
-#: ../src/process-window.c:359
-msgid "2s"
-msgstr "2 с"
-
-#: ../src/process-window.c:360
-msgid "5s"
-msgstr "5 с"
-
-#: ../src/process-window.c:361
-msgid "10s"
-msgstr "10 с"
-
-#: ../src/process-window.c:402
-msgid "Show all processes"
-msgstr "Показывать все процессы"
-
-#: ../src/process-window.c:403
-msgid "More precision"
-msgstr "Указать точно"
-
-#: ../src/process-window.c:404
-msgid "Full command line"
-msgstr "Командная строка"
-
-#: ../src/process-window.c:405
-msgid "Show status icon"
-msgstr "Показывать значок"
-
-#: ../src/process-window.c:408
-msgid "Refresh rate"
-msgstr "Частота обновления"
-
-#: ../src/process-window.c:418
-msgid "Virtual Bytes"
-msgstr "Вирт"
-
-#: ../src/process-window.c:419
-msgid "Private Bytes"
-msgstr "Личн"
-
-#: ../src/process-window.c:483
+#: ../src/process-window.c:276
 msgid "translator-credits"
 msgstr "Andrey Fedoseev"
 
@@ -288,6 +209,63 @@ msgstr "%lu б"
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
+
+#~ msgid "Execution error"
+#~ msgstr "Ошибка выполнения"
+
+#~ msgid "Run Task Manager as root"
+#~ msgstr "Запустить диспетчер задач от суперпользователя"
+
+#~ msgid "Run Program..."
+#~ msgstr "Выполнить..."
+
+#~ msgid "Application Finder"
+#~ msgstr "Поиск приложений"
+
+#~ msgid "Terminal emulator"
+#~ msgstr "Эмулятор терминала"
+
+#~ msgid "XTerm"
+#~ msgstr "XTerm"
+
+#~ msgid "500ms"
+#~ msgstr "500 мс"
+
+#~ msgid "750ms"
+#~ msgstr "750 мс"
+
+#~ msgid "1s"
+#~ msgstr "1 с"
+
+#~ msgid "2s"
+#~ msgstr "2 с"
+
+#~ msgid "5s"
+#~ msgstr "5 с"
+
+#~ msgid "10s"
+#~ msgstr "10 с"
+
+#~ msgid "Show all processes"
+#~ msgstr "Показывать все процессы"
+
+#~ msgid "More precision"
+#~ msgstr "Указать точно"
+
+#~ msgid "Full command line"
+#~ msgstr "Командная строка"
+
+#~ msgid "Show status icon"
+#~ msgstr "Показывать значок"
+
+#~ msgid "Refresh rate"
+#~ msgstr "Частота обновления"
+
+#~ msgid "Virtual Bytes"
+#~ msgstr "Вирт"
+
+#~ msgid "Private Bytes"
+#~ msgstr "Личн"
 
 #~ msgid "250ms"
 #~ msgstr "250 мс"
