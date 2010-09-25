@@ -150,9 +150,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-about"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
 
-	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-quit"));
-	g_signal_connect_swapped (button, "clicked", G_CALLBACK (emit_destroy_signal), window);
-
 	g_object_unref (window->priv->builder);
 	window->priv->builder = NULL;
 }

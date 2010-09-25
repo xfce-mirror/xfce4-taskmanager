@@ -76,16 +76,6 @@
                 <property name="expand">False</property>
               </packing>
             </child>
-            <child>
-              <object class="GtkToolButton" id="toolbutton-quit">
-                <property name="visible">True</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-quit</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-              </packing>
-            </child>
           </object>
           <packing>
             <property name="expand">False</property>
