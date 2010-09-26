@@ -64,6 +64,7 @@ static void	xtm_process_window_hide				(GtkWidget *widget);
 static void	emit_destroy_signal				(XtmProcessWindow *window);
 static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *event);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
+static void	monitor_update_paint_box			(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
 
 
@@ -121,6 +122,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_widget_show (window->priv->mem_monitor);
 		gtk_container_add (GTK_CONTAINER (toolitem), window->priv->mem_monitor);
 
+		monitor_update_paint_box (window);
+		g_signal_connect_swapped (window->priv->settings, "notify::monitor-paint-box", G_CALLBACK (monitor_update_paint_box), window);
 		g_signal_connect_swapped (window->priv->settings, "notify::refresh-rate", G_CALLBACK (monitor_update_step_size), window);
 	}
 
@@ -204,6 +207,15 @@ emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event)
 	gboolean ret;
 	g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
 	return ret;
+}
+
+static void
+monitor_update_paint_box (XtmProcessWindow *window)
+{
+	gboolean paint_box;
+	g_object_get (window->priv->settings, "monitor-paint-box", &paint_box, NULL);
+	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->priv->cpu_monitor), paint_box);
+	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->priv->mem_monitor), paint_box);
 }
 
 static void
@@ -348,4 +360,3 @@ xtm_process_window_show_swap_usage (XtmProcessWindow *window, gboolean show_swap
 	g_return_if_fail (GTK_IS_STATUSBAR (window->priv->statusbar));
 	g_object_set (window->priv->statusbar, "show-swap", show_swap_usage, NULL);
 }
-

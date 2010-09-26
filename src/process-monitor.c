@@ -24,6 +24,7 @@ enum
 	PROP_COLOR_RED,
 	PROP_COLOR_GREEN,
 	PROP_COLOR_BLUE,
+	PROP_PAINT_BOX,
 };
 typedef struct _XtmProcessMonitorClass XtmProcessMonitorClass;
 struct _XtmProcessMonitorClass
@@ -39,6 +40,7 @@ struct _XtmProcessMonitor
 	gfloat			color_red;
 	gfloat			color_green;
 	gfloat			color_blue;
+	gboolean		paint_box;
 };
 G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
@@ -66,6 +68,8 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 		g_param_spec_float ("color-green", "ColorGreen", "Color green", 0, 1, 0, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLOR_BLUE,
 		g_param_spec_float ("color-blue", "ColorBlue", "Color blue", 0, 1, 0, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_PAINT_BOX,
+		g_param_spec_boolean ("paint-box", "PaintBox", "Paint box around monitor", TRUE, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
 }
 
 static void
@@ -106,6 +110,10 @@ xtm_process_monitor_get_property (GObject *object, guint property_id, GValue *va
 		g_value_set_float (value, monitor->color_blue);
 		break;
 
+		case PROP_PAINT_BOX:
+		g_value_set_boolean (value, monitor->paint_box);
+		break;
+
 		default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 		break;
@@ -132,6 +140,10 @@ xtm_process_monitor_set_property (GObject *object, guint property_id, const GVal
 
 		case PROP_COLOR_BLUE:
 		monitor->color_blue = g_value_get_float (value);
+		break;
+
+		case PROP_PAINT_BOX:
+		monitor->paint_box = g_value_get_boolean (value);
 		break;
 
 		default:
@@ -235,8 +247,9 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor)
 	height = GTK_WIDGET (monitor)->allocation.height;
 
 	/* Paint a box */
-	gtk_paint_box (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
-			NULL, GTK_WIDGET (monitor), "trough", 0, 0, width, height);
+	if (monitor->paint_box)
+		gtk_paint_box (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
+				NULL, GTK_WIDGET (monitor), "trough", 0, 0, width, height);
 
 	/* Paint the graph */
 	graph_surface = xtm_process_monitor_graph_surface_create (monitor);
@@ -272,8 +285,9 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor)
 	cairo_stroke (cr);
 
 	/* Repaint a shadow on top of everything to clear corners */
-	gtk_paint_shadow (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
-			NULL, GTK_WIDGET (monitor), "trough", 0, 0, width, height);
+	if (monitor->paint_box)
+		gtk_paint_shadow (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
+				NULL, GTK_WIDGET (monitor), "trough", 0, 0, width, height);
 
 	cairo_destroy (cr);
 }
@@ -326,3 +340,11 @@ xtm_process_monitor_set_source_color (XtmProcessMonitor *monitor, gdouble red, g
 		gdk_window_invalidate_rect (GTK_WIDGET (monitor)->window, NULL, FALSE);
 }
 
+void
+xtm_process_monitor_set_paint_box (XtmProcessMonitor *monitor, gboolean paint_box)
+{
+	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
+	g_object_set (monitor, "paint-box", paint_box, NULL);
+	if (GDK_IS_WINDOW (GTK_WIDGET (monitor)->window))
+		gdk_window_invalidate_rect (GTK_WIDGET (monitor)->window, NULL, FALSE);
+}

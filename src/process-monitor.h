@@ -31,5 +31,6 @@ void		xtm_process_monitor_add_peak			(XtmProcessMonitor *monitor, gfloat peak);
 void		xtm_process_monitor_set_step_size		(XtmProcessMonitor *monitor, gfloat step_size);
 void		xtm_process_monitor_clear			(XtmProcessMonitor *monitor);
 void		xtm_process_monitor_set_source_color		(XtmProcessMonitor *monitor, gdouble red, gdouble green, gdouble blue);
+void		xtm_process_monitor_set_paint_box		(XtmProcessMonitor *monitor, gboolean paint_box);
 
 #endif /* !PROCESS_MONITOR_H */
