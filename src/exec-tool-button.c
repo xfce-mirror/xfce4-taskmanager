@@ -172,11 +172,11 @@ construct_menu ()
 
 	/* Find a runner program */
 	if (program_exists ("xfrun4"))
-		menu_append_item (GTK_MENU (menu), _("Run Program..."), "xfrun4", "system-run");
+		menu_append_item (GTK_MENU (menu), _("Run Program..."), "xfrun4", "gtk-execute");
 	else if (program_exists ("gmrun"))
-		menu_append_item (GTK_MENU (menu), _("Run Program..."), "gmrun", "system-run");
+		menu_append_item (GTK_MENU (menu), _("Run Program..."), "gmrun", "gtk-execute");
 	else if (program_exists ("gexec"))
-		menu_append_item (GTK_MENU (menu), _("Run Program..."), "gexec", "system-run");
+		menu_append_item (GTK_MENU (menu), _("Run Program..."), "gexec", "gtk-execute");
 	/* Find an applications-listing program */
 	if (program_exists ("xfce4-appfinder"))
 		menu_append_item (GTK_MENU (menu), _("Application Finder"), "xfce4-appfinder", "xfce4-appfinder");
