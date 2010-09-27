@@ -93,7 +93,7 @@ xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 	builder_bind_toggle_button (builder, "button-full-command-line", dialog->settings, "full-command-line");
 	builder_bind_toggle_button (builder, "button-more-precision", dialog->settings, "more-precision");
 	builder_bind_toggle_button (builder, "button-monitor-paint-box", dialog->settings, "monitor-paint-box");
-	builder_bind_toggle_button (builder, "button-quiet-signal", dialog->settings, "send-quiet-signals");
+	builder_bind_toggle_button (builder, "button-prompt-terminate-task", dialog->settings, "prompt-terminate-task");
 	builder_bind_toggle_button (builder, "button-show-status-icon", dialog->settings, "show-status-icon");
 
 	g_object_unref (builder);
@@ -145,4 +145,3 @@ xtm_settings_dialog_run (XtmSettingsDialog *dialog)
 {
 	gtk_dialog_run (GTK_DIALOG (dialog->window));
 }
-

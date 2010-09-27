@@ -325,11 +325,17 @@ save_columns_positions (XtmProcessTreeView *treeview)
 static void
 cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 {
+	XtmSettings *settings;
+	gboolean prompt_terminate_task;
 	GtkWidget *dialog;
 	guint pid = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "pid"));
 	gint xtm_signal = GPOINTER_TO_INT (user_data);
 
-	if (xtm_signal == XTM_SIGNAL_TERMINATE || xtm_signal == XTM_SIGNAL_KILL)
+	settings = xtm_settings_get_default ();
+	g_object_get (settings, "prompt-terminate-task", &prompt_terminate_task, NULL);
+	g_object_unref (settings);
+
+	if ((xtm_signal == XTM_SIGNAL_TERMINATE && prompt_terminate_task) || xtm_signal == XTM_SIGNAL_KILL)
 	{
 		gint res;
 		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
