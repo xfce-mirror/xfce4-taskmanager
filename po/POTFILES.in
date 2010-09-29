@@ -1,5 +1,6 @@
 xfce4-taskmanager.desktop.in
 src/app-manager.c
+src/exec-tool-button.c
 src/main.c
 src/process-monitor.c
 src/process-statusbar.c
@@ -9,4 +10,5 @@ src/process-window.c
 src/settings.c
 src/settings-dialog.c
 [type: gettext/glade]src/settings-dialog.ui
+src/settings-tool-button.c
 src/task-manager.c
