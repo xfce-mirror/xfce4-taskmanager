@@ -28,4 +28,17 @@ typedef struct _XtmSettings XtmSettings;
 GType		xtm_settings_get_type				(void);
 XtmSettings *	xtm_settings_get_default			();
 
+
+
+typedef enum
+{
+	XTM_TOOLBAR_STYLE_DEFAULT,
+	XTM_TOOLBAR_STYLE_SMALL,
+	XTM_TOOLBAR_STYLE_LARGE,
+	XTM_TOOLBAR_STYLE_TEXT,
+} XtmToolbarStyle;
+
+GType xtm_toolbar_style_get_type (void);
+#define XTM_TYPE_TOOLBAR_STYLE (xtm_toolbar_style_get_type ())
+
 #endif /* !SETTINGS_H */

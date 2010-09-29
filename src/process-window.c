@@ -46,6 +46,7 @@ struct _XtmProcessWindowPriv
 {
 	GtkBuilder *		builder;
 	GtkWidget *		window;
+	GtkWidget *		toolbar;
 	GtkWidget *		cpu_monitor;
 	GtkWidget *		mem_monitor;
 	GtkWidget *		treeview;
@@ -63,6 +64,7 @@ static void	xtm_process_window_hide				(GtkWidget *widget);
 
 static void	emit_destroy_signal				(XtmProcessWindow *window);
 static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *event);
+static void	toolbar_update_style				(XtmProcessWindow *window);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
 static void	monitor_update_paint_box			(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
@@ -104,6 +106,16 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect_swapped (window->priv->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
 	g_signal_connect_swapped (window->priv->window, "delete-event", G_CALLBACK (emit_delete_event_signal), window);
 
+	window->priv->toolbar = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "process-toolbar"));
+	g_signal_connect_swapped (window->priv->settings, "notify::toolbar-style", G_CALLBACK (toolbar_update_style), window);
+	g_object_notify (G_OBJECT (window->priv->settings), "toolbar-style");
+
+	window->priv->exec_button = xtm_exec_tool_button_new ();
+	gtk_toolbar_insert (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOL_ITEM (window->priv->exec_button), 0);
+
+	window->priv->settings_button = xtm_settings_tool_button_new ();
+	gtk_toolbar_insert (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOL_ITEM (window->priv->settings_button), 1);
+
 	{
 		GtkWidget *toolitem;
 		guint refresh_rate;
@@ -127,6 +139,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 		g_signal_connect_swapped (window->priv->settings, "notify::refresh-rate", G_CALLBACK (monitor_update_step_size), window);
 	}
 
+	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-about"));
+	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
+
 	if (geteuid () == 0)
 	{
 		gtk_rc_parse_string ("style\"root-warning-style\"{bg[NORMAL]=\"#b4254b\"\nfg[NORMAL]=\"#fefefe\"}\n"
@@ -143,15 +158,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->priv->statusbar = xtm_process_statusbar_new ();
 	gtk_widget_show (window->priv->statusbar);
 	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->priv->builder, "process-vbox")), window->priv->statusbar, FALSE, FALSE, 0);
-
-	window->priv->exec_button = xtm_exec_tool_button_new ();
-	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->priv->builder, "toolbutton-execute")), window->priv->exec_button);
-
-	window->priv->settings_button = xtm_settings_tool_button_new ();
-	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->priv->builder, "toolbutton-settings")), window->priv->settings_button);
-
-	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-about"));
-	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
 
 	g_object_unref (window->priv->builder);
 	window->priv->builder = NULL;
@@ -207,6 +213,36 @@ emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event)
 	gboolean ret;
 	g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
 	return ret;
+}
+
+static void
+toolbar_update_style (XtmProcessWindow *window)
+{
+	XtmToolbarStyle toolbar_style;
+	g_object_get (window->priv->settings, "toolbar-style", &toolbar_style, NULL);
+	switch (toolbar_style)
+	{
+		default:
+		case XTM_TOOLBAR_STYLE_DEFAULT:
+		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->priv->toolbar), GTK_ICON_SIZE_MENU);
+		gtk_toolbar_unset_style (GTK_TOOLBAR (window->priv->toolbar));
+		break;
+
+		case XTM_TOOLBAR_STYLE_SMALL:
+		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->priv->toolbar), GTK_ICON_SIZE_SMALL_TOOLBAR);
+		gtk_toolbar_set_style (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOLBAR_ICONS);
+		break;
+
+		case XTM_TOOLBAR_STYLE_LARGE:
+		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->priv->toolbar), GTK_ICON_SIZE_LARGE_TOOLBAR);
+		gtk_toolbar_set_style (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOLBAR_ICONS);
+		break;
+
+		case XTM_TOOLBAR_STYLE_TEXT:
+		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->priv->toolbar), GTK_ICON_SIZE_MENU);
+		gtk_toolbar_set_style (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOLBAR_BOTH);
+		break;
+	}
 }
 
 static void

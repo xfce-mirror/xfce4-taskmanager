@@ -77,6 +77,14 @@ builder_bind_toggle_button (GtkBuilder *builder, gchar *widget_name, XtmSettings
 }
 
 static void
+combobox_changed (GtkComboBox *combobox, XtmSettings *settings)
+{
+	guint active = gtk_combo_box_get_active (combobox);
+	gchar *setting_name = g_object_get_data (G_OBJECT (combobox), "setting-name");
+	g_object_set (settings, setting_name, active, NULL);
+}
+
+static void
 xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 {
 	GtkBuilder *builder;
@@ -95,6 +103,29 @@ xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 	builder_bind_toggle_button (builder, "button-monitor-paint-box", dialog->settings, "monitor-paint-box");
 	builder_bind_toggle_button (builder, "button-prompt-terminate-task", dialog->settings, "prompt-terminate-task");
 	builder_bind_toggle_button (builder, "button-show-status-icon", dialog->settings, "show-status-icon");
+
+	{
+		guint n;
+		GEnumClass *klass;
+		GtkWidget *box;
+		GtkWidget *combobox;
+		XtmToolbarStyle toolbar_style;
+
+		box = GTK_WIDGET (gtk_builder_get_object (builder, "hbox-toolbar-style"));
+		combobox = gtk_combo_box_new_text ();
+		gtk_box_pack_start (GTK_BOX (box), combobox, FALSE, FALSE, 0);
+		gtk_widget_show (combobox);
+
+		klass = g_type_class_ref (XTM_TYPE_TOOLBAR_STYLE);
+		for (n = 0; n < klass->n_values; ++n)
+			gtk_combo_box_append_text (GTK_COMBO_BOX (combobox), _(klass->values[n].value_nick));
+		g_type_class_unref (klass);
+
+		g_object_get (dialog->settings, "toolbar-style", &toolbar_style, NULL);
+		g_object_set_data (G_OBJECT (combobox), "setting-name", "toolbar-style");
+		gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), toolbar_style);
+		g_signal_connect (combobox, "changed", G_CALLBACK (combobox_changed), dialog->settings);
+	}
 
 	g_object_unref (builder);
 }

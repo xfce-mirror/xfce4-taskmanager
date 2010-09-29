@@ -17,30 +17,6 @@
             <property name="show_arrow">False</property>
             <property name="icon_size">1</property>
             <child>
-              <object class="GtkToolItem" id="toolbutton-execute">
-                <property name="visible">True</property>
-                <property name="is_important">True</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolItem" id="toolbutton-settings">
-                <property name="visible">True</property>
-                <property name="is_important">True</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkToolItem" id="cpu-toolitem">
                 <property name="visible">True</property>
                 <property name="border_width">2</property>
