@@ -39,7 +39,7 @@ msgstr ""
 "<b>Processus :</b> %u\n"
 "<b>CPU :</b> %.0f%%\n"
 "<b>Mémoire :</b> %.0f%%\n"
-"<b>Mémoire paginée:</b> %.0f%%"
+"<b>Mémoire paginée :</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -52,7 +52,7 @@ msgstr ""
 "Processus : %u\n"
 "CPU : %.0f%%\n"
 "Mémoire : %.0f%%\n"
-"Mémoire paginée: %.0f%%"
+"Mémoire paginée : %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
