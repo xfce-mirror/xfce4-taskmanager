@@ -31,7 +31,6 @@
 
 
 typedef struct _XtmProcessWindowClass XtmProcessWindowClass;
-typedef struct _XtmProcessWindowPriv XtmProcessWindowPriv;
 struct _XtmProcessWindowClass
 {
 	GtkWidgetClass		parent_class;
@@ -40,10 +39,6 @@ struct _XtmProcessWindow
 {
 	GtkWidget		parent;
 	/*<private>*/
-	XtmProcessWindowPriv *	priv;
-};
-struct _XtmProcessWindowPriv
-{
 	GtkBuilder *		builder;
 	GtkWidget *		window;
 	GtkWidget *		toolbar;
@@ -55,7 +50,6 @@ struct _XtmProcessWindowPriv
 	GtkWidget *		settings_button;
 	XtmSettings *		settings;
 };
-#define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XTM_TYPE_PROCESS_WINDOW, XtmProcessWindowPriv))
 G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 
 static void	xtm_process_window_finalize			(GObject *object);
@@ -77,7 +71,6 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 	GObjectClass *class;
 	GtkWidgetClass *widget_class;
 
-	g_type_class_add_private (klass, sizeof (XtmProcessWindowPriv));
 	xtm_process_window_parent_class = g_type_class_peek_parent (klass);
 	class = G_OBJECT_CLASS (klass);
 	class->finalize = xtm_process_window_finalize;
@@ -92,54 +85,52 @@ xtm_process_window_init (XtmProcessWindow *window)
 	GtkWidget *button;
 	gint width, height;
 
-	window->priv = GET_PRIV (window);
+	window->settings = xtm_settings_get_default ();
 
-	window->priv->settings = xtm_settings_get_default ();
+	window->builder = gtk_builder_new ();
+	gtk_builder_add_from_string (window->builder, process_window_ui, process_window_ui_length, NULL);
 
-	window->priv->builder = gtk_builder_new ();
-	gtk_builder_add_from_string (window->priv->builder, process_window_ui, process_window_ui_length, NULL);
-
-	window->priv->window = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "process-window"));
-	g_object_get (window->priv->settings, "window-width", &width, "window-height", &height, NULL);
+	window->window = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-window"));
+	g_object_get (window->settings, "window-width", &width, "window-height", &height, NULL);
 	if (width >= 1 && height >= 1)
-		gtk_window_resize (GTK_WINDOW (window->priv->window), width, height);
-	g_signal_connect_swapped (window->priv->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
-	g_signal_connect_swapped (window->priv->window, "delete-event", G_CALLBACK (emit_delete_event_signal), window);
+		gtk_window_resize (GTK_WINDOW (window->window), width, height);
+	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
+	g_signal_connect_swapped (window->window, "delete-event", G_CALLBACK (emit_delete_event_signal), window);
 
-	window->priv->toolbar = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "process-toolbar"));
-	g_signal_connect_swapped (window->priv->settings, "notify::toolbar-style", G_CALLBACK (toolbar_update_style), window);
-	g_object_notify (G_OBJECT (window->priv->settings), "toolbar-style");
+	window->toolbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-toolbar"));
+	g_signal_connect_swapped (window->settings, "notify::toolbar-style", G_CALLBACK (toolbar_update_style), window);
+	g_object_notify (G_OBJECT (window->settings), "toolbar-style");
 
-	window->priv->exec_button = xtm_exec_tool_button_new ();
-	gtk_toolbar_insert (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOL_ITEM (window->priv->exec_button), 0);
+	window->exec_button = xtm_exec_tool_button_new ();
+	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->exec_button), 0);
 
-	window->priv->settings_button = xtm_settings_tool_button_new ();
-	gtk_toolbar_insert (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOL_ITEM (window->priv->settings_button), 1);
+	window->settings_button = xtm_settings_tool_button_new ();
+	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 1);
 
 	{
 		GtkWidget *toolitem;
 		guint refresh_rate;
 
-		g_object_get (window->priv->settings, "refresh-rate", &refresh_rate, NULL);
+		g_object_get (window->settings, "refresh-rate", &refresh_rate, NULL);
 
-		toolitem = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "cpu-toolitem"));
-		window->priv->cpu_monitor = xtm_process_monitor_new ();
-		xtm_process_monitor_set_step_size (XTM_PROCESS_MONITOR (window->priv->cpu_monitor), refresh_rate / 1000.0);
-		gtk_widget_show (window->priv->cpu_monitor);
-		gtk_container_add (GTK_CONTAINER (toolitem), window->priv->cpu_monitor);
+		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "cpu-toolitem"));
+		window->cpu_monitor = xtm_process_monitor_new ();
+		xtm_process_monitor_set_step_size (XTM_PROCESS_MONITOR (window->cpu_monitor), refresh_rate / 1000.0);
+		gtk_widget_show (window->cpu_monitor);
+		gtk_container_add (GTK_CONTAINER (toolitem), window->cpu_monitor);
 
-		toolitem = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "mem-toolitem"));
-		window->priv->mem_monitor = xtm_process_monitor_new ();
-		xtm_process_monitor_set_step_size (XTM_PROCESS_MONITOR (window->priv->mem_monitor), refresh_rate / 1000.0);
-		gtk_widget_show (window->priv->mem_monitor);
-		gtk_container_add (GTK_CONTAINER (toolitem), window->priv->mem_monitor);
+		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "mem-toolitem"));
+		window->mem_monitor = xtm_process_monitor_new ();
+		xtm_process_monitor_set_step_size (XTM_PROCESS_MONITOR (window->mem_monitor), refresh_rate / 1000.0);
+		gtk_widget_show (window->mem_monitor);
+		gtk_container_add (GTK_CONTAINER (toolitem), window->mem_monitor);
 
 		monitor_update_paint_box (window);
-		g_signal_connect_swapped (window->priv->settings, "notify::monitor-paint-box", G_CALLBACK (monitor_update_paint_box), window);
-		g_signal_connect_swapped (window->priv->settings, "notify::refresh-rate", G_CALLBACK (monitor_update_step_size), window);
+		g_signal_connect_swapped (window->settings, "notify::monitor-paint-box", G_CALLBACK (monitor_update_paint_box), window);
+		g_signal_connect_swapped (window->settings, "notify::refresh-rate", G_CALLBACK (monitor_update_step_size), window);
 	}
 
-	button = GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "toolbutton-about"));
+	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "toolbutton-about"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
 
 	if (geteuid () == 0)
@@ -147,54 +138,54 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_rc_parse_string ("style\"root-warning-style\"{bg[NORMAL]=\"#b4254b\"\nfg[NORMAL]=\"#fefefe\"}\n"
 				"widget\"GtkWindow.*.root-warning\"style\"root-warning-style\"\n"
 				"widget\"GtkWindow.*.root-warning.GtkLabel\"style\"root-warning-style\"");
-		gtk_widget_set_name (GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "root-warning-ebox")), "root-warning");
-		gtk_widget_show_all (GTK_WIDGET (gtk_builder_get_object (window->priv->builder, "root-warning-box")));
+		gtk_widget_set_name (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-ebox")), "root-warning");
+		gtk_widget_show_all (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-box")));
 	}
 
-	window->priv->treeview = xtm_process_tree_view_new ();
-	gtk_widget_show (window->priv->treeview);
-	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->priv->builder, "scrolledwindow")), window->priv->treeview);
+	window->treeview = xtm_process_tree_view_new ();
+	gtk_widget_show (window->treeview);
+	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->builder, "scrolledwindow")), window->treeview);
 
-	window->priv->statusbar = xtm_process_statusbar_new ();
-	gtk_widget_show (window->priv->statusbar);
-	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->priv->builder, "process-vbox")), window->priv->statusbar, FALSE, FALSE, 0);
+	window->statusbar = xtm_process_statusbar_new ();
+	gtk_widget_show (window->statusbar);
+	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->builder, "process-vbox")), window->statusbar, FALSE, FALSE, 0);
 
-	g_object_unref (window->priv->builder);
-	window->priv->builder = NULL;
+	g_object_unref (window->builder);
+	window->builder = NULL;
 }
 
 static void
 xtm_process_window_finalize (GObject *object)
 {
-	XtmProcessWindowPriv *priv = XTM_PROCESS_WINDOW (object)->priv;
+	XtmProcessWindow *window = XTM_PROCESS_WINDOW (object);
 
-	if (GTK_IS_WINDOW (priv->window))
+	if (GTK_IS_WINDOW (window->window))
 	{
 		gint width, height;
 		guint sort_column_id;
 		GtkSortType sort_type;
 
-		gtk_window_get_size (GTK_WINDOW (priv->window), &width, &height);
-		xtm_process_tree_view_get_sort_column_id (XTM_PROCESS_TREE_VIEW (priv->treeview), (gint*)&sort_column_id, &sort_type);
+		gtk_window_get_size (GTK_WINDOW (window->window), &width, &height);
+		xtm_process_tree_view_get_sort_column_id (XTM_PROCESS_TREE_VIEW (window->treeview), (gint*)&sort_column_id, &sort_type);
 
-		g_object_set (priv->settings, "window-width", width, "window-height", height,
+		g_object_set (window->settings, "window-width", width, "window-height", height,
 				"sort-column-id", sort_column_id, "sort-type", sort_type, NULL);
 	}
 
-	if (GTK_IS_TREE_VIEW (priv->treeview))
-		gtk_widget_destroy (priv->treeview);
+	if (GTK_IS_TREE_VIEW (window->treeview))
+		gtk_widget_destroy (window->treeview);
 
-	if (GTK_IS_STATUSBAR (priv->statusbar))
-		gtk_widget_destroy (priv->statusbar);
+	if (GTK_IS_STATUSBAR (window->statusbar))
+		gtk_widget_destroy (window->statusbar);
 
-	if (GTK_IS_TOOL_ITEM (priv->exec_button))
-		gtk_widget_destroy (priv->exec_button);
+	if (GTK_IS_TOOL_ITEM (window->exec_button))
+		gtk_widget_destroy (window->exec_button);
 
-	if (GTK_IS_TOOL_ITEM (priv->settings_button))
-		gtk_widget_destroy (priv->settings_button);
+	if (GTK_IS_TOOL_ITEM (window->settings_button))
+		gtk_widget_destroy (window->settings_button);
 
-	if (XTM_IS_SETTINGS (priv->settings))
-		g_object_unref (priv->settings);
+	if (XTM_IS_SETTINGS (window->settings))
+		g_object_unref (window->settings);
 }
 
 /**
@@ -219,28 +210,28 @@ static void
 toolbar_update_style (XtmProcessWindow *window)
 {
 	XtmToolbarStyle toolbar_style;
-	g_object_get (window->priv->settings, "toolbar-style", &toolbar_style, NULL);
+	g_object_get (window->settings, "toolbar-style", &toolbar_style, NULL);
 	switch (toolbar_style)
 	{
 		default:
 		case XTM_TOOLBAR_STYLE_DEFAULT:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->priv->toolbar), GTK_ICON_SIZE_MENU);
-		gtk_toolbar_unset_style (GTK_TOOLBAR (window->priv->toolbar));
+		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_MENU);
+		gtk_toolbar_unset_style (GTK_TOOLBAR (window->toolbar));
 		break;
 
 		case XTM_TOOLBAR_STYLE_SMALL:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->priv->toolbar), GTK_ICON_SIZE_SMALL_TOOLBAR);
-		gtk_toolbar_set_style (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOLBAR_ICONS);
+		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_SMALL_TOOLBAR);
+		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_ICONS);
 		break;
 
 		case XTM_TOOLBAR_STYLE_LARGE:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->priv->toolbar), GTK_ICON_SIZE_LARGE_TOOLBAR);
-		gtk_toolbar_set_style (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOLBAR_ICONS);
+		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_LARGE_TOOLBAR);
+		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_ICONS);
 		break;
 
 		case XTM_TOOLBAR_STYLE_TEXT:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->priv->toolbar), GTK_ICON_SIZE_MENU);
-		gtk_toolbar_set_style (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOLBAR_BOTH);
+		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_MENU);
+		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_BOTH);
 		break;
 	}
 }
@@ -249,18 +240,18 @@ static void
 monitor_update_paint_box (XtmProcessWindow *window)
 {
 	gboolean paint_box;
-	g_object_get (window->priv->settings, "monitor-paint-box", &paint_box, NULL);
-	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->priv->cpu_monitor), paint_box);
-	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->priv->mem_monitor), paint_box);
+	g_object_get (window->settings, "monitor-paint-box", &paint_box, NULL);
+	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->cpu_monitor), paint_box);
+	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->mem_monitor), paint_box);
 }
 
 static void
 monitor_update_step_size (XtmProcessWindow *window)
 {
 	guint refresh_rate;
-	g_object_get (window->priv->settings, "refresh-rate", &refresh_rate, NULL);
-	g_object_set (window->priv->cpu_monitor, "step-size", refresh_rate / 1000.0, NULL);
-	g_object_set (window->priv->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
+	g_object_get (window->settings, "refresh-rate", &refresh_rate, NULL);
+	g_object_set (window->cpu_monitor, "step-size", refresh_rate / 1000.0, NULL);
+	g_object_set (window->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
 }
 
 #if !GTK_CHECK_VERSION(2,18,0)
@@ -309,7 +300,7 @@ show_about_dialog (XtmProcessWindow *window)
 #if !GTK_CHECK_VERSION(2,18,0)
 	gtk_about_dialog_set_url_hook (url_hook_about_dialog, NULL, NULL);
 #endif
-	gtk_show_about_dialog (GTK_WINDOW (window->priv->window),
+	gtk_show_about_dialog (GTK_WINDOW (window->window),
 		"program-name", _("Task Manager"),
 		"version", PACKAGE_VERSION,
 		"copyright", "Copyright \302\251 2005-2010 The Xfce development team",
@@ -340,9 +331,9 @@ static void
 xtm_process_window_show (GtkWidget *widget)
 {
 	g_return_if_fail (GTK_IS_WIDGET (widget));
-	g_return_if_fail (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->priv->window));
-	gtk_widget_show (XTM_PROCESS_WINDOW (widget)->priv->window);
-	gtk_window_present (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->priv->window));
+	g_return_if_fail (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->window));
+	gtk_widget_show (XTM_PROCESS_WINDOW (widget)->window);
+	gtk_window_present (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window));
 	GTK_WIDGET_SET_FLAGS (widget, GTK_VISIBLE);
 }
 
@@ -351,11 +342,11 @@ xtm_process_window_hide (GtkWidget *widget)
 {
 	gint winx, winy;
 	g_return_if_fail (GTK_IS_WIDGET (widget));
-	if (!GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->priv->window))
+	if (!GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->window))
 		return;
-	gtk_window_get_position (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->priv->window), &winx, &winy);
-	gtk_widget_hide (XTM_PROCESS_WINDOW (widget)->priv->window);
-	gtk_window_move (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->priv->window), winx, winy);
+	gtk_window_get_position (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), &winx, &winy);
+	gtk_widget_hide (XTM_PROCESS_WINDOW (widget)->window);
+	gtk_window_move (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), winx, winy);
 	GTK_WIDGET_UNSET_FLAGS (widget, GTK_VISIBLE);
 }
 
@@ -363,8 +354,8 @@ GtkTreeModel *
 xtm_process_window_get_model (XtmProcessWindow *window)
 {
 	g_return_val_if_fail (XTM_IS_PROCESS_WINDOW (window), NULL);
-	g_return_val_if_fail (GTK_IS_TREE_VIEW (window->priv->treeview), NULL);
-	return gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (gtk_tree_view_get_model (GTK_TREE_VIEW (window->priv->treeview))));
+	g_return_val_if_fail (GTK_IS_TREE_VIEW (window->treeview), NULL);
+	return gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (gtk_tree_view_get_model (GTK_TREE_VIEW (window->treeview))));
 }
 
 void
@@ -374,25 +365,25 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 	gchar value[4];
 
 	g_return_if_fail (XTM_IS_PROCESS_WINDOW (window));
-	g_return_if_fail (GTK_IS_STATUSBAR (window->priv->statusbar));
+	g_return_if_fail (GTK_IS_STATUSBAR (window->statusbar));
 
-	g_object_set (window->priv->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory, "swap", swap, NULL);
+	g_object_set (window->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory, "swap", swap, NULL);
 
-	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->priv->cpu_monitor), cpu / 100.0);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->cpu_monitor), cpu / 100.0);
 	g_snprintf (value, 4, "%.0f", cpu);
 	g_snprintf (text, 100, _("CPU: %s%%"), value);
-	gtk_widget_set_tooltip_text (window->priv->cpu_monitor, text);
+	gtk_widget_set_tooltip_text (window->cpu_monitor, text);
 
-	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->priv->mem_monitor), memory / 100.0);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->mem_monitor), memory / 100.0);
 	g_snprintf (value, 4, "%.0f", memory);
 	g_snprintf (text, 100, _("Memory: %s%%"), value);
-	gtk_widget_set_tooltip_text (window->priv->mem_monitor, text);
+	gtk_widget_set_tooltip_text (window->mem_monitor, text);
 }
 
 void
 xtm_process_window_show_swap_usage (XtmProcessWindow *window, gboolean show_swap_usage)
 {
 	g_return_if_fail (XTM_IS_PROCESS_WINDOW (window));
-	g_return_if_fail (GTK_IS_STATUSBAR (window->priv->statusbar));
-	g_object_set (window->priv->statusbar, "show-swap", show_swap_usage, NULL);
+	g_return_if_fail (GTK_IS_STATUSBAR (window->statusbar));
+	g_object_set (window->statusbar, "show-swap", show_swap_usage, NULL);
 }
