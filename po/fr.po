@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 14:58+0000\n"
+"POT-Creation-Date: 2010-09-29 20:02+0000\n"
 "PO-Revision-Date: 2010-05-10 22:30+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -21,12 +21,42 @@ msgstr ""
 msgid "Easy to use task manager"
 msgstr "Gestionnaire de tâches simple et léger"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:345 ../src/process-tree-view.c:360
 #: ../src/process-tree-view.c:379 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Gestionnaire de tâches"
+
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "Erreur d'exécution"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "Impossible de trouver une commande par défaut à exécuter."
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "Lancer le Gestionnaire de tâches en tant que root"
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "Lancer un programme..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "Liste des applications"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "Émulateur de terminal"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "XTerm"
 
 #: ../src/main.c:100
 #, c-format
@@ -78,15 +108,15 @@ msgstr "Processus : %d"
 msgid "Task"
 msgstr "Tâche"
 
-#: ../src/process-tree-view.c:148
+#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156
+#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164
+#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "État"
 
@@ -98,11 +128,11 @@ msgstr "VSZ"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189
+#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197
+#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
@@ -179,7 +209,7 @@ msgstr "Haute"
 msgid "Very high"
 msgstr "Très haute"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:445 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Priorité"
 
@@ -262,6 +292,47 @@ msgstr "Afficher les valeurs avec plus de précision"
 msgid "Toolbar style:"
 msgstr "Style de la barre d'outils :"
 
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr "500ms"
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750ms"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "1s"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "2s"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "5s"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "10s"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "Afficher tous les processus"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "Taux de rafraîchissement"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr "Mémoire virtuelle"
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr "Mémoire privée"
+
 #: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
@@ -282,56 +353,14 @@ msgstr "%lu B"
 msgid "%s%%"
 msgstr "%s%%"
 
-#~ msgid "Execution error"
-#~ msgstr "Erreur d'exécution"
-
-#~ msgid "Run Program..."
-#~ msgstr "Lancer un programme..."
-
-#~ msgid "Application Finder"
-#~ msgstr "Liste des applications"
-
-#~ msgid "Terminal emulator"
-#~ msgstr "Émulateur de terminal"
-
-#~ msgid "XTerm"
-#~ msgstr "XTerm"
-
 #~ msgid "250ms"
 #~ msgstr "250ms"
-
-#~ msgid "500ms"
-#~ msgstr "500ms"
-
-#~ msgid "750ms"
-#~ msgstr "750ms"
-
-#~ msgid "1s"
-#~ msgstr "1s"
-
-#~ msgid "2s"
-#~ msgstr "2s"
-
-#~ msgid "5s"
-#~ msgstr "5s"
-
-#~ msgid "10s"
-#~ msgstr "10s"
-
-#~ msgid "Show all processes"
-#~ msgstr "Afficher tous les processus"
 
 #~ msgid "More precision"
 #~ msgstr "Plus de précision"
 
 #~ msgid "Show status icon"
 #~ msgstr "Afficher une icône de statut"
-
-#~ msgid "Virtual Bytes"
-#~ msgstr "Mémoire virtuelle"
-
-#~ msgid "Private Bytes"
-#~ msgstr "Mémoire privée"
 
 #~ msgid "Control your processes"
 #~ msgstr "Contrôler vos processus"
