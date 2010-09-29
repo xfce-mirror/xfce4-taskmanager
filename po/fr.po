@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-05 16:08+0000\n"
+"POT-Creation-Date: 2010-09-29 14:58+0000\n"
 "PO-Revision-Date: 2010-05-10 22:30+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:273
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 msgid "Easy to use task manager"
 msgstr "Gestionnaire de tâches simple et léger"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
-#: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
-#: ../src/process-tree-view.c:373 ../src/process-window.c:268
+#: ../src/process-tree-view.c:345 ../src/process-tree-view.c:360
+#: ../src/process-tree-view.c:379 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Gestionnaire de tâches"
@@ -54,12 +54,12 @@ msgstr ""
 "Mémoire : %.0f%%\n"
 "Mémoire paginée: %.0f%%"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:338
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU : %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:343
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
 msgstr "Mémoire : %s%%"
@@ -112,78 +112,78 @@ msgstr "CPU"
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:342
 msgid "Terminate task"
 msgstr "Terminer une tâche"
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:342
 msgid "Kill task"
 msgstr "Tuer une tâche"
 
-#: ../src/process-tree-view.c:338
+#: ../src/process-tree-view.c:344
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Êtes-vous certain(e) de vouloir envoyer un signal au PID %d ?"
 
-#: ../src/process-tree-view.c:350
+#: ../src/process-tree-view.c:356
 msgid "Error sending signal"
 msgstr "Erreur envoie de signal"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:358
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr "Une erreur est survenue lors de l'envoie d'un signal au PID %d. Il est probable que vous ne possédez pas des privilèges requis."
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:376
 msgid "Error setting priority"
 msgstr "Erreur changement de priorité"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:377
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr "Une erreur est survenue lors du changement de priorité sur le PID %d. Il est probable que vous ne possédez pas des privilèges requis."
 
-#: ../src/process-tree-view.c:389
-msgid "Stop"
-msgstr "Stopper"
-
-#: ../src/process-tree-view.c:396
-msgid "Continue"
-msgstr "Continuer"
-
-#: ../src/process-tree-view.c:402
-msgid "Kill"
-msgstr "Tuer"
-
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:393
 msgid "Terminate"
 msgstr "Terminer"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:400
+msgid "Stop"
+msgstr "Stopper"
+
+#: ../src/process-tree-view.c:407
+msgid "Continue"
+msgstr "Continuer"
+
+#: ../src/process-tree-view.c:413
+msgid "Kill"
+msgstr "Tuer"
+
+#: ../src/process-tree-view.c:420
 msgid "Very low"
 msgstr "Très basse"
 
-#: ../src/process-tree-view.c:419
+#: ../src/process-tree-view.c:425
 msgid "Low"
 msgstr "Basse"
 
-#: ../src/process-tree-view.c:424
+#: ../src/process-tree-view.c:430
 msgid "Normal"
 msgstr "Normale"
 
-#: ../src/process-tree-view.c:429
+#: ../src/process-tree-view.c:435
 msgid "High"
 msgstr "Haute"
 
-#: ../src/process-tree-view.c:434
+#: ../src/process-tree-view.c:440
 msgid "Very high"
 msgstr "Très haute"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:445
 msgid "Priority"
 msgstr "Priorité"
 
-#: ../src/process-window.c:276
+#: ../src/process-window.c:312
 msgid "translator-credits"
 msgstr ""
 "Maximilian Schleiss\n"
@@ -193,6 +193,74 @@ msgstr ""
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Attention, vous utilisez le compte root, vous pourriez endommager votre système."
+
+#: ../src/settings.c:375
+msgid "Default"
+msgstr "Défaut"
+
+#: ../src/settings.c:376
+msgid "Small"
+msgstr "Petit"
+
+#: ../src/settings.c:377
+msgid "Large"
+msgstr "Large"
+
+#: ../src/settings.c:378
+msgid "Text"
+msgstr "Texte"
+
+#: ../src/settings-dialog.ui.h:1
+msgid "<b>Information</b>"
+msgstr "<b>Informations</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr "<b>Style de l'interface</b>"
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Divers</b>"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr "Collones :"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "Afficher une bordure autour des moniteurs"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr "Cacher dans la zone de notification"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr "Demander pour terminer une tâche"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr "Taux de rafraîchissement :"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr "Paramètres pour le Gestionnaire de tâches"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show full command lines"
+msgstr "Afficher les lignes de commande entière"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show values with more precision"
+msgstr "Afficher les valeurs avec plus de précision"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Toolbar style:"
+msgstr "Style de la barre d'outils :"
 
 #: ../src/task-manager.c:229
 #, c-format
@@ -256,14 +324,8 @@ msgstr "%s%%"
 #~ msgid "More precision"
 #~ msgstr "Plus de précision"
 
-#~ msgid "Full command line"
-#~ msgstr "Ligne de commande entière"
-
 #~ msgid "Show status icon"
 #~ msgstr "Afficher une icône de statut"
-
-#~ msgid "Refresh rate"
-#~ msgstr "Taux de rafraîchissement"
 
 #~ msgid "Virtual Bytes"
 #~ msgstr "Mémoire virtuelle"
