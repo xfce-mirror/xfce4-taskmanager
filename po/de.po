@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 22:11+0000\n"
+"POT-Creation-Date: 2010-09-30 10:11+0000\n"
 "PO-Revision-Date: 2008-07-31 01:00+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
@@ -285,7 +285,7 @@ msgstr "Einstellungen"
 #: ../src/settings-dialog.ui.h:10
 #, fuzzy
 msgid "Settings for Task Manager"
-msgstr "Taskmanager"
+msgstr "Taskmanagereinstellungen"
 
 #: ../src/settings-dialog.ui.h:11
 #, fuzzy
