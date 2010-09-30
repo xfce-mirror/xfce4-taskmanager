@@ -8,11 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-06 16:08+0000\n"
-"PO-Revision-Date: 2010-08-29 21:27+0100\n"
+"POT-Creation-Date: 2010-09-30 04:11+0000\n"
+"PO-Revision-Date: 2010-09-30 14:05+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
-"Language-Team: Italian Translation Team <xfce-it-translators@googlegroups."
-"com>\n"
+"Language-Team: Italian Translation Team <xfce-it-translators@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,16 +20,53 @@ msgstr ""
 # GLOSSARIO
 # kill = interrompi
 # term = termina
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:273
+#: ../xfce4-taskmanager.desktop.in.h:1
+#: ../src/process-window.c:309
 msgid "Easy to use task manager"
 msgstr "Gestore dei processi di semplice utilizzo"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
-#: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
-#: ../src/process-tree-view.c:373 ../src/process-window.c:268
+#: ../xfce4-taskmanager.desktop.in.h:2
+#: ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134
+#: ../src/main.c:156
+#: ../src/process-tree-view.c:345
+#: ../src/process-tree-view.c:360
+#: ../src/process-tree-view.c:379
+#: ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Gestore dei processi"
+
+#: ../src/exec-tool-button.c:87
+#: ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "Errore di esecuzione"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "Impossibile trovare un comando predefinito da eseguire."
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "Esegui il gestore dei processi come root"
+
+#: ../src/exec-tool-button.c:175
+#: ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "Esegui programma..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "Ricerca applicazione"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "Emulatore di terminale"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "Xterm"
 
 #: ../src/main.c:100
 #, c-format
@@ -58,12 +94,14 @@ msgstr ""
 "Memoria: %.0f%%\n"
 "Swap: %.0f%%"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:338
+#: ../src/process-statusbar.c:148
+#: ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:343
+#: ../src/process-statusbar.c:157
+#: ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
 msgstr "Memoria: %s%%"
@@ -83,14 +121,17 @@ msgid "Task"
 msgstr "Processo"
 
 #: ../src/process-tree-view.c:148
+#: ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
 #: ../src/process-tree-view.c:156
+#: ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
 #: ../src/process-tree-view.c:164
+#: ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Stato"
 
@@ -103,10 +144,12 @@ msgid "RSS"
 msgstr "RSS"
 
 #: ../src/process-tree-view.c:189
+#: ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "PID"
 
 #: ../src/process-tree-view.c:197
+#: ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "% CPU"
 
@@ -115,96 +158,196 @@ msgstr "% CPU"
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:342
 msgid "Terminate task"
 msgstr "Terminazione del processo"
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:342
 msgid "Kill task"
 msgstr "Interruzione del processo"
 
-#: ../src/process-tree-view.c:338
+#: ../src/process-tree-view.c:344
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Inviare davvero il segnale al PID %d?"
 
-#: ../src/process-tree-view.c:350
+#: ../src/process-tree-view.c:356
 msgid "Error sending signal"
 msgstr "Errore nell'invio del segnale"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:358
 #, c-format
-msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
-msgstr ""
-"Si è verificato un errore inviando il segnale al PID %d. Sembra che non si "
-"sia in possesso dei privilegi richiesti."
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
+msgstr "Si è verificato un errore inviando il segnale al PID %d. Sembra che non si sia in possesso dei privilegi richiesti."
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:376
 msgid "Error setting priority"
 msgstr "Errore nell'impostare la priorità"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:377
 #, c-format
-msgid ""
-"An error was encountered by setting a priority to the PID %d. It is likely "
-"you don't have the required privileges."
-msgstr ""
-"Si è verificato un errore inviando impostando la priorità del PID %d. Sembra "
-"che non si sia in possesso dei privilegi richiesti."
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
+msgstr "Si è verificato un errore inviando impostando la priorità del PID %d. Sembra che non si sia in possesso dei privilegi richiesti."
 
-#: ../src/process-tree-view.c:389
-msgid "Stop"
-msgstr "Ferma"
-
-#: ../src/process-tree-view.c:396
-msgid "Continue"
-msgstr "Continua"
-
-#: ../src/process-tree-view.c:402
-msgid "Kill"
-msgstr "Interrompi"
-
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:393
 msgid "Terminate"
 msgstr "Termina"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:400
+msgid "Stop"
+msgstr "Ferma"
+
+#: ../src/process-tree-view.c:407
+msgid "Continue"
+msgstr "Riprendi"
+
+#: ../src/process-tree-view.c:413
+msgid "Kill"
+msgstr "Interrompi"
+
+#: ../src/process-tree-view.c:420
 msgid "Very low"
 msgstr "Molto bassa"
 
-#: ../src/process-tree-view.c:419
+#: ../src/process-tree-view.c:425
 msgid "Low"
 msgstr "Bassa"
 
-#: ../src/process-tree-view.c:424
+#: ../src/process-tree-view.c:430
 msgid "Normal"
 msgstr "Normale"
 
-#: ../src/process-tree-view.c:429
+#: ../src/process-tree-view.c:435
 msgid "High"
 msgstr "Alta"
 
-#: ../src/process-tree-view.c:434
+#: ../src/process-tree-view.c:440
 msgid "Very high"
 msgstr "Molto alta"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:445
+#: ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Priorità"
 
-#: ../src/process-window.c:276
+#: ../src/process-window.c:312
 msgid "translator-credits"
 msgstr ""
 "Fabio Riga\n"
-"Cristian Marchi, 2009,2010"
+"Cristian Marchi, 2009, 2010"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
-"Attenzione, si sta utilizzando l'account root: si potrebbe danneggiare il "
-"sistema."
+msgstr "Attenzione, si sta utilizzando l'account root: si potrebbe danneggiare il sistema."
+
+#: ../src/settings.c:375
+msgid "Default"
+msgstr "Predefinito"
+
+#: ../src/settings.c:376
+msgid "Small"
+msgstr "Piccolo"
+
+#: ../src/settings.c:377
+msgid "Large"
+msgstr "Grande"
+
+#: ../src/settings.c:378
+msgid "Text"
+msgstr "Testo"
+
+#: ../src/settings-dialog.ui.h:1
+msgid "<b>Information</b>"
+msgstr "<b>Informazioni</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr "<b>Stile dell'interfaccia</b>"
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Varie</b>"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr "Colonne:"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "Disegna i bordi"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr "Nascondi nell'area di notifica"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr "Chiedi conferma per terminare i processi"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr "Frequenza di aggiornamento:"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr "Impostazioni per il gestore dei processi"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show full command lines"
+msgstr "Mostra per intero la linea di comando"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show values with more precision"
+msgstr "Mostra i valori con maggiore precisione"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Toolbar style:"
+msgstr "Stile della barra strumenti:"
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr "500ms"
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750ms"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "1s"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "2s"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "5s"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "10s"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "Mostra tutti i processi"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "Frequenza di aggiornamento"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr "Byte virtuali"
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr "Byte privati"
 
 #: ../src/task-manager.c:229
 #, c-format
@@ -228,63 +371,30 @@ msgstr "%s%%"
 
 #~ msgid "Process manager"
 #~ msgstr "Gestore dei processi"
-
 #~ msgid "Really kill the task?"
 #~ msgstr "Interrompere davvero il processo?"
-
 #~ msgid "%d MB of %d MB used"
 #~ msgstr "%d MB su %d MB usati"
-
 #~ msgid "Cpu usage"
 #~ msgstr "Utilizzo della CPU"
-
 #~ msgid "Command"
 #~ msgstr "Comando"
-
 #~ msgid "VM-Size"
 #~ msgstr "Dimensione VM"
-
 #~ msgid "User"
 #~ msgstr "Utente"
-
 #~ msgid "Show user tasks"
 #~ msgstr "Mostra i processi dell'utente"
-
 #~ msgid "Show root tasks"
 #~ msgstr "Mostra i processi di root"
-
 #~ msgid "Show other tasks"
 #~ msgstr "Mostra gli altri processi"
-
 #~ msgid "Show memory used by cache as free"
 #~ msgstr "Mostra la memoria usata per la cache come libera"
-
 #~ msgid "Contributors:"
 #~ msgstr "Collaboratori:"
-
 #~ msgid "more details"
 #~ msgstr "Maggiori dettagli"
-
-#~ msgid "Terminal emulator"
-#~ msgstr "Emulatore di terminale"
-
-#~ msgid "XTerm"
-#~ msgstr "Xterm"
-
 #~ msgid "Xfce4 Taskmanager"
 #~ msgstr "Gestore dei processi"
 
-#~ msgid "Execution error"
-#~ msgstr "Errore di esecuzione"
-
-#~ msgid "Run Program..."
-#~ msgstr "Esegui programma..."
-
-#~ msgid "Application Finder"
-#~ msgstr "Ricerca applicazione"
-
-#~ msgid "Virtual Bytes"
-#~ msgstr "Byte virtuali"
-
-#~ msgid "Private Bytes"
-#~ msgstr "Byte privati"
