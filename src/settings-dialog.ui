@@ -199,7 +199,6 @@
                 </child>
                 <child>
                   <object class="GtkVSeparator" id="vseparator1">
-                    <property name="visible">True</property>
                     <property name="orientation">vertical</property>
                   </object>
                   <packing>
@@ -210,7 +209,6 @@
                 </child>
                 <child>
                   <object class="GtkVBox" id="vbox2">
-                    <property name="visible">True</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
