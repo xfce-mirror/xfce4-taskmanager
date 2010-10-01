@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-30 14:52+0900\n"
-"PO-Revision-Date: 2010-09-30 14:52+0900\n"
+"POT-Creation-Date: 2010-10-01 20:37+0900\n"
+"PO-Revision-Date: 2010-10-01 20:36+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "Language: ja\n"
@@ -305,11 +305,11 @@ msgstr "ツールバースタイル:"
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
 msgid "500ms"
-msgstr "500ms"
+msgstr "500ミリ秒"
 
 #: ../src/settings-tool-button.c:111
 msgid "750ms"
-msgstr "750ms"
+msgstr "750ミリ秒"
 
 #: ../src/settings-tool-button.c:112
 msgid "1s"
