@@ -241,7 +241,6 @@ msgid "Text"
 msgstr "Tekst"
 
 #: ../src/settings-dialog.ui.h:1
-#, fuzzy
 msgid "<b>Information</b>"
 msgstr "<b>Information</b>"
 
