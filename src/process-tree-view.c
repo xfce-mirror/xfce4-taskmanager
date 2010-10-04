@@ -61,7 +61,6 @@ static void		xtm_process_tree_view_finalize			(GObject *object);
 static gboolean		treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
 static gboolean		treeview_key_pressed				(XtmProcessTreeView *treeview, GdkEventKey *event);
 static void		column_task_pack_cells				(XtmProcessTreeView *treeview, GtkTreeViewColumn *column);
-static void		cb_show_application_icons_toggled		(XtmProcessTreeView *treeview);
 static void		columns_changed					(XtmProcessTreeView *treeview);
 static void		read_columns_positions				(XtmProcessTreeView *treeview);
 static void		save_columns_positions				(XtmProcessTreeView *treeview);
@@ -216,7 +215,6 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_signal_connect (treeview, "columns-changed", G_CALLBACK (columns_changed), NULL);
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
 	g_signal_connect (treeview, "key-press-event", G_CALLBACK (treeview_key_pressed), NULL);
-	g_signal_connect_swapped (treeview->settings, "notify::show-application-icons", G_CALLBACK (cb_show_application_icons_toggled), treeview);
 }
 
 static void
@@ -268,15 +266,6 @@ column_task_pack_cells (XtmProcessTreeView *treeview, GtkTreeViewColumn *column)
 	g_object_set (cell_cmdline, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 	gtk_tree_view_column_pack_start (GTK_TREE_VIEW_COLUMN (column), cell_cmdline, TRUE);
 	gtk_tree_view_column_set_attributes (GTK_TREE_VIEW_COLUMN (column), cell_cmdline, "text", XTM_PTV_COLUMN_COMMAND, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
-}
-
-static void
-cb_show_application_icons_toggled (XtmProcessTreeView *treeview)
-{
-	GtkTreeViewColumn *column;
-	column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_COMMAND]);
-	gtk_tree_view_column_clear (column);
-	column_task_pack_cells (treeview, column);
 }
 
 static void
@@ -649,6 +638,13 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 
 		g_object_get (object, pspec->name, &visible, NULL);
 		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[column_id]), visible);
+	}
+	else if (!g_strcmp0 (pspec->name, "show-application-icons"))
+	{
+		GtkTreeViewColumn *column;
+		column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_COMMAND]);
+		gtk_tree_view_column_clear (column);
+		column_task_pack_cells (treeview, column);
 	}
 	else if (!g_strcmp0 (pspec->name, "show-all-processes"))
 	{
