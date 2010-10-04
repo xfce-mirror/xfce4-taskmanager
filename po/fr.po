@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 20:02+0000\n"
+"POT-Creation-Date: 2010-10-04 17:56+0000\n"
 "PO-Revision-Date: 2010-05-10 22:30+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -23,8 +23,8 @@ msgstr "Gestionnaire de tâches simple et léger"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:345 ../src/process-tree-view.c:360
-#: ../src/process-tree-view.c:379 ../src/process-window.c:304
+#: ../src/process-tree-view.c:366 ../src/process-tree-view.c:381
+#: ../src/process-tree-view.c:400 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Gestionnaire de tâches"
@@ -104,112 +104,112 @@ msgstr "Mémoire paginée : %s%%"
 msgid "Processes: %d"
 msgstr "Processus : %d"
 
-#: ../src/process-tree-view.c:131
+#: ../src/process-tree-view.c:126
 msgid "Task"
 msgstr "Tâche"
 
-#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:137 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:145 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:153 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "État"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:162
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:170
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:178 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:186 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:195
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:342
+#: ../src/process-tree-view.c:363
 msgid "Terminate task"
 msgstr "Terminer une tâche"
 
-#: ../src/process-tree-view.c:342
+#: ../src/process-tree-view.c:363
 msgid "Kill task"
 msgstr "Tuer une tâche"
 
-#: ../src/process-tree-view.c:344
+#: ../src/process-tree-view.c:365
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Êtes-vous certain(e) de vouloir envoyer un signal au PID %d ?"
 
-#: ../src/process-tree-view.c:356
+#: ../src/process-tree-view.c:377
 msgid "Error sending signal"
 msgstr "Erreur envoie de signal"
 
-#: ../src/process-tree-view.c:358
+#: ../src/process-tree-view.c:379
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr "Une erreur est survenue lors de l'envoie d'un signal au PID %d. Il est probable que vous ne possédez pas des privilèges requis."
 
-#: ../src/process-tree-view.c:376
+#: ../src/process-tree-view.c:397
 msgid "Error setting priority"
 msgstr "Erreur changement de priorité"
 
-#: ../src/process-tree-view.c:377
+#: ../src/process-tree-view.c:398
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr "Une erreur est survenue lors du changement de priorité sur le PID %d. Il est probable que vous ne possédez pas des privilèges requis."
 
-#: ../src/process-tree-view.c:393
+#: ../src/process-tree-view.c:414
 msgid "Terminate"
 msgstr "Terminer"
 
-#: ../src/process-tree-view.c:400
+#: ../src/process-tree-view.c:421
 msgid "Stop"
 msgstr "Stopper"
 
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:428
 msgid "Continue"
 msgstr "Continuer"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:434
 msgid "Kill"
 msgstr "Tuer"
 
-#: ../src/process-tree-view.c:420
+#: ../src/process-tree-view.c:441
 msgid "Very low"
 msgstr "Très basse"
 
-#: ../src/process-tree-view.c:425
+#: ../src/process-tree-view.c:446
 msgid "Low"
 msgstr "Basse"
 
-#: ../src/process-tree-view.c:430
+#: ../src/process-tree-view.c:451
 msgid "Normal"
 msgstr "Normale"
 
-#: ../src/process-tree-view.c:435
+#: ../src/process-tree-view.c:456
 msgid "High"
 msgstr "Haute"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:461
 msgid "Very high"
 msgstr "Très haute"
 
-#: ../src/process-tree-view.c:445 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:466 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Priorité"
 
@@ -224,19 +224,19 @@ msgstr ""
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Attention, vous utilisez le compte root, vous pourriez endommager votre système."
 
-#: ../src/settings.c:375
+#: ../src/settings.c:378
 msgid "Default"
 msgstr "Défaut"
 
-#: ../src/settings.c:376
+#: ../src/settings.c:379
 msgid "Small"
 msgstr "Petit"
 
-#: ../src/settings.c:377
+#: ../src/settings.c:380
 msgid "Large"
 msgstr "Large"
 
-#: ../src/settings.c:378
+#: ../src/settings.c:381
 msgid "Text"
 msgstr "Texte"
 
@@ -281,14 +281,18 @@ msgid "Settings for Task Manager"
 msgstr "Paramètres pour le Gestionnaire de tâches"
 
 #: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "Afficher les icônes d'application"
+
+#: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
 msgstr "Afficher les lignes de commande entière"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
 msgstr "Afficher les valeurs avec plus de précision"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
 msgstr "Style de la barre d'outils :"
 
