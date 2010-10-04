@@ -98,6 +98,7 @@ xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 
 	dialog->window = GTK_WIDGET (gtk_builder_get_object (builder, "settings-dialog"));
 
+	builder_bind_toggle_button (builder, "button-show-application-icons", dialog->settings, "show-application-icons");
 	builder_bind_toggle_button (builder, "button-full-command-line", dialog->settings, "full-command-line");
 	builder_bind_toggle_button (builder, "button-more-precision", dialog->settings, "more-precision");
 	builder_bind_toggle_button (builder, "button-monitor-paint-box", dialog->settings, "monitor-paint-box");

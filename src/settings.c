@@ -37,6 +37,7 @@ enum
 	PROP_FULL_COMMAND_LINE,
 	PROP_SHOW_STATUS_ICON,
 	PROP_MONITOR_PAINT_BOX,
+	PROP_SHOW_APPLICATION_ICONS,
 	PROP_TOOLBAR_STYLE,
 	PROP_PROMPT_TERMINATE_TASK,
 	PROP_REFRESH_RATE,
@@ -94,6 +95,8 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_boolean ("show-status-icon", "ShowStatusIcon", "Show/hide the status icon", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_MONITOR_PAINT_BOX,
 		g_param_spec_boolean ("monitor-paint-box", "MonitorPaintBox", "Paint box around monitor", TRUE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_SHOW_APPLICATION_ICONS,
+		g_param_spec_boolean ("show-application-icons", "ShowApplicationIcons", "Show application icons", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_TOOLBAR_STYLE,
 		g_param_spec_enum ("toolbar-style", "ToolbarStyle", "Toolbar style", XTM_TYPE_TOOLBAR_STYLE, XTM_TOOLBAR_STYLE_DEFAULT, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_PROMPT_TERMINATE_TASK,

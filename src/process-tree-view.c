@@ -60,6 +60,8 @@ static void		xtm_process_tree_view_finalize			(GObject *object);
 
 static gboolean		treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
 static gboolean		treeview_key_pressed				(XtmProcessTreeView *treeview, GdkEventKey *event);
+static void		column_task_pack_cells				(XtmProcessTreeView *treeview, GtkTreeViewColumn *column);
+static void		cb_show_application_icons_toggled		(XtmProcessTreeView *treeview);
 static void		columns_changed					(XtmProcessTreeView *treeview);
 static void		read_columns_positions				(XtmProcessTreeView *treeview);
 static void		save_columns_positions				(XtmProcessTreeView *treeview);
@@ -81,11 +83,7 @@ xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
 static void
 xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 {
-#ifdef HAVE_WNCK
-	GtkCellRenderer *cell_text, *cell_right_aligned, *cell_icon, *cell_cmdline;
-#else
-	GtkCellRenderer *cell_text, *cell_right_aligned, *cell_cmdline;
-#endif
+	GtkCellRenderer *cell_text, *cell_right_aligned;
 	GtkTreeViewColumn *column;
 	gboolean visible;
 
@@ -119,9 +117,6 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	cell_right_aligned = gtk_cell_renderer_text_new ();
 	g_object_set (cell_right_aligned, "xalign", 1.0, NULL);
 
-	cell_cmdline = gtk_cell_renderer_text_new ();
-	g_object_set (cell_cmdline, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
-
 	/* Retrieve initial tree view columns positions */
 	read_columns_positions (treeview);
 
@@ -129,13 +124,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 #define COLUMN_PROPERTIES "expand", TRUE, "clickable", TRUE, "reorderable", TRUE, "resizable", TRUE, "visible", TRUE
 	column = gtk_tree_view_column_new ();
 	gtk_tree_view_column_set_title (GTK_TREE_VIEW_COLUMN (column), _("Task"));
-#ifdef HAVE_WNCK
-	cell_icon = gtk_cell_renderer_pixbuf_new ();
-	gtk_tree_view_column_pack_start (GTK_TREE_VIEW_COLUMN (column), cell_icon, FALSE);
-	gtk_tree_view_column_set_attributes (GTK_TREE_VIEW_COLUMN (column), cell_icon, "pixbuf", XTM_PTV_COLUMN_ICON, "cell-background", XTM_PTV_COLUMN_BACKGROUND, NULL);
-#endif
-	gtk_tree_view_column_pack_start (GTK_TREE_VIEW_COLUMN (column), cell_cmdline, TRUE);
-	gtk_tree_view_column_set_attributes (GTK_TREE_VIEW_COLUMN (column), cell_cmdline, "text", XTM_PTV_COLUMN_COMMAND, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
+	column_task_pack_cells (treeview, column);
 	g_object_set (column, COLUMN_PROPERTIES, NULL);
 	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_COMMAND));
 	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_COMMAND));
@@ -227,6 +216,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_signal_connect (treeview, "columns-changed", G_CALLBACK (columns_changed), NULL);
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
 	g_signal_connect (treeview, "key-press-event", G_CALLBACK (treeview_key_pressed), NULL);
+	g_signal_connect_swapped (treeview->settings, "notify::show-application-icons", G_CALLBACK (cb_show_application_icons_toggled), treeview);
 }
 
 static void
@@ -257,6 +247,37 @@ xtm_process_tree_view_finalize (GObject *object)
 /**
  * Helper functions
  */
+
+static void
+column_task_pack_cells (XtmProcessTreeView *treeview, GtkTreeViewColumn *column)
+{
+	GtkCellRenderer *cell_cmdline, *cell_icon;
+	gboolean show_application_icons;
+
+	g_object_get (treeview->settings, "show-application-icons", &show_application_icons, NULL);
+	if (show_application_icons)
+	{
+#ifdef HAVE_WNCK
+		cell_icon = gtk_cell_renderer_pixbuf_new ();
+		gtk_tree_view_column_pack_start (GTK_TREE_VIEW_COLUMN (column), cell_icon, FALSE);
+		gtk_tree_view_column_set_attributes (GTK_TREE_VIEW_COLUMN (column), cell_icon, "pixbuf", XTM_PTV_COLUMN_ICON, "cell-background", XTM_PTV_COLUMN_BACKGROUND, NULL);
+#endif
+	}
+
+	cell_cmdline = gtk_cell_renderer_text_new ();
+	g_object_set (cell_cmdline, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+	gtk_tree_view_column_pack_start (GTK_TREE_VIEW_COLUMN (column), cell_cmdline, TRUE);
+	gtk_tree_view_column_set_attributes (GTK_TREE_VIEW_COLUMN (column), cell_cmdline, "text", XTM_PTV_COLUMN_COMMAND, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
+}
+
+static void
+cb_show_application_icons_toggled (XtmProcessTreeView *treeview)
+{
+	GtkTreeViewColumn *column;
+	column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_COMMAND]);
+	gtk_tree_view_column_clear (column);
+	column_task_pack_cells (treeview, column);
+}
 
 static void
 columns_changed (XtmProcessTreeView *treeview)
