@@ -226,11 +226,11 @@ msgstr "По умолчанию"
 
 #: ../src/settings.c:379
 msgid "Small"
-msgstr "Маленький"
+msgstr "Маленькие"
 
 #: ../src/settings.c:380
 msgid "Large"
-msgstr "Большой"
+msgstr "Большие"
 
 #: ../src/settings.c:381
 msgid "Text"
@@ -246,7 +246,7 @@ msgstr "<b>Стиль интерфейса</b>"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "<b>Miscellaneous</b>"
-msgstr "<b>Разное</b>"
+msgstr "<b>Дополнительно</b>"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Columns:"
@@ -254,7 +254,7 @@ msgstr "Колонки:"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr "Рисовать рамки вокруг индикаторов"
+msgstr "Отображать рамки вокруг индикаторов"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
@@ -282,7 +282,7 @@ msgstr "Показывать иконки приложений"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
-msgstr "Показывать полную командную строку"
+msgstr "Показывать строку команд полностью"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
