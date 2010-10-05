@@ -278,7 +278,7 @@ msgstr "Настройки Диспетчера задач Xfce 4"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
-msgstr "Показывать иконки приложений"
+msgstr "Показывать значки приложений"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
