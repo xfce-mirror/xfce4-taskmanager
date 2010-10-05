@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-14 04:11+0000\n"
+"POT-Creation-Date: 2010-10-05 10:11+0000\n"
 "PO-Revision-Date: 2009-10-17 23:23+0300\n"
 "Last-Translator: Vlad Vasilev <lortwer@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -16,16 +16,46 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:273
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 msgid "Easy to use task manager"
 msgstr "Простой диспетчер задач"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
-#: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
-#: ../src/process-tree-view.c:373 ../src/process-window.c:268
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Диспетчер задач Xfce 4"
+
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "Ошибка выполнения"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "Не удалось найти ни одной команды по умолчанию для запуска."
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "Запустить диспетчер задач от суперпользователя"
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "Выполнить..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "Поиск приложений"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "Эмулятор терминала"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "XTerm"
 
 #: ../src/main.c:100
 #, c-format
@@ -53,12 +83,12 @@ msgstr ""
 "Память: %.0f%%\n"
 "Подкач.: %.0f%%"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:338
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
 msgstr "ЦП: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:343
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
 msgstr "Память: %s%%"
@@ -73,122 +103,235 @@ msgstr "Подкач.: %s%%"
 msgid "Processes: %d"
 msgstr "Процессы: %d"
 
-#: ../src/process-tree-view.c:131
+#: ../src/process-tree-view.c:125
 msgid "Task"
 msgstr "Задача"
 
-#: ../src/process-tree-view.c:148
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Состояние"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
 msgstr "ВРазм"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "ЦПУ"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "Прио"
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
 msgstr "Завершить процесс"
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
 msgstr "Принудительно завершить"
 
-#: ../src/process-tree-view.c:338
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Вы хотите послать сигнал процессу %d?"
 
-#: ../src/process-tree-view.c:350
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr "Не удалось отправить сигнал"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr "Произошла ошибка при отправке сигнала процессу %d. Вероятнее всего, у вас нет необходимых прав."
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:386
 msgid "Error setting priority"
 msgstr "Не удалось задать приоритет"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr "Произошла ошибка при задании приоритета процесса %d. Вероятнее всего, у вас нет необходимых прав."
 
-#: ../src/process-tree-view.c:389
-msgid "Stop"
-msgstr "Остановить"
-
-#: ../src/process-tree-view.c:396
-msgid "Continue"
-msgstr "Продолжить"
-
-#: ../src/process-tree-view.c:402
-msgid "Kill"
-msgstr "Убить"
-
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:403
 msgid "Terminate"
 msgstr "Завершить"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:410
+msgid "Stop"
+msgstr "Остановить"
+
+#: ../src/process-tree-view.c:417
+msgid "Continue"
+msgstr "Продолжить"
+
+#: ../src/process-tree-view.c:423
+msgid "Kill"
+msgstr "Убить"
+
+#: ../src/process-tree-view.c:430
 msgid "Very low"
 msgstr "Очень низкий"
 
-#: ../src/process-tree-view.c:419
+#: ../src/process-tree-view.c:435
 msgid "Low"
 msgstr "Низкий"
 
-#: ../src/process-tree-view.c:424
+#: ../src/process-tree-view.c:440
 msgid "Normal"
 msgstr "Обычный"
 
-#: ../src/process-tree-view.c:429
+#: ../src/process-tree-view.c:445
 msgid "High"
 msgstr "Высокий"
 
-#: ../src/process-tree-view.c:434
+#: ../src/process-tree-view.c:450
 msgid "Very high"
 msgstr "Очень высокий"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Приоритет"
 
-#: ../src/process-window.c:276
+#: ../src/process-window.c:312
 msgid "translator-credits"
 msgstr "Andrey Fedoseev"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Внимание! Вы используете учетную запись суперпользователя, тем самым вы можете повредить систему"
+
+#: ../src/settings.c:378
+msgid "Default"
+msgstr "По умолчанию"
+
+#: ../src/settings.c:379
+msgid "Small"
+msgstr "Маленький"
+
+#: ../src/settings.c:380
+msgid "Large"
+msgstr "Большой"
+
+#: ../src/settings.c:381
+msgid "Text"
+msgstr "Текст"
+
+#: ../src/settings-dialog.ui.h:1
+msgid "<b>Information</b>"
+msgstr "<b>Информация</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr "<b>Стиль интерфейса</b>"
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Разное</b>"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr "Колонки:"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "Рисовать рамки вокруг индикаторов"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr "Прятать в область уведомления"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr "Запрашивать подтверждение при завершении задач"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr "Частота обновления:"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr "Настройки"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr "Настройки Диспетчера задач Xfce 4"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "Показывать иконки приложений"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show full command lines"
+msgstr "Показывать полную командную строку"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Show values with more precision"
+msgstr "Показывать значения с большей точностью"
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Toolbar style:"
+msgstr "Стиль панели инструментов:"
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr "500 мс"
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750 мс"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "1 с"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "2 с"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "5 с"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "10 с"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "Показывать все процессы"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "Частота обновления"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr "Вирт"
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr "Личн"
 
 #: ../src/task-manager.c:229
 #, c-format
@@ -210,62 +353,11 @@ msgstr "%lu б"
 msgid "%s%%"
 msgstr "%s%%"
 
-#~ msgid "Execution error"
-#~ msgstr "Ошибка выполнения"
-
-#~ msgid "Run Task Manager as root"
-#~ msgstr "Запустить диспетчер задач от суперпользователя"
-
-#~ msgid "Run Program..."
-#~ msgstr "Выполнить..."
-
-#~ msgid "Application Finder"
-#~ msgstr "Поиск приложений"
-
-#~ msgid "Terminal emulator"
-#~ msgstr "Эмулятор терминала"
-
-#~ msgid "XTerm"
-#~ msgstr "XTerm"
-
-#~ msgid "500ms"
-#~ msgstr "500 мс"
-
-#~ msgid "750ms"
-#~ msgstr "750 мс"
-
-#~ msgid "1s"
-#~ msgstr "1 с"
-
-#~ msgid "2s"
-#~ msgstr "2 с"
-
-#~ msgid "5s"
-#~ msgstr "5 с"
-
-#~ msgid "10s"
-#~ msgstr "10 с"
-
-#~ msgid "Show all processes"
-#~ msgstr "Показывать все процессы"
-
 #~ msgid "More precision"
 #~ msgstr "Указать точно"
 
-#~ msgid "Full command line"
-#~ msgstr "Командная строка"
-
 #~ msgid "Show status icon"
 #~ msgstr "Показывать значок"
-
-#~ msgid "Refresh rate"
-#~ msgstr "Частота обновления"
-
-#~ msgid "Virtual Bytes"
-#~ msgstr "Вирт"
-
-#~ msgid "Private Bytes"
-#~ msgstr "Личн"
 
 #~ msgid "250ms"
 #~ msgstr "250 мс"
