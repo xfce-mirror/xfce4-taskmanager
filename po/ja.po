@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-01 20:37+0900\n"
-"PO-Revision-Date: 2010-10-01 20:36+0900\n"
+"POT-Creation-Date: 2010-10-05 21:55+0900\n"
+"PO-Revision-Date: 2010-10-05 21:55+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "Language: ja\n"
@@ -26,8 +26,8 @@ msgstr "使いやすいタスクマネージャ"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:345 ../src/process-tree-view.c:360
-#: ../src/process-tree-view.c:379 ../src/process-window.c:304
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "タスクマネージャ"
@@ -107,61 +107,61 @@ msgstr "スワップ: %s%%"
 msgid "Processes: %d"
 msgstr "プロセス: %d"
 
-#: ../src/process-tree-view.c:131
+#: ../src/process-tree-view.c:125
 msgid "Task"
 msgstr "タスク"
 
-#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "状態"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "優先度"
 
-#: ../src/process-tree-view.c:342
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
 msgstr "タスクを終了"
 
-#: ../src/process-tree-view.c:342
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
 msgstr "タスクを Kill"
 
-#: ../src/process-tree-view.c:344
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "PID %d へシグナルを送信しますか?"
 
-#: ../src/process-tree-view.c:356
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr "シグナル送信エラー"
 
-#: ../src/process-tree-view.c:358
+#: ../src/process-tree-view.c:368
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
@@ -169,11 +169,11 @@ msgid ""
 msgstr ""
 "PID %d へのシグナル送信でエラーが発生しました。必要な権限がないと思われます。"
 
-#: ../src/process-tree-view.c:376
+#: ../src/process-tree-view.c:386
 msgid "Error setting priority"
 msgstr "優先度設定エラー"
 
-#: ../src/process-tree-view.c:377
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
@@ -181,43 +181,43 @@ msgid ""
 msgstr ""
 "PID %d への優先度設定でエラーが発生しました。必要な権限がないと思われます。"
 
-#: ../src/process-tree-view.c:393
+#: ../src/process-tree-view.c:403
 msgid "Terminate"
 msgstr "終了"
 
-#: ../src/process-tree-view.c:400
+#: ../src/process-tree-view.c:410
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:417
 msgid "Continue"
 msgstr "再開"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:423
 msgid "Kill"
 msgstr "Kill"
 
-#: ../src/process-tree-view.c:420
+#: ../src/process-tree-view.c:430
 msgid "Very low"
 msgstr "とても低い"
 
-#: ../src/process-tree-view.c:425
+#: ../src/process-tree-view.c:435
 msgid "Low"
 msgstr "低い"
 
-#: ../src/process-tree-view.c:430
+#: ../src/process-tree-view.c:440
 msgid "Normal"
 msgstr "通常"
 
-#: ../src/process-tree-view.c:435
+#: ../src/process-tree-view.c:445
 msgid "High"
 msgstr "高い"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:450
 msgid "Very high"
 msgstr "とても高い"
 
-#: ../src/process-tree-view.c:445 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "優先度"
 
@@ -234,19 +234,19 @@ msgstr ""
 "警告: あなたは root アカウントを使用しており、システムに悪影響を与えるかもし"
 "れません。"
 
-#: ../src/settings.c:375
+#: ../src/settings.c:378
 msgid "Default"
 msgstr "デフォルト"
 
-#: ../src/settings.c:376
+#: ../src/settings.c:379
 msgid "Small"
 msgstr "小"
 
-#: ../src/settings.c:377
+#: ../src/settings.c:380
 msgid "Large"
 msgstr "大"
 
-#: ../src/settings.c:378
+#: ../src/settings.c:381
 msgid "Text"
 msgstr "テキスト"
 
@@ -291,14 +291,18 @@ msgid "Settings for Task Manager"
 msgstr "タスクマネージャの設定"
 
 #: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "アプリケーションアイコンを表示する"
+
+#: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
 msgstr "完全なコマンドラインを表示する"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
 msgstr "より正確な値を表示する"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
 msgstr "ツールバースタイル:"
 
