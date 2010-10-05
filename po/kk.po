@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 22:11+0000\n"
+"POT-Creation-Date: 2010-10-04 22:11+0000\n"
 "PO-Revision-Date: 2010-03-24 02:46+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
@@ -22,8 +22,8 @@ msgstr "Жүйе үрдістерін ыңғайлы басқару"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:345 ../src/process-tree-view.c:360
-#: ../src/process-tree-view.c:379 ../src/process-window.c:304
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Үрдістерді басқарушысы"
@@ -102,112 +102,112 @@ msgstr "Swap: %s%%"
 msgid "Processes: %d"
 msgstr "Үрдістер: %d"
 
-#: ../src/process-tree-view.c:131
+#: ../src/process-tree-view.c:125
 msgid "Task"
 msgstr "Үрдіс"
 
-#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Күйі"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:342
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
 msgstr "Үрдісті аяқтау"
 
-#: ../src/process-tree-view.c:342
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
 msgstr "Үрдісті құрту"
 
-#: ../src/process-tree-view.c:344
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "PID %d үшін сигналды жіберу керек екеніне сенімдісіз бе?"
 
-#: ../src/process-tree-view.c:356
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr "Сигналды жіберу қатесі"
 
-#: ../src/process-tree-view.c:358
+#: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr "PID %d үшін сигналды жіберу кезінде қате орын алған. Сізде керек рұқсаттар жоқ сияқты."
 
-#: ../src/process-tree-view.c:376
+#: ../src/process-tree-view.c:386
 msgid "Error setting priority"
 msgstr "Приоритет орнату қатесі"
 
-#: ../src/process-tree-view.c:377
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr "PID %d үшін приоритет орнату кезінде қате орын алған. Сізде керек рұқсаттар жоқ сияқты."
 
-#: ../src/process-tree-view.c:393
+#: ../src/process-tree-view.c:403
 msgid "Terminate"
 msgstr "Аяқтау"
 
-#: ../src/process-tree-view.c:400
+#: ../src/process-tree-view.c:410
 msgid "Stop"
 msgstr "Тоқтату"
 
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:417
 msgid "Continue"
 msgstr "Жалғастыру"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:423
 msgid "Kill"
 msgstr "Құрту"
 
-#: ../src/process-tree-view.c:420
+#: ../src/process-tree-view.c:430
 msgid "Very low"
 msgstr "Өте төмен"
 
-#: ../src/process-tree-view.c:425
+#: ../src/process-tree-view.c:435
 msgid "Low"
 msgstr "Төмен"
 
-#: ../src/process-tree-view.c:430
+#: ../src/process-tree-view.c:440
 msgid "Normal"
 msgstr "Қалыпты"
 
-#: ../src/process-tree-view.c:435
+#: ../src/process-tree-view.c:445
 msgid "High"
 msgstr "Жоғары"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:450
 msgid "Very high"
 msgstr "Өте жоғары"
 
-#: ../src/process-tree-view.c:445 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Приоритеті"
 
@@ -219,19 +219,19 @@ msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com> 2010"
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Ескерту, сіз root тіркелгісін қолданудасыз, жүйеңізге зақым келтіруге болады."
 
-#: ../src/settings.c:375
+#: ../src/settings.c:378
 msgid "Default"
 msgstr "Бастапқы"
 
-#: ../src/settings.c:376
+#: ../src/settings.c:379
 msgid "Small"
 msgstr "Кіші"
 
-#: ../src/settings.c:377
+#: ../src/settings.c:380
 msgid "Large"
 msgstr "Үлкен"
 
-#: ../src/settings.c:378
+#: ../src/settings.c:381
 msgid "Text"
 msgstr "Мәтін"
 
@@ -276,14 +276,18 @@ msgid "Settings for Task Manager"
 msgstr "Үрдістерді басқарушысының баптаулары"
 
 #: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "Қолданбалар таңбашаларын көрсету"
+
+#: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
 msgstr "Толық командалық жолды көрсету"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
 msgstr "Мәндерді дәлірек көрсету"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
 msgstr "Панель стилі:"
 
