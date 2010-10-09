@@ -98,6 +98,10 @@ xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 
 	dialog->window = GTK_WIDGET (gtk_builder_get_object (builder, "settings-dialog"));
 
+#ifndef HAVE_WNCK
+	gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "button-show-application-icons")));
+#endif
+
 	builder_bind_toggle_button (builder, "button-show-application-icons", dialog->settings, "show-application-icons");
 	builder_bind_toggle_button (builder, "button-full-command-line", dialog->settings, "full-command-line");
 	builder_bind_toggle_button (builder, "button-more-precision", dialog->settings, "more-precision");
