@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-30 04:11+0000\n"
+"POT-Creation-Date: 2010-10-13 16:11+0000\n"
 "PO-Revision-Date: 2008-07-14 13:50+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -22,8 +22,8 @@ msgstr "Простий у використанні диспетчер задач
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:345 ../src/process-tree-view.c:360
-#: ../src/process-tree-view.c:379 ../src/process-window.c:304
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Диспетчер задач"
@@ -103,112 +103,112 @@ msgstr "Своп: %s%%"
 msgid "Processes: %d"
 msgstr "Процеси: %d"
 
-#: ../src/process-tree-view.c:131
+#: ../src/process-tree-view.c:125
 msgid "Task"
 msgstr "Задача"
 
-#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "Ідентифікатор PID"
 
-#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "Пріоритет PPID"
 
-#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Стан"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "Стрічка RSS"
 
-#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "Проц"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "Пріоритет"
 
-#: ../src/process-tree-view.c:342
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
 msgstr "Завершити задачу"
 
-#: ../src/process-tree-view.c:342
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
 msgstr "Знищити задачу"
 
-#: ../src/process-tree-view.c:344
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Ви впевнені, що бажаєте надіслати сигнал для PID %d?"
 
-#: ../src/process-tree-view.c:356
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr "Помилка при відсилці сигналу"
 
-#: ../src/process-tree-view.c:358
+#: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr "Помилку було отримано при відсиланні сигналу для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
 
-#: ../src/process-tree-view.c:376
+#: ../src/process-tree-view.c:386
 msgid "Error setting priority"
 msgstr "Помилка у налаштуванні пріоритету"
 
-#: ../src/process-tree-view.c:377
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr "Помилку було отримано при встановленні пріорітету для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
 
-#: ../src/process-tree-view.c:393
+#: ../src/process-tree-view.c:403
 msgid "Terminate"
 msgstr "Завершити"
 
-#: ../src/process-tree-view.c:400
+#: ../src/process-tree-view.c:410
 msgid "Stop"
 msgstr "Зупинити"
 
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:417
 msgid "Continue"
 msgstr "Продовжити"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:423
 msgid "Kill"
 msgstr "Знищити"
 
-#: ../src/process-tree-view.c:420
+#: ../src/process-tree-view.c:430
 msgid "Very low"
 msgstr "Дуже низько"
 
-#: ../src/process-tree-view.c:425
+#: ../src/process-tree-view.c:435
 msgid "Low"
 msgstr "Низько"
 
-#: ../src/process-tree-view.c:430
+#: ../src/process-tree-view.c:440
 msgid "Normal"
 msgstr "Нормально"
 
-#: ../src/process-tree-view.c:435
+#: ../src/process-tree-view.c:445
 msgid "High"
 msgstr "Високо"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:450
 msgid "Very high"
 msgstr "Дуже високо"
 
-#: ../src/process-tree-view.c:445 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Пріоритет"
 
@@ -220,19 +220,19 @@ msgstr "Dmitry Nikitin <luckas_fb@mail.ru>"
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Попередження: Ви використовуєте рахунок суперкористувача, Ви можете пошкодити Вашу систему."
 
-#: ../src/settings.c:375
+#: ../src/settings.c:378
 msgid "Default"
 msgstr "Типово"
 
-#: ../src/settings.c:376
+#: ../src/settings.c:379
 msgid "Small"
 msgstr "Маленькі"
 
-#: ../src/settings.c:377
+#: ../src/settings.c:380
 msgid "Large"
 msgstr "Великі"
 
-#: ../src/settings.c:378
+#: ../src/settings.c:381
 msgid "Text"
 msgstr "Текст"
 
@@ -277,14 +277,18 @@ msgid "Settings for Task Manager"
 msgstr "Властивості для Диспетчера задач"
 
 #: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "Показати іконки програм"
+
+#: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
 msgstr "Показувати повністю стрічку команд"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
 msgstr "Показувати значення з більшою точністю"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
 msgstr "Стиль панелі:"
 
