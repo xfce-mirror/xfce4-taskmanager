@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-21 16:09+0000\n"
+"POT-Creation-Date: 2010-11-04 11:12+0000\n"
 "PO-Revision-Date: 2008-11-16 14:35+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
@@ -18,16 +18,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:480
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 msgid "Easy to use task manager"
 msgstr "Gestor de tasques fàcil d'usar"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
-#: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
-#: ../src/process-tree-view.c:373 ../src/process-window.c:247
-#: ../src/process-window.c:475 ../src/process-window.ui.h:1
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389 ../src/process-window.c:304
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Gestor de processos"
+
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "Error d'execució"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "No s'ha pogut trobar una comanda per defecte per a executar."
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "Executar el Gestor de Tasques com a root"
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "Executar el programa..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "Buscador d'aplicacions"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "Emulador de terminal"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "XTerm"
 
 #: ../src/main.c:100
 #, c-format
@@ -55,12 +85,12 @@ msgstr ""
 "Memòria: %.0f%%\n"
 "Espai d'intercanvi: %.0f%%"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:545
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:550
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
 msgstr "Memòria:  %s%%"
@@ -75,200 +105,235 @@ msgstr "Espai d'intercanvi: %s%%"
 msgid "Processes: %d"
 msgstr "Processos: %d"
 
-#: ../src/process-tree-view.c:131
+#: ../src/process-tree-view.c:125
 msgid "Task"
 msgstr "Tasca"
 
-#: ../src/process-tree-view.c:148 ../src/process-window.c:415
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/process-window.c:416
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/process-window.c:417
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Estat"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
 msgstr "Tamany virtual"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189 ../src/process-window.c:420
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/process-window.c:421
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
 msgstr "Finalitzar la tasca"
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
 msgstr "Matar la tasca (KILL)"
 
-#: ../src/process-tree-view.c:338
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Esteu segur que voleu enviar un senyal al PID %d?"
 
-#: ../src/process-tree-view.c:350
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr "Error enviant el senyal"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr "S'ha trobat un error a l'enviar un senyal al procés %d. Comproveu que teniu els privilegis necessaris."
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:386
 msgid "Error setting priority"
 msgstr "No s'ha pogut establir la prioritat"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr "S'ha trobat un error en canviar la prioritat del procés %d. Comproveu que teniu els privilegis necessaris."
 
-#: ../src/process-tree-view.c:389
-msgid "Stop"
-msgstr "Atura (STOP)"
-
-#: ../src/process-tree-view.c:396
-msgid "Continue"
-msgstr "Continua (CONT)"
-
-#: ../src/process-tree-view.c:402
-msgid "Kill"
-msgstr "Mata (KILL)"
-
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:403
 msgid "Terminate"
 msgstr "Acabar la tasca (TERM)"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:410
+msgid "Stop"
+msgstr "Atura (STOP)"
+
+#: ../src/process-tree-view.c:417
+msgid "Continue"
+msgstr "Continua (CONT)"
+
+#: ../src/process-tree-view.c:423
+msgid "Kill"
+msgstr "Mata (KILL)"
+
+#: ../src/process-tree-view.c:430
 msgid "Very low"
 msgstr "Molt baixa"
 
-#: ../src/process-tree-view.c:419
+#: ../src/process-tree-view.c:435
 msgid "Low"
 msgstr "Baixa"
 
-#: ../src/process-tree-view.c:424
+#: ../src/process-tree-view.c:440
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/process-tree-view.c:429
+#: ../src/process-tree-view.c:445
 msgid "High"
 msgstr "Alta"
 
-#: ../src/process-tree-view.c:434
+#: ../src/process-tree-view.c:450
 msgid "Very high"
 msgstr "Molt alta"
 
-#: ../src/process-tree-view.c:439 ../src/process-window.c:422
+#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Prioritat"
 
-#: ../src/process-window.c:245
-msgid "Execution error"
-msgstr "Error d'execució"
-
-#: ../src/process-window.c:288
-msgid "Run Task Manager as root"
-msgstr "Executar el Gestor de Tasques com a root"
-
-#: ../src/process-window.c:300 ../src/process-window.c:302
-#: ../src/process-window.c:304
-msgid "Run Program..."
-msgstr "Executar el programa..."
-
-#: ../src/process-window.c:307
-msgid "Application Finder"
-msgstr "Buscador d'aplicacions"
-
-#: ../src/process-window.c:310
-msgid "Terminal emulator"
-msgstr "Emulador de terminal"
-
 #: ../src/process-window.c:312
-msgid "XTerm"
-msgstr "XTerm"
-
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/process-window.c:356
-msgid "500ms"
-msgstr "500ms"
-
-#: ../src/process-window.c:357
-msgid "750ms"
-msgstr "750ms"
-
-#: ../src/process-window.c:358
-msgid "1s"
-msgstr "1s"
-
-#: ../src/process-window.c:359
-msgid "2s"
-msgstr "2s"
-
-#: ../src/process-window.c:360
-msgid "5s"
-msgstr "5s"
-
-#: ../src/process-window.c:361
-msgid "10s"
-msgstr "10s"
-
-#: ../src/process-window.c:402
-msgid "Show all processes"
-msgstr "Mostra tots els processos"
-
-#: ../src/process-window.c:403
-msgid "More precision"
-msgstr "Més precisió"
-
-#: ../src/process-window.c:404
-msgid "Full command line"
-msgstr "Línia de comandes completa"
-
-#: ../src/process-window.c:405
-msgid "Show status icon"
-msgstr "Mostra icona d'estat"
-
-#: ../src/process-window.c:408
-msgid "Refresh rate"
-msgstr "Freqüència de refresc"
-
-#: ../src/process-window.c:418
-msgid "Virtual Bytes"
-msgstr "Bytes virtuals"
-
-#: ../src/process-window.c:419
-msgid "Private Bytes"
-msgstr "Bytes privats"
-
-#: ../src/process-window.c:483
 msgid "translator-credits"
 msgstr "Pau Ruŀlan Ferragut"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Atenció!, esteu usant la conta de root, això podria malmetre el vostre sistema."
+
+#: ../src/settings.c:378
+msgid "Default"
+msgstr "Defecte"
+
+#: ../src/settings.c:379
+msgid "Small"
+msgstr "Petit"
+
+#: ../src/settings.c:380
+msgid "Large"
+msgstr "Gran"
+
+#: ../src/settings.c:381
+msgid "Text"
+msgstr "Text"
+
+#: ../src/settings-dialog.ui.h:1
+msgid "<b>Information</b>"
+msgstr "<b>Informació</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr "<b>Estil d'interfície</b>"
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Miscel·lània</b>"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr "Columnes:"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "Dibuixa marcs als monitors"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr "Ocultar a l'àrea de notificació"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr "Pregunta per a finalitzar tasques"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr "Freqüència de refresc:"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr "Propietats"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr "Propietats per al gestor de tasques"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "Mostrar icones de l'aplicació"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show full command lines"
+msgstr "Mostra la línia de comandes completa"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Show values with more precision"
+msgstr "Mostra els valors amb més precisió"
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Toolbar style:"
+msgstr "Estil de la barra d'eines:"
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr "500ms"
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750ms"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "1s"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "2s"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "5s"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "10s"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "Mostra tots els processos"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "Freqüència de refresc"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr "Bytes virtuals"
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr "Bytes privats"
 
 #: ../src/task-manager.c:229
 #, c-format
@@ -289,6 +354,12 @@ msgstr "%lu B"
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
+
+#~ msgid "More precision"
+#~ msgstr "Més precisió"
+
+#~ msgid "Show status icon"
+#~ msgstr "Mostra icona d'estat"
 
 #~ msgid "250ms"
 #~ msgstr "250ms"
