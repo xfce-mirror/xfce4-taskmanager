@@ -10,9 +10,6 @@ EOF
   exit 1
 }
 
-test -z "$XDT_AUTOGEN_REQUIRED_VERSION" && \
-echo "You need to update your version of xfce4-dev-tools" && exit 2
-
 XDT_AUTOGEN_REQUIRED_VERSION="4.7.3" \
 XDT_AUTOGEN_CHECK_DOCS="doc" \
 exec xdt-autogen $@
