@@ -2,13 +2,13 @@
 # Basque translations for PACKAGE package.
 # Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Piarres Beobide <pi@beobide.net>, 2006, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 23:04+0200\n"
+"POT-Creation-Date: 2010-11-18 05:12+0000\n"
 "PO-Revision-Date: 2008-11-30 08:51+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
@@ -19,214 +19,345 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.2.0\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 #, fuzzy
 msgid "Easy to use task manager"
 msgstr "Xfce4 Zeregin-kudeatzaile zeregin kudeatzaile erabilerraz bat da"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
-#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
-#: ../src/process-window.c:199 ../src/process-window.c:321
-#, fuzzy
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389 ../src/process-window.c:304
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
-msgstr "xfce4 zeregin-kudeatzailea"
+msgstr "Zeregin kudeatzailea"
 
-#: ../src/process-statusbar.c:121
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "Exekuzio errorea"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "Ez da exekutatzeko lehenetsiriko komandorik aurkitu"
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "Abiarazi zeregin kudeatzailea root gisa"
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "Exekutatu programa..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "Aplikazio bilatzailea"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "Terminal emuladorea"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "XTerm"
+
+#: ../src/main.c:100
 #, c-format
-msgid "CPU: %.2f%%"
+msgid ""
+"<b>Processes:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Memory:</b> %.0f%%\n"
+"<b>Swap:</b> %.0f%%"
 msgstr ""
+"<b>Prozesuak:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Memoria:</b> %.0f%%\n"
+"<b>Swap:</b> %.0f%%"
 
-#: ../src/process-statusbar.c:128
+#: ../src/main.c:108
 #, c-format
-msgid "Memory: %.2f%%"
+msgid ""
+"Processes: %u\n"
+"CPU: %.0f%%\n"
+"Memory: %.0f%%\n"
+"Swap: %.0f%%"
 msgstr ""
+"Prozesuak: %u\n"
+"CPU: %.0f%%\\Memoria: %.0f%%\n"
+"Swap: %.0f%%"
 
-#: ../src/process-statusbar.c:135
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
-msgid "Swap: %.2f%%"
-msgstr ""
+msgid "CPU: %s%%"
+msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:142
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
+#, c-format
+msgid "Memory: %s%%"
+msgstr "Memoria : %s%%"
+
+#: ../src/process-statusbar.c:166
+#, c-format
+msgid "Swap: %s%%"
+msgstr "Swap: %s%%"
+
+#: ../src/process-statusbar.c:181
 #, c-format
 msgid "Processes: %d"
-msgstr ""
+msgstr "Prozesuak: %d"
 
-#: ../src/process-tree-view.c:106
+#: ../src/process-tree-view.c:125
 msgid "Task"
-msgstr ""
+msgstr "Zeregina"
 
-#: ../src/process-tree-view.c:116 ../src/process-window.c:276
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PIDa"
 
-#: ../src/process-tree-view.c:124 ../src/process-window.c:277
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPIDa"
 
-#: ../src/process-tree-view.c:132 ../src/process-window.c:278
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Egoera"
 
-#: ../src/process-tree-view.c:141
+#: ../src/process-tree-view.c:161
+#, fuzzy
 msgid "VSZ"
-msgstr ""
+msgstr "VSZ"
 
-#: ../src/process-tree-view.c:149
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSSa"
 
-#: ../src/process-tree-view.c:157 ../src/process-window.c:281
-#, fuzzy
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
-msgstr "PIDa"
+msgstr "UIDa"
 
-#: ../src/process-tree-view.c:165 ../src/process-window.c:282
-#, fuzzy
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
-msgstr "CPU%"
+msgstr "CPU"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
-#: ../src/process-tree-view.c:174
-#, fuzzy
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: ../src/process-tree-view.c:194
 msgid "Prio."
-msgstr "Leh"
+msgstr "Leh."
 
-#: ../src/process-tree-view.c:212
-#, fuzzy
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
-msgstr "Benetan zeregina amaitu nahi duzu?"
+msgstr "Amaitu zeregina"
 
-#: ../src/process-tree-view.c:212
-#, fuzzy
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
-msgstr "Hil"
+msgstr "Hil zeregina"
 
-#: ../src/process-tree-view.c:214
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr ""
+msgstr "Ziur zaude %d PIDari seinale bat bidali nahi diozula?"
 
-#: ../src/process-tree-view.c:225
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
-msgstr ""
+msgstr "Errorea seinalea bidaltzean"
 
-#: ../src/process-tree-view.c:227
+#: ../src/process-tree-view.c:368
 #, c-format
-msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
-msgstr ""
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
+msgstr "Errore bat gertatu da %d PIDari seinale bat bidaltzean. Ziurrenik ez duzu pribilegiorik beharko."
 
-#: ../src/process-tree-view.c:244
+#: ../src/process-tree-view.c:386
 msgid "Error setting priority"
 msgstr ""
 
-#: ../src/process-tree-view.c:245
+#: ../src/process-tree-view.c:387
 #, c-format
-msgid ""
-"An error was encountered by setting a priority to the PID %d. It is likely "
-"you don't have the required privileges."
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr ""
 
-#: ../src/process-tree-view.c:260
+#: ../src/process-tree-view.c:403
 #, fuzzy
 msgid "Terminate"
 msgstr "Terminala"
 
-#: ../src/process-tree-view.c:267
+#: ../src/process-tree-view.c:410
 msgid "Stop"
 msgstr "Gelditu"
 
-#: ../src/process-tree-view.c:274
+#: ../src/process-tree-view.c:417
 msgid "Continue"
 msgstr "Jarraitu"
 
-#: ../src/process-tree-view.c:280
+#: ../src/process-tree-view.c:423
 msgid "Kill"
 msgstr "Hil"
 
-#: ../src/process-tree-view.c:287
+#: ../src/process-tree-view.c:430
 msgid "Very low"
 msgstr ""
 
-#: ../src/process-tree-view.c:292
+#: ../src/process-tree-view.c:435
 msgid "Low"
 msgstr ""
 
-#: ../src/process-tree-view.c:297
+#: ../src/process-tree-view.c:440
 msgid "Normal"
 msgstr ""
 
-#: ../src/process-tree-view.c:302
+#: ../src/process-tree-view.c:445
 msgid "High"
 msgstr ""
 
-#: ../src/process-tree-view.c:307
+#: ../src/process-tree-view.c:450
 msgid "Very high"
 msgstr ""
 
-#: ../src/process-tree-view.c:312 ../src/process-window.c:283
+#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Lehentasuna"
 
-#: ../src/process-window.c:197
-msgid "Execution error"
+#: ../src/process-window.c:312
+msgid "translator-credits"
+msgstr "itzultzaile-kreditua"
+
+#: ../src/process-window.ui.h:2
+msgid "Warning, you are using the root account, you may harm your system."
 msgstr ""
 
-#: ../src/process-window.c:226
-msgid "Run Program..."
+#: ../src/settings.c:378
+msgid "Default"
 msgstr ""
 
-#: ../src/process-window.c:227
-msgid "Application Finder"
+#: ../src/settings.c:379
+msgid "Small"
 msgstr ""
 
-#: ../src/process-window.c:228
+#: ../src/settings.c:380
+msgid "Large"
+msgstr ""
+
+#: ../src/settings.c:381
+msgid "Text"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:1
+msgid "<b>Information</b>"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:10
 #, fuzzy
-msgid "Terminal emulator"
-msgstr "Jatorrizko garatzailea:"
+msgid "Settings for Task Manager"
+msgstr "xfce4 zeregin-kudeatzailea"
 
-#: ../src/process-window.c:229
-#, fuzzy
-msgid "XTerm"
-msgstr "Terminala"
+#: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr ""
 
-#: ../src/process-window.c:271
+#: ../src/settings-dialog.ui.h:12
+msgid "Show full command lines"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Show values with more precision"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Toolbar style:"
+msgstr ""
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr ""
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr ""
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr ""
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr ""
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr ""
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr ""
+
+#: ../src/settings-tool-button.c:164
 #, fuzzy
 msgid "Show all processes"
 msgstr "Kontrolatu zure prozesuak"
 
-#: ../src/process-window.c:279
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr ""
+
+#: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
 msgstr ""
 
-#: ../src/process-window.c:280
+#: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
 msgstr ""
 
-#: ../src/process-window.c:329
-msgid "translator-credits"
-msgstr "itzultzaile-kreditua"
-
-#: ../src/task-manager.c:146
+#: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
 msgstr ""
 
-#: ../src/task-manager.c:153
+#: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
 msgstr ""
 
-#: ../src/task-manager.c:157
+#: ../src/task-manager.c:240
 #, c-format
 msgid "%lu B"
 msgstr ""
 
-#. TODO make precision optional
-#: ../src/task-manager.c:168
+#: ../src/task-manager.c:263
 #, fuzzy, c-format
-msgid "%.2f%%"
+msgid "%s%%"
 msgstr "%% %0.0f"
 
 #~ msgid "Control your processes"
@@ -246,9 +377,6 @@ msgstr "%% %0.0f"
 
 #~ msgid "Cpu usage"
 #~ msgstr "Cpu erabilera"
-
-#~ msgid "Memory usage"
-#~ msgstr "Memoria erabilera"
 
 #~ msgid "Command"
 #~ msgstr "Komandoa"
