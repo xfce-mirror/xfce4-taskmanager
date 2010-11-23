@@ -2,29 +2,59 @@
 # Copyright (C) 2008 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 # Hunt Xu <huntxu@live.cn>, 2008, 2010.
-#
+
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-25 22:09+0000\n"
-"PO-Revision-Date: 2010-06-26 12:11+0800\n"
+"POT-Creation-Date: 2010-11-23 11:12+0000\n"
+"PO-Revision-Date: 2010-11-23 23:40+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Chinese (simplified) <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:480
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 msgid "Easy to use task manager"
 msgstr "易用的任务管理器"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
-#: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
-#: ../src/process-tree-view.c:373 ../src/process-window.c:247
-#: ../src/process-window.c:475 ../src/process-window.ui.h:1
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389 ../src/process-window.c:304
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "任务管理器"
+
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "执行错误"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "无法找到默认执行的命令"
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "使用 root 帐号运行任务管理器"
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "运行程序..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "应用程序查找器"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "终端模拟器"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "XTerm"
 
 #: ../src/main.c:100
 #, c-format
@@ -52,12 +82,12 @@ msgstr ""
 "内存: %.0f%%\n"
 "交换区: %.0f%%"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:545
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:550
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
 msgstr "内存: %s%%"
@@ -72,61 +102,61 @@ msgstr "交换分区: %s%%"
 msgid "Processes: %d"
 msgstr "进程数: %d"
 
-#: ../src/process-tree-view.c:131
+#: ../src/process-tree-view.c:125
 msgid "Task"
 msgstr "任务"
 
-#: ../src/process-tree-view.c:148 ../src/process-window.c:415
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/process-window.c:416
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/process-window.c:417
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "状态"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189 ../src/process-window.c:420
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/process-window.c:421
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "优先级"
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
 msgstr "终止任务"
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
 msgstr "杀死任务"
 
-#: ../src/process-tree-view.c:338
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "您确认要发送一个信号至 PID 为 %d 的进程吗？"
 
-#: ../src/process-tree-view.c:350
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr "发送信号时发生错误"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:368
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
@@ -134,11 +164,11 @@ msgid ""
 msgstr ""
 "发送信号至 PID 为 %d 的进程时发生一个错误。您可能没有足够的权限进行该操作。"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:386
 msgid "Error setting priority"
 msgstr "设置优先级时发生错误"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
@@ -146,131 +176,166 @@ msgid ""
 msgstr ""
 "设置 PID 为 %d 的进程的优先级时发生一个错误。您可能没有足够的权限进行该操作。"
 
-#: ../src/process-tree-view.c:389
-msgid "Stop"
-msgstr "停止"
-
-#: ../src/process-tree-view.c:396
-msgid "Continue"
-msgstr "继续"
-
-#: ../src/process-tree-view.c:402
-msgid "Kill"
-msgstr "杀死"
-
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:403
 msgid "Terminate"
 msgstr "终止"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:410
+msgid "Stop"
+msgstr "停止"
+
+#: ../src/process-tree-view.c:417
+msgid "Continue"
+msgstr "继续"
+
+#: ../src/process-tree-view.c:423
+msgid "Kill"
+msgstr "杀死"
+
+#: ../src/process-tree-view.c:430
 msgid "Very low"
 msgstr "非常低"
 
-#: ../src/process-tree-view.c:419
+#: ../src/process-tree-view.c:435
 msgid "Low"
 msgstr "低"
 
-#: ../src/process-tree-view.c:424
+#: ../src/process-tree-view.c:440
 msgid "Normal"
 msgstr "正常"
 
-#: ../src/process-tree-view.c:429
+#: ../src/process-tree-view.c:445
 msgid "High"
 msgstr "高"
 
-#: ../src/process-tree-view.c:434
+#: ../src/process-tree-view.c:450
 msgid "Very high"
 msgstr "非常高"
 
-#: ../src/process-tree-view.c:439 ../src/process-window.c:422
+#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "优先级"
 
-#: ../src/process-window.c:245
-msgid "Execution error"
-msgstr "执行错误"
-
-#: ../src/process-window.c:288
-msgid "Run Task Manager as root"
-msgstr "使用 root 帐号运行任务管理器"
-
-#: ../src/process-window.c:300 ../src/process-window.c:302
-#: ../src/process-window.c:304
-msgid "Run Program..."
-msgstr "运行程序..."
-
-#: ../src/process-window.c:307
-msgid "Application Finder"
-msgstr "应用程序查找器"
-
-#: ../src/process-window.c:310
-msgid "Terminal emulator"
-msgstr "终端模拟器"
-
 #: ../src/process-window.c:312
-msgid "XTerm"
-msgstr "XTerm"
-
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/process-window.c:356
-msgid "500ms"
-msgstr "500 毫秒"
-
-#: ../src/process-window.c:357
-msgid "750ms"
-msgstr "750 毫秒"
-
-#: ../src/process-window.c:358
-msgid "1s"
-msgstr "1 秒"
-
-#: ../src/process-window.c:359
-msgid "2s"
-msgstr "2 秒"
-
-#: ../src/process-window.c:360
-msgid "5s"
-msgstr "5 秒"
-
-#: ../src/process-window.c:361
-msgid "10s"
-msgstr "10 秒"
-
-#: ../src/process-window.c:402
-msgid "Show all processes"
-msgstr "显示所有进程"
-
-#: ../src/process-window.c:403
-msgid "More precision"
-msgstr "更精确的选项"
-
-#: ../src/process-window.c:404
-msgid "Full command line"
-msgstr "完整的命令行"
-
-#: ../src/process-window.c:405
-msgid "Show status icon"
-msgstr "现实状态图标"
-
-#: ../src/process-window.c:408
-msgid "Refresh rate"
-msgstr "刷新率"
-
-#: ../src/process-window.c:418
-msgid "Virtual Bytes"
-msgstr "虚拟占用内存"
-
-#: ../src/process-window.c:419
-msgid "Private Bytes"
-msgstr "私有占用内存"
-
-#: ../src/process-window.c:483
 msgid "translator-credits"
 msgstr "HuntXu <huntxu@live.cn>, 2008, 2010."
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "警告，您正在使用 root 帐号，任何不当操作可能损害您的系统。"
+
+#: ../src/settings.c:378
+msgid "Default"
+msgstr "默认值"
+
+#: ../src/settings.c:379
+msgid "Small"
+msgstr "小"
+
+#: ../src/settings.c:380
+msgid "Large"
+msgstr "大"
+
+#: ../src/settings.c:381
+msgid "Text"
+msgstr "文本"
+
+#: ../src/settings-dialog.ui.h:1
+msgid "<b>Information</b>"
+msgstr "<b>信息</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr "<b>界面风格</b>"
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>杂项设置</b>"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr "栏:"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "在监视器周围绘制边框"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr "隐藏至通知区域"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr "终止任务之前进行提示"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr "刷新率:"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr "设置"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr "任务管理器设置"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "显示应用程序图标"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show full command lines"
+msgstr "显示完整的命令行"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Show values with more precision"
+msgstr "显示更高精度的数值"
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Toolbar style:"
+msgstr "工具栏风格:"
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr "500 毫秒"
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750 毫秒"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "1 秒"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "2 秒"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "5 秒"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "10 秒"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "显示所有进程"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "刷新率"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr "虚拟占用内存"
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr "私有占用内存"
 
 #: ../src/task-manager.c:229
 #, c-format
@@ -291,6 +356,12 @@ msgstr "%lu B"
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
+
+#~ msgid "More precision"
+#~ msgstr "更精确的选项"
+
+#~ msgid "Show status icon"
+#~ msgstr "现实状态图标"
 
 #~ msgid "250ms"
 #~ msgstr "250 毫秒"
