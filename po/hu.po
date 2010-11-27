@@ -1,265 +1,66 @@
 # Hungarian translation for xfce4-taskmanager
 # Copyright 2006, 2009. Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfce4-taskmanager package.
-# 
+#
 # SZERVÁC Attila <sas@321>, 2006.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2006, 2009.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2006, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-24 10:09+0000\n"
-"PO-Revision-Date: 2009-07-24 22:09+0200\n"
+"POT-Creation-Date: 2010-11-03 11:12+0000\n"
+"PO-Revision-Date: 2010-11-27 01:55+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Hungarian <gnome at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2009-07-23 16:56+0000\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:372
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 msgid "Easy to use task manager"
 msgstr "Egyszerűen használható feladatkezelő"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
-#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
-#: ../src/process-window.c:177 ../src/process-window.c:367
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389 ../src/process-window.c:304
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Feladatkezelő"
 
-#: ../src/process-statusbar.c:139
-#, c-format
-msgid "CPU: %s%%"
-msgstr "CPU: %s%%"
-
-#: ../src/process-statusbar.c:148
-#, c-format
-msgid "Memory: %s%%"
-msgstr "Memória: %s%%"
-
-#: ../src/process-statusbar.c:157
-#, c-format
-msgid "Swap: %s%%"
-msgstr "Swap: %s%%"
-
-#: ../src/process-statusbar.c:172
-#, c-format
-msgid "Processes: %d"
-msgstr "Folyamatok: %d"
-
-#: ../src/process-tree-view.c:106
-msgid "Task"
-msgstr "Feladat"
-
-#: ../src/process-tree-view.c:116 ../src/process-window.c:307
-msgid "PID"
-msgstr "PID"
-
-#: ../src/process-tree-view.c:124 ../src/process-window.c:308
-msgid "PPID"
-msgstr "PPID"
-
-#: ../src/process-tree-view.c:132 ../src/process-window.c:309
-msgid "State"
-msgstr "Állapot"
-
-#: ../src/process-tree-view.c:141
-msgid "VSZ"
-msgstr ""
-
-#: ../src/process-tree-view.c:149
-msgid "RSS"
-msgstr "RSS"
-
-#: ../src/process-tree-view.c:157 ../src/process-window.c:312
-msgid "UID"
-msgstr "UID"
-
-#: ../src/process-tree-view.c:165 ../src/process-window.c:313
-msgid "CPU"
-msgstr "CPU"
-
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
-#. header.
-#: ../src/process-tree-view.c:174
-msgid "Prio."
-msgstr "Prio."
-
-#: ../src/process-tree-view.c:212
-msgid "Terminate task"
-msgstr "Feladat befejeztetése"
-
-#: ../src/process-tree-view.c:212
-msgid "Kill task"
-msgstr "Feladat kilövése"
-
-#: ../src/process-tree-view.c:214
-#, c-format
-msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Biztosan elküldi a szignált a(z) %d azonosítójú feladatnak?"
-
-#: ../src/process-tree-view.c:225
-msgid "Error sending signal"
-msgstr "Hiba a szignál küldésekor"
-
-#: ../src/process-tree-view.c:227
-#, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "Hiba történt a szignál küldésekor a(z) %d azonosítójú feladatnak. Valószínűleg nincsenek megfelelő jogosultságai."
-
-#: ../src/process-tree-view.c:244
-msgid "Error setting priority"
-msgstr "Hiba a prioritás beállításakor"
-
-#: ../src/process-tree-view.c:245
-#, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "Hiba történt a(z) %d azonosítójú feladat prioritásának beállításakor. Valószínűleg nincsenek megfelelő jogosultságai."
-
-#: ../src/process-tree-view.c:262
-msgid "Stop"
-msgstr "Leállítás"
-
-#: ../src/process-tree-view.c:269
-msgid "Continue"
-msgstr "Folytatás"
-
-#: ../src/process-tree-view.c:275
-msgid "Kill"
-msgstr "Kilövés"
-
-#: ../src/process-tree-view.c:280
-msgid "Terminate"
-msgstr "Befejeztetés"
-
-#: ../src/process-tree-view.c:287
-msgid "Very low"
-msgstr "Nagyon alacsony"
-
-#: ../src/process-tree-view.c:292
-msgid "Low"
-msgstr "Alacsony"
-
-#: ../src/process-tree-view.c:297
-msgid "Normal"
-msgstr "Normál"
-
-#: ../src/process-tree-view.c:302
-msgid "High"
-msgstr "Magas"
-
-#: ../src/process-tree-view.c:307
-msgid "Very high"
-msgstr "Nagyon magas"
-
-#: ../src/process-tree-view.c:312 ../src/process-window.c:314
-msgid "Priority"
-msgstr "Prioritás"
-
-#: ../src/process-window.c:175
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
 msgstr "Végrehajtási hiba"
 
-#: ../src/process-window.c:203
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "Nem található futtatható alapértelmezett parancs."
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "Feladatkezelő futtatása rootként"
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
 msgid "Run Program..."
 msgstr "Program futtatása…"
 
-#: ../src/process-window.c:204
+#: ../src/exec-tool-button.c:182
 msgid "Application Finder"
 msgstr "Alkalmazáskereső"
 
-#: ../src/process-window.c:205
+#: ../src/exec-tool-button.c:185
 msgid "Terminal emulator"
 msgstr "Terminálemulátor"
 
-#: ../src/process-window.c:206
+#: ../src/exec-tool-button.c:187
 msgid "XTerm"
 msgstr "XTerm"
 
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/process-window.c:247
-msgid "250ms"
-msgstr "250 ms"
-
-#: ../src/process-window.c:248
-msgid "500ms"
-msgstr "500 ms"
-
-#: ../src/process-window.c:249
-msgid "750ms"
-msgstr "750 ms"
-
-#: ../src/process-window.c:250
-msgid "1s"
-msgstr "1 s"
-
-#: ../src/process-window.c:251
-msgid "2s"
-msgstr "2 s"
-
-#: ../src/process-window.c:252
-msgid "5s"
-msgstr "5 s"
-
-#: ../src/process-window.c:253
-msgid "10s"
-msgstr "10 s"
-
-#: ../src/process-window.c:294
-msgid "Show all processes"
-msgstr "Minden folyamat megjelenítése"
-
-#: ../src/process-window.c:295
-msgid "More precision"
-msgstr "Nagyobb pontosság"
-
-#: ../src/process-window.c:296
-msgid "Full command line"
-msgstr "Teljes parancssor"
-
-#: ../src/process-window.c:297
-msgid "Show status icon"
-msgstr "Állapotikon megjelenítése"
-
-#: ../src/process-window.c:300
-msgid "Refresh rate"
-msgstr "Frissítési gyakoriság"
-
-#: ../src/process-window.c:310
-msgid "Virtual Bytes"
-msgstr "Virtuális bájtok"
-
-#: ../src/process-window.c:311
-msgid "Private Bytes"
-msgstr "Privát bájtok"
-
-#: ../src/process-window.c:375
-msgid "translator-credits"
-msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
-
-#: ../src/task-manager.c:165
-#, c-format
-msgid "%lu MiB"
-msgstr "%lu MiB"
-
-#: ../src/task-manager.c:172
-#, c-format
-msgid "%lu KiB"
-msgstr "%lu KiB"
-
-#: ../src/task-manager.c:176
-#, c-format
-msgid "%lu B"
-msgstr "%lu B"
-
-#: ../src/task-manager.c:189
-#, c-format
-msgid "%s%%"
-msgstr "%s%%"
-
-#: ../src/main.c:61
+#: ../src/main.c:100
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -272,7 +73,7 @@ msgstr ""
 "<b>Memória:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
 
-#: ../src/main.c:69
+#: ../src/main.c:108
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -285,50 +86,280 @@ msgstr ""
 "Memória: %.0f%%\n"
 "Swap: %.0f%%"
 
-#~ msgid "Control your processes"
-#~ msgstr "Folyamatok felügyelete"
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
+#, c-format
+msgid "CPU: %s%%"
+msgstr "CPU: %s%%"
 
-#~ msgid "Process manager"
-#~ msgstr "Folyamatkezelő"
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
+#, c-format
+msgid "Memory: %s%%"
+msgstr "Memória: %s%%"
 
-#~ msgid "Xfce4 Taskmanager"
-#~ msgstr "Xfce 4 folyamatkezelő"
+#: ../src/process-statusbar.c:166
+#, c-format
+msgid "Swap: %s%%"
+msgstr "Swap: %s%%"
 
-#~ msgid "Really kill the task?"
-#~ msgstr "Valóban kilövi a feladatot?"
+#: ../src/process-statusbar.c:181
+#, c-format
+msgid "Processes: %d"
+msgstr "Folyamatok: %d"
 
-#~ msgid "%d MB of %d MB used"
-#~ msgstr "$%2d MB-ból $%1d MB használt"
+#: ../src/process-tree-view.c:125
+msgid "Task"
+msgstr "Feladat"
 
-#~ msgid "Cpu usage"
-#~ msgstr "CPU használat"
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
+msgid "PID"
+msgstr "PID"
 
-#~ msgid "Memory usage"
-#~ msgstr "Memóriahasználat"
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+msgid "PPID"
+msgstr "PPID"
 
-#~ msgid "Command"
-#~ msgstr "Parancs"
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+msgid "State"
+msgstr "Állapot"
 
-#~ msgid "VM-Size"
-#~ msgstr "VM-méret"
+#: ../src/process-tree-view.c:161
+msgid "VSZ"
+msgstr "VMR"
 
-#~ msgid "User"
-#~ msgstr "Felhasználó"
+#: ../src/process-tree-view.c:169
+msgid "RSS"
+msgstr "RSS"
 
-#~ msgid "Show user tasks"
-#~ msgstr "Felhasználói folyamatok megjelenítése"
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
+msgid "UID"
+msgstr "UID"
 
-#~ msgid "Show root tasks"
-#~ msgstr "Root folyamatok megjelenítése"
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+msgid "CPU"
+msgstr "CPU"
 
-#~ msgid "Show other tasks"
-#~ msgstr "Egyéb folyamatok megjelenítése"
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#: ../src/process-tree-view.c:194
+msgid "Prio."
+msgstr "Prio."
 
-#~ msgid "Show memory used by cache as free"
-#~ msgstr "Gyorsítótár által használt memória megjelenítése szabadként"
+#: ../src/process-tree-view.c:352
+msgid "Terminate task"
+msgstr "Feladat befejeztetése"
 
-#~ msgid "Contributors:"
-#~ msgstr "Hozzájárultak:"
+#: ../src/process-tree-view.c:352
+msgid "Kill task"
+msgstr "Feladat kilövése"
 
-#~ msgid "Couldn't set priority %d to the task with ID %d"
-#~ msgstr "Nem állítható be a prioritás (%d) a(z) %d azonosítójú feladathoz"
+#: ../src/process-tree-view.c:354
+#, c-format
+msgid "Are you sure you want to send a signal to the PID %d?"
+msgstr "Biztosan elküldi a szignált a(z) %d azonosítójú feladatnak?"
+
+#: ../src/process-tree-view.c:366
+msgid "Error sending signal"
+msgstr "Hiba a szignál küldésekor"
+
+#: ../src/process-tree-view.c:368
+#, c-format
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you "
+"don't have the required privileges."
+msgstr ""
+"Hiba történt a szignál küldésekor a(z) %d azonosítójú feladatnak. "
+"Valószínűleg nincsenek megfelelő jogosultságai."
+
+#: ../src/process-tree-view.c:386
+msgid "Error setting priority"
+msgstr "Hiba a prioritás beállításakor"
+
+#: ../src/process-tree-view.c:387
+#, c-format
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr ""
+"Hiba történt a(z) %d azonosítójú feladat prioritásának beállításakor. "
+"Valószínűleg nincsenek megfelelő jogosultságai."
+
+#: ../src/process-tree-view.c:403
+msgid "Terminate"
+msgstr "Befejeztetés"
+
+#: ../src/process-tree-view.c:410
+msgid "Stop"
+msgstr "Leállítás"
+
+#: ../src/process-tree-view.c:417
+msgid "Continue"
+msgstr "Folytatás"
+
+#: ../src/process-tree-view.c:423
+msgid "Kill"
+msgstr "Kilövés"
+
+#: ../src/process-tree-view.c:430
+msgid "Very low"
+msgstr "Nagyon alacsony"
+
+#: ../src/process-tree-view.c:435
+msgid "Low"
+msgstr "Alacsony"
+
+#: ../src/process-tree-view.c:440
+msgid "Normal"
+msgstr "Normál"
+
+#: ../src/process-tree-view.c:445
+msgid "High"
+msgstr "Magas"
+
+#: ../src/process-tree-view.c:450
+msgid "Very high"
+msgstr "Nagyon magas"
+
+#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
+msgid "Priority"
+msgstr "Prioritás"
+
+#: ../src/process-window.c:312
+msgid "translator-credits"
+msgstr "Kelemen Gábor <kelemeng at gnome dot hu>"
+
+#: ../src/process-window.ui.h:2
+msgid "Warning, you are using the root account, you may harm your system."
+msgstr "Figyelmeztetés: a root fiókot használja, így károsíthatja rendszerét."
+
+#: ../src/settings.c:378
+msgid "Default"
+msgstr "Alapértelmezett"
+
+#: ../src/settings.c:379
+msgid "Small"
+msgstr "Kicsi"
+
+#: ../src/settings.c:380
+msgid "Large"
+msgstr "Nagy"
+
+#: ../src/settings.c:381
+msgid "Text"
+msgstr "Szöveg"
+
+#: ../src/settings-dialog.ui.h:1
+msgid "<b>Information</b>"
+msgstr "<b>Információk</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr "<b>Felület stílusa</b>"
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Egyéb</b>"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr "Oszlopok:"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "Szegélyek rajzolása a monitorok körül"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr "Elrejtés az értesítési területre"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr "Kérdés feladatok befejeztetésekor"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr "Frissítési gyakoriság:"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr "Beállítások"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr "Feladatkezelő beállításai"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "Alkalmazásikonok megjelenítése"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show full command lines"
+msgstr "Teljes parancssorok megjelenítése"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Show values with more precision"
+msgstr "Értékek pontosabb megjelenítése"
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Toolbar style:"
+msgstr "Eszköztár stílusa:"
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr "500 ms"
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750 ms"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "1 s"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "2 s"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "5 s"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "10 s"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "Minden folyamat megjelenítése"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "Frissítési gyakoriság"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr "Virtuális bájtok"
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr "Privát bájtok"
+
+#: ../src/task-manager.c:229
+#, c-format
+msgid "%lu MiB"
+msgstr "%lu MiB"
+
+#: ../src/task-manager.c:236
+#, c-format
+msgid "%lu KiB"
+msgstr "%lu KiB"
+
+#: ../src/task-manager.c:240
+#, c-format
+msgid "%lu B"
+msgstr "%lu B"
+
+#: ../src/task-manager.c:263
+#, c-format
+msgid "%s%%"
+msgstr "%s%%"
+
