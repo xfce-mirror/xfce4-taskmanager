@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-15 16:11+0000\n"
+"POT-Creation-Date: 2010-11-30 05:13+0000\n"
 "PO-Revision-Date: 2010-05-21 00:44+0200\n"
 "Last-Translator: Robert Hartl <hartl.robert@gmail.com>\n"
 "Language-Team: Slovak <xfce-i18n@xfce.org>\n"
@@ -15,16 +15,46 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:273
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 msgid "Easy to use task manager"
 msgstr "Ľahko použiteľný správca úloh"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/main.c:156
-#: ../src/process-tree-view.c:339 ../src/process-tree-view.c:354
-#: ../src/process-tree-view.c:373 ../src/process-window.c:268
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Správca úloh"
+
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "Chyba spustenia"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "Nemožno nájsť žiadny predvolený príkaz na spustenie"
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "Spustiť Správcu úloh ako root"
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "Spustiť program..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "Vyhľadávač aplikácií"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "Emulátor terminálu"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "XTerm"
 
 #: ../src/main.c:100
 #, c-format
@@ -34,6 +64,12 @@ msgid ""
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
 msgstr ""
+"\t\r\n"
+"\r\n"
+"<b>Procesy:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Pamäť:</b> %.0f%%\n"
+"<b>Swap:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -43,13 +79,17 @@ msgid ""
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
 msgstr ""
+"Procesy: %u\n"
+"CPU: %.0f%%\n"
+"Pamäť: %.0f%%\n"
+"Swap: %.0f%%"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:338
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:343
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
 msgstr "Pamäť: %s%%"
@@ -64,122 +104,238 @@ msgstr "Swap: %s%%"
 msgid "Processes: %d"
 msgstr "Procesy: %d"
 
-#: ../src/process-tree-view.c:131
+#: ../src/process-tree-view.c:125
 msgid "Task"
 msgstr "Úloha"
 
-#: ../src/process-tree-view.c:148
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Stav"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
 msgstr "Ukončiť úlohu"
 
-#: ../src/process-tree-view.c:336
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
 msgstr "Zabiť úlohu"
 
-#: ../src/process-tree-view.c:338
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Ste si istí, že chcete odoslať signál pre PID %d?"
 
-#: ../src/process-tree-view.c:350
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr "Chyba pri odosielaní signálu"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr ""
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:386
 msgid "Error setting priority"
 msgstr "Chyba nastavenia priority"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr ""
 
-#: ../src/process-tree-view.c:389
-msgid "Stop"
-msgstr "Zastaviť"
-
-#: ../src/process-tree-view.c:396
-msgid "Continue"
-msgstr "Pokračovať"
-
-#: ../src/process-tree-view.c:402
-msgid "Kill"
-msgstr "Zabiť"
-
-#: ../src/process-tree-view.c:407
+#: ../src/process-tree-view.c:403
 msgid "Terminate"
 msgstr "Ukončiť"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:410
+msgid "Stop"
+msgstr "Zastaviť"
+
+#: ../src/process-tree-view.c:417
+msgid "Continue"
+msgstr "Pokračovať"
+
+#: ../src/process-tree-view.c:423
+msgid "Kill"
+msgstr "Zabiť"
+
+#: ../src/process-tree-view.c:430
 msgid "Very low"
 msgstr "Veľmi nízka"
 
-#: ../src/process-tree-view.c:419
+#: ../src/process-tree-view.c:435
 msgid "Low"
 msgstr "Nízka"
 
-#: ../src/process-tree-view.c:424
+#: ../src/process-tree-view.c:440
 msgid "Normal"
 msgstr "Normálna"
 
-#: ../src/process-tree-view.c:429
+#: ../src/process-tree-view.c:445
 msgid "High"
 msgstr "Vysoká"
 
-#: ../src/process-tree-view.c:434
+#: ../src/process-tree-view.c:450
 msgid "Very high"
 msgstr "Veľmi vysoká"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Priorita"
 
-#: ../src/process-window.c:276
+#: ../src/process-window.c:312
 msgid "translator-credits"
 msgstr "Robert Hartl <hartl.robert@gmail.com>, 2010."
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Pozor, používate účet root, môžete poškodiť svoj systém."
+
+#: ../src/settings.c:378
+msgid "Default"
+msgstr "Predvolené"
+
+#: ../src/settings.c:379
+msgid "Small"
+msgstr "Malé"
+
+#: ../src/settings.c:380
+msgid "Large"
+msgstr "Veľké"
+
+#: ../src/settings.c:381
+msgid "Text"
+msgstr "Text"
+
+#: ../src/settings-dialog.ui.h:1
+msgid "<b>Information</b>"
+msgstr "<b>Informácie</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr "<b>Štýl rozhrania</b>"
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Rôzne</b>"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr "Stĺpce:"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr "Obnovovacia frekvencia"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr "Nastavenia pre Správcu úloh"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "Zobraziť ikony aplikácií"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show full command lines"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Show values with more precision"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Toolbar style:"
+msgstr "Štýl panelu nástrojov"
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr ""
+"\t\r\n"
+"\r\n"
+"500ms"
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750ms"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "1s"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "2s"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "5s"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "10s"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "Zobraziť všetky procesy"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "Obnovovacia frekvencia"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr "Virtuálne bajty"
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr "Súkromné bajty"
 
 #: ../src/task-manager.c:229
 #, c-format
@@ -200,18 +356,3 @@ msgstr "%lu B"
 #, c-format
 msgid "%s%%"
 msgstr " %s%%"
-
-#~ msgid "Run Program..."
-#~ msgstr "Spustiť program..."
-
-#~ msgid "Application Finder"
-#~ msgstr "Vyhľadávač aplikácií"
-
-#~ msgid "Terminal emulator"
-#~ msgstr "Emulátor terminálu"
-
-#~ msgid "XTerm"
-#~ msgstr "XTerm"
-
-#~ msgid "Show all processes"
-#~ msgstr "Zobraziť všetky procesy"
