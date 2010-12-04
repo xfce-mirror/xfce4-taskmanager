@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-04 22:11+0000\n"
+"POT-Creation-Date: 2010-12-04 11:13+0000\n"
 "PO-Revision-Date: 2010-05-25 14:47+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "Language-Team: \n"
@@ -37,16 +37,16 @@ msgstr "Não foi possível encontrar o comando de execução."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr "Executar Gestor de Tarefas como root"
+msgstr "Executar gestor de tarefas como \"root\""
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
 msgid "Run Program..."
-msgstr "Executar Programa..."
+msgstr "Executar programa..."
 
 #: ../src/exec-tool-button.c:182
 msgid "Application Finder"
-msgstr "Localizar Aplicações"
+msgstr "Localizar aplicações"
 
 #: ../src/exec-tool-button.c:185
 msgid "Terminal emulator"
@@ -217,7 +217,7 @@ msgstr "Nuno Miguel"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Cuidado, está a utilizar a conta de root e pode danificar o seu sistema."
+msgstr "Cuidado, está a utilizar a conta de \"root\" e pode danificar o seu sistema."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -253,7 +253,7 @@ msgstr "Colunas:"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr "Desenhar limites à volta do monitor"
+msgstr "Desenhar contornos do monitor"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
@@ -326,11 +326,11 @@ msgstr "Taxa de actualização"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
-msgstr "Bytes Virtuais"
+msgstr "\"Bytes\" virtuais"
 
 #: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
-msgstr "Bytes Privados"
+msgstr "\"Bytes\" privados"
 
 #: ../src/task-manager.c:229
 #, c-format
