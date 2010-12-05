@@ -372,6 +372,15 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 	}
+
+	if (xtm_signal == XTM_SIGNAL_TERMINATE || xtm_signal == XTM_SIGNAL_KILL)
+	{
+		GtkTreeSelection *selection;
+		GtkWidget *treeview;
+		treeview = g_object_get_data (G_OBJECT (mi), "treeview");
+		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+		gtk_tree_selection_unselect_all (selection);
+	}
 }
 
 static void
@@ -394,7 +403,7 @@ cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 }
 
 static GtkWidget *
-build_context_menu (guint pid)
+build_context_menu (XtmProcessTreeView *treeview, guint pid)
 {
 	GtkWidget *menu, *menu_priority, *mi;
 
@@ -402,6 +411,7 @@ build_context_menu (guint pid)
 
 	mi = gtk_menu_item_new_with_label (_("Terminate"));
 	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	g_object_set_data (G_OBJECT (mi), "treeview", treeview);
 	gtk_container_add (GTK_CONTAINER (menu), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
 
@@ -482,7 +492,7 @@ popup_menu (XtmProcessTreeView *treeview, guint pid, guint activate_time, gboole
 	if (menu != NULL)
 		gtk_widget_destroy (menu);
 
-	menu = build_context_menu (pid);
+	menu = build_context_menu (treeview, pid);
 	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, position_func, treeview, 1, activate_time);
 }
 
