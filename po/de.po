@@ -4,16 +4,17 @@
 #   xfce4-taskmanager package.
 # Johannes Zellner <xfce4-taskmanager@nebulon.de>, 2005.
 # Enrico Tröger <enrico.troeger@uvena.de>, 2006, 2008.
-# Fabian Nowak <timystery@arcor.de>, 2007, 2008.
-# 
+# Fabian Nowak <timystery@arcor.de>, 2007, 2008, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-04 17:56+0000\n"
+"POT-Creation-Date: 2010-12-12 17:05+0100\n"
 "PO-Revision-Date: 2008-07-31 01:00+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,8 +25,8 @@ msgstr "Xfce4-Taskmanager ist ein einfach benutzbarer Taskmanager"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:366 ../src/process-tree-view.c:381
-#: ../src/process-tree-view.c:400 ../src/process-window.c:304
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Taskmanager"
@@ -40,7 +41,7 @@ msgstr "Es wurde keiner der Standardbefehle gefunden."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr "Taskmanager mit root Rechten starten"
+msgstr "Taskmanager mit Supernutzer-Rechten starten"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
@@ -105,112 +106,119 @@ msgstr "Auslagerungsspeicher: %s%%"
 msgid "Processes: %d"
 msgstr "Prozesse: %d"
 
-#: ../src/process-tree-view.c:126
+#: ../src/process-tree-view.c:125
 msgid "Task"
 msgstr "Anwendung"
 
-#: ../src/process-tree-view.c:137 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:145 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:153 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Status"
 
-#: ../src/process-tree-view.c:162
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:170
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:178 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:186 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
-#. header.
-#: ../src/process-tree-view.c:195
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:363
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
 msgstr "Anwendung beenden"
 
-#: ../src/process-tree-view.c:363
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
 msgstr "Prozess töten"
 
-#: ../src/process-tree-view.c:365
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Soll der Anwendung mit PID %d ein Signal gesendet werden?"
 
-#: ../src/process-tree-view.c:377
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr "Signal konnte nicht gesendet werden"
 
-#: ../src/process-tree-view.c:379
+#: ../src/process-tree-view.c:368
 #, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "Beim Senden eines Signals an die Anwendung mit der PID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you "
+"don't have the required privileges."
+msgstr ""
+"Beim Senden eines Signals an die Anwendung mit der PID %d ist ein Fehler "
+"aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
 
-#: ../src/process-tree-view.c:397
+#: ../src/process-tree-view.c:395
 msgid "Error setting priority"
 msgstr "Fehler beim Setzen der Priorität"
 
-#: ../src/process-tree-view.c:398
+#: ../src/process-tree-view.c:396
 #, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "Beim Setzen der Priorität für die Anwendung mit der PID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr ""
+"Beim Setzen der Priorität für die Anwendung mit der PID %d ist ein Fehler "
+"aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:412
 msgid "Terminate"
 msgstr "Beenden"
 
-#: ../src/process-tree-view.c:421
+#: ../src/process-tree-view.c:420
 msgid "Stop"
 msgstr "Anhalten"
 
-#: ../src/process-tree-view.c:428
+#: ../src/process-tree-view.c:427
 msgid "Continue"
 msgstr "Fortsetzen"
 
-#: ../src/process-tree-view.c:434
+#: ../src/process-tree-view.c:433
 msgid "Kill"
 msgstr "Töten"
 
-#: ../src/process-tree-view.c:441
+#: ../src/process-tree-view.c:440
 msgid "Very low"
 msgstr "Sehr niedrig"
 
-#: ../src/process-tree-view.c:446
+#: ../src/process-tree-view.c:445
 msgid "Low"
 msgstr "Niedrig"
 
-#: ../src/process-tree-view.c:451
+#: ../src/process-tree-view.c:450
 msgid "Normal"
 msgstr "Mittel"
 
-#: ../src/process-tree-view.c:456
+#: ../src/process-tree-view.c:455
 msgid "High"
 msgstr "Hoch"
 
-#: ../src/process-tree-view.c:461
+#: ../src/process-tree-view.c:460
 msgid "Very high"
 msgstr "Sehr hoch"
 
-#: ../src/process-tree-view.c:466 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Priorität"
 
@@ -224,7 +232,9 @@ msgstr ""
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Achtung, Sie sind als root angemeldet und könnten Ihr System beschädigen."
+msgstr ""
+"Achtung, Sie sind als Supernutzer angemeldet und könnten Ihr System "
+"beschädigen."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -247,9 +257,8 @@ msgid "<b>Information</b>"
 msgstr "<b>Information</b>"
 
 #: ../src/settings-dialog.ui.h:2
-#, fuzzy
 msgid "<b>Interface style</b>"
-msgstr "<b>Oberfläche</b>"
+msgstr "<b>Oberflächenstil</b>"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "<b>Miscellaneous</b>"
@@ -260,23 +269,20 @@ msgid "Columns:"
 msgstr "Spalten:"
 
 #: ../src/settings-dialog.ui.h:5
-#, fuzzy
 msgid "Draw borders around monitors"
-msgstr "Rand um Monitore anzeigen"
+msgstr "Rand um Monitore zeichnen"
 
 #: ../src/settings-dialog.ui.h:6
-#, fuzzy
 msgid "Hide into the notification area"
-msgstr "Ins Benachrichtigungsfeld minimieren"
+msgstr "In die Benachrichtigungsfläche minimieren"
 
 #: ../src/settings-dialog.ui.h:7
-#, fuzzy
 msgid "Prompt for terminating tasks"
 msgstr "Beenden von Prozessen bestätigen"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Refresh rate:"
-msgstr "Wiederholrate"
+msgstr "Wiederholrate:"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Settings"
@@ -299,34 +305,33 @@ msgid "Show values with more precision"
 msgstr "Werte mit höherer Genauigkeit anzeigen"
 
 #: ../src/settings-dialog.ui.h:14
-#, fuzzy
 msgid "Toolbar style:"
-msgstr "Werkzeugleistenstil"
+msgstr "Werkzeugleistenstil:"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
 msgid "500ms"
-msgstr "500ms"
+msgstr "500 ms"
 
 #: ../src/settings-tool-button.c:111
 msgid "750ms"
-msgstr "750ms"
+msgstr "750 ms"
 
 #: ../src/settings-tool-button.c:112
 msgid "1s"
-msgstr "1s"
+msgstr "1 s"
 
 #: ../src/settings-tool-button.c:113
 msgid "2s"
-msgstr "2s"
+msgstr "2 s"
 
 #: ../src/settings-tool-button.c:114
 msgid "5s"
-msgstr "5s"
+msgstr "5 s"
 
 #: ../src/settings-tool-button.c:115
 msgid "10s"
-msgstr "10s"
+msgstr "10 s"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
