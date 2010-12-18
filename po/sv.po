@@ -2,12 +2,12 @@
 # Copyright (C) 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfce4-taskmanager package.
 # Daniel Nylander <po@danielnylander.se>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 23:04+0200\n"
+"POT-Creation-Date: 2010-12-18 17:15+0000\n"
 "PO-Revision-Date: 2009-12-16 18:07+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -15,192 +15,203 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:326
-#, fuzzy
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 msgid "Easy to use task manager"
-msgstr "Xfce4-Taskmanager är en lättanvänd aktivitetshanterare"
+msgstr "Lättanvänd aktivitetshanterare"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-tree-view.c:215
-#: ../src/process-tree-view.c:229 ../src/process-tree-view.c:247
-#: ../src/process-window.c:199 ../src/process-window.c:321
-#, fuzzy
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:398 ../src/process-window.c:304
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
-msgstr "Xfce4 Aktivitetshanterare"
+msgstr "Aktivitetshanterare"
 
-#: ../src/process-statusbar.c:121
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "Körningsfel"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "Kunde inte hitta något standardkommando att köra."
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "Kör Aktivitetshanterare som root"
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "Kör program..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "Programlista"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "Terminalemulator"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "XTerm"
+
+#: ../src/main.c:100
 #, c-format
-msgid "CPU: %.2f%%"
+msgid ""
+"<b>Processes:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Memory:</b> %.0f%%\n"
+"<b>Swap:</b> %.0f%%"
 msgstr ""
+"<b>Processer:</b> %u\n"
+"<b>Processor:</b> %.0f%%\n"
+"<b>Minne:</b> %.0f%%\n"
+"<b>Växlingsutrymme:</b> %.0f%%"
 
-#: ../src/process-statusbar.c:128
+#: ../src/main.c:108
 #, c-format
-msgid "Memory: %.2f%%"
+msgid ""
+"Processes: %u\n"
+"CPU: %.0f%%\n"
+"Memory: %.0f%%\n"
+"Swap: %.0f%%"
 msgstr ""
+"Processer: %u\n"
+"Processor: %.0f%%\n"
+"Minne: %.0f%%\n"
+"Växlingsutrymme: %.0f%%"
 
-#: ../src/process-statusbar.c:135
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
-msgid "Swap: %.2f%%"
-msgstr ""
+msgid "CPU: %s%%"
+msgstr "Processor: %s%%"
 
-#: ../src/process-statusbar.c:142
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
+#, c-format
+msgid "Memory: %s%%"
+msgstr "Minne: %s%%"
+
+#: ../src/process-statusbar.c:166
+#, c-format
+msgid "Swap: %s%%"
+msgstr "Växlingsutrymme: %s%%"
+
+#: ../src/process-statusbar.c:181
 #, c-format
 msgid "Processes: %d"
-msgstr ""
+msgstr "Processer: %d"
 
-#: ../src/process-tree-view.c:106
+#: ../src/process-tree-view.c:125
 msgid "Task"
-msgstr ""
+msgstr "Aktivitet"
 
-#: ../src/process-tree-view.c:116 ../src/process-window.c:276
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:124 ../src/process-window.c:277
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:132 ../src/process-window.c:278
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Tillstånd"
 
-#: ../src/process-tree-view.c:141
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
-msgstr ""
+msgstr "VSZ"
 
-#: ../src/process-tree-view.c:149
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:157 ../src/process-window.c:281
-#, fuzzy
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
-msgstr "PID"
+msgstr "UID"
 
-#: ../src/process-tree-view.c:165 ../src/process-window.c:282
-#, fuzzy
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
-msgstr "Processor%"
+msgstr "Processor"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
-#: ../src/process-tree-view.c:174
-#, fuzzy
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: ../src/process-tree-view.c:194
 msgid "Prio."
-msgstr "Prio"
+msgstr "Prio."
 
-#: ../src/process-tree-view.c:212
-#, fuzzy
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
-msgstr "Verkligen terminera aktiviteten?"
+msgstr "Terminera processen"
 
-#: ../src/process-tree-view.c:212
-#, fuzzy
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
-msgstr "Döda"
+msgstr "Döda processen"
 
-#: ../src/process-tree-view.c:214
-#, fuzzy, c-format
+#: ../src/process-tree-view.c:354
+#, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Kunde inte skicka signal till aktiviteten med ID %d"
+msgstr "Är du säker på att du vill skicka en signal till PID %d?"
 
-#: ../src/process-tree-view.c:225
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr ""
 
-#: ../src/process-tree-view.c:227
+#: ../src/process-tree-view.c:368
 #, c-format
-msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr ""
 
-#: ../src/process-tree-view.c:244
+#: ../src/process-tree-view.c:395
 msgid "Error setting priority"
 msgstr ""
 
-#: ../src/process-tree-view.c:245
+#: ../src/process-tree-view.c:396
 #, c-format
-msgid ""
-"An error was encountered by setting a priority to the PID %d. It is likely "
-"you don't have the required privileges."
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr ""
 
-#: ../src/process-tree-view.c:260
-#, fuzzy
+#: ../src/process-tree-view.c:412
 msgid "Terminate"
-msgstr "Term"
+msgstr "Terminera"
 
-#: ../src/process-tree-view.c:267
+#: ../src/process-tree-view.c:420
 msgid "Stop"
 msgstr "Stoppa"
 
-#: ../src/process-tree-view.c:274
+#: ../src/process-tree-view.c:427
 msgid "Continue"
 msgstr "Fortsätt"
 
-#: ../src/process-tree-view.c:280
+#: ../src/process-tree-view.c:433
 msgid "Kill"
 msgstr "Döda"
 
-#: ../src/process-tree-view.c:287
+#: ../src/process-tree-view.c:440
 msgid "Very low"
-msgstr ""
+msgstr "Mycket låg"
 
-#: ../src/process-tree-view.c:292
+#: ../src/process-tree-view.c:445
 msgid "Low"
-msgstr ""
+msgstr "Låg"
 
-#: ../src/process-tree-view.c:297
+#: ../src/process-tree-view.c:450
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
-#: ../src/process-tree-view.c:302
+#: ../src/process-tree-view.c:455
 msgid "High"
-msgstr ""
+msgstr "Hög"
 
-#: ../src/process-tree-view.c:307
+#: ../src/process-tree-view.c:460
 msgid "Very high"
-msgstr ""
+msgstr "Mycket hög"
 
-#: ../src/process-tree-view.c:312 ../src/process-window.c:283
+#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Prioritet"
 
-#: ../src/process-window.c:197
-msgid "Execution error"
-msgstr ""
-
-#: ../src/process-window.c:226
-msgid "Run Program..."
-msgstr ""
-
-#: ../src/process-window.c:227
-msgid "Application Finder"
-msgstr ""
-
-#: ../src/process-window.c:228
-#, fuzzy
-msgid "Terminal emulator"
-msgstr "Ursprunglig upphovsman:"
-
-#: ../src/process-window.c:229
-#, fuzzy
-msgid "XTerm"
-msgstr "Term"
-
-#: ../src/process-window.c:271
-#, fuzzy
-msgid "Show all processes"
-msgstr "Kontrollera dina processer"
-
-#: ../src/process-window.c:279
-msgid "Virtual Bytes"
-msgstr ""
-
-#: ../src/process-window.c:280
-msgid "Private Bytes"
-msgstr ""
-
-#: ../src/process-window.c:329
+#: ../src/process-window.c:312
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -208,26 +219,144 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>"
 
-#: ../src/task-manager.c:146
+#: ../src/process-window.ui.h:2
+msgid "Warning, you are using the root account, you may harm your system."
+msgstr ""
+
+#: ../src/settings.c:378
+msgid "Default"
+msgstr "Standard"
+
+#: ../src/settings.c:379
+msgid "Small"
+msgstr "Liten"
+
+#: ../src/settings.c:380
+msgid "Large"
+msgstr "Stor"
+
+#: ../src/settings.c:381
+#, fuzzy
+msgid "Text"
+msgstr "Text"
+
+#: ../src/settings-dialog.ui.h:1
+#, fuzzy
+msgid "<b>Information</b>"
+msgstr "<b>Information</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Diverse</b>"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr "Kolumner:"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr "Uppdateringsfrekvens:"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr "Inställningar"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr "Inställningar för Aktivitetshanterare"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "Visa programikoner"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show full command lines"
+msgstr "Visa fullständiga kommandorader"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Show values with more precision"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Toolbar style:"
+msgstr ""
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr "500ms"
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750ms"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "1s"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "2s"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "5s"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "10s"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "Visa alla processer"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "Uppdateringsfrekvens"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr ""
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr ""
+
+#: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
-#: ../src/task-manager.c:153
+#: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
-#: ../src/task-manager.c:157
+#: ../src/task-manager.c:240
 #, c-format
 msgid "%lu B"
-msgstr ""
+msgstr "%lu B"
 
-#. TODO make precision optional
-#: ../src/task-manager.c:168
-#, fuzzy, c-format
-msgid "%.2f%%"
-msgstr "%0.0f %%"
+#: ../src/task-manager.c:263
+#, c-format
+msgid "%s%%"
+msgstr "%s%%"
 
 #~ msgid "Control your processes"
 #~ msgstr "Kontrollera dina processer"
@@ -246,9 +375,6 @@ msgstr "%0.0f %%"
 
 #~ msgid "Cpu usage"
 #~ msgstr "Processoranvändning"
-
-#~ msgid "Memory usage"
-#~ msgstr "Minnesanvändning"
 
 #~ msgid "Command"
 #~ msgstr "Kommando"
