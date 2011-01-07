@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager git version\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-03 17:15+0000\n"
+"POT-Creation-Date: 2011-01-07 11:16+0000\n"
 "PO-Revision-Date: 2010-05-24 13:13+0200\n"
 "Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -42,9 +42,8 @@ msgid "Couldn't find any default command to run."
 msgstr "Δεν βρέθηκε καμία προεπιλεγμένη εντολή προς εκτέλεση."
 
 #: ../src/exec-tool-button.c:164
-#, fuzzy
 msgid "Run Task Manager as root"
-msgstr "Εκτέλεση του Διαχειριστή Εργασιών ως διαχειριστής"
+msgstr "Εκτέλεση του Διαχειριστή Εργασιών ως υπερχρήστης"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
@@ -225,21 +224,18 @@ msgstr ""
 "Σταύρος Γιαννούρης"
 
 #: ../src/process-window.ui.h:2
-#, fuzzy
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Προσοχή, χρησιμοποιείτε το λογαριασμό του διαχειριστή, μπορεί να βλάψετε το σύστημά σας."
+msgstr "Προσοχή, χρησιμοποιείτε το λογαριασμό του υπερχρήστη, μπορεί να βλάψετε το σύστημά σας."
 
 #: ../src/settings.c:378
 msgid "Default"
 msgstr "Προεπιλογή"
 
 #: ../src/settings.c:379
-#, fuzzy
 msgid "Small"
 msgstr "Μικρό"
 
 #: ../src/settings.c:380
-#, fuzzy
 msgid "Large"
 msgstr "Μεγάλο"
 
