@@ -256,7 +256,7 @@ msgstr "Ekranların çevresine çerçeve çiz"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
-msgstr ""
+msgstr "Bildirim alanında sakla"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Prompt for terminating tasks"
