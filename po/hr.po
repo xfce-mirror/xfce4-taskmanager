@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-03 05:14+0000\n"
+"POT-Creation-Date: 2011-01-14 11:15+0000\n"
 "PO-Revision-Date: 2010-06-10 17:39+0200\n"
 "Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
 "Language-Team: Croatian <>\n"
@@ -164,7 +164,7 @@ msgstr "Greška u slanju signala"
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgstr "Došlo je do greške pri slanju signala u PID %d.Vjerojatno nemate potrebne dozvole."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
@@ -173,7 +173,7 @@ msgstr "Greška u postavljanju prioriteta"
 #: ../src/process-tree-view.c:396
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgstr "Došlo je do greške pri postavljanju prioriteta u PID %d.Vjerojatno nemate potrebne dozvole."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -221,7 +221,7 @@ msgstr "Ivica Kolić (zvacet) <ikoli@yahoo.com>"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
+msgstr "Upozorenje,koristite korijenski račun,možete oštetiti svoj sustav."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -249,7 +249,7 @@ msgstr "<b>IStil korisničkog sučelja</b>"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "<b>Miscellaneous</b>"
-msgstr ""
+msgstr "<b>Razno</b>"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Columns:"
