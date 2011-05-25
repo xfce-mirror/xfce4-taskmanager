@@ -104,7 +104,7 @@ program_exists (gchar *program)
 }
 
 static void
-execute_default_command ()
+execute_default_command (void)
 {
 	static gchar *command = NULL;
 
@@ -152,7 +152,7 @@ menu_append_item (GtkMenu *menu, gchar *title, gchar *command, gchar *icon_name)
 }
 
 static inline GtkWidget *
-construct_menu ()
+construct_menu (void)
 {
 	GtkWidget *menu = gtk_menu_new ();
 
