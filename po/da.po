@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-04 17:56+0000\n"
+"POT-Creation-Date: 2011-06-01 16:18+0000\n"
 "PO-Revision-Date: 2008-09-30 12:32+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -21,11 +21,11 @@ msgstr "En nem opgavehåndtering"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:366 ../src/process-tree-view.c:381
-#: ../src/process-tree-view.c:400 ../src/process-window.c:304
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
-msgstr "Opgaverhåndtering"
+msgstr "Opgavehåndtering"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
@@ -42,7 +42,7 @@ msgstr "Kør opgavehåndtering som administrator"
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
 msgid "Run Program..."
-msgstr "Kør årogram..."
+msgstr "Kør program..."
 
 #: ../src/exec-tool-button.c:182
 msgid "Application Finder"
@@ -102,112 +102,112 @@ msgstr "Swap: %s%%"
 msgid "Processes: %d"
 msgstr "Proces: %d"
 
-#: ../src/process-tree-view.c:126
+#: ../src/process-tree-view.c:125
 msgid "Task"
 msgstr "Opgave"
 
-#: ../src/process-tree-view.c:137 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:145 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:153 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Tilstand"
 
-#: ../src/process-tree-view.c:162
+#: ../src/process-tree-view.c:161
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:170
+#: ../src/process-tree-view.c:169
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:178 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:186 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:195
+#: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:363
+#: ../src/process-tree-view.c:352
 msgid "Terminate task"
 msgstr "Afbryd opgave"
 
-#: ../src/process-tree-view.c:363
+#: ../src/process-tree-view.c:352
 msgid "Kill task"
 msgstr "Dræb opgave"
 
-#: ../src/process-tree-view.c:365
+#: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Er du sikker på, at du vil sende et signal til PID'en %d?"
 
-#: ../src/process-tree-view.c:377
+#: ../src/process-tree-view.c:366
 msgid "Error sending signal"
 msgstr "Fejl ved afsendelse af signal"
 
-#: ../src/process-tree-view.c:379
+#: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr "En fejl opstod ved afsendelse af signal til PID'en %d. Det skyldes sandsynligvis manglende rettigheder."
 
-#: ../src/process-tree-view.c:397
+#: ../src/process-tree-view.c:395
 msgid "Error setting priority"
 msgstr "Fejl ved indstilling af prioritetet"
 
-#: ../src/process-tree-view.c:398
+#: ../src/process-tree-view.c:396
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
 msgstr "En fejl opstod ved indstilling af PID'en %d.Det skyldes sandsynligvis manglende rettigheder."
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:412
 msgid "Terminate"
 msgstr "Terminér"
 
-#: ../src/process-tree-view.c:421
+#: ../src/process-tree-view.c:420
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/process-tree-view.c:428
+#: ../src/process-tree-view.c:427
 msgid "Continue"
 msgstr "Fortsæt"
 
-#: ../src/process-tree-view.c:434
+#: ../src/process-tree-view.c:433
 msgid "Kill"
 msgstr "Dræb"
 
-#: ../src/process-tree-view.c:441
+#: ../src/process-tree-view.c:440
 msgid "Very low"
 msgstr "Meget lav"
 
-#: ../src/process-tree-view.c:446
+#: ../src/process-tree-view.c:445
 msgid "Low"
 msgstr "Lav"
 
-#: ../src/process-tree-view.c:451
+#: ../src/process-tree-view.c:450
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/process-tree-view.c:456
+#: ../src/process-tree-view.c:455
 msgid "High"
 msgstr "Høj"
 
-#: ../src/process-tree-view.c:461
+#: ../src/process-tree-view.c:460
 msgid "Very high"
 msgstr "Meget høj"
 
-#: ../src/process-tree-view.c:466 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Prioritet"
 
