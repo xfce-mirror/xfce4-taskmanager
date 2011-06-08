@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-18 05:12+0000\n"
+"POT-Creation-Date: 2011-06-08 16:19+0000\n"
 "PO-Revision-Date: 2008-11-30 08:51+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
@@ -20,14 +20,13 @@ msgstr ""
 "X-Generator: Pootle 1.2.0\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
-#, fuzzy
 msgid "Easy to use task manager"
-msgstr "Xfce4 Zeregin-kudeatzaile zeregin kudeatzaile erabilerraz bat da"
+msgstr " Zeregin kudeatzaile erabilerraz bat da"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
-#: ../src/process-tree-view.c:389 ../src/process-window.c:304
+#: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Zeregin kudeatzailea"
@@ -123,7 +122,6 @@ msgid "State"
 msgstr "Egoera"
 
 #: ../src/process-tree-view.c:161
-#, fuzzy
 msgid "VSZ"
 msgstr "VSZ"
 
@@ -167,53 +165,52 @@ msgstr "Errorea seinalea bidaltzean"
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
 msgstr "Errore bat gertatu da %d PIDari seinale bat bidaltzean. Ziurrenik ez duzu pribilegiorik beharko."
 
-#: ../src/process-tree-view.c:386
+#: ../src/process-tree-view.c:395
 msgid "Error setting priority"
-msgstr ""
+msgstr "Errorea lehentasuna ezartzean"
 
-#: ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:396
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgstr "Errore bat gertatu dat %d PID-aren lehentasuna ezartzean. Honetarako beharrezko baimenik ez duzula dirudi."
 
-#: ../src/process-tree-view.c:403
-#, fuzzy
+#: ../src/process-tree-view.c:412
 msgid "Terminate"
-msgstr "Terminala"
+msgstr "Amaitu"
 
-#: ../src/process-tree-view.c:410
+#: ../src/process-tree-view.c:420
 msgid "Stop"
 msgstr "Gelditu"
 
-#: ../src/process-tree-view.c:417
+#: ../src/process-tree-view.c:427
 msgid "Continue"
 msgstr "Jarraitu"
 
-#: ../src/process-tree-view.c:423
+#: ../src/process-tree-view.c:433
 msgid "Kill"
 msgstr "Hil"
 
-#: ../src/process-tree-view.c:430
-msgid "Very low"
-msgstr ""
-
-#: ../src/process-tree-view.c:435
-msgid "Low"
-msgstr ""
-
 #: ../src/process-tree-view.c:440
-msgid "Normal"
-msgstr ""
+msgid "Very low"
+msgstr "Oso baxua"
 
 #: ../src/process-tree-view.c:445
-msgid "High"
-msgstr ""
+msgid "Low"
+msgstr "Baxua"
 
 #: ../src/process-tree-view.c:450
-msgid "Very high"
-msgstr ""
+msgid "Normal"
+msgstr "Arrunta"
 
-#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:455
+msgid "High"
+msgstr "Altua"
+
+#: ../src/process-tree-view.c:460
+msgid "Very high"
+msgstr "Oso altua"
+
+#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Lehentasuna"
 
@@ -223,64 +220,63 @@ msgstr "itzultzaile-kreditua"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
+msgstr "Adi, root kontua erabiltzen ari zara, zure sistema hondatu dezakezu."
 
 #: ../src/settings.c:378
 msgid "Default"
-msgstr ""
+msgstr "Lehenetsia"
 
 #: ../src/settings.c:379
 msgid "Small"
-msgstr ""
+msgstr "Txikia"
 
 #: ../src/settings.c:380
 msgid "Large"
-msgstr ""
+msgstr "Handia"
 
 #: ../src/settings.c:381
 msgid "Text"
-msgstr ""
+msgstr "Testua"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "<b>Information</b>"
-msgstr ""
+msgstr "<b>Informazioa</b>"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "<b>Interface style</b>"
-msgstr ""
+msgstr "<b>Interfaze estiloa/b>"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "<b>Miscellaneous</b>"
-msgstr ""
+msgstr "<b>Bestelakoak</b>"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Columns:"
-msgstr ""
+msgstr "Zutabeak:"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr ""
+msgstr "Ertzak marraztu monitoreen inguruan"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
-msgstr ""
+msgstr "Ezkutatu berri-emate eremuan"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Prompt for terminating tasks"
-msgstr ""
+msgstr "Galdetu zereginak amaitzeko"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Refresh rate:"
-msgstr ""
+msgstr "Freskatze aldia:"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Settings"
-msgstr ""
+msgstr "Ezarpenak:"
 
 #: ../src/settings-dialog.ui.h:10
-#, fuzzy
 msgid "Settings for Task Manager"
-msgstr "xfce4 zeregin-kudeatzailea"
+msgstr "Zeregin-kudeatzaile ezarpenak"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
