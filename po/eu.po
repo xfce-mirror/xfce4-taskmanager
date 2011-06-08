@@ -280,81 +280,80 @@ msgstr "Zeregin-kudeatzaile ezarpenak"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
-msgstr ""
+msgstr "Ikusi aplikazio ikonoak"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
-msgstr ""
+msgstr "Ikusi komando-lerro osoak"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
-msgstr ""
+msgstr "Ikusi balioak zehaztasun handiagoz"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
-msgstr ""
+msgstr "Tresna-barra estiloa:"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
 msgid "500ms"
-msgstr ""
+msgstr "500ms"
 
 #: ../src/settings-tool-button.c:111
 msgid "750ms"
-msgstr ""
+msgstr "750ms"
 
 #: ../src/settings-tool-button.c:112
 msgid "1s"
-msgstr ""
+msgstr "1s"
 
 #: ../src/settings-tool-button.c:113
 msgid "2s"
-msgstr ""
+msgstr "2s"
 
 #: ../src/settings-tool-button.c:114
 msgid "5s"
-msgstr ""
+msgstr "5s"
 
 #: ../src/settings-tool-button.c:115
 msgid "10s"
-msgstr ""
+msgstr "10s"
 
 #: ../src/settings-tool-button.c:164
-#, fuzzy
 msgid "Show all processes"
-msgstr "Kontrolatu zure prozesuak"
+msgstr "Ikusi prozesu guztiak"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
-msgstr ""
+msgstr "Freskatze aldia"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "Byte birtualak"
 
 #: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
-msgstr ""
+msgstr "Byte pribatuak"
 
 #: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
 #: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
 #: ../src/task-manager.c:240
 #, c-format
 msgid "%lu B"
-msgstr ""
+msgstr "%lu B"
 
 #: ../src/task-manager.c:263
-#, fuzzy, c-format
+#, c-format
 msgid "%s%%"
-msgstr "%% %0.0f"
+msgstr "%s%%"
 
 #~ msgid "Control your processes"
 #~ msgstr "Kontrolatu zure prozesuak"
