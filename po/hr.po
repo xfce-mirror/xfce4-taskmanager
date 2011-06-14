@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-14 11:15+0000\n"
+"POT-Creation-Date: 2011-06-14 22:19+0000\n"
 "PO-Revision-Date: 2010-06-10 17:39+0200\n"
 "Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
 "Language-Team: Croatian <>\n"
@@ -34,7 +34,7 @@ msgstr "Greška u izvršavanju"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
-msgstr ""
+msgstr "Nije bilo moguće pronaći zadanu naredbu."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
@@ -257,15 +257,15 @@ msgstr "Stupci:"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr ""
+msgstr "Crtanje obruba oko monitora"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
-msgstr ""
+msgstr "Sakrij u području obavijesti"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Prompt for terminating tasks"
-msgstr ""
+msgstr "Pitaj za prekid zadatka"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Refresh rate:"
@@ -330,11 +330,11 @@ msgstr "Brzina osvježavanja"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "Virtualni byte-ovi"
 
 #: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
-msgstr ""
+msgstr "Privatni byte-ovi"
 
 #: ../src/task-manager.c:229
 #, c-format
