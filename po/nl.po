@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-28 04:18+0000\n"
-"PO-Revision-Date: 2009-08-16 11:08-0800\n"
+"POT-Creation-Date: 2011-06-16 10:20+0000\n"
+"PO-Revision-Date: 2011-06-16 11:08+0200\n"
 "Last-Translator: Pjotr\n"
-"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"Language-Team: Dutch (Flemish)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Dutch\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 msgid "Easy to use task manager"
@@ -232,7 +232,8 @@ msgstr ""
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Waarschuwing: u gebruikt het root-account, u kunt uw systeem beschadigen."
+msgstr ""
+"Waarschuwing: u gebruikt het root-account, u kunt uw systeem beschadigen."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -292,7 +293,7 @@ msgstr "Instellingen voor Taakbeheerder"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
-msgstr "Toon toepassingspictogrammen"
+msgstr "Toon toepassingpictogrammen"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
