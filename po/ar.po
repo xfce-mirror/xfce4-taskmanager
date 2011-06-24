@@ -290,12 +290,10 @@ msgstr "نمط شريط الأدوات:"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
-#, fuzzy
 msgid "500ms"
 msgstr "500ms"
 
 #: ../src/settings-tool-button.c:111
-#, fuzzy
 msgid "750ms"
 msgstr "750ms"
 
