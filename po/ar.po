@@ -51,7 +51,7 @@ msgstr "محاكي الطرفية"
 
 #: ../src/exec-tool-button.c:187
 msgid "XTerm"
-msgstr ""
+msgstr "XTerm"
 
 #: ../src/main.c:100
 #, c-format
@@ -105,11 +105,11 @@ msgstr "مهام"
 
 #: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
-msgstr ""
+msgstr "PID"
 
 #: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
-msgstr ""
+msgstr "PPID"
 
 #: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
@@ -117,25 +117,25 @@ msgstr "الحالة"
 
 #: ../src/process-tree-view.c:161
 msgid "VSZ"
-msgstr ""
+msgstr "VSZ"
 
 #: ../src/process-tree-view.c:169
 msgid "RSS"
-msgstr ""
+msgstr "RSS"
 
 #: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
-msgstr ""
+msgstr "UID"
 
 #: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
 #: ../src/process-tree-view.c:194
 msgid "Prio."
-msgstr ""
+msgstr "Prio."
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
@@ -143,16 +143,16 @@ msgstr "إنهاء المهام"
 
 #: ../src/process-tree-view.c:352
 msgid "Kill task"
-msgstr ""
+msgstr "قتل المهمة"
 
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr ""
+msgstr "هل أنت متاكد من أنك تريد إرسال إشعار إلى PID %d?"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
-msgstr ""
+msgstr "خطأ أتناء إرسال الإشعار"
 
 #: ../src/process-tree-view.c:368
 #, c-format
@@ -170,43 +170,43 @@ msgstr ""
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
-msgstr ""
+msgstr "إنهاء"
 
 #: ../src/process-tree-view.c:420
 msgid "Stop"
-msgstr ""
+msgstr "إقاف"
 
 #: ../src/process-tree-view.c:427
 msgid "Continue"
-msgstr ""
+msgstr "إستمرار"
 
 #: ../src/process-tree-view.c:433
 msgid "Kill"
-msgstr ""
+msgstr "قتل"
 
 #: ../src/process-tree-view.c:440
 msgid "Very low"
-msgstr ""
+msgstr "منخفض جدا"
 
 #: ../src/process-tree-view.c:445
 msgid "Low"
-msgstr ""
+msgstr "منخفض"
 
 #: ../src/process-tree-view.c:450
 msgid "Normal"
-msgstr ""
+msgstr "عادي"
 
 #: ../src/process-tree-view.c:455
 msgid "High"
-msgstr ""
+msgstr "مرتفع"
 
 #: ../src/process-tree-view.c:460
 msgid "Very high"
-msgstr ""
+msgstr "مرتفع جدا"
 
 #: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
-msgstr ""
+msgstr "أولوية"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
@@ -214,137 +214,139 @@ msgstr "Mohamed Magdy"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
+msgstr "تحذير, أنت تستعمل حساب الجذر, يمكن أن تخرب نظامك."
 
 #: ../src/settings.c:378
 msgid "Default"
-msgstr ""
+msgstr "إفتراضي"
 
 #: ../src/settings.c:379
 msgid "Small"
-msgstr ""
+msgstr "صغير"
 
 #: ../src/settings.c:380
 msgid "Large"
-msgstr ""
+msgstr "كبير"
 
 #: ../src/settings.c:381
 msgid "Text"
-msgstr ""
+msgstr "نص"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "<b>Information</b>"
-msgstr ""
+msgstr "<b>معلومات</b>"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "<b>Interface style</b>"
-msgstr ""
+msgstr "<b>نمط الواجهة</b>"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "<b>Miscellaneous</b>"
-msgstr ""
+msgstr "<b>منوعات</b>"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Columns:"
-msgstr ""
+msgstr "أعمدة:"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr ""
+msgstr "رسم حدود حول شاشات"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
-msgstr ""
+msgstr "إخفاء إلى مساحة الغشعار"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Prompt for terminating tasks"
-msgstr ""
+msgstr "تعجيل إنهاء المهام"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Refresh rate:"
-msgstr ""
+msgstr "إنعاش القيمة:"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Settings"
-msgstr ""
+msgstr "إعدادات"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "Settings for Task Manager"
-msgstr ""
+msgstr "إعدادات مدير المهام"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
-msgstr ""
+msgstr "عرض أيقونات التطبيق"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
-msgstr ""
+msgstr "عرض كامل سطور الأمر"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
-msgstr ""
+msgstr "عرض القيمة مع المزيد من الدقة"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
-msgstr ""
+msgstr "نمط شريط الأدوات:"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
+#, fuzzy
 msgid "500ms"
-msgstr ""
+msgstr "500ms"
 
 #: ../src/settings-tool-button.c:111
+#, fuzzy
 msgid "750ms"
-msgstr ""
+msgstr "750ms"
 
 #: ../src/settings-tool-button.c:112
 msgid "1s"
-msgstr ""
+msgstr "ثانية"
 
 #: ../src/settings-tool-button.c:113
 msgid "2s"
-msgstr ""
+msgstr "2 ثوان"
 
 #: ../src/settings-tool-button.c:114
 msgid "5s"
-msgstr ""
+msgstr "5 ثوان"
 
 #: ../src/settings-tool-button.c:115
 msgid "10s"
-msgstr ""
+msgstr "10 ثوان"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
-msgstr ""
+msgstr "عرض عل العمليات"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
-msgstr ""
+msgstr "إنعاش القيمة"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "بايت الإفتراضي"
 
 #: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
-msgstr ""
+msgstr "بايت الخاص"
 
 #: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
 #: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
 #: ../src/task-manager.c:240
 #, c-format
 msgid "%lu B"
-msgstr ""
+msgstr "%lu B"
 
 #: ../src/task-manager.c:263
 #, c-format
 msgid "%s%%"
-msgstr ""
+msgstr "%s%%"
