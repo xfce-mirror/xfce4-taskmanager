@@ -157,16 +157,16 @@ msgstr "خطأ أتناء إرسال الإشعار"
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgstr "لقد حدث خطأ أثناء إرسال الإشعار إلى PID %d. يبدو انك لا تتوفر على صلاحيات الكافية."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
-msgstr ""
+msgstr "خطأ في إعداد الأولويات"
 
 #: ../src/process-tree-view.c:396
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgstr "لقد حدث خطأ أثناء إعداد الاولويات PID %d. يبدو انك لا تتوفر على صلاحيات الكافية."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
