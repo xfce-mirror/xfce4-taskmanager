@@ -254,7 +254,7 @@ msgstr "Columnas"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr ""
+msgstr "Dibujar los bordes alrededor de los monitores"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
@@ -262,7 +262,7 @@ msgstr "Esconder en el área de notificación"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Prompt for terminating tasks"
-msgstr ""
+msgstr "Avisar por la terminación de tareas"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Refresh rate:"
