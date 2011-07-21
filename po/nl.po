@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-16 10:20+0000\n"
-"PO-Revision-Date: 2011-06-16 11:08+0200\n"
+"POT-Creation-Date: 2011-07-21 10:19+0000\n"
+"PO-Revision-Date: 2011-07-20 11:08+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
 "MIME-Version: 1.0\n"
@@ -146,11 +146,11 @@ msgstr "Prio."
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
-msgstr "Weet u zeker dat u deze taak wil beëindigen?"
+msgstr "Beëindig taak"
 
 #: ../src/process-tree-view.c:352
 msgid "Kill task"
-msgstr "Taak afbreken"
+msgstr "Breek taak af"
 
 #: ../src/process-tree-view.c:354
 #, c-format
@@ -390,7 +390,7 @@ msgstr "%s%%"
 #~ msgstr "Opdracht"
 
 #~ msgid "VM-Size"
-#~ msgstr "Groote van virtueel geheugen"
+#~ msgstr "Grootte van virtueel geheugen"
 
 #~ msgid "User"
 #~ msgstr "Gebruiker"
@@ -405,7 +405,7 @@ msgstr "%s%%"
 #~ msgstr "Toon andere taken"
 
 #~ msgid "Show memory used by cache as free"
-#~ msgstr "Toon opgeslagen geheugen als vrij"
+#~ msgstr "Toon geheugen in gebruik als opslag, als vrij"
 
 #~ msgid "Contributors:"
 #~ msgstr "Bijdragers:"
