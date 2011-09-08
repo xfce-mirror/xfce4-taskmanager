@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 10:19+0000\n"
-"PO-Revision-Date: 2011-07-20 11:08+0200\n"
+"POT-Creation-Date: 2011-09-08 16:20+0000\n"
+"PO-Revision-Date: 2011-09-08 11:08+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
 "MIME-Version: 1.0\n"
@@ -293,7 +293,7 @@ msgstr "Instellingen voor Taakbeheerder"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
-msgstr "Toon toepassingpictogrammen"
+msgstr "Toon toepassingspictogrammen"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
