@@ -1,0 +1,388 @@
+# translation of xfce4-taskmanager.master.untitled.po to Icelandic
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sveinn í Felli <sveinki@nett.is>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-taskmanager.master.untitled\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-10 08:18+0000\n"
+"PO-Revision-Date: 2011-12-10 09:59+0000\n"
+"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr ""
+
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:398 ../src/process-window.c:304
+#: ../src/process-window.ui.h:1
+#, fuzzy
+msgid "Task Manager"
+msgstr "Verkefnastjóri"
+
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr ""
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr ""
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr ""
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+#, fuzzy
+msgid "Run Program..."
+msgstr "Keyra forrit..."
+
+#: ../src/exec-tool-button.c:182
+#, fuzzy
+msgid "Application Finder"
+msgstr "Forritaleit"
+
+#: ../src/exec-tool-button.c:185
+#, fuzzy
+msgid "Terminal emulator"
+msgstr "Skjáhermir"
+
+#: ../src/exec-tool-button.c:187
+#, fuzzy
+msgid "XTerm"
+msgstr "XTerm"
+
+#: ../src/main.c:100
+#, c-format
+msgid ""
+"<b>Processes:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Memory:</b> %.0f%%\n"
+"<b>Swap:</b> %.0f%%"
+msgstr ""
+
+#: ../src/main.c:108
+#, c-format
+msgid ""
+"Processes: %u\n"
+"CPU: %.0f%%\n"
+"Memory: %.0f%%\n"
+"Swap: %.0f%%"
+msgstr ""
+
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
+#, c-format
+msgid "CPU: %s%%"
+msgstr ""
+
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
+#, c-format
+msgid "Memory: %s%%"
+msgstr ""
+
+#: ../src/process-statusbar.c:166
+#, c-format
+msgid "Swap: %s%%"
+msgstr ""
+
+#: ../src/process-statusbar.c:181
+#, c-format
+msgid "Processes: %d"
+msgstr ""
+
+#: ../src/process-tree-view.c:125
+#, fuzzy
+msgid "Task"
+msgstr "Verkefni"
+
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
+#, fuzzy
+msgid "PID"
+msgstr "PID"
+
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+#, fuzzy
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+#, fuzzy
+msgid "State"
+msgstr "Staða"
+
+#: ../src/process-tree-view.c:161
+msgid "VSZ"
+msgstr ""
+
+#: ../src/process-tree-view.c:169
+#, fuzzy
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
+#, fuzzy
+msgid "UID"
+msgstr "UID"
+
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+#, fuzzy
+msgid "CPU"
+msgstr "Örgjörvi"
+
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#: ../src/process-tree-view.c:194
+msgid "Prio."
+msgstr ""
+
+#: ../src/process-tree-view.c:352
+msgid "Terminate task"
+msgstr ""
+
+#: ../src/process-tree-view.c:352
+msgid "Kill task"
+msgstr ""
+
+#: ../src/process-tree-view.c:354
+#, c-format
+msgid "Are you sure you want to send a signal to the PID %d?"
+msgstr ""
+
+#: ../src/process-tree-view.c:366
+msgid "Error sending signal"
+msgstr ""
+
+#: ../src/process-tree-view.c:368
+#, c-format
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you "
+"don't have the required privileges."
+msgstr ""
+
+#: ../src/process-tree-view.c:395
+msgid "Error setting priority"
+msgstr ""
+
+#: ../src/process-tree-view.c:396
+#, c-format
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr ""
+
+#: ../src/process-tree-view.c:412
+#, fuzzy
+msgid "Terminate"
+msgstr "Loka"
+
+#: ../src/process-tree-view.c:420
+#, fuzzy
+msgid "Stop"
+msgstr "Stöðva"
+
+#: ../src/process-tree-view.c:427
+#, fuzzy
+msgid "Continue"
+msgstr "Áfram"
+
+#: ../src/process-tree-view.c:433
+#, fuzzy
+msgid "Kill"
+msgstr "Drepa"
+
+#: ../src/process-tree-view.c:440
+msgid "Very low"
+msgstr ""
+
+#: ../src/process-tree-view.c:445
+#, fuzzy
+msgid "Low"
+msgstr "Lágt"
+
+#: ../src/process-tree-view.c:450
+#, fuzzy
+msgid "Normal"
+msgstr "Venjulegt"
+
+#: ../src/process-tree-view.c:455
+#, fuzzy
+msgid "High"
+msgstr "Hátt"
+
+#: ../src/process-tree-view.c:460
+#, fuzzy
+msgid "Very high"
+msgstr "Mjög hátt"
+
+#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
+#, fuzzy
+msgid "Priority"
+msgstr "Forgangur"
+
+#: ../src/process-window.c:312
+#, fuzzy
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Baldur https://launchpad.net/~baldurpet"
+
+#: ../src/process-window.ui.h:2
+msgid "Warning, you are using the root account, you may harm your system."
+msgstr ""
+
+#: ../src/settings.c:378
+#, fuzzy
+msgid "Default"
+msgstr "Sjálfgefið"
+
+#: ../src/settings.c:379
+#, fuzzy
+msgid "Small"
+msgstr "Lítil"
+
+#: ../src/settings.c:380
+#, fuzzy
+msgid "Large"
+msgstr "Stór"
+
+#: ../src/settings.c:381
+#, fuzzy
+msgid "Text"
+msgstr "Texti"
+
+#: ../src/settings-dialog.ui.h:1
+#, fuzzy
+msgid "<b>Information</b>"
+msgstr "<b>Upplýsingar</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:3
+#, fuzzy
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Ýmislegt</b>"
+
+#: ../src/settings-dialog.ui.h:4
+#, fuzzy
+msgid "Columns:"
+msgstr "Dálkar:"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:8
+#, fuzzy
+msgid "Refresh rate:"
+msgstr "Tíðni:"
+
+#: ../src/settings-dialog.ui.h:9
+#, fuzzy
+msgid "Settings"
+msgstr "Stillingar"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:11
+#, fuzzy
+msgid "Show application icons"
+msgstr "Sýna táknmyndir forrita"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show full command lines"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Show values with more precision"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Toolbar style:"
+msgstr ""
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr ""
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr ""
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr ""
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr ""
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr ""
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr ""
+
+#: ../src/settings-tool-button.c:164
+#, fuzzy
+msgid "Show all processes"
+msgstr "Sýna öll forrit"
+
+#: ../src/settings-tool-button.c:167
+#, fuzzy
+msgid "Refresh rate"
+msgstr "Uppfærsluhraði"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr ""
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr ""
+
+#: ../src/task-manager.c:229
+#, c-format
+msgid "%lu MiB"
+msgstr ""
+
+#: ../src/task-manager.c:236
+#, c-format
+msgid "%lu KiB"
+msgstr ""
+
+#: ../src/task-manager.c:240
+#, c-format
+msgid "%lu B"
+msgstr ""
+
+#: ../src/task-manager.c:263
+#, c-format
+msgid "%s%%"
+msgstr ""
+
