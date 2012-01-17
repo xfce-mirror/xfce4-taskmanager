@@ -2,44 +2,53 @@
 # Copyright (C) 2005 Johannes Zellner.
 # This file is distributed under the same license as the xfce4-taskmanager package.
 # Nuno Miguel <nunis@netcabo.pt>, 2007.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-04 11:13+0000\n"
-"PO-Revision-Date: 2010-05-25 14:47+0100\n"
-"Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
+"PO-Revision-Date: 2012-01-17 12:56-0000\n"
+"Last-Translator: Sérgio Marques <smarquespt@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: PORTUGAL\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
+#: ../xfce4-taskmanager.desktop.in.h:1
+#: ../src/process-window.c:309
 msgid "Easy to use task manager"
 msgstr "Gestor de tarefas fácil de usar"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
-#: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
-#: ../src/process-tree-view.c:389 ../src/process-window.c:304
+#: ../xfce4-taskmanager.desktop.in.h:2
+#: ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134
+#: ../src/main.c:156
+#: ../src/process-tree-view.c:355
+#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:389
+#: ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
-msgstr "Gestor de Tarefas"
+msgstr "Gestor de tarefas"
 
-#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+#: ../src/exec-tool-button.c:87
+#: ../src/exec-tool-button.c:131
 msgid "Execution error"
 msgstr "Erro de execução"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
-msgstr "Não foi possível encontrar o comando de execução."
+msgstr "O comando de execução não foi encontrado"
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
 msgstr "Executar gestor de tarefas como \"root\""
 
-#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:175
+#: ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
 msgid "Run Program..."
 msgstr "Executar programa..."
@@ -82,12 +91,14 @@ msgstr ""
 "Memória: %.0f%%\n"
 "Swap: %.0f%%"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:374
+#: ../src/process-statusbar.c:148
+#: ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:379
+#: ../src/process-statusbar.c:157
+#: ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
 msgstr "Memória: %s%%"
@@ -106,15 +117,18 @@ msgstr "Processos: %d"
 msgid "Task"
 msgstr "Tarefa"
 
-#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:136
+#: ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144
+#: ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152
+#: ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Estado"
 
@@ -126,11 +140,13 @@ msgstr "VSZ"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:177
+#: ../src/settings-tool-button.c:179
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185
+#: ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "CPU"
 
@@ -138,7 +154,7 @@ msgstr "CPU"
 #. header.
 #: ../src/process-tree-view.c:194
 msgid "Prio."
-msgstr "Prio."
+msgstr "Prioridade"
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
@@ -160,7 +176,7 @@ msgstr "Erro ao enviar o sinal"
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "Ocorreu um erro ao enviar o sinal ao PID %d. É possível que não tenha os privilégios necessários."
+msgstr "Ocorreu um erro ao enviar o sinal ao PID %d. É possível que não tenha os privilégios necessários"
 
 #: ../src/process-tree-view.c:386
 msgid "Error setting priority"
@@ -169,7 +185,7 @@ msgstr "Erro ao definir a prioridade"
 #: ../src/process-tree-view.c:387
 #, c-format
 msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "Ocorreu um erro ao definir a prioridade para o PID %d. É possível que não tenha os privilégios necessários."
+msgstr "Ocorreu um erro ao definir a prioridade para o PID %d. É possível que não tenha os privilégios necessários"
 
 #: ../src/process-tree-view.c:403
 msgid "Terminate"
@@ -207,7 +223,8 @@ msgstr "Alta"
 msgid "Very high"
 msgstr "Muito alta"
 
-#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:455
+#: ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Prioridade"
 
@@ -217,11 +234,11 @@ msgstr "Nuno Miguel"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Cuidado, está a utilizar a conta de \"root\" e pode danificar o seu sistema."
+msgstr "Cuidado, está a utilizar a conta de \"root\" e pode danificar o seu sistema"
 
 #: ../src/settings.c:378
 msgid "Default"
-msgstr "Omissões"
+msgstr "Omissão"
 
 #: ../src/settings.c:379
 msgid "Small"
@@ -237,7 +254,7 @@ msgstr "Texto"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "<b>Information</b>"
-msgstr "<b>Informação</b>"
+msgstr "<b>Informações</b>"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "<b>Interface style</b>"
@@ -265,7 +282,7 @@ msgstr "Solicitar pelo término das aplicações"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Refresh rate:"
-msgstr "Taxa de actualização:"
+msgstr "Taxa de atualização:"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Settings"
@@ -322,7 +339,7 @@ msgstr "Mostrar todos os processos"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
-msgstr "Taxa de actualização"
+msgstr "Taxa de atualização"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
@@ -352,11 +369,3 @@ msgstr "%lu B"
 msgid "%s%%"
 msgstr "%s%%"
 
-#~ msgid "More precision"
-#~ msgstr "Mais precisão"
-
-#~ msgid "Show status icon"
-#~ msgstr "Mostrar ícone de estado"
-
-#~ msgid "250ms"
-#~ msgstr "250ms"
