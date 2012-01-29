@@ -3,13 +3,13 @@
 # This file is distributed under the same license as
 # the xfce4-taskmanager package.
 # Hunt Xu <huntxu@live.cn>, 2008, 2010.
-# Chipong Luo <chipong_l@yahoo.com>, 2011.
+# Chipong Luo <chipong_l@yahoo.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-25 04:11+0000\n"
+"POT-Creation-Date: 2012-01-28 22:00+0000\n"
 "PO-Revision-Date: 2010-11-23 23:40+0800\n"
 "Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n@xfce.org>\n"
@@ -165,7 +165,8 @@ msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
 "don't have the required privileges."
 msgstr ""
-"发送信号至 PID %d 时遇到一个错误。您可能没有所需的权限。"
+"发送信号至 PID %d 时遇到一个错误。"
+"您可能没有所需的权限。"
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
@@ -177,7 +178,8 @@ msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr ""
-"设置 PID %d 的优先级时遇到一个错误。您可能没有所需的权限。"
+"设置 PID %d 的优先级时遇到一个错误。"
+"您可能没有所需的权限。"
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -223,15 +225,17 @@ msgstr "优先级"
 msgid "translator-credits"
 msgstr ""
 "HuntXu <huntxu@live.cn>, 2008, 2010.\n"
-"Chipong Luo <chipong_l@yahoo.com>, 2011."
+"Chipong Luo <chipong_l@yahoo.com>, 2011, 2012."
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "警告，您正在使用 root 帐号，可能会损害您的系统。"
+msgstr ""
+"警告，您正在使用 root 帐号，可能会"
+"损害您的系统。"
 
 #: ../src/settings.c:378
 msgid "Default"
-msgstr "默认值"
+msgstr "默认"
 
 #: ../src/settings.c:379
 msgid "Small"
@@ -243,7 +247,7 @@ msgstr "大"
 
 #: ../src/settings.c:381
 msgid "Text"
-msgstr "文本"
+msgstr "文字"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "<b>Information</b>"
@@ -299,7 +303,7 @@ msgstr "显示更精确的值"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
-msgstr "工具栏样式"
+msgstr "工具栏样式："
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
@@ -345,12 +349,12 @@ msgstr "私有字节"
 #: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
-msgstr "%lu MB"
+msgstr "%lu M"
 
 #: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
-msgstr "%lu KB"
+msgstr "%lu K"
 
 #: ../src/task-manager.c:240
 #, c-format
