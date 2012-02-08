@@ -3,13 +3,13 @@
 # This file is distributed under the same license as
 # the xfce4-taskmanager package.
 # Hunt Xu <huntxu@live.cn>, 2008, 2010.
-# Chipong Luo <chipong_l@yahoo.com>, 2011, 2012.
+# Chipong Luo <chipong.luo@yahoo.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-28 22:00+0000\n"
+"POT-Creation-Date: 2012-02-08 01:36+0000\n"
 "PO-Revision-Date: 2010-11-23 23:40+0800\n"
 "Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n@xfce.org>\n"
@@ -164,9 +164,7 @@ msgstr "发送信号时出错"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
 "don't have the required privileges."
-msgstr ""
-"发送信号至 PID %d 时遇到一个错误。"
-"您可能没有所需的权限。"
+msgstr "发送信号至 PID %d 时遇到一个错误。您可能没有所需的权限。"
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
@@ -177,9 +175,7 @@ msgstr "设置优先级时出错"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
-"设置 PID %d 的优先级时遇到一个错误。"
-"您可能没有所需的权限。"
+msgstr "设置 PID %d 的优先级时遇到一个错误。您可能没有所需的权限。"
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -229,9 +225,7 @@ msgstr ""
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
-"警告，您正在使用 root 帐号，可能会"
-"损害您的系统。"
+msgstr "警告，您正在使用 root 帐号，可能会损害您的系统。"
 
 #: ../src/settings.c:378
 msgid "Default"
