@@ -302,15 +302,15 @@ msgstr "작업 관리자 설정"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
-msgstr "프로그램 아이콘 보이기"
+msgstr "프로그램 아이콘 보기"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
-msgstr "전체 명령줄 보이기"
+msgstr "전체 명령줄 보기"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
-msgstr "값을 더 정밀하게 보이기"
+msgstr "값을 더 정밀하게 보기"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
@@ -343,7 +343,7 @@ msgstr "10s"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
-msgstr "모든 프로세스 보이기"
+msgstr "모든 프로세스 보기"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
