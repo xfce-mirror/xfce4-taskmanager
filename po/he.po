@@ -1,0 +1,393 @@
+# Hebrew translation of the xfce4-taskmanager.
+# Copyright (C) Johannes Zellner <webmaster@nebulon.de>, Mike Massonnet <mmassonnet@xfce.org>
+# This file is distributed under the same license as the xfce4-taskmanager package.
+# Isratine Citizen <genghiskhan@gmx.ca>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-taskmanager 1.x\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-07 04:09+0000\n"
+"PO-Revision-Date: 2012-04-08 03:44+0200\n"
+"Last-Translator: my name <email@address.org>\n"
+"Language-Team: Hebrew <xfce-i18n@xfce.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../xfce4-taskmanager.desktop.in.h:1
+#: ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr "מנהל משימות ידידותי לשימוש"
+
+#: ../xfce4-taskmanager.desktop.in.h:2
+#: ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134
+#: ../src/main.c:156
+#: ../src/process-tree-view.c:355
+#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:398
+#: ../src/process-window.c:304
+#: ../src/process-window.ui.h:1
+msgid "Task Manager"
+msgstr "מנהל משימות"
+
+#: ../src/exec-tool-button.c:87
+#: ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "שגיאת הרצה"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "לא ניתן היה למצוא פקודת ברירת מחדל להרצה."
+
+# Translated to: Run Task Manager as super-user
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "הרצת מנהל המשימות כמשתמש-על"
+
+#: ../src/exec-tool-button.c:175
+#: ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "הרצת תוכנית..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "מוצא היישומים"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "מדמה מסוף"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "XTerm"
+
+# זיכרון חליף
+#: ../src/main.c:100
+#, c-format
+msgid ""
+"<b>Processes:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Memory:</b> %.0f%%\n"
+"<b>Swap:</b> %.0f%%"
+msgstr ""
+"<b>תהליכים:</b> %u\n"
+"<b>י.ע.מ:</b> %.0f%%\n"
+"<b>זיכרון:</b> %.0f%%\n"
+"<b>החלפה:</b> %.0f%%"
+
+# זיכרון חליף
+#: ../src/main.c:108
+#, c-format
+msgid ""
+"Processes: %u\n"
+"CPU: %.0f%%\n"
+"Memory: %.0f%%\n"
+"Swap: %.0f%%"
+msgstr ""
+"תהליכים: %u\n"
+"י.ע.מ: %.0f%%\n"
+"זיכרון: %.0f%%\n"
+"החלפה: %.0f%%"
+
+#: ../src/process-statusbar.c:148
+#: ../src/process-window.c:374
+#, c-format
+msgid "CPU: %s%%"
+msgstr ": %s%%"
+
+#: ../src/process-statusbar.c:157
+#: ../src/process-window.c:379
+#, c-format
+msgid "Memory: %s%%"
+msgstr "זיכרון: %s%%"
+
+# תחלופה
+#: ../src/process-statusbar.c:166
+#, c-format
+msgid "Swap: %s%%"
+msgstr "החלפה: %s%%"
+
+#: ../src/process-statusbar.c:181
+#, c-format
+msgid "Processes: %d"
+msgstr "תהליכים: %d"
+
+#: ../src/process-tree-view.c:125
+msgid "Task"
+msgstr "משימה"
+
+# ז.ת. זהות תהליך
+# Process Identification
+#: ../src/process-tree-view.c:136
+#: ../src/settings-tool-button.c:174
+msgid "PID"
+msgstr "זהות תהליך (PID)"
+
+# זהות תהליך הורה
+# Parent Process Identification
+#: ../src/process-tree-view.c:144
+#: ../src/settings-tool-button.c:175
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/process-tree-view.c:152
+#: ../src/settings-tool-button.c:176
+msgid "State"
+msgstr "מצב"
+
+#: ../src/process-tree-view.c:161
+msgid "VSZ"
+msgstr "VSZ"
+
+# Resident set size
+#: ../src/process-tree-view.c:169
+msgid "RSS"
+msgstr "RSS"
+
+# Translated to: User
+# יכול להיות שהמילה 'משתמש' ארוכה מידי
+# כדאי לנו להמציא ראשי-תיבות ^_^
+# ז.מ. זהות (ה)משתמש
+#: ../src/process-tree-view.c:177
+#: ../src/settings-tool-button.c:179
+msgid "UID"
+msgstr "משתמש (UID)"
+
+# יחידת עיבוד מרכזית
+#: ../src/process-tree-view.c:185
+#: ../src/settings-tool-button.c:180
+msgid "CPU"
+msgstr "י.ע.מ"
+
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#: ../src/process-tree-view.c:194
+msgid "Prio."
+msgstr "עדיפ."
+
+#: ../src/process-tree-view.c:352
+msgid "Terminate task"
+msgstr "סיום המשימה"
+
+#: ../src/process-tree-view.c:352
+msgid "Kill task"
+msgstr "הריגת המשימה"
+
+#: ../src/process-tree-view.c:354
+#, c-format
+msgid "Are you sure you want to send a signal to the PID %d?"
+msgstr "האם ברצונך לשלוח אות אל זהות תהליך (PID) מספר %d?"
+
+#: ../src/process-tree-view.c:366
+msgid "Error sending signal"
+msgstr "שגיאה בעת שליחת האות"
+
+# כנראה ש, נראה ש, סביר ש, סביר להניח ש, likely
+# . כנראה שההרשאות המתאימות לא עומדות לרשותך.
+# . כנראה שאין ברשותך את ההרשאות המתאימות.
+# . כנראה שאין לך את ההרשאות המתאימות.
+#: ../src/process-tree-view.c:368
+#, c-format
+msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
+msgstr "ארעה שגיאה בעת שליחת אות אל זהות תהליך (PID) מספר %d. כנראה שההרשאות המתאימות לא עומדות לרשותך."
+
+#: ../src/process-tree-view.c:395
+msgid "Error setting priority"
+msgstr "שגיאה בהגדרת העדיפות"
+
+#: ../src/process-tree-view.c:396
+#, c-format
+msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
+msgstr "ארעה שגיאה בעת הגדרת עדיפות לזהות תהליך (PID) מספר %d. כנראה שההרשאות המתאימות לא עומדות לרשותך."
+
+#: ../src/process-tree-view.c:412
+msgid "Terminate"
+msgstr "סיום"
+
+#: ../src/process-tree-view.c:420
+msgid "Stop"
+msgstr "הפסקה"
+
+#: ../src/process-tree-view.c:427
+msgid "Continue"
+msgstr "המשכה"
+
+#: ../src/process-tree-view.c:433
+msgid "Kill"
+msgstr "הריגה"
+
+#: ../src/process-tree-view.c:440
+msgid "Very low"
+msgstr "מאוד נמוך"
+
+#: ../src/process-tree-view.c:445
+msgid "Low"
+msgstr "נמוך"
+
+#: ../src/process-tree-view.c:450
+msgid "Normal"
+msgstr "רגיל"
+
+#: ../src/process-tree-view.c:455
+msgid "High"
+msgstr "גבוה"
+
+#: ../src/process-tree-view.c:460
+msgid "Very high"
+msgstr "מאוד גבוה"
+
+#: ../src/process-tree-view.c:465
+#: ../src/settings-tool-button.c:181
+msgid "Priority"
+msgstr "עדיפות"
+
+#: ../src/process-window.c:312
+msgid "translator-credits"
+msgstr "Isratine Citizen <genghiskhan@gmx.ca>"
+
+# <b>אזהרה</b>, הינך
+#: ../src/process-window.ui.h:2
+msgid "Warning, you are using the root account, you may harm your system."
+msgstr "אזהרה, הינך עושה שימוש בחשבון השורש (משתמש על), מערכתך עלולה להינזק על ידך."
+
+#: ../src/settings.c:378
+msgid "Default"
+msgstr "ברירת מחדל"
+
+#: ../src/settings.c:379
+msgid "Small"
+msgstr "קטן"
+
+#: ../src/settings.c:380
+msgid "Large"
+msgstr "גדול"
+
+# תמליל
+#: ../src/settings.c:381
+msgid "Text"
+msgstr "טקסט"
+
+#: ../src/settings-dialog.ui.h:1
+msgid "<b>Information</b>"
+msgstr "<b>מידע</b>"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "<b>Interface style</b>"
+msgstr "<b>סגנון ממשק</b>"
+
+#: ../src/settings-dialog.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>שונות</b>"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Columns:"
+msgstr "עמודות:"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "שרטוט גבולות מסביב לצגים"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Hide into the notification area"
+msgstr "הסתרה לתוך אזור הדיווחים"
+
+# שאל עבור סיום משימות
+#: ../src/settings-dialog.ui.h:7
+msgid "Prompt for terminating tasks"
+msgstr "שאל לפני סיום משימה"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Refresh rate:"
+msgstr "מהירות ריענון:"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Settings"
+msgstr "הגדרות"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Settings for Task Manager"
+msgstr "הגדרות עבור מנהל המשימות"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show application icons"
+msgstr "הצגת צלמיות יישום"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Show full command lines"
+msgstr "הצגת שורות הפקודה במלואן"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Show values with more precision"
+msgstr "הצגת ערכים עם דיוק רב יותר"
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Toolbar style:"
+msgstr "סגנון סרגל הכלים:"
+
+# חצי שניה
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr "500 אלפית-השנייה"
+
+# אלפיות-השנייה
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750 אלפית-השנייה"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "שניה אחת"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "שתי שניות"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "חמש שניות"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "עשר שניות"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "הצגת כל התהליכים"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "מהירות ריענון"
+
+# וירטואלים
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr "ביתים מדומים"
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr "ביתים פרטיים"
+
+#: ../src/task-manager.c:229
+#, c-format
+msgid "%lu MiB"
+msgstr "%lu מ\"ב"
+
+#: ../src/task-manager.c:236
+#, c-format
+msgid "%lu KiB"
+msgstr "%lu ק\"ב"
+
+#: ../src/task-manager.c:240
+#, c-format
+msgid "%lu B"
+msgstr "%lu בית(ים)"
+
+#: ../src/task-manager.c:263
+#, c-format
+msgid "%s%%"
+msgstr "%s%%"
+
