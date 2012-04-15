@@ -1,16 +1,16 @@
 # Dutch translation of the xfce4-taskmanager package.
 # Copyright (C) The Xfce development team.
-# This file is distributed under the same license as the 
+# This file is distributed under the same license as the
 # xfce4-taskmanager package.
 # Stephan Arts <stephan@xfce.org>, 2007.
 # Vincent <msn_vincent@hotmail.com>, 2008.
 # Pjotr, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 16:20+0000\n"
+"POT-Creation-Date: 2012-04-15 13:24+0000\n"
 "PO-Revision-Date: 2011-09-08 11:08+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -47,7 +47,7 @@ msgstr "Draai Taakbeheerder als systeembeheerder (root)"
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
 msgid "Run Program..."
-msgstr "Draai Programma..."
+msgstr "Draai programma..."
 
 #: ../src/exec-tool-button.c:182
 msgid "Application Finder"
@@ -139,7 +139,8 @@ msgstr "UID"
 msgid "CPU"
 msgstr "CPU"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
 #: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "Prio."
@@ -189,7 +190,7 @@ msgstr "Beëindigen"
 
 #: ../src/process-tree-view.c:420
 msgid "Stop"
-msgstr "Stop"
+msgstr "Stoppen"
 
 #: ../src/process-tree-view.c:427
 msgid "Continue"
@@ -342,7 +343,7 @@ msgstr "Verversingssnelheid"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
-msgstr "Virtuele Bytes"
+msgstr "Virtuele bytes"
 
 #: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
