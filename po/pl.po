@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-25 14:54+0000\n"
+"POT-Creation-Date: 2012-04-16 06:39+0000\n"
 "PO-Revision-Date: 2011-02-02 12:32+0100\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: Polish <>\n"
@@ -270,15 +270,15 @@ msgstr "Kolumny:"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr "Rysuj krawędzie wokół wykresów"
+msgstr "Wyświetlanie obramowań wokół wykresów"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
-msgstr "Schowaj do obszaru powiadamiania"
+msgstr "Ukrywanie w obszarze powiadamiania"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Prompt for terminating tasks"
-msgstr "Pytaj o potwierdzenie zakończenia zadania"
+msgstr "Wyświetlanie potwierdzenia kończenia zadania"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Refresh rate:"
@@ -290,7 +290,7 @@ msgstr "Preferencje"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "Settings for Task Manager"
-msgstr "Preferencje dla menedżera zadań Xfce"
+msgstr "Preferencje menedżera zadań Xfce"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
@@ -302,7 +302,7 @@ msgstr "Pełne ścieżki poleceń"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
-msgstr "Pokazuj wartości z większą precyzją"
+msgstr "Wyświetlanie wartości z większą precyzją"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
