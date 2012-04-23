@@ -41,7 +41,11 @@ gboolean get_task_list (GArray *task_list)
 {
 	int mib[6];
 	size_t size;
+#ifdef __OpenBSD__
+	struct kinfo_proc *kp;
+#else
 	struct kinfo_proc2 *kp;
+#endif
 	Task t;
 	struct passwd *passwdp;
 	char **args, **ptr;
@@ -49,23 +53,48 @@ gboolean get_task_list (GArray *task_list)
 	int nproc, i;
 
 	mib[0] = CTL_KERN;
+#ifdef __OpenBSD__
+	mib[1] = KERN_PROC;
+#else
 	mib[1] = KERN_PROC2;
+#endif
 	mib[2] = KERN_PROC_ALL;
 	mib[3] = 0;
+#ifdef __OpenBSD__
+	mib[4] = sizeof(struct kinfo_proc);
+#else
 	mib[4] = sizeof(struct kinfo_proc2);
+#endif
 	mib[5] = 0;
 	if (sysctl(mib, 6, NULL, &size, NULL, 0) < 0)
+#ifdef __OpenBSD__
+		errx(1, "could not get kern.proc size");
+#else
 		errx(1, "could not get kern.proc2 size");
+#endif
 	size = 5 * size / 4;		/* extra slop */
 	if ((kp = malloc(size)) == NULL)
 		errx(1,"failed to allocate memory for proc structures");
+#ifdef __OpenBSD__
+	mib[5] = (int)(size / sizeof(struct kinfo_proc));
+#else
 	mib[5] = (int)(size / sizeof(struct kinfo_proc2));
+#endif
 	if (sysctl(mib, 6, kp, &size, NULL, 0) < 0)
+#ifdef __OpenBSD__
+		errx(1, "could not read kern.proc");
+	nproc = (int)(size / sizeof(struct kinfo_proc));
+#else
 		errx(1, "could not read kern.proc2");
 	nproc = (int)(size / sizeof(struct kinfo_proc2));
+#endif
 	for (i=0 ; i < nproc ; i++)
 	{
+#ifdef __OpenBSD__
+		struct kinfo_proc p = kp[i];
+#else
 		struct kinfo_proc2 p = kp[i];
+#endif
 		t.pid = p.p_pid;
 		t.ppid = p.p_ppid;
 		t.uid = p.p_uid;
@@ -117,17 +146,34 @@ gboolean
 pid_is_sleeping (guint pid)
 {
 	int mib[6];
+#ifdef __OpenBSD__
+	struct kinfo_proc kp;
+	size_t size = sizeof(struct kinfo_proc);
+#else
 	struct kinfo_proc2 kp;
 	size_t size = sizeof(struct kinfo_proc2);
+#endif
 
 	mib[0] = CTL_KERN;
+#ifdef __OpenBSD__
+	mib[1] = KERN_PROC;
+#else
 	mib[1] = KERN_PROC2;
+#endif
 	mib[2] = KERN_PROC_PID;
 	mib[3] = pid;
+#ifdef __OpenBSD__
+	mib[4] = sizeof(struct kinfo_proc);
+#else
 	mib[4] = sizeof(struct kinfo_proc2);
+#endif
 	mib[5] = 1;
 	if (sysctl(mib, 6, &kp, &size, NULL, 0) < 0)
+#ifdef __OpenBSD__
+		errx(1, "could not read kern.proc for pid %d", pid);
+#else
 		errx(1, "could not read kern.proc2 for pid %d", pid);
+#endif
 	return (kp.p_stat == SSLEEP ? TRUE : FALSE);
 }
 
