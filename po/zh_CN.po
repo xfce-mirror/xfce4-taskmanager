@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
-"Report-Msgid-Bugs-To: <xfce-i18n@xfce.org>\n"
-"POT-Creation-Date: 2012-04-20 08:24+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-26 21:03+0000\n"
 "PO-Revision-Date: 2010-11-23 23:40+0800\n"
 "Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n-cn@xfce.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
 msgid "Easy to use task manager"
-msgstr "易于使用任务管理器"
+msgstr "易于使用的任务管理器"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
@@ -37,7 +37,7 @@ msgstr "执行错误"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
-msgstr "未能找到任何要运行的默认命令"
+msgstr "未能找到任何要运行的默认命令。"
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
@@ -303,27 +303,27 @@ msgstr "工具栏样式："
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
 msgid "500ms"
-msgstr "500 毫秒"
+msgstr "500 ms"
 
 #: ../src/settings-tool-button.c:111
 msgid "750ms"
-msgstr "750 毫秒"
+msgstr "750 ms"
 
 #: ../src/settings-tool-button.c:112
 msgid "1s"
-msgstr "1 秒"
+msgstr "1 s"
 
 #: ../src/settings-tool-button.c:113
 msgid "2s"
-msgstr "2 秒"
+msgstr "2 s"
 
 #: ../src/settings-tool-button.c:114
 msgid "5s"
-msgstr "5 秒"
+msgstr "5 s"
 
 #: ../src/settings-tool-button.c:115
 msgid "10s"
-msgstr "10 秒"
+msgstr "10 s"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
