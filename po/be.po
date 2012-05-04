@@ -39,9 +39,8 @@ msgid "Couldn't find any default command to run."
 msgstr ""
 
 #: ../src/exec-tool-button.c:164
-#, fuzzy
 msgid "Run Task Manager as root"
-msgstr "Мэнаджэр працэсўа Xfce4"
+msgstr "Запусціць Кіраўнік працэсаў як root"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
@@ -177,9 +176,8 @@ msgid ""
 msgstr ""
 
 #: ../src/process-tree-view.c:412
-#, fuzzy
 msgid "Terminate"
-msgstr "Term"
+msgstr "Спыніць"
 
 #: ../src/process-tree-view.c:420
 msgid "Stop"
@@ -195,23 +193,23 @@ msgstr "Kill"
 
 #: ../src/process-tree-view.c:440
 msgid "Very low"
-msgstr ""
+msgstr "Вельмі нізкі"
 
 #: ../src/process-tree-view.c:445
 msgid "Low"
-msgstr ""
+msgstr "Нізкі"
 
 #: ../src/process-tree-view.c:450
 msgid "Normal"
-msgstr ""
+msgstr "Звычайны"
 
 #: ../src/process-tree-view.c:455
 msgid "High"
-msgstr ""
+msgstr "Высокі"
 
 #: ../src/process-tree-view.c:460
 msgid "Very high"
-msgstr ""
+msgstr "Вельмі высокі"
 
 #: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
@@ -223,15 +221,15 @@ msgstr "Alexander Nyakhaychyk <nab@mail.by>, 2008"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
+msgstr "Увага, вы выкарыстоўваеце рахунак root'а і можаце пашкодзіць сітэму."
 
 #: ../src/settings.c:378
 msgid "Default"
-msgstr ""
+msgstr "Па-змоўчванню"
 
 #: ../src/settings.c:379
 msgid "Small"
-msgstr ""
+msgstr "Маленькі"
 
 #: ../src/settings.c:380
 msgid "Large"
