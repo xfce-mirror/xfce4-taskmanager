@@ -17,18 +17,16 @@ msgstr ""
 "Language: be\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
-#, fuzzy
 msgid "Easy to use task manager"
-msgstr "Просты ў выкарыстаньні мэнаджэр працэсаў"
+msgstr "Просты ў выкарыстаньні Кіраўнік Працэсаў"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
 #: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
-#, fuzzy
 msgid "Task Manager"
-msgstr "Мэнаджэр працэсўа Xfce4"
+msgstr "Кіраўнік Працэсаў"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
@@ -172,7 +170,7 @@ msgstr "Памылка прызначэння прыярытэту"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
+msgstr "Памылка адбылася пад час прызначэння прыярытэту працэсу з PID %d. Падобна на тое, што вы не маеце належных правоў у сістэме."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -256,7 +254,7 @@ msgstr "Слупкі:"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr ""
+msgstr "Маляваць рамкі навокал манітораў"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
@@ -275,9 +273,8 @@ msgid "Settings"
 msgstr "Наладкі"
 
 #: ../src/settings-dialog.ui.h:10
-#, fuzzy
 msgid "Settings for Task Manager"
-msgstr "Мэнаджэр працэсўа Xfce4"
+msgstr "Наладкі Кіраўніка Працэсаў"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
@@ -289,7 +286,7 @@ msgstr "Паказваць поўныя каманды"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
-msgstr ""
+msgstr "Паказваць значэнні з большай дакладнасцю"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
@@ -321,13 +318,12 @@ msgid "10s"
 msgstr "10с"
 
 #: ../src/settings-tool-button.c:164
-#, fuzzy
 msgid "Show all processes"
-msgstr "Кантроль над вашымі працэсамі"
+msgstr "Паказаць усе працэсы"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
-msgstr ""
+msgstr "Частата абнаўлення"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
@@ -340,22 +336,22 @@ msgstr ""
 #: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu МіБ"
 
 #: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu КіБ"
 
 #: ../src/task-manager.c:240
 #, c-format
 msgid "%lu B"
-msgstr ""
+msgstr "%lu Б"
 
 #: ../src/task-manager.c:263
 #, c-format
 msgid "%s%%"
-msgstr ""
+msgstr "%s%%"
 
 #~ msgid "%.2f%%"
 #~ msgstr "%0.0f %%"
