@@ -260,7 +260,7 @@ msgstr ""
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
-msgstr ""
+msgstr "Схаваць у зону паведамленняў"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Prompt for terminating tasks"
@@ -272,7 +272,7 @@ msgstr "Частата абнаўлення:"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Settings"
-msgstr ""
+msgstr "Наладкі"
 
 #: ../src/settings-dialog.ui.h:10
 #, fuzzy
@@ -281,11 +281,11 @@ msgstr "Мэнаджэр працэсўа Xfce4"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
-msgstr ""
+msgstr "Паказваць значкі праграм"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
-msgstr ""
+msgstr "Паказваць поўныя каманды"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
@@ -293,32 +293,32 @@ msgstr ""
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
-msgstr ""
+msgstr "Стыль панэлі прыладаў:"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
 msgid "500ms"
-msgstr ""
+msgstr "500мс"
 
 #: ../src/settings-tool-button.c:111
 msgid "750ms"
-msgstr ""
+msgstr "750мс"
 
 #: ../src/settings-tool-button.c:112
 msgid "1s"
-msgstr ""
+msgstr "1с"
 
 #: ../src/settings-tool-button.c:113
 msgid "2s"
-msgstr ""
+msgstr "2с"
 
 #: ../src/settings-tool-button.c:114
 msgid "5s"
-msgstr ""
+msgstr "5с"
 
 #: ../src/settings-tool-button.c:115
 msgid "10s"
-msgstr ""
+msgstr "10с"
 
 #: ../src/settings-tool-button.c:164
 #, fuzzy
