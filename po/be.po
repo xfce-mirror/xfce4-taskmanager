@@ -34,7 +34,7 @@ msgstr "Памылка запуска"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
-msgstr ""
+msgstr "Не атрымліваецца адшукаць ніводнай прадвызначанай каманды каб выканаць."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
@@ -43,7 +43,7 @@ msgstr "Запусціць Кіраўнік працэсаў як root"
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
 msgid "Run Program..."
-msgstr ""
+msgstr "Запусціць праграму…"
 
 #: ../src/exec-tool-button.c:182
 msgid "Application Finder"
@@ -92,11 +92,14 @@ msgstr "Памяць: %s%%"
 #, c-format
 msgid "Swap: %s%%"
 msgstr ""
+"\t\r\n"
+"\r\n"
+"Swap: %s%%"
 
 #: ../src/process-statusbar.c:181
 #, c-format
 msgid "Processes: %d"
-msgstr ""
+msgstr "Працэс: %d"
 
 #: ../src/process-tree-view.c:125
 msgid "Task"
@@ -116,7 +119,7 @@ msgstr "Стан"
 
 #: ../src/process-tree-view.c:161
 msgid "VSZ"
-msgstr ""
+msgstr "VSZ"
 
 #: ../src/process-tree-view.c:169
 msgid "RSS"
