@@ -1,11 +1,11 @@
 # $Id$
-# 
+#
 # Uyghur translations for xfce4-taskmanager package.
 # Copyright (C) 2005-2006 Johannes Zellner.
 # This file is distributed under the same license as
 #   the xfce4-taskmanager package.
 # Gheyret T.Kenji <gheyret@gmail.com>, 2010.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
@@ -43,7 +43,7 @@ msgstr "Swap: %.2f%%"
 #: ../src/process-statusbar.c:172
 #, c-format
 msgid "Processes: %d"
-msgstr "Processes: %d"
+msgstr "ئىجرالار: %d"
 
 #: ../src/process-tree-view.c:108
 msgid "Task"
@@ -80,7 +80,7 @@ msgstr "CPU"
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
 #: ../src/process-tree-view.c:176
 msgid "Prio."
-msgstr "Prio."
+msgstr "مەرتىۋە."
 
 #: ../src/process-tree-view.c:215
 msgid "Terminate task"
@@ -104,9 +104,7 @@ msgstr "سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
 "don't have the required privileges."
-msgstr ""
-"PID %d غا سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك "
-"ئەمەستەك قىلىدۇ."
+msgstr "PID %d غا سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك ئەمەستەك قىلىدۇ."
 
 #: ../src/process-tree-view.c:247
 msgid "Error setting priority"
@@ -117,9 +115,7 @@ msgstr "priority نى بەلگىلەشتە خاتالىق كۆرۈلدى"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
-"PID %d نىڭ priority نى بەلگىلەشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز "
-"يېتەرلىك ئەمەستەك قىلىدۇ."
+msgstr "PID %d نىڭ priority نى بەلگىلەشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك ئەمەستەك قىلىدۇ."
 
 #: ../src/process-tree-view.c:265
 msgid "Stop"
@@ -131,7 +127,7 @@ msgstr "داۋاملاشتۇر"
 
 #: ../src/process-tree-view.c:278
 msgid "Kill"
-msgstr "ئولتۇر"
+msgstr "ئۆلتۈر"
 
 #: ../src/process-tree-view.c:283
 msgid "Terminate"
@@ -159,7 +155,7 @@ msgstr "بەك يۇقىرى"
 
 #: ../src/process-tree-view.c:315 ../src/process-window.c:334
 msgid "Priority"
-msgstr "ئالدىنلىق"
+msgstr "مەرتىۋىسى"
 
 #: ../src/process-window.c:175
 msgid "Execution error"
@@ -168,7 +164,7 @@ msgstr "ئىجرا خاتالىقى"
 #: ../src/process-window.c:214 ../src/process-window.c:216
 #: ../src/process-window.c:218
 msgid "Run Program..."
-msgstr "پروگرامما ئىجرا قىلىش..."
+msgstr "پروگرامما ئىجرا قىل..."
 
 #: ../src/process-window.c:221
 msgid "Application Finder"
@@ -176,7 +172,7 @@ msgstr "پروگرامما ئىزدىگۈ"
 
 #: ../src/process-window.c:224
 msgid "Terminal emulator"
-msgstr "تېرمىنال emulator"
+msgstr "تېرمىنال تەقلىدلىگۈچ"
 
 #: ../src/process-window.c:226
 msgid "XTerm"
@@ -213,7 +209,7 @@ msgstr "10s"
 
 #: ../src/process-window.c:314
 msgid "Show all processes"
-msgstr "ھەممە processes نى كۆرسەت"
+msgstr "ھەممە ئىجرالارنى كۆرسەت"
 
 #: ../src/process-window.c:315
 msgid "More precision"
@@ -229,7 +225,7 @@ msgstr "ھالەت سىنبەلگىسى كۆرسەت"
 
 #: ../src/process-window.c:320
 msgid "Refresh rate"
-msgstr "يېڭىلاش rate"
+msgstr "يېڭىلاش تېزلىكى"
 
 #: ../src/process-window.c:330
 msgid "Virtual Bytes"
@@ -237,26 +233,26 @@ msgstr "مەۋھۇم بايتلار"
 
 #: ../src/process-window.c:331
 msgid "Private Bytes"
-msgstr "Private بايتلار"
+msgstr "شەخسىي بايتلار"
 
 #: ../src/process-window.c:395
 msgid "translator-credits"
-msgstr "Gheyret T.Kenji <gheyret@gmail.com> 2010"
+msgstr "Gheyret T.Kenji <gheyret@gmail.com>"
 
 #: ../src/task-manager.c:191
 #, c-format
 msgid "%lu MiB"
-msgstr "%lu MiB"
+msgstr "%lu م ب"
 
 #: ../src/task-manager.c:198
 #, c-format
 msgid "%lu KiB"
-msgstr "%lu KiB"
+msgstr "%lu ك ب"
 
 #: ../src/task-manager.c:202
 #, c-format
 msgid "%lu B"
-msgstr "%lu B"
+msgstr "%lu ب"
 
 #: ../src/task-manager.c:217
 msgid "%s%%"
@@ -269,8 +265,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>Process سانى:</b> %u\n"
+msgstr "<b>ئىجرا سانى:</b> %u\n"
 "<b>CPU:</b> %.0f%%\n"
 "<b>ئەسلەك:</b> %.0f%%\n"
 "<b>sawap:</b> %.0f%%"
@@ -282,8 +277,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
-"Process سانى: %u\n"
+msgstr "ئىجرا سانى: %u\n"
 "CPU: %.0f%%\n"
 "ئەسلەك: %.0f%%\n"
 "sawap: %.0f%%"
