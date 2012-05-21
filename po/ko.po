@@ -314,7 +314,7 @@ msgstr "값을 더 정밀하게 보기"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
-msgstr "도구막대 유형:"
+msgstr "도구 모음 유형:"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
