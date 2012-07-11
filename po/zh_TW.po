@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-11 04:39+0000\n"
-"PO-Revision-Date: 2012-07-11 16:25+0800\n"
+"PO-Revision-Date: 2012-07-11 16:29+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Tradictional Chinese <zh-l10n@linux.org.tw>\n"
 "Language: \n"
@@ -63,7 +63,7 @@ msgstr "終端機模擬器"
 
 #: ../src/exec-tool-button.c:187
 msgid "XTerm"
-msgstr "Term"
+msgstr "XTerm"
 
 #: ../src/main.c:100
 #, c-format
@@ -86,6 +86,10 @@ msgid ""
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
 msgstr ""
+"程序：%u\n"
+"CPU：%.0f%%\n"
+"記憶體：%.0f%%\n"
+"置換空間：%.0f%%"
 
 #: ../src/process-statusbar.c:148
 #: ../src/process-window.c:374
@@ -162,7 +166,7 @@ msgstr "強制結束工作"
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr ""
+msgstr "您確定您要傳送訊號給 PID %d 嗎？"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
@@ -171,12 +175,11 @@ msgstr "傳送訊號時發生錯誤"
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgstr "傳送訊號給 PID %d 時遭遇錯誤。很可能您沒有應具備的特權。"
 
 #: ../src/process-tree-view.c:395
-#, fuzzy
 msgid "Error setting priority"
-msgstr "設定優先"
+msgstr "設定優先權時發生錯誤"
 
 #: ../src/process-tree-view.c:396
 #, c-format
