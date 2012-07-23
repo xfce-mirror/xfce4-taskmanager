@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-10 01:54+0000\n"
+"POT-Creation-Date: 2012-07-23 00:12+0000\n"
 "PO-Revision-Date: 2011-11-09 16:10+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -34,11 +34,11 @@ msgstr "ئىجرا خاتالىقى"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
-msgstr ""
+msgstr "ئىجرا قىلىدىغان ھېچقانداق كۆڭۈلدىكى پروگرامما تېپىلمىدى."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr ""
+msgstr "ۋەزىپە باشقۇرغۇنى ئالىي ئىشلەتكۈچى سۈپىتىدە ئىجرا قىل"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
@@ -64,7 +64,8 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr "<b>ئىجرا سانى:</b> %u\n"
+msgstr ""
+"<b>ئىجرا سانى:</b> %u\n"
 "<b>CPU:</b> %.0f%%\n"
 "<b>ئەسلەك:</b> %.0f%%\n"
 "<b>sawap:</b> %.0f%%"
@@ -76,7 +77,8 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr "ئىجرا سانى: %u\n"
+msgstr ""
+"ئىجرا سانى: %u\n"
 "CPU: %.0f%%\n"
 "ئەسلەك: %.0f%%\n"
 "sawap: %.0f%%"
@@ -149,7 +151,7 @@ msgstr "ۋەزىپىنى ئولتۇر"
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "PID %d غا راستلا سىگنال ئەۋەتەمدۇ؟"
+msgstr "بۇ PID %d غا راستلا سىگنال ئەۋەتەمدۇ؟"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
@@ -160,18 +162,22 @@ msgstr "سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
 "don't have the required privileges."
-msgstr "PID %d غا سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك ئەمەستەك قىلىدۇ."
+msgstr ""
+"بۇ PID %d غا سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك "
+"ئەمەستەك قىلىدۇ."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
-msgstr "priority نى بەلگىلەشتە خاتالىق كۆرۈلدى"
+msgstr "مەرتىۋىنى بەلگىلەشتە خاتالىق كۆرۈلدى"
 
 #: ../src/process-tree-view.c:396
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "PID %d نىڭ priority نى بەلگىلەشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك ئەمەستەك قىلىدۇ."
+msgstr ""
+"بۇ PID %d نىڭ مەرتىۋىسىنى بەلگىلەشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز "
+"يېتەرلىك ئەمەستەك قىلىدۇ."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -215,11 +221,13 @@ msgstr "مەرتىۋىسى"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr "Gheyret T.Kenji <gheyret@gmail.com>"
+msgstr "غەيرەت ت.كەنجى <gheyret@gmail.com>"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "دىققەت: ئالىي ئىشلەتكۈچى(root) ھوقۇقىدا مەشغۇلات قىلىۋاتىسىز. بەك دىققەت قىلىڭ، سىستېمىنى بۇزۇپ قويۇشىڭىز مۇمكىن"
+msgstr ""
+"دىققەت: ئالىي ئىشلەتكۈچى(root) ھوقۇقىدا مەشغۇلات قىلىۋاتىسىز. بەك دىققەت "
+"قىلىڭ، سىستېمىنى بۇزۇپ قويۇشىڭىز مۇمكىن"
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -243,11 +251,11 @@ msgstr "<b>ئۇچۇر</b>"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "<b>Interface style</b>"
-msgstr ""
+msgstr "<b>ئارايۈز ئۇسلۇبى</b>"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "<b>Miscellaneous</b>"
-msgstr ""
+msgstr "<b>باشقىلار</b>"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Columns:"
@@ -255,19 +263,19 @@ msgstr "ئىستون:"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr ""
+msgstr "كۆزەتكۈچلەرنىڭ گىرۋەكلىرى سىزىلسۇن"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
-msgstr ""
+msgstr "ئۇقتۇرۇش رايونىغا يوشۇرسۇن"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Prompt for terminating tasks"
-msgstr ""
+msgstr "ۋەزىپىنى توختىتىدىغان چاغدا كۆرسەتمە چىقارسۇن"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Refresh rate:"
-msgstr ""
+msgstr "يېڭىلاش تېزلىكى:"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Settings"
@@ -275,52 +283,52 @@ msgstr "تەڭشەكلەر"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "Settings for Task Manager"
-msgstr ""
+msgstr "ۋەزىپە باشقۇرغۇ تەڭشەكلىرى"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
-msgstr ""
+msgstr "پروگرامما سىنبەلگىلىرىنى كۆرسەتسۇن"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Show full command lines"
-msgstr ""
+msgstr "تولۇق بولغان بۇيرۇق قۇرىنى كۆرسەتسۇن"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Show values with more precision"
-msgstr ""
+msgstr "قىممەتلەرنىڭ ئېنىقلىق دەرىجىسىنى تېخىمۇ يۇقىرى كۆتۈرسۇن"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
-msgstr ""
+msgstr "قورال بالداق ئۇسلۇبى:"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
 msgid "500ms"
-msgstr "500ms"
+msgstr "500 مىللىسېكۇنت"
 
 #: ../src/settings-tool-button.c:111
 msgid "750ms"
-msgstr "750ms"
+msgstr "750 مىللىسېكۇنت"
 
 #: ../src/settings-tool-button.c:112
 msgid "1s"
-msgstr "1s"
+msgstr "1سېكۇنت"
 
 #: ../src/settings-tool-button.c:113
 msgid "2s"
-msgstr "2s"
+msgstr "2 سېكۇنت"
 
 #: ../src/settings-tool-button.c:114
 msgid "5s"
-msgstr "5s"
+msgstr "5 سېكۇنت"
 
 #: ../src/settings-tool-button.c:115
 msgid "10s"
-msgstr "10s"
+msgstr "10 سېكۇنت"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
-msgstr "ھەممە ئىجرالارنى كۆرسەت"
+msgstr "ھەممە ئىجرالارنى كۆرسەتسۇن"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
