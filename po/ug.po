@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-23 00:12+0000\n"
+"POT-Creation-Date: 2012-10-23 23:09+0000\n"
 "PO-Revision-Date: 2011-11-09 16:10+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -64,8 +64,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>ئىجرا سانى:</b> %u\n"
+msgstr "<b>ئىجرا سانى:</b> %u\n"
 "<b>CPU:</b> %.0f%%\n"
 "<b>ئەسلەك:</b> %.0f%%\n"
 "<b>sawap:</b> %.0f%%"
@@ -77,8 +76,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
-"ئىجرا سانى: %u\n"
+msgstr "ئىجرا سانى: %u\n"
 "CPU: %.0f%%\n"
 "ئەسلەك: %.0f%%\n"
 "sawap: %.0f%%"
@@ -86,17 +84,17 @@ msgstr ""
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
-msgstr "CPU: %.2f%%"
+msgstr "CPU: %s%%"
 
 #: ../src/process-statusbar.c:157 ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
-msgstr "ئەسلەك: %.2f%%"
+msgstr "Memory: %s%%"
 
 #: ../src/process-statusbar.c:166
 #, c-format
 msgid "Swap: %s%%"
-msgstr "Swap: %.2f%%"
+msgstr "Swap: %s%%"
 
 #: ../src/process-statusbar.c:181
 #, c-format
@@ -162,9 +160,7 @@ msgstr "سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you "
 "don't have the required privileges."
-msgstr ""
-"بۇ PID %d غا سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك "
-"ئەمەستەك قىلىدۇ."
+msgstr "بۇ PID %d غا سىگنال ئەۋەتىشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك ئەمەستەك قىلىدۇ."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
@@ -175,9 +171,7 @@ msgstr "مەرتىۋىنى بەلگىلەشتە خاتالىق كۆرۈلدى"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
-"بۇ PID %d نىڭ مەرتىۋىسىنى بەلگىلەشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز "
-"يېتەرلىك ئەمەستەك قىلىدۇ."
+msgstr "بۇ PID %d نىڭ مەرتىۋىسىنى بەلگىلەشتە خاتالىق كۆرۈلدى. سەۋەبى سىزنىڭ ھوقۇقىڭىز يېتەرلىك ئەمەستەك قىلىدۇ."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -225,9 +219,7 @@ msgstr "غەيرەت ت.كەنجى <gheyret@gmail.com>"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
-"دىققەت: ئالىي ئىشلەتكۈچى(root) ھوقۇقىدا مەشغۇلات قىلىۋاتىسىز. بەك دىققەت "
-"قىلىڭ، سىستېمىنى بۇزۇپ قويۇشىڭىز مۇمكىن"
+msgstr "دىققەت: ئالىي ئىشلەتكۈچى(root) ھوقۇقىدا مەشغۇلات قىلىۋاتىسىز. بەك دىققەت قىلىڭ، سىستېمىنى بۇزۇپ قويۇشىڭىز مۇمكىن"
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -360,4 +352,4 @@ msgstr "%lu ب"
 #: ../src/task-manager.c:263
 #, c-format
 msgid "%s%%"
-msgstr "%.2f%%"
+msgstr "%s%%"
