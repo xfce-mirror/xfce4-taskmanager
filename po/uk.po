@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-taskmanager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-13 16:11+0000\n"
+"POT-Creation-Date: 2012-12-04 10:15+0000\n"
 "PO-Revision-Date: 2008-07-14 13:50+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
@@ -23,7 +24,7 @@ msgstr "Простий у використанні диспетчер задач
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
-#: ../src/process-tree-view.c:389 ../src/process-window.c:304
+#: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Диспетчер задач"
@@ -160,65 +161,75 @@ msgstr "Помилка при відсилці сигналу"
 
 #: ../src/process-tree-view.c:368
 #, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "Помилку було отримано при відсиланні сигналу для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you "
+"don't have the required privileges."
+msgstr ""
+"Помилку було отримано при відсиланні сигналу для PID %d. Таке трапляється, "
+"коли Ви не маєте потрібних прав доступу."
 
-#: ../src/process-tree-view.c:386
+#: ../src/process-tree-view.c:395
 msgid "Error setting priority"
 msgstr "Помилка у налаштуванні пріоритету"
 
-#: ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:396
 #, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "Помилку було отримано при встановленні пріорітету для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr ""
+"Помилку було отримано при встановленні пріорітету для PID %d. Таке "
+"трапляється, коли Ви не маєте потрібних прав доступу."
 
-#: ../src/process-tree-view.c:403
+#: ../src/process-tree-view.c:412
 msgid "Terminate"
 msgstr "Завершити"
 
-#: ../src/process-tree-view.c:410
+#: ../src/process-tree-view.c:420
 msgid "Stop"
 msgstr "Зупинити"
 
-#: ../src/process-tree-view.c:417
+#: ../src/process-tree-view.c:427
 msgid "Continue"
 msgstr "Продовжити"
 
-#: ../src/process-tree-view.c:423
+#: ../src/process-tree-view.c:433
 msgid "Kill"
 msgstr "Знищити"
 
-#: ../src/process-tree-view.c:430
+#: ../src/process-tree-view.c:440
 msgid "Very low"
 msgstr "Дуже низько"
 
-#: ../src/process-tree-view.c:435
+#: ../src/process-tree-view.c:445
 msgid "Low"
 msgstr "Низько"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:450
 msgid "Normal"
 msgstr "Нормально"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:455
 msgid "High"
 msgstr "Високо"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:460
 msgid "Very high"
 msgstr "Дуже високо"
 
-#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Пріоритет"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr "Dmitry Nikitin <luckas_fb@mail.ru>"
+msgstr "Dmitry Nikitin <luckas_fb@mail.ru>/nYarema aka Knedlyk <yupadmin@gmail.com>"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Попередження: Ви використовуєте рахунок суперкористувача, Ви можете пошкодити Вашу систему."
+msgstr ""
+"Попередження: Ви використовуєте рахунок суперкористувача, Ви можете "
+"пошкодити Вашу систему."
 
 #: ../src/settings.c:378
 msgid "Default"
