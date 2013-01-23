@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: мастер\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-16 19:57+0000\n"
-"PO-Revision-Date: 2012-10-21 18:57+0200\n"
+"POT-Creation-Date: 2013-01-23 19:21+0000\n"
+"PO-Revision-Date: 2013-01-23 18:57+0200\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: српски <xfce-i18n@xfce.org>\n"
 "Language: \n"
@@ -125,11 +125,11 @@ msgstr "Стање"
 
 #: ../src/process-tree-view.c:161
 msgid "VSZ"
-msgstr ""
+msgstr "ВСЗ"
 
 #: ../src/process-tree-view.c:169
 msgid "RSS"
-msgstr ""
+msgstr "РСС"
 
 #: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
