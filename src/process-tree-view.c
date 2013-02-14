@@ -48,6 +48,7 @@ struct _XtmProcessTreeView
 	/*<private>*/
 	GtkListStore *		model;
 	GtkTreeModel *		model_filter;
+	gchar        *    cmd_filter;
 	GtkTreeViewColumn *	sort_column;
 	gushort			columns_positions[N_COLUMNS];
 	XtmSettings *		settings;
@@ -68,8 +69,6 @@ static void		column_clicked					(GtkTreeViewColumn *column, XtmProcessTreeView *
 static gboolean		visible_func					(GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treeview);
 static gboolean		search_func					(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data);
 static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
-
-
 
 static void
 xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
@@ -109,6 +108,8 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (treeview->model_filter), (GtkTreeModelFilterVisibleFunc)visible_func, treeview, NULL);
 
 	g_object_set (treeview, "search-column", XTM_PTV_COLUMN_COMMAND, "model", treeview->model_filter, NULL);
+
+	treeview->cmd_filter = NULL;
 
 	/* Create cell renderer for tree view columns */
 	cell_text = gtk_cell_renderer_text_new();
@@ -590,16 +591,45 @@ column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview)
 	treeview->sort_column = column;
 }
 
+void
+xtm_process_tree_view_set_filter(XtmProcessTreeView *treeview, const gchar *cmd_filter)
+{
+  g_free(treeview->cmd_filter);
+  treeview->cmd_filter = g_strdup(cmd_filter);
+
+	gtk_tree_model_filter_refilter (GTK_TREE_MODEL_FILTER (treeview->model_filter));
+}
+
 static gboolean
 visible_func (GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treeview)
 {
+	gchar *cmdline, *cmdline_lower, *key_lower, *p = NULL;
+	gboolean  mach_filter = TRUE, match_uid = TRUE;
 	guint uid;
 
-	if (treeview->show_all_processes_cached)
-		return TRUE;
+	if(treeview->cmd_filter) {
+		gtk_tree_model_get (GTK_TREE_MODEL (model), iter, XTM_PTV_COLUMN_COMMAND, &cmdline, -1);
+		if(cmdline) {
+			cmdline_lower = g_ascii_strdown (cmdline, -1);
+			key_lower = g_ascii_strdown (treeview->cmd_filter, -1);
 
-	gtk_tree_model_get (GTK_TREE_MODEL (treeview->model), iter, XTM_PTV_COLUMN_UID, &uid, -1);
-	return (treeview->owner_uid == uid) ? TRUE : FALSE;
+			p = g_strrstr (cmdline_lower, key_lower);
+
+			g_free (key_lower);
+			g_free (cmdline_lower);
+			g_free (cmdline);
+		}
+
+		if(!p)
+			mach_filter = FALSE;
+	}
+	if (!treeview->show_all_processes_cached) {
+		gtk_tree_model_get (GTK_TREE_MODEL (treeview->model), iter, XTM_PTV_COLUMN_UID, &uid, -1);
+		if (treeview->owner_uid != uid)
+			match_uid = FALSE;
+	}
+
+	return (mach_filter && match_uid);
 }
 
 static gboolean

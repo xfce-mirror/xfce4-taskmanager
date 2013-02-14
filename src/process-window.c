@@ -42,6 +42,7 @@ struct _XtmProcessWindow
 	GtkBuilder *		builder;
 	GtkWidget *		window;
 	GtkWidget *		toolbar;
+	GtkWidget *		filter_entry;
 	GtkWidget *		cpu_monitor;
 	GtkWidget *		mem_monitor;
 	GtkWidget *		treeview;
@@ -64,6 +65,33 @@ static void	monitor_update_paint_box			(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
 
 
+static void
+filter_entry_icon_pressed_cb (GtkEntry *entry,
+                              gint position,
+                              GdkEventButton *event,
+                              gpointer data)
+{
+	if (position == GTK_ENTRY_ICON_SECONDARY) {
+		gtk_entry_set_text (entry, "");
+		gtk_widget_grab_focus(GTK_WIDGET(entry));
+	}
+}
+
+static gboolean
+filter_entry_keyrelease_handler(GtkEntry *entry,
+                                XtmProcessTreeView *treeview)
+{
+	const gchar *text;
+	gboolean has_text;
+
+	text = gtk_editable_get_chars (GTK_EDITABLE(entry), 0, -1);
+	xtm_process_tree_view_set_filter(treeview, text);
+
+	has_text = gtk_entry_get_text_length (GTK_ENTRY(entry)) > 0;
+	gtk_entry_set_icon_sensitive (GTK_ENTRY(entry),
+	                              GTK_ENTRY_ICON_SECONDARY,
+	                              has_text);
+}
 
 static void
 xtm_process_window_class_init (XtmProcessWindowClass *klass)
@@ -145,6 +173,10 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->treeview = xtm_process_tree_view_new ();
 	gtk_widget_show (window->treeview);
 	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->builder, "scrolledwindow")), window->treeview);
+
+	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
+	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
+	g_signal_connect (G_OBJECT(window->filter_entry), "changed", G_CALLBACK(filter_entry_keyrelease_handler), window->treeview);
 
 	window->statusbar = xtm_process_statusbar_new ();
 	gtk_widget_show (window->statusbar);

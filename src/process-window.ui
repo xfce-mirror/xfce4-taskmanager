@@ -1,8 +1,9 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="process-window">
+    <property name="can_focus">False</property>
     <property name="title" translatable="yes">Task Manager</property>
     <property name="default_width">490</property>
     <property name="default_height">465</property>
@@ -10,15 +11,17 @@
     <child>
       <object class="GtkVBox" id="process-vbox">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
+        <property name="can_focus">False</property>
         <child>
           <object class="GtkToolbar" id="process-toolbar">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="show_arrow">False</property>
             <property name="icon_size">1</property>
             <child>
               <object class="GtkToolItem" id="cpu-toolitem">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="border_width">2</property>
                 <child>
                   <placeholder/>
@@ -32,6 +35,7 @@
             <child>
               <object class="GtkToolItem" id="mem-toolitem">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="border_width">2</property>
                 <child>
                   <placeholder/>
@@ -45,28 +49,33 @@
             <child>
               <object class="GtkToolButton" id="toolbutton-about">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-about</property>
               </object>
               <packing>
                 <property name="expand">False</property>
+                <property name="homogeneous">True</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkVBox" id="root-warning-box">
-            <property name="orientation">vertical</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkEventBox" id="root-warning-ebox">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <child>
                   <object class="GtkLabel" id="root-warning-label">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="xpad">6</property>
                     <property name="ypad">3</property>
                     <property name="label" translatable="yes">Warning, you are using the root account, you may harm your system.</property>
@@ -82,9 +91,11 @@
             <child>
               <object class="GtkHSeparator" id="root-warning-separator">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
               </object>
               <packing>
                 <property name="expand">False</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -96,9 +107,28 @@
           </packing>
         </child>
         <child>
+          <object class="GtkEntry" id="filter-entry">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="invisible_char">•</property>
+            <property name="primary_icon_stock">gtk-find</property>
+            <property name="secondary_icon_stock">gtk-clear</property>
+            <property name="primary_icon_activatable">False</property>
+            <property name="secondary_icon_activatable">True</property>
+            <property name="primary_icon_sensitive">True</property>
+            <property name="secondary_icon_sensitive">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="padding">2</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkVBox" id="mainview-vbox">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
+            <property name="can_focus">False</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow">
@@ -111,12 +141,16 @@
                 </child>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="position">2</property>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
           </packing>
         </child>
         <child>
