@@ -3,21 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Саша Петровић <salepetronije@gmail.com>, 2012.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: мастер\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-23 19:21+0000\n"
+"POT-Creation-Date: 2013-03-06 17:09+0000\n"
 "PO-Revision-Date: 2013-01-23 18:57+0200\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: српски <xfce-i18n@xfce.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 2.91.5\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
@@ -55,7 +54,7 @@ msgstr "Проналазач програма"
 
 #: ../src/exec-tool-button.c:185
 msgid "Terminal emulator"
-msgstr "Емулатор терминала"
+msgstr "Опонашач терминала"
 
 #: ../src/exec-tool-button.c:187
 msgid "XTerm"
@@ -139,7 +138,8 @@ msgstr "ЈИБ"
 msgid "CPU"
 msgstr "Процесор"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
 #: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "Предност"
@@ -209,7 +209,7 @@ msgstr "Низак"
 
 #: ../src/process-tree-view.c:450
 msgid "Normal"
-msgstr "Нормалан"
+msgstr "Обичан"
 
 #: ../src/process-tree-view.c:455
 msgid "High"
@@ -242,7 +242,7 @@ msgstr "мали"
 
 #: ../src/settings.c:380
 msgid "Large"
-msgstr "Велики"
+msgstr "велики"
 
 #: ../src/settings.c:381
 msgid "Text"
@@ -262,7 +262,7 @@ msgstr "<b>Остало</b>"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Columns:"
-msgstr "Колоне:"
+msgstr "Ступци:"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
@@ -270,7 +270,7 @@ msgstr "Цртај оквире око надгледача"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Hide into the notification area"
-msgstr "Сакриј у обавештајну зону"
+msgstr "Сакриј у обавештајну област"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Prompt for terminating tasks"
@@ -339,7 +339,7 @@ msgstr "Учесталост освежавања"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
-msgstr "Виртуелни бајтови"
+msgstr "Нстварни бајтови"
 
 #: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
