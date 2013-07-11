@@ -1,35 +1,37 @@
-# Polish translations for xfce4-taskmanager package.
-# Copyright (C) 2005-2006 Johannes Zellner.
-# This file is distributed under the same license as the xfce4-taskmanager package.
-# Piotr Maliński <admin@rk.edu.pl>, 2006.
-# Tomasz Chudyk <chudyk@gmail.com>, 2010.
-# Piotr Sokół <psokol@jabster.pl>, 2009, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# elder <elderlinx@riseup.net>, 2013
+# Piotr Maliński <admin@rk.edu.pl>, 2006
+# Piotr Sokół <psokol@jabster.pl>, 2009,2011,2013
+# Tomasz Chudyk <chudyk@gmail.com>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager 1.0.0\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-16 06:39+0000\n"
-"PO-Revision-Date: 2011-02-02 12:32+0100\n"
+"POT-Creation-Date: 2013-07-03 20:41+0200\n"
+"PO-Revision-Date: 2013-07-11 09:51+0000\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
-"Language-Team: Polish <>\n"
+"Language-Team: Polish <xfce-i18n-pl@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2));\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
-msgid "Easy to use task manager"
-msgstr "Zarządza uruchomionymi procesami"
-
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
 #: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Menedżer zadań"
+
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr "Zarządza uruchomionymi procesami"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
@@ -67,11 +69,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>Ilość procesów:</b> %u\n"
-"<b>Obciążenie CPU:</b> %.0f%%\n"
-"<b>Użycie pamięci:</b> %.0f%%\n"
-"<b>Użycie pamięci wymiany:</b> %.0f%%"
+msgstr "<b>Ilość procesów:</b> %u\n<b>Obciążenie CPU:</b> %.0f%%\n<b>Użycie pamięci:</b> %.0f%%\n<b>Użycie pamięci wymiany:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -80,11 +78,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
-"Ilość procesów: %u\n"
-"Obciążenie CPU: %.0f%%\n"
-"Użycie pamięci: %.0f%%\n"
-"Użycie pamięci wymiany: %.0f%%"
+msgstr "Ilość procesów: %u\nObciążenie CPU: %.0f%%\nUżycie pamięci: %.0f%%\nUżycie pamięci wymiany: %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
@@ -164,11 +158,9 @@ msgstr "Błąd wysyłania sygnału"
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
-msgstr ""
-"Wystąpił błąd podczas wysyłania sygnału do procesu o identyfikatorze %d. "
-"Proszę sprawdzić czy bieżący użytkownik posiada odpowiednie uprawnienia."
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
+msgstr "Wystąpił błąd podczas wysyłania sygnału do procesu o identyfikatorze %d. Proszę sprawdzić czy bieżący użytkownik posiada odpowiednie uprawnienia."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
@@ -179,9 +171,7 @@ msgstr "Błąd ustawiania priorytetu"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
-"Wystąpił błąd podczas zmiany priorytetu procesu o identyfikatorze %d. Proszę "
-"sprawdzić czy bieżący użytkownik posiada odpowiednie uprawnienia."
+msgstr "Wystąpił błąd podczas zmiany priorytetu procesu o identyfikatorze %d. Proszę sprawdzić czy bieżący użytkownik posiada odpowiednie uprawnienia."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -225,16 +215,11 @@ msgstr "Priorytet"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr ""
-"Piotr Maliński <admin@rk.edu.pl>, 2006.\n"
-"Tomasz Chudyk <chudyk@gmail.com>, 2010.\n"
-"Piotr Sokół <psokol@jabster.pl>, 2009, 2011."
+msgstr "Piotr Maliński <admin@rk.edu.pl>, 2006.\nTomasz Chudyk <chudyk@gmail.com>, 2010.\nPiotr Sokół <psokol@jabster.pl>, 2009, 2011."
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
-"Uwaga: używane konto należy do użytkownika root, istnieje możliwość "
-"uszkodzenia systemu."
+msgstr "Uwaga: używane konto należy do użytkownika root, istnieje możliwość uszkodzenia systemu."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -253,60 +238,60 @@ msgid "Text"
 msgstr "Etykiety"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "<b>Information</b>"
-msgstr "<b>Informacja</b>"
+msgid "Settings for Task Manager"
+msgstr "Preferencje menedżera zadań Xfce"
 
 #: ../src/settings-dialog.ui.h:2
-msgid "<b>Interface style</b>"
-msgstr "<b>Styl Interfejsu</b>"
+msgid "Show application icons"
+msgstr "Ikony programów"
 
 #: ../src/settings-dialog.ui.h:3
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Różne</b>"
+msgid "Show full command lines"
+msgstr "Pełne ścieżki poleceń"
 
 #: ../src/settings-dialog.ui.h:4
-msgid "Columns:"
-msgstr "Kolumny:"
+msgid "Show values with more precision"
+msgstr "Wyświetlanie wartości z większą precyzją"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
 msgstr "Wyświetlanie obramowań wokół wykresów"
 
 #: ../src/settings-dialog.ui.h:6
-msgid "Hide into the notification area"
-msgstr "Ukrywanie w obszarze powiadamiania"
+msgid "Toolbar style:"
+msgstr "Styl paska narzędziowego:"
 
 #: ../src/settings-dialog.ui.h:7
+msgid "<b>Interface style</b>"
+msgstr "<b>Styl Interfejsu</b>"
+
+#: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Wyświetlanie potwierdzenia kończenia zadania"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
+msgid "Hide into the notification area"
+msgstr "Ukrywanie w obszarze powiadamiania"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Różne</b>"
+
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
 msgstr "Tempo odświeżania:"
 
-#: ../src/settings-dialog.ui.h:9
-msgid "Settings"
-msgstr "Preferencje"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "Settings for Task Manager"
-msgstr "Preferencje menedżera zadań Xfce"
-
-#: ../src/settings-dialog.ui.h:11
-msgid "Show application icons"
-msgstr "Ikony programów"
-
 #: ../src/settings-dialog.ui.h:12
-msgid "Show full command lines"
-msgstr "Pełne ścieżki poleceń"
+msgid "Columns:"
+msgstr "Kolumny:"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Show values with more precision"
-msgstr "Wyświetlanie wartości z większą precyzją"
+msgid "<b>Information</b>"
+msgstr "<b>Informacja</b>"
 
 #: ../src/settings-dialog.ui.h:14
-msgid "Toolbar style:"
-msgstr "Styl paska narzędziowego:"
+msgid "Settings"
+msgstr "Preferencje"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
@@ -368,57 +353,3 @@ msgstr "%lu B"
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
-
-#~ msgid "More precision"
-#~ msgstr "Większa precyzja"
-
-#~ msgid "Show status icon"
-#~ msgstr "Pokaż ikonę w obszarze powiadamiania"
-
-#~ msgid "Control your processes"
-#~ msgstr "Zarządza procesami"
-
-#~ msgid "Process manager"
-#~ msgstr "Menedżer procesów"
-
-#~ msgid "Xfce4 Taskmanager"
-#~ msgstr "Menedżer zadań Xfce"
-
-#~ msgid "Really kill the task?"
-#~ msgstr "Zniszczyć zadanie?"
-
-#~ msgid "%d MB of %d MB used"
-#~ msgstr "Używane %d MB z %d MB"
-
-#~ msgid "Cpu usage"
-#~ msgstr "Wykorzystanie procesora"
-
-#~ msgid "Memory usage"
-#~ msgstr "Wykorzystanie pamięci"
-
-#~ msgid "Command"
-#~ msgstr "Polecenie"
-
-#~ msgid "VM-Size"
-#~ msgstr "VM-Rozmiar"
-
-#~ msgid "User"
-#~ msgstr "Użytkownik"
-
-#~ msgid "Show user tasks"
-#~ msgstr "Procesy użytkownika"
-
-#~ msgid "Show root tasks"
-#~ msgstr "Procesy roota"
-
-#~ msgid "Show other tasks"
-#~ msgstr "Inne procesy"
-
-#~ msgid "Show memory used by cache as free"
-#~ msgstr "Ignorowanie pamięci podręcznej"
-
-#~ msgid "xfce4-taskmanager"
-#~ msgstr "xfce4-taskmanager"
-
-#~ msgid "more details"
-#~ msgstr "więcej szczegółów"
