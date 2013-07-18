@@ -1,57 +1,51 @@
-# Bulgarian translation of xfce4-taskmanager.
-# Copyright (C) 2005-2006 Johannes Zellner.
-# This file is distributed under the same license as
-#   the xfce4-taskmanager package.
-# Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg>, 2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Valentin Tunev <hdbuster@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-10 20:42+0000\n"
-"PO-Revision-Date: 2013-02-11 14:04+0200\n"
-"Last-Translator: Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg>\n"
-"Language-Team: Bulgarian <bg@li.org>\n"
-"Language: bg\n"
+"POT-Creation-Date: 2013-07-03 20:41+0200\n"
+"PO-Revision-Date: 2013-07-18 10:39+0000\n"
+"Last-Translator: cybercop <cybercop_montana@abv.bg>\n"
+"Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1
-#: ../src/process-window.c:309
-msgid "Easy to use task manager"
-msgstr "Лесен за употреба мениджър на задачи"
-
-#: ../xfce4-taskmanager.desktop.in.h:2
-#: ../src/exec-tool-button.c:89
-#: ../src/exec-tool-button.c:134
-#: ../src/main.c:156
-#: ../src/process-tree-view.c:355
-#: ../src/process-tree-view.c:370
-#: ../src/process-tree-view.c:398
-#: ../src/process-window.c:304
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Мениджър на задачи"
 
-#: ../src/exec-tool-button.c:87
-#: ../src/exec-tool-button.c:131
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr "Лесен за използване мениджър на задачи"
+
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
 msgstr "Грешка при изпълнение"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
-msgstr "Не е намерена нито една команда по подразбиране за стартиране."
+msgstr "Не беше намерена подразбираща се команда за изпълнение."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr "Стартирай Мениджъра на задачи като администратор"
+msgstr "Стартиране на Мениджъра на задачи с администраторски права."
 
-#: ../src/exec-tool-button.c:175
-#: ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
 msgid "Run Program..."
-msgstr "Стартиране на програма..."
+msgstr "Стартиране на Програма..."
 
 #: ../src/exec-tool-button.c:182
 msgid "Application Finder"
@@ -72,11 +66,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>Процеси:</b> %u\n"
-"<b>Процесор:</b> %.0f%%\n"
-"<b>Памет:</b> %.0f%%\n"
-"<b>Виртуална памет:</b> %.0f%%"
+msgstr "<b>Процеси:</b> %u\n<b>Процесор:</b> %.0f%%\n<b>Памет:</b>  %.0f%%\n<b>Виртуална памет</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -85,20 +75,14 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
-"Процеси: %u\n"
-"Процесор: %.0f%%\n"
-"Памет: %.0f%%\n"
-"Виртуална памет: %.0f%%"
+msgstr "Процеси: %u\nПроцесор: %.0f%%\nПамет:  %.0f%%\nВиртуална памет: %.0f%%"
 
-#: ../src/process-statusbar.c:148
-#: ../src/process-window.c:374
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Процесор: %s%%"
 
-#: ../src/process-statusbar.c:157
-#: ../src/process-window.c:379
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
 msgstr "Памет: %s%%"
@@ -117,74 +101,74 @@ msgstr "Процеси: %d"
 msgid "Task"
 msgstr "Задача"
 
-#: ../src/process-tree-view.c:136
-#: ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:144
-#: ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:152
-#: ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "State"
 msgstr "Състояние"
 
 #: ../src/process-tree-view.c:161
 msgid "VSZ"
-msgstr "VSZ"
+msgstr "РВП"
 
 #: ../src/process-tree-view.c:169
 msgid "RSS"
-msgstr "RSS"
+msgstr "РПП"
 
-#: ../src/process-tree-view.c:177
-#: ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
-msgstr "UID"
+msgstr "ЮИД"
 
-#: ../src/process-tree-view.c:185
-#: ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
 msgstr "Процесор"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
 #: ../src/process-tree-view.c:194
 msgid "Prio."
-msgstr "Приоритет"
+msgstr "Приор."
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
-msgstr "Прекратяване на процес"
+msgstr "Прекратяване на задача"
 
 #: ../src/process-tree-view.c:352
 msgid "Kill task"
-msgstr "Принудително прекратяване на процес"
+msgstr "Убиване на задачата"
 
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Наистина ли искате да изпратите сигнал на процес %d?"
+msgstr "Сигурни ли сте, че искате да изпратите сигнал до PID %d?"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
-msgstr "Грешка при изпращане на сигнал"
+msgstr "Грешка при пращане на сигнала"
 
 #: ../src/process-tree-view.c:368
 #, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "Възникна грешка при изпращане на сигнал на процес %d. Най- вероятно нямате необходимите права."
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
+msgstr "Възникна грешка при пращането на сигнал до PID %d. Възможно е да нямате нужните права."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
-msgstr "Неуспех при задаване на приоритет"
+msgstr "Грешка при задаване на приоритет"
 
 #: ../src/process-tree-view.c:396
 #, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "Възникна грешка, при задаване на приоритет на процес %d. Най- вероятно нямате необходимите права."
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr "Възникна грешка при определяне приоритет на PID %d. Има вероятност да не притежавате необходимите права."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -200,7 +184,7 @@ msgstr "Продължаване"
 
 #: ../src/process-tree-view.c:433
 msgid "Kill"
-msgstr "Принудително прекратяване"
+msgstr "Убиване"
 
 #: ../src/process-tree-view.c:440
 msgid "Very low"
@@ -222,18 +206,17 @@ msgstr "Висок"
 msgid "Very high"
 msgstr "Много висок"
 
-#: ../src/process-tree-view.c:465
-#: ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Приоритет"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr "Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg"
+msgstr "Kyril Kirilov (Cybercop) <cybercop_montana@abv.bg>"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Внимание! Вие използвате администраторски акаунт, което може да застраши Вашата система !"
+msgstr "Внимание, Вие използвате администраторски акаунт, което може да застраши вашата система."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -252,60 +235,60 @@ msgid "Text"
 msgstr "Текст"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "<b>Information</b>"
-msgstr "<b>Информация</b>"
+msgid "Settings for Task Manager"
+msgstr "Настройване на Мениджъра на задачи"
 
 #: ../src/settings-dialog.ui.h:2
-msgid "<b>Interface style</b>"
-msgstr "<b>Стил на интерфейса</b>"
-
-#: ../src/settings-dialog.ui.h:3
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Разни</b>"
-
-#: ../src/settings-dialog.ui.h:4
-msgid "Columns:"
-msgstr "Колони:"
-
-#: ../src/settings-dialog.ui.h:5
-msgid "Draw borders around monitors"
-msgstr "Показване на рамки около индикаторите"
-
-#: ../src/settings-dialog.ui.h:6
-msgid "Hide into the notification area"
-msgstr "Скриване в системната табла"
-
-#: ../src/settings-dialog.ui.h:7
-msgid "Prompt for terminating tasks"
-msgstr "Питай за потвърждение при завършване на задачите"
-
-#: ../src/settings-dialog.ui.h:8
-msgid "Refresh rate:"
-msgstr "Честота на обновяване:"
-
-#: ../src/settings-dialog.ui.h:9
-msgid "Settings"
-msgstr "Настройки"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "Settings for Task Manager"
-msgstr "Настройки на Мениджъра на задачи"
-
-#: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
 msgstr "Показване на икони на програмите"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
 msgstr "Показване на пълният команден ред"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
 msgstr "Покажи стойностите с по- голяма точност"
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "Начертаване на рамка около екрана"
+
+#: ../src/settings-dialog.ui.h:6
 msgid "Toolbar style:"
 msgstr "Стил на лентата с инструменти:"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "<b>Interface style</b>"
+msgstr "<b>Стил на интерфейса</b>"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Prompt for terminating tasks"
+msgstr "Питай за прекратяване на задачите"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Hide into the notification area"
+msgstr "Скриване в зоната за уведомяване"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Разни</b>"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Refresh rate:"
+msgstr "Честота на опресняване:"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Columns:"
+msgstr "Колони:"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "<b>Information</b>"
+msgstr "<b>Информация</b>"
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Settings"
+msgstr "Настройки"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
@@ -334,11 +317,11 @@ msgstr "10с"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
-msgstr "Показване на всички процеси"
+msgstr "Покажи всички процеси"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
-msgstr "Честота на обновяване"
+msgstr "Честота на опресняване"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
@@ -367,63 +350,3 @@ msgstr "%lu Б"
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
-
-#~ msgid "More precision"
-#~ msgstr "Указать точно"
-
-#~ msgid "Show status icon"
-#~ msgstr "Показване на икона за състоянието"
-
-#~ msgid "250ms"
-#~ msgstr "250 мс"
-
-#~ msgid "Control your processes"
-#~ msgstr "Контролирайте вашите процеси"
-
-#~ msgid "Process manager"
-#~ msgstr "Мениджър на процеси"
-
-#~ msgid "Xfce4 Taskmanager"
-#~ msgstr "Мениджър на задачи за Xfce 4"
-
-#~ msgid "Really kill the task?"
-#~ msgstr "Наистина ли искате да прекратите принудително процеса?"
-
-#~ msgid "%d MB of %d MB used"
-#~ msgstr "%d МБ от %d МБ използвано"
-
-#~ msgid "Cpu usage"
-#~ msgstr "Използване на процесора"
-
-#~ msgid "Memory usage"
-#~ msgstr "Използвана памет"
-
-#~ msgid "Command"
-#~ msgstr "Команда"
-
-#~ msgid "VM-Size"
-#~ msgstr "VM-Размер"
-
-#~ msgid "User"
-#~ msgstr "Потребител"
-
-#~ msgid "Show user tasks"
-#~ msgstr "Показване на задачите на потребителя"
-
-#~ msgid "Show root tasks"
-#~ msgstr "Показване на задачите на администратора"
-
-#~ msgid "Show other tasks"
-#~ msgstr "Показване на други задачи"
-
-#~ msgid "Show memory used by cache as free"
-#~ msgstr "Показване на паметта, използвана за кеширане, като свободна"
-
-#~ msgid "Contributors:"
-#~ msgstr "Участници:"
-
-#~ msgid "xfce4-taskmanager"
-#~ msgstr "Миниджър на задачи за Xfce 4"
-
-#~ msgid "more details"
-#~ msgstr "по- подробно"
