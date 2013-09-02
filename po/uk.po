@@ -1,33 +1,34 @@
-# Ukrainian translation of xfce4-taskmanager.
-# Copyright (C) 2005-2006 Johannes Zellner.
-# This file is distributed under the same license as the xfce4-taskmanager package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# Dmitry Nikitin <luckas_fb@mail.ru>, 2008.
+# Translators:
+# Dmitry Nikitin <luckas_fb@mail.ru>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-04 10:15+0000\n"
-"PO-Revision-Date: 2008-07-14 13:50+0300\n"
-"Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
-"Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
+"POT-Creation-Date: 2013-07-03 20:41+0200\n"
+"PO-Revision-Date: 2013-09-01 23:22+0000\n"
+"Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
-msgid "Easy to use task manager"
-msgstr "Простий у використанні диспетчер задач"
-
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
 #: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Диспетчер задач"
+
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr "Простий у використанні диспетчер задач"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
@@ -65,11 +66,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>Процеси:</b> %u\n"
-"<b>Проц:</b> %.0f%%\n"
-"<b>Пам'ять:</b> %.0f%%\n"
-"<b>Своп:</b> %.0f%%"
+msgstr "<b>Процеси:</b> %u\n<b>Проц:</b> %.0f%%\n<b>Пам'ять:</b> %.0f%%\n<b>Своп:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -78,11 +75,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
-"Процеси: %u\n"
-"Проц: %.0f%%\n"
-"Пам'ять: %.0f%%\n"
-"Своп: %.0f%%"
+msgstr "Процеси: %u\nПроц: %.0f%%\nПам'ять: %.0f%%\nСвоп: %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
@@ -162,11 +155,9 @@ msgstr "Помилка при відсилці сигналу"
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
-msgstr ""
-"Помилку було отримано при відсиланні сигналу для PID %d. Таке трапляється, "
-"коли Ви не маєте потрібних прав доступу."
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
+msgstr "Помилку було отримано при відсиланні сигналу для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
@@ -177,9 +168,7 @@ msgstr "Помилка у налаштуванні пріоритету"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
-"Помилку було отримано при встановленні пріорітету для PID %d. Таке "
-"трапляється, коли Ви не маєте потрібних прав доступу."
+msgstr "Помилку було отримано при встановленні пріорітету для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -227,9 +216,7 @@ msgstr "Dmitry Nikitin <luckas_fb@mail.ru>/nYarema aka Knedlyk <yupadmin@gmail.c
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
-"Попередження: Ви використовуєте рахунок суперкористувача, Ви можете "
-"пошкодити Вашу систему."
+msgstr "Попередження: Ви використовуєте рахунок суперкористувача, Ви можете пошкодити Вашу систему."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -248,60 +235,60 @@ msgid "Text"
 msgstr "Текст"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "<b>Information</b>"
-msgstr "<b>Інформація</b>"
+msgid "Settings for Task Manager"
+msgstr "Властивості для Диспетчера задач"
 
 #: ../src/settings-dialog.ui.h:2
-msgid "<b>Interface style</b>"
-msgstr "<b>Стиль інтерфейсу</b>"
+msgid "Show application icons"
+msgstr "Показати іконки програм"
 
 #: ../src/settings-dialog.ui.h:3
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Додаткові</b>"
+msgid "Show full command lines"
+msgstr "Показувати повністю стрічку команд"
 
 #: ../src/settings-dialog.ui.h:4
-msgid "Columns:"
-msgstr "Колонки:"
+msgid "Show values with more precision"
+msgstr "Показувати значення з більшою точністю"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
 msgstr "Відображати рамки навколо моніторів"
 
 #: ../src/settings-dialog.ui.h:6
-msgid "Hide into the notification area"
-msgstr "Ховати в область повідомлень"
+msgid "Toolbar style:"
+msgstr "Стиль панелі:"
 
 #: ../src/settings-dialog.ui.h:7
+msgid "<b>Interface style</b>"
+msgstr "<b>Стиль інтерфейсу</b>"
+
+#: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Запит на припинення задач"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
+msgid "Hide into the notification area"
+msgstr "Ховати в область повідомлень"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Додаткові</b>"
+
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
 msgstr "Період оновлення:"
 
-#: ../src/settings-dialog.ui.h:9
-msgid "Settings"
-msgstr "Властивості"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "Settings for Task Manager"
-msgstr "Властивості для Диспетчера задач"
-
-#: ../src/settings-dialog.ui.h:11
-msgid "Show application icons"
-msgstr "Показати іконки програм"
-
 #: ../src/settings-dialog.ui.h:12
-msgid "Show full command lines"
-msgstr "Показувати повністю стрічку команд"
+msgid "Columns:"
+msgstr "Колонки:"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Show values with more precision"
-msgstr "Показувати значення з більшою точністю"
+msgid "<b>Information</b>"
+msgstr "<b>Інформація</b>"
 
 #: ../src/settings-dialog.ui.h:14
-msgid "Toolbar style:"
-msgstr "Стиль панелі:"
+msgid "Settings"
+msgstr "Властивості"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
@@ -363,57 +350,3 @@ msgstr "%lu B"
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
-
-#~ msgid "More precision"
-#~ msgstr "Більше точності"
-
-#~ msgid "Show status icon"
-#~ msgstr "Показати значок статусу"
-
-#~ msgid "250ms"
-#~ msgstr "250мс"
-
-#~ msgid "Control your processes"
-#~ msgstr "Керування процесами"
-
-#~ msgid "Process manager"
-#~ msgstr "Менеджер процесів"
-
-#~ msgid "Xfce4 Taskmanager"
-#~ msgstr "Диспетчер задач Xfce4"
-
-#~ msgid "Really kill the task?"
-#~ msgstr "Дійсно знищити задачу?"
-
-#~ msgid "%d MB of %d MB used"
-#~ msgstr "Використано %d МБ з %d МБ"
-
-#~ msgid "Cpu usage"
-#~ msgstr "Використання процесора"
-
-#~ msgid "Command"
-#~ msgstr "Команда"
-
-#~ msgid "VM-Size"
-#~ msgstr "Розмір VM"
-
-#~ msgid "User"
-#~ msgstr "Користувач"
-
-#~ msgid "Show user tasks"
-#~ msgstr "Відображати задачі користувача"
-
-#~ msgid "Show root tasks"
-#~ msgstr "Відображати задачі адміністратора"
-
-#~ msgid "Show other tasks"
-#~ msgstr "Відображати інші задачі"
-
-#~ msgid "Show memory used by cache as free"
-#~ msgstr "Показувати використану кешем пам'ять як вільну"
-
-#~ msgid "Contributors:"
-#~ msgstr "Помічники:"
-
-#~ msgid "Couldn't set priority %d to the task with ID %d"
-#~ msgstr "Не вдається встановити пріоритет %d задачі з ідентифікатором %d"
