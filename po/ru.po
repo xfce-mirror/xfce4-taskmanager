@@ -1,32 +1,36 @@
-# Russian translation of xfce4-taskmanager.
-# Copyright (C) 2005-2006 Johannes Zellner.
-# This file is distributed under the same license as
-#   the xfce4-taskmanager package.
-# Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
+# asvl <alyoshin.s@gmail.com>, 2013
+# Vlad Vasilev <lortwer@gmail.com>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-05 10:11+0000\n"
-"PO-Revision-Date: 2009-10-17 23:23+0300\n"
-"Last-Translator: Vlad Vasilev <lortwer@gmail.com>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"POT-Creation-Date: 2013-07-03 20:41+0200\n"
+"PO-Revision-Date: 2013-09-02 19:14+0000\n"
+"Last-Translator: asvl <alyoshin.s@gmail.com>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/xfce/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
-msgid "Easy to use task manager"
-msgstr "Простой диспетчер задач"
-
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
-#: ../src/process-tree-view.c:389 ../src/process-window.c:304
+#: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
-msgstr "Диспетчер задач Xfce 4"
+msgstr "Диспетчер задач"
+
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr "Простой диспетчер задач"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
@@ -64,11 +68,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>Процессов:</b> %u\n"
-"<b>ЦП:</b> %.0f%%\n"
-"<b>Память:</b> %.0f%%\n"
-"<b>Подкач.:</b> %.0f%%"
+msgstr "<b>Процессов:</b> %u\n<b>ЦП:</b> %.0f%%\n<b>Память:</b> %.0f%%\n<b>Подкач.:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -77,11 +77,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
-"Процессов: %u\n"
-"ЦП: %.0f%%\n"
-"Память: %.0f%%\n"
-"Подкач.: %.0f%%"
+msgstr "Процессов: %u\nЦП: %.0f%%\nПамять: %.0f%%\nПодкач.: %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
@@ -96,7 +92,7 @@ msgstr "Память: %s%%"
 #: ../src/process-statusbar.c:166
 #, c-format
 msgid "Swap: %s%%"
-msgstr "Подкач.: %s%%"
+msgstr "Подкачка: %s%%"
 
 #: ../src/process-statusbar.c:181
 #, c-format
@@ -121,11 +117,11 @@ msgstr "Состояние"
 
 #: ../src/process-tree-view.c:161
 msgid "VSZ"
-msgstr "ВРазм"
+msgstr "Виртуальная"
 
 #: ../src/process-tree-view.c:169
 msgid "RSS"
-msgstr "RSS"
+msgstr "Резидентная"
 
 #: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
@@ -133,13 +129,13 @@ msgstr "UID"
 
 #: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
-msgstr "ЦПУ"
+msgstr "ЦП"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
 #: ../src/process-tree-view.c:194
 msgid "Prio."
-msgstr "Прио"
+msgstr "Приор."
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
@@ -160,65 +156,69 @@ msgstr "Не удалось отправить сигнал"
 
 #: ../src/process-tree-view.c:368
 #, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
 msgstr "Произошла ошибка при отправке сигнала процессу %d. Вероятнее всего, у вас нет необходимых прав."
 
-#: ../src/process-tree-view.c:386
+#: ../src/process-tree-view.c:395
 msgid "Error setting priority"
 msgstr "Не удалось задать приоритет"
 
-#: ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:396
 #, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
 msgstr "Произошла ошибка при задании приоритета процесса %d. Вероятнее всего, у вас нет необходимых прав."
 
-#: ../src/process-tree-view.c:403
+#: ../src/process-tree-view.c:412
 msgid "Terminate"
 msgstr "Завершить"
 
-#: ../src/process-tree-view.c:410
+#: ../src/process-tree-view.c:420
 msgid "Stop"
 msgstr "Остановить"
 
-#: ../src/process-tree-view.c:417
+#: ../src/process-tree-view.c:427
 msgid "Continue"
 msgstr "Продолжить"
 
-#: ../src/process-tree-view.c:423
+#: ../src/process-tree-view.c:433
 msgid "Kill"
 msgstr "Убить"
 
-#: ../src/process-tree-view.c:430
+#: ../src/process-tree-view.c:440
 msgid "Very low"
 msgstr "Очень низкий"
 
-#: ../src/process-tree-view.c:435
+#: ../src/process-tree-view.c:445
 msgid "Low"
 msgstr "Низкий"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:450
 msgid "Normal"
 msgstr "Обычный"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:455
 msgid "High"
 msgstr "Высокий"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:460
 msgid "Very high"
 msgstr "Очень высокий"
 
-#: ../src/process-tree-view.c:455 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
 msgstr "Приоритет"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr "Andrey Fedoseev"
+msgstr "Andrey Fedoseev\nVlad Vasilev\nSergey Alyoshin"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Внимание! Вы используете учетную запись суперпользователя, тем самым вы можете повредить систему"
+msgstr "Внимание! Вы используете учётную запись суперпользователя, тем самым вы можете повредить систему."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -226,71 +226,71 @@ msgstr "По умолчанию"
 
 #: ../src/settings.c:379
 msgid "Small"
-msgstr "Маленькие"
+msgstr "Маленький"
 
 #: ../src/settings.c:380
 msgid "Large"
-msgstr "Большие"
+msgstr "Большой"
 
 #: ../src/settings.c:381
 msgid "Text"
 msgstr "Текст"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "<b>Information</b>"
-msgstr "<b>Информация</b>"
+msgid "Settings for Task Manager"
+msgstr "Настройки диспетчера задач"
 
 #: ../src/settings-dialog.ui.h:2
-msgid "<b>Interface style</b>"
-msgstr "<b>Стиль интерфейса</b>"
+msgid "Show application icons"
+msgstr "Показывать значки приложений"
 
 #: ../src/settings-dialog.ui.h:3
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Дополнительно</b>"
+msgid "Show full command lines"
+msgstr "Показывать строку команд полностью"
 
 #: ../src/settings-dialog.ui.h:4
-msgid "Columns:"
-msgstr "Колонки:"
+msgid "Show values with more precision"
+msgstr "Показывать значения с большей точностью"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
 msgstr "Отображать рамки вокруг индикаторов"
 
 #: ../src/settings-dialog.ui.h:6
-msgid "Hide into the notification area"
-msgstr "Прятать в область уведомления"
+msgid "Toolbar style:"
+msgstr "Стиль панели инструментов:"
 
 #: ../src/settings-dialog.ui.h:7
+msgid "<b>Interface style</b>"
+msgstr "<b>Стиль интерфейса</b>"
+
+#: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Запрашивать подтверждение при завершении задач"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
+msgid "Hide into the notification area"
+msgstr "Прятать в область уведомления"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Дополнительно</b>"
+
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
 msgstr "Частота обновления:"
 
-#: ../src/settings-dialog.ui.h:9
-msgid "Settings"
-msgstr "Настройки"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "Settings for Task Manager"
-msgstr "Настройки Диспетчера задач Xfce 4"
-
-#: ../src/settings-dialog.ui.h:11
-msgid "Show application icons"
-msgstr "Показывать значки приложений"
-
 #: ../src/settings-dialog.ui.h:12
-msgid "Show full command lines"
-msgstr "Показывать строку команд полностью"
+msgid "Columns:"
+msgstr "Колонки:"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Show values with more precision"
-msgstr "Показывать значения с большей точностью"
+msgid "<b>Information</b>"
+msgstr "<b>Информация</b>"
 
 #: ../src/settings-dialog.ui.h:14
-msgid "Toolbar style:"
-msgstr "Стиль панели инструментов:"
+msgid "Settings"
+msgstr "Настройки"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
@@ -327,88 +327,28 @@ msgstr "Частота обновления"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
-msgstr "Вирт"
+msgstr "Виртуальная память"
 
 #: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
-msgstr "Личн"
+msgstr "Резидентная память"
 
 #: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
-msgstr "%lu Миб"
+msgstr "%lu МиБ"
 
 #: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
-msgstr "%lu Киб"
+msgstr "%lu КиБ"
 
 #: ../src/task-manager.c:240
 #, c-format
 msgid "%lu B"
-msgstr "%lu б"
+msgstr "%lu Б"
 
 #: ../src/task-manager.c:263
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
-
-#~ msgid "More precision"
-#~ msgstr "Указать точно"
-
-#~ msgid "Show status icon"
-#~ msgstr "Показывать значок"
-
-#~ msgid "250ms"
-#~ msgstr "250 мс"
-
-#~ msgid "Control your processes"
-#~ msgstr "Управление процессами"
-
-#~ msgid "Process manager"
-#~ msgstr "Диспетчер задач Xfce 4"
-
-#~ msgid "Xfce4 Taskmanager"
-#~ msgstr "Диспетчер задач Xfce 4"
-
-#~ msgid "Really kill the task?"
-#~ msgstr "Действительно убить процесс?"
-
-#~ msgid "%d MB of %d MB used"
-#~ msgstr "%d MB из %d MB использовано"
-
-#~ msgid "Cpu usage"
-#~ msgstr "Использование ЦПУ"
-
-#~ msgid "Memory usage"
-#~ msgstr "Использование памяти"
-
-#~ msgid "Command"
-#~ msgstr "Команда"
-
-#~ msgid "VM-Size"
-#~ msgstr "Память"
-
-#~ msgid "User"
-#~ msgstr "Пользователь"
-
-#~ msgid "Show user tasks"
-#~ msgstr "Показать задачи пользователя"
-
-#~ msgid "Show root tasks"
-#~ msgstr "Показать задачи суперпользователя"
-
-#~ msgid "Show other tasks"
-#~ msgstr "Показать другие задачи"
-
-#~ msgid "Show memory used by cache as free"
-#~ msgstr "Показывать память используемую кэшем, как свободную"
-
-#~ msgid "Contributors:"
-#~ msgstr "Участники:"
-
-#~ msgid "xfce4-taskmanager"
-#~ msgstr "Диспетчер задач Xfce 4"
-
-#~ msgid "more details"
-#~ msgstr "подробнее"
