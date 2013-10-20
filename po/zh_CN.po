@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Chipong <chipong.luo@yahoo.com>, 2013
 # elhuevogrande <kbusch21@yahoo.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2013-08-04 02:18+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
+"PO-Revision-Date: 2013-10-20 12:49+0000\n"
+"Last-Translator: Chipong <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/xfce/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -146,29 +147,29 @@ msgstr "杀死任务"
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "您确认要发送一个信号至 PID 为 %d 的进程吗？"
+msgstr "您确定要发送一个信号至 PID %d 吗？"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
-msgstr "发送信号时发生错误"
+msgstr "发送信号时出错误"
 
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "发送信号至 PID 为 %d 的进程时发生一个错误。您可能没有足够的权限进行该操作。"
+msgstr "发送信号至 PID %d 时出错。您可能没有所需的权限。"
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
-msgstr "设置优先级时发生错误"
+msgstr "设置优先级时出错"
 
 #: ../src/process-tree-view.c:396
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "设置 PID 为 %d 的进程的优先级时发生一个错误。您可能没有足够的权限进行该操作。"
+msgstr "设置 PID %d 的优先级时出错。您可能没有所需的权限。"
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -216,7 +217,7 @@ msgstr "Hunt Xu <huntxu@live.cn>, 2008, 2010."
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "警告，您使用的是 root 帐户，它可能会损害您的系统。"
+msgstr "警告，您正在使用 root 帐户，有可能会损害您的系统。"
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -252,7 +253,7 @@ msgstr "显示更精确的数值"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr ""
+msgstr "在显示器周围绘制边框"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Toolbar style:"
@@ -264,11 +265,11 @@ msgstr "<b>界面风格</b>"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
-msgstr ""
+msgstr "终止任务时提示"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
-msgstr "隐藏到通知区域"
+msgstr "在通知区域隐藏"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "<b>Miscellaneous</b>"
@@ -280,7 +281,7 @@ msgstr "刷新率："
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Columns:"
-msgstr "\t\n柱:"
+msgstr "\t\n栏:"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "<b>Information</b>"
@@ -293,27 +294,27 @@ msgstr "设置"
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
 msgid "500ms"
-msgstr "500 毫秒"
+msgstr "500 ms"
 
 #: ../src/settings-tool-button.c:111
 msgid "750ms"
-msgstr "750 毫秒"
+msgstr "750 ms"
 
 #: ../src/settings-tool-button.c:112
 msgid "1s"
-msgstr "1 秒"
+msgstr "1 s"
 
 #: ../src/settings-tool-button.c:113
 msgid "2s"
-msgstr "2 秒"
+msgstr "2 s"
 
 #: ../src/settings-tool-button.c:114
 msgid "5s"
-msgstr "5 秒"
+msgstr "5 s"
 
 #: ../src/settings-tool-button.c:115
 msgid "10s"
-msgstr "10 秒"
+msgstr "10 s"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
@@ -334,12 +335,12 @@ msgstr "私有占用内存"
 #: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
-msgstr "%lu MiB"
+msgstr "%lu MB"
 
 #: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
-msgstr "%lu KiB"
+msgstr "%lu KB"
 
 #: ../src/task-manager.c:240
 #, c-format
