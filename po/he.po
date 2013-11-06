@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2013-08-03 09:38+0000\n"
+"PO-Revision-Date: 2013-11-06 08:59+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/projects/p/xfce/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "מנהל המשימות"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
 msgid "Easy to use task manager"
-msgstr "מנהל משימות פשוט לשימוש"
+msgstr "מנהל משימות קל לשימוש"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
@@ -49,7 +49,7 @@ msgstr "הפעלת תכנית…"
 
 #: ../src/exec-tool-button.c:182
 msgid "Application Finder"
-msgstr "מאתר תכניות"
+msgstr "מאתר יישומים"
 
 #: ../src/exec-tool-button.c:185
 msgid "Terminal emulator"
@@ -137,11 +137,11 @@ msgstr "עדיפות"
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
-msgstr "סיום משימה"
+msgstr "חיסול משימה"
 
 #: ../src/process-tree-view.c:352
 msgid "Kill task"
-msgstr "חיסול משימה"
+msgstr "הריגת משימה"
 
 #: ../src/process-tree-view.c:354
 #, c-format
@@ -150,61 +150,61 @@ msgstr "האם אכן לשלוח את האות למזהה התהליך %d?"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
-msgstr "שגיאת האות נכשלה"
+msgstr "שליחת האות נכשלה"
 
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr ""
+msgstr "אירעה שגיאה בעת שליחת אות לתהליך מס׳ %d. כנראה שאין לך את ההרשאות הנדרשות."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
-msgstr ""
+msgstr "הגדרת העדיפות נכשלה"
 
 #: ../src/process-tree-view.c:396
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
+msgstr "אירעה שגיאה בעת הגדרת העדיפות לתהליך מס׳ %d. כנראה שאין לך את ההרשאות הנדרשות."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
-msgstr ""
+msgstr "חיסול"
 
 #: ../src/process-tree-view.c:420
 msgid "Stop"
-msgstr ""
+msgstr "עצירה"
 
 #: ../src/process-tree-view.c:427
 msgid "Continue"
-msgstr ""
+msgstr "המשך"
 
 #: ../src/process-tree-view.c:433
 msgid "Kill"
-msgstr ""
+msgstr "הריגה"
 
 #: ../src/process-tree-view.c:440
 msgid "Very low"
-msgstr ""
+msgstr "נמוכה מאוד"
 
 #: ../src/process-tree-view.c:445
 msgid "Low"
-msgstr ""
+msgstr "נמוכה"
 
 #: ../src/process-tree-view.c:450
 msgid "Normal"
-msgstr ""
+msgstr "רגילה"
 
 #: ../src/process-tree-view.c:455
 msgid "High"
-msgstr ""
+msgstr "גבוהה"
 
 #: ../src/process-tree-view.c:460
 msgid "Very high"
-msgstr ""
+msgstr "גבוהה מאוד"
 
 #: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
@@ -224,11 +224,11 @@ msgstr "בררת מחדל"
 
 #: ../src/settings.c:379
 msgid "Small"
-msgstr ""
+msgstr "קטן"
 
 #: ../src/settings.c:380
 msgid "Large"
-msgstr ""
+msgstr "גדול"
 
 #: ../src/settings.c:381
 msgid "Text"
@@ -244,7 +244,7 @@ msgstr "הצגת סמלי היישומים"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
-msgstr "הצגת שורות הפקודה המלאות"
+msgstr "הצגת שורות פקודה מלאות"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
@@ -260,19 +260,19 @@ msgstr "סגנון סרגל הכלים:"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "<b>Interface style</b>"
-msgstr ""
+msgstr "<b>סגנון המנשק</b>"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
-msgstr ""
+msgstr "הצגת בקשה לחיסול משימות"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
-msgstr ""
+msgstr "הסתרה באזור הדיווחים"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "<b>Miscellaneous</b>"
-msgstr ""
+msgstr "<b>שונות</b>"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
@@ -284,7 +284,7 @@ msgstr "עמודות:"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "<b>Information</b>"
-msgstr "<b>מידע</b>"
+msgstr "<b>פרטים</b>"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Settings"
@@ -334,19 +334,19 @@ msgstr "בתים פרטיים"
 #: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
-msgstr ""
+msgstr "%lu MiB"
 
 #: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
-msgstr ""
+msgstr "%lu KiB"
 
 #: ../src/task-manager.c:240
 #, c-format
 msgid "%lu B"
-msgstr ""
+msgstr "%lu ב׳"
 
 #: ../src/task-manager.c:263
 #, c-format
 msgid "%s%%"
-msgstr ""
+msgstr "%s%%"
