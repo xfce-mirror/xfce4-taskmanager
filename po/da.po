@@ -1,25 +1,24 @@
-# translation of xfce4-taskmanager to Danish
-# Copyright (C) 2007 THE xfce4-taskmanager'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce4-taskmanager package.
-# Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2007.
-# Per Kongstad <p_kongstad@op.pl>, 2008.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Aputsiaĸ Niels Janussen <aj@isit.gl>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager 0.4.0\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-01 16:18+0000\n"
-"PO-Revision-Date: 2008-09-30 12:32+0100\n"
-"Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
-"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"POT-Creation-Date: 2013-07-03 20:41+0200\n"
+"PO-Revision-Date: 2013-11-26 16:25+0000\n"
+"Last-Translator: Aputsiaĸ Niels Janussen <aj@isit.gl>\n"
+"Language-Team: Danish (http://www.transifex.com/projects/p/xfce/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
-msgid "Easy to use task manager"
-msgstr "En nem opgavehåndtering"
-
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
 #: ../src/process-tree-view.c:398 ../src/process-window.c:304
@@ -27,34 +26,38 @@ msgstr "En nem opgavehåndtering"
 msgid "Task Manager"
 msgstr "Opgavehåndtering"
 
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr "En nem opgavehåndtering"
+
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
 msgstr "Fejl under udførsel"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
-msgstr "Kunne ikke finde en standardkommando til kørsel"
+msgstr "Fandt ingen standardkommando som skulle køres."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr "Kør opgavehåndtering som administrator"
+msgstr "Kør opgavehåndteringen som root"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
 msgid "Run Program..."
-msgstr "Kør program..."
+msgstr "Kør program ..."
 
 #: ../src/exec-tool-button.c:182
 msgid "Application Finder"
-msgstr "Programfinder"
+msgstr "Programsøger"
 
 #: ../src/exec-tool-button.c:185
 msgid "Terminal emulator"
-msgstr "Terminalemulering"
+msgstr "Terminal-emulator"
 
 #: ../src/exec-tool-button.c:187
 msgid "XTerm"
-msgstr "Xterm"
+msgstr "XTerm"
 
 #: ../src/main.c:100
 #, c-format
@@ -63,11 +66,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>Processer:</b> %u\n"
-"<b>CPU:</b> %.0f%%\n"
-"<b>Hukommelse:</b> %.0f%%\n"
-"<b>Swap:</b> %.0f%%"
+msgstr "<b>Processer:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Hukommelse:</b> %.0f%%\n<b>Swap:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -76,11 +75,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
-"Processer: %u\n"
-"CPU: %.0f%%\n"
-"Hukommelse: %.0f%%\n"
-"Swap: %.0f%%"
+msgstr "Processer: %u\nCPU: %.0f%%\nHukommelse: %.0f%%\nSwap: %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
@@ -100,7 +95,7 @@ msgstr "Swap: %s%%"
 #: ../src/process-statusbar.c:181
 #, c-format
 msgid "Processes: %d"
-msgstr "Proces: %d"
+msgstr "Processer: %d"
 
 #: ../src/process-tree-view.c:125
 msgid "Task"
@@ -120,7 +115,7 @@ msgstr "Tilstand"
 
 #: ../src/process-tree-view.c:161
 msgid "VSZ"
-msgstr "VSZ"
+msgstr ""
 
 #: ../src/process-tree-view.c:169
 msgid "RSS"
@@ -142,7 +137,7 @@ msgstr "Prio."
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
-msgstr "Afbryd opgave"
+msgstr "Afslut opgave"
 
 #: ../src/process-tree-view.c:352
 msgid "Kill task"
@@ -151,29 +146,33 @@ msgstr "Dræb opgave"
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Er du sikker på, at du vil sende et signal til PID'en %d?"
+msgstr "Er du sikker på, at du vil sende et signal til PID'et %d?"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
-msgstr "Fejl ved afsendelse af signal"
+msgstr "Fejl ved signalafsendelse"
 
 #: ../src/process-tree-view.c:368
 #, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr "En fejl opstod ved afsendelse af signal til PID'en %d. Det skyldes sandsynligvis manglende rettigheder."
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
+msgstr "Stødte på en fejl under afsendelse af signal til PID'et %d. Du har sandsynligvis ikke de påkrævede privilegier."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
-msgstr "Fejl ved indstilling af prioritetet"
+msgstr "Fejl ved angivelse af prioritet"
 
 #: ../src/process-tree-view.c:396
 #, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr "En fejl opstod ved indstilling af PID'en %d.Det skyldes sandsynligvis manglende rettigheder."
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr ""
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
-msgstr "Terminér"
+msgstr "Afslut"
 
 #: ../src/process-tree-view.c:420
 msgid "Stop"
@@ -213,24 +212,19 @@ msgstr "Prioritet"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr ""
-"Jens Hyllegaard\n"
-"Per Kongstad\n"
-"\n"
-"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
-"Mere info: http://www.dansk-gruppen.dk"
+msgstr "Per Kongstad, Aputsiaq Niels Janussen\n\nDansk-gruppen <dansk@dansk-gruppen.dk>\nMere info: http://www.dansk-gruppen.dk"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Advarsel, du bruger adminkontoen og du risikerer at beskadige dit system."
+msgstr "Advarsel, du anvender root-kontoen - du kan beskadige dit system."
 
 #: ../src/settings.c:378
 msgid "Default"
-msgstr "Standard"
+msgstr " Standard"
 
 #: ../src/settings.c:379
 msgid "Small"
-msgstr "Smal"
+msgstr "Lille"
 
 #: ../src/settings.c:380
 msgid "Large"
@@ -241,85 +235,85 @@ msgid "Text"
 msgstr "Tekst"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "<b>Information</b>"
-msgstr "<b>Information</b>"
+msgid "Settings for Task Manager"
+msgstr "Indstillinger for opgavehåndteringen"
 
 #: ../src/settings-dialog.ui.h:2
-msgid "<b>Interface style</b>"
-msgstr "<b>Brugerfladestil</b>"
-
-#: ../src/settings-dialog.ui.h:3
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Diverse</b>"
-
-#: ../src/settings-dialog.ui.h:4
-msgid "Columns:"
-msgstr "Kolonner:"
-
-#: ../src/settings-dialog.ui.h:5
-msgid "Draw borders around monitors"
-msgstr "Optegn grænser omkring skærme"
-
-#: ../src/settings-dialog.ui.h:6
-msgid "Hide into the notification area"
-msgstr "Skjul i meddelelsesområdet"
-
-#: ../src/settings-dialog.ui.h:7
-msgid "Prompt for terminating tasks"
-msgstr "Prompt for en afbrydelsesopgave"
-
-#: ../src/settings-dialog.ui.h:8
-msgid "Refresh rate:"
-msgstr "Opdateringshastighed:"
-
-#: ../src/settings-dialog.ui.h:9
-msgid "Settings"
-msgstr "Indstillinger"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "Settings for Task Manager"
-msgstr "Indstillinger til opgavehåndtering"
-
-#: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
 msgstr "Vis programikoner"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
-msgstr "Vis fuldr kommandolinjer"
+msgstr "Vis fulde kommandolinjer"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Show values with more precision"
+msgstr "Vis værdier med større præcision"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "Tegn kanter rundt om skærme"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Toolbar style:"
+msgstr "Stil for værktøjslinje"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "<b>Interface style</b>"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Prompt for terminating tasks"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Hide into the notification area"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:10
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Diverse</b>"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Refresh rate:"
+msgstr "Opdateringsfrekvens:"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Columns:"
+msgstr "Kolonner:"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Show values with more precision"
-msgstr "Vis værdier med større nøjagtighed"
+msgid "<b>Information</b>"
+msgstr "<b>Information</b>"
 
 #: ../src/settings-dialog.ui.h:14
-msgid "Toolbar style:"
-msgstr "Værktøjslinjestil:"
+msgid "Settings"
+msgstr "Indstillinger"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
 msgid "500ms"
-msgstr "500 ms"
+msgstr "500ms"
 
 #: ../src/settings-tool-button.c:111
 msgid "750ms"
-msgstr "750 ms"
+msgstr "750ms"
 
 #: ../src/settings-tool-button.c:112
 msgid "1s"
-msgstr "1 s"
+msgstr "1s"
 
 #: ../src/settings-tool-button.c:113
 msgid "2s"
-msgstr "2 s"
+msgstr "2s"
 
 #: ../src/settings-tool-button.c:114
 msgid "5s"
-msgstr "5 s"
+msgstr "5s"
 
 #: ../src/settings-tool-button.c:115
 msgid "10s"
-msgstr "10 s"
+msgstr "10s"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
@@ -327,15 +321,15 @@ msgstr "Vis alle processer"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
-msgstr "Hvor ofte opdateres"
+msgstr "Opdateringsfrekvens"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
-msgstr "Virtuelle bit"
+msgstr "Virtuelle bytes"
 
 #: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
-msgstr "Private bit"
+msgstr "Private bytes"
 
 #: ../src/task-manager.c:229
 #, c-format
@@ -356,57 +350,3 @@ msgstr "%lu B"
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
-
-#~ msgid "More precision"
-#~ msgstr "Større nøjagtighed"
-
-#~ msgid "Show status icon"
-#~ msgstr "Vis statusikon"
-
-#~ msgid "250ms"
-#~ msgstr "250 ms"
-
-#~ msgid "Control your processes"
-#~ msgstr "Kontrollér dine processer"
-
-#~ msgid "Process manager"
-#~ msgstr "Proceshåndtering"
-
-#~ msgid "Xfce4 Taskmanager"
-#~ msgstr "Xfce4-proceshåndtering"
-
-#~ msgid "Really kill the task?"
-#~ msgstr "Vil du virkelig dræbe processen?"
-
-#~ msgid "%d MB of %d MB used"
-#~ msgstr "%d MB af %d MB brugt"
-
-#~ msgid "Cpu usage"
-#~ msgstr "CPU-forbrug"
-
-#~ msgid "Memory usage"
-#~ msgstr "Hukommelsesforbrug"
-
-#~ msgid "Command"
-#~ msgstr "Kommando"
-
-#~ msgid "VM-Size"
-#~ msgstr "VM-størrelse"
-
-#~ msgid "User"
-#~ msgstr "Bruger"
-
-#~ msgid "Show user tasks"
-#~ msgstr "Vis brugerprocesser"
-
-#~ msgid "Show root tasks"
-#~ msgstr "Vis rootprocesser"
-
-#~ msgid "Show other tasks"
-#~ msgstr "Vis andre processer"
-
-#~ msgid "Show memory used by cache as free"
-#~ msgstr "Vis hukommelse der bruges af mellemlager som ledig"
-
-#~ msgid "Contributors:"
-#~ msgstr "Bidragydere:"
