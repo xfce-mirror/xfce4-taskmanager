@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2013-11-27 14:14+0000\n"
+"PO-Revision-Date: 2013-11-28 20:42+0000\n"
 "Last-Translator: anthonmanix <anthon.manix@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/projects/p/xfce/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -24,15 +24,15 @@ msgstr ""
 #: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
-msgstr ""
+msgstr "Upravljalnik nalog"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
 msgid "Easy to use task manager"
-msgstr ""
+msgstr "Enostaven upravljalnik nalog"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
-msgstr ""
+msgstr "Napaka izvajanja"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
@@ -40,7 +40,7 @@ msgstr ""
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr ""
+msgstr "Zaženi upravljalnik nalog kot skrbnik"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
@@ -66,7 +66,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
+msgstr "<b>Opravila:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Pomnilnik:</b> %.0f%%\n<b>Izmenjevalni razdelek:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -80,26 +80,26 @@ msgstr ""
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
-msgstr ""
+msgstr "CPU: %s%%"
 
 #: ../src/process-statusbar.c:157 ../src/process-window.c:379
 #, c-format
 msgid "Memory: %s%%"
-msgstr ""
+msgstr "Pomnilnik: %s%%"
 
 #: ../src/process-statusbar.c:166
 #, c-format
 msgid "Swap: %s%%"
-msgstr ""
+msgstr "Izmenjevalni razdelek: %s%%"
 
 #: ../src/process-statusbar.c:181
 #, c-format
 msgid "Processes: %d"
-msgstr "Procesi: %d"
+msgstr "Opravila: %d"
 
 #: ../src/process-tree-view.c:125
 msgid "Task"
-msgstr ""
+msgstr "Naloga"
 
 #: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
 msgid "PID"
@@ -123,25 +123,25 @@ msgstr ""
 
 #: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
 msgid "UID"
-msgstr ""
+msgstr "UID"
 
 #: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
 #: ../src/process-tree-view.c:194
 msgid "Prio."
-msgstr ""
+msgstr "Predn."
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
-msgstr ""
+msgstr "Uniči nalogo"
 
 #: ../src/process-tree-view.c:352
 msgid "Kill task"
-msgstr ""
+msgstr "Uniči nalogo"
 
 #: ../src/process-tree-view.c:354
 #, c-format
@@ -172,11 +172,11 @@ msgstr ""
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
-msgstr ""
+msgstr "Uniči"
 
 #: ../src/process-tree-view.c:420
 msgid "Stop"
-msgstr "Ustavi"
+msgstr "Zaustavi"
 
 #: ../src/process-tree-view.c:427
 msgid "Continue"
@@ -184,7 +184,7 @@ msgstr "Nadaljuj"
 
 #: ../src/process-tree-view.c:433
 msgid "Kill"
-msgstr "Ubij"
+msgstr "Uniči"
 
 #: ../src/process-tree-view.c:440
 msgid "Very low"
@@ -212,7 +212,7 @@ msgstr "Prednost"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr "zasluge-prevajalcev"
+msgstr ""
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
@@ -240,7 +240,7 @@ msgstr ""
 
 #: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
-msgstr "Prikaži ikone aplikacij"
+msgstr "Prikaži ikone programov"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
@@ -317,7 +317,7 @@ msgstr "10s"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
-msgstr "Prikaži vse procese"
+msgstr "Prikaži vsa opravila"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
