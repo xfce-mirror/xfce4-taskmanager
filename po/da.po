@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2013-11-26 16:25+0000\n"
+"PO-Revision-Date: 2013-12-10 02:59+0000\n"
 "Last-Translator: Aputsiaĸ Niels Janussen <aj@isit.gl>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/xfce/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -115,7 +115,7 @@ msgstr "Tilstand"
 
 #: ../src/process-tree-view.c:161
 msgid "VSZ"
-msgstr ""
+msgstr "VSZ"
 
 #: ../src/process-tree-view.c:169
 msgid "RSS"
@@ -168,7 +168,7 @@ msgstr "Fejl ved angivelse af prioritet"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
+msgstr "Stødte på en fejl under angivelse af prioritet for PID'et %d. Du har sandsynligvis ikke de påkrævede privilegier."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -260,15 +260,15 @@ msgstr "Stil for værktøjslinje"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "<b>Interface style</b>"
-msgstr ""
+msgstr "<b>Stil for grænseflade</b>"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
-msgstr ""
+msgstr "Spørg ved lukning af opgaver"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
-msgstr ""
+msgstr "Skjul i statusfeltet"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "<b>Miscellaneous</b>"
