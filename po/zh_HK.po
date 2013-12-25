@@ -1,0 +1,353 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Cosmo Chene <cosmolax@ubuntu.org.tw>, 2006
+# Walter Cheuk <wwycheuk@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Apps\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-03 20:41+0200\n"
+"PO-Revision-Date: 2013-12-25 02:57+0000\n"
+"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
+"Language-Team: Chinese (Hong Kong) (http://www.transifex.com/projects/p/xfce/language/zh_HK/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_HK\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:156
+#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:398 ../src/process-window.c:304
+#: ../src/process-window.ui.h:1
+msgid "Task Manager"
+msgstr "工作管理員"
+
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr "易用的工作管理員"
+
+#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+msgid "Execution error"
+msgstr "執行發生錯誤"
+
+#: ../src/exec-tool-button.c:133
+msgid "Couldn't find any default command to run."
+msgstr "找不到任何預設指令可執行。"
+
+#: ../src/exec-tool-button.c:164
+msgid "Run Task Manager as root"
+msgstr "以 root 身份執行「工作管理員」"
+
+#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
+#: ../src/exec-tool-button.c:179
+msgid "Run Program..."
+msgstr "執行程式..."
+
+#: ../src/exec-tool-button.c:182
+msgid "Application Finder"
+msgstr "應用程式協尋器"
+
+#: ../src/exec-tool-button.c:185
+msgid "Terminal emulator"
+msgstr "終端機模擬器"
+
+#: ../src/exec-tool-button.c:187
+msgid "XTerm"
+msgstr "XTerm"
+
+#: ../src/main.c:100
+#, c-format
+msgid ""
+"<b>Processes:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Memory:</b> %.0f%%\n"
+"<b>Swap:</b> %.0f%%"
+msgstr "<b>進程數：</b> %u\n<b>CPU：</b> %.0f%%\n<b>記憶體：</b> %.0f%%\n<b>置換空間：</b> %.0f%%"
+
+#: ../src/main.c:108
+#, c-format
+msgid ""
+"Processes: %u\n"
+"CPU: %.0f%%\n"
+"Memory: %.0f%%\n"
+"Swap: %.0f%%"
+msgstr "進程數：%u\nCPU：%.0f%%\n記憶體：%.0f%%\n置換空間：%.0f%%"
+
+#: ../src/process-statusbar.c:148 ../src/process-window.c:374
+#, c-format
+msgid "CPU: %s%%"
+msgstr "CPU：%s%%"
+
+#: ../src/process-statusbar.c:157 ../src/process-window.c:379
+#, c-format
+msgid "Memory: %s%%"
+msgstr "記憶體：%s%%"
+
+#: ../src/process-statusbar.c:166
+#, c-format
+msgid "Swap: %s%%"
+msgstr "置換空間：%s%%"
+
+#: ../src/process-statusbar.c:181
+#, c-format
+msgid "Processes: %d"
+msgstr "進程數：%d"
+
+#: ../src/process-tree-view.c:125
+msgid "Task"
+msgstr "工作"
+
+#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
+msgid "PID"
+msgstr "PID"
+
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+msgid "PPID"
+msgstr "PPID"
+
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+msgid "State"
+msgstr "狀態"
+
+#: ../src/process-tree-view.c:161
+msgid "VSZ"
+msgstr "VSZ"
+
+#: ../src/process-tree-view.c:169
+msgid "RSS"
+msgstr "RSS"
+
+#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
+msgid "UID"
+msgstr "UID"
+
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+msgid "CPU"
+msgstr "CPU"
+
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: ../src/process-tree-view.c:194
+msgid "Prio."
+msgstr "優先"
+
+#: ../src/process-tree-view.c:352
+msgid "Terminate task"
+msgstr "終止工作"
+
+#: ../src/process-tree-view.c:352
+msgid "Kill task"
+msgstr "強行中止工作"
+
+#: ../src/process-tree-view.c:354
+#, c-format
+msgid "Are you sure you want to send a signal to the PID %d?"
+msgstr "確定要傳送訊號給 PID %d 嗎？"
+
+#: ../src/process-tree-view.c:366
+msgid "Error sending signal"
+msgstr "傳送訊號時發生錯誤"
+
+#: ../src/process-tree-view.c:368
+#, c-format
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
+msgstr "傳送訊號給 PID %d 時遭遇錯誤。很可能你沒有應具備的特權。"
+
+#: ../src/process-tree-view.c:395
+msgid "Error setting priority"
+msgstr "設定優先權時發生錯誤"
+
+#: ../src/process-tree-view.c:396
+#, c-format
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr "設定 PID %d 的優先權時遭遇錯誤。很可能你沒有應具備的特權。"
+
+#: ../src/process-tree-view.c:412
+msgid "Terminate"
+msgstr "終止"
+
+#: ../src/process-tree-view.c:420
+msgid "Stop"
+msgstr "停止"
+
+#: ../src/process-tree-view.c:427
+msgid "Continue"
+msgstr "繼續"
+
+#: ../src/process-tree-view.c:433
+msgid "Kill"
+msgstr "強行中止"
+
+#: ../src/process-tree-view.c:440
+msgid "Very low"
+msgstr "非常低"
+
+#: ../src/process-tree-view.c:445
+msgid "Low"
+msgstr "低"
+
+#: ../src/process-tree-view.c:450
+msgid "Normal"
+msgstr "正常"
+
+#: ../src/process-tree-view.c:455
+msgid "High"
+msgstr "高"
+
+#: ../src/process-tree-view.c:460
+msgid "Very high"
+msgstr "非常高"
+
+#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
+msgid "Priority"
+msgstr "優先權"
+
+#: ../src/process-window.c:312
+msgid "translator-credits"
+msgstr "Cosmo Chene\nCheng-Chia Tseng <pswo10680@gmail.com>, 2012.\nWalter Cheuk <wwycheuk@gmail.com>, 2013."
+
+#: ../src/process-window.ui.h:2
+msgid "Warning, you are using the root account, you may harm your system."
+msgstr "警告，你正使用 root 帳號，有可能因此損害系統。"
+
+#: ../src/settings.c:378
+msgid "Default"
+msgstr "預設"
+
+#: ../src/settings.c:379
+msgid "Small"
+msgstr "小"
+
+#: ../src/settings.c:380
+msgid "Large"
+msgstr "大"
+
+#: ../src/settings.c:381
+msgid "Text"
+msgstr "文字"
+
+#: ../src/settings-dialog.ui.h:1
+msgid "Settings for Task Manager"
+msgstr "工作管理員設定"
+
+#: ../src/settings-dialog.ui.h:2
+msgid "Show application icons"
+msgstr "顯示應用程式圖示"
+
+#: ../src/settings-dialog.ui.h:3
+msgid "Show full command lines"
+msgstr "顯示完整指令列"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Show values with more precision"
+msgstr "顯示更精準的值"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "描繪螢幕周圍邊緣"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Toolbar style:"
+msgstr "工具列樣式："
+
+#: ../src/settings-dialog.ui.h:7
+msgid "<b>Interface style</b>"
+msgstr "<b>資訊樣式</b>"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Prompt for terminating tasks"
+msgstr "提請終止工作"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Hide into the notification area"
+msgstr "隱藏至通知區域"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>雜項</b>"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Refresh rate:"
+msgstr "重新整理速率："
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Columns:"
+msgstr "欄數："
+
+#: ../src/settings-dialog.ui.h:13
+msgid "<b>Information</b>"
+msgstr "<b>資訊</b>"
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Settings"
+msgstr "設定"
+
+#. TRANSLATORS: The next values are in seconds or milliseconds
+#: ../src/settings-tool-button.c:110
+msgid "500ms"
+msgstr "500毫秒"
+
+#: ../src/settings-tool-button.c:111
+msgid "750ms"
+msgstr "750毫秒"
+
+#: ../src/settings-tool-button.c:112
+msgid "1s"
+msgstr "1秒"
+
+#: ../src/settings-tool-button.c:113
+msgid "2s"
+msgstr "2秒"
+
+#: ../src/settings-tool-button.c:114
+msgid "5s"
+msgstr "5秒"
+
+#: ../src/settings-tool-button.c:115
+msgid "10s"
+msgstr "10秒"
+
+#: ../src/settings-tool-button.c:164
+msgid "Show all processes"
+msgstr "顯示所有進程"
+
+#: ../src/settings-tool-button.c:167
+msgid "Refresh rate"
+msgstr "重新整理速率"
+
+#: ../src/settings-tool-button.c:177
+msgid "Virtual Bytes"
+msgstr "虛擬位元組"
+
+#: ../src/settings-tool-button.c:178
+msgid "Private Bytes"
+msgstr "私有位元組"
+
+#: ../src/task-manager.c:229
+#, c-format
+msgid "%lu MiB"
+msgstr "%lu MiB"
+
+#: ../src/task-manager.c:236
+#, c-format
+msgid "%lu KiB"
+msgstr "%lu KiB"
+
+#: ../src/task-manager.c:240
+#, c-format
+msgid "%lu B"
+msgstr "%lu B"
+
+#: ../src/task-manager.c:263
+#, c-format
+msgid "%s%%"
+msgstr "%s%%"
