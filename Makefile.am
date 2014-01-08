@@ -1,6 +1,5 @@
 SUBDIRS =								\
 	po								\
-	doc								\
 	src
 
 desktopdir = $(datadir)/applications
