@@ -33,8 +33,8 @@ struct _XtmSettingsToolButton
 };
 G_DEFINE_TYPE (XtmSettingsToolButton, xtm_settings_tool_button, GTK_TYPE_MENU_TOOL_BUTTON)
 
-static GtkWidget *	construct_menu					();
-static void		show_settings_dialog				();
+static GtkWidget *	construct_menu					(void);
+static void		show_settings_dialog				(XtmSettingsToolButton *button);
 
 
 

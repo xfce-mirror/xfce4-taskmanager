@@ -50,7 +50,7 @@ enum
 typedef struct _XtmProcessTreeView XtmProcessTreeView;
 
 GType		xtm_process_tree_view_get_type			(void);
-GtkWidget *	xtm_process_tree_view_new			();
+GtkWidget *	xtm_process_tree_view_new			(void);
 void		xtm_process_tree_view_get_sort_column_id	(XtmProcessTreeView *treeview, gint *sort_column_id, GtkSortType *sort_type);
 
 #endif /* !PROCESS_TREE_VIEW_H */

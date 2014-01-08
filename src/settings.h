@@ -26,7 +26,7 @@
 typedef struct _XtmSettings XtmSettings;
 
 GType		xtm_settings_get_type				(void);
-XtmSettings *	xtm_settings_get_default			();
+XtmSettings *	xtm_settings_get_default			(void);
 
 
 

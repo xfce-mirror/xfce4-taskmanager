@@ -27,6 +27,6 @@
 typedef struct _XtmProcessStatusbar XtmProcessStatusbar;
 
 GType		xtm_process_statusbar_get_type			(void);
-GtkWidget *	xtm_process_statusbar_new			();
+GtkWidget *	xtm_process_statusbar_new			(void);
 
 #endif /* !PROCESS_STATUSBAR_H */

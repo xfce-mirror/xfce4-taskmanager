@@ -35,8 +35,8 @@ struct _XtmExecToolButton
 };
 G_DEFINE_TYPE (XtmExecToolButton, xtm_exec_tool_button, GTK_TYPE_MENU_TOOL_BUTTON)
 
-static GtkWidget *	construct_menu					();
-static void		execute_default_command				();
+static GtkWidget *	construct_menu					(void);
+static void		execute_default_command				(void);
 
 
 

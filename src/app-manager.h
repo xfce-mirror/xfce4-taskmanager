@@ -38,7 +38,7 @@ struct _App
 typedef struct _XtmAppManager XtmAppManager;
 
 GType			xtm_app_manager_get_type			(void);
-XtmAppManager *		xtm_app_manager_new				();
+XtmAppManager *		xtm_app_manager_new				(void);
 const GArray *		xtm_app_manager_get_app_list			(XtmAppManager *manager);
 App *			xtm_app_manager_get_app_from_pid		(XtmAppManager *manager, gint pid);
 

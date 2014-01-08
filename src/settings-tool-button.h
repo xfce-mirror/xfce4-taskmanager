@@ -27,6 +27,6 @@
 typedef struct _XtmSettingsToolButton XtmSettingsToolButton;
 
 GType		xtm_settings_tool_button_get_type		(void);
-GtkWidget *	xtm_settings_tool_button_new			();
+GtkWidget *	xtm_settings_tool_button_new			(void);
 
 #endif /* !SETTINGS_TOOL_BUTTON_H */

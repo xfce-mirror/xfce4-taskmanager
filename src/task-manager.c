@@ -83,7 +83,7 @@ static void	model_update_task				(GtkTreeModel *model, Task *task);
 static void	model_mark_tree_iter_as_removed			(GtkTreeModel *model, GtkTreeIter *iter);
 static void	model_remove_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter);
 static void	model_find_tree_iter_for_pid			(GtkTreeModel *model, guint pid, GtkTreeIter *iter);
-static glong	__current_timestamp				();
+static glong	__current_timestamp				(void);
 
 
 

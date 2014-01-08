@@ -27,6 +27,6 @@
 typedef struct _XtmExecToolButton XtmExecToolButton;
 
 GType		xtm_exec_tool_button_get_type			(void);
-GtkWidget *	xtm_exec_tool_button_new			();
+GtkWidget *	xtm_exec_tool_button_new			(void);
 
 #endif /* !EXEC_TOOL_BUTTON_H */
