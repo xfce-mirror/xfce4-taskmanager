@@ -1,3 +1,21 @@
+1.0.1
+
+- Add "Run Task Manager as root" item in "Execute" menu
+- Add a menu position function
+- Fix shell substitution for Korn Shell (ksh)
+- Set monitor's background box use the prelight state
+- Remove quit tool button
+- OpemBSD removed KERN_PROC2/KINFO_PROC2 some months ago.
+- Translation updates: Arabic, Belarusian, Bulgarian, Catalan
+  (Valencian), Czech, Danish, German, Greek, English (Australia),
+  English (United Kingdom), Spanish (Castilian), Basque, Finnish,
+  French, Galician, Hebrew, Croatian, Hungarian, Indonesian, Icelandic,
+  Italian, Japanese, Kazakh, Korean, Lithuanian, Dutch (Flemish),
+  Occitan (post 1500), Polish, Portuguese, Portuguese (Brazilian),
+  Russian, Slovak, Slovenian, Serbian, Swedish, Telugu, Turkish,
+  Uyghur, Ukrainian, Chinese (China), Chinese (Hong Kong), Chinese
+  (Taiwan).
+
 1.0.0
 
 - Replaced progress bars against monitors
