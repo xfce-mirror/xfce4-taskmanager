@@ -31,6 +31,8 @@
 #include <string.h>
 /* for getpagesize() */
 #include <unistd.h>
+/* for P_ZOMBIE & SSLEEP */
+#include <sys/proc.h>
 #include "task-manager.h"
 
 char	*state_abbrev[] = {
