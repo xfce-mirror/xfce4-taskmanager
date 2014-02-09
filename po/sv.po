@@ -1,25 +1,25 @@
-# Swedish translation for xfce4-taskmanager.
-# Copyright (C) 2008 Free Software Foundation, Inc.
-# This file is distributed under the same license as the xfce4-taskmanager package.
-# Daniel Nylander <po@danielnylander.se>, 2008.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Alex Nordlund <deep.alexander@gmail.com>, 2013
+# Alex Nordlund <deep.alexander@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-18 17:15+0000\n"
-"PO-Revision-Date: 2009-12-16 18:07+0100\n"
-"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
-"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"POT-Creation-Date: 2013-07-03 20:41+0200\n"
+"PO-Revision-Date: 2014-02-09 10:37+0000\n"
+"Last-Translator: PavelNicklasson <pavelnicklasson@bahnhof.se>\n"
+"Language-Team: Swedish (http://www.transifex.com/projects/p/xfce/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
-msgid "Easy to use task manager"
-msgstr "Lättanvänd aktivitetshanterare"
-
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
 #: ../src/process-tree-view.c:398 ../src/process-window.c:304
@@ -27,9 +27,13 @@ msgstr "Lättanvänd aktivitetshanterare"
 msgid "Task Manager"
 msgstr "Aktivitetshanterare"
 
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr "Lättanvänd aktivitetshanterare"
+
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
-msgstr "Körningsfel"
+msgstr "Exekveringsfel"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
@@ -37,7 +41,7 @@ msgstr "Kunde inte hitta något standardkommando att köra."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr "Kör Aktivitetshanterare som root"
+msgstr "Kör aktivetshanterare som rot"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
@@ -46,7 +50,7 @@ msgstr "Kör program..."
 
 #: ../src/exec-tool-button.c:182
 msgid "Application Finder"
-msgstr "Programlista"
+msgstr "Programsökare"
 
 #: ../src/exec-tool-button.c:185
 msgid "Terminal emulator"
@@ -63,11 +67,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>Processer:</b> %u\n"
-"<b>Processor:</b> %.0f%%\n"
-"<b>Minne:</b> %.0f%%\n"
-"<b>Växlingsutrymme:</b> %.0f%%"
+msgstr "<b>Processer:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Minne:</b> %.0f%%\n<b>Swap:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -76,16 +76,12 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
-"Processer: %u\n"
-"Processor: %.0f%%\n"
-"Minne: %.0f%%\n"
-"Växlingsutrymme: %.0f%%"
+msgstr "Processer %u\nCPU: %.0f%%\nMinne: %.0f%%\nSwap: %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
 msgid "CPU: %s%%"
-msgstr "Processor: %s%%"
+msgstr "CPU: %s%%"
 
 #: ../src/process-statusbar.c:157 ../src/process-window.c:379
 #, c-format
@@ -95,7 +91,7 @@ msgstr "Minne: %s%%"
 #: ../src/process-statusbar.c:166
 #, c-format
 msgid "Swap: %s%%"
-msgstr "Växlingsutrymme: %s%%"
+msgstr "Swap: %s%%"
 
 #: ../src/process-statusbar.c:181
 #, c-format
@@ -132,7 +128,7 @@ msgstr "UID"
 
 #: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "CPU"
-msgstr "Processor"
+msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
@@ -142,38 +138,42 @@ msgstr "Prio."
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
-msgstr "Terminera processen"
+msgstr "Avsluta aktivitet"
 
 #: ../src/process-tree-view.c:352
 msgid "Kill task"
-msgstr "Döda processen"
+msgstr "Döda aktivitet"
 
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Är du säker på att du vill skicka en signal till PID %d?"
+msgstr "Är du säker på att du vill skicka en signal till PID:en %d?"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
-msgstr ""
+msgstr "Fel vid sändning av signal"
 
 #: ../src/process-tree-view.c:368
 #, c-format
-msgid "An error was encountered by sending a signal to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
+msgstr "Ett fel uppstod då en signal skickades till PID:en %d. Det är troligt att du inte har den behörighet som krävs. "
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
-msgstr ""
+msgstr "Fel vid prioritering"
 
 #: ../src/process-tree-view.c:396
 #, c-format
-msgid "An error was encountered by setting a priority to the PID %d. It is likely you don't have the required privileges."
-msgstr ""
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr "Ett fel uppstod då en prioritering sattes för PID:en %d. Det är troligt att du inte har den behörighet som krävs. "
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
-msgstr "Terminera"
+msgstr "Avsluta"
 
 #: ../src/process-tree-view.c:420
 msgid "Stop"
@@ -209,19 +209,15 @@ msgstr "Mycket hög"
 
 #: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
 msgid "Priority"
-msgstr "Prioritet"
+msgstr "Prioritering"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr ""
-"Daniel Nylander <po@danielnylander.se>\n"
-"\n"
-"Skicka synpunkter på översättningen till\n"
-"<tp-sv@listor.tp-sv.se>"
+msgstr "Påvel Nicklasson"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
+msgstr "Varning, du använder rot-kontot, du kan skada ditt system."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -236,66 +232,64 @@ msgid "Large"
 msgstr "Stor"
 
 #: ../src/settings.c:381
-#, fuzzy
 msgid "Text"
 msgstr "Text"
 
 #: ../src/settings-dialog.ui.h:1
-#, fuzzy
-msgid "<b>Information</b>"
-msgstr "<b>Information</b>"
+msgid "Settings for Task Manager"
+msgstr "Inställningar för aktivietshanterare"
 
 #: ../src/settings-dialog.ui.h:2
-msgid "<b>Interface style</b>"
-msgstr ""
-
-#: ../src/settings-dialog.ui.h:3
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Diverse</b>"
-
-#: ../src/settings-dialog.ui.h:4
-msgid "Columns:"
-msgstr "Kolumner:"
-
-#: ../src/settings-dialog.ui.h:5
-msgid "Draw borders around monitors"
-msgstr ""
-
-#: ../src/settings-dialog.ui.h:6
-msgid "Hide into the notification area"
-msgstr ""
-
-#: ../src/settings-dialog.ui.h:7
-msgid "Prompt for terminating tasks"
-msgstr ""
-
-#: ../src/settings-dialog.ui.h:8
-msgid "Refresh rate:"
-msgstr "Uppdateringsfrekvens:"
-
-#: ../src/settings-dialog.ui.h:9
-msgid "Settings"
-msgstr "Inställningar"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "Settings for Task Manager"
-msgstr "Inställningar för Aktivitetshanterare"
-
-#: ../src/settings-dialog.ui.h:11
 msgid "Show application icons"
 msgstr "Visa programikoner"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
-msgstr "Visa fullständiga kommandorader"
+msgstr "Visa hela kommandorader"
+
+#: ../src/settings-dialog.ui.h:4
+msgid "Show values with more precision"
+msgstr "Visa värden med högre precision"
+
+#: ../src/settings-dialog.ui.h:5
+msgid "Draw borders around monitors"
+msgstr "Rita ramar runt bildskärmar"
+
+#: ../src/settings-dialog.ui.h:6
+msgid "Toolbar style:"
+msgstr "Stil på verktygsfält"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "<b>Interface style</b>"
+msgstr "<b>Stil på gränssnitt</b>"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Prompt for terminating tasks"
+msgstr "Varna för att avsluta aktiviteter"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Hide into the notification area"
+msgstr "Göm i meddelandefältet"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Diverse</b>"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Refresh rate:"
+msgstr "Uppdateringsfrekvens:"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Columns:"
+msgstr "Kolumner:"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Show values with more precision"
-msgstr ""
+msgid "<b>Information</b>"
+msgstr "<b>Information</b>"
 
 #: ../src/settings-dialog.ui.h:14
-msgid "Toolbar style:"
-msgstr ""
+msgid "Settings"
+msgstr "Inställningar"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
@@ -332,21 +326,21 @@ msgstr "Uppdateringsfrekvens"
 
 #: ../src/settings-tool-button.c:177
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "Virtuella byte"
 
 #: ../src/settings-tool-button.c:178
 msgid "Private Bytes"
-msgstr ""
+msgstr "Privata byte"
 
 #: ../src/task-manager.c:229
 #, c-format
 msgid "%lu MiB"
-msgstr "%lu MiB"
+msgstr "%lu MB"
 
 #: ../src/task-manager.c:236
 #, c-format
 msgid "%lu KiB"
-msgstr "%lu KiB"
+msgstr "%lu KB"
 
 #: ../src/task-manager.c:240
 #, c-format
@@ -357,48 +351,3 @@ msgstr "%lu B"
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
-
-#~ msgid "Control your processes"
-#~ msgstr "Kontrollera dina processer"
-
-#~ msgid "Process manager"
-#~ msgstr "Aktivitetshanterare"
-
-#~ msgid "Xfce4 Taskmanager"
-#~ msgstr "Xfce4 Aktivitetshanterare"
-
-#~ msgid "Really kill the task?"
-#~ msgstr "Verkligen döda aktiviteten?"
-
-#~ msgid "%d MB of %d MB used"
-#~ msgstr "%d MB av %d MB används"
-
-#~ msgid "Cpu usage"
-#~ msgstr "Processoranvändning"
-
-#~ msgid "Command"
-#~ msgstr "Kommando"
-
-#~ msgid "VM-Size"
-#~ msgstr "VM-storlek"
-
-#~ msgid "User"
-#~ msgstr "Användare"
-
-#~ msgid "Show user tasks"
-#~ msgstr "Visa användaraktiviteter"
-
-#~ msgid "Show root tasks"
-#~ msgstr "Visa rootaktiviteter"
-
-#~ msgid "Show other tasks"
-#~ msgstr "Visa övriga aktiviteter"
-
-#~ msgid "Show memory used by cache as free"
-#~ msgstr "Visa minne använt av cache som ledigt"
-
-#~ msgid "Contributors:"
-#~ msgstr "Bidragsgivare:"
-
-#~ msgid "Couldn't set priority %d to the task with ID %d"
-#~ msgstr "Kunde inte ställa in prioritet %d till aktiviteten med ID %d"
