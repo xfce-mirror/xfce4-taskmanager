@@ -27,6 +27,7 @@ xfce4_taskmanager_SOURCES =						\
 	process-window_ui.h						\
 	process-window.c		process-window.h		\
 	process-monitor.c		process-monitor.h		\
+	process-tree-model.c		process-tree-model.h		\
 	process-tree-view.c		process-tree-view.h		\
 	process-statusbar.c		process-statusbar.h		\
 	exec-tool-button.c		exec-tool-button.h		\

@@ -16,6 +16,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
+#include "process-tree-model.h"
 #include "process-tree-view.h"
 #include "task-manager.h"
 #include "settings.h"
@@ -49,6 +50,7 @@ struct _XtmProcessTreeView
 	GtkListStore *		model;
 	GtkTreeModel *		model_filter;
 	gchar *			cmd_filter;
+	GtkTreeModel *		model_tree;
 	GtkTreeViewColumn *	sort_column;
 	gushort			columns_positions[N_COLUMNS];
 	XtmSettings *		settings;
@@ -107,7 +109,9 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	treeview->model_filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (treeview->model), NULL);
 	gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (treeview->model_filter), (GtkTreeModelFilterVisibleFunc)visible_func, treeview, NULL);
 
-	g_object_set (treeview, "search-column", XTM_PTV_COLUMN_COMMAND, "model", treeview->model_filter, NULL);
+	treeview->model_tree = xtm_process_tree_model_new (GTK_TREE_MODEL (treeview->model_filter));
+
+	g_object_set (treeview, "search-column", XTM_PTV_COLUMN_COMMAND, "model", treeview->model_tree, NULL);
 
 	treeview->cmd_filter = NULL;
 
@@ -233,6 +237,12 @@ xtm_process_tree_view_finalize (GObject *object)
 	{
 		g_object_unref (treeview->model_filter);
 		treeview->model_filter = NULL;
+	}
+
+	if (GTK_IS_TREE_MODEL (treeview->model_tree))
+	{
+		g_object_unref (treeview->model_tree);
+		treeview->model_tree = NULL;
 	}
 
 	if (XTM_IS_SETTINGS (treeview->settings))
@@ -706,5 +716,11 @@ xtm_process_tree_view_get_sort_column_id (XtmProcessTreeView *treeview, gint *so
 {
 	*sort_column_id = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (treeview->sort_column), "column-id"));
 	*sort_type = gtk_tree_view_column_get_sort_order (treeview->sort_column);
+}
+
+GtkTreeModel *
+xtm_process_tree_view_get_model (XtmProcessTreeView *treeview)
+{
+	return GTK_TREE_MODEL (treeview->model);
 }
 

@@ -403,8 +403,8 @@ GtkTreeModel *
 xtm_process_window_get_model (XtmProcessWindow *window)
 {
 	g_return_val_if_fail (XTM_IS_PROCESS_WINDOW (window), NULL);
-	g_return_val_if_fail (GTK_IS_TREE_VIEW (window->treeview), NULL);
-	return gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (gtk_tree_view_get_model (GTK_TREE_VIEW (window->treeview))));
+	g_return_val_if_fail (XTM_IS_PROCESS_TREE_VIEW (window->treeview), NULL);
+	return xtm_process_tree_view_get_model (XTM_PROCESS_TREE_VIEW (window->treeview));
 }
 
 void
