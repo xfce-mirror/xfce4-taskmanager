@@ -385,6 +385,23 @@ signal_insert (GNode *node, gpointer data)
 	return FALSE;
 }
 
+static GNode *
+find_sibling (GNode *parent, GSequenceIter *child)
+{
+	GSequenceIter *prev;
+	for (prev = g_sequence_iter_prev (child); prev != child; prev = g_sequence_iter_prev (child))
+    	{
+		XtmCrossLink *link;
+		child = prev;
+		link = g_sequence_get (child);
+		if (link->tree->parent == parent)
+		{
+			return link->tree;
+		}
+    	}
+	return NULL;
+}
+
 static void
 xtm_process_tree_model_row_changed (XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeIter *iter, GtkTreeModel *model)
 {
@@ -438,7 +455,7 @@ xtm_process_tree_model_row_changed (XtmProcessTreeModel *treemodel, GtkTreePath 
 			}
 
 			signal_parent = g_node_first_child (found.parent) == NULL;
-			g_node_append (found.parent, link->tree);
+			g_node_insert_after (found.parent, find_sibling (found.parent, link->list), link->tree);
 
 			/* Signal the insert */
 			g_node_traverse (link->tree, G_PRE_ORDER, G_TRAVERSE_ALL, -1,
@@ -560,7 +577,7 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 	gtk_tree_model_get_value (model, iter, treemodel->p_column, &found.p_value);
 	g_node_traverse (treemodel->tree, G_PRE_ORDER, G_TRAVERSE_ALL, -1, find_node, &found);
 	g_value_unset (&found.p_value);
-	link->tree = g_node_append_data (found.parent, link);
+	link->tree = g_node_insert_data_after (found.parent, find_sibling (found.parent, link->list), link);
 
 	if (not_persist)
 		g_sequence_foreach_range (g_sequence_iter_next (link->list), g_sequence_get_end_iter (treemodel->list),
@@ -673,13 +690,71 @@ xtm_process_tree_model_row_deleted (XtmProcessTreeModel *treemodel, GtkTreePath 
 	/* Signal the insert */
 	while ((node = g_node_first_child (del_node)))
 	{
+		XtmCrossLink *i_link = node->data;
 		g_node_unlink (node);
-		g_node_append (treemodel->tree, node);
+		g_node_insert_after (treemodel->tree, find_sibling (treemodel->tree, i_link->list), node);
 		g_node_traverse (node, G_PRE_ORDER, G_TRAVERSE_ALL, -1,
 			signal_insert, treemodel);
 	}
 
 	g_node_destroy (del_node);
+}
+
+static gboolean
+reorder_children (GNode *parent, gpointer data)
+{
+	XtmProcessTreeModel *treemodel = data;
+	GSequenceIter *iter;
+	GNode *child = NULL;
+	XtmCrossLink *link;
+	GtkTreeIter s_iter;
+	GtkTreePath *s_path;
+	guint size, i, x;
+	gint *new_order;
+	gint c_pos, old_pos;
+	gboolean moved = FALSE;
+	size = g_node_n_children (parent);
+	if (size < 2)
+		return FALSE;
+	new_order = g_new (gint, size);
+	for (i = 0; i < size; i++)
+	{
+		new_order[i] = i;
+	}
+	i = 0;
+	for (iter = g_sequence_get_begin_iter (treemodel->list); !g_sequence_iter_is_end (iter); iter = g_sequence_iter_next (iter))
+	{
+		link = g_sequence_get (iter);
+		if (link->tree->parent == parent)
+		{
+			c_pos = g_node_child_position (parent, link->tree);
+			g_node_unlink (link->tree);
+			g_node_insert_after (parent, child, link->tree);
+			child = link->tree;
+			old_pos = new_order[c_pos];
+			c_pos -= i;
+			if (c_pos > 0)
+			{
+				memmove (new_order + i + 1, new_order + i, c_pos * sizeof(gint));
+				moved = TRUE;
+			}
+			new_order[i++] = old_pos;
+		}
+	}
+	g_return_val_if_fail (size == i, TRUE);
+	if (moved)
+	{
+		/* Signal the new item */
+		s_iter.stamp = treemodel->stamp;
+		s_iter.user_data = parent;
+		s_iter.user_data2 = NULL;
+		s_iter.user_data3 = NULL;
+		s_path = xtm_process_tree_model_get_path (GTK_TREE_MODEL (treemodel), &s_iter);
+		gtk_tree_model_rows_reordered (GTK_TREE_MODEL (treemodel), s_path, &s_iter, new_order);
+		gtk_tree_path_free (s_path);
+	}
+	g_free (new_order);
+	return FALSE;
 }
 
 static void
@@ -695,7 +770,7 @@ xtm_process_tree_model_rows_reordered (XtmProcessTreeModel *treemodel, GtkTreePa
 	size = g_sequence_get_length (treemodel->list);
 
 	if (G_UNLIKELY (size == 0))
-	      return;
+		return;
 
 	not_persist = ! (gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_ITERS_PERSIST);
 
@@ -721,6 +796,9 @@ xtm_process_tree_model_rows_reordered (XtmProcessTreeModel *treemodel, GtkTreePa
 
 	g_sequence_free (treemodel->list);
 	treemodel->list = s_list;
+
+	g_node_traverse (treemodel->tree, G_PRE_ORDER, G_TRAVERSE_NON_LEAFS, -1,
+		reorder_children, treemodel);
 }
 
 static void
