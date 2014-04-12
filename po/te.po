@@ -1,33 +1,34 @@
-# Telugu Translation for Xfce Taskmanager.
-# Copyright (C) 2012 e-telugu Localization Team
-# This file is distributed under the same license as the Xfce Task manager package.
-# Praveen Illa <mail2ipn@gmail.com>, 2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfce taskmanager.master\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 14:30+0000\n"
-"PO-Revision-Date: 2012-03-12 00:22+0530\n"
-"Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
-"Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-03 20:41+0200\n"
+"PO-Revision-Date: 2014-04-12 12:15+0000\n"
+"Last-Translator: ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>\n"
+"Language-Team: Telugu (http://www.transifex.com/projects/p/xfce/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Language: te\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
-msgid "Easy to use task manager"
-msgstr "వాడుటకు సరళమైన కర్తవ్య నిర్వాహకం"
-
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
 #: ../src/exec-tool-button.c:134 ../src/main.c:156
 #: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
 #: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "కర్తవ్య నిర్వాహకం"
+
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+msgid "Easy to use task manager"
+msgstr "వాడుటకు సరళమైన కర్తవ్య నిర్వాహకం"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
@@ -65,11 +66,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>ప్రక్రియలు:</b> %u\n"
-"<b>సిపియు:</b> %.0f%%\n"
-"<b>జ్ఞాపకశక్తి:</b> %.0f%%\n"
-"<b>స్వాప్:</b> %.0f%%"
+msgstr "<b>ప్రక్రియలు:</b> %u\n<b>సిపియు:</b> %.0f%%\n<b>జ్ఞాపకశక్తి:</b> %.0f%%\n<b>స్వాప్:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -78,11 +75,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr ""
-"ప్రక్రియలు: %u\n"
-"సిపియు: %.0f%%\n"
-"జ్ఞాపకశక్తి: %.0f%%\n"
-"స్వాప్: %.0f%%"
+msgstr "ప్రక్రియలు: %u\nసిపియు: %.0f%%\nజ్ఞాపకశక్తి: %.0f%%\nస్వాప్: %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
@@ -136,7 +129,8 @@ msgstr "UID"
 msgid "CPU"
 msgstr "సిపియు"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
 #: ../src/process-tree-view.c:194
 msgid "Prio."
 msgstr "ప్రాముఖ్యత"
@@ -161,8 +155,8 @@ msgstr ""
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
 msgstr ""
 
 #: ../src/process-tree-view.c:395
@@ -241,60 +235,60 @@ msgid "Text"
 msgstr "పాఠ్యం"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "<b>Information</b>"
-msgstr "<b>సమాచారము</b>"
+msgid "Settings for Task Manager"
+msgstr "కర్తవ్య నిర్వాహకము అమరికలు"
 
 #: ../src/settings-dialog.ui.h:2
-msgid "<b>Interface style</b>"
-msgstr "<b>అంతరవర్తి శైలి</b>"
+msgid "Show application icons"
+msgstr "అనువర్తనాల ప్రతీకలను చూపించు"
 
 #: ../src/settings-dialog.ui.h:3
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>ఇతరాలు</b>"
+msgid "Show full command lines"
+msgstr "పూర్తి ఆదేశ వరుసలను చూపించు"
 
 #: ../src/settings-dialog.ui.h:4
-msgid "Columns:"
-msgstr "నిలువువరుసలు:"
+msgid "Show values with more precision"
+msgstr ""
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
 msgstr ""
 
 #: ../src/settings-dialog.ui.h:6
-msgid "Hide into the notification area"
-msgstr ""
+msgid "Toolbar style:"
+msgstr "సాధనపట్టీ శైలి:"
 
 #: ../src/settings-dialog.ui.h:7
+msgid "<b>Interface style</b>"
+msgstr "<b>అంతరవర్తి శైలి</b>"
+
+#: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
+msgid "Hide into the notification area"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:10
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>ఇతరాలు</b>"
+
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
 msgstr "తాజాకరణ రేటు:"
 
-#: ../src/settings-dialog.ui.h:9
-msgid "Settings"
-msgstr "అమరికలు"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "Settings for Task Manager"
-msgstr "కర్తవ్య నిర్వాహకము అమరికలు"
-
-#: ../src/settings-dialog.ui.h:11
-msgid "Show application icons"
-msgstr "అనువర్తనాల ప్రతీకలను చూపించు"
-
 #: ../src/settings-dialog.ui.h:12
-msgid "Show full command lines"
-msgstr "పూర్తి ఆదేశ వరుసలను చూపించు"
+msgid "Columns:"
+msgstr "నిలువువరుసలు:"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Show values with more precision"
-msgstr ""
+msgid "<b>Information</b>"
+msgstr "<b>సమాచారము</b>"
 
 #: ../src/settings-dialog.ui.h:14
-msgid "Toolbar style:"
-msgstr "సాధనపట్టీ శైలి:"
+msgid "Settings"
+msgstr "అమరికలు"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:110
