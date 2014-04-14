@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2014-04-13 16:46+0000\n"
+"PO-Revision-Date: 2014-04-13 23:49+0000\n"
 "Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -264,7 +264,7 @@ msgstr "<b>Estilu d'interfaz</b>"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
-msgstr ""
+msgstr "Suxerir pa xeres de terminación"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
