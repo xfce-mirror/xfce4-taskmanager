@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2014-06-07 08:51+0000\n"
+"PO-Revision-Date: 2014-07-13 06:29+0000\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/xfce-apps/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Nie można odnaleźć domyślnego polecenia do uruchomienia."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr "Uruchom program jako administrator"
+msgstr "Uruchom program jako użytkownik root"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
@@ -220,7 +220,7 @@ msgstr "Piotr Maliński <admin@rk.edu.pl>, 2006.\nTomasz Chudyk <chudyk@gmail.co
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Uwaga: używane konto należy do administratora, istnieje możliwość uszkodzenia systemu."
+msgstr "Uwaga: używane konto należy do użytkownika root. Istnieje możliwość uszkodzenia systemu."
 
 #: ../src/settings.c:378
 msgid "Default"
@@ -240,7 +240,7 @@ msgstr "Etykiety"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "Settings for Task Manager"
-msgstr "Ustawienia menedżera zadań Xfce"
+msgstr "Ustawienia menedżera zadań"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
@@ -252,7 +252,7 @@ msgstr "Pełne ścieżki poleceń"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
-msgstr "Wyświetlanie wartości z większą precyzją"
+msgstr "Wyświetlanie bardziej dokładnych wartości"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
