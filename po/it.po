@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# cri <cri.penta@gmail.com>, 2009-2010
+# Cristian Marchi <cri.penta@gmail.com>, 2009-2010,2014
 # Fabio Riga <usul@aruba.it>, 2007
-# amigamagic <debianmaverick@gmail.com>, 2014
+# Mauro Giubileo <debianmaverick@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2014-04-20 10:40+0000\n"
-"Last-Translator: amigamagic <debianmaverick@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/xfce/language/it/)\n"
+"PO-Revision-Date: 2014-10-11 07:22+0000\n"
+"Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/projects/p/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,7 +59,7 @@ msgstr "Emulatore di terminale"
 
 #: ../src/exec-tool-button.c:187
 msgid "XTerm"
-msgstr "Xterm"
+msgstr "XTerm"
 
 #: ../src/main.c:100
 #, c-format
@@ -170,7 +170,7 @@ msgstr "Errore nell'impostare la priorità"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "Si è verificato un errore inviando impostando la priorità del PID %d. Sembra che non si sia in possesso dei privilegi richiesti."
+msgstr "Si è verificato un errore impostando la priorità del PID %d. Sembra che non si sia in possesso dei privilegi richiesti."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
@@ -214,7 +214,7 @@ msgstr "Priorità"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr "Fabio Riga\nCristian Marchi, 2009, 2010"
+msgstr "Fabio Riga\nCristian Marchi, 2009, 2010, 2014"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
