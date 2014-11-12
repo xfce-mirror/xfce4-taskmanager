@@ -73,8 +73,11 @@ show_settings_dialog (XtmSettingsToolButton *button)
 static void
 refresh_rate_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
 {
-	guint refresh_rate = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "refresh-rate"));
-	g_object_set (settings, "refresh-rate", refresh_rate, NULL);
+	if(mi->active)
+	{
+		guint refresh_rate = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "refresh-rate"));
+		g_object_set (settings, "refresh-rate", refresh_rate, NULL);
+	}
 }
 
 static void
@@ -82,17 +85,15 @@ menu_refresh_rate_append_item (GtkMenu *menu, gchar *title, guint refresh_rate, 
 {
 	GtkWidget *mi;
 	guint cur_refresh_rate;
+	static GSList *group = NULL;
 
 	g_object_get (settings, "refresh-rate", &cur_refresh_rate, NULL);
 
+	mi = gtk_radio_menu_item_new_with_label (group, title);
+	group = gtk_radio_menu_item_get_group(GTK_RADIO_MENU_ITEM (mi));
 	if (cur_refresh_rate == refresh_rate)
 	{
-		mi = gtk_radio_menu_item_new_with_label (NULL, title);
 		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (mi), TRUE);
-	}
-	else
-	{
-		mi = gtk_menu_item_new_with_label (title);
 	}
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 	g_object_set_data (G_OBJECT (mi), "refresh-rate", GUINT_TO_POINTER (refresh_rate));
