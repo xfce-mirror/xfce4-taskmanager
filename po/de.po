@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2014-08-12 14:45+0000\n"
+"PO-Revision-Date: 2014-11-13 14:16+0000\n"
 "Last-Translator: Tobias Bannert\n"
 "Language-Team: German (http://www.transifex.com/projects/p/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr "<b>Prozesse:</b> %u⏎\n<b>CPU:</b> %.0f%%⏎\n<b>Arbeitsspeicher:</b> %.0f%%⏎\n<b>Auslagerungsspeicher:</b> %.0f%%"
+msgstr "<b>Prozesse:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Arbeitsspeicher:</b> %.0f%%\n<b>Auslagerungsspeicher:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -77,7 +77,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr "Prozesse: %u⏎\nCPU: %.0f%%⏎\nArbeitsspeicher: %.0f%%⏎\nAuslagerungsspeicher: %.0f%%"
+msgstr "Prozesse: %u\nCPU: %.0f%%\nArbeitsspeicher: %.0f%%\nAuslagerungsspeicher: %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
