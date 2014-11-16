@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Tornes Llume <l.lumex03.tornes@gmail.com>, 2014
+# Ḷḷumex03 <tornes@opmbx.org>, 2014
+# Ḷḷumex03 <tornes@opmbx.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2014-04-13 23:49+0000\n"
-"Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
-"Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
+"PO-Revision-Date: 2014-11-16 01:04+0000\n"
+"Last-Translator: Ḷḷumex03 <tornes@opmbx.org>\n"
+"Language-Team: Asturian (http://www.transifex.com/projects/p/xfce-apps/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +33,7 @@ msgstr "Alministrador de xeres cenciellu d'usar"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
-msgstr "Erru d'execución"
+msgstr "Fallu d'execución"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
@@ -66,7 +67,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %.0f%%\n"
 "<b>Swap:</b> %.0f%%"
-msgstr "<b>Procesos:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memoria:</b> %.0f%%\n<b>Intercambeu:</b> %.0f%%"
+msgstr "<b>Procesos:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memoria:</b> %.0f%%\n<b>Intercambéu:</b> %.0f%%"
 
 #: ../src/main.c:108
 #, c-format
@@ -75,7 +76,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %.0f%%\n"
 "Swap: %.0f%%"
-msgstr "Procesos: %u\nCPU: %.0f%%\nMemoria: %.0f%%\nIntercambeu: %.0f%%"
+msgstr "Procesos: %u\nCPU: %.0f%%\nMemoria: %.0f%%\nIntercambéu: %.0f%%"
 
 #: ../src/process-statusbar.c:148 ../src/process-window.c:374
 #, c-format
@@ -90,7 +91,7 @@ msgstr "Memoria: %s%%"
 #: ../src/process-statusbar.c:166
 #, c-format
 msgid "Swap: %s%%"
-msgstr "Intercambeu: %s%%"
+msgstr "Intercambéu: %s%%"
 
 #: ../src/process-statusbar.c:181
 #, c-format
@@ -146,18 +147,18 @@ msgstr "Amortir xera"
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "¿De xuru quies unviar la señal al PID %d?"
+msgstr "¿De xuru que quies unviar la señal al PID %d?"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
-msgstr "Erru unviando la señal"
+msgstr "Fallu unviando la señal"
 
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "Alcontróse un erru unviando la señal al PID %d. Ye dable que nun tengas los privilexos requeríos."
+msgstr "Alcontróse un fallu unviando la señal al PID %d. Ye dable que nun tengas los privilexos requíos."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
@@ -212,7 +213,7 @@ msgstr "Prioridá"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr "Softastur www.softastur.org"
+msgstr "Softastur <www.softastur.org>"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
