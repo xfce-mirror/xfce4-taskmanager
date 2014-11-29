@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2014-06-15 13:28+0000\n"
+"PO-Revision-Date: 2014-11-29 12:14+0000\n"
 "Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/xfce-apps/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -37,11 +37,11 @@ msgstr "Erreur d'exécution"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
-msgstr "Impossible de trouver une commande par défaut pour exécuter."
+msgstr "Impossible de trouver une commande par défaut à exécuter."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr "Exécutez le gestionnaire de tâches en tant que root"
+msgstr "Exécuter le gestionnaire de tâches en tant que root"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
@@ -147,7 +147,7 @@ msgstr "Tuer la tâche"
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Êtes-vous sûr que vous voulez envoyer un signal au PID %d ?"
+msgstr "Êtes-vous sûr de vouloir envoyer un signal au PID %d ?"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
@@ -213,7 +213,7 @@ msgstr "Priorité"
 
 #: ../src/process-window.c:312
 msgid "translator-credits"
-msgstr "Traducteur-crédits"
+msgstr "L’équipe de traduction francophone de Xfce"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
@@ -221,7 +221,7 @@ msgstr "Attention, vous utilisez le compte root, vous pouvez endommager votre sy
 
 #: ../src/settings.c:378
 msgid "Default"
-msgstr "Défaut"
+msgstr "Par défaut"
 
 #: ../src/settings.c:379
 msgid "Small"
@@ -241,15 +241,15 @@ msgstr "Paramètres du gestionnaire de tâches"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
-msgstr "Voir les icônes des applications"
+msgstr "Afficher les icônes des applications"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
-msgstr "Voir les lignes de commande complètes"
+msgstr "Afficher les lignes de commande complètes"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
-msgstr "Voir les valeurs avec plus de précision"
+msgstr "Afficher les valeurs avec plus de précision"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
@@ -265,7 +265,7 @@ msgstr "<b>Style de l'interface</b>"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
-msgstr "Prompt pour terminer des tâches"
+msgstr "Fenêtre d’invite pour terminer les tâches"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
@@ -285,7 +285,7 @@ msgstr "Colonnes :"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "<b>Information</b>"
-msgstr "<b>Information</b>"
+msgstr "<b>Informations</b>"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Settings"
