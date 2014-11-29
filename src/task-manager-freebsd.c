@@ -18,6 +18,9 @@
 #include <fcntl.h>
 #include <paths.h>
 #include <unistd.h>
+#if defined(__FreeBSD_version) && __FreeBSD_version >= 900044
+#include <sys/vmmeter.h>
+#endif
 
 #include <glib.h>
 
