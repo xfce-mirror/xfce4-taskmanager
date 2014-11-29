@@ -33,6 +33,8 @@
 #include <unistd.h>
 /* for P_ZOMBIE & SSLEEP */
 #include <sys/proc.h>
+/* for struct vmtotal */
+#include <sys/vmmeter.h>
 #include "task-manager.h"
 
 char	*state_abbrev[] = {
