@@ -146,7 +146,7 @@ pretty_cmdline (gchar *cmdline, gchar *comm)
 			gchar *p = g_strstr_len (text, -1, comm);
 			if (p != NULL)
 			{
-				g_snprintf (text, g_utf8_strlen (text, -1), "%s", p);
+				g_strlcpy (text, p, g_utf8_strlen (text, -1));
 			}
 		}
 	}
