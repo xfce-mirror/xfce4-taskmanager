@@ -138,7 +138,7 @@ static gchar *
 pretty_cmdline (gchar *cmdline, gchar *comm)
 {
 	gchar *text = g_strchomp (g_strdelimit (g_strdup (cmdline), "\n\r", ' '));
-	if (!full_cmdline && sizeof (text) > 3)
+	if (!full_cmdline && g_utf8_strlen (text, -1) > 3)
 	{
 		/* Shorten full path to commands and wine applications */
 		if (text[0] == '/' || (g_ascii_isupper (text[0]) && text[1] == ':' && text[2] == '\\'))
