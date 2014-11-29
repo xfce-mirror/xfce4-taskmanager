@@ -215,11 +215,26 @@ gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system
 
 gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
 {
+#ifdef __OpenBSD__
+	int mib[] = {CTL_VM, VM_UVMEXP};
+	struct uvmexp  uvmexp;
+#else
 	int mib[] = {CTL_VM, VM_METER};
 	struct vmtotal vmtotal;
+#endif
 	struct swapent *swdev;
 	int nswap, i;
 	size_t size;
+#ifdef __OpenBSD__
+	size = sizeof(uvmexp);
+	if (sysctl(mib, 2, &uvmexp, &size, NULL, 0) < 0)
+		errx(1,"failed to get vm.uvmexp");
+	/* cheat : rm = tot used, add free to get total */
+	*memory_total = pagetok(uvmexp.npages);
+	*memory_free = pagetok(uvmexp.free);
+	*memory_cache = 0;
+	*memory_buffers = pagetok(uvmexp.npages - uvmexp.free -uvmexp.active);
+#else
 	size = sizeof(vmtotal);
 	if (sysctl(mib, 2, &vmtotal, &size, NULL, 0) < 0)
 		errx(1,"failed to get vm.meter");
@@ -228,6 +243,7 @@ gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 
 	*memory_free = pagetok(vmtotal.t_free);
 	*memory_cache = 0;
 	*memory_buffers = pagetok(vmtotal.t_rm - vmtotal.t_arm);
+#endif
 
 	/* get swap stats */
 	if ((nswap = swapctl(SWAP_NSWAP, 0, 0)) == 0)
