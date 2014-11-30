@@ -18,6 +18,7 @@
 #include <glib-object.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 
 #include "settings.h"
 #include "process-window.h"
@@ -59,6 +60,7 @@ static void	xtm_process_window_hide				(GtkWidget *widget);
 
 static void	emit_destroy_signal				(XtmProcessWindow *window);
 static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *event);
+static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
 static void	toolbar_update_style				(XtmProcessWindow *window);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
 static void	monitor_update_paint_box			(XtmProcessWindow *window);
@@ -125,6 +127,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_window_resize (GTK_WINDOW (window->window), width, height);
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
 	g_signal_connect_swapped (window->window, "delete-event", G_CALLBACK (emit_delete_event_signal), window);
+	g_signal_connect (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
 
 	window->toolbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-toolbar"));
 	g_signal_connect_swapped (window->settings, "notify::toolbar-style", G_CALLBACK (toolbar_update_style), window);
@@ -238,6 +241,19 @@ emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event)
 {
 	gboolean ret;
 	g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
+	return ret;
+}
+
+static gboolean
+xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
+{
+	gboolean ret = FALSE;
+
+	if (event->keyval == GDK_KEY_Escape) {
+		emit_delete_event_signal (window, (GdkEvent*) event);
+		ret = TRUE;
+	}
+
 	return ret;
 }
 
