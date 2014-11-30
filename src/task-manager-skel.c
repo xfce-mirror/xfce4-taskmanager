@@ -60,7 +60,7 @@ get_task_details (guint pid, Task *task)
 gboolean
 get_task_list (GArray *task_list)
 {
-	guint pid;
+	guint pid = 0;
 	Task task = { 0 };
 
 	//while (/* read all PIDs */)
