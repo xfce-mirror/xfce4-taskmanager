@@ -311,7 +311,7 @@ read_columns_positions (XtmProcessTreeView *treeview)
 	else
 	{
 		columns_positions_split = g_strsplit (columns_positions, ";", N_COLUMNS + 1);
-		for (i = 0; columns_positions_split[i] != NULL && i < N_COLUMNS; i++)
+		for (i = 0; i < N_COLUMNS && columns_positions_split[i] != NULL; i++)
 			treeview->columns_positions[i] = (gint)g_ascii_strtoll (columns_positions_split[i], NULL, 10);
 		g_strfreev (columns_positions_split);
 		g_free (columns_positions);
