@@ -48,7 +48,7 @@ struct _XtmProcessTreeView
 	/*<private>*/
 	GtkListStore *		model;
 	GtkTreeModel *		model_filter;
-	gchar        *    cmd_filter;
+	gchar *			cmd_filter;
 	GtkTreeViewColumn *	sort_column;
 	gushort			columns_positions[N_COLUMNS];
 	XtmSettings *		settings;
@@ -594,8 +594,8 @@ column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview)
 void
 xtm_process_tree_view_set_filter(XtmProcessTreeView *treeview, const gchar *cmd_filter)
 {
-  g_free(treeview->cmd_filter);
-  treeview->cmd_filter = g_strdup(cmd_filter);
+	g_free(treeview->cmd_filter);
+	treeview->cmd_filter = g_strdup(cmd_filter);
 
 	gtk_tree_model_filter_refilter (GTK_TREE_MODEL_FILTER (treeview->model_filter));
 }

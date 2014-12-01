@@ -52,6 +52,6 @@ typedef struct _XtmProcessTreeView XtmProcessTreeView;
 GType		xtm_process_tree_view_get_type			(void);
 GtkWidget *	xtm_process_tree_view_new			(void);
 void		xtm_process_tree_view_get_sort_column_id	(XtmProcessTreeView *treeview, gint *sort_column_id, GtkSortType *sort_type);
-void    xtm_process_tree_view_set_filter           (XtmProcessTreeView *treeview, const gchar *cmd_filter);
+void		xtm_process_tree_view_set_filter		(XtmProcessTreeView *treeview, const gchar *cmd_filter);
 
 #endif /* !PROCESS_TREE_VIEW_H */
