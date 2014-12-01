@@ -92,7 +92,7 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 	g_object_class_install_property (class, PROP_FULL_COMMAND_LINE,
 		g_param_spec_boolean ("full-command-line", "FullCommandLine", "Full command line", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SHOW_STATUS_ICON,
-		g_param_spec_boolean ("show-status-icon", "ShowStatusIcon", "Show/hide the status icon", TRUE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("show-status-icon", "ShowStatusIcon", "Show/hide the status icon", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_MONITOR_PAINT_BOX,
 		g_param_spec_boolean ("monitor-paint-box", "MonitorPaintBox", "Paint box around monitor", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SHOW_APPLICATION_ICONS,
