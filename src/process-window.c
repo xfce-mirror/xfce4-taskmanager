@@ -183,6 +183,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_show (window->statusbar);
 	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->builder, "process-vbox")), window->statusbar, FALSE, FALSE, 0);
 
+	gtk_widget_grab_focus (GTK_WIDGET (window->treeview));
+
 	g_object_unref (window->builder);
 	window->builder = NULL;
 }
