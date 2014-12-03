@@ -37,6 +37,9 @@
 #include <sys/vmmeter.h>
 #include "task-manager.h"
 
+#include <errno.h>
+extern int errno;
+
 char	*state_abbrev[] = {
 	"", "start", "run", "sleep", "stop", "zomb", "dead", "onproc"
 };
@@ -112,16 +115,22 @@ gboolean get_task_list (GArray *task_list)
 		if (!P_ZOMBIE(&p)) {
 			size = 128;
 			if ((args = malloc(size)) == NULL)
-				errx(1,"failed to allocate memory for argv structures");
+				errx(1,"failed to allocate memory for argv structures at %zu", size);
 			for (;; size *= 2) {
 				if ((args = realloc(args, size)) == NULL)
-					errx(1,"failed to allocate memory for argv structures of pid %d",t.pid);
+					errx(1,"failed to allocate memory (size=%zu) for argv structures of pid %d", size, t.pid);
 				mib[0] = CTL_KERN;
 				mib[1] = KERN_PROC_ARGS;
 				mib[2] = t.pid;
 				mib[3] = KERN_PROC_ARGV;
 				if (sysctl(mib, 4, args, &size, NULL, 0) == 0)
 					break;
+				if (errno != ENOMEM) { /* ESRCH: process disappeared */
+					 /* printf ("process with pid %d disappeared, errno=%d\n", t.pid, errno); */
+					args[0] ='\0';
+					args[1] = NULL;
+					break;
+				}
 			}
 			buf[0] = '\0';
 			for (ptr = args; *ptr != NULL; ptr++) {
