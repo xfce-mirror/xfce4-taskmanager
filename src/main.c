@@ -14,7 +14,9 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#if GLIB_CHECK_VERSION(2, 28, 0)
 #include <gio/gio.h>
+#endif
 
 #include "settings.h"
 #include "process-window.h"
@@ -147,8 +149,10 @@ refresh_rate_changed (void)
 
 int main (int argc, char *argv[])
 {
+#if GLIB_CHECK_VERSION(2, 28, 0)
 	GApplication *app;
 	GError *error = NULL;
+#endif
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -158,6 +162,7 @@ int main (int argc, char *argv[])
 	gtk_init (&argc, &argv);
 	g_set_application_name (_("Task Manager"));
 
+#if GLIB_CHECK_VERSION(2, 28, 0)
 	app = g_application_new ("xfce.taskmanager", 0);
 	g_application_register (G_APPLICATION (app), NULL, &error);
 	if (error != NULL)
@@ -173,6 +178,7 @@ int main (int argc, char *argv[])
 		g_object_unref (app);
 		return 0;
 	}
+#endif
 
 	settings = xtm_settings_get_default ();
 
@@ -183,7 +189,9 @@ int main (int argc, char *argv[])
 
 	window = xtm_process_window_new ();
 	gtk_widget_show (window);
+#if GLIB_CHECK_VERSION(2, 28, 0)
 	g_signal_connect_swapped (app, "activate", G_CALLBACK (xtm_process_window_show), window);
+#endif
 
 	task_manager = xtm_task_manager_new (xtm_process_window_get_model (XTM_PROCESS_WINDOW (window)));
 	g_message ("Running as %s on %s", xtm_task_manager_get_username (task_manager), xtm_task_manager_get_hostname (task_manager));
