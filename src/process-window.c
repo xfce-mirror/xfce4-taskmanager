@@ -79,7 +79,7 @@ filter_entry_icon_pressed_cb (GtkEntry *entry,
 	}
 }
 
-static gboolean
+static void
 filter_entry_keyrelease_handler(GtkEntry *entry,
                                 XtmProcessTreeView *treeview)
 {
@@ -93,7 +93,6 @@ filter_entry_keyrelease_handler(GtkEntry *entry,
 	gtk_entry_set_icon_sensitive (GTK_ENTRY(entry),
 	                              GTK_ENTRY_ICON_SECONDARY,
 	                              has_text);
-	return has_text;
 }
 
 static void
