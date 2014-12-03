@@ -55,7 +55,6 @@ struct _XtmProcessWindow
 G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 
 static void	xtm_process_window_finalize			(GObject *object);
-static void	xtm_process_window_show				(GtkWidget *widget);
 static void	xtm_process_window_hide				(GtkWidget *widget);
 
 static void	emit_destroy_signal				(XtmProcessWindow *window);
@@ -377,7 +376,7 @@ xtm_process_window_new (void)
 	return g_object_new (XTM_TYPE_PROCESS_WINDOW, NULL);
 }
 
-static void
+void
 xtm_process_window_show (GtkWidget *widget)
 {
 	g_return_if_fail (GTK_IS_WIDGET (widget));
