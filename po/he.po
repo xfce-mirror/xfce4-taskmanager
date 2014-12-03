@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# GenghisKhan <genghiskhan@gmx.ca>, 2014
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2013-11-06 08:59+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew (http://www.transifex.com/projects/p/xfce/language/he/)\n"
+"PO-Revision-Date: 2014-12-02 17:40+0000\n"
+"Last-Translator: GenghisKhan <genghiskhan@gmx.ca>\n"
+"Language-Team: Hebrew (http://www.transifex.com/projects/p/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +25,7 @@ msgstr ""
 #: ../src/process-tree-view.c:398 ../src/process-window.c:304
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
-msgstr "מנהל המשימות"
+msgstr "מנהל משימות"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
 msgid "Easy to use task manager"
@@ -32,20 +33,20 @@ msgstr "מנהל משימות קל לשימוש"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
-msgstr "שגיאת הפעלה"
+msgstr "שגיאת ביצוע"
 
 #: ../src/exec-tool-button.c:133
 msgid "Couldn't find any default command to run."
-msgstr "לא ניתן למצוא פקודה להרצה."
+msgstr "לא היתה אפשרות למצוא שום פקודת ברירת מחדל להרצה."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr "הפעלת מנהל המשימות כמשתמש העל (root)"
+msgstr "הפעל מנהל משימות בתור משתמש על (root)"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
 msgid "Run Program..."
-msgstr "הפעלת תכנית…"
+msgstr "הרץ תוכנית…"
 
 #: ../src/exec-tool-button.c:182
 msgid "Application Finder"
@@ -137,46 +138,46 @@ msgstr "עדיפות"
 
 #: ../src/process-tree-view.c:352
 msgid "Terminate task"
-msgstr "חיסול משימה"
+msgstr "חסל משימה"
 
 #: ../src/process-tree-view.c:352
 msgid "Kill task"
-msgstr "הריגת משימה"
+msgstr "הרוג משימה"
 
 #: ../src/process-tree-view.c:354
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "האם אכן לשלוח את האות למזהה התהליך %d?"
+msgstr "האם אתה בטוח כי ברצונך לשלוח אות למזהה תהליך %d?"
 
 #: ../src/process-tree-view.c:366
 msgid "Error sending signal"
-msgstr "שליחת האות נכשלה"
+msgstr "שגיאה בשליחת אות"
 
 #: ../src/process-tree-view.c:368
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "אירעה שגיאה בעת שליחת אות לתהליך מס׳ %d. כנראה שאין לך את ההרשאות הנדרשות."
+msgstr "אירעה שגיאה בעת שליחת אות למזהה תהליך %d. אפשרי כי אין לך את ההרשאות הנדרשות."
 
 #: ../src/process-tree-view.c:395
 msgid "Error setting priority"
-msgstr "הגדרת העדיפות נכשלה"
+msgstr "שגיאה בקביעת עדיפות"
 
 #: ../src/process-tree-view.c:396
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "אירעה שגיאה בעת הגדרת העדיפות לתהליך מס׳ %d. כנראה שאין לך את ההרשאות הנדרשות."
+msgstr "אירעה שגיאה בעת קביעת עדיפות למזהה תהליך %d. אפשרי כי אין לך את ההרשאות הנדרשות."
 
 #: ../src/process-tree-view.c:412
 msgid "Terminate"
-msgstr "חיסול"
+msgstr "חסל"
 
 #: ../src/process-tree-view.c:420
 msgid "Stop"
-msgstr "עצירה"
+msgstr "עצור"
 
 #: ../src/process-tree-view.c:427
 msgid "Continue"
@@ -184,7 +185,7 @@ msgstr "המשך"
 
 #: ../src/process-tree-view.c:433
 msgid "Kill"
-msgstr "הריגה"
+msgstr "הרוג"
 
 #: ../src/process-tree-view.c:440
 msgid "Very low"
@@ -216,11 +217,11 @@ msgstr "ירון שהרבני <sh.yaron@gmail.com>"
 
 #: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "אזהרה, החשבון שבשימוש הוא של משתמש העל (root), עשוי להיגרם נזק למערכת."
+msgstr "אזהרה, אתה משתמש בחשבון על (root), אתה עלול להזיק למערכת."
 
 #: ../src/settings.c:378
 msgid "Default"
-msgstr "בררת מחדל"
+msgstr "ברירת מחדל"
 
 #: ../src/settings.c:379
 msgid "Small"
@@ -236,39 +237,39 @@ msgstr "טקסט"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "Settings for Task Manager"
-msgstr "הגדרות מנהל המשימות"
+msgstr "הגדרות עבור מנהל משימות"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
-msgstr "הצגת סמלי היישומים"
+msgstr "הצג סמלי יישום"
 
 #: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
-msgstr "הצגת שורות פקודה מלאות"
+msgstr "הצג שורות פקודה מלאות"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
-msgstr "הצגת ערכים עם דיוק רב יותר"
+msgstr "הצג ערכים עם יותר דיוק"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
-msgstr "ציור מסגרות מסביב לצגים"
+msgstr "צייר מסגרות סביב צגים"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Toolbar style:"
-msgstr "סגנון סרגל הכלים:"
+msgstr "סגנון סרגל כלים:"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "<b>Interface style</b>"
-msgstr "<b>סגנון המנשק</b>"
+msgstr "<b>סגנון ממשק</b>"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
-msgstr "הצגת בקשה לחיסול משימות"
+msgstr "שאל לשם חיסול משימות"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
-msgstr "הסתרה באזור הדיווחים"
+msgstr "הסתר לתוך אזור התראה"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "<b>Miscellaneous</b>"
@@ -317,7 +318,7 @@ msgstr "10 שניות"
 
 #: ../src/settings-tool-button.c:164
 msgid "Show all processes"
-msgstr "הצגת כל התהליכים"
+msgstr "הצג את כל התהליכים"
 
 #: ../src/settings-tool-button.c:167
 msgid "Refresh rate"
