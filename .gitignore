@@ -24,6 +24,7 @@ ltmain.sh
 libtool
 depcomp
 aclocal.m4
+m4/
 autom4te.cache
 *.desktop
 INSTALL
