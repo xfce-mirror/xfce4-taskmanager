@@ -52,6 +52,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 	knp = kstat_data_lookup (ksp, "freemem");
 	*memory_free = getpagesize () * knp->value.ui64;
 	*memory_cache = 0;
+	*memory_buffers = 0;
 
 	*swap_total = *swap_free = 0;
 	if ((n = swapctl (SC_GETNSWP, NULL)) > 0)
