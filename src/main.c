@@ -201,6 +201,7 @@ int main (int argc, char *argv[])
 	g_signal_connect_after (settings, "notify::more-precision", G_CALLBACK (force_timeout_update), NULL);
 	g_signal_connect_after (settings, "notify::full-command-line", G_CALLBACK (force_timeout_update), NULL);
 	g_signal_connect (settings, "notify::show-status-icon", G_CALLBACK (show_hide_status_icon), NULL);
+	g_signal_connect (settings, "notify::show-memory-in-xbytes", G_CALLBACK (force_timeout_update), NULL);
 
 	g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
 	g_signal_connect (window, "delete-event", G_CALLBACK (delete_window), NULL);
