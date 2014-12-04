@@ -86,12 +86,35 @@ static gboolean
 init_timeout (void)
 {
 	guint num_processes;
-	gfloat cpu, memory, swap;
-	guint64 swap_free, swap_total;
-	gchar tooltip[1024];
+	gfloat cpu, memory_percent, swap_percent;
+	guint64 swap_used, swap_free, swap_total, memory_used, memory_total;
+	gchar *used, *total, tooltip[1024], memory_info[64], swap_info[64];
+	gboolean show_memory_in_xbytes;
 
-	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory, &swap);
-	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory, swap);
+	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory_used, &memory_total, &swap_used, &swap_total);
+
+	memory_percent = (memory_total != 0) ? memory_used * 100 / (gdouble)memory_total : 0;
+	swap_percent = (swap_total != 0) ? swap_used * 100 / (gdouble)swap_total : 0;
+
+	g_object_get (settings, "show-memory-in-xbytes", &show_memory_in_xbytes, NULL);
+	if (show_memory_in_xbytes) {
+	  used = g_format_size(memory_used);
+	  total = g_format_size(memory_total);
+	  g_snprintf (memory_info, 64,"%s / %s", used, total);
+	  g_free(used);
+	  g_free(total);
+
+	  used = g_format_size(swap_used);
+	  total = g_format_size(swap_total);
+	  g_snprintf (swap_info, 64,"%s / %s", used, total);
+	  g_free(used);
+	  g_free(total);
+	} else {
+	  g_snprintf (memory_info, 64, "%.0f%%", memory_percent);
+	  g_snprintf (swap_info, 64, "%.0f%%", swap_percent);
+	}
+
+	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory_percent, memory_info, swap_percent, swap_info);
 
 	xtm_task_manager_get_swap_usage (task_manager, &swap_free, &swap_total);
 	xtm_process_window_show_swap_usage (XTM_PROCESS_WINDOW (window), (swap_total > 0));
@@ -102,17 +125,17 @@ init_timeout (void)
 		g_snprintf (tooltip, 1024,
 				_("<b>Processes:</b> %u\n"
 				"<b>CPU:</b> %.0f%%\n"
-				"<b>Memory:</b> %.0f%%\n"
-				"<b>Swap:</b> %.0f%%"),
-				num_processes, cpu, memory, swap);
+				"<b>Memory:</b> %s\n"
+				"<b>Swap:</b> %s"),
+				num_processes, cpu, memory_info, swap_info);
 		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon), tooltip);
 #else
 		g_snprintf (tooltip, 1024,
 				_("Processes: %u\n"
 				"CPU: %.0f%%\n"
-				"Memory: %.0f%%\n"
-				"Swap: %.0f%%"),
-				num_processes, cpu, memory, swap);
+				"Memory: %s\n"
+				"Swap: %s"),
+				num_processes, cpu, memory_info, swap_info);
 		gtk_status_icon_set_tooltip (GTK_STATUS_ICON (status_icon), tooltip);
 #endif
 	}

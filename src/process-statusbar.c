@@ -45,8 +45,8 @@ struct _XtmProcessStatusbar
 	GtkWidget *		label_swap;
 
 	gfloat			cpu;
-	gfloat			memory;
-	gfloat			swap;
+	gchar			memory[64];
+	gchar			swap[64];
 	guint			num_processes;
 };
 G_DEFINE_TYPE (XtmProcessStatusbar, xtm_process_statusbar, GTK_TYPE_STATUSBAR)
@@ -66,9 +66,9 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 	g_object_class_install_property (class, PROP_CPU,
 		g_param_spec_float ("cpu", "CPU", "CPU usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_MEMORY,
-		g_param_spec_float ("memory", "Memory", "Memory usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+		g_param_spec_string ("memory", "Memory", "Memory usage", "", G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_SWAP,
-		g_param_spec_float ("swap", "Swap", "Swap usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+		g_param_spec_string ("swap", "Swap", "Swap usage", "", G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_SHOW_SWAP,
 		g_param_spec_boolean ("show-swap", "ShowSwap", "Show or hide swap usage", TRUE, G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_NUM_PROCESSES,
@@ -152,20 +152,16 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		break;
 
 		case PROP_MEMORY:
-		statusbar->memory = g_value_get_float (value);
-		float_value = rounded_float_value (statusbar->memory, statusbar->settings);
-		text = g_strdup_printf (_("Memory: %s%%"), float_value);
+		g_strlcpy(statusbar->memory, g_value_get_string (value), 64);
+		text = g_strdup_printf (_("Memory: %s"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
-		g_free (float_value);
 		g_free (text);
 		break;
 
 		case PROP_SWAP:
-		statusbar->swap = g_value_get_float (value);
-		float_value = rounded_float_value (statusbar->swap, statusbar->settings);
-		text = g_strdup_printf (_("Swap: %s%%"), float_value);
+		g_strlcpy(statusbar->swap, g_value_get_string (value), 64);
+		text = g_strdup_printf (_("Swap: %s"), statusbar->swap);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_swap), text);
-		g_free (float_value);
 		g_free (text);
 		break;
 

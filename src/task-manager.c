@@ -376,10 +376,11 @@ xtm_task_manager_get_hostname (XtmTaskManager *manager)
 }
 
 void
-xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gfloat *cpu, gfloat *memory, gfloat *swap)
-{
-	guint64 memory_used, swap_used;
+xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gfloat *cpu,
+				  guint64 *memory_used, guint64 *memory_total,
+				  guint64 *swap_used, guint64 *swap_total)
 
+{
 	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
 
 	/* Set number of processes */
@@ -389,11 +390,10 @@ xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes,
 	get_memory_usage (&manager->memory_total, &manager->memory_free, &manager->memory_cache, &manager->memory_buffers,
 			&manager->swap_total, &manager->swap_free);
 
-	memory_used = manager->memory_total - manager->memory_free - manager->memory_cache - manager->memory_buffers;
-	swap_used = manager->swap_total - manager->swap_free;
-
-	*memory = (manager->memory_total != 0) ? memory_used * 100 / (gdouble)manager->memory_total : 0;
-	*swap = (manager->swap_total != 0) ? swap_used * 100 / (gdouble)manager->swap_total : 0;
+	*memory_used = manager->memory_total - manager->memory_free - manager->memory_cache - manager->memory_buffers;
+	*memory_total = manager->memory_total;
+	*swap_used = manager->swap_total - manager->swap_free;
+	*swap_total = manager->swap_total;
 
 	/* Set CPU usage */
 	get_cpu_usage (&manager->cpu_count, &manager->cpu_user, &manager->cpu_system);
