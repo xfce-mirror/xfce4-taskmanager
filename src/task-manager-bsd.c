@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008-2010 Landry Breuil <landry@xfce.org>
+ * Copyright (c) 2008-2014 Landry Breuil <landry@xfce.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -241,10 +241,10 @@ gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 
 	if (sysctl(mib, 2, &uvmexp, &size, NULL, 0) < 0)
 		errx(1,"failed to get vm.uvmexp");
 	/* cheat : rm = tot used, add free to get total */
-	*memory_total = pagetok(uvmexp.npages);
-	*memory_free = pagetok(uvmexp.free);
+	*memory_free = pagetok((guint64)uvmexp.free);
+	*memory_total = pagetok((guint64)uvmexp.npages);
 	*memory_cache = 0;
-	*memory_buffers = pagetok(uvmexp.npages - uvmexp.free -uvmexp.active);
+	*memory_buffers = 0; /*pagetok(uvmexp.npages - uvmexp.free - uvmexp.active);*/
 #else
 	size = sizeof(vmtotal);
 	if (sysctl(mib, 2, &vmtotal, &size, NULL, 0) < 0)
@@ -272,10 +272,12 @@ gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 
 	*swap_total = *swap_free = 0;
 	for (i = 0; i < nswap; i++) {
 		if (swdev[i].se_flags & SWF_ENABLE) {
-			*swap_free += ((swdev[i].se_nblks - swdev[i].se_inuse) / DEV_BSIZE);
-			*swap_total += (swdev[i].se_nblks / DEV_BSIZE);
+			*swap_free += (swdev[i].se_nblks - swdev[i].se_inuse);
+			*swap_total += swdev[i].se_nblks;
 		}
 	}
+	*swap_total *= DEV_BSIZE;
+	*swap_free *= DEV_BSIZE;
 	free(swdev);
 	return TRUE;
 }
