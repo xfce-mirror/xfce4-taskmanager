@@ -219,35 +219,13 @@ model_remove_tree_iter (GtkTreeModel *model, GtkTreeIter *iter)
 }
 
 static void
-memory_human_size (guint64 mem, gchar *mem_str)
-{
-	guint64 mem_tmp;
-
-	mem_tmp = mem / 1024 / 1024;
-	if (mem_tmp > 3)
-	{
-		g_snprintf (mem_str, 64, _("%lu MiB"), (gulong)mem_tmp);
-		return;
-	}
-
-	mem_tmp = mem / 1024;
-	if (mem_tmp > 8)
-	{
-		g_snprintf (mem_str, 64, _("%lu KiB"), (gulong)mem_tmp);
-		return;
-	}
-
-	g_snprintf (mem_str, 64, _("%lu B"), (gulong)mem);
-}
-
-static void
 #ifdef HAVE_WNCK
 model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task, App *app)
 #else
 model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 #endif
 {
-	gchar vsz[64], rss[64], cpu[16];
+	gchar *vsz, *rss, cpu[16];
 	gchar value[14];
 	glong old_timestamp;
 	gchar *old_state;
@@ -256,8 +234,8 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 	GdkPixbuf *icon;
 #endif
 
-	memory_human_size (task->vsz, vsz);
-	memory_human_size (task->rss, rss);
+	vsz = g_format_size (task->vsz);
+	rss = g_format_size (task->rss);
 
 	g_snprintf (value, 14, (more_precision) ? "%.2f" : "%.0f", task->cpu_user + task->cpu_system);
 	g_snprintf (cpu, 16, _("%s%%"), value);
@@ -329,6 +307,8 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 	g_free (background);
 	g_free (foreground);
 	g_free (old_state);
+	g_free (vsz);
+	g_free (rss);
 }
 
 static void
