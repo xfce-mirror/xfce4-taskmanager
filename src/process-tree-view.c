@@ -521,8 +521,10 @@ treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 		GtkTreeSelection *selection;
 		GtkTreePath *path;
 		GtkTreeIter iter;
+		gboolean tree;
 
-		model = GTK_TREE_MODEL (treeview->model_filter);
+		g_object_get (treeview->settings, "process-tree", &tree, NULL);
+		model = GTK_TREE_MODEL (tree ? treeview->model_tree : treeview->model_filter);
 		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
 		gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (treeview), (gint)event->x, (gint)event->y, &path, NULL, NULL, NULL);
 
