@@ -71,6 +71,7 @@ static void		column_clicked					(GtkTreeViewColumn *column, XtmProcessTreeView *
 static gboolean		visible_func					(GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treeview);
 static gboolean		search_func					(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data);
 static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
+static void		expand_row					(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, XtmProcessTreeView *treeview);
 
 static void
 xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
@@ -113,6 +114,11 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	treeview->model_tree = xtm_process_tree_model_new (GTK_TREE_MODEL (treeview->model_filter));
 
 	g_object_set (treeview, "search-column", XTM_PTV_COLUMN_COMMAND, "model", tree ? treeview->model_tree : treeview->model_filter, NULL);
+	if (tree)
+	{
+		gtk_tree_view_expand_all (GTK_TREE_VIEW (treeview));
+		g_signal_connect (treeview->model_tree, "row-has-child-toggled", G_CALLBACK (expand_row), treeview);
+	}
 
 	treeview->cmd_filter = NULL;
 
@@ -709,7 +715,23 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 		gboolean tree;
 		g_object_get (object, pspec->name, &tree, NULL);
 		gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), tree ? treeview->model_tree : treeview->model_filter);
+		if (tree)
+		{
+			gtk_tree_view_expand_all (GTK_TREE_VIEW (treeview));
+			g_signal_connect (treeview->model_tree, "row-has-child-toggled", G_CALLBACK (expand_row), treeview);
+		}
+		else
+		{
+			g_signal_handlers_disconnect_by_func (treeview->model_tree, G_CALLBACK (expand_row), treeview);
+		}
 	}
+}
+
+
+static void
+expand_row (GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, XtmProcessTreeView *treeview)
+{
+	gtk_tree_view_expand_row (GTK_TREE_VIEW (treeview), path, FALSE);
 }
 
 
