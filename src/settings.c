@@ -55,6 +55,7 @@ enum
 	PROP_SORT_TYPE,
 	PROP_WINDOW_WIDTH,
 	PROP_WINDOW_HEIGHT,
+	PROP_PROCESS_TREE,
 	N_PROPS,
 };
 typedef struct _XtmSettingsClass XtmSettingsClass;
@@ -132,6 +133,8 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_int ("window-width", "WindowWidth", "Window width", -1, G_MAXINT, -1, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_WINDOW_HEIGHT,
 		g_param_spec_int ("window-height", "WindowHeight", "Window height", -1, G_MAXINT, -1, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_PROCESS_TREE,
+		g_param_spec_boolean ("process-tree", "ProcessTreeView", "Process tree", FALSE, G_PARAM_READWRITE));
 }
 
 static void
