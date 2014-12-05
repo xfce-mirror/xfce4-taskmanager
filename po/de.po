@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-05 00:31+0100\n"
-"PO-Revision-Date: 2014-12-05 08:25+0000\n"
-"Last-Translator: Harald Judt <h.judt@gmx.at>\n"
+"PO-Revision-Date: 2014-12-05 18:34+0000\n"
+"Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +43,7 @@ msgstr "Es wurde kein Standardbefehl gefunden."
 
 #: ../src/exec-tool-button.c:164
 msgid "Run Task Manager as root"
-msgstr "Taskmanager als Administrator ausführen"
+msgstr "Prozessverwaltung als Systemverwalter ausführen"
 
 #: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
 #: ../src/exec-tool-button.c:179
@@ -239,7 +239,7 @@ msgstr "Text"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "Settings for Task Manager"
-msgstr "Einstellungen des Taskmanagers"
+msgstr "Einstellungen der Prozessverwaltung"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
