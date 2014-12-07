@@ -1,34 +1,35 @@
-# mohammad <malham1@gmail.com>, 2012.
-# محمد الحرقان <malham1@gmail.com>, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# محمد الحرقان <malham1@gmail.com>, 2012
+# محمد الحرقان <malham1@gmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-09 21:45+0000\n"
-"PO-Revision-Date: 2012-11-10 06:03+0300\n"
-"Last-Translator: محمد الحرقان <malham1@gmail.com>\n"
-"Language-Team: http://www.vertaal.com.ar/files/factory/ar/list/\n"
-"Language: ar\n"
+"POT-Creation-Date: 2014-12-05 00:31+0100\n"
+"PO-Revision-Date: 2014-12-07 16:37+0000\n"
+"Last-Translator: عبدالله رضوان <abbodmar@gmail.com>\n"
+"Language-Team: Arabic (http://www.transifex.com/projects/p/xfce-apps/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Virtaal 0.7.1\n"
-"X-Poedit-Language: Arabic\n"
-"X-Poedit-Country: Morocco\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/process-window.c:309
-msgid "Easy to use task manager"
-msgstr "من السهل إستخدام مدير المهام"
-
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/exec-tool-button.c:89
-#: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
-#: ../src/process-tree-view.c:398 ../src/process-window.c:304
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
+#: ../src/exec-tool-button.c:134 ../src/main.c:186
+#: ../src/process-tree-view.c:367 ../src/process-tree-view.c:382
+#: ../src/process-tree-view.c:410 ../src/process-window.c:353
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "مدير المهام"
+
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:358
+msgid "Easy to use task manager"
+msgstr "من السهل إستخدام مدير المهام"
 
 #: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
 msgid "Execution error"
@@ -59,165 +60,158 @@ msgstr "محاكي الطرفية"
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:100
+#: ../src/main.c:126
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
 "<b>CPU:</b> %.0f%%\n"
-"<b>Memory:</b> %.0f%%\n"
-"<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>العمليات:</b> %u\n"
-"<b>CPU:</b> %.0f%%\n"
-"<b>ذاكرة:</b> %.0f%%\n"
-"<b>ذاكرة الإبدال:</b> %.0f%%"
+"<b>Memory:</b> %s\n"
+"<b>Swap:</b> %s"
+msgstr "<b>المعالج:</b> %u\n<b>وحدة المعالجة المركزية:</b> %.0f%%\n<b>الذاكرة:</b> %s\n<b>مساحة الإبدال:</b> %s"
 
-#: ../src/main.c:108
+#: ../src/main.c:134
 #, c-format
 msgid ""
 "Processes: %u\n"
 "CPU: %.0f%%\n"
-"Memory: %.0f%%\n"
-"Swap: %.0f%%"
-msgstr ""
-"العمليات: %u\n"
-"CPU: %.0f%%\n"
-"ذاكرة: %.0f%%\n"
-"ذاكرة الإبدال: %.0f%%"
+"Memory: %s\n"
+"Swap: %s"
+msgstr "المعالج: %u\nوحدة المعالجة المركزية: %.0f%%\nالذاكرة: %s\nمساحة الإبدال: %s"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:374
+#: ../src/process-statusbar.c:148 ../src/process-window.c:423
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:379
+#: ../src/process-statusbar.c:156 ../src/process-window.c:427
 #, c-format
-msgid "Memory: %s%%"
-msgstr "ذاكرة: %s%%"
+msgid "Memory: %s"
+msgstr "الذاكرة: %s"
 
-#: ../src/process-statusbar.c:166
+#: ../src/process-statusbar.c:163
 #, c-format
-msgid "Swap: %s%%"
-msgstr "ذاكرة الإبدال: %s%%"
+msgid "Swap: %s"
+msgstr "مساحة الإبدال: %s"
 
-#: ../src/process-statusbar.c:181
+#: ../src/process-statusbar.c:177
 #, c-format
 msgid "Processes: %d"
 msgstr "العمليات: %d"
 
-#: ../src/process-tree-view.c:125
+#: ../src/process-tree-view.c:131
 msgid "Task"
 msgstr "مهام"
 
-#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:142 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:150 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:158 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "الحالة"
 
-#: ../src/process-tree-view.c:161
+#: ../src/process-tree-view.c:167
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:169
+#: ../src/process-tree-view.c:175
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:183 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:191 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "CPU"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
-#: ../src/process-tree-view.c:194
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: ../src/process-tree-view.c:200
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:364
 msgid "Terminate task"
 msgstr "إنهاء المهام"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:364
 msgid "Kill task"
 msgstr "قتل المهمة"
 
-#: ../src/process-tree-view.c:354
+#: ../src/process-tree-view.c:366
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "متأكد أنك تريد إرسال إشعار إلى PID %d؟"
 
-#: ../src/process-tree-view.c:366
+#: ../src/process-tree-view.c:378
 msgid "Error sending signal"
 msgstr "خطأ أتناء إرسال الإشعار"
 
-#: ../src/process-tree-view.c:368
+#: ../src/process-tree-view.c:380
 #, c-format
 msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
 msgstr "حدث خطأ أثناء إرسال الإشعار إلى PID %d. يبدو انك لا تملك صلاحيات كافية."
 
-#: ../src/process-tree-view.c:395
+#: ../src/process-tree-view.c:407
 msgid "Error setting priority"
 msgstr "خطأ في إعداد الأولويات"
 
-#: ../src/process-tree-view.c:396
+#: ../src/process-tree-view.c:408
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "حدث خطأ أثناء إعداد الاولويات PID %d. يبدو انك لا تملك صلاحيات كافية."
 
-#: ../src/process-tree-view.c:412
+#: ../src/process-tree-view.c:424
 msgid "Terminate"
 msgstr "إنهاء"
 
-#: ../src/process-tree-view.c:420
+#: ../src/process-tree-view.c:432
 msgid "Stop"
 msgstr "إقاف"
 
-#: ../src/process-tree-view.c:427
+#: ../src/process-tree-view.c:439
 msgid "Continue"
 msgstr "إستمرار"
 
-#: ../src/process-tree-view.c:433
+#: ../src/process-tree-view.c:445
 msgid "Kill"
 msgstr "قتل"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:452
 msgid "Very low"
 msgstr "منخفض جدا"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:457
 msgid "Low"
 msgstr "منخفض"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:462
 msgid "Normal"
 msgstr "عادي"
 
-#: ../src/process-tree-view.c:455
+#: ../src/process-tree-view.c:467
 msgid "High"
 msgstr "مرتفع"
 
-#: ../src/process-tree-view.c:460
+#: ../src/process-tree-view.c:472
 msgid "Very high"
 msgstr "مرتفع جدا"
 
-#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:477 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "أولوية"
 
-#: ../src/process-window.c:312
+#: ../src/process-window.c:361
 msgid "translator-credits"
 msgstr "Karim Oulad Chalha محمد الحرقان"
 
@@ -225,135 +219,128 @@ msgstr "Karim Oulad Chalha محمد الحرقان"
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "تحذير, أنت تستعمل حساب الجذر, يمكن أن تخرب نظامك."
 
-#: ../src/settings.c:378
+#: ../src/settings.c:384
 msgid "Default"
 msgstr "إفتراضي"
 
-#: ../src/settings.c:379
+#: ../src/settings.c:385
 msgid "Small"
 msgstr "صغير"
 
-#: ../src/settings.c:380
+#: ../src/settings.c:386
 msgid "Large"
 msgstr "كبير"
 
-#: ../src/settings.c:381
+#: ../src/settings.c:387
 msgid "Text"
 msgstr "نص"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "<b>Information</b>"
-msgstr "<b>معلومات</b>"
+msgid "Settings for Task Manager"
+msgstr "إعدادات مدير المهام"
 
 #: ../src/settings-dialog.ui.h:2
-msgid "<b>Interface style</b>"
-msgstr "<b>نمط الواجهة</b>"
+msgid "Show application icons"
+msgstr "عرض أيقونات التطبيق"
 
 #: ../src/settings-dialog.ui.h:3
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>منوعات</b>"
+msgid "Show full command lines"
+msgstr "عرض كامل سطور الأمر"
 
 #: ../src/settings-dialog.ui.h:4
-msgid "Columns:"
-msgstr "أعمدة:"
+msgid "Show values with more precision"
+msgstr "عرض القيمة مع المزيد من الدقة"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Draw borders around monitors"
 msgstr "رسم حدود حول شاشات"
 
 #: ../src/settings-dialog.ui.h:6
-msgid "Hide into the notification area"
-msgstr "إخفاء في منطقة الإشعار"
+msgid "Show processes as tree"
+msgstr "إظهار موجز العمليات"
 
 #: ../src/settings-dialog.ui.h:7
-msgid "Prompt for terminating tasks"
-msgstr "تعجيل إنهاء المهام"
-
-#: ../src/settings-dialog.ui.h:8
-msgid "Refresh rate:"
-msgstr "تجديد القيمة:"
-
-#: ../src/settings-dialog.ui.h:9
-msgid "Settings"
-msgstr "إعدادات"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "Settings for Task Manager"
-msgstr "إعدادات مدير المهام"
-
-#: ../src/settings-dialog.ui.h:11
-msgid "Show application icons"
-msgstr "عرض أيقونات التطبيق"
-
-#: ../src/settings-dialog.ui.h:12
-msgid "Show full command lines"
-msgstr "عرض كامل سطور الأمر"
-
-#: ../src/settings-dialog.ui.h:13
-msgid "Show values with more precision"
-msgstr "عرض القيمة مع المزيد من الدقة"
-
-#: ../src/settings-dialog.ui.h:14
 msgid "Toolbar style:"
 msgstr "نمط شريط الأدوات:"
 
+#: ../src/settings-dialog.ui.h:8
+msgid "<b>Interface style</b>"
+msgstr "<b>نمط الواجهة</b>"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Prompt for terminating tasks"
+msgstr "تعجيل إنهاء المهام"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Hide into the notification area"
+msgstr "إخفاء في منطقة الإشعار"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "Show memory usage in bytes"
+msgstr "عرض استهلاك الذاكرة بالبايتات"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>منوعات</b>"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Refresh rate:"
+msgstr "تجديد القيمة:"
+
+#: ../src/settings-dialog.ui.h:14
+msgid "Columns:"
+msgstr "أعمدة:"
+
+#: ../src/settings-dialog.ui.h:15
+msgid "<b>Information</b>"
+msgstr "<b>معلومات</b>"
+
+#: ../src/settings-dialog.ui.h:16
+msgid "Settings"
+msgstr "إعدادات"
+
 #. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/settings-tool-button.c:110
+#: ../src/settings-tool-button.c:111
 msgid "500ms"
 msgstr "500ms"
 
-#: ../src/settings-tool-button.c:111
+#: ../src/settings-tool-button.c:112
 msgid "750ms"
 msgstr "750ms"
 
-#: ../src/settings-tool-button.c:112
+#: ../src/settings-tool-button.c:113
 msgid "1s"
 msgstr "1ثانية"
 
-#: ../src/settings-tool-button.c:113
+#: ../src/settings-tool-button.c:114
 msgid "2s"
 msgstr "2 ثوان"
 
-#: ../src/settings-tool-button.c:114
+#: ../src/settings-tool-button.c:115
 msgid "5s"
 msgstr "5 ثوان"
 
-#: ../src/settings-tool-button.c:115
+#: ../src/settings-tool-button.c:116
 msgid "10s"
 msgstr "10 ثوان"
 
-#: ../src/settings-tool-button.c:164
+#: ../src/settings-tool-button.c:165
 msgid "Show all processes"
 msgstr "عرض عل العمليات"
 
-#: ../src/settings-tool-button.c:167
+#: ../src/settings-tool-button.c:168
 msgid "Refresh rate"
 msgstr "تجديد القيمة"
 
-#: ../src/settings-tool-button.c:177
+#: ../src/settings-tool-button.c:178
 msgid "Virtual Bytes"
 msgstr "بايت الإفتراضي"
 
-#: ../src/settings-tool-button.c:178
+#: ../src/settings-tool-button.c:179
 msgid "Private Bytes"
 msgstr "بايت الخاص"
 
-#: ../src/task-manager.c:229
-#, c-format
-msgid "%lu MiB"
-msgstr "%lu MiB"
-
-#: ../src/task-manager.c:236
-#, c-format
-msgid "%lu KiB"
-msgstr "%lu KiB"
-
-#: ../src/task-manager.c:240
-#, c-format
-msgid "%lu B"
-msgstr "%lu B"
-
-#: ../src/task-manager.c:263
+#: ../src/task-manager.c:241
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
