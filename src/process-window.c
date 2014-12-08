@@ -383,7 +383,9 @@ xtm_process_window_show (GtkWidget *widget)
 	g_return_if_fail (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->window));
 	gtk_widget_show (XTM_PROCESS_WINDOW (widget)->window);
 	gtk_window_present (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window));
+#ifndef HAVE_GTK3
 	GTK_WIDGET_SET_FLAGS (widget, GTK_VISIBLE);
+#endif
 }
 
 static void
@@ -396,7 +398,9 @@ xtm_process_window_hide (GtkWidget *widget)
 	gtk_window_get_position (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), &winx, &winy);
 	gtk_widget_hide (XTM_PROCESS_WINDOW (widget)->window);
 	gtk_window_move (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), winx, winy);
+#ifndef HAVE_GTK3
 	GTK_WIDGET_UNSET_FLAGS (widget, GTK_VISIBLE);
+#endif
 }
 
 GtkTreeModel *
