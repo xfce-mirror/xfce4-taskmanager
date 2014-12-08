@@ -59,7 +59,11 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	xtm_process_monitor_parent_class = g_type_class_peek_parent (klass);
 	class->get_property = xtm_process_monitor_get_property;
 	class->set_property = xtm_process_monitor_set_property;
+#if HAVE_GTK3
+	widget_class->draw = xtm_process_monitor_expose;
+#else
 	widget_class->expose_event = xtm_process_monitor_expose;
+#endif
 	g_object_class_install_property (class, PROP_STEP_SIZE,
 		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLOR_RED,
