@@ -15,7 +15,9 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-
+#ifdef HAVE_GTK3
+#include <gdk/gdkkeysyms-compat.h>
+#endif
 #include "process-tree-model.h"
 #include "process-tree-view.h"
 #include "task-manager.h"
