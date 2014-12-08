@@ -119,13 +119,21 @@ xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 		XtmToolbarStyle toolbar_style;
 
 		box = GTK_WIDGET (gtk_builder_get_object (builder, "hbox-toolbar-style"));
+#if HAVE_GTK3 ||  GTK_CHECK_VERSION(2, 24, 1)
+		combobox = gtk_combo_box_text_new ();
+#else
 		combobox = gtk_combo_box_new_text ();
+#endif
 		gtk_box_pack_start (GTK_BOX (box), combobox, FALSE, FALSE, 0);
 		gtk_widget_show (combobox);
 
 		klass = g_type_class_ref (XTM_TYPE_TOOLBAR_STYLE);
 		for (n = 0; n < klass->n_values; ++n)
+#if HAVE_GTK3 ||  GTK_CHECK_VERSION(2, 24, 1)
+			gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (combobox), _(klass->values[n].value_nick));
+#else
 			gtk_combo_box_append_text (GTK_COMBO_BOX (combobox), _(klass->values[n].value_nick));
+#endif
 		g_type_class_unref (klass);
 
 		g_object_get (dialog->settings, "toolbar-style", &toolbar_style, NULL);
