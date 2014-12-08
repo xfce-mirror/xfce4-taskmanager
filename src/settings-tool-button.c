@@ -73,7 +73,7 @@ show_settings_dialog (XtmSettingsToolButton *button)
 static void
 refresh_rate_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
 {
-	if(mi->active)
+	if(gtk_check_menu_item_get_active(mi))
 	{
 		guint refresh_rate = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "refresh-rate"));
 		g_object_set (settings, "refresh-rate", refresh_rate, NULL);
