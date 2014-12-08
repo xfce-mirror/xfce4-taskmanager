@@ -234,8 +234,8 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 	GdkPixbuf *icon;
 #endif
 
-	vsz = g_format_size (task->vsz);
-	rss = g_format_size (task->rss);
+	vsz = g_format_size_full (task->vsz, G_FORMAT_SIZE_IEC_UNITS);
+	rss = g_format_size_full (task->rss, G_FORMAT_SIZE_IEC_UNITS);
 
 	g_snprintf (value, 14, (more_precision) ? "%.2f" : "%.0f", task->cpu_user + task->cpu_system);
 	g_snprintf (cpu, 16, _("%s%%"), value);

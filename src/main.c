@@ -98,14 +98,14 @@ init_timeout (void)
 
 	g_object_get (settings, "show-memory-in-xbytes", &show_memory_in_xbytes, NULL);
 	if (show_memory_in_xbytes) {
-	  used = g_format_size(memory_used);
-	  total = g_format_size(memory_total);
+	  used = g_format_size_full(memory_used, G_FORMAT_SIZE_IEC_UNITS);
+	  total = g_format_size_full(memory_total, G_FORMAT_SIZE_IEC_UNITS);
 	  g_snprintf (memory_info, 64,"%s / %s", used, total);
 	  g_free(used);
 	  g_free(total);
 
-	  used = g_format_size(swap_used);
-	  total = g_format_size(swap_total);
+	  used = g_format_size_full(swap_used, G_FORMAT_SIZE_IEC_UNITS);
+	  total = g_format_size_full(swap_total, G_FORMAT_SIZE_IEC_UNITS);
 	  g_snprintf (swap_info, 64,"%s / %s", used, total);
 	  g_free(used);
 	  g_free(total);
