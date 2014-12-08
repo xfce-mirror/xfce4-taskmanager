@@ -9,16 +9,12 @@ bin_PROGRAMS =								\
 	xfce4-taskmanager
 
 xfce4_taskmanager_CFLAGS =						\
-	$(GTK_CFLAGS)							\
 	$(CAIRO_CFLAGS)							\
-	$(WNCK_CFLAGS)							\
 	$(GKSU_CFLAGS)							\
 	$(NULL)
 
 xfce4_taskmanager_LDADD = 						\
-	$(GTK_LIBS)							\
 	$(CAIRO_LIBS)							\
-	$(WNCK_LIBS)							\
 	$(GKSU_LIBS)							\
 	$(NULL)
 
@@ -37,6 +33,14 @@ xfce4_taskmanager_SOURCES =						\
 	settings.c			settings.h			\
 	task-manager.c			task-manager.h			\
 	$(NULL)
+
+if USE_GTK3
+xfce4_taskmanager_LDADD +=	$(GTK3_LIBS) $(WNCK3_LIBS)
+xfce4_taskmanager_CFLAGS +=	$(GTK3_CFLAGS) $(WNCK3_CFLAGS)
+else
+xfce4_taskmanager_LDADD +=	$(GTK_LIBS) $(WNCK_LIBS)
+xfce4_taskmanager_CFLAGS +=	$(GTK_CFLAGS) $(WNCK_CFLAGS)
+endif
 
 if HAVE_WNCK
 xfce4_taskmanager_SOURCES += app-manager.c app-manager.h
