@@ -308,8 +308,8 @@ xtm_process_monitor_add_peak (XtmProcessMonitor *monitor, gfloat peak)
 	if (monitor->history->len > 1)
 		g_array_remove_index (monitor->history, monitor->history->len - 1);
 
-	if (GDK_IS_WINDOW (GTK_WIDGET (monitor)->window))
-		gdk_window_invalidate_rect (GTK_WIDGET (monitor)->window, NULL, FALSE);
+	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
+		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
 }
 
 void
@@ -317,8 +317,8 @@ xtm_process_monitor_set_step_size (XtmProcessMonitor *monitor, gfloat step_size)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_object_set (monitor, "step_size", step_size, NULL);
-	if (GDK_IS_WINDOW (GTK_WIDGET (monitor)->window))
-		gdk_window_invalidate_rect (GTK_WIDGET (monitor)->window, NULL, FALSE);
+	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
+		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
 }
 
 void
@@ -326,8 +326,8 @@ xtm_process_monitor_clear (XtmProcessMonitor *monitor)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_array_set_size (monitor->history, 0);
-	if (GDK_IS_WINDOW (GTK_WIDGET (monitor)->window))
-		gdk_window_invalidate_rect (GTK_WIDGET (monitor)->window, NULL, FALSE);
+	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
+		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
 }
 
 void
@@ -336,8 +336,8 @@ xtm_process_monitor_set_source_color (XtmProcessMonitor *monitor, gdouble red, g
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_signal_handlers_disconnect_by_func (GTK_WIDGET (monitor), init_source_color, NULL);
 	g_object_set (monitor, "color-red", red, "color-green", green, "color-blue", blue, NULL);
-	if (GDK_IS_WINDOW (GTK_WIDGET (monitor)->window))
-		gdk_window_invalidate_rect (GTK_WIDGET (monitor)->window, NULL, FALSE);
+	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
+		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
 }
 
 void
@@ -345,6 +345,6 @@ xtm_process_monitor_set_paint_box (XtmProcessMonitor *monitor, gboolean paint_bo
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_object_set (monitor, "paint-box", paint_box, NULL);
-	if (GDK_IS_WINDOW (GTK_WIDGET (monitor)->window))
-		gdk_window_invalidate_rect (GTK_WIDGET (monitor)->window, NULL, FALSE);
+	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
+		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
 }
