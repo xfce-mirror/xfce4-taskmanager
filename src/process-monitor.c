@@ -167,7 +167,11 @@ xtm_process_monitor_expose (GtkWidget *widget, GdkEventExpose *event)
 	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (widget);
 	guint minimum_history_length;
 
+#ifdef HAVE_GTK3
+	minimum_history_length = gtk_widget_get_allocated_width(widget) / monitor->step_size;
+#else
 	minimum_history_length = widget->allocation.width / monitor->step_size;
+#endif
 	if (monitor->history->len < minimum_history_length)
 		g_array_set_size (monitor->history, minimum_history_length + 1);
 
@@ -192,8 +196,13 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor)
 		return NULL;
 	}
 
+#ifdef HAVE_GTK3
+	width = gtk_widget_get_allocated_width(GTK_WIDGET(monitor));
+	height = gtk_widget_get_allocated_height(GTK_WIDGET(monitor));
+#else
 	width = GTK_WIDGET (monitor)->allocation.width;
 	height = GTK_WIDGET (monitor)->allocation.height;
+#endif
 	step_size = monitor->step_size;
 
 	graph_surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
@@ -250,16 +259,24 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor)
 	cairo_surface_t *graph_surface;
 	gint width, height;
 	gint i;
-
-	cr = gdk_cairo_create (GTK_WIDGET (monitor)->window);
+	cr = gdk_cairo_create (gtk_widget_get_window(GTK_WIDGET(monitor)));
+#ifdef HAVE_GTK3
+	width = gtk_widget_get_allocated_width(GTK_WIDGET(monitor));
+	height = gtk_widget_get_allocated_height(GTK_WIDGET(monitor));
+#else
 	width = GTK_WIDGET (monitor)->allocation.width;
 	height = GTK_WIDGET (monitor)->allocation.height;
+#endif
 
 	/* Paint a box */
 	if (monitor->paint_box)
-		gtk_paint_box (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
+#ifdef HAVE_GTK3
+		gtk_paint_box (gtk_widget_get_style(GTK_WIDGET(monitor)), cr, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
+				GTK_WIDGET (monitor), "trough", 0, 0, width, height);
+#else
+		gtk_paint_box (gtk_widget_get_style(GTK_WIDGET(monitor)), gtk_widget_get_window(GTK_WIDGET(monitor)), GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
 				NULL, GTK_WIDGET (monitor), "trough", 0, 0, width, height);
-
+#endif
 	/* Paint the graph */
 	graph_surface = xtm_process_monitor_graph_surface_create (monitor);
 	if (graph_surface != NULL)
@@ -301,8 +318,13 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor)
 
 	/* Repaint a shadow on top of everything to clear corners */
 	if (monitor->paint_box)
-		gtk_paint_shadow (GTK_WIDGET (monitor)->style, GTK_WIDGET (monitor)->window, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
+#ifdef HAVE_GTK3
+		gtk_paint_shadow (gtk_widget_get_style(GTK_WIDGET(monitor)), cr, GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
+				GTK_WIDGET (monitor), "trough", 0, 0, width, height);
+#else
+		gtk_paint_shadow (gtk_widget_get_style(GTK_WIDGET(monitor)), gtk_widget_get_window(GTK_WIDGET(monitor)), GTK_STATE_PRELIGHT, GTK_SHADOW_IN,
 				NULL, GTK_WIDGET (monitor), "trough", 0, 0, width, height);
+#endif
 
 	cairo_destroy (cr);
 }
