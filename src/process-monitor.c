@@ -79,10 +79,15 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 static void
 init_source_color (GtkWidget *widget, GtkStyle *prev_style, gpointer user_data)
 {
+#ifdef HAVE_GTK3
+	GdkColor *color;
+	gdk_color_parse("red", color);
+#else
 	GdkColor *color = &widget->style->base[GTK_STATE_SELECTED];
 	XTM_PROCESS_MONITOR (widget)->color_red = color->red / 65535.0;
 	XTM_PROCESS_MONITOR (widget)->color_green = color->green / 65535.0;
 	XTM_PROCESS_MONITOR (widget)->color_blue = color->blue / 65535.0;
+#endif
 }
 
 static void
@@ -276,7 +281,13 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor)
 	}
 	cairo_stroke (cr);
 
+#ifdef HAVE_GTK3
+	GdkColor *color;
+	gdk_color_parse("red", color);
+	gdk_cairo_set_source_color (cr, color);
+#else
 	gdk_cairo_set_source_color (cr, &GTK_WIDGET (monitor)->style->fg[GTK_STATE_NORMAL]);
+#endif
 	cairo_set_antialias (cr, CAIRO_ANTIALIAS_NONE);
 	cairo_set_line_width (cr, 1.0);
 	for (i = 25; i <= 75; i += 25)
