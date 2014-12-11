@@ -49,7 +49,7 @@ xtm_settings_tool_button_init (XtmSettingsToolButton *button)
 {
 	GtkWidget *menu;
 
-	gtk_tool_button_set_stock_id (GTK_TOOL_BUTTON (button), "gtk-preferences");
+	gtk_tool_button_set_icon_name(GTK_TOOL_BUTTON (button), "gtk-preferences");
 	gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (button), TRUE);
 
 	menu = construct_menu ();
