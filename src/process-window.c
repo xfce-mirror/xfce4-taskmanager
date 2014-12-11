@@ -354,7 +354,9 @@ show_about_dialog (XtmProcessWindow *window)
 		"version", PACKAGE_VERSION,
 		"copyright", "Copyright \302\251 2005-2010 The Xfce development team",
 		"logo-icon-name", "utilities-system-monitor",
+#ifndef HAVE_GTK3
 		"icon-name", GTK_STOCK_ABOUT,
+#endif
 		"comments", _("Easy to use task manager"),
 		"license", license,
 		"authors", authors,
