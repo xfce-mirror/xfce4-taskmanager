@@ -17,7 +17,11 @@
 
 #include "settings.h"
 #include "settings-dialog.h"
+#ifdef HAVE_GTK3
+#include "settings-dialog-gtk3_ui.h"
+#else
 #include "settings-dialog_ui.h"
+#endif
 
 
 

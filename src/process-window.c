@@ -22,7 +22,11 @@
 
 #include "settings.h"
 #include "process-window.h"
+#ifdef HAVE_GTK3
+#include "process-window-gtk3_ui.h"
+#else
 #include "process-window_ui.h"
+#endif
 #include "process-monitor.h"
 #include "process-tree-view.h"
 #include "process-statusbar.h"
