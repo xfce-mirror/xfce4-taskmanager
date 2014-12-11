@@ -100,7 +100,7 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	}
 #endif
 
-#if HAVE_GTK3
+#ifdef HAVE_GTK3
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 #else
 	hbox = gtk_hbox_new (FALSE, 16);

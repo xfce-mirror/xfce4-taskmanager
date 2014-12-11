@@ -59,7 +59,7 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	xtm_process_monitor_parent_class = g_type_class_peek_parent (klass);
 	class->get_property = xtm_process_monitor_get_property;
 	class->set_property = xtm_process_monitor_set_property;
-#if HAVE_GTK3
+#ifdef HAVE_GTK3
 	widget_class->draw = xtm_process_monitor_expose;
 #else
 	widget_class->expose_event = xtm_process_monitor_expose;
