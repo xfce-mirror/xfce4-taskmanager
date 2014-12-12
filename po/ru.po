@@ -4,16 +4,16 @@
 # 
 # Translators:
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
-# asvl <alyoshin.s@gmail.com>, 2013
+# Sergey Alyoshin <alyoshin.s@gmail.com>, 2013-2014
 # Vlad Vasilev <lortwer@gmail.com>, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-03 20:41+0200\n"
-"PO-Revision-Date: 2013-09-02 19:14+0000\n"
-"Last-Translator: asvl <alyoshin.s@gmail.com>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/xfce/language/ru/)\n"
+"POT-Creation-Date: 2014-12-05 00:31+0100\n"
+"PO-Revision-Date: 2014-12-12 17:01+0000\n"
+"Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/xfce-apps/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,14 +21,14 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
-#: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
-#: ../src/process-tree-view.c:398 ../src/process-window.c:304
+#: ../src/exec-tool-button.c:134 ../src/main.c:186
+#: ../src/process-tree-view.c:367 ../src/process-tree-view.c:382
+#: ../src/process-tree-view.c:410 ../src/process-window.c:353
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Диспетчер задач"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:358
 msgid "Easy to use task manager"
 msgstr "Простой диспетчер задач"
 
@@ -61,158 +61,158 @@ msgstr "Эмулятор терминала"
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:100
+#: ../src/main.c:126
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
 "<b>CPU:</b> %.0f%%\n"
-"<b>Memory:</b> %.0f%%\n"
-"<b>Swap:</b> %.0f%%"
-msgstr "<b>Процессов:</b> %u\n<b>ЦП:</b> %.0f%%\n<b>Память:</b> %.0f%%\n<b>Подкач.:</b> %.0f%%"
+"<b>Memory:</b> %s\n"
+"<b>Swap:</b> %s"
+msgstr "<b>Процессов:</b> %u\n<b>ЦП:</b> %.0f%%\n<b>Память:</b> %s\n<b>Подкач.:</b> %s"
 
-#: ../src/main.c:108
+#: ../src/main.c:134
 #, c-format
 msgid ""
 "Processes: %u\n"
 "CPU: %.0f%%\n"
-"Memory: %.0f%%\n"
-"Swap: %.0f%%"
-msgstr "Процессов: %u\nЦП: %.0f%%\nПамять: %.0f%%\nПодкач.: %.0f%%"
+"Memory: %s\n"
+"Swap: %s"
+msgstr "Процессов: %u\nЦП: %.0f%%\nПамять: %s\nПодкач.: %s"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:374
+#: ../src/process-statusbar.c:148 ../src/process-window.c:423
 #, c-format
 msgid "CPU: %s%%"
 msgstr "ЦП: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:379
+#: ../src/process-statusbar.c:156 ../src/process-window.c:427
 #, c-format
-msgid "Memory: %s%%"
-msgstr "Память: %s%%"
+msgid "Memory: %s"
+msgstr "Память: %s"
 
-#: ../src/process-statusbar.c:166
+#: ../src/process-statusbar.c:163
 #, c-format
-msgid "Swap: %s%%"
-msgstr "Подкачка: %s%%"
+msgid "Swap: %s"
+msgstr "Подкачка: %s"
 
-#: ../src/process-statusbar.c:181
+#: ../src/process-statusbar.c:177
 #, c-format
 msgid "Processes: %d"
 msgstr "Процессы: %d"
 
-#: ../src/process-tree-view.c:125
+#: ../src/process-tree-view.c:131
 msgid "Task"
 msgstr "Задача"
 
-#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:142 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:150 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:158 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "Состояние"
 
-#: ../src/process-tree-view.c:161
+#: ../src/process-tree-view.c:167
 msgid "VSZ"
 msgstr "Виртуальная"
 
-#: ../src/process-tree-view.c:169
+#: ../src/process-tree-view.c:175
 msgid "RSS"
 msgstr "Резидентная"
 
-#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:183 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:191 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "ЦП"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:194
+#: ../src/process-tree-view.c:200
 msgid "Prio."
 msgstr "Приор."
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:364
 msgid "Terminate task"
 msgstr "Завершить процесс"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:364
 msgid "Kill task"
 msgstr "Принудительно завершить"
 
-#: ../src/process-tree-view.c:354
+#: ../src/process-tree-view.c:366
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "Вы хотите послать сигнал процессу %d?"
 
-#: ../src/process-tree-view.c:366
+#: ../src/process-tree-view.c:378
 msgid "Error sending signal"
 msgstr "Не удалось отправить сигнал"
 
-#: ../src/process-tree-view.c:368
+#: ../src/process-tree-view.c:380
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Произошла ошибка при отправке сигнала процессу %d. Вероятнее всего, у вас нет необходимых прав."
 
-#: ../src/process-tree-view.c:395
+#: ../src/process-tree-view.c:407
 msgid "Error setting priority"
 msgstr "Не удалось задать приоритет"
 
-#: ../src/process-tree-view.c:396
+#: ../src/process-tree-view.c:408
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Произошла ошибка при задании приоритета процесса %d. Вероятнее всего, у вас нет необходимых прав."
 
-#: ../src/process-tree-view.c:412
+#: ../src/process-tree-view.c:424
 msgid "Terminate"
 msgstr "Завершить"
 
-#: ../src/process-tree-view.c:420
+#: ../src/process-tree-view.c:432
 msgid "Stop"
 msgstr "Остановить"
 
-#: ../src/process-tree-view.c:427
+#: ../src/process-tree-view.c:439
 msgid "Continue"
 msgstr "Продолжить"
 
-#: ../src/process-tree-view.c:433
+#: ../src/process-tree-view.c:445
 msgid "Kill"
-msgstr "Убить"
+msgstr "Принудительно завершить"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:452
 msgid "Very low"
 msgstr "Очень низкий"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:457
 msgid "Low"
 msgstr "Низкий"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:462
 msgid "Normal"
 msgstr "Обычный"
 
-#: ../src/process-tree-view.c:455
+#: ../src/process-tree-view.c:467
 msgid "High"
 msgstr "Высокий"
 
-#: ../src/process-tree-view.c:460
+#: ../src/process-tree-view.c:472
 msgid "Very high"
 msgstr "Очень высокий"
 
-#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:477 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Приоритет"
 
-#: ../src/process-window.c:312
+#: ../src/process-window.c:361
 msgid "translator-credits"
 msgstr "Andrey Fedoseev\nVlad Vasilev\nSergey Alyoshin"
 
@@ -220,19 +220,19 @@ msgstr "Andrey Fedoseev\nVlad Vasilev\nSergey Alyoshin"
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Внимание! Вы используете учётную запись суперпользователя, тем самым вы можете повредить систему."
 
-#: ../src/settings.c:378
+#: ../src/settings.c:384
 msgid "Default"
 msgstr "По умолчанию"
 
-#: ../src/settings.c:379
+#: ../src/settings.c:385
 msgid "Small"
 msgstr "Маленький"
 
-#: ../src/settings.c:380
+#: ../src/settings.c:386
 msgid "Large"
 msgstr "Большой"
 
-#: ../src/settings.c:381
+#: ../src/settings.c:387
 msgid "Text"
 msgstr "Текст"
 
@@ -257,98 +257,91 @@ msgid "Draw borders around monitors"
 msgstr "Отображать рамки вокруг индикаторов"
 
 #: ../src/settings-dialog.ui.h:6
+msgid "Show processes as tree"
+msgstr "Показывать процессы в виде дерева"
+
+#: ../src/settings-dialog.ui.h:7
 msgid "Toolbar style:"
 msgstr "Стиль панели инструментов:"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:8
 msgid "<b>Interface style</b>"
 msgstr "<b>Стиль интерфейса</b>"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
 msgid "Prompt for terminating tasks"
 msgstr "Запрашивать подтверждение при завершении задач"
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:10
 msgid "Hide into the notification area"
 msgstr "Прятать в область уведомления"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:11
+msgid "Show memory usage in bytes"
+msgstr "Показывать использование память в байтах"
+
+#: ../src/settings-dialog.ui.h:12
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Дополнительно</b>"
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:13
 msgid "Refresh rate:"
 msgstr "Частота обновления:"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:14
 msgid "Columns:"
 msgstr "Колонки:"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:15
 msgid "<b>Information</b>"
 msgstr "<b>Информация</b>"
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:16
 msgid "Settings"
 msgstr "Настройки"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/settings-tool-button.c:110
+#: ../src/settings-tool-button.c:111
 msgid "500ms"
 msgstr "500 мс"
 
-#: ../src/settings-tool-button.c:111
+#: ../src/settings-tool-button.c:112
 msgid "750ms"
 msgstr "750 мс"
 
-#: ../src/settings-tool-button.c:112
+#: ../src/settings-tool-button.c:113
 msgid "1s"
 msgstr "1 с"
 
-#: ../src/settings-tool-button.c:113
+#: ../src/settings-tool-button.c:114
 msgid "2s"
 msgstr "2 с"
 
-#: ../src/settings-tool-button.c:114
+#: ../src/settings-tool-button.c:115
 msgid "5s"
 msgstr "5 с"
 
-#: ../src/settings-tool-button.c:115
+#: ../src/settings-tool-button.c:116
 msgid "10s"
 msgstr "10 с"
 
-#: ../src/settings-tool-button.c:164
+#: ../src/settings-tool-button.c:165
 msgid "Show all processes"
 msgstr "Показывать все процессы"
 
-#: ../src/settings-tool-button.c:167
+#: ../src/settings-tool-button.c:168
 msgid "Refresh rate"
 msgstr "Частота обновления"
 
-#: ../src/settings-tool-button.c:177
+#: ../src/settings-tool-button.c:178
 msgid "Virtual Bytes"
 msgstr "Виртуальная память"
 
-#: ../src/settings-tool-button.c:178
+#: ../src/settings-tool-button.c:179
 msgid "Private Bytes"
 msgstr "Резидентная память"
 
-#: ../src/task-manager.c:229
-#, c-format
-msgid "%lu MiB"
-msgstr "%lu МиБ"
-
-#: ../src/task-manager.c:236
-#, c-format
-msgid "%lu KiB"
-msgstr "%lu КиБ"
-
-#: ../src/task-manager.c:240
-#, c-format
-msgid "%lu B"
-msgstr "%lu Б"
-
-#: ../src/task-manager.c:263
+#: ../src/task-manager.c:241
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
