@@ -627,7 +627,11 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 	lnk->list = g_sequence_insert_before (
 		g_sequence_get_iter_at_pos (treemodel->list, *gtk_tree_path_get_indices (path)),
 		lnk);
-	/* Use the root entry as fall-back if no parent could be found */
+	/* Need to update all path caches after the insert and increment them with one */
+	if (not_persist)
+		g_sequence_foreach_range (g_sequence_iter_next (lnk->list), g_sequence_get_end_iter (treemodel->list),
+			do_path, gtk_tree_path_next);
+
 	found.parent = treemodel->tree;
 	found.treemodel = treemodel;
 	gtk_tree_model_get_value (model, iter, treemodel->p_column, &found.p_value);
@@ -638,11 +642,6 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 	signal_parent = found.parent != treemodel->tree && g_node_first_child (found.parent) == NULL;
 	/* Find the previous sibling at the same level to preserve sorting order */
 	lnk->tree = g_node_insert_data_after (found.parent, find_sibling (found.parent, lnk->list), lnk);
-
-	/* Need to update all path caches after the insert and increment them with one */
-	if (not_persist)
-		g_sequence_foreach_range (g_sequence_iter_next (lnk->list), g_sequence_get_end_iter (treemodel->list),
-			do_path, gtk_tree_path_next);
 
 	/* Signal the new item */
 	s_iter.user_data = lnk->tree;
