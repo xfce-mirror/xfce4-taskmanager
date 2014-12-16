@@ -558,7 +558,7 @@ xtm_process_tree_model_row_changed (XtmProcessTreeModel *treemodel, GtkTreePath 
 				gtk_tree_path_free (s_path);
 
 				/* Signal has child toggled if this is the first child */
-				signal_parent = g_node_first_child (found.parent) == NULL;
+				signal_parent = g_node_first_child (lnk->tree) == NULL;
 				/* Assuming we had no children, we can just append to keep the sorting order correct */
 				g_node_append (lnk->tree, node);
 
