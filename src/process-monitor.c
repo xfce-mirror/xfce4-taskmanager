@@ -38,8 +38,12 @@ G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
 static void	xtm_process_monitor_get_property	(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void	xtm_process_monitor_set_property	(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
+#ifdef HAVE_GTK3
+static gboolean	xtm_process_monitor_draw		(GtkWidget *widget, cairo_t *cr);
+#else
 static gboolean	xtm_process_monitor_expose		(GtkWidget *widget, GdkEventExpose *event);
-static void	xtm_process_monitor_paint		(XtmProcessMonitor *monitor);
+#endif
+static void	xtm_process_monitor_paint		(XtmProcessMonitor *monitor, cairo_t *cr);
 
 
 
@@ -52,7 +56,7 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	class->get_property = xtm_process_monitor_get_property;
 	class->set_property = xtm_process_monitor_set_property;
 #ifdef HAVE_GTK3
-	widget_class->draw = xtm_process_monitor_expose;
+	widget_class->draw = xtm_process_monitor_draw;
 #else
 	widget_class->expose_event = xtm_process_monitor_expose;
 #endif
@@ -98,23 +102,38 @@ xtm_process_monitor_set_property (GObject *object, guint property_id, const GVal
 	}
 }
 
+#ifdef HAVE_GTK3
+static gboolean
+xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
+{
+	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (widget);
+	guint minimum_history_length;
+
+	minimum_history_length = gtk_widget_get_allocated_width(widget) / monitor->step_size;
+	if (monitor->history->len < minimum_history_length)
+		g_array_set_size (monitor->history, minimum_history_length + 1);
+
+	xtm_process_monitor_paint (monitor, cr);
+	return FALSE;
+}
+#else
 static gboolean
 xtm_process_monitor_expose (GtkWidget *widget, GdkEventExpose *event)
 {
 	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (widget);
 	guint minimum_history_length;
+	cairo_t *cr;
 
-#ifdef HAVE_GTK3
-	minimum_history_length = gtk_widget_get_allocated_width(widget) / monitor->step_size;
-#else
 	minimum_history_length = widget->allocation.width / monitor->step_size;
-#endif
 	if (monitor->history->len < minimum_history_length)
 		g_array_set_size (monitor->history, minimum_history_length + 1);
 
-	xtm_process_monitor_paint (monitor);
+	cr = gdk_cairo_create (gtk_widget_get_window(GTK_WIDGET(monitor)));
+	xtm_process_monitor_paint (monitor, cr);
+	cairo_destroy (cr);
 	return FALSE;
 }
+#endif
 
 static cairo_surface_t *
 xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width, gint height)
@@ -174,14 +193,12 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 }
 
 static void
-xtm_process_monitor_paint (XtmProcessMonitor *monitor)
+xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 {
-	cairo_t *cr;
 	cairo_surface_t *graph_surface;
 	gint width, height;
 	static const double dashed[] = {1.5};
 	gint i;
-	cr = gdk_cairo_create (gtk_widget_get_window(GTK_WIDGET(monitor)));
 #ifdef HAVE_GTK3
 	width = gtk_widget_get_allocated_width(GTK_WIDGET(monitor));
 	height = gtk_widget_get_allocated_height(GTK_WIDGET(monitor));
@@ -217,8 +234,6 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor)
 		cairo_paint (cr);
 		cairo_surface_destroy (graph_surface);
 	}
-
-	cairo_destroy (cr);
 }
 
 GtkWidget *
