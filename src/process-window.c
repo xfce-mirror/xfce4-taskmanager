@@ -140,6 +140,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->settings_button = xtm_settings_tool_button_new ();
 	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 1);
 
+	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "toolbutton-about"));
+	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
+
 	{
 		GtkWidget *toolitem;
 		guint refresh_rate;
@@ -161,8 +164,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 		g_signal_connect_swapped (window->settings, "notify::refresh-rate", G_CALLBACK (monitor_update_step_size), window);
 	}
 
-	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "toolbutton-about"));
-	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
+	window->statusbar = xtm_process_statusbar_new ();
+	gtk_widget_show (window->statusbar);
+	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->builder, "graph-vbox")), window->statusbar, FALSE, FALSE, 0);
 
 	if (geteuid () == 0)
 	{
@@ -180,10 +184,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
 	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
 	g_signal_connect (G_OBJECT(window->filter_entry), "changed", G_CALLBACK(filter_entry_keyrelease_handler), window->treeview);
-
-	window->statusbar = xtm_process_statusbar_new ();
-	gtk_widget_show (window->statusbar);
-	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->builder, "process-vbox")), window->statusbar, FALSE, FALSE, 0);
 
 	gtk_widget_grab_focus (GTK_WIDGET (window->treeview));
 
@@ -212,7 +212,7 @@ xtm_process_window_finalize (GObject *object)
 	if (GTK_IS_TREE_VIEW (window->treeview))
 		gtk_widget_destroy (window->treeview);
 
-	if (GTK_IS_STATUSBAR (window->statusbar))
+	if (GTK_IS_BOX (window->statusbar))
 		gtk_widget_destroy (window->statusbar);
 
 	if (GTK_IS_TOOL_ITEM (window->exec_button))
@@ -412,7 +412,7 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 	gchar value[4];
 
 	g_return_if_fail (XTM_IS_PROCESS_WINDOW (window));
-	g_return_if_fail (GTK_IS_STATUSBAR (window->statusbar));
+	g_return_if_fail (GTK_IS_BOX (window->statusbar));
 
 	g_object_set (window->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory_str, "swap", swap_str, NULL);
 
@@ -430,6 +430,6 @@ void
 xtm_process_window_show_swap_usage (XtmProcessWindow *window, gboolean show_swap_usage)
 {
 	g_return_if_fail (XTM_IS_PROCESS_WINDOW (window));
-	g_return_if_fail (GTK_IS_STATUSBAR (window->statusbar));
+	g_return_if_fail (GTK_IS_BOX (window->statusbar));
 	g_object_set (window->statusbar, "show-swap", show_swap_usage, NULL);
 }

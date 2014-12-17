@@ -35,7 +35,7 @@ struct _XtmProcessStatusbarClass
 };
 struct _XtmProcessStatusbar
 {
-	GtkStatusbar		parent;
+	GtkHBox			parent;
 	/*<private>*/
 	XtmSettings *		settings;
 
@@ -49,7 +49,7 @@ struct _XtmProcessStatusbar
 	gchar			swap[64];
 	guint			num_processes;
 };
-G_DEFINE_TYPE (XtmProcessStatusbar, xtm_process_statusbar, GTK_TYPE_STATUSBAR)
+G_DEFINE_TYPE (XtmProcessStatusbar, xtm_process_statusbar, GTK_TYPE_BOX)
 
 static void	xtm_process_statusbar_finalize			(GObject *object);
 static void	xtm_process_statusbar_set_property		(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
@@ -78,46 +78,36 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 static void
 xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 {
-	GtkWidget *area, *hbox;
-
+	GtkWidget *hbox, *hbox_cpu, *hbox_mem;
 	statusbar->settings = xtm_settings_get_default ();
-
-#if GTK_CHECK_VERSION(2,20,0)
-	area = gtk_statusbar_get_message_area (GTK_STATUSBAR (statusbar));
-#else
-	{
-		GtkShadowType shadow_type;
-		GtkWidget *frame;
-
-		gtk_widget_style_get (GTK_WIDGET (statusbar), "shadow-type", &shadow_type, NULL);
-		frame = gtk_frame_new (NULL);
-		gtk_frame_set_shadow_type (GTK_FRAME (frame), shadow_type);
-		gtk_box_pack_start (GTK_BOX (statusbar), frame, TRUE, TRUE, 0);
-
-		area = gtk_hbox_new (FALSE, 0);
-		gtk_container_add (GTK_CONTAINER (frame), area);
-		gtk_widget_show_all (frame);
-	}
-#endif
 
 #ifdef HAVE_GTK3
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
+	hbox_cpu = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
+	hbox_mem = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 #else
 	hbox = gtk_hbox_new (FALSE, 16);
+	hbox_cpu = gtk_hbox_new (FALSE, 16);
+	hbox_mem = gtk_hbox_new (FALSE, 16);
 #endif
-	gtk_box_pack_start (GTK_BOX (area), hbox, TRUE, TRUE, 6);
-
-	statusbar->label_num_processes = gtk_label_new (NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), statusbar->label_num_processes, FALSE, FALSE, 0);
 
 	statusbar->label_cpu = gtk_label_new (NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), statusbar->label_cpu, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_cpu, TRUE, FALSE, 0);
+
+	statusbar->label_num_processes = gtk_label_new (NULL);
+	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_num_processes, TRUE, FALSE, 0);
 
 	statusbar->label_memory = gtk_label_new (NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), statusbar->label_memory, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox_mem), statusbar->label_memory, TRUE, FALSE, 0);
 
 	statusbar->label_swap = gtk_label_new (NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), statusbar->label_swap, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox_mem), statusbar->label_swap, TRUE, FALSE, 0);
+
+	gtk_box_pack_start (GTK_BOX (hbox), hbox_cpu, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), hbox_mem, TRUE, TRUE, 0);
+	gtk_box_set_homogeneous (GTK_BOX (hbox), TRUE);
+
+	gtk_box_pack_start (GTK_BOX (statusbar), hbox, TRUE, TRUE, 0);
 
 	gtk_widget_show_all (hbox);
 }
