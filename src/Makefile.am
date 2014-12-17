@@ -33,8 +33,8 @@ xfce4_taskmanager_SOURCES =						\
 	$(NULL)
 
 if USE_GTK3
-xfce4_taskmanager_LDADD +=	$(GTK3_LIBS) $(WNCK3_LIBS)
-xfce4_taskmanager_CFLAGS +=	$(GTK3_CFLAGS) $(WNCK3_CFLAGS)
+xfce4_taskmanager_LDADD +=	$(GTK3_LIBS) $(WNCK_LIBS)
+xfce4_taskmanager_CFLAGS +=	$(GTK3_CFLAGS) $(WNCK_CFLAGS)
 else
 xfce4_taskmanager_LDADD +=	$(GTK_LIBS) $(WNCK_LIBS)
 xfce4_taskmanager_CFLAGS +=	$(GTK_CFLAGS) $(WNCK_CFLAGS)
