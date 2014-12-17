@@ -21,7 +21,6 @@
 enum
 {
 	PROP_STEP_SIZE = 1,
-	PROP_PAINT_BOX,
 };
 typedef struct _XtmProcessMonitorClass XtmProcessMonitorClass;
 struct _XtmProcessMonitorClass
@@ -34,7 +33,6 @@ struct _XtmProcessMonitor
 	/*<private>*/
 	gfloat			step_size;
 	GArray *		history;
-	gboolean		paint_box;
 };
 G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
@@ -60,8 +58,6 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 #endif
 	g_object_class_install_property (class, PROP_STEP_SIZE,
 		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
-	g_object_class_install_property (class, PROP_PAINT_BOX,
-		g_param_spec_boolean ("paint-box", "PaintBox", "Paint box around monitor", TRUE, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
 }
 
 static void
@@ -80,10 +76,6 @@ xtm_process_monitor_get_property (GObject *object, guint property_id, GValue *va
 		g_value_set_float (value, monitor->step_size);
 		break;
 
-		case PROP_PAINT_BOX:
-		g_value_set_boolean (value, monitor->paint_box);
-		break;
-
 		default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 		break;
@@ -98,10 +90,6 @@ xtm_process_monitor_set_property (GObject *object, guint property_id, const GVal
 	{
 		case PROP_STEP_SIZE:
 		monitor->step_size = g_value_get_float (value);
-		break;
-
-		case PROP_PAINT_BOX:
-		monitor->paint_box = g_value_get_boolean (value);
 		break;
 
 		default:
@@ -267,15 +255,6 @@ xtm_process_monitor_clear (XtmProcessMonitor *monitor)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_array_set_size (monitor->history, 0);
-	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
-		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
-}
-
-void
-xtm_process_monitor_set_paint_box (XtmProcessMonitor *monitor, gboolean paint_box)
-{
-	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
-	g_object_set (monitor, "paint-box", paint_box, NULL);
 	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
 		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
 }

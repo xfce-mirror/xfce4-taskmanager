@@ -66,7 +66,6 @@ static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *
 static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
 static void	toolbar_update_style				(XtmProcessWindow *window);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
-static void	monitor_update_paint_box			(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
 
 
@@ -159,8 +158,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_widget_show (window->mem_monitor);
 		gtk_container_add (GTK_CONTAINER (toolitem), window->mem_monitor);
 
-		monitor_update_paint_box (window);
-		g_signal_connect_swapped (window->settings, "notify::monitor-paint-box", G_CALLBACK (monitor_update_paint_box), window);
 		g_signal_connect_swapped (window->settings, "notify::refresh-rate", G_CALLBACK (monitor_update_step_size), window);
 	}
 
@@ -287,15 +284,6 @@ toolbar_update_style (XtmProcessWindow *window)
 		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_BOTH);
 		break;
 	}
-}
-
-static void
-monitor_update_paint_box (XtmProcessWindow *window)
-{
-	gboolean paint_box;
-	g_object_get (window->settings, "monitor-paint-box", &paint_box, NULL);
-	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->cpu_monitor), paint_box);
-	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->mem_monitor), paint_box);
 }
 
 static void
