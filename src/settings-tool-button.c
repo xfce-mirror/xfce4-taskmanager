@@ -49,7 +49,7 @@ xtm_settings_tool_button_init (XtmSettingsToolButton *button)
 {
 	GtkWidget *menu;
 
-	gtk_tool_button_set_stock_id (GTK_TOOL_BUTTON (button), "gtk-preferences");
+	gtk_tool_button_set_icon_name(GTK_TOOL_BUTTON (button), "gtk-preferences");
 	gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (button), TRUE);
 
 	menu = construct_menu ();
@@ -73,7 +73,7 @@ show_settings_dialog (XtmSettingsToolButton *button)
 static void
 refresh_rate_toggled (GtkCheckMenuItem *mi, XtmSettings *settings)
 {
-	if(mi->active)
+	if(gtk_check_menu_item_get_active(mi))
 	{
 		guint refresh_rate = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "refresh-rate"));
 		g_object_set (settings, "refresh-rate", refresh_rate, NULL);

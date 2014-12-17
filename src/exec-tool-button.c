@@ -51,7 +51,7 @@ xtm_exec_tool_button_init (XtmExecToolButton *button)
 {
 	GtkWidget *menu;
 
-	gtk_tool_button_set_stock_id (GTK_TOOL_BUTTON (button), "gtk-execute");
+	gtk_tool_button_set_icon_name (GTK_TOOL_BUTTON (button), "gtk-execute");
 	gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (button), TRUE);
 
 	menu = construct_menu ();
@@ -79,8 +79,24 @@ static void
 execute_command (const gchar *command)
 {
 	GError *error = NULL;
-
+#ifdef HAVE_GTK3
+	GdkScreen *screen;
+	GdkDisplay *display;
+	GdkAppLaunchContext *launch_context;
+	GAppInfo *app_info;
+	app_info = g_app_info_create_from_commandline (command, NULL, G_APP_INFO_CREATE_NONE, &error);
+	if (!error) {
+		display = gdk_screen_get_display (screen);
+		launch_context = gdk_display_get_app_launch_context (display);
+		gdk_app_launch_context_set_screen (launch_context, screen);
+		g_app_info_launch (app_info, NULL, G_APP_LAUNCH_CONTEXT
+			(launch_context), &error);
+		g_object_unref (launch_context);
+	}
+	g_object_unref (app_info);
+#else
 	gdk_spawn_command_line_on_screen (gdk_screen_get_default (), command, &error);
+#endif
 	if (error != NULL)
 	{
 		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,

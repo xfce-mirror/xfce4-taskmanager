@@ -22,7 +22,11 @@
 
 #include "settings.h"
 #include "process-window.h"
+#ifdef HAVE_GTK3
+#include "process-window-gtk3_ui.h"
+#else
 #include "process-window_ui.h"
+#endif
 #include "process-monitor.h"
 #include "process-tree-view.h"
 #include "process-statusbar.h"
@@ -62,7 +66,6 @@ static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *
 static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
 static void	toolbar_update_style				(XtmProcessWindow *window);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
-static void	monitor_update_paint_box			(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
 
 
@@ -155,8 +158,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_widget_show (window->mem_monitor);
 		gtk_container_add (GTK_CONTAINER (toolitem), window->mem_monitor);
 
-		monitor_update_paint_box (window);
-		g_signal_connect_swapped (window->settings, "notify::monitor-paint-box", G_CALLBACK (monitor_update_paint_box), window);
 		g_signal_connect_swapped (window->settings, "notify::refresh-rate", G_CALLBACK (monitor_update_step_size), window);
 	}
 
@@ -286,15 +287,6 @@ toolbar_update_style (XtmProcessWindow *window)
 }
 
 static void
-monitor_update_paint_box (XtmProcessWindow *window)
-{
-	gboolean paint_box;
-	g_object_get (window->settings, "monitor-paint-box", &paint_box, NULL);
-	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->cpu_monitor), paint_box);
-	xtm_process_monitor_set_paint_box (XTM_PROCESS_MONITOR (window->mem_monitor), paint_box);
-}
-
-static void
 monitor_update_step_size (XtmProcessWindow *window)
 {
 	guint refresh_rate;
@@ -354,7 +346,9 @@ show_about_dialog (XtmProcessWindow *window)
 		"version", PACKAGE_VERSION,
 		"copyright", "Copyright \302\251 2005-2010 The Xfce development team",
 		"logo-icon-name", "utilities-system-monitor",
+#ifndef HAVE_GTK3
 		"icon-name", GTK_STOCK_ABOUT,
+#endif
 		"comments", _("Easy to use task manager"),
 		"license", license,
 		"authors", authors,
@@ -383,7 +377,9 @@ xtm_process_window_show (GtkWidget *widget)
 	g_return_if_fail (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->window));
 	gtk_widget_show (XTM_PROCESS_WINDOW (widget)->window);
 	gtk_window_present (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window));
+#ifndef HAVE_GTK3
 	GTK_WIDGET_SET_FLAGS (widget, GTK_VISIBLE);
+#endif
 }
 
 static void
@@ -396,7 +392,9 @@ xtm_process_window_hide (GtkWidget *widget)
 	gtk_window_get_position (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), &winx, &winy);
 	gtk_widget_hide (XTM_PROCESS_WINDOW (widget)->window);
 	gtk_window_move (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), winx, winy);
+#ifndef HAVE_GTK3
 	GTK_WIDGET_UNSET_FLAGS (widget, GTK_VISIBLE);
+#endif
 }
 
 GtkTreeModel *

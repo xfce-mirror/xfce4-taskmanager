@@ -15,7 +15,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-
 #include "process-tree-model.h"
 #include "process-tree-view.h"
 #include "task-manager.h"
@@ -557,7 +556,7 @@ treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event)
 {
 	guint pid;
 
-	if (event->keyval != GDK_Menu)
+	if (event->keyval != GDK_KEY_Menu)
 		return FALSE;
 
 	{
