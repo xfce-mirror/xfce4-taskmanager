@@ -206,8 +206,8 @@ model_mark_tree_iter_as_removed (GtkTreeModel *model, GtkTreeIter *iter)
 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
 		XTM_PTV_COLUMN_CPU, 0.0,
 		XTM_PTV_COLUMN_CPU_STR, "-",
-		XTM_PTV_COLUMN_BACKGROUND, "#a40000",
-		XTM_PTV_COLUMN_FOREGROUND, "#ffffff",
+		XTM_PTV_COLUMN_BACKGROUND, "#e57373",
+		XTM_PTV_COLUMN_FOREGROUND, "#000000",
 		XTM_PTV_COLUMN_TIMESTAMP, __current_timestamp (),
 		-1);
 }
@@ -271,7 +271,7 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 	if (g_strcmp0 (task->state, old_state) != 0 && background == NULL)
 	{
 		/* Set yellow color for changing state */
-		background = g_strdup ("#edd400");
+		background = g_strdup ("#fff176");
 		foreground = g_strdup ("#000000");
 		old_timestamp = __current_timestamp () - TIMESTAMP_DELTA + 3;
 	}
@@ -279,7 +279,7 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 	if (__current_timestamp () - old_timestamp <= TIMESTAMP_DELTA)
 	{
 		/* Set green color for started task */
-		background = (background == NULL) ? g_strdup ("#73d216") : background;
+		background = (background == NULL) ? g_strdup ("#aed581") : background;
 		foreground = (foreground == NULL) ? g_strdup ("#000000") : foreground;
 	}
 	else
