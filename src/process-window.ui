@@ -81,7 +81,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkToolItem" id="cpu-toolitem">
+                  <object class="GtkToolItem" id="graph-cpu">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">2</property>
@@ -97,7 +97,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToolItem" id="mem-toolitem">
+                  <object class="GtkToolItem" id="graph-mem">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">2</property>

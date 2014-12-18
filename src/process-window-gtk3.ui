@@ -81,7 +81,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkFrame" id="cpu-toolitem">
+                  <object class="GtkFrame" id="graph-cpu">
                     <property name="height_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -104,7 +104,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkFrame" id="mem-toolitem">
+                  <object class="GtkFrame" id="graph-mem">
                     <property name="height_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>

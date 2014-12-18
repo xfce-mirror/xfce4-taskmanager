@@ -21,6 +21,7 @@
 enum
 {
 	PROP_STEP_SIZE = 1,
+	PROP_TYPE,
 };
 typedef struct _XtmProcessMonitorClass XtmProcessMonitorClass;
 struct _XtmProcessMonitorClass
@@ -32,6 +33,7 @@ struct _XtmProcessMonitor
 	GtkDrawingArea		parent;
 	/*<private>*/
 	gfloat			step_size;
+	gint			type;
 	GArray *		history;
 };
 G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
@@ -62,6 +64,8 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 #endif
 	g_object_class_install_property (class, PROP_STEP_SIZE,
 		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_TYPE,
+		g_param_spec_int ("type", "Type", "Type of graph to render", 0, G_MAXINT, 0, G_PARAM_READWRITE));
 }
 
 static void
@@ -80,6 +84,10 @@ xtm_process_monitor_get_property (GObject *object, guint property_id, GValue *va
 		g_value_set_float (value, monitor->step_size);
 		break;
 
+		case PROP_TYPE:
+		g_value_set_int (value, monitor->type);
+		break;
+
 		default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 		break;
@@ -94,6 +102,10 @@ xtm_process_monitor_set_property (GObject *object, guint property_id, const GVal
 	{
 		case PROP_STEP_SIZE:
 		monitor->step_size = g_value_get_float (value);
+		break;
+
+		case PROP_TYPE:
+		monitor->type = g_value_get_int (value);
 		break;
 
 		default:
@@ -154,8 +166,11 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	graph_surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
 	cr = cairo_create (graph_surface);
 
-	/* Draw area below the line */
-	cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
+	/* Draw area below the line, distinguish between CPU (0) and Mem (1) color-wise */
+	if (monitor->type == 0)
+		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
+	else
+		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3);
 	cairo_set_line_width (cr, 0.0);
 	cairo_set_antialias (cr, CAIRO_ANTIALIAS_DEFAULT);
 
@@ -173,7 +188,10 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	/* Draw line */
 	cairo_translate (cr, step_size * i, 0);
 
-	cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0);
+	if (monitor->type == 0)
+		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0);
+	else
+		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0);
 	cairo_set_line_width (cr, 0.85);
 	cairo_set_line_cap (cr, CAIRO_LINE_CAP_ROUND);
 	cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
@@ -263,6 +281,13 @@ xtm_process_monitor_set_step_size (XtmProcessMonitor *monitor, gfloat step_size)
 	g_object_set (monitor, "step_size", step_size, NULL);
 	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
 		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
+}
+
+void
+xtm_process_monitor_set_type (XtmProcessMonitor *monitor, gint type)
+{
+	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
+	g_object_set (monitor, "type", type, NULL);
 }
 
 void

@@ -29,6 +29,7 @@ GType		xtm_process_monitor_get_type			(void);
 GtkWidget *	xtm_process_monitor_new				(void);
 void		xtm_process_monitor_add_peak			(XtmProcessMonitor *monitor, gfloat peak);
 void		xtm_process_monitor_set_step_size		(XtmProcessMonitor *monitor, gfloat step_size);
+void		xtm_process_monitor_set_type			(XtmProcessMonitor *monitor, gint type);
 void		xtm_process_monitor_clear			(XtmProcessMonitor *monitor);
 
 #endif /* !PROCESS_MONITOR_H */
