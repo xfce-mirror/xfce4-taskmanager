@@ -56,7 +56,7 @@ gboolean get_task_list (GArray *task_list)
 	Task t;
 	struct passwd *passwdp;
 	char **args, **ptr;
-	char buf[127];
+	gchar* buf;
 	int nproc, i;
 
 	mib[0] = CTL_KERN;
@@ -132,14 +132,11 @@ gboolean get_task_list (GArray *task_list)
 					break;
 				}
 			}
-			buf[0] = '\0';
-			for (ptr = args; *ptr != NULL; ptr++) {
-				if (ptr != args)
-					strlcat(buf, " ", sizeof(buf));
-				strlcat(buf, *ptr, sizeof(buf));
-			}
+			buf = g_strjoinv(" ", args);
+			g_assert(g_utf8_validate(buf, -1, NULL));
+			g_strlcpy(t.cmdline, buf, sizeof t.cmdline);
+			g_free(buf);
 			free(args);
-			g_snprintf(t.cmdline, sizeof t.cmdline, "%s", buf);
 		}
 
 		t.cpu_user = (100.0 * ((double) p.p_pctcpu / FSCALE));
