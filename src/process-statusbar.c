@@ -133,6 +133,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 	XtmProcessStatusbar *statusbar = XTM_PROCESS_STATUSBAR (object);
 	gchar *text;
 	gchar *float_value;
+	GdkColor color;
 
 	switch (property_id)
 	{
@@ -141,6 +142,8 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		float_value = rounded_float_value (statusbar->cpu, statusbar->settings);
 		text = g_strdup_printf (_("CPU: %s%%"), float_value);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_cpu), text);
+		gdk_color_parse ("#ff6e00", &color);
+		gtk_widget_modify_fg (statusbar->label_cpu, GTK_STATE_NORMAL, &color);
 		g_free (float_value);
 		g_free (text);
 		break;
@@ -149,6 +152,8 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		g_strlcpy(statusbar->memory, g_value_get_string (value), 64);
 		text = g_strdup_printf (_("Memory: %s"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
+		gdk_color_parse ("#ab1852", &color);
+		gtk_widget_modify_fg (statusbar->label_memory, GTK_STATE_NORMAL, &color);
 		g_free (text);
 		break;
 
