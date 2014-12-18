@@ -254,6 +254,10 @@ xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
 		emit_delete_event_signal (window, (GdkEvent*) event);
 		ret = TRUE;
 	}
+	else if (event->keyval == GDK_KEY_f && event->state & GDK_CONTROL_MASK) {
+		gtk_widget_grab_focus (GTK_WIDGET(window->filter_entry));
+		ret = TRUE;
+	}
 
 	return ret;
 }
