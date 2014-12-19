@@ -212,6 +212,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
 	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
 	g_signal_connect (G_OBJECT(window->filter_entry), "changed", G_CALLBACK(filter_entry_keyrelease_handler), window->treeview);
+	gtk_widget_set_tooltip_text (window->filter_entry, _("Filter on process name"));
 
 	gtk_widget_grab_focus (GTK_WIDGET (window->treeview));
 
