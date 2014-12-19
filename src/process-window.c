@@ -116,6 +116,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
 	gint width, height;
+	gchar *markup;
 
 	window->settings = xtm_settings_get_default ();
 
@@ -192,6 +193,11 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	window->treeview = xtm_process_tree_view_new ();
 	gtk_widget_show (window->treeview);
+	markup = g_strdup_printf (_("<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
+								"<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
+								"<span foreground='#000000' background='#e57373'>    </span> Terminating task"));
+	gtk_widget_set_tooltip_markup (GTK_WIDGET (gtk_builder_get_object (window->builder, "scrolledwindow")), markup);
+	g_free (markup);
 	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->builder, "scrolledwindow")), window->treeview);
 
 	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
