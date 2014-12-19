@@ -130,7 +130,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_window_resize (GTK_WINDOW (window->window), width, height);
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
 	g_signal_connect_swapped (window->window, "delete-event", G_CALLBACK (emit_delete_event_signal), window);
-	g_signal_connect (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
+	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
 
 	window->toolbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-toolbar"));
 	g_signal_connect_swapped (window->settings, "notify::toolbar-style", G_CALLBACK (toolbar_update_style), window);
@@ -285,6 +285,10 @@ xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
 
 	if (event->keyval == GDK_KEY_Escape) {
 		emit_delete_event_signal (window, (GdkEvent*) event);
+		ret = TRUE;
+	}
+	else if (event->keyval == GDK_KEY_f && event->state & GDK_CONTROL_MASK) {
+		gtk_widget_grab_focus (GTK_WIDGET(window->filter_entry));
 		ret = TRUE;
 	}
 
