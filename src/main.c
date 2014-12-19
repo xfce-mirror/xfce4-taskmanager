@@ -31,11 +31,7 @@ static gboolean timeout = 0;
 static void
 status_icon_activated (void)
 {
-#ifdef HAVE_GTK3
-	if (!(gtk_widget_is_visible (window)))
-#else
-	if (!(GTK_WIDGET_VISIBLE (window)))
-#endif
+	if (!(gtk_widget_get_visible (window)))
 		gtk_widget_show (window);
 	else
 		gtk_widget_hide (window);
