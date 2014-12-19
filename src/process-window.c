@@ -50,6 +50,7 @@ struct _XtmProcessWindow
 	GtkWidget *		filter_entry;
 	GtkWidget *		cpu_monitor;
 	GtkWidget *		mem_monitor;
+	GtkWidget *		vpaned;
 	GtkWidget *		treeview;
 	GtkWidget *		statusbar;
 	GtkWidget *		exec_button;
@@ -147,8 +148,16 @@ xtm_process_window_init (XtmProcessWindow *window)
 	{
 		GtkWidget *toolitem;
 		guint refresh_rate;
+		gint handle_position;
 
-		g_object_get (window->settings, "refresh-rate", &refresh_rate, NULL);
+		g_object_get (window->settings,
+					  "refresh-rate", &refresh_rate,
+					  "handle-position", &handle_position,
+					  NULL);
+
+		window->vpaned = GTK_WIDGET (gtk_builder_get_object (window->builder, "mainview-vpaned"));
+		if (handle_position > -1)
+			gtk_paned_set_position (GTK_PANED (window->vpaned), handle_position);
 
 		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "graph-cpu"));
 		window->cpu_monitor = xtm_process_monitor_new ();
@@ -217,15 +226,22 @@ xtm_process_window_finalize (GObject *object)
 
 	if (GTK_IS_WINDOW (window->window))
 	{
-		gint width, height;
+		gint width, height, handle_position;
 		guint sort_column_id;
 		GtkSortType sort_type;
 
 		gtk_window_get_size (GTK_WINDOW (window->window), &width, &height);
 		xtm_process_tree_view_get_sort_column_id (XTM_PROCESS_TREE_VIEW (window->treeview), (gint*)&sort_column_id, &sort_type);
 
-		g_object_set (window->settings, "window-width", width, "window-height", height,
-				"sort-column-id", sort_column_id, "sort-type", sort_type, NULL);
+		handle_position = gtk_paned_get_position (GTK_PANED (window->vpaned));
+
+		g_object_set (window->settings,
+					  "window-width", width,
+					  "window-height", height,
+					  "sort-column-id", sort_column_id,
+					  "sort-type", sort_type,
+					  "handle-position", handle_position,
+					  NULL);
 	}
 
 	if (GTK_IS_TREE_VIEW (window->treeview))
