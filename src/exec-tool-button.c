@@ -86,6 +86,7 @@ execute_command (const gchar *command)
 	GAppInfo *app_info;
 	app_info = g_app_info_create_from_commandline (command, NULL, G_APP_INFO_CREATE_NONE, &error);
 	if (!error) {
+		screen = gdk_screen_get_default();
 		display = gdk_screen_get_display (screen);
 		launch_context = gdk_display_get_app_launch_context (display);
 		gdk_app_launch_context_set_screen (launch_context, screen);
