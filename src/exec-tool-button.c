@@ -79,7 +79,7 @@ static void
 execute_command (const gchar *command)
 {
 	GError *error = NULL;
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 	GdkScreen *screen;
 	GdkDisplay *display;
 	GdkAppLaunchContext *launch_context;

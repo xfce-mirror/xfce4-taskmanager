@@ -81,7 +81,7 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	GtkWidget *hbox, *hbox_cpu, *hbox_mem;
 	statusbar->settings = xtm_settings_get_default ();
 
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 	hbox_cpu = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 	hbox_mem = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
@@ -133,7 +133,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 	XtmProcessStatusbar *statusbar = XTM_PROCESS_STATUSBAR (object);
 	gchar *text;
 	gchar *float_value;
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 	GdkRGBA color;
 #else
 	GdkColor color;
@@ -146,7 +146,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		float_value = rounded_float_value (statusbar->cpu, statusbar->settings);
 		text = g_strdup_printf (_("CPU: %s%%"), float_value);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_cpu), text);
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 		gdk_rgba_parse (&color, "#ff6e00");
 		gtk_widget_override_color (statusbar->label_cpu, GTK_STATE_NORMAL, &color);
 #else
@@ -161,7 +161,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		g_strlcpy(statusbar->memory, g_value_get_string (value), 64);
 		text = g_strdup_printf (_("Memory: %s"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 		gdk_rgba_parse (&color, "#ab1852");
 		gtk_widget_override_color (statusbar->label_cpu, GTK_STATE_NORMAL, &color);
 #else

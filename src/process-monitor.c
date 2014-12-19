@@ -40,7 +40,7 @@ G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
 static void	xtm_process_monitor_get_property	(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void	xtm_process_monitor_set_property	(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 static gboolean	xtm_process_monitor_draw		(GtkWidget *widget, cairo_t *cr);
 #else
 static gboolean	xtm_process_monitor_expose		(GtkWidget *widget, GdkEventExpose *event);
@@ -57,7 +57,7 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	xtm_process_monitor_parent_class = g_type_class_peek_parent (klass);
 	class->get_property = xtm_process_monitor_get_property;
 	class->set_property = xtm_process_monitor_set_property;
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 	widget_class->draw = xtm_process_monitor_draw;
 #else
 	widget_class->expose_event = xtm_process_monitor_expose;
@@ -114,7 +114,7 @@ xtm_process_monitor_set_property (GObject *object, guint property_id, const GVal
 	}
 }
 
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 static gboolean
 xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 {
@@ -217,7 +217,7 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 	gint width, height;
 	static const double dashed[] = {1.5};
 	gint i;
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 	width = gtk_widget_get_allocated_width(GTK_WIDGET(monitor));
 	height = gtk_widget_get_allocated_height(GTK_WIDGET(monitor));
 #else

@@ -22,7 +22,7 @@
 
 #include "settings.h"
 #include "process-window.h"
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 #include "process-window-gtk3_ui.h"
 #else
 #include "process-window_ui.h"
@@ -182,7 +182,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	if (geteuid () == 0)
 	{
-#ifdef HAVE_GTK3
+#if GTK_CHECK_VERSION(3, 0, 0)
 		GtkCssProvider *css_provider;
 		css_provider = gtk_css_provider_new ();
 		gtk_css_provider_load_from_data (css_provider,
@@ -389,7 +389,7 @@ show_about_dialog (XtmProcessWindow *window)
 		"version", PACKAGE_VERSION,
 		"copyright", "Copyright \302\251 2005-2014 The Xfce development team",
 		"logo-icon-name", "utilities-system-monitor",
-#ifndef HAVE_GTK3
+#if !GTK_CHECK_VERSION(3, 0, 0)
 		"icon-name", GTK_STOCK_ABOUT,
 #endif
 		"comments", _("Easy to use task manager"),
