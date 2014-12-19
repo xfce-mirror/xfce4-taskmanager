@@ -7,8 +7,10 @@ src/process-statusbar.c
 src/process-tree-view.c
 src/process-window.c
 [type: gettext/glade]src/process-window.ui
+[type: gettext/glade]src/process-window-gtk3.ui
 src/settings.c
 src/settings-dialog.c
 [type: gettext/glade]src/settings-dialog.ui
+[type: gettext/glade]src/settings-dialog-gtk3.ui
 src/settings-tool-button.c
 src/task-manager.c
