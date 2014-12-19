@@ -116,6 +116,8 @@
           <object class="GtkVPaned" id="vpaned1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="position">100</property>
+            <property name="position_set">True</property>
             <child>
               <object class="GtkVBox" id="graph-vbox">
                 <property name="visible">True</property>
@@ -168,7 +170,7 @@
                 </child>
               </object>
               <packing>
-                <property name="resize">True</property>
+                <property name="resize">False</property>
                 <property name="shrink">False</property>
               </packing>
             </child>
