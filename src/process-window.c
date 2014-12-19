@@ -172,9 +172,20 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	if (geteuid () == 0)
 	{
-		gtk_rc_parse_string ("style\"root-warning-style\"{bg[NORMAL]=\"#b4254b\"\nfg[NORMAL]=\"#fefefe\"}\n"
+#ifdef HAVE_GTK3
+		GtkCssProvider *css_provider;
+		css_provider = gtk_css_provider_new ();
+		gtk_css_provider_load_from_data (css_provider,
+										"#root-warning { background-color: #e53935; color: #ffffff; }",
+										-1, NULL);
+		gtk_style_context_add_provider_for_screen (gdk_screen_get_default (), GTK_STYLE_PROVIDER (css_provider),
+                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+		g_object_unref (css_provider);
+#else
+		gtk_rc_parse_string ("style\"root-warning-style\"{bg[NORMAL]=\"#e53935\"\nfg[NORMAL]=\"#ffffff\"}\n"
 				"widget\"GtkWindow.*.root-warning\"style\"root-warning-style\"\n"
 				"widget\"GtkWindow.*.root-warning.GtkLabel\"style\"root-warning-style\"");
+#endif
 		gtk_widget_set_name (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-ebox")), "root-warning");
 		gtk_widget_show_all (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-box")));
 	}
