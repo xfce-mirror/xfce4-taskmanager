@@ -611,6 +611,9 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 
 	g_return_if_fail (gtk_tree_path_get_depth (path) == 1);
 
+	/* Take a reference on this node, to want to stay informed about any changes in this row */
+	gtk_tree_model_ref_node(model, iter);
+
 	not_persist = ! (gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_ITERS_PERSIST);
 
 	s_iter.stamp = treemodel->stamp;
