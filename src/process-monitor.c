@@ -224,6 +224,9 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 	width = GTK_WIDGET (monitor)->allocation.width;
 	height = GTK_WIDGET (monitor)->allocation.height;
 #endif
+	/* Don't draw anything if the graph is too small */
+	if (height < 3)
+		return;
 
 	/* Paint the graph's background box */
 	cairo_rectangle (cr, 0.0, 0.0, width, height);
