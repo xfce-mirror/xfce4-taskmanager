@@ -55,7 +55,7 @@ gboolean get_task_list (GArray *task_list)
 #endif
 	Task t;
 	struct passwd *passwdp;
-	char **args, **ptr;
+	char **args;
 	gchar* buf;
 	int nproc, i;
 
