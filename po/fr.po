@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2014-12-20 17:19+0000\n"
+"PO-Revision-Date: 2014-12-21 07:47+0000\n"
 "Last-Translator: Urien Desterres <urien.desterres@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/xfce-apps/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,11 @@ msgstr "Gestionnaire de tâches"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
 msgid "Easy to use task manager"
-msgstr "Gestionnaire de tâches simple d'utilisation"
+msgstr "Gestionnaire de tâches simple d’utilisation"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
-msgstr "Erreur d'exécution"
+msgstr "Erreur d’exécution"
 
 #: ../src/exec-tool-button.c:150
 msgid "Couldn't find any default command to run."
@@ -93,7 +93,7 @@ msgstr "Mémoire : %s"
 #: ../src/process-statusbar.c:176
 #, c-format
 msgid "Swap: %s"
-msgstr "Fichier d'échange : %s"
+msgstr "Fichier d’échange : %s"
 
 #: ../src/process-statusbar.c:190
 #, c-format
