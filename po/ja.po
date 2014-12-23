@@ -1,427 +1,354 @@
-# Japanese translations for xfce4-taskmanager package.
-# Copyright (C) 2005-2012 Johannes Zellner.
-# This file is distributed under the same license as
-#   the xfce4-taskmanager package.
-# Daichi Kawahata <daichi@xfce.org>, 2006.
-# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008.
-# Masato Hashimoto <cabezon.hashimoto@gmail.com>, 2010-2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Daichi Kawahata <daichi@xfce.org>, 2006
+# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-taskmanager 0.4.0-rc1\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 15:41+0900\n"
-"PO-Revision-Date: 2012-04-23 20:44+0900\n"
-"Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
-"Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
-"Language: ja\n"
+"POT-Creation-Date: 2014-12-20 00:31+0100\n"
+"PO-Revision-Date: 2014-12-23 13:46+0000\n"
+"Last-Translator: Masato HASHIMOTO <cabezon.hashimoto@gmail.com>\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/xfce-apps/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:89
-#: ../src/exec-tool-button.c:134 ../src/main.c:156
-#: ../src/process-tree-view.c:355 ../src/process-tree-view.c:370
-#: ../src/process-tree-view.c:398 ../src/process-window.c:304
-#: ../src/process-window.ui.h:1
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
+#: ../src/exec-tool-button.c:151 ../src/main.c:186
+#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:415 ../src/process-window.c:389
+#: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "タスクマネージャー"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:309
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
 msgid "Easy to use task manager"
 msgstr "使いやすいタスクマネージャーです"
 
-#: ../src/exec-tool-button.c:87 ../src/exec-tool-button.c:131
+#: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
 msgstr "実行エラー"
 
-#: ../src/exec-tool-button.c:133
+#: ../src/exec-tool-button.c:150
 msgid "Couldn't find any default command to run."
 msgstr "起動するデフォルトコマンドが見つかりませんでした。"
 
-#: ../src/exec-tool-button.c:164
+#: ../src/exec-tool-button.c:181
 msgid "Run Task Manager as root"
 msgstr "タスクマネージャーを root で起動"
 
-#: ../src/exec-tool-button.c:175 ../src/exec-tool-button.c:177
-#: ../src/exec-tool-button.c:179
+#: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
+#: ../src/exec-tool-button.c:196
 msgid "Run Program..."
 msgstr "プログラムの実行..."
 
-#: ../src/exec-tool-button.c:182
+#: ../src/exec-tool-button.c:199
 msgid "Application Finder"
 msgstr "アプリケーションファインダー"
 
-#: ../src/exec-tool-button.c:185
+#: ../src/exec-tool-button.c:202
 msgid "Terminal emulator"
 msgstr "ターミナルエミュレーター"
 
-#: ../src/exec-tool-button.c:187
+#: ../src/exec-tool-button.c:204
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:100
+#: ../src/main.c:126
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
 "<b>CPU:</b> %.0f%%\n"
-"<b>Memory:</b> %.0f%%\n"
-"<b>Swap:</b> %.0f%%"
-msgstr ""
-"<b>プロセス数:</b> %u\n"
-"<b>CPU:</b> %.0f%%\n"
-"<b>メモリ:</b> %.0f%%\n"
-"<b>スワップ:</b> %.0f%%"
+"<b>Memory:</b> %s\n"
+"<b>Swap:</b> %s"
+msgstr "<b>プロセス数:</b> %u\n<b>CPU:</b> %.0f%%\n<b>メモリ:</b> %s\n<b>スワップ:</b> %s"
 
-#: ../src/main.c:108
+#: ../src/main.c:134
 #, c-format
 msgid ""
 "Processes: %u\n"
 "CPU: %.0f%%\n"
-"Memory: %.0f%%\n"
-"Swap: %.0f%%"
-msgstr ""
-"プロセス数: %u\n"
-"CPU: %.0f%%\n"
-"メモリ: %.0f%%\n"
-"スワップ: %.0f%%"
+"Memory: %s\n"
+"Swap: %s"
+msgstr "プロセス数: %u\nCPU: %.0f%%\nメモリ: %s\nスワップ: %s"
 
-#: ../src/process-statusbar.c:148 ../src/process-window.c:374
+#: ../src/process-statusbar.c:147 ../src/process-window.c:461
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:157 ../src/process-window.c:379
+#: ../src/process-statusbar.c:162 ../src/process-window.c:465
 #, c-format
-msgid "Memory: %s%%"
-msgstr "メモリ: %s%%"
+msgid "Memory: %s"
+msgstr "メモリ: %s"
 
-#: ../src/process-statusbar.c:166
+#: ../src/process-statusbar.c:176
 #, c-format
-msgid "Swap: %s%%"
-msgstr "スワップ: %s%%"
+msgid "Swap: %s"
+msgstr "スワップ: %s"
 
-#: ../src/process-statusbar.c:181
+#: ../src/process-statusbar.c:190
 #, c-format
 msgid "Processes: %d"
 msgstr "プロセス: %d"
 
-#: ../src/process-tree-view.c:125
+#: ../src/process-tree-view.c:136
 msgid "Task"
 msgstr "タスク"
 
-#: ../src/process-tree-view.c:136 ../src/settings-tool-button.c:174
+#: ../src/process-tree-view.c:147 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:155 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:163 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "状態"
 
-#: ../src/process-tree-view.c:161
+#: ../src/process-tree-view.c:172
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:169
+#: ../src/process-tree-view.c:180
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:177 ../src/settings-tool-button.c:179
+#: ../src/process-tree-view.c:188 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:196 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "CPU"
 
-#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header.
-#: ../src/process-tree-view.c:194
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: ../src/process-tree-view.c:205
 msgid "Prio."
 msgstr "優先度"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:369
 msgid "Terminate task"
 msgstr "タスクを終了"
 
-#: ../src/process-tree-view.c:352
+#: ../src/process-tree-view.c:369
 msgid "Kill task"
 msgstr "タスクを Kill"
 
-#: ../src/process-tree-view.c:354
+#: ../src/process-tree-view.c:371
 #, c-format
 msgid "Are you sure you want to send a signal to the PID %d?"
 msgstr "PID %d へシグナルを送信しますか?"
 
-#: ../src/process-tree-view.c:366
+#: ../src/process-tree-view.c:383
 msgid "Error sending signal"
 msgstr "シグナル送信エラー"
 
-#: ../src/process-tree-view.c:368
+#: ../src/process-tree-view.c:385
 #, c-format
 msgid ""
-"An error was encountered by sending a signal to the PID %d. It is likely you "
-"don't have the required privileges."
-msgstr ""
-"PID %d へのシグナル送信でエラーが発生しました。必要な権限がないと思われます。"
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
+msgstr "PID %d へのシグナル送信でエラーが発生しました。必要な権限がないと思われます。"
 
-#: ../src/process-tree-view.c:395
+#: ../src/process-tree-view.c:412
 msgid "Error setting priority"
 msgstr "優先度設定エラー"
 
-#: ../src/process-tree-view.c:396
+#: ../src/process-tree-view.c:413
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr ""
-"PID %d への優先度設定でエラーが発生しました。必要な権限がないと思われます。"
+msgstr "PID %d への優先度設定でエラーが発生しました。必要な権限がないと思われます。"
 
-#: ../src/process-tree-view.c:412
+#: ../src/process-tree-view.c:429
 msgid "Terminate"
 msgstr "終了"
 
-#: ../src/process-tree-view.c:420
+#: ../src/process-tree-view.c:437
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/process-tree-view.c:427
+#: ../src/process-tree-view.c:444
 msgid "Continue"
 msgstr "再開"
 
-#: ../src/process-tree-view.c:433
+#: ../src/process-tree-view.c:450
 msgid "Kill"
 msgstr "Kill"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:457
 msgid "Very low"
 msgstr "とても低い"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:462
 msgid "Low"
 msgstr "低い"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:467
 msgid "Normal"
 msgstr "通常"
 
-#: ../src/process-tree-view.c:455
+#: ../src/process-tree-view.c:472
 msgid "High"
 msgstr "高い"
 
-#: ../src/process-tree-view.c:460
+#: ../src/process-tree-view.c:477
 msgid "Very high"
 msgstr "とても高い"
 
-#: ../src/process-tree-view.c:465 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:482 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "優先度"
 
-#: ../src/process-window.c:312
+#: ../src/process-window.c:205
+#, c-format
+msgid ""
+"<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
+"<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
+"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
+msgstr "<span foreground='#000000' background='#aed581'>    </span> 起動中のタスク\n<span foreground='#000000' background='#fff176'>    </span> 変更中のタスク\n<span foreground='#000000' background='#e57373'>    </span> 終了中のタスク"
+
+#: ../src/process-window.c:215
+msgid "Filter on process name"
+msgstr "プロセス名でフィルターをかけます"
+
+#: ../src/process-window.c:399
 msgid "translator-credits"
-msgstr ""
-"Daichi Kawahata\n"
-"Nobuhiro Iwamatsu\n"
-"Masato Hashimoto"
+msgstr "Daichi Kawahata\nNobuhiro Iwamatsu\nMasato Hashimoto"
 
-#: ../src/process-window.ui.h:2
+#: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr ""
-"警告: あなたは root アカウントを使用しており、システムに悪影響を与えるかもし"
-"れません。"
+msgstr "警告: あなたは root アカウントを使用しており、システムに悪影響を与えるかもしれません。"
 
-#: ../src/settings.c:378
+#: ../src/settings.c:387
 msgid "Default"
 msgstr "デフォルト"
 
-#: ../src/settings.c:379
+#: ../src/settings.c:388
 msgid "Small"
 msgstr "小"
 
-#: ../src/settings.c:380
+#: ../src/settings.c:389
 msgid "Large"
 msgstr "大"
 
-#: ../src/settings.c:381
+#: ../src/settings.c:390
 msgid "Text"
 msgstr "テキスト"
 
-#: ../src/settings-dialog.ui.h:1
+#: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
 msgid "Settings for Task Manager"
 msgstr "タスクマネージャーの設定"
 
-#: ../src/settings-dialog.ui.h:2
+#: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
 msgid "Show application icons"
 msgstr "アプリケーションアイコンを表示する"
 
-#: ../src/settings-dialog.ui.h:3
+#: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
 msgid "Show full command lines"
 msgstr "完全なコマンドラインを表示する"
 
-#: ../src/settings-dialog.ui.h:4
+#: ../src/settings-dialog.ui.h:4 ../src/settings-dialog-gtk3.ui.h:4
 msgid "Show values with more precision"
 msgstr "より正確な値を表示する"
 
-#: ../src/settings-dialog.ui.h:5
-msgid "Draw borders around monitors"
-msgstr "モニターの枠を描画する"
+#: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
+msgid "Show processes as tree"
+msgstr "プロセスをツリーで表示する"
 
-#: ../src/settings-dialog.ui.h:6
+#: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
+msgid "Show memory usage in bytes"
+msgstr "メモリ使用量をバイトで表示する"
+
+#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
 msgstr "ツールバースタイル:"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "<b>Interface style</b>"
 msgstr "<b>インターフェイススタイル</b>"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Prompt for terminating tasks"
 msgstr "タスクを終了させる時に確認する"
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "Hide into the notification area"
 msgstr "ウィンドウを閉じたら通知エリアに隠す"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>その他</b>"
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
 msgid "Refresh rate:"
 msgstr "リフレッシュ間隔:"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "Columns:"
 msgstr "カラム:"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
 msgid "<b>Information</b>"
 msgstr "<b>情報</b>"
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
 msgid "Settings"
 msgstr "設定"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/settings-tool-button.c:110
+#: ../src/settings-tool-button.c:111
 msgid "500ms"
 msgstr "500ミリ秒"
 
-#: ../src/settings-tool-button.c:111
+#: ../src/settings-tool-button.c:112
 msgid "750ms"
 msgstr "750ミリ秒"
 
-#: ../src/settings-tool-button.c:112
+#: ../src/settings-tool-button.c:113
 msgid "1s"
 msgstr "1秒"
 
-#: ../src/settings-tool-button.c:113
+#: ../src/settings-tool-button.c:114
 msgid "2s"
 msgstr "2秒"
 
-#: ../src/settings-tool-button.c:114
+#: ../src/settings-tool-button.c:115
 msgid "5s"
 msgstr "5秒"
 
-#: ../src/settings-tool-button.c:115
+#: ../src/settings-tool-button.c:116
 msgid "10s"
 msgstr "10秒"
 
-#: ../src/settings-tool-button.c:164
+#: ../src/settings-tool-button.c:165
 msgid "Show all processes"
 msgstr "すべてのプロセスを表示する"
 
-#: ../src/settings-tool-button.c:167
+#: ../src/settings-tool-button.c:168
 msgid "Refresh rate"
 msgstr "リフレッシュ間隔"
 
-#: ../src/settings-tool-button.c:177
+#: ../src/settings-tool-button.c:178
 msgid "Virtual Bytes"
 msgstr "仮想メモリ"
 
-#: ../src/settings-tool-button.c:178
+#: ../src/settings-tool-button.c:179
 msgid "Private Bytes"
 msgstr "プライベートメモリ"
 
-#: ../src/task-manager.c:229
-#, c-format
-msgid "%lu MiB"
-msgstr "%lu MiB"
-
-#: ../src/task-manager.c:236
-#, c-format
-msgid "%lu KiB"
-msgstr "%lu KiB"
-
-#: ../src/task-manager.c:240
-#, c-format
-msgid "%lu B"
-msgstr "%lu B"
-
-#: ../src/task-manager.c:263
+#: ../src/task-manager.c:241
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
-
-#~ msgid "More precision"
-#~ msgstr "もっと正確に"
-
-#~ msgid "Show status icon"
-#~ msgstr "状態アイコンの表示"
-
-#~ msgid "250ms"
-#~ msgstr "250ms"
-
-#~ msgid "%.2f%%"
-#~ msgstr "%.2f%%"
-
-#~ msgid "Control your processes"
-#~ msgstr "プロセスをコントロールします"
-
-#~ msgid "Process manager"
-#~ msgstr "プロセスマネージャー"
-
-#~ msgid "Xfce4 Taskmanager"
-#~ msgstr "xfce4 タスクマネージャー"
-
-#~ msgid "Really kill the task?"
-#~ msgstr "本当にタスクを kill しますか?"
-
-#~ msgid "%d MB of %d MB used"
-#~ msgstr "%2$d MB 中 %1$d MB 使用"
-
-#~ msgid "Cpu usage"
-#~ msgstr "CPU 使用量"
-
-#~ msgid "Memory usage"
-#~ msgstr "メモリ使用量"
-
-#~ msgid "Command"
-#~ msgstr "コマンド"
-
-#~ msgid "VM-Size"
-#~ msgstr "VM サイズ"
-
-#~ msgid "User"
-#~ msgstr "ユーザー"
-
-#~ msgid "Show user tasks"
-#~ msgstr "ユーザータスクを表示する"
-
-#~ msgid "Show root tasks"
-#~ msgstr "ルートタスクを表示する"
-
-#~ msgid "Show other tasks"
-#~ msgstr "その他のタスクを表示する"
-
-#~ msgid "Show memory used by cache as free"
-#~ msgstr "キャッシュが使うメモリを空きとして表示する"
-
-#~ msgid "Contributors:"
-#~ msgstr "協力者:"
-
-#~ msgid "Couldn't set priority %d to the task with ID %d"
-#~ msgstr "ID %d のタスクの優先度を %d へ設定できませんでした"
