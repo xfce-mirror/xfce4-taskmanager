@@ -184,7 +184,7 @@ pid_is_sleeping (guint pid)
 #else
 		errx(1, "could not read kern.proc2 for pid %d", pid);
 #endif
-	return (kp.p_stat == SSLEEP ? TRUE : FALSE);
+	return (kp.p_stat == SSTOP ? TRUE : FALSE);
 }
 
 gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
