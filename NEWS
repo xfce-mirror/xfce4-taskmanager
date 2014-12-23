@@ -1,3 +1,22 @@
+1.1.0
+
+- Initial port to Gtk3, use --enable-gtk3 to test it (Gtk2 is still the default)
+- Stop using lots of deprecated Gtk2 API
+- Add a process treeview mode (Peter de Ridder)
+- General UI/graph overhaul (Simon Steinbeiss)
+- Various crash & correctness fixes on the bsd backend
+- Add a searchbox to filter on process names (Matias de Iellis #9856)
+- Make Escape key close the main window (Harald Judt #11343)
+- Fix window settings not properly saved (#10670)
+- Fix build issue on FreeBSD 8.0 (#8081)
+- Fix the refresh rate menu (Alistair Buxton)
+- Default the focus on the process list instead of the exec button (#10643)
+- Add an option to show memory/swap usage as bytes instead of % (#6503)
+- Add unique app behaviour (#8808)
+- Default to close the window instead of hiding in systray (#10941)
+- Fix type causing high cpu usage on ARM (#10417)
+- Tons of translation updates (thanks to all translators!)
+
 1.0.1
 
 - Add "Run Task Manager as root" item in "Execute" menu
