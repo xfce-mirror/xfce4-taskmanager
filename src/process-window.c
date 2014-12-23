@@ -225,26 +225,6 @@ xtm_process_window_finalize (GObject *object)
 {
 	XtmProcessWindow *window = XTM_PROCESS_WINDOW (object);
 
-	if (GTK_IS_WINDOW (window->window))
-	{
-		gint width, height, handle_position;
-		guint sort_column_id;
-		GtkSortType sort_type;
-
-		gtk_window_get_size (GTK_WINDOW (window->window), &width, &height);
-		xtm_process_tree_view_get_sort_column_id (XTM_PROCESS_TREE_VIEW (window->treeview), (gint*)&sort_column_id, &sort_type);
-
-		handle_position = gtk_paned_get_position (GTK_PANED (window->vpaned));
-
-		g_object_set (window->settings,
-					  "window-width", width,
-					  "window-height", height,
-					  "sort-column-id", sort_column_id,
-					  "sort-type", sort_type,
-					  "handle-position", handle_position,
-					  NULL);
-	}
-
 	if (GTK_IS_TREE_VIEW (window->treeview))
 		gtk_widget_destroy (window->treeview);
 
@@ -275,6 +255,23 @@ static gboolean
 emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event)
 {
 	gboolean ret;
+	gint width, height, handle_position;
+	guint sort_column_id;
+	GtkSortType sort_type;
+
+	gtk_window_get_size (GTK_WINDOW (window->window), &width, &height);
+	xtm_process_tree_view_get_sort_column_id (XTM_PROCESS_TREE_VIEW (window->treeview), (gint*)&sort_column_id, &sort_type);
+
+	handle_position = gtk_paned_get_position (GTK_PANED (window->vpaned));
+
+	g_object_set (window->settings,
+				  "window-width", width,
+				  "window-height", height,
+				  "sort-column-id", sort_column_id,
+				  "sort-type", sort_type,
+				  "handle-position", handle_position,
+				  NULL);
+
 	g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
 	return ret;
 }
