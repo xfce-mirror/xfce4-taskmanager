@@ -168,7 +168,7 @@ menu_append_item (GtkMenu *menu, gchar *title, gchar *command, gchar *icon_name)
 	g_signal_connect_swapped (mi, "activate", G_CALLBACK (execute_command), command);
 }
 
-static inline GtkWidget *
+static GtkWidget *
 construct_menu (void)
 {
 	GtkWidget *menu = gtk_menu_new ();

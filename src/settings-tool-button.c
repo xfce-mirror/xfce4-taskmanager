@@ -154,7 +154,7 @@ menu_append_item (GtkMenu *menu, gchar *title, gchar *setting_name, XtmSettings 
 	g_free (notify_name);
 }
 
-static inline GtkWidget *
+static GtkWidget *
 construct_menu (void)
 {
 	XtmSettings *settings = xtm_settings_get_default ();
