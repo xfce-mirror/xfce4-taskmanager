@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2014-12-21 07:47+0000\n"
+"PO-Revision-Date: 2014-12-27 22:25+0000\n"
 "Last-Translator: Urien Desterres <urien.desterres@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/xfce-apps/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -295,7 +295,7 @@ msgstr "<b>Divers</b>"
 
 #: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
 msgid "Refresh rate:"
-msgstr "Taux de rafraîchissement :"
+msgstr "Taux de rafraichissement :"
 
 #: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "Columns:"
@@ -340,7 +340,7 @@ msgstr "Afficher tous les processus"
 
 #: ../src/settings-tool-button.c:168
 msgid "Refresh rate"
-msgstr "Taux de rafraîchissement"
+msgstr "Taux de rafraichissement"
 
 #: ../src/settings-tool-button.c:178
 msgid "Virtual Bytes"
