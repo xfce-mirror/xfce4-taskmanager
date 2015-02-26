@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2015-02-26 07:33+0000\n"
+"PO-Revision-Date: 2015-02-26 13:48+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -117,11 +117,11 @@ msgstr "状态"
 
 #: ../src/process-tree-view.c:172
 msgid "VSZ"
-msgstr "VSZ"
+msgstr "虚拟内存"
 
 #: ../src/process-tree-view.c:180
 msgid "RSS"
-msgstr "RSS"
+msgstr "物理内存"
 
 #: ../src/process-tree-view.c:188 ../src/settings-tool-button.c:180
 msgid "UID"
@@ -218,7 +218,7 @@ msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
 "<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> 启动任务\n<span foreground='#000000' background='#fff176'>    </span> 更改任务\n<span foreground='#000000' background='#e57373'>    </span> 终止任务"
+msgstr "<span foreground='#000000' background='#aed581'>    </span> 正在启动任务\n<span foreground='#000000' background='#fff176'>    </span> 正在更改任务\n<span foreground='#000000' background='#e57373'>    </span> 正在终止任务"
 
 #: ../src/process-window.c:215
 msgid "Filter on process name"
@@ -286,7 +286,7 @@ msgstr "终止任务时提示"
 
 #: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "Hide into the notification area"
-msgstr "在通知区域隐藏"
+msgstr "隐藏至通知区域"
 
 #: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "<b>Miscellaneous</b>"
