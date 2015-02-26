@@ -6,14 +6,14 @@
 # Christoph Wickert <christoph.wickert@gmail.com>, 2014
 # Georg Eckert <eckert.georg@gmx.de>, 2013
 # Harald Judt <h.judt@gmx.at>, 2014
-# Tobias Bannert <tobannert@gmail.com>, 2014
+# Tobias Bannert <tobannert@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-18 00:30+0100\n"
-"PO-Revision-Date: 2014-12-19 15:54+0000\n"
-"Last-Translator: Harald Judt <h.judt@gmx.at>\n"
+"POT-Creation-Date: 2014-12-20 00:31+0100\n"
+"PO-Revision-Date: 2015-02-25 23:51+0000\n"
+"Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,48 +21,48 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:105
-#: ../src/exec-tool-button.c:150 ../src/main.c:190
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
+#: ../src/exec-tool-button.c:151 ../src/main.c:186
 #: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:415 ../src/process-window.c:345
-#: ../src/process-window.ui.h:1
+#: ../src/process-tree-view.c:415 ../src/process-window.c:389
+#: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Taskmanager"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:352
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
 msgid "Easy to use task manager"
 msgstr "Prozessverwaltung mit einfacher Bedienung"
 
-#: ../src/exec-tool-button.c:103 ../src/exec-tool-button.c:147
+#: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
 msgstr "Fehler beim Ausführen"
 
-#: ../src/exec-tool-button.c:149
+#: ../src/exec-tool-button.c:150
 msgid "Couldn't find any default command to run."
 msgstr "Es wurde kein Standardbefehl zum Ausführen gefunden."
 
-#: ../src/exec-tool-button.c:180
+#: ../src/exec-tool-button.c:181
 msgid "Run Task Manager as root"
 msgstr "Prozessverwaltung als Systemverwalter ausführen"
 
-#: ../src/exec-tool-button.c:191 ../src/exec-tool-button.c:193
-#: ../src/exec-tool-button.c:195
+#: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
+#: ../src/exec-tool-button.c:196
 msgid "Run Program..."
 msgstr "Befehl ausführen …"
 
-#: ../src/exec-tool-button.c:198
+#: ../src/exec-tool-button.c:199
 msgid "Application Finder"
 msgstr "Anwendungsfinder"
 
-#: ../src/exec-tool-button.c:201
+#: ../src/exec-tool-button.c:202
 msgid "Terminal emulator"
 msgstr "Terminal-Emulator"
 
-#: ../src/exec-tool-button.c:203
+#: ../src/exec-tool-button.c:204
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:130
+#: ../src/main.c:126
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -71,7 +71,7 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Prozesse:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Arbeitsspeicher:</b> %s\n<b>Auslagerungsspeicher:</b> %s"
 
-#: ../src/main.c:138
+#: ../src/main.c:134
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -80,22 +80,22 @@ msgid ""
 "Swap: %s"
 msgstr "Prozesse: %u\nCPU: %.0f%%\nArbeitsspeicher: %s\nAuslagerungsspeicher: %s"
 
-#: ../src/process-statusbar.c:152 ../src/process-window.c:421
+#: ../src/process-statusbar.c:147 ../src/process-window.c:461
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:160 ../src/process-window.c:425
+#: ../src/process-statusbar.c:162 ../src/process-window.c:465
 #, c-format
 msgid "Memory: %s"
 msgstr "RAM: %s"
 
-#: ../src/process-statusbar.c:167
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Swap: %s"
 msgstr "Swap: %s"
 
-#: ../src/process-statusbar.c:181
+#: ../src/process-statusbar.c:190
 #, c-format
 msgid "Processes: %d"
 msgstr "Prozesse: %d"
@@ -213,87 +213,99 @@ msgstr "Sehr hoch"
 msgid "Priority"
 msgstr "Priorität"
 
-#: ../src/process-window.c:355
+#: ../src/process-window.c:205
+#, c-format
+msgid ""
+"<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
+"<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
+"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Prozess wird gestartet\n<span foreground='#000000' background='#fff176'>    </span> Prozess wird geändert\n<span foreground='#000000' background='#e57373'>    </span> Prozess wird beendet"
+
+#: ../src/process-window.c:215
+msgid "Filter on process name"
+msgstr "Nach Prozessname filtern"
+
+#: ../src/process-window.c:399
 msgid "translator-credits"
 msgstr "Übersetzerdanksagungen"
 
-#: ../src/process-window.ui.h:2
+#: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Achtung, Sie benutzen das Systemverwalterkonto und können Ihr System beschädigen."
 
-#: ../src/settings.c:384
+#: ../src/settings.c:387
 msgid "Default"
 msgstr "Standard"
 
-#: ../src/settings.c:385
+#: ../src/settings.c:388
 msgid "Small"
 msgstr "Klein"
 
-#: ../src/settings.c:386
+#: ../src/settings.c:389
 msgid "Large"
 msgstr "Groß"
 
-#: ../src/settings.c:387
+#: ../src/settings.c:390
 msgid "Text"
 msgstr "Text"
 
-#: ../src/settings-dialog.ui.h:1
+#: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
 msgid "Settings for Task Manager"
 msgstr "Einstellungen der Prozessverwaltung"
 
-#: ../src/settings-dialog.ui.h:2
+#: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
 msgid "Show application icons"
 msgstr "Symbole der Anwendungen anzeigen"
 
-#: ../src/settings-dialog.ui.h:3
+#: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
 msgid "Show full command lines"
 msgstr "Vollständige Befehlszeilen anzeigen"
 
-#: ../src/settings-dialog.ui.h:4
+#: ../src/settings-dialog.ui.h:4 ../src/settings-dialog-gtk3.ui.h:4
 msgid "Show values with more precision"
 msgstr "Werte mit höherer Genauigkeit anzeigen"
 
-#: ../src/settings-dialog.ui.h:5
+#: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
 msgid "Show processes as tree"
 msgstr "Prozesse in Baumstruktur anzeigen"
 
-#: ../src/settings-dialog.ui.h:6
+#: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
 msgid "Show memory usage in bytes"
 msgstr "Speicherbelegung in Bytes anzeigen"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
 msgstr "Werkzeugleistenstil:"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "<b>Interface style</b>"
 msgstr "<b>Oberflächenstil</b>"
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Prompt for terminating tasks"
 msgstr "Beenden von Prozessen bestätigen"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "Hide into the notification area"
 msgstr "Fenster in die Benachrichtigungsfläche verkleinern"
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Sonstiges</b>"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
 msgid "Refresh rate:"
 msgstr "Wiederholrate:"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "Columns:"
 msgstr "Spalten:"
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
 msgid "<b>Information</b>"
 msgstr "<b>Information</b>"
 
-#: ../src/settings-dialog.ui.h:15
+#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
 msgid "Settings"
 msgstr "Einstellungen"
 
