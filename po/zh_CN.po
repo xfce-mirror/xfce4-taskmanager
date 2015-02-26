@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2015-02-10 09:53+0000\n"
+"PO-Revision-Date: 2015-02-26 07:33+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -298,7 +298,7 @@ msgstr "刷新率："
 
 #: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "Columns:"
-msgstr "\t\n栏:"
+msgstr "栏:"
 
 #: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
 msgid "<b>Information</b>"
@@ -311,27 +311,27 @@ msgstr "设置"
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:111
 msgid "500ms"
-msgstr "500 ms"
+msgstr "500 毫秒"
 
 #: ../src/settings-tool-button.c:112
 msgid "750ms"
-msgstr "750 ms"
+msgstr "750 毫秒"
 
 #: ../src/settings-tool-button.c:113
 msgid "1s"
-msgstr "1 s"
+msgstr "1 秒"
 
 #: ../src/settings-tool-button.c:114
 msgid "2s"
-msgstr "2 s"
+msgstr "2 秒"
 
 #: ../src/settings-tool-button.c:115
 msgid "5s"
-msgstr "5 s"
+msgstr "5 秒"
 
 #: ../src/settings-tool-button.c:116
 msgid "10s"
-msgstr "10 s"
+msgstr "10 秒"
 
 #: ../src/settings-tool-button.c:165
 msgid "Show all processes"
