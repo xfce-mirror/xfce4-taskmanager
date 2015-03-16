@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2015-03-13 12:27+0000\n"
+"PO-Revision-Date: 2015-03-16 18:52+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/xfce-apps/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %s\n"
 "<b>Swap:</b> %s"
-msgstr ""
+msgstr "<b>Procesai:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Atmintis:</b> %s\n<b>Mainų sritis:</b> %s"
 
 #: ../src/main.c:134
 #, c-format
@@ -76,7 +76,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %s\n"
 "Swap: %s"
-msgstr ""
+msgstr "Procesai: %u\nCPU: %.0f%%\nAtmintis: %s\nMainų sritis: %s"
 
 #: ../src/process-statusbar.c:147 ../src/process-window.c:461
 #, c-format
@@ -86,12 +86,12 @@ msgstr "CPU: %s%%"
 #: ../src/process-statusbar.c:162 ../src/process-window.c:465
 #, c-format
 msgid "Memory: %s"
-msgstr ""
+msgstr "Atmintis: %s"
 
 #: ../src/process-statusbar.c:176
 #, c-format
 msgid "Swap: %s"
-msgstr ""
+msgstr "Mainų sritis: %s"
 
 #: ../src/process-statusbar.c:190
 #, c-format
@@ -217,11 +217,11 @@ msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
 "<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Pradedama užduotis\n<span foreground='#000000' background='#fff176'>    </span> Keičiama užduotis\n<span foreground='#000000' background='#e57373'>    </span> Nutraukiama užduotis"
 
 #: ../src/process-window.c:215
 msgid "Filter on process name"
-msgstr ""
+msgstr "Filtruoti pagal proceso pavadinimą"
 
 #: ../src/process-window.c:399
 msgid "translator-credits"
@@ -269,7 +269,7 @@ msgstr "Rodyti procesus kaip medį"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
 msgid "Show memory usage in bytes"
-msgstr ""
+msgstr "Rodyti atminties naudojimą baitais"
 
 #: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
