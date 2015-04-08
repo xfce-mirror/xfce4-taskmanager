@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2015-03-16 18:52+0000\n"
+"PO-Revision-Date: 2015-04-08 22:16+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/xfce-apps/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -25,11 +25,11 @@ msgstr ""
 #: ../src/process-tree-view.c:415 ../src/process-window.c:389
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
-msgstr "Užduočių tvarkyklė"
+msgstr "Užduočių tvarkytuvė"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
 msgid "Easy to use task manager"
-msgstr "Lengvai naudojama užduočių tvarkyklė"
+msgstr "Lengvai naudojama užduočių tvarkytuvė"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
@@ -41,7 +41,7 @@ msgstr "Nepavyko rasti jokios numatytosios komandos kurią vykdyti."
 
 #: ../src/exec-tool-button.c:181
 msgid "Run Task Manager as root"
-msgstr "Vykdyti užduočių tvarkyklę kaip root naudotojas"
+msgstr "Vykdyti užduočių tvarkytuvę kaip root naudotojas"
 
 #: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
 #: ../src/exec-tool-button.c:196
@@ -249,7 +249,7 @@ msgstr "Tekstas"
 
 #: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
 msgid "Settings for Task Manager"
-msgstr "Užduočių tvarkyklės nustatymai"
+msgstr "Užduočių tvarkytuvės nustatymai"
 
 #: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
 msgid "Show application icons"
