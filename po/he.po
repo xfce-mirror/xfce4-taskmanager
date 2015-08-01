@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2015-01-08 13:58+0000\n"
+"PO-Revision-Date: 2015-08-01 09:17+0000\n"
 "Last-Translator: GenghisKhan <genghiskhan@gmx.ca>\n"
 "Language-Team: Hebrew (http://www.transifex.com/projects/p/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %s\n"
 "<b>Swap:</b> %s"
-msgstr "<b>תהליכים:</b> %u\n<b>‏CPU‏:</b> %.0f%%\n<b>זיכרון:</b> %s\n<b>החלפה:</b> %s"
+msgstr "<b>תהליכים:</b> %u\n<b>‏CPU‏:</b> %.0f%%\n<b>זיכרון:</b> %s\n<b>הֶחְלֵף:</b> %s"
 
 #: ../src/main.c:134
 #, c-format
@@ -76,7 +76,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %s\n"
 "Swap: %s"
-msgstr "תהליכים: %u\nמעבד: %.0f%%\nזיכרון: %s\nהחלפה: %s"
+msgstr "תהליכים: %u\nמעבד: %.0f%%\nזיכרון: %s\nהֶחְלֵף: %s"
 
 #: ../src/process-statusbar.c:147 ../src/process-window.c:461
 #, c-format
@@ -91,7 +91,7 @@ msgstr "זיכרון: %s"
 #: ../src/process-statusbar.c:176
 #, c-format
 msgid "Swap: %s"
-msgstr "החלפה: %s"
+msgstr "הֶחְלֵף: %s"
 
 #: ../src/process-statusbar.c:190
 #, c-format
@@ -221,7 +221,7 @@ msgstr "<span foreground='#000000' background='#aed581'> </span> משימה מת
 
 #: ../src/process-window.c:215
 msgid "Filter on process name"
-msgstr ""
+msgstr "סנן על שם תהליך"
 
 #: ../src/process-window.c:399
 msgid "translator-credits"
