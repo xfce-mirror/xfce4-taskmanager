@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008
+# Davidmp <medipas@gmail.com>, 2016
 # Pau Ruŀlan Ferragut <paurullan@bulma.net>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2015-12-23 21:56+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2016-01-11 17:29+0000\n"
+"Last-Translator: Davidmp <medipas@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +68,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %s\n"
 "<b>Swap:</b> %s"
-msgstr ""
+msgstr "<b>Processos:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memòria:</b> %s\n<b>Intercanvi:</b> %s"
 
 #: ../src/main.c:134
 #, c-format
@@ -76,7 +77,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %s\n"
 "Swap: %s"
-msgstr ""
+msgstr "Processos: %u\nCPU: %.0f%%\nMemòria: %s\nIntercanvi: %s"
 
 #: ../src/process-statusbar.c:147 ../src/process-window.c:461
 #, c-format
@@ -86,12 +87,12 @@ msgstr "CPU: %s%%"
 #: ../src/process-statusbar.c:162 ../src/process-window.c:465
 #, c-format
 msgid "Memory: %s"
-msgstr ""
+msgstr "Memòria: %s"
 
 #: ../src/process-statusbar.c:176
 #, c-format
 msgid "Swap: %s"
-msgstr ""
+msgstr "Intercanvi: %s"
 
 #: ../src/process-statusbar.c:190
 #, c-format
@@ -217,11 +218,11 @@ msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
 "<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Inciant la tasca\n<span foreground='#000000' background='#fff176'>    </span> Canviant la tasca\n<span foreground='#000000' background='#e57373'>    </span> Acabant la tasca"
 
 #: ../src/process-window.c:215
 msgid "Filter on process name"
-msgstr ""
+msgstr "Filtra segons el nom del procés"
 
 #: ../src/process-window.c:399
 msgid "translator-credits"
@@ -265,11 +266,11 @@ msgstr "Mostra els valors amb més precisió"
 
 #: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
 msgid "Show processes as tree"
-msgstr ""
+msgstr "Mostra els processos en un arbre"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
 msgid "Show memory usage in bytes"
-msgstr ""
+msgstr "Mostra l'ús de la memòria en bytes"
 
 #: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
