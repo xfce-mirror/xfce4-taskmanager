@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-02-04 20:20+0000\n"
+"PO-Revision-Date: 2016-02-08 22:20+0000\n"
 "Last-Translator: Apostolos Papadimitriu <apostolos.papadimitriu@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce-apps/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -218,11 +218,11 @@ msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
 "<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Έναρξη εργασίας\n<span foreground='#000000' background='#fff176'>    </span> Αλλαγή εργασίας\n<span foreground='#000000' background='#e57373'>    </span> Τερματισμός εργασίας"
 
 #: ../src/process-window.c:215
 msgid "Filter on process name"
-msgstr ""
+msgstr "Φίλτρο στο όνομα της διεργασίας"
 
 #: ../src/process-window.c:399
 msgid "translator-credits"
