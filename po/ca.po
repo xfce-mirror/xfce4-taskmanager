@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-04-30 10:07+0000\n"
+"PO-Revision-Date: 2016-04-30 22:04+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Gestor de processos"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
 msgid "Easy to use task manager"
-msgstr "Gestor de tasques fàcil d'usar"
+msgstr "Gestor de tasques fàcil d'utilitzar"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
@@ -227,11 +227,11 @@ msgstr "Filtra segons el nom del procés"
 
 #: ../src/process-window.c:399
 msgid "translator-credits"
-msgstr "Pau Ruŀlan Ferragut"
+msgstr "Pau Rul·lan Ferragut\nRobert Antoni Buj Gelonch <rbuj@fedoraproject.org>"
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Atenció!, esteu usant la conta de root, això podria malmetre el vostre sistema."
+msgstr "Advertència!, esteu utilitzant el compte de root, això podria malmetre el vostre sistema."
 
 #: ../src/settings.c:387
 msgid "Default"
@@ -255,7 +255,7 @@ msgstr "Propietats per al gestor de tasques"
 
 #: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
 msgid "Show application icons"
-msgstr "Mostrar icones de l'aplicació"
+msgstr "Mostra les icones de les aplicacions"
 
 #: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
 msgid "Show full command lines"
