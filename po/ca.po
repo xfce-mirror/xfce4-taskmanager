@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-05-02 13:11+0000\n"
+"PO-Revision-Date: 2016-05-02 20:11+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -118,7 +118,7 @@ msgstr "Estat"
 
 #: ../src/process-tree-view.c:172
 msgid "VSZ"
-msgstr "Tamany virtual"
+msgstr "VSZ"
 
 #: ../src/process-tree-view.c:180
 msgid "RSS"
@@ -140,7 +140,7 @@ msgstr "Prio."
 
 #: ../src/process-tree-view.c:369
 msgid "Terminate task"
-msgstr "Finalitzar la tasca"
+msgstr "Finalitza la tasca"
 
 #: ../src/process-tree-view.c:369
 msgid "Kill task"
@@ -160,7 +160,7 @@ msgstr "Error enviant el senyal"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "S'ha trobat un error a l'enviar un senyal al procés %d. Comproveu que teniu els privilegis necessaris."
+msgstr "S'ha trobat un error amb l'enviament d'un senyal al PID %d. Comproveu que teniu els privilegis necessaris."
 
 #: ../src/process-tree-view.c:412
 msgid "Error setting priority"
@@ -175,7 +175,7 @@ msgstr "S'ha trobat un error en canviar la prioritat del procés %d. Comproveu q
 
 #: ../src/process-tree-view.c:429
 msgid "Terminate"
-msgstr "Acabar la tasca (TERM)"
+msgstr "Acaba (TERM)"
 
 #: ../src/process-tree-view.c:437
 msgid "Stop"
@@ -219,7 +219,7 @@ msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
 "<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> Inciant la tasca\n<span foreground='#000000' background='#fff176'>    </span> Canviant la tasca\n<span foreground='#000000' background='#e57373'>    </span> Acabant la tasca"
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Iniciant la tasca\n<span foreground='#000000' background='#fff176'>    </span> Canviant la tasca\n<span foreground='#000000' background='#e57373'>    </span> Acabant la tasca"
 
 #: ../src/process-window.c:215
 msgid "Filter on process name"
@@ -259,7 +259,7 @@ msgstr "Mostra les icones de les aplicacions"
 
 #: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
 msgid "Show full command lines"
-msgstr "Mostra la línia de comandes completa"
+msgstr "Mostra tota la línia d'ordres"
 
 #: ../src/settings-dialog.ui.h:4 ../src/settings-dialog-gtk3.ui.h:4
 msgid "Show values with more precision"
@@ -312,27 +312,27 @@ msgstr "Ajusts"
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:111
 msgid "500ms"
-msgstr "500ms"
+msgstr "500 ms"
 
 #: ../src/settings-tool-button.c:112
 msgid "750ms"
-msgstr "750ms"
+msgstr "750 ms"
 
 #: ../src/settings-tool-button.c:113
 msgid "1s"
-msgstr "1s"
+msgstr "1 s"
 
 #: ../src/settings-tool-button.c:114
 msgid "2s"
-msgstr "2s"
+msgstr "2 s"
 
 #: ../src/settings-tool-button.c:115
 msgid "5s"
-msgstr "5s"
+msgstr "5 s"
 
 #: ../src/settings-tool-button.c:116
 msgid "10s"
-msgstr "10s"
+msgstr "10 s"
 
 #: ../src/settings-tool-button.c:165
 msgid "Show all processes"
