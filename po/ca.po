@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-05-02 10:05+0000\n"
+"PO-Revision-Date: 2016-05-02 13:11+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,7 @@ msgstr "Text"
 
 #: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
 msgid "Settings for Task Manager"
-msgstr "Propietats per al gestor de tasques"
+msgstr "Ajusts per al gestor de tasques"
 
 #: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
 msgid "Show application icons"
@@ -307,7 +307,7 @@ msgstr "<b>Informació</b>"
 
 #: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
 msgid "Settings"
-msgstr "Propietats"
+msgstr "Ajusts"
 
 #. TRANSLATORS: The next values are in seconds or milliseconds
 #: ../src/settings-tool-button.c:111
