@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-05-02 20:11+0000\n"
+"PO-Revision-Date: 2016-05-03 21:50+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 #: ../src/process-tree-view.c:415 ../src/process-window.c:389
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
-msgstr "Gestor de processos"
+msgstr "Gestor de tasques"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
 msgid "Easy to use task manager"
@@ -153,7 +153,7 @@ msgstr "Esteu segur que voleu enviar un senyal al PID %d?"
 
 #: ../src/process-tree-view.c:383
 msgid "Error sending signal"
-msgstr "Error enviant el senyal"
+msgstr "Error en enviar el senyal"
 
 #: ../src/process-tree-view.c:385
 #, c-format
@@ -164,7 +164,7 @@ msgstr "S'ha trobat un error amb l'enviament d'un senyal al PID %d. Comproveu qu
 
 #: ../src/process-tree-view.c:412
 msgid "Error setting priority"
-msgstr "No s'ha pogut establir la prioritat"
+msgstr "Error en establir la prioritat"
 
 #: ../src/process-tree-view.c:413
 #, c-format
@@ -175,7 +175,7 @@ msgstr "S'ha trobat un error en canviar la prioritat del procés %d. Comproveu q
 
 #: ../src/process-tree-view.c:429
 msgid "Terminate"
-msgstr "Acaba (TERM)"
+msgstr "Finalitza (TERM)"
 
 #: ../src/process-tree-view.c:437
 msgid "Stop"
@@ -223,7 +223,7 @@ msgstr "<span foreground='#000000' background='#aed581'>    </span> Iniciant la 
 
 #: ../src/process-window.c:215
 msgid "Filter on process name"
-msgstr "Filtra segons el nom del procés"
+msgstr "Filtra amb el nom del procés"
 
 #: ../src/process-window.c:399
 msgid "translator-credits"
@@ -235,7 +235,7 @@ msgstr "Advertència!, esteu utilitzant el compte de root, això podria malmetre
 
 #: ../src/settings.c:387
 msgid "Default"
-msgstr "Defecte"
+msgstr "Predeterminat"
 
 #: ../src/settings.c:388
 msgid "Small"
@@ -279,11 +279,11 @@ msgstr "Estil de la barra d'eines:"
 
 #: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "<b>Interface style</b>"
-msgstr "<b>Estil d'interfície</b>"
+msgstr "<b>Estil de la interfície</b>"
 
 #: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Prompt for terminating tasks"
-msgstr "Pregunta per a finalitzar tasques"
+msgstr "Pregunta per a la finalització de les tasques"
 
 #: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "Hide into the notification area"
