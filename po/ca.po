@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-05-03 21:50+0000\n"
+"PO-Revision-Date: 2016-06-06 08:27+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -144,7 +144,7 @@ msgstr "Finalitza la tasca"
 
 #: ../src/process-tree-view.c:369
 msgid "Kill task"
-msgstr "Matar la tasca (KILL)"
+msgstr "Mata la tasca (KILL)"
 
 #: ../src/process-tree-view.c:371
 #, c-format
