@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-06-06 08:27+0000\n"
+"PO-Revision-Date: 2016-06-20 15:17+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Executa el programa..."
 
 #: ../src/exec-tool-button.c:199
 msgid "Application Finder"
-msgstr "Buscador d'aplicacions"
+msgstr "Descobridor d'aplicacions"
 
 #: ../src/exec-tool-button.c:202
 msgid "Terminal emulator"
@@ -287,7 +287,7 @@ msgstr "Pregunta per a la finalització de les tasques"
 
 #: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "Hide into the notification area"
-msgstr "Ocultar a l'àrea de les notificacions"
+msgstr "Oculta a l'àrea de les notificacions"
 
 #: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "<b>Miscellaneous</b>"
