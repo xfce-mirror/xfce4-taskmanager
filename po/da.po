@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-12-08 05:35+0000\n"
+"PO-Revision-Date: 2016-12-08 23:10+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -221,7 +221,7 @@ msgstr "<span foreground='#000000' background='#aed581'>    </span> Starter opga
 
 #: ../src/process-window.c:215
 msgid "Filter on process name"
-msgstr ""
+msgstr "Filtrér efter procesnavn"
 
 #: ../src/process-window.c:399
 msgid "translator-credits"
