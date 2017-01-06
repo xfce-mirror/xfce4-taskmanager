@@ -26,25 +26,39 @@
 
 #include "task-manager.h"
 
+gulong
+get_mem_by_bytes (const gchar *name)
+{
+	gulong buf;
+	gsize len = sizeof (gulong);
+
+	if (sysctlbyname (name, &buf, &len, NULL, 0) < 0)
+		return 0;
+
+	return buf;
+}
+
+guint64
+get_mem_by_pages (const gchar *name)
+{
+	gulong res;
+
+	res = get_mem_by_bytes (name);
+	if (res > 0)
+		res = res * getpagesize ();
+
+	return (guint64) res;
+}
+
 gboolean
 get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
 {
 	/* Get memory usage */
 	{
-		gulong total = 0, free = 0, inactive = 0;
-		size_t size;
-
-		size = sizeof (gulong);
-		sysctlbyname ("vm.stats.vm.v_page_count", &total, &size, NULL, 0);
-		size = sizeof (gulong);
-		sysctlbyname ("vm.stats.vm.v_free_count", &free, &size, NULL, 0);
-		size = sizeof (gulong);
-		sysctlbyname ("vm.stats.vm.v_inactive_count", &inactive, &size, NULL, 0);
-
-		*memory_total = total * getpagesize ();
-		*memory_free = free * getpagesize ();
-		*memory_cache = inactive * getpagesize ();
-		*memory_buffers = 0;
+		*memory_total = (guint64) get_mem_by_bytes ("hw.physmem");;
+		*memory_free = get_mem_by_pages ("vm.stats.vm.v_free_count");
+		*memory_cache = get_mem_by_pages ("vm.stats.vm.v_inactive_count");
+		*memory_buffers = (guint64) get_mem_by_bytes ("vfs.bufspace");
 	}
 
 	/* Get swap usage */
