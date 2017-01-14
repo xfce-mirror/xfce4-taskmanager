@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2017-01-14 11:27+0000\n"
+"PO-Revision-Date: 2017-01-14 15:12+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -229,7 +229,7 @@ msgstr "Per Kongstad, Aputsiaq Niels Janussen\n\nDansk-gruppen <dansk@dansk-grup
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Advarsel, du anvender root-kontoen - du kan beskadige dit system."
+msgstr "Advarsel, du bruger root-kontoen - du kan gøre skade på dit system."
 
 #: ../src/settings.c:387
 msgid "Default"
