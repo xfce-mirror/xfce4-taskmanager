@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Aputsiak Niels Janussen <aj@isit.gl>, 2013
-# scootergrisen, 2016
+# scootergrisen, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-12-08 23:10+0000\n"
+"PO-Revision-Date: 2017-01-14 11:27+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -233,7 +233,7 @@ msgstr "Advarsel, du anvender root-kontoen - du kan beskadige dit system."
 
 #: ../src/settings.c:387
 msgid "Default"
-msgstr " Standard"
+msgstr "Standard"
 
 #: ../src/settings.c:388
 msgid "Small"
@@ -273,7 +273,7 @@ msgstr "Vis hukommelsesforbrug i bytes"
 
 #: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
-msgstr "Stil for værktøjslinje"
+msgstr "Stil for værktøjslinje:"
 
 #: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "<b>Interface style</b>"
