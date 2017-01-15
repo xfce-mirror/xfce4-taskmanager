@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2017-01-14 15:12+0000\n"
+"PO-Revision-Date: 2017-01-15 19:59+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Kør program ..."
 
 #: ../src/exec-tool-button.c:199
 msgid "Application Finder"
-msgstr "Programsøger"
+msgstr "Programfinder"
 
 #: ../src/exec-tool-button.c:202
 msgid "Terminal emulator"
