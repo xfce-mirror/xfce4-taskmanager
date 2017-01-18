@@ -557,25 +557,40 @@ treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event)
 {
 	guint pid;
 
-	if (event->keyval != GDK_KEY_Menu)
+	GtkTreeModel *model;
+	GtkTreeSelection *selection;
+	GtkTreeIter iter;
+	GdkModifierType modifiers;
+
+	modifiers = gtk_accelerator_get_default_mod_mask ();
+
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
+	if (!gtk_tree_selection_get_selected (selection, &model, &iter))
 		return FALSE;
 
+	gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid, -1);
+
+	if (event->keyval == GDK_KEY_Menu)
 	{
-		GtkTreeModel *model;
-		GtkTreeSelection *selection;
-		GtkTreeIter iter;
-
-		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-
-		if (!gtk_tree_selection_get_selected (selection, &model, &iter))
-			return FALSE;
-
-		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid, -1);
+		popup_menu (treeview, pid, event->time, FALSE);
+		return TRUE;
+	}
+	else if (event->keyval == GDK_KEY_Delete)
+	{
+		/* Fake menuitem for the cb_send_signal callback */
+		GtkWidget *mi;
+		mi = gtk_menu_item_new_with_label (_("Stop"));
+		g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+		if ((event->state & modifiers) == GDK_SHIFT_MASK)
+			cb_send_signal (GTK_MENU_ITEM (mi), GINT_TO_POINTER (XTM_SIGNAL_KILL));
+		else
+			cb_send_signal (GTK_MENU_ITEM (mi), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
+		return TRUE;
 	}
 
-	popup_menu (treeview, pid, event->time, FALSE);
-
-	return TRUE;
+	else
+		return FALSE;
 }
 
 static void
@@ -754,4 +769,3 @@ xtm_process_tree_view_get_model (XtmProcessTreeView *treeview)
 {
 	return GTK_TREE_MODEL (treeview->model);
 }
-
