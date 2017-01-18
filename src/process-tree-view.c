@@ -368,7 +368,8 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
 			(xtm_signal == XTM_SIGNAL_TERMINATE) ? _("Terminate task") : _("Kill task"));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-			_("Are you sure you want to send a signal to the PID %d?"), pid);
+			_("Are you sure you want to send the %s signal to the PID %d?"),
+			(xtm_signal == XTM_SIGNAL_TERMINATE) ? _("terminate") : _("kill"), pid);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
 		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 		res = gtk_dialog_run (GTK_DIALOG (dialog));
