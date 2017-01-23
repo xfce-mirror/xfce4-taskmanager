@@ -9,11 +9,15 @@ bin_PROGRAMS =								\
 xfce4_taskmanager_CFLAGS =						\
 	$(CAIRO_CFLAGS)							\
 	$(GKSU_CFLAGS)							\
+	$(LIBX11_CFLAGS) \
+	$(LIBXMU_CFLAGS) \
 	$(NULL)
 
 xfce4_taskmanager_LDADD = 						\
 	$(CAIRO_LIBS)							\
 	$(GKSU_LIBS)							\
+	$(LIBX11_LIBS) \
+	$(LIBXMU_LIBS) \
 	$(NULL)
 
 xfce4_taskmanager_SOURCES =						\
@@ -73,4 +77,3 @@ settings-dialog-gtk3_ui.h: settings-dialog-gtk3.ui
 endif
 
 EXTRA_DIST = process-window.ui settings-dialog.ui process-window-gtk3.ui settings-dialog-gtk3.ui
-

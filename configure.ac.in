@@ -65,6 +65,8 @@ XDT_I18N([@LINGUAS@])
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
+XDT_CHECK_LIBX11_REQUIRE()
+XDT_CHECK_PACKAGE([LIBXMU], [xmu], [1.1.2])
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.14.0])
 XDT_CHECK_PACKAGE([CAIRO], [cairo], [1.5.0])
 
@@ -166,4 +168,3 @@ fi
 echo "* Target OS:     $target_os ($ac_os_implementation)"
 echo "* Debug:         $enable_debug"
 echo
-
