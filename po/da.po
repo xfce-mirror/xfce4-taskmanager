@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2017-01-17 09:16+0000\n"
+"POT-Creation-Date: 2017-01-23 12:30+0100\n"
+"PO-Revision-Date: 2017-01-23 18:04+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -21,13 +21,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
 #: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:415 ../src/process-window.c:389
+#: ../src/process-tree-view.c:373 ../src/process-tree-view.c:388
+#: ../src/process-tree-view.c:416 ../src/process-window.c:387
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Opgavehåndtering"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:394
 msgid "Easy to use task manager"
 msgstr "En nem opgavehåndtering"
 
@@ -78,12 +78,12 @@ msgid ""
 "Swap: %s"
 msgstr "Processer: %u\nCPU: %.0f%%\nHukommelse: %s\nSwap: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:461
+#: ../src/process-statusbar.c:147 ../src/process-window.c:459
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:465
+#: ../src/process-statusbar.c:162 ../src/process-window.c:463
 #, c-format
 msgid "Memory: %s"
 msgstr "Hukommelse: %s"
@@ -146,68 +146,76 @@ msgstr "Dræb opgave"
 
 #: ../src/process-tree-view.c:371
 #, c-format
-msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Er du sikker på, at du vil sende et signal til PID'et %d?"
+msgid "Are you sure you want to send the %s signal to the PID %d?"
+msgstr "Er du sikker på, at du vil sende %s-signalet til PID'et %d?"
 
-#: ../src/process-tree-view.c:383
+#: ../src/process-tree-view.c:372
+msgid "terminate"
+msgstr "afslut"
+
+#: ../src/process-tree-view.c:372
+msgid "kill"
+msgstr "dræb"
+
+#: ../src/process-tree-view.c:384
 msgid "Error sending signal"
 msgstr "Fejl ved signalafsendelse"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:386
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Stødte på en fejl under afsendelse af signal til PID'et %d. Du har sandsynligvis ikke de påkrævede privilegier."
 
-#: ../src/process-tree-view.c:412
+#: ../src/process-tree-view.c:413
 msgid "Error setting priority"
 msgstr "Fejl ved angivelse af prioritet"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Stødte på en fejl under angivelse af prioritet for PID'et %d. Du har sandsynligvis ikke de påkrævede privilegier."
 
-#: ../src/process-tree-view.c:429
-msgid "Terminate"
-msgstr "Afslut"
-
-#: ../src/process-tree-view.c:437
+#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:583
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/process-tree-view.c:444
+#: ../src/process-tree-view.c:439
 msgid "Continue"
 msgstr "Fortsæt"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:445
+msgid "Terminate"
+msgstr "Afslut"
+
+#: ../src/process-tree-view.c:451
 msgid "Kill"
 msgstr "Dræb"
 
-#: ../src/process-tree-view.c:457
+#: ../src/process-tree-view.c:458
 msgid "Very low"
 msgstr "Meget lav"
 
-#: ../src/process-tree-view.c:462
+#: ../src/process-tree-view.c:463
 msgid "Low"
 msgstr "Lav"
 
-#: ../src/process-tree-view.c:467
+#: ../src/process-tree-view.c:468
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/process-tree-view.c:472
+#: ../src/process-tree-view.c:473
 msgid "High"
 msgstr "Høj"
 
-#: ../src/process-tree-view.c:477
+#: ../src/process-tree-view.c:478
 msgid "Very high"
 msgstr "Meget høj"
 
-#: ../src/process-tree-view.c:482 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Prioritet"
 
@@ -223,7 +231,7 @@ msgstr "<span foreground='#000000' background='#aed581'>    </span> Starter opga
 msgid "Filter on process name"
 msgstr "Filtrér efter procesnavn"
 
-#: ../src/process-window.c:399
+#: ../src/process-window.c:397
 msgid "translator-credits"
 msgstr "Per Kongstad, Aputsiaq Niels Janussen\n\nDansk-gruppen <dansk@dansk-gruppen.dk>\nMere info: http://www.dansk-gruppen.dk"
 
