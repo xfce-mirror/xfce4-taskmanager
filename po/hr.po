@@ -6,13 +6,14 @@
 # Edin Veskovic <edin.veskovic@openmailbox.org>, 2014
 # Edin Veskovic <edin.veskovic@openmailbox.org>, 2014
 # Ivica  Kolić <ikoli@yahoo.com>, 2013,2016
+# Lovro Kudelić <lovro.kudelic@outlook.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-06-12 23:54+0000\n"
-"Last-Translator: Ivica  Kolić <ikoli@yahoo.com>\n"
+"POT-Creation-Date: 2017-01-23 12:30+0100\n"
+"PO-Revision-Date: 2017-01-23 21:26+0000\n"
+"Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/xfce/xfce-apps/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,13 +23,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
 #: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:415 ../src/process-window.c:389
+#: ../src/process-tree-view.c:373 ../src/process-tree-view.c:388
+#: ../src/process-tree-view.c:416 ../src/process-window.c:387
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Upravitelj zadacima"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:394
 msgid "Easy to use task manager"
 msgstr "Lagan za korištenje upravitelj zadacima"
 
@@ -79,12 +80,12 @@ msgid ""
 "Swap: %s"
 msgstr "Procesi: %u\nProcesor: %.0f%%\nMemorija: %s\nSwap: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:461
+#: ../src/process-statusbar.c:147 ../src/process-window.c:459
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Procesor: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:465
+#: ../src/process-statusbar.c:162 ../src/process-window.c:463
 #, c-format
 msgid "Memory: %s"
 msgstr "Memorija: %s"
@@ -147,68 +148,76 @@ msgstr "Ubij zadatak"
 
 #: ../src/process-tree-view.c:371
 #, c-format
-msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Jeste li sigurni da želite poslati signal PID-u %d?"
+msgid "Are you sure you want to send the %s signal to the PID %d?"
+msgstr "Da li ste sigurni da želite poslati %s signal za PID %d?"
 
-#: ../src/process-tree-view.c:383
+#: ../src/process-tree-view.c:372
+msgid "terminate"
+msgstr "prekini"
+
+#: ../src/process-tree-view.c:372
+msgid "kill"
+msgstr "ubij"
+
+#: ../src/process-tree-view.c:384
 msgid "Error sending signal"
 msgstr "Greška slanja signala"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:386
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Dogodila se greška slanjem signala PID-u %d. Čini se kao da nemate potrebne privilegije."
 
-#: ../src/process-tree-view.c:412
+#: ../src/process-tree-view.c:413
 msgid "Error setting priority"
 msgstr "Greška pri postavljanju prioriteta"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Dogodila se greška postavljanjem prioriteta PID-u %d. Čini se kao da nemate potrebne privilegije."
 
-#: ../src/process-tree-view.c:429
-msgid "Terminate"
-msgstr "Terminiraj"
-
-#: ../src/process-tree-view.c:437
+#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:583
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/process-tree-view.c:444
+#: ../src/process-tree-view.c:439
 msgid "Continue"
 msgstr "Nastavi"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:445
+msgid "Terminate"
+msgstr "Terminiraj"
+
+#: ../src/process-tree-view.c:451
 msgid "Kill"
 msgstr "Ubij"
 
-#: ../src/process-tree-view.c:457
+#: ../src/process-tree-view.c:458
 msgid "Very low"
 msgstr "Vrlo nizak"
 
-#: ../src/process-tree-view.c:462
+#: ../src/process-tree-view.c:463
 msgid "Low"
 msgstr "Nizak"
 
-#: ../src/process-tree-view.c:467
+#: ../src/process-tree-view.c:468
 msgid "Normal"
 msgstr "Normalno"
 
-#: ../src/process-tree-view.c:472
+#: ../src/process-tree-view.c:473
 msgid "High"
 msgstr "Visok"
 
-#: ../src/process-tree-view.c:477
+#: ../src/process-tree-view.c:478
 msgid "Very high"
 msgstr "Vrlo visok"
 
-#: ../src/process-tree-view.c:482 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Prioritet"
 
@@ -224,7 +233,7 @@ msgstr "<span foreground='#000000' background='#aed581'>    </span> Pokretanje z
 msgid "Filter on process name"
 msgstr "Filtriraj prema imenu procesa"
 
-#: ../src/process-window.c:399
+#: ../src/process-window.c:397
 msgid "translator-credits"
 msgstr "Ivica Kolić (zvacet) <ikoli@yahoo.com>"
 
