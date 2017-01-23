@@ -15,6 +15,14 @@
 #include <unistd.h>
 #endif
 
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/Xatom.h>
+#include <X11/Xos.h>
+#include <X11/Xmu/WinUtil.h>
+#include <X11/cursorfont.h>
+#include <X11/Xproto.h>
+
 #include <glib-object.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
@@ -82,6 +90,72 @@ filter_entry_icon_pressed_cb (GtkEntry *entry,
 	}
 }
 
+Window
+Select_Window (Display *dpy, int screen)
+{
+	int status;
+	Cursor cursor;
+	XEvent event;
+	Window target_win = None, root = RootWindow(dpy,screen);
+	int buttons = 0;
+
+	/* Make the target cursor */
+	cursor = XCreateFontCursor(dpy, XC_crosshair);
+
+	/* Grab the pointer using target cursor, letting it roam all over */
+	status = XGrabPointer(dpy, root, False,
+	        ButtonPressMask|ButtonReleaseMask, GrabModeSync,
+	        GrabModeAsync, root, cursor, CurrentTime);
+	if (status != GrabSuccess) {
+	    fprintf (stderr, "Can't grab the mouse.\n");
+	    return None;
+	}
+
+	/* Let the user select a window... */
+	while ((target_win == None) || (buttons != 0)) {
+	    /* allow one more event */
+	    XAllowEvents(dpy, SyncPointer, CurrentTime);
+	    XWindowEvent(dpy, root, ButtonPressMask|ButtonReleaseMask, &event);
+	    switch (event.type) {
+	        case ButtonPress:
+	            if (target_win == None) {
+	                target_win = event.xbutton.subwindow; /* window selected */
+	                if (target_win == None) target_win = root;
+	            }
+	            buttons++;
+	            break;
+	        case ButtonRelease:
+	            if (buttons > 0) /* there may have been some down before we started */
+	                buttons--;
+	            break;
+	    }
+	}
+
+	XUngrabPointer(dpy, CurrentTime);      /* Done with pointer */
+
+	return target_win;
+}
+
+static void
+xwininfo_clicked_cb (GtkButton *button, gpointer user_data) {
+	Window window;
+	Display *dpy = NULL;
+	XID id = None;
+
+	dpy = XOpenDisplay (NULL);
+	window = Select_Window (dpy, 0);
+	if (window) {
+/*    Window root;
+    int dummyi;
+    unsigned int dummy;
+
+    if (XGetGeometry (dpy, window, &root, &dummyi, &dummyi,
+											&dummy, &dummy, &dummy, &dummy) && window != root)  */
+      window = XmuClientWindow (dpy, window);
+  }
+	g_warning ("Window ID: 0x%lx", window);
+}
+
 static void
 filter_entry_keyrelease_handler(GtkEntry *entry,
                                 XtmProcessTreeView *treeview)
@@ -116,6 +190,7 @@ static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
+	GtkToolItem *xwininfo;
 	gint width, height;
 	gchar *markup;
 
@@ -141,6 +216,11 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	window->settings_button = xtm_settings_tool_button_new ();
 	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 1);
+
+	xwininfo = gtk_tool_button_new (NULL, _("Identify"));
+	gtk_toolbar_insert(GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM(xwininfo), 2);
+	g_signal_connect (G_OBJECT (xwininfo), "clicked",
+										G_CALLBACK (xwininfo_clicked_cb), window);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "toolbutton-about"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);

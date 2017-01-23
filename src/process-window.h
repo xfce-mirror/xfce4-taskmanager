@@ -14,6 +14,7 @@
 #include <config.h>
 #endif
 
+#include <X11/Xlib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
