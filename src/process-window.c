@@ -142,18 +142,42 @@ xwininfo_clicked_cb (GtkButton *button, gpointer user_data) {
 	Display *dpy = NULL;
 	XID id = None;
 
+	Atom atom_NET_WM_PID;
+	long _nitems;
+	int size;
+	Atom actual_type;
+	int actual_format;
+	unsigned char *prop;
+	int status;
+	unsigned long bytes_after;
+
+	int pid = -1;
+
 	dpy = XOpenDisplay (NULL);
 	window = Select_Window (dpy, 0);
 	if (window) {
-/*    Window root;
-    int dummyi;
-    unsigned int dummy;
+		window = XmuClientWindow (dpy, window);
+	}
 
-    if (XGetGeometry (dpy, window, &root, &dummyi, &dummyi,
-											&dummy, &dummy, &dummy, &dummy) && window != root)  */
-      window = XmuClientWindow (dpy, window);
-  }
-	g_warning ("Window ID: 0x%lx", window);
+	atom_NET_WM_PID = XInternAtom(dpy, "_NET_WM_PID", False);
+
+	status = XGetWindowProperty(dpy, window, atom_NET_WM_PID, 0, (~0L),
+	                            False, AnyPropertyType, &actual_type,
+	                            &actual_format, &_nitems, &bytes_after,
+	                            &prop);
+	if (status == BadWindow) {
+		g_warning("window id # 0x%lx does not exists!", window);
+	} if (status != Success) {
+		g_warning("XGetWindowProperty failed!");
+	} else {
+		if (_nitems > 0) {
+			pid = (int) *((unsigned long*)prop);
+			g_warning("PID: %d", pid);
+		} else {
+			g_warning("No Pid found");
+		}
+		g_free(prop);
+	}
 }
 
 static void
