@@ -221,6 +221,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_toolbar_insert(GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM(xwininfo), 2);
 	g_signal_connect (G_OBJECT (xwininfo), "clicked",
 										G_CALLBACK (xwininfo_clicked_cb), window);
+	gtk_widget_show (GTK_WIDGET (xwininfo));
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "toolbutton-about"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
