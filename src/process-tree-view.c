@@ -13,6 +13,7 @@
 
 #include <glib-object.h>
 #include <glib/gi18n.h>
+#include <glib/gprintf.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include "process-tree-model.h"
@@ -771,6 +772,32 @@ xtm_process_tree_view_get_model (XtmProcessTreeView *treeview)
 }
 
 void
-xtm_process_tree_view_highlight_pid(XtmProcessTreeView *treeview, guint pid) {
-//TBD: search and highlight the given pid
+xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, guint pid) {
+	//TBD: search and highlight the given pid
+	GtkTreePath	*path;
+	GtkTreeIter  iter;
+	gboolean     valid;
+	GValue			*row_pid;
+	gchar				*pid_string;
+
+	g_return_if_fail (treeview->model != NULL);
+
+	/* Get first row in list store */
+	valid = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (treeview->model), &iter);
+	g_sprintf (pid_string, "%d", pid);
+	while (valid)
+	{
+		/* ... do something with that row using the iter ...          */
+		gtk_tree_model_get_value (GTK_TREE_MODEL (treeview->model), &iter, COLUMN_PID, row_pid);
+		if (pid_string == g_value_get_string (row_pid))
+		{
+			path = gtk_tree_model_get_path (GTK_TREE_MODEL (treeview->model), &iter);
+			gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview)), path);
+			gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path, NULL, TRUE, 0.5, 0);
+			gtk_tree_path_free (path);
+		}
+		else
+			valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(treeview->model), &iter);
+	}
+
 }
