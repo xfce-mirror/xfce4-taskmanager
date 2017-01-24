@@ -6,14 +6,14 @@
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008
 # Davidmp <medipas@gmail.com>, 2016
 # Pau Ruŀlan Ferragut <paurullan@bulma.net>, 2006
-# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2016
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2016-2017
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2016-08-06 19:06+0000\n"
+"POT-Creation-Date: 2017-01-23 12:30+0100\n"
+"PO-Revision-Date: 2017-01-24 10:25+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -24,13 +24,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
 #: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:415 ../src/process-window.c:389
+#: ../src/process-tree-view.c:373 ../src/process-tree-view.c:388
+#: ../src/process-tree-view.c:416 ../src/process-window.c:387
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Gestor de tasques"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:394
 msgid "Easy to use task manager"
 msgstr "Gestor de tasques fàcil d'utilitzar"
 
@@ -81,12 +81,12 @@ msgid ""
 "Swap: %s"
 msgstr "Processos: %u\nCPU: %.0f%%\nMemòria: %s\nIntercanvi: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:461
+#: ../src/process-statusbar.c:147 ../src/process-window.c:459
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:465
+#: ../src/process-statusbar.c:162 ../src/process-window.c:463
 #, c-format
 msgid "Memory: %s"
 msgstr "Memòria: %s"
@@ -149,68 +149,76 @@ msgstr "Mata la tasca"
 
 #: ../src/process-tree-view.c:371
 #, c-format
-msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Esteu segur que voleu enviar un senyal al PID %d?"
+msgid "Are you sure you want to send the %s signal to the PID %d?"
+msgstr "Esteu segur que voleu enviar el senyal %s al PID %d?"
 
-#: ../src/process-tree-view.c:383
+#: ../src/process-tree-view.c:372
+msgid "terminate"
+msgstr "finalitza"
+
+#: ../src/process-tree-view.c:372
+msgid "kill"
+msgstr "mata"
+
+#: ../src/process-tree-view.c:384
 msgid "Error sending signal"
 msgstr "Error en enviar el senyal"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:386
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "S'ha trobat un error amb l'enviament d'un senyal al PID %d. Comproveu que teniu els privilegis necessaris."
 
-#: ../src/process-tree-view.c:412
+#: ../src/process-tree-view.c:413
 msgid "Error setting priority"
 msgstr "Error en establir la prioritat"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "S'ha trobat un error en canviar la prioritat del procés %d. Comproveu que teniu els privilegis necessaris."
 
-#: ../src/process-tree-view.c:429
-msgid "Terminate"
-msgstr "Finalitza"
-
-#: ../src/process-tree-view.c:437
+#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:583
 msgid "Stop"
 msgstr "Atura"
 
-#: ../src/process-tree-view.c:444
+#: ../src/process-tree-view.c:439
 msgid "Continue"
 msgstr "Continua"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:445
+msgid "Terminate"
+msgstr "Finalitza"
+
+#: ../src/process-tree-view.c:451
 msgid "Kill"
 msgstr "Mata"
 
-#: ../src/process-tree-view.c:457
+#: ../src/process-tree-view.c:458
 msgid "Very low"
 msgstr "Molt baixa"
 
-#: ../src/process-tree-view.c:462
+#: ../src/process-tree-view.c:463
 msgid "Low"
 msgstr "Baixa"
 
-#: ../src/process-tree-view.c:467
+#: ../src/process-tree-view.c:468
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/process-tree-view.c:472
+#: ../src/process-tree-view.c:473
 msgid "High"
 msgstr "Alta"
 
-#: ../src/process-tree-view.c:477
+#: ../src/process-tree-view.c:478
 msgid "Very high"
 msgstr "Molt alta"
 
-#: ../src/process-tree-view.c:482 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Prioritat"
 
@@ -226,7 +234,7 @@ msgstr "<span foreground='#000000' background='#aed581'>    </span> Inici de la 
 msgid "Filter on process name"
 msgstr "Filtra amb el nom del procés"
 
-#: ../src/process-window.c:399
+#: ../src/process-window.c:397
 msgid "translator-credits"
 msgstr "Pau Rul·lan Ferragut\nRobert Antoni Buj Gelonch <rbuj@fedoraproject.org>"
 
