@@ -244,7 +244,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	icon = gtk_image_new_from_icon_name ("edit-find", GTK_ICON_SIZE_SMALL_TOOLBAR);
 	xwininfo = gtk_tool_button_new (icon, _("Identify"));
-	gtk_widget_set_tooltip_text (GTK_WIDGET (log_refresh_button), _("Identify an open window"));
+	gtk_widget_set_tooltip_text (GTK_WIDGET (xwininfo), _("Identify an open window"));
 	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (xwininfo), 2);
 	g_signal_connect (G_OBJECT (xwininfo), "clicked",
 										G_CALLBACK (xwininfo_clicked_cb), window);
