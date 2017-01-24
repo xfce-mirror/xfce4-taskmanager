@@ -214,6 +214,7 @@ static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
+	GtkWidget *icon;
 	GtkToolItem *xwininfo;
 	gint width, height;
 	gchar *markup;
@@ -241,11 +242,13 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->settings_button = xtm_settings_tool_button_new ();
 	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 1);
 
-	xwininfo = gtk_tool_button_new (NULL, _("Identify"));
-	gtk_toolbar_insert(GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM(xwininfo), 2);
+	icon = gtk_image_new_from_icon_name ("edit-find", GTK_ICON_SIZE_SMALL_TOOLBAR);
+	xwininfo = gtk_tool_button_new (icon, _("Identify"));
+	gtk_widget_set_tooltip_text (GTK_WIDGET (log_refresh_button), _("Identify an open window"));
+	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (xwininfo), 2);
 	g_signal_connect (G_OBJECT (xwininfo), "clicked",
 										G_CALLBACK (xwininfo_clicked_cb), window);
-	gtk_widget_show (GTK_WIDGET (xwininfo));
+	gtk_widget_show_all (GTK_WIDGET (xwininfo));
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "toolbutton-about"));
 	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
