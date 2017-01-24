@@ -769,3 +769,8 @@ xtm_process_tree_view_get_model (XtmProcessTreeView *treeview)
 {
 	return GTK_TREE_MODEL (treeview->model);
 }
+
+void
+xtm_process_tree_view_highlight_pid(XtmProcessTreeView *treeview, guint pid) {
+//TBD: search and highlight the given pid
+}

@@ -54,5 +54,6 @@ GtkWidget *	xtm_process_tree_view_new			(void);
 void		xtm_process_tree_view_get_sort_column_id	(XtmProcessTreeView *treeview, gint *sort_column_id, GtkSortType *sort_type);
 void		xtm_process_tree_view_set_filter		(XtmProcessTreeView *treeview, const gchar *cmd_filter);
 GtkTreeModel *	xtm_process_tree_view_get_model			(XtmProcessTreeView *treeview);
+void		xtm_process_tree_view_highlight_pid		(XtmProcessTreeView *treeview, guint pid);
 
 #endif /* !PROCESS_TREE_VIEW_H */

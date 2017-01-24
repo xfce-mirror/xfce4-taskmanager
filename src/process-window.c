@@ -138,7 +138,8 @@ Select_Window (Display *dpy, int screen)
 
 static void
 xwininfo_clicked_cb (GtkButton *button, gpointer user_data) {
-	Window window;
+	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
+	Window selected_window;
 	Display *dpy = NULL;
 	XID id = None;
 
@@ -151,28 +152,29 @@ xwininfo_clicked_cb (GtkButton *button, gpointer user_data) {
 	int status;
 	unsigned long bytes_after;
 
-	int pid = -1;
+	guint pid = 0;
 
 	dpy = XOpenDisplay (NULL);
-	window = Select_Window (dpy, 0);
-	if (window) {
-		window = XmuClientWindow (dpy, window);
+	selected_window = Select_Window (dpy, 0);
+	if (selected_window) {
+		selected_window = XmuClientWindow (dpy, selected_window);
 	}
 
 	atom_NET_WM_PID = XInternAtom(dpy, "_NET_WM_PID", False);
 
-	status = XGetWindowProperty(dpy, window, atom_NET_WM_PID, 0, (~0L),
+	status = XGetWindowProperty(dpy, selected_window, atom_NET_WM_PID, 0, (~0L),
 	                            False, AnyPropertyType, &actual_type,
 	                            &actual_format, &_nitems, &bytes_after,
 	                            &prop);
 	if (status == BadWindow) {
-		g_warning("window id # 0x%lx does not exists!", window);
+		g_warning("window id # 0x%lx does not exists!", selected_window);
 	} if (status != Success) {
 		g_warning("XGetWindowProperty failed!");
 	} else {
 		if (_nitems > 0) {
-			pid = (int) *((unsigned long*)prop);
+			pid = (guint) *((unsigned long*)prop);
 			g_warning("PID: %d", pid);
+			xtm_process_tree_view_highlight_pid(XTM_PROCESS_TREE_VIEW (window->treeview), pid);
 		} else {
 			g_warning("No Pid found");
 		}
