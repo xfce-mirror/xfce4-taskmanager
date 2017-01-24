@@ -167,19 +167,22 @@ xwininfo_clicked_cb (GtkButton *button, gpointer user_data) {
 	                            &actual_format, &_nitems, &bytes_after,
 	                            &prop);
 	if (status == BadWindow) {
-		g_warning("window id # 0x%lx does not exists!", selected_window);
+		XTM_SHOW_MESSAGE(GTK_MESSAGE_INFO,
+                                    _("Bad Window"), _("Window id 0x%lx does not exist!"), selected_window);
 	} if (status != Success) {
-		g_warning("XGetWindowProperty failed!");
+		XTM_SHOW_MESSAGE(GTK_MESSAGE_ERROR,
+                                    _("XGetWindowProperty failed"), _("XGetWindowProperty failed!"));
 	} else {
 		if (_nitems > 0) {
 			pid = (guint) *((unsigned long*)prop);
-			g_warning("PID: %d", pid);
 			xtm_process_tree_view_highlight_pid(XTM_PROCESS_TREE_VIEW (window->treeview), pid);
 		} else {
-			g_warning("No Pid found");
+			XTM_SHOW_MESSAGE(GTK_MESSAGE_INFO,
+                                            _("No PID found"), _("No PID found for window 0x%lx."), selected_window);
 		}
 		g_free(prop);
 	}
+
 }
 
 static void

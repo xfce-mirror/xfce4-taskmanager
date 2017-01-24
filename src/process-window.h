@@ -24,6 +24,14 @@
 #define XTM_IS_PROCESS_WINDOW(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), XTM_TYPE_PROCESS_WINDOW))
 #define XTM_IS_PROCESS_WINDOW_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), XTM_TYPE_PROCESS_WINDOW))
 #define XTM_PROCESS_WINDOW_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), XTM_TYPE_PROCESS_WINDOW, XtmProcessWindowClass))
+#define XTM_SHOW_MESSAGE(type, title, message, ...) { \
+	GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, type, GTK_BUTTONS_OK, title); \
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), message , ## __VA_ARGS__ ); \
+	gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager")); \
+	gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE); \
+	gtk_dialog_run (GTK_DIALOG (dialog)); \
+	gtk_widget_destroy (dialog); \
+}
 
 typedef struct _XtmProcessWindow XtmProcessWindow;
 
