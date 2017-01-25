@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2013
+# 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>, 2017
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2015-01-15 12:15+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
-"Language-Team: Korean (http://www.transifex.com/projects/p/xfce-apps/language/ko/)\n"
+"POT-Creation-Date: 2017-01-23 12:30+0100\n"
+"PO-Revision-Date: 2017-01-25 15:10+0000\n"
+"Last-Translator: 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>\n"
+"Language-Team: Korean (http://www.transifex.com/xfce/xfce-apps/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,13 +22,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
 #: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:415 ../src/process-window.c:389
+#: ../src/process-tree-view.c:373 ../src/process-tree-view.c:388
+#: ../src/process-tree-view.c:416 ../src/process-window.c:387
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "작업 관리자"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:394
 msgid "Easy to use task manager"
 msgstr "쓰기 쉬운 작업관리자"
 
@@ -78,12 +79,12 @@ msgid ""
 "Swap: %s"
 msgstr "프로세스: %u\nC   P   U: %.0f%%\n메  모  리: %s\n스       왑: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:461
+#: ../src/process-statusbar.c:147 ../src/process-window.c:459
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:465
+#: ../src/process-statusbar.c:162 ../src/process-window.c:463
 #, c-format
 msgid "Memory: %s"
 msgstr "메  모  리: %s"
@@ -142,72 +143,80 @@ msgstr "작업 중지"
 
 #: ../src/process-tree-view.c:369
 msgid "Kill task"
-msgstr "작업 죽이기"
+msgstr "작업 끝내기"
 
 #: ../src/process-tree-view.c:371
 #, c-format
-msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "정말로 PID %d에 시그널을 보내시렵니까?"
+msgid "Are you sure you want to send the %s signal to the PID %d?"
+msgstr "정말로 %s 시그널을 PID %d에 보내시겠습니까?"
 
-#: ../src/process-tree-view.c:383
+#: ../src/process-tree-view.c:372
+msgid "terminate"
+msgstr "중지"
+
+#: ../src/process-tree-view.c:372
+msgid "kill"
+msgstr "끝내기"
+
+#: ../src/process-tree-view.c:384
 msgid "Error sending signal"
 msgstr "시그널 전송 오류"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:386
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "PID %d에 시그널을 보내는데 오류가 발생했습니다. 아마도 필요한 권한을 가지고 있지 않기 때문인 것 같습니다."
 
-#: ../src/process-tree-view.c:412
+#: ../src/process-tree-view.c:413
 msgid "Error setting priority"
 msgstr "우선순위 설정 오류"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "PID %d에 우선순위를 설정하는데 오류가 발생했습니다. 아마도 필요한 권한을 가지고 있지 않기 때문인 것 같습니다."
 
-#: ../src/process-tree-view.c:429
-msgid "Terminate"
-msgstr "중단"
-
-#: ../src/process-tree-view.c:437
+#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:583
 msgid "Stop"
 msgstr "정지"
 
-#: ../src/process-tree-view.c:444
+#: ../src/process-tree-view.c:439
 msgid "Continue"
 msgstr "계속"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:445
+msgid "Terminate"
+msgstr "중단"
+
+#: ../src/process-tree-view.c:451
 msgid "Kill"
 msgstr "죽이기"
 
-#: ../src/process-tree-view.c:457
+#: ../src/process-tree-view.c:458
 msgid "Very low"
 msgstr "매우 낮게"
 
-#: ../src/process-tree-view.c:462
+#: ../src/process-tree-view.c:463
 msgid "Low"
 msgstr "낮게"
 
-#: ../src/process-tree-view.c:467
+#: ../src/process-tree-view.c:468
 msgid "Normal"
 msgstr "보통"
 
-#: ../src/process-tree-view.c:472
+#: ../src/process-tree-view.c:473
 msgid "High"
 msgstr "높게"
 
-#: ../src/process-tree-view.c:477
+#: ../src/process-tree-view.c:478
 msgid "Very high"
 msgstr "매우 높게"
 
-#: ../src/process-tree-view.c:482 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "우선순위"
 
@@ -223,7 +232,7 @@ msgstr "<span foreground='#000000' background='#aed581'>    </span> 시작중인
 msgid "Filter on process name"
 msgstr "프로세스 이름으로 검색"
 
-#: ../src/process-window.c:399
+#: ../src/process-window.c:397
 msgid "translator-credits"
 msgstr "Seong-ho Cho <darkcircle.0426@gmail.com>"
 
