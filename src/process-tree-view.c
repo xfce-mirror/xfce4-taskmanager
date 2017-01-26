@@ -779,6 +779,8 @@ xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, guint pid) {
 	gboolean     	 valid;
 	gboolean			 tree;
 	guint					 pid_iter;
+	GtkTreeIter	child_iter;
+	gboolean validParent;
 
 	g_object_get (treeview->settings, "process-tree", &tree, NULL);
 	model = GTK_TREE_MODEL (tree ? treeview->model_tree : treeview->model_filter);
@@ -800,27 +802,25 @@ xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, guint pid) {
 			break;
 		}
 
-		if (tree && gtk_tree_model_iter_has_child (model, &iter))
+		if (gtk_tree_model_iter_has_child (model, &iter))
 		{
 			GtkTreeIter	parent_iter = iter;
 
 			valid = gtk_tree_model_iter_children (model, &iter, &parent_iter);
 		}
-		else if (tree && !gtk_tree_model_iter_has_child (model, &iter))
-		{
-			GtkTreeIter	child_iter = iter;
-
-			if (!gtk_tree_model_iter_next (model, &iter))
-			{
-				gtk_tree_model_iter_parent (model, &iter, &child_iter);
-				gtk_tree_model_iter_next (model, &iter);
-			}
-			else
-				valid = TRUE;
-		}
 		else
 		{
+			child_iter = iter;
 			valid = gtk_tree_model_iter_next (model, &iter);
+			if (tree && !valid)
+			{
+				//finding my way up again
+				do {
+					validParent = gtk_tree_model_iter_parent (model, &iter, &child_iter);
+					child_iter = iter;
+					valid = gtk_tree_model_iter_next (model, &iter);
+				} while (!valid && validParent);
+			}
 		}
 	}
 }
