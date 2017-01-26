@@ -799,6 +799,28 @@ xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, guint pid) {
 			gtk_tree_path_free (path);
 			break;
 		}
-		valid = gtk_tree_model_iter_next (model, &iter);
+
+		if (tree && gtk_tree_model_iter_has_child (model, &iter))
+		{
+			GtkTreeIter	parent_iter = iter;
+
+			valid = gtk_tree_model_iter_children (model, &iter, &parent_iter);
+		}
+		else if (tree && !gtk_tree_model_iter_has_child (model, &iter))
+		{
+			GtkTreeIter	child_iter = iter;
+
+			if (!gtk_tree_model_iter_next (model, &iter))
+			{
+				gtk_tree_model_iter_parent (model, &iter, &child_iter);
+				gtk_tree_model_iter_next (model, &iter);
+			}
+			else
+				valid = TRUE;
+		}
+		else
+		{
+			valid = gtk_tree_model_iter_next (model, &iter);
+		}
 	}
 }
