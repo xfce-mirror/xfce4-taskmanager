@@ -163,7 +163,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
 #if GTK_CHECK_VERSION(3, 0, 0)
 		gdk_rgba_parse (&color, "#ab1852");
-		gtk_widget_override_color (statusbar->label_cpu, GTK_STATE_NORMAL, &color);
+		gtk_widget_override_color (statusbar->label_memory, GTK_STATE_NORMAL, &color);
 #else
 		gdk_color_parse ("#ab1852", &color);
 		gtk_widget_modify_fg (statusbar->label_memory, GTK_STATE_NORMAL, &color);
@@ -205,4 +205,3 @@ xtm_process_statusbar_new (void)
 {
 	return g_object_new (XTM_TYPE_PROCESS_STATUSBAR, NULL);
 }
-
