@@ -1,6 +1,7 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS =								\
+	data								\
 	po								\
 	src
 
@@ -17,7 +18,7 @@ EXTRA_DIST =								\
 	intltool-merge.in						\
 	intltool-update.in						\
 	$(desktop_in_files)
-	
+
 DISTCLEANFILES =							\
 	intltool-extract						\
 	intltool-merge							\
