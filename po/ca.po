@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-23 12:30+0100\n"
-"PO-Revision-Date: 2017-01-24 10:25+0000\n"
+"POT-Creation-Date: 2017-01-27 00:30+0100\n"
+"PO-Revision-Date: 2017-01-27 06:32+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -24,13 +24,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
 #: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:373 ../src/process-tree-view.c:388
-#: ../src/process-tree-view.c:416 ../src/process-window.c:387
+#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
+#: ../src/process-tree-view.c:417 ../src/process-window.c:500
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Gestor de tasques"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:394
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:507
 msgid "Easy to use task manager"
 msgstr "Gestor de tasques fàcil d'utilitzar"
 
@@ -81,12 +81,12 @@ msgid ""
 "Swap: %s"
 msgstr "Processos: %u\nCPU: %.0f%%\nMemòria: %s\nIntercanvi: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:459
+#: ../src/process-statusbar.c:147 ../src/process-window.c:572
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:463
+#: ../src/process-statusbar.c:162 ../src/process-window.c:576
 #, c-format
 msgid "Memory: %s"
 msgstr "Memòria: %s"
@@ -101,128 +101,162 @@ msgstr "Intercanvi: %s"
 msgid "Processes: %d"
 msgstr "Processos: %d"
 
-#: ../src/process-tree-view.c:136
+#: ../src/process-tree-view.c:137
 msgid "Task"
 msgstr "Tasca"
 
-#: ../src/process-tree-view.c:147 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:155 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:163 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "Estat"
 
-#: ../src/process-tree-view.c:172
+#: ../src/process-tree-view.c:173
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:180
+#: ../src/process-tree-view.c:181
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:188 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:196 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:205
+#: ../src/process-tree-view.c:206
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Terminate task"
 msgstr "Finalitza la tasca"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Kill task"
 msgstr "Mata la tasca"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:372
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Esteu segur que voleu enviar el senyal %s al PID %d?"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:373
 msgid "terminate"
 msgstr "finalitza"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:373
 msgid "kill"
 msgstr "mata"
 
-#: ../src/process-tree-view.c:384
+#: ../src/process-tree-view.c:385
 msgid "Error sending signal"
 msgstr "Error en enviar el senyal"
 
-#: ../src/process-tree-view.c:386
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "S'ha trobat un error amb l'enviament d'un senyal al PID %d. Comproveu que teniu els privilegis necessaris."
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 msgid "Error setting priority"
 msgstr "Error en establir la prioritat"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "S'ha trobat un error en canviar la prioritat del procés %d. Comproveu que teniu els privilegis necessaris."
 
-#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:583
+#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
 msgid "Stop"
 msgstr "Atura"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:440
 msgid "Continue"
 msgstr "Continua"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:446
 msgid "Terminate"
 msgstr "Finalitza"
 
-#: ../src/process-tree-view.c:451
+#: ../src/process-tree-view.c:452
 msgid "Kill"
 msgstr "Mata"
 
-#: ../src/process-tree-view.c:458
+#: ../src/process-tree-view.c:459
 msgid "Very low"
 msgstr "Molt baixa"
 
-#: ../src/process-tree-view.c:463
+#: ../src/process-tree-view.c:464
 msgid "Low"
 msgstr "Baixa"
 
-#: ../src/process-tree-view.c:468
+#: ../src/process-tree-view.c:469
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/process-tree-view.c:473
+#: ../src/process-tree-view.c:474
 msgid "High"
 msgstr "Alta"
 
-#: ../src/process-tree-view.c:478
+#: ../src/process-tree-view.c:479
 msgid "Very high"
 msgstr "Molt alta"
 
-#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Prioritat"
 
-#: ../src/process-window.c:205
+#: ../src/process-window.c:171
+msgid "Bad Window"
+msgstr "Finestra incorrecta"
+
+#: ../src/process-window.c:171
+#, c-format
+msgid "Window id 0x%lx does not exist!"
+msgstr "No existeix l'id. de finestra 0x%lx!"
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed"
+msgstr "Ha fallat XGetWindowProperty"
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed!"
+msgstr "Ha fallat XGetWindowProperty!"
+
+#: ../src/process-window.c:181
+msgid "No PID found"
+msgstr "PID no trobat"
+
+#: ../src/process-window.c:181
+#, c-format
+msgid "No PID found for window 0x%lx."
+msgstr "No s'ha trobat cap PID per a la finestra 0x%lx."
+
+#: ../src/process-window.c:251
+msgid "Identify Window"
+msgstr "Identifica la finestra"
+
+#: ../src/process-window.c:252
+msgid "Identify an open window by clicking on it."
+msgstr "Identifica una finestra en fer-hi clic."
+
+#: ../src/process-window.c:318
 #, c-format
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
@@ -230,11 +264,11 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Inici de la tasca\n<span foreground='#000000' background='#fff176'>    </span> Canvi de la tasca\n<span foreground='#000000' background='#e57373'>    </span> Acabament de la tasca"
 
-#: ../src/process-window.c:215
+#: ../src/process-window.c:328
 msgid "Filter on process name"
 msgstr "Filtra amb el nom del procés"
 
-#: ../src/process-window.c:397
+#: ../src/process-window.c:510
 msgid "translator-credits"
 msgstr "Pau Rul·lan Ferragut\nRobert Antoni Buj Gelonch <rbuj@fedoraproject.org>"
 
