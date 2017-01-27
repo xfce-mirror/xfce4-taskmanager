@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-23 12:30+0100\n"
-"PO-Revision-Date: 2017-01-23 19:36+0000\n"
+"POT-Creation-Date: 2017-01-27 00:30+0100\n"
+"PO-Revision-Date: 2017-01-27 06:46+0000\n"
 "Last-Translator: Igor <f2404@yandex.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/xfce/xfce-apps/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -24,13 +24,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
 #: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:373 ../src/process-tree-view.c:388
-#: ../src/process-tree-view.c:416 ../src/process-window.c:387
+#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
+#: ../src/process-tree-view.c:417 ../src/process-window.c:500
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Диспетчер задач"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:394
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:507
 msgid "Easy to use task manager"
 msgstr "Простой диспетчер задач"
 
@@ -81,12 +81,12 @@ msgid ""
 "Swap: %s"
 msgstr "Процессов: %u\nЦП: %.0f%%\nПамять: %s\nПодкач.: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:459
+#: ../src/process-statusbar.c:147 ../src/process-window.c:572
 #, c-format
 msgid "CPU: %s%%"
 msgstr "ЦП: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:463
+#: ../src/process-statusbar.c:162 ../src/process-window.c:576
 #, c-format
 msgid "Memory: %s"
 msgstr "Память: %s"
@@ -101,128 +101,162 @@ msgstr "Подкачка: %s"
 msgid "Processes: %d"
 msgstr "Процессы: %d"
 
-#: ../src/process-tree-view.c:136
+#: ../src/process-tree-view.c:137
 msgid "Task"
 msgstr "Задача"
 
-#: ../src/process-tree-view.c:147 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:155 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:163 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "Состояние"
 
-#: ../src/process-tree-view.c:172
+#: ../src/process-tree-view.c:173
 msgid "VSZ"
 msgstr "Виртуальная"
 
-#: ../src/process-tree-view.c:180
+#: ../src/process-tree-view.c:181
 msgid "RSS"
 msgstr "Резидентная"
 
-#: ../src/process-tree-view.c:188 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:196 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "ЦП"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:205
+#: ../src/process-tree-view.c:206
 msgid "Prio."
 msgstr "Приор."
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Terminate task"
 msgstr "Завершить процесс"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Kill task"
 msgstr "Принудительно завершить"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:372
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Вы уверены, что хотите послать сигнал «%s» процессу с PID %d?"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:373
 msgid "terminate"
 msgstr "завершить"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:373
 msgid "kill"
 msgstr "принудительно завершить"
 
-#: ../src/process-tree-view.c:384
+#: ../src/process-tree-view.c:385
 msgid "Error sending signal"
 msgstr "Не удалось отправить сигнал"
 
-#: ../src/process-tree-view.c:386
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Произошла ошибка при отправке сигнала процессу %d. Вероятнее всего, у вас нет необходимых прав."
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 msgid "Error setting priority"
 msgstr "Не удалось задать приоритет"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Произошла ошибка при задании приоритета процесса %d. Вероятнее всего, у вас нет необходимых прав."
 
-#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:583
+#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
 msgid "Stop"
 msgstr "Остановить"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:440
 msgid "Continue"
 msgstr "Продолжить"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:446
 msgid "Terminate"
 msgstr "Завершить"
 
-#: ../src/process-tree-view.c:451
+#: ../src/process-tree-view.c:452
 msgid "Kill"
 msgstr "Принудительно завершить"
 
-#: ../src/process-tree-view.c:458
+#: ../src/process-tree-view.c:459
 msgid "Very low"
 msgstr "Очень низкий"
 
-#: ../src/process-tree-view.c:463
+#: ../src/process-tree-view.c:464
 msgid "Low"
 msgstr "Низкий"
 
-#: ../src/process-tree-view.c:468
+#: ../src/process-tree-view.c:469
 msgid "Normal"
 msgstr "Обычный"
 
-#: ../src/process-tree-view.c:473
+#: ../src/process-tree-view.c:474
 msgid "High"
 msgstr "Высокий"
 
-#: ../src/process-tree-view.c:478
+#: ../src/process-tree-view.c:479
 msgid "Very high"
 msgstr "Очень высокий"
 
-#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Приоритет"
 
-#: ../src/process-window.c:205
+#: ../src/process-window.c:171
+msgid "Bad Window"
+msgstr "Плохое окно"
+
+#: ../src/process-window.c:171
+#, c-format
+msgid "Window id 0x%lx does not exist!"
+msgstr "Идентификатор окна 0x%lx не существует!"
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed"
+msgstr "Вызов XGetWindowProperty не удался"
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed!"
+msgstr "Вызов XGetWindowProperty не удался!"
+
+#: ../src/process-window.c:181
+msgid "No PID found"
+msgstr "PID не найден"
+
+#: ../src/process-window.c:181
+#, c-format
+msgid "No PID found for window 0x%lx."
+msgstr "Не найден PID для окна 0x%lx."
+
+#: ../src/process-window.c:251
+msgid "Identify Window"
+msgstr "Укажите окно"
+
+#: ../src/process-window.c:252
+msgid "Identify an open window by clicking on it."
+msgstr "Укажите открытое окно, щёлкнув по нему."
+
+#: ../src/process-window.c:318
 #, c-format
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
@@ -230,11 +264,11 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Стартующая задача\n<span foreground='#000000' background='#fff176'>    </span> Изменяющаяся задача\n<span foreground='#000000' background='#e57373'>    </span> Останавливающаяся задача"
 
-#: ../src/process-window.c:215
+#: ../src/process-window.c:328
 msgid "Filter on process name"
 msgstr "Фильтровать по имени процесса"
 
-#: ../src/process-window.c:397
+#: ../src/process-window.c:510
 msgid "translator-credits"
 msgstr "Andrey Fedoseev\nVlad Vasilev\nSergey Alyoshin"
 
