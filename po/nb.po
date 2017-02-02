@@ -3,18 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Allan Nordhøy <comradekingu@gmail.com>, 2014-2015
-# Harald <haarektrans@gmail.com>, 2014
+# Allan Nordhøy <epost@anotheragency.no>, 2014-2015
+# Allan Nordhøy <epost@anotheragency.no>, 2017
+# Harald H. <haarektrans@gmail.com>, 2014
 # Terje Uriansrud <terje@uriansrud.com>, 2009
 # Terje Uriansrud <ter@operamail.com>, 2007
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2015-02-21 15:47+0000\n"
-"Last-Translator: Allan Nordhøy <comradekingu@gmail.com>\n"
-"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/xfce-apps/language/nb/)\n"
+"POT-Creation-Date: 2017-01-27 00:30+0100\n"
+"PO-Revision-Date: 2017-02-02 04:56+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/xfce/xfce-apps/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,13 +24,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
 #: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:415 ../src/process-window.c:389
+#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
+#: ../src/process-tree-view.c:417 ../src/process-window.c:500
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Oppgavebehandler"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:507
 msgid "Easy to use task manager"
 msgstr "Lett å bruke oppgavebehandler"
 
@@ -39,7 +40,7 @@ msgstr "Feil ved kjøring"
 
 #: ../src/exec-tool-button.c:150
 msgid "Couldn't find any default command to run."
-msgstr "Kunne ikke finne noen standard kommando å kjøre."
+msgstr "Fant ingen forvalgt kommando å kjøre."
 
 #: ../src/exec-tool-button.c:181
 msgid "Run Task Manager as root"
@@ -48,7 +49,7 @@ msgstr "Kjør oppgavebehandler som root"
 #: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
 #: ../src/exec-tool-button.c:196
 msgid "Run Program..."
-msgstr "Kjør program ..."
+msgstr "Kjør program…"
 
 #: ../src/exec-tool-button.c:199
 msgid "Application Finder"
@@ -80,12 +81,12 @@ msgid ""
 "Swap: %s"
 msgstr "Prosesser: %u\nCPU: %.0f%%\nMinne: %s\nVekselminne: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:461
+#: ../src/process-statusbar.c:147 ../src/process-window.c:572
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:465
+#: ../src/process-statusbar.c:162 ../src/process-window.c:576
 #, c-format
 msgid "Memory: %s"
 msgstr "Minne: %s"
@@ -100,120 +101,162 @@ msgstr "Vekselminne: %s"
 msgid "Processes: %d"
 msgstr "Prosesser: %d"
 
-#: ../src/process-tree-view.c:136
+#: ../src/process-tree-view.c:137
 msgid "Task"
 msgstr "Oppgave"
 
-#: ../src/process-tree-view.c:147 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:155 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:163 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "Status"
 
-#: ../src/process-tree-view.c:172
+#: ../src/process-tree-view.c:173
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:180
+#: ../src/process-tree-view.c:181
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:188 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:196 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:205
+#: ../src/process-tree-view.c:206
 msgid "Prio."
 msgstr "PRI"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Terminate task"
-msgstr "Terminere oppgave"
+msgstr "Terminer oppgave"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Kill task"
 msgstr "Tving oppgaveavslutning"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:372
 #, c-format
-msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Er du sikker på at du vil sende et signal til PID %d?"
+msgid "Are you sure you want to send the %s signal to the PID %d?"
+msgstr "Er du sikker på at du vil sende %s-signalet til PID %d?"
 
-#: ../src/process-tree-view.c:383
+#: ../src/process-tree-view.c:373
+msgid "terminate"
+msgstr "terminer"
+
+#: ../src/process-tree-view.c:373
+msgid "kill"
+msgstr "tving avslutning"
+
+#: ../src/process-tree-view.c:385
 msgid "Error sending signal"
 msgstr "Feil under forsendelse av signal"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "En feil oppstod ved forsendelse av signal til PID %d. Det er sannsynlig at du ikke har de nødvendige rettighetene."
 
-#: ../src/process-tree-view.c:412
+#: ../src/process-tree-view.c:414
 msgid "Error setting priority"
 msgstr "Feil ved å sette prioritet"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Det oppstod en feil ved setting av prioritet for PID %d. Det er sannsynlig at du ikke har de nødvendige rettighetene."
 
-#: ../src/process-tree-view.c:429
-msgid "Terminate"
-msgstr "Terminere"
-
-#: ../src/process-tree-view.c:437
+#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
 msgid "Stop"
 msgstr "Stopp"
 
-#: ../src/process-tree-view.c:444
+#: ../src/process-tree-view.c:440
 msgid "Continue"
 msgstr "Fortsett"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:446
+msgid "Terminate"
+msgstr "Terminer"
+
+#: ../src/process-tree-view.c:452
 msgid "Kill"
 msgstr "Tving avslutning"
 
-#: ../src/process-tree-view.c:457
+#: ../src/process-tree-view.c:459
 msgid "Very low"
 msgstr "Veldig lav"
 
-#: ../src/process-tree-view.c:462
+#: ../src/process-tree-view.c:464
 msgid "Low"
 msgstr "Lav"
 
-#: ../src/process-tree-view.c:467
+#: ../src/process-tree-view.c:469
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/process-tree-view.c:472
+#: ../src/process-tree-view.c:474
 msgid "High"
 msgstr "Høy"
 
-#: ../src/process-tree-view.c:477
+#: ../src/process-tree-view.c:479
 msgid "Very high"
 msgstr "Veldig høy"
 
-#: ../src/process-tree-view.c:482 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Prioritet"
 
-#: ../src/process-window.c:205
+#: ../src/process-window.c:171
+msgid "Bad Window"
+msgstr ""
+
+#: ../src/process-window.c:171
+#, c-format
+msgid "Window id 0x%lx does not exist!"
+msgstr "Vindus-ID 0x%lx finnes ikke!"
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed"
+msgstr ""
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed!"
+msgstr ""
+
+#: ../src/process-window.c:181
+msgid "No PID found"
+msgstr "Fant ingen PID"
+
+#: ../src/process-window.c:181
+#, c-format
+msgid "No PID found for window 0x%lx."
+msgstr "Ingen PID funnet for vinduet 0x%lx."
+
+#: ../src/process-window.c:251
+msgid "Identify Window"
+msgstr ""
+
+#: ../src/process-window.c:252
+msgid "Identify an open window by clicking on it."
+msgstr ""
+
+#: ../src/process-window.c:318
 #, c-format
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
@@ -221,11 +264,11 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span>Begynner oppgave\n<span foreground='#000000' background='#fff176'>    </span> Bytter oppgave\n<span foreground='#000000' background='#e57373'>    </span> Avslutter oppgave"
 
-#: ../src/process-window.c:215
+#: ../src/process-window.c:328
 msgid "Filter on process name"
 msgstr "Filtrer basert på prosessnavn"
 
-#: ../src/process-window.c:399
+#: ../src/process-window.c:510
 msgid "translator-credits"
 msgstr "haarek - Harald <https://www.transifex.com/accounts/profile/haarek/>\nkingu - Allan Nordhøy <https://www.transifex.com/accounts/profile/kingu/>\npapparonny - Ronny K. M. Olufsen <https://www.transifex.com/accounts/profile/papparonny/>\nTerje Uriansrud <terje@uriansrud.net>"
 
@@ -235,7 +278,7 @@ msgstr "Advarsel, du bruker root-kontoen, du kan skade systemet ditt."
 
 #: ../src/settings.c:387
 msgid "Default"
-msgstr "Standard"
+msgstr "Forvalg"
 
 #: ../src/settings.c:388
 msgid "Small"
