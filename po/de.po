@@ -6,13 +6,13 @@
 # Christoph Wickert <christoph.wickert@gmail.com>, 2014
 # Georg Eckert <eckert.georg@gmx.de>, 2013
 # Harald Judt <h.judt@gmx.at>, 2014
-# Tobias Bannert <tobannert@gmail.com>, 2014-2015
+# Tobias Bannert <tobannert@gmail.com>, 2014-2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-20 00:31+0100\n"
-"PO-Revision-Date: 2015-10-07 12:26+0000\n"
+"POT-Creation-Date: 2017-01-27 00:30+0100\n"
+"PO-Revision-Date: 2017-02-07 13:41+0000\n"
 "Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/xfce/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -23,13 +23,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
 #: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:415 ../src/process-window.c:389
+#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
+#: ../src/process-tree-view.c:417 ../src/process-window.c:500
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Taskmanager"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:396
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:507
 msgid "Easy to use task manager"
 msgstr "Prozessverwaltung mit einfacher Bedienung"
 
@@ -80,12 +80,12 @@ msgid ""
 "Swap: %s"
 msgstr "Prozesse: %u\nCPU: %.0f%%\nArbeitsspeicher: %s\nAuslagerungsspeicher: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:461
+#: ../src/process-statusbar.c:147 ../src/process-window.c:572
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:465
+#: ../src/process-statusbar.c:162 ../src/process-window.c:576
 #, c-format
 msgid "Memory: %s"
 msgstr "RAM: %s"
@@ -100,120 +100,162 @@ msgstr "Swap: %s"
 msgid "Processes: %d"
 msgstr "Prozesse: %d"
 
-#: ../src/process-tree-view.c:136
+#: ../src/process-tree-view.c:137
 msgid "Task"
 msgstr "Prozess"
 
-#: ../src/process-tree-view.c:147 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:155 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:163 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "Status"
 
-#: ../src/process-tree-view.c:172
+#: ../src/process-tree-view.c:173
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:180
+#: ../src/process-tree-view.c:181
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:188 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:196 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:205
+#: ../src/process-tree-view.c:206
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Terminate task"
 msgstr "Prozess beenden"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Kill task"
 msgstr "Prozess töten"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:372
 #, c-format
-msgid "Are you sure you want to send a signal to the PID %d?"
-msgstr "Soll dem Prozess mit der PID %d ein Signal gesendet werden?"
+msgid "Are you sure you want to send the %s signal to the PID %d?"
+msgstr ""
 
-#: ../src/process-tree-view.c:383
+#: ../src/process-tree-view.c:373
+msgid "terminate"
+msgstr ""
+
+#: ../src/process-tree-view.c:373
+msgid "kill"
+msgstr "töten"
+
+#: ../src/process-tree-view.c:385
 msgid "Error sending signal"
 msgstr "Signal konnte nicht gesendet werden"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Beim Senden eines Signals an den Prozess mit der PID %d ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte. "
 
-#: ../src/process-tree-view.c:412
+#: ../src/process-tree-view.c:414
 msgid "Error setting priority"
 msgstr "Fehler beim Einstellen der Priorität"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Beim Einstellen der Priorität, für den Prozess mit der PID %d, ist ein Fehler aufgetreten. Möglicherweise haben Sie nicht die erforderlichen Rechte."
 
-#: ../src/process-tree-view.c:429
-msgid "Terminate"
-msgstr "Beenden"
-
-#: ../src/process-tree-view.c:437
+#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
 msgid "Stop"
 msgstr "Anhalten"
 
-#: ../src/process-tree-view.c:444
+#: ../src/process-tree-view.c:440
 msgid "Continue"
 msgstr "Fortsetzen"
 
-#: ../src/process-tree-view.c:450
+#: ../src/process-tree-view.c:446
+msgid "Terminate"
+msgstr "Beenden"
+
+#: ../src/process-tree-view.c:452
 msgid "Kill"
 msgstr "Töten"
 
-#: ../src/process-tree-view.c:457
+#: ../src/process-tree-view.c:459
 msgid "Very low"
 msgstr "Sehr niedrig"
 
-#: ../src/process-tree-view.c:462
+#: ../src/process-tree-view.c:464
 msgid "Low"
 msgstr "Niedrig"
 
-#: ../src/process-tree-view.c:467
+#: ../src/process-tree-view.c:469
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/process-tree-view.c:472
+#: ../src/process-tree-view.c:474
 msgid "High"
 msgstr "Hoch"
 
-#: ../src/process-tree-view.c:477
+#: ../src/process-tree-view.c:479
 msgid "Very high"
 msgstr "Sehr hoch"
 
-#: ../src/process-tree-view.c:482 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Priorität"
 
-#: ../src/process-window.c:205
+#: ../src/process-window.c:171
+msgid "Bad Window"
+msgstr ""
+
+#: ../src/process-window.c:171
+#, c-format
+msgid "Window id 0x%lx does not exist!"
+msgstr ""
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed"
+msgstr ""
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed!"
+msgstr ""
+
+#: ../src/process-window.c:181
+msgid "No PID found"
+msgstr ""
+
+#: ../src/process-window.c:181
+#, c-format
+msgid "No PID found for window 0x%lx."
+msgstr ""
+
+#: ../src/process-window.c:251
+msgid "Identify Window"
+msgstr ""
+
+#: ../src/process-window.c:252
+msgid "Identify an open window by clicking on it."
+msgstr ""
+
+#: ../src/process-window.c:318
 #, c-format
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
@@ -221,11 +263,11 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Prozess wird gestartet\n<span foreground='#000000' background='#fff176'>    </span> Prozess wird geändert\n<span foreground='#000000' background='#e57373'>    </span> Prozess wird beendet"
 
-#: ../src/process-window.c:215
+#: ../src/process-window.c:328
 msgid "Filter on process name"
 msgstr "Nach Prozessname filtern"
 
-#: ../src/process-window.c:399
+#: ../src/process-window.c:510
 msgid "translator-credits"
 msgstr "Übersetzerdanksagungen"
 
