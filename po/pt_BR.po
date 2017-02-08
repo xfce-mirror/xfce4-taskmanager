@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2017-02-06 17:02+0000\n"
+"PO-Revision-Date: 2017-02-08 03:09+0000\n"
 "Last-Translator: André Miranda <andre42m@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/xfce/xfce-apps/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -227,7 +227,7 @@ msgstr "Prioridade"
 
 #: ../src/process-window.c:171
 msgid "Bad Window"
-msgstr ""
+msgstr "Janela Inválida"
 
 #: ../src/process-window.c:171
 #, c-format
