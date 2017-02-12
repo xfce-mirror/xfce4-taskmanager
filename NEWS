@@ -1,3 +1,13 @@
+1.2.0
+
+- New Feature: identify windows by clicking on them (Simon Steinbeiss, Florian Schüller)
+- Give the filter/search entry focus by default (Bug #11868)
+- Add delete and shift/delete keyboard shortcuts to the treeview
+- Improve kill and terminate dialog wording
+- Add Ctrl+q keyboard shortcut to close the taskmanager
+- Improve memory usage on FreeBSD system (Olivier Duchateau)
+- Lots and lots of translation updates (thanks to everyone!)
+
 1.1.0
 
 - Initial port to Gtk3, use --enable-gtk3 to test it (Gtk2 is still the default)
