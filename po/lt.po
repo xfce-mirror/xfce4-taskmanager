@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2017-01-27 09:12+0000\n"
+"PO-Revision-Date: 2017-02-17 21:54+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-apps/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %s\n"
 "<b>Swap:</b> %s"
-msgstr "<b>Procesai:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Atmintis:</b> %s\n<b>Mainų sritis:</b> %s"
+msgstr "<b>Procesai:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Atmintis:</b> %s\n<b>Sukeitimų sritis:</b> %s"
 
 #: ../src/main.c:134
 #, c-format
@@ -76,7 +76,7 @@ msgid ""
 "CPU: %.0f%%\n"
 "Memory: %s\n"
 "Swap: %s"
-msgstr "Procesai: %u\nCPU: %.0f%%\nAtmintis: %s\nMainų sritis: %s"
+msgstr "Procesai: %u\nCPU: %.0f%%\nAtmintis: %s\nSukeitimų sritis: %s"
 
 #: ../src/process-statusbar.c:147 ../src/process-window.c:572
 #, c-format
@@ -91,7 +91,7 @@ msgstr "Atmintis: %s"
 #: ../src/process-statusbar.c:176
 #, c-format
 msgid "Swap: %s"
-msgstr "Mainų sritis: %s"
+msgstr "Sukeitimų sritis: %s"
 
 #: ../src/process-statusbar.c:190
 #, c-format
@@ -134,7 +134,7 @@ msgstr "CPU"
 #. header.
 #: ../src/process-tree-view.c:206
 msgid "Prio."
-msgstr "Prio."
+msgstr "Pirm."
 
 #: ../src/process-tree-view.c:370
 msgid "Terminate task"
@@ -170,14 +170,14 @@ msgstr "Siunčiant signalą PID %d įvyko klaida. Turbūt, jūs neturite reikiam
 
 #: ../src/process-tree-view.c:414
 msgid "Error setting priority"
-msgstr "Klaida nustatant prioritetą"
+msgstr "Klaida nustatant pirmenybę"
 
 #: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "Nustatant prioritetą PID %d įvyko klaida. Turbūt jūs neturite reikiamų teisių."
+msgstr "Nustatant pirmenybę PID %d įvyko klaida. Turbūt jūs neturite reikiamų teisių."
 
 #: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
 msgid "Stop"
@@ -197,27 +197,27 @@ msgstr "Nutraukti darbą"
 
 #: ../src/process-tree-view.c:459
 msgid "Very low"
-msgstr "Labai žemas"
+msgstr "Labai žema"
 
 #: ../src/process-tree-view.c:464
 msgid "Low"
-msgstr "Žemas"
+msgstr "Žema"
 
 #: ../src/process-tree-view.c:469
 msgid "Normal"
-msgstr "Normalus"
+msgstr "Normali"
 
 #: ../src/process-tree-view.c:474
 msgid "High"
-msgstr "Aukštas"
+msgstr "Aukšta"
 
 #: ../src/process-tree-view.c:479
 msgid "Very high"
-msgstr "Labai aukštas"
+msgstr "Labai aukšta"
 
 #: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
-msgstr "Prioritetas"
+msgstr "Pirmenybė"
 
 #: ../src/process-window.c:171
 msgid "Bad Window"
@@ -251,7 +251,7 @@ msgstr "Atpažinti langą"
 
 #: ../src/process-window.c:252
 msgid "Identify an open window by clicking on it."
-msgstr "Atpažinkite atvertą langą, spusteldami ant jo."
+msgstr "Atpažinti atvertą langą, ant jo spustelėjant."
 
 #: ../src/process-window.c:318
 #, c-format
@@ -267,7 +267,7 @@ msgstr "Filtruoti pagal proceso pavadinimą"
 
 #: ../src/process-window.c:510
 msgid "translator-credits"
-msgstr "Algimantas Margevičius <margevicius.algimantas@gmail.com>"
+msgstr "Algimantas Margevičius <margevicius.algimantas@gmail.com>\nMoo"
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
