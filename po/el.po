@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2017-02-21 11:37+0000\n"
+"PO-Revision-Date: 2017-03-04 00:24+0000\n"
 "Last-Translator: Apóstolos Papaðimitríu <apostolos.papadimitriu@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce-apps/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -228,15 +228,15 @@ msgstr ""
 #: ../src/process-window.c:171
 #, c-format
 msgid "Window id 0x%lx does not exist!"
-msgstr ""
+msgstr "Η ταυτότητα παραθύρου 0x%lx δεν υπάρχει!"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
-msgstr ""
+msgstr "Αποτυχία XGetWindowProperty"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
-msgstr ""
+msgstr "Αποτυχία XGetWindowProperty!"
 
 #: ../src/process-window.c:181
 msgid "No PID found"
