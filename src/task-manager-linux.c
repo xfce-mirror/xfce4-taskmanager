@@ -194,7 +194,7 @@ get_task_details (guint pid, Task *task)
 	gchar filename[96];
 	gchar buffer[1024];
 
-	snprintf (filename, 96, "/proc/%d/stat", pid);
+	snprintf (filename, sizeof(filename), "/proc/%d/stat", pid);
 	if ((file = fopen (filename, "r")) == NULL || fgets (buffer, 1024, file) == NULL)
 		return FALSE;
 	fclose (file);
@@ -281,6 +281,7 @@ get_task_details (guint pid, Task *task)
 		task->rss *= get_pagesize ();
 		get_cpu_percent (task->pid, jiffies_user, &task->cpu_user, jiffies_system, &task->cpu_system);
 
+		snprintf (filename, sizeof(filename), "/proc/%d/task", pid);
 		stat (filename, &sstat);
 		pw = getpwuid (sstat.st_uid);
 		task->uid = sstat.st_uid;
@@ -342,4 +343,3 @@ pid_is_sleeping (guint pid)
 
 	return (state[0] == 'T') ? TRUE : FALSE;
 }
-
