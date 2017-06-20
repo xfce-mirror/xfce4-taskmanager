@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aputsiak Niels Janussen <aj@isit.gl>, 2013
+# Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2013
 # scootergrisen, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2017-01-27 12:35+0000\n"
+"PO-Revision-Date: 2017-06-20 20:45+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Opgavehåndtering"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:507
 msgid "Easy to use task manager"
-msgstr "En nem opgavehåndtering"
+msgstr "Opgavehåndtering som er nem at bruge"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
@@ -54,7 +54,7 @@ msgstr "Programfinder"
 
 #: ../src/exec-tool-button.c:202
 msgid "Terminal emulator"
-msgstr "Terminal-emulator"
+msgstr "Terminalemulator"
 
 #: ../src/exec-tool-button.c:204
 msgid "XTerm"
