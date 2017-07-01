@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Dušan Kazik <prescott66@gmail.com>, 2017
-# Slavko <linux@slavino.sk>, 2015
+# Slavko <linux@slavino.sk>, 2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2017-01-27 18:55+0000\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"PO-Revision-Date: 2017-07-01 07:20+0000\n"
+"Last-Translator: Slavko <linux@slavino.sk>\n"
 "Language-Team: Slovak (http://www.transifex.com/xfce/xfce-apps/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,11 +230,11 @@ msgstr "Okno id 0x%lx neexistuje!"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
-msgstr ""
+msgstr "XGetWindowProperty zlyhalo"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
-msgstr ""
+msgstr "XGetWindowProperty zlyhalo!"
 
 #: ../src/process-window.c:181
 msgid "No PID found"
