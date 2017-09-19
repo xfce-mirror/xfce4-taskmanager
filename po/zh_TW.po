@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-23 12:30+0100\n"
-"PO-Revision-Date: 2017-01-24 08:31+0000\n"
+"POT-Creation-Date: 2017-01-27 00:30+0100\n"
+"PO-Revision-Date: 2017-09-19 18:06+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/xfce/xfce-apps/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -21,13 +21,13 @@ msgstr ""
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
 #: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:373 ../src/process-tree-view.c:388
-#: ../src/process-tree-view.c:416 ../src/process-window.c:387
+#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
+#: ../src/process-tree-view.c:417 ../src/process-window.c:500
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "工作管理員"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:394
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:507
 msgid "Easy to use task manager"
 msgstr "易於使用的工作管理員"
 
@@ -78,12 +78,12 @@ msgid ""
 "Swap: %s"
 msgstr "程序：%u\nCPU：%.0f%%\n記憶體：%s\n置換空間：%s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:459
+#: ../src/process-statusbar.c:147 ../src/process-window.c:572
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU：%s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:463
+#: ../src/process-statusbar.c:162 ../src/process-window.c:576
 #, c-format
 msgid "Memory: %s"
 msgstr "記憶體：%s"
@@ -98,128 +98,162 @@ msgstr "置換空間：%s"
 msgid "Processes: %d"
 msgstr "程序：%d"
 
-#: ../src/process-tree-view.c:136
+#: ../src/process-tree-view.c:137
 msgid "Task"
 msgstr "工作"
 
-#: ../src/process-tree-view.c:147 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:155 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:163 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "狀態"
 
-#: ../src/process-tree-view.c:172
+#: ../src/process-tree-view.c:173
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:180
+#: ../src/process-tree-view.c:181
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:188 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:196 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:205
+#: ../src/process-tree-view.c:206
 msgid "Prio."
 msgstr "優先"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Terminate task"
 msgstr "終止工作"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 msgid "Kill task"
 msgstr "強制結束工作"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:372
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "您確定您要傳遞 %s 訊號給 PID %d 嗎？"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:373
 msgid "terminate"
 msgstr "terminate"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:373
 msgid "kill"
 msgstr "kill"
 
-#: ../src/process-tree-view.c:384
+#: ../src/process-tree-view.c:385
 msgid "Error sending signal"
 msgstr "傳送訊號時發生錯誤"
 
-#: ../src/process-tree-view.c:386
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "傳送訊號給 PID %d 時遭遇錯誤。很可能您沒有應具備的特權。"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 msgid "Error setting priority"
 msgstr "設定優先權時發生錯誤"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "設定 PID %d 的優先權時遭遇錯誤。很可能您沒有應具備的特權。"
 
-#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:583
+#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:440
 msgid "Continue"
 msgstr "繼續"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:446
 msgid "Terminate"
 msgstr "終止"
 
-#: ../src/process-tree-view.c:451
+#: ../src/process-tree-view.c:452
 msgid "Kill"
 msgstr "強行中止"
 
-#: ../src/process-tree-view.c:458
+#: ../src/process-tree-view.c:459
 msgid "Very low"
 msgstr "非常低"
 
-#: ../src/process-tree-view.c:463
+#: ../src/process-tree-view.c:464
 msgid "Low"
 msgstr "低"
 
-#: ../src/process-tree-view.c:468
+#: ../src/process-tree-view.c:469
 msgid "Normal"
 msgstr "正常"
 
-#: ../src/process-tree-view.c:473
+#: ../src/process-tree-view.c:474
 msgid "High"
 msgstr "高"
 
-#: ../src/process-tree-view.c:478
+#: ../src/process-tree-view.c:479
 msgid "Very high"
 msgstr "非常高"
 
-#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "優先權"
 
-#: ../src/process-window.c:205
+#: ../src/process-window.c:171
+msgid "Bad Window"
+msgstr "無效的視窗"
+
+#: ../src/process-window.c:171
+#, c-format
+msgid "Window id 0x%lx does not exist!"
+msgstr "視窗 id 0x%lx 不存在！"
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed"
+msgstr "XGetWindowProperty 失敗"
+
+#: ../src/process-window.c:174
+msgid "XGetWindowProperty failed!"
+msgstr "XGetWindowProperty 失敗！"
+
+#: ../src/process-window.c:181
+msgid "No PID found"
+msgstr "找不到 PID"
+
+#: ../src/process-window.c:181
+#, c-format
+msgid "No PID found for window 0x%lx."
+msgstr "找不到視窗 0x%lx 的 PID。"
+
+#: ../src/process-window.c:251
+msgid "Identify Window"
+msgstr "識別視窗"
+
+#: ../src/process-window.c:252
+msgid "Identify an open window by clicking on it."
+msgstr "在開啟的視窗上點擊以識別它。"
+
+#: ../src/process-window.c:318
 #, c-format
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
@@ -227,11 +261,11 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> 正在開始工作\n<span foreground='#000000' background='#fff176'>    </span> 正在變更工作\n<span foreground='#000000' background='#e57373'>    </span> 正在終結工作"
 
-#: ../src/process-window.c:215
+#: ../src/process-window.c:328
 msgid "Filter on process name"
 msgstr "行程名稱的過濾器"
 
-#: ../src/process-window.c:397
+#: ../src/process-window.c:510
 msgid "translator-credits"
 msgstr "Cosmo Chene\nCheng-Chia Tseng <pswo10680@gmail.com>, 2012."
 
