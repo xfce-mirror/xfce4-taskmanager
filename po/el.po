@@ -7,13 +7,14 @@
 # Apóstolos Papaðimitríu <apostolos.papadimitriu@gmail.com>, 2017
 # ebal <ebalaskas@ebalaskas.gr>, 2008
 # Stavros Giannouris <stavrosg@hellug.gr>, 2008
+# Πέτρος <psamaras1@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2017-09-19 18:05+0000\n"
-"Last-Translator: Apóstolos Papaðimitríu <apostolos.papadimitriu@gmail.com>\n"
+"PO-Revision-Date: 2017-10-24 00:31+0000\n"
+"Last-Translator: Πέτρος <psamaras1@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce-apps/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -223,7 +224,7 @@ msgstr "Προτεραιότητα"
 
 #: ../src/process-window.c:171
 msgid "Bad Window"
-msgstr ""
+msgstr "Κακό Παράθυρο"
 
 #: ../src/process-window.c:171
 #, c-format
