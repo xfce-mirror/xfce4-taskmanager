@@ -223,8 +223,6 @@ get_task_details (guint pid, Task *task)
 		gchar dummy[256];
 		gint idummy;
 		gulong jiffies_user = 0, jiffies_system = 0;
-		struct passwd *pw;
-		struct stat sstat;
 
 		sscanf(buffer, "%i %255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %lu %lu %i %i %i %d %i %i %i %llu %llu %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
 			&task->pid,	// processid
@@ -280,11 +278,25 @@ get_task_details (guint pid, Task *task)
 
 		task->rss *= get_pagesize ();
 		get_cpu_percent (task->pid, jiffies_user, &task->cpu_user, jiffies_system, &task->cpu_system);
+	}
 
-		snprintf (filename, sizeof(filename), "/proc/%d/task", pid);
-		stat (filename, &sstat);
-		pw = getpwuid (sstat.st_uid);
-		task->uid = sstat.st_uid;
+	/* Parse the status file: it contains the UIDs */
+	{
+		struct passwd *pw;
+		guint dummy;
+
+		snprintf(filename, sizeof (filename), "/proc/%d/status", pid);
+		if ((file = fopen (filename, "r")) == NULL)
+			return FALSE;
+
+		while (fgets (buffer, sizeof(buffer), file) != NULL)
+		{
+			if (sscanf (buffer, "Uid:\t%u\t%u\t%u\t%u", &dummy, &task->uid, &dummy, &dummy) == 1) // UIDs in order: real, effective, saved set, and filesystem
+				break;
+		}
+		fclose (file);
+
+		pw = getpwuid (task->uid);
 		g_strlcpy (task->uid_name, (pw != NULL) ? pw->pw_name : "nobody", sizeof (task->uid_name));
 	}
 
