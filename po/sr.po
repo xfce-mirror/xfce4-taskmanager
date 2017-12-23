@@ -5,12 +5,13 @@
 # Translators:
 # Саша Петровић <salepetronije@gmail.com>, 2012-2013,2017
 # Саша Петровић <salepetronije@gmail.com>, 2014
+# Саша Петровић <salepetronije@gmail.com>, 2014,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"PO-Revision-Date: 2017-12-23 20:27+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/xfce-apps/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -104,11 +105,11 @@ msgstr "Задатак"
 
 #: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:175
 msgid "PID"
-msgstr "ПИД"
+msgstr "ПЛБ"
 
 #: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:176
 msgid "PPID"
-msgstr "ППИД"
+msgstr "ППЛБ"
 
 #: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:177
 msgid "State"
@@ -147,7 +148,7 @@ msgstr "Убиј задатак"
 #: ../src/process-tree-view.c:372
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr "Да ли сигурно желите послати сигнал%s ПИД-у %d?"
+msgstr "Да ли сигурно желите послати сигнал%s ПЛБ-у %d?"
 
 #: ../src/process-tree-view.c:373
 msgid "terminate"
@@ -166,7 +167,7 @@ msgstr "Грешка приликом слања сигнала"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "Јавила се грешка приликом слања сигнала ПИД-у %d. Вероватно немате потребна овлашћења."
+msgstr "Јавила се грешка приликом слања сигнала ПЛБ-у %d. Вероватно немате потребна овлашћења."
 
 #: ../src/process-tree-view.c:414
 msgid "Error setting priority"
@@ -177,7 +178,7 @@ msgstr "Грешка подешавања предности"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "Јавила се грешка приликом одређивања предности ПИД-у %d. Вероватно немате потребна овлашћења."
+msgstr "Јавила се грешка приликом одређивања предности ПЛБ-у %d. Вероватно немате потребна овлашћења."
 
 #: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
 msgid "Stop"
@@ -230,20 +231,20 @@ msgstr "ЛБ прозора 0x%lx не постоји!"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
-msgstr ""
+msgstr "Није успео XGetWindowProperty"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
-msgstr ""
+msgstr "Није успео XGetWindowProperty"
 
 #: ../src/process-window.c:181
 msgid "No PID found"
-msgstr ""
+msgstr "Није пронађен ПЛБ"
 
 #: ../src/process-window.c:181
 #, c-format
 msgid "No PID found for window 0x%lx."
-msgstr ""
+msgstr "Није пронађен ПЛБ прозора 0x%lx."
 
 #: ../src/process-window.c:251
 msgid "Identify Window"
@@ -388,7 +389,7 @@ msgstr "Нестварни бајтови"
 
 #: ../src/settings-tool-button.c:179
 msgid "Private Bytes"
-msgstr "Приватни бајтови"
+msgstr "Лични бајтови"
 
 #: ../src/task-manager.c:241
 #, c-format
