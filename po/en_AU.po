@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# John Humphrys <john.humphrys@protonmail.com>, 2018
 # Michael Findlay <translate@cobber-linux.org>, 2013,2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2017-09-23 19:05+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2018-03-21 06:15+0000\n"
+"Last-Translator: John Humphrys <john.humphrys@protonmail.com>\n"
 "Language-Team: English (Australia) (http://www.transifex.com/xfce/xfce-apps/language/en_AU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -146,15 +147,15 @@ msgstr "Kill task"
 #: ../src/process-tree-view.c:372
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr ""
+msgstr "Are you sure you want to send the %s signal to the PID %d?"
 
 #: ../src/process-tree-view.c:373
 msgid "terminate"
-msgstr ""
+msgstr "terminate"
 
 #: ../src/process-tree-view.c:373
 msgid "kill"
-msgstr ""
+msgstr "kill"
 
 #: ../src/process-tree-view.c:385
 msgid "Error sending signal"
@@ -220,37 +221,37 @@ msgstr "Priority"
 
 #: ../src/process-window.c:171
 msgid "Bad Window"
-msgstr ""
+msgstr "Bad Window"
 
 #: ../src/process-window.c:171
 #, c-format
 msgid "Window id 0x%lx does not exist!"
-msgstr ""
+msgstr "Window id 0x%lx does not exist!"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
-msgstr ""
+msgstr "XGetWindowProperty failed"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
-msgstr ""
+msgstr "XGetWindowProperty failed!"
 
 #: ../src/process-window.c:181
 msgid "No PID found"
-msgstr ""
+msgstr "No PID found"
 
 #: ../src/process-window.c:181
 #, c-format
 msgid "No PID found for window 0x%lx."
-msgstr ""
+msgstr "No PID found for window 0x%lx."
 
 #: ../src/process-window.c:251
 msgid "Identify Window"
-msgstr ""
+msgstr "Identify Window"
 
 #: ../src/process-window.c:252
 msgid "Identify an open window by clicking on it."
-msgstr ""
+msgstr "Identify an open window by clicking on it."
 
 #: ../src/process-window.c:318
 #, c-format
