@@ -333,6 +333,8 @@ get_task_list (GArray *task_list)
 
 	g_dir_close (dir);
 
+	g_array_sort (task_list, task_pid_compare_fn);
+
 	return TRUE;
 }
 
