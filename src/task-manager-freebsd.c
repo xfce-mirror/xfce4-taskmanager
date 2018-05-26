@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2010  Mike Massonnet <mmassonnet@xfce.org>
  * Copyright (c) 2006  Oliver Lehmann <oliver@FreeBSD.org>
+ * Copyright (c) 2018 Rozhuk Ivan <rozhuk.im@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@
 #include <fcntl.h>
 #include <paths.h>
 #include <unistd.h>
+#include <string.h>
 #if defined(__FreeBSD_version) && __FreeBSD_version >= 900044
 #include <sys/vmmeter.h>
 #endif
@@ -45,7 +47,7 @@ get_mem_by_pages (const gchar *name)
 
 	res = get_mem_by_bytes (name);
 	if (res > 0)
-		res = res * getpagesize ();
+		res *= getpagesize ();
 
 	return res;
 }
@@ -70,8 +72,8 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 			return FALSE;
 
 		kvm_getswapinfo (kd, &kswap, 1, 0);
-		*swap_total = kswap.ksw_total * getpagesize ();
-		*swap_free = (kswap.ksw_total - kswap.ksw_used) * getpagesize ();
+		*swap_total = ((guint64)kswap.ksw_total) * getpagesize ();
+		*swap_free = ((guint64)(kswap.ksw_total - kswap.ksw_used)) * getpagesize ();
 
 		kvm_close (kd);
 	}
@@ -119,8 +121,9 @@ static gboolean
 get_task_details (kvm_t *kd, struct kinfo_proc *kp, Task *task)
 {
 	struct passwd *pw;
-	char **argv;
-	int i;
+	char buf[1024], *p;
+	size_t bufsz;
+	int i, oid[4];
 
 	bzero(task, sizeof(Task));
 	task->pid = kp->ki_pid;
@@ -133,16 +136,35 @@ get_task_details (kvm_t *kd, struct kinfo_proc *kp, Task *task)
 	task->uid = kp->ki_uid;
 	g_strlcpy (task->uid_name, (pw != NULL) ? pw->pw_name : "nobody", sizeof (task->uid_name));
 	task->prio = (gushort)kp->ki_nice;
-	g_strlcpy (task->name, kp->ki_comm, 256);
+	g_strlcpy (task->name, kp->ki_comm, sizeof(task->name));
 
-	task->cmdline[0] = '\0';
-	if ((argv = kvm_getargv (kd, kp, 1024)) != NULL)
-	{
-		for (i = 0; argv[i] != NULL; i++)
-		{
-			g_strlcat (task->cmdline, argv[i], 1024);
-			g_strlcat (task->cmdline, " ", 1024);
+	oid[0] = CTL_KERN;
+	oid[1] = KERN_PROC;
+	oid[2] = KERN_PROC_ARGS;
+	oid[3] = kp->ki_pid;
+	bufsz = sizeof(buf);
+	bzero(buf, sizeof(buf));
+	if (sysctl(oid, 4, buf, &bufsz, 0, 0) == -1) {
+		/*
+		 * If the supplied buf is too short to hold the requested
+		 * value the sysctl returns with ENOMEM. The buf is filled
+		 * with the truncated value and the returned bufsz is equal
+		 * to the requested len.
+		 */
+		if (errno != ENOMEM || bufsz != sizeof(buf)) {
+			bufsz = 0;
+		} else {
+			buf[(bufsz - 1)] = 0;
 		}
+	}
+
+	if (0 != bufsz) {
+		p = buf;
+		do {
+			g_strlcat (task->cmdline, p, sizeof(task->cmdline));
+			g_strlcat (task->cmdline, " ", sizeof(task->cmdline));
+			p += (strlen(p) + 1);
+		} while (p < buf + bufsz);
 	}
 	else
 	{
