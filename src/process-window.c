@@ -144,7 +144,7 @@ xwininfo_clicked_cb (GtkButton *button, gpointer user_data) {
 	XID id = None;
 
 	Atom atom_NET_WM_PID;
-	long _nitems;
+	unsigned long _nitems;
 	int size;
 	Atom actual_type;
 	int actual_format;
