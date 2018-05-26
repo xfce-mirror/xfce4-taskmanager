@@ -141,11 +141,9 @@ xwininfo_clicked_cb (GtkButton *button, gpointer user_data) {
 	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
 	Window selected_window;
 	Display *dpy = NULL;
-	XID id = None;
 
 	Atom atom_NET_WM_PID;
 	unsigned long _nitems;
-	int size;
 	Atom actual_type;
 	int actual_format;
 	unsigned char *prop;
