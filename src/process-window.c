@@ -395,7 +395,7 @@ xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
 	gboolean ret = FALSE;
 
 	if (event->keyval == GDK_KEY_Escape ||
-		event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK)) {
+		(event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK))) {
 		emit_delete_event_signal (window, (GdkEvent*) event);
 		ret = TRUE;
 	}
