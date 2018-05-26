@@ -112,12 +112,12 @@ get_cpu_percent (guint pid, gulong ticks_user, gfloat *cpu_user, gulong ticks_sy
 
 	if (_cpu_count > 0 && ticks_total_delta > 0)
 	{
-		*cpu_user = (ticks_user - ticks_user_old) * 100 / (gdouble)ticks_total_delta;
-		*cpu_system = (ticks_system - ticks_system_old) * 100 / (gdouble)ticks_total_delta;
+		*cpu_user = (((ticks_user - ticks_user_old) * 100.0f) / (float)ticks_total_delta);
+		*cpu_system = (((ticks_system - ticks_system_old) * 100.0f) / (float)ticks_total_delta);
 	}
 	else
 	{
-		*cpu_user = *cpu_system = 0;
+		*cpu_user = *cpu_system = 0.0f;
 	}
 }
 
@@ -198,7 +198,7 @@ get_task_details (guint pid, Task *task)
 	pw = getpwuid (process.pr_uid);
 	task->uid = (guint)process.pr_uid;
 	g_strlcpy (task->uid_name, (pw != NULL) ? pw->pw_name : "nobody", sizeof (task->uid_name));
-	get_cpu_percent (task->pid, process.pr_time.tv_sec * 1000 + process.pr_time.tv_nsec / 100000, &task->cpu_user, 0, &task->cpu_system);
+	get_cpu_percent (task->pid, (process.pr_time.tv_sec * 1000 + process.pr_time.tv_nsec / 100000), &task->cpu_user, 0, &task->cpu_system);
 
 	fclose (file);
 

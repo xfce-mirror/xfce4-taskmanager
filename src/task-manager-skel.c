@@ -41,7 +41,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 gboolean
 get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 {
-	*cpu_user = *cpu_system = 0.0;
+	*cpu_user = *cpu_system = 0.0f;
 	*cpu_count = 0; /*_cpu_count;*/
 
 	return TRUE;

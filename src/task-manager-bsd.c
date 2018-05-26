@@ -142,7 +142,7 @@ gboolean get_task_list (GArray *task_list)
 		}
 
 		t.cpu_user = (100.0 * ((double) p.p_pctcpu / FSCALE));
-		t.cpu_system = 0; /* TODO ? */
+		t.cpu_system = 0.0f; /* TODO ? */
 		/* get username from uid */
 		passwdp = getpwuid(t.uid);
 		if(passwdp != NULL && passwdp->pw_name != NULL)
@@ -208,8 +208,8 @@ gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system
 	cur_system = cp_time[CP_SYS] + cp_time[CP_INTR];
 	cur_total = cur_user + cur_system + cp_time[CP_IDLE];
 
-	*cpu_user = (old_total > 0) ? (cur_user - old_user) * 100 / (gdouble)(cur_total - old_total) : 0;
-	*cpu_system = (old_total > 0) ? (cur_system - old_system) * 100 / (gdouble)(cur_total - old_total) : 0;
+	*cpu_user = (old_total > 0) ? (((cur_user - old_user) * 100.0f) / (float)(cur_total - old_total)) : 0.0f;
+	*cpu_system = (old_total > 0) ? (((cur_system - old_system) * 100.0f) / (float)(cur_total - old_total)) : 0.0f;
 
 	/* get #cpu */
 	size = sizeof(&cpu_count);

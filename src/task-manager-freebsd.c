@@ -104,11 +104,11 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 		cp_system = cpu_state[CP_SYS] + cpu_state[CP_INTR];
 		cp_total = cpu_state[CP_IDLE] + cp_user + cp_system;
 
-		*cpu_user = *cpu_system = 0.0;
+		*cpu_user = *cpu_system = 0.0f;
 		if (cp_total > cp_total_old)
 		{
-			*cpu_user = (cp_user - cp_user_old) * 100 / (gdouble)(cp_total - cp_total_old);
-			*cpu_system = (cp_system - cp_system_old) * 100 / (gdouble)(cp_total - cp_total_old);
+			*cpu_user = (((cp_user - cp_user_old) * 100.0f) / (float)(cp_total - cp_total_old));
+			*cpu_system = (((cp_system - cp_system_old) * 100.0f) / (float)(cp_total - cp_total_old));
 		}
 	}
 
@@ -125,8 +125,8 @@ get_task_details (kvm_t *kd, struct kinfo_proc *kp, Task *task)
 	bzero(task, sizeof(Task));
 	task->pid = kp->ki_pid;
 	task->ppid = kp->ki_ppid;
-	task->cpu_user = 100 * ((double)kp->ki_pctcpu / FSCALE);
-	task->cpu_system = 0;
+	task->cpu_user = 100.0f * ((float)kp->ki_pctcpu / FSCALE);
+	task->cpu_system = 0.0f;
 	task->vsz = kp->ki_size;
 	task->rss = kp->ki_rssize * getpagesize ();
 	pw = getpwuid (kp->ki_uid);

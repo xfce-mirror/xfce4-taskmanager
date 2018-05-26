@@ -63,7 +63,7 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	widget_class->expose_event = xtm_process_monitor_expose;
 #endif
 	g_object_class_install_property (class, PROP_STEP_SIZE,
-		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
+		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1f, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_TYPE,
 		g_param_spec_int ("type", "Type", "Type of graph to render", 0, G_MAXINT, 0, G_PARAM_READWRITE));
 }
@@ -267,7 +267,7 @@ void
 xtm_process_monitor_add_peak (XtmProcessMonitor *monitor, gfloat peak)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
-	g_return_if_fail (peak >= 0.0 && peak <= 1.0);
+	g_return_if_fail (peak >= 0.0f && peak <= 1.0f);
 
 	g_array_prepend_val (monitor->history, peak);
 	if (monitor->history->len > 1)

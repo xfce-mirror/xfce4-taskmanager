@@ -98,12 +98,12 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	jiffies_system = system;
 	jiffies_total = jiffies_user + jiffies_system + idle;
 
-	*cpu_user = *cpu_system = 0.0;
+	*cpu_user = *cpu_system = 0.0f;
 	if (jiffies_total > jiffies_total_old)
 	{
 		jiffies_total_delta = jiffies_total - jiffies_total_old;
-		*cpu_user = (jiffies_user - jiffies_user_old) * 100 / (gdouble)(jiffies_total_delta);
-		*cpu_system = (jiffies_system - jiffies_system_old) * 100 / (gdouble)(jiffies_total_delta);
+		*cpu_user = (((jiffies_user - jiffies_user_old) * 100.0f) / (float)jiffies_total_delta);
+		*cpu_system = (((jiffies_system - jiffies_system_old) * 100.0f) / (float)jiffies_total_delta);
 	}
 	*cpu_count = _cpu_count;
 
@@ -178,12 +178,12 @@ get_cpu_percent (guint pid, gulong jiffies_user, gfloat *cpu_user, gulong jiffie
 
 	if (_cpu_count > 0 && jiffies_total_delta > 0)
 	{
-		*cpu_user = (jiffies_user - jiffies_user_old) * 100 / (gdouble)jiffies_total_delta;
-		*cpu_system = (jiffies_system - jiffies_system_old) * 100 / (gdouble)jiffies_total_delta;
+		*cpu_user = (((jiffies_user - jiffies_user_old) * 100.0f) / (float)jiffies_total_delta);
+		*cpu_system = (((jiffies_system - jiffies_system_old) * 100.0f) / (float)jiffies_total_delta);
 	}
 	else
 	{
-		*cpu_user = *cpu_system = 0;
+		*cpu_user = *cpu_system = 0.0f;
 	}
 }
 

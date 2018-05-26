@@ -93,8 +93,8 @@ init_timeout (void)
 
 	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory_used, &memory_total, &swap_used, &swap_total);
 
-	memory_percent = (memory_total != 0) ? memory_used * 100 / (gdouble)memory_total : 0;
-	swap_percent = (swap_total != 0) ? swap_used * 100 / (gdouble)swap_total : 0;
+	memory_percent = (memory_total != 0) ? ((memory_used * 100.0f) / (float)memory_total) : 0.0f;
+	swap_percent = (swap_total != 0) ? ((swap_used * 100.0f) / (float)swap_total) : 0.0f;
 
 	g_object_get (settings, "show-memory-in-xbytes", &show_memory_in_xbytes, NULL);
 	if (show_memory_in_xbytes) {

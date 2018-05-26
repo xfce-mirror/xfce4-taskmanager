@@ -565,12 +565,12 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 
 	g_object_set (window->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory_str, "swap", swap_str, NULL);
 
-	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->cpu_monitor), cpu / 100.0);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->cpu_monitor), cpu / 100.0f);
 	g_snprintf (value, sizeof(value), "%.0f", cpu);
 	g_snprintf (text, sizeof(text), _("CPU: %s%%"), value);
 	gtk_widget_set_tooltip_text (window->cpu_monitor, text);
 
-	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->mem_monitor), memory / 100.0);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->mem_monitor), memory / 100.0f);
 	g_snprintf (text, sizeof(text), _("Memory: %s"), memory_str);
 	gtk_widget_set_tooltip_text (window->mem_monitor, text);
 }
