@@ -345,7 +345,7 @@ save_columns_positions (XtmProcessTreeView *treeview)
 	gchar columns_positions[COLUMNS_POSITIONS_STRLEN] = { 0 };
 
 	for (i = 0; i < N_COLUMNS; i++)
-		offset += g_snprintf (&columns_positions[offset], COLUMNS_POSITIONS_STRLEN - offset, "%d;", treeview->columns_positions[i]);
+		offset += g_snprintf (&columns_positions[offset], (sizeof(columns_positions) - offset), "%d;", treeview->columns_positions[i]);
 
 	g_object_set (treeview->settings, "columns-positions", columns_positions, NULL);
 }

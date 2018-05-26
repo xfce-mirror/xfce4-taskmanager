@@ -158,7 +158,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		break;
 
 		case PROP_MEMORY:
-		g_strlcpy(statusbar->memory, g_value_get_string (value), 64);
+		g_strlcpy(statusbar->memory, g_value_get_string (value), sizeof(statusbar->memory));
 		text = g_strdup_printf (_("Memory: %s"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
 #if GTK_CHECK_VERSION(3, 0, 0)
@@ -172,7 +172,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		break;
 
 		case PROP_SWAP:
-		g_strlcpy(statusbar->swap, g_value_get_string (value), 64);
+		g_strlcpy(statusbar->swap, g_value_get_string (value), sizeof(statusbar->swap));
 		text = g_strdup_printf (_("Swap: %s"), statusbar->swap);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_swap), text);
 		g_free (text);

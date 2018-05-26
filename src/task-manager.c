@@ -237,8 +237,8 @@ model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, Task *task)
 	vsz = g_format_size_full (task->vsz, G_FORMAT_SIZE_IEC_UNITS);
 	rss = g_format_size_full (task->rss, G_FORMAT_SIZE_IEC_UNITS);
 
-	g_snprintf (value, 14, (more_precision) ? "%.2f" : "%.0f", task->cpu_user + task->cpu_system);
-	g_snprintf (cpu, 16, _("%s%%"), value);
+	g_snprintf (value, sizeof(value), (more_precision) ? "%.2f" : "%.0f", (task->cpu_user + task->cpu_system));
+	g_snprintf (cpu, sizeof(cpu), _("%s%%"), value);
 
 	/* Retrieve values for tweaking background/foreground color and updating content as needed */
 	gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_STATE, &old_state,

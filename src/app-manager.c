@@ -111,7 +111,7 @@ apps_add_application (GArray *apps, WnckApplication *application)
 
 	app.application = application;
 	app.pid = pid;
-	g_snprintf (app.name, 1024, "%s", wnck_application_get_name (application));
+	g_snprintf (app.name, sizeof(app.name), "%s", wnck_application_get_name (application));
 	app.icon = wnck_application_get_mini_icon (application);
 	g_object_ref (app.icon);
 

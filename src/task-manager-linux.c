@@ -40,7 +40,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 	*swap_total = 0;
 	*swap_free = 0;
 
-	while (found < 6 && fgets (buffer, 1024, file) != NULL)
+	while (found < 6 && fgets (buffer, sizeof(buffer), file) != NULL)
 	{
 		found += sscanf (buffer, "MemTotal:\t%llu kB", (unsigned long long*)memory_total);
 		found += sscanf (buffer, "MemFree:\t%llu kB", (unsigned long long*)memory_free);
@@ -71,14 +71,14 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	static gulong jiffies_user_old = 0, jiffies_system_old = 0, jiffies_total_old = 0;
 	gulong user = 0, user_nice = 0, system = 0, idle = 0;
 
-	if ((file = fopen (filename, "r")) == NULL || fgets (buffer, 1024, file) == NULL)
+	if ((file = fopen (filename, "r")) == NULL || fgets (buffer, sizeof(buffer), file) == NULL)
 		return FALSE;
 
 	sscanf (buffer, "cpu\t%lu %lu %lu %lu", &user, &user_nice, &system, &idle);
 
 	if (_cpu_count == 0)
 	{
-		while (fgets (buffer, 1024, file) != NULL)
+		while (fgets (buffer, sizeof(buffer), file) != NULL)
 		{
 			if (buffer[0] != 'c' && buffer[1] != 'p' && buffer[2] != 'u')
 				break;
@@ -130,7 +130,7 @@ get_task_cmdline (Task *task)
 	gint i;
 	gint c;
 
-	snprintf (filename, 96, "/proc/%i/cmdline", task->pid);
+	snprintf (filename, sizeof(filename), "/proc/%i/cmdline", task->pid);
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
 
@@ -195,7 +195,7 @@ get_task_details (guint pid, Task *task)
 	gchar buffer[1024];
 
 	snprintf (filename, sizeof(filename), "/proc/%d/stat", pid);
-	if ((file = fopen (filename, "r")) == NULL || fgets (buffer, 1024, file) == NULL)
+	if ((file = fopen (filename, "r")) == NULL || fgets (buffer, sizeof(buffer), file) == NULL)
 		return FALSE;
 	fclose (file);
 
@@ -342,11 +342,11 @@ pid_is_sleeping (guint pid)
 	gchar buffer[1024];
 	gchar state[2];
 
-	snprintf (filename, 96, "/proc/%i/status", pid);
+	snprintf (filename, sizeof(filename), "/proc/%i/status", pid);
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
 
-	while (fgets (buffer, 1024, file) != NULL)
+	while (fgets (buffer, sizeof(buffer), file) != NULL)
 	{
 		if (sscanf (buffer, "State:\t%1s", state) > 0)
 			break;

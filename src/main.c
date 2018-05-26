@@ -100,18 +100,18 @@ init_timeout (void)
 	if (show_memory_in_xbytes) {
 	  used = g_format_size_full(memory_used, G_FORMAT_SIZE_IEC_UNITS);
 	  total = g_format_size_full(memory_total, G_FORMAT_SIZE_IEC_UNITS);
-	  g_snprintf (memory_info, 64,"%s / %s", used, total);
+	  g_snprintf (memory_info, sizeof(memory_info), "%s / %s", used, total);
 	  g_free(used);
 	  g_free(total);
 
 	  used = g_format_size_full(swap_used, G_FORMAT_SIZE_IEC_UNITS);
 	  total = g_format_size_full(swap_total, G_FORMAT_SIZE_IEC_UNITS);
-	  g_snprintf (swap_info, 64,"%s / %s", used, total);
+	  g_snprintf (swap_info, sizeof(swap_info), "%s / %s", used, total);
 	  g_free(used);
 	  g_free(total);
 	} else {
-	  g_snprintf (memory_info, 64, "%.0f%%", memory_percent);
-	  g_snprintf (swap_info, 64, "%.0f%%", swap_percent);
+	  g_snprintf (memory_info, sizeof(memory_info), "%.0f%%", memory_percent);
+	  g_snprintf (swap_info, sizeof(swap_info), "%.0f%%", swap_percent);
 	}
 
 	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory_percent, memory_info, swap_percent, swap_info);
@@ -122,7 +122,7 @@ init_timeout (void)
 	if (gtk_status_icon_get_visible (status_icon))
 	{
 #if GTK_CHECK_VERSION (2,16,0)
-		g_snprintf (tooltip, 1024,
+		g_snprintf (tooltip, sizeof(tooltip),
 				_("<b>Processes:</b> %u\n"
 				"<b>CPU:</b> %.0f%%\n"
 				"<b>Memory:</b> %s\n"
@@ -130,7 +130,7 @@ init_timeout (void)
 				num_processes, cpu, memory_info, swap_info);
 		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon), tooltip);
 #else
-		g_snprintf (tooltip, 1024,
+		g_snprintf (tooltip, sizeof(tooltip),
 				_("Processes: %u\n"
 				"CPU: %.0f%%\n"
 				"Memory: %s\n"

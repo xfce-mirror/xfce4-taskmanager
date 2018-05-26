@@ -176,7 +176,7 @@ get_task_details (guint pid, Task *task)
 	struct passwd *pw;
 	psinfo_t process;
 
-	snprintf (filename, 96, "/proc/%d/psinfo", pid);
+	snprintf (filename, sizeof(filename), "/proc/%d/psinfo", pid);
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
 
@@ -188,9 +188,9 @@ get_task_details (guint pid, Task *task)
 
 	task->pid = (guint)process.pr_pid;
 	task->ppid = (guint)process.pr_ppid;
-	g_strlcpy (task->name, process.pr_fname, 256);
-	snprintf (task->cmdline, 1024, "%s", process.pr_psargs);
-	snprintf (task->state, 16, "%c", process.pr_lwp.pr_sname);
+	g_strlcpy (task->name, process.pr_fname, sizeof(task->name));
+	snprintf (task->cmdline, sizeof(task->cmdline), "%s", process.pr_psargs);
+	snprintf (task->state, sizeof(task->state), "%c", process.pr_lwp.pr_sname);
 	task->vsz = (guint64)process.pr_size * 1024;
 	task->rss = (guint64)process.pr_rssize * 1024;
 	task->prio = (gushort)process.pr_lwp.pr_pri;
@@ -237,7 +237,7 @@ pid_is_sleeping (guint pid)
 	gchar state[2];
 	psinfo_t process;
 
-	snprintf (filename, 96, "/proc/%d/psinfo", pid);
+	snprintf (filename, sizeof(filename), "/proc/%d/psinfo", pid);
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
 
@@ -247,7 +247,7 @@ pid_is_sleeping (guint pid)
 		return FALSE;
 	}
 
-	snprintf (state, 2, "%c", process.pr_lwp.pr_sname);
+	snprintf (state, sizeof(state), "%c", process.pr_lwp.pr_sname);
 	fclose (file);
 
 	return (state[0] == 'T') ? TRUE : FALSE;

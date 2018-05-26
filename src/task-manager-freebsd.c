@@ -145,7 +145,7 @@ get_task_details (kvm_t *kd, struct kinfo_proc *kp, Task *task)
 	}
 	else
 	{
-		g_strlcpy (task->cmdline, kp->ki_comm, 1024);
+		g_strlcpy (task->cmdline, kp->ki_comm, sizeof(task->cmdline));
 	}
 
 	i = 0;
