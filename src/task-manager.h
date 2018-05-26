@@ -95,6 +95,7 @@ enum
 void		get_owner_uid		(guint *owner_uid, gchar **owner_uid_name);
 gchar *		get_hostname		(void);
 gboolean	send_signal_to_pid	(guint pid, gint xtm_signal);
+gint		task_pid_compare_fn	(gconstpointer a, gconstpointer b);
 gboolean	set_priority_to_pid	(guint pid, gint priority);
 
 

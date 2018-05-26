@@ -693,3 +693,8 @@ set_priority_to_pid (guint pid, gint priority)
 	return (res == 0) ? TRUE : FALSE;
 }
 
+gint
+task_pid_compare_fn(gconstpointer a, gconstpointer b)
+{
+	return (((Task*)a)->pid - ((Task*)b)->pid);
+}
