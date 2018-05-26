@@ -97,4 +97,12 @@ gchar *		get_hostname		(void);
 gboolean	send_signal_to_pid	(guint pid, gint xtm_signal);
 gboolean	set_priority_to_pid	(guint pid, gint priority);
 
+
+#if DEBUG
+#	define G_DEBUG_FMT(fmt, args...)	g_debug((fmt), ##args)
+#else
+#	define G_DEBUG_FMT(fmt, args...)
+#endif
+
+
 #endif /* !TASK_MANAGER_H */

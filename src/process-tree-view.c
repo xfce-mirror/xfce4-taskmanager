@@ -543,9 +543,7 @@ treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 		gtk_tree_selection_select_path (selection, path);
 		gtk_tree_path_free (path);
 
-#if DEBUG
-		g_debug ("Found iter with pid %d", pid);
-#endif
+		G_DEBUG_FMT ("Found iter with pid %d", pid);
 	}
 
 	popup_menu (treeview, pid, event->time, TRUE);
@@ -601,9 +599,7 @@ column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview)
 	GtkSortType sort_type;
 
 	gtk_tree_sortable_get_sort_column_id (GTK_TREE_SORTABLE (treeview->model), &sort_column_id, &sort_type);
-#if DEBUG
-	g_debug ("Last sort column %d; sort type: %d", sort_column_id, sort_type);
-#endif
+	G_DEBUG_FMT ("Last sort column %d; sort type: %d", sort_column_id, sort_type);
 
 	if (treeview->sort_column != column)
 	{
@@ -617,9 +613,7 @@ column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview)
 		sort_type = (sort_type == GTK_SORT_ASCENDING) ? GTK_SORT_DESCENDING : GTK_SORT_ASCENDING;
 	}
 
-#if DEBUG
-	g_debug ("New sort column %d; sort type: %d", sort_column_id, sort_type);
-#endif
+	G_DEBUG_FMT ("New sort column %d; sort type: %d", sort_column_id, sort_type);
 	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (treeview->model), sort_column_id, sort_type);
 	gtk_tree_view_column_set_sort_order (column, sort_type);
 

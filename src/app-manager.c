@@ -17,6 +17,7 @@
 #include <libwnck/libwnck.h>
 
 #include "app-manager.h"
+#include "task-manager.h"
 
 
 
@@ -78,9 +79,7 @@ xtm_app_manager_init (XtmAppManager *manager)
 		apps_add_application (manager->apps, application);
 	}
 
-#if DEBUG
-	g_debug ("Initial applications: %d", manager->apps->len);
-#endif
+	G_DEBUG_FMT ("Initial applications: %d", manager->apps->len);
 
 	/* Connect signals */
 	g_signal_connect (screen, "application-opened", G_CALLBACK (application_opened), manager);
@@ -158,18 +157,14 @@ apps_lookup_pid (GArray *apps, gint pid)
 static void
 application_opened (WnckScreen *screen, WnckApplication *application, XtmAppManager *manager)
 {
-#if DEBUG
-	g_debug ("Application opened %p %d", application, wnck_application_get_pid (application));
-#endif
+	G_DEBUG_FMT ("Application opened %p %d", application, wnck_application_get_pid (application));
 	apps_add_application (manager->apps, application);
 }
 
 static void
 application_closed (WnckScreen *screen, WnckApplication *application, XtmAppManager *manager)
 {
-#if DEBUG
-	g_debug ("Application closed %p", application);
-#endif
+	G_DEBUG_FMT ("Application closed %p", application);
 	apps_remove_application (manager->apps, application);
 }
 
