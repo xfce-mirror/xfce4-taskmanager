@@ -102,6 +102,7 @@ gboolean get_task_list (GArray *task_list)
 #else
 		struct kinfo_proc2 p = kp[i];
 #endif
+		bzero(&t, sizeof(t));
 		t.pid = p.p_pid;
 		t.ppid = p.p_ppid;
 		t.uid = p.p_uid;
@@ -116,6 +117,7 @@ gboolean get_task_list (GArray *task_list)
 			size = 128;
 			if ((args = malloc(size)) == NULL)
 				errx(1,"failed to allocate memory for argv structures at %zu", size);
+			bzero(args, size);
 			for (;; size *= 2) {
 				if ((args = realloc(args, size)) == NULL)
 					errx(1,"failed to allocate memory (size=%zu) for argv structures of pid %d", size, t.pid);

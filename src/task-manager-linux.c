@@ -199,6 +199,8 @@ get_task_details (guint pid, Task *task)
 		return FALSE;
 	fclose (file);
 
+	bzero(task, sizeof(Task));
+
 	/* Scanning the short process name is unreliable with scanf when it contains
 	 * spaces, retrieve it manually and fill the buffer */
 	{
@@ -313,7 +315,7 @@ get_task_list (GArray *task_list)
 	GDir *dir;
 	const gchar *name;
 	guint pid;
-	Task task = { 0 };
+	Task task;
 
 	if ((dir = g_dir_open ("/proc", 0, NULL)) == NULL)
 		return FALSE;

@@ -50,6 +50,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 static gboolean
 get_task_details (guint pid, Task *task)
 {
+	bzero(task, sizeof(Task));
 	g_snprintf (task->name, sizeof(task->name), "foo");
 	g_snprintf (task->cmdline, sizeof(task->cmdline), "foo -bar");
 	g_snprintf (task->uid_name, sizeof(task->uid_name), "baz");
@@ -61,7 +62,7 @@ gboolean
 get_task_list (GArray *task_list)
 {
 	guint pid = 0;
-	Task task = { 0 };
+	Task task;
 
 	//while (/* read all PIDs */)
 	{

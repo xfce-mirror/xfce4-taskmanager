@@ -26,7 +26,7 @@ static XtmSettings *settings;
 static GtkWidget *window;
 static GtkStatusIcon *status_icon;
 static XtmTaskManager *task_manager;
-static gboolean timeout = 0;
+static gboolean timeout = FALSE;
 
 static void
 status_icon_activated (void)

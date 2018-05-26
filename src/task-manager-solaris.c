@@ -186,6 +186,7 @@ get_task_details (guint pid, Task *task)
 		return FALSE;
 	}
 
+	bzero(task, sizeof(Task));
 	task->pid = (guint)process.pr_pid;
 	task->ppid = (guint)process.pr_ppid;
 	g_strlcpy (task->name, process.pr_fname, sizeof(task->name));
@@ -210,7 +211,7 @@ get_task_list (GArray *task_list)
 	GDir *dir;
 	const gchar *name;
 	guint pid;
-	Task task = { 0 };
+	Task task;
 
 	if ((dir = g_dir_open ("/proc", 0, NULL)) == NULL)
 		return FALSE;

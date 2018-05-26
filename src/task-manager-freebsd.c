@@ -122,6 +122,7 @@ get_task_details (kvm_t *kd, struct kinfo_proc *kp, Task *task)
 	char **argv;
 	int i;
 
+	bzero(task, sizeof(Task));
 	task->pid = kp->ki_pid;
 	task->ppid = kp->ki_ppid;
 	task->cpu_user = 100 * ((double)kp->ki_pctcpu / FSCALE);
@@ -213,7 +214,7 @@ get_task_list (GArray *task_list)
 {
 	kvm_t *kd;
 	struct kinfo_proc *kp;
-	int cnt, i;
+	int cnt = 0, i;
 	Task task;
 
 	if ((kd = kvm_openfiles (_PATH_DEVNULL, _PATH_DEVNULL, NULL, O_RDONLY, NULL)) == NULL)
