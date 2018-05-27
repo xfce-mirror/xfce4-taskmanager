@@ -397,6 +397,8 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 		GtkTreeSelection *selection;
 		GtkWidget *treeview;
 		treeview = g_object_get_data (G_OBJECT (mi), "treeview");
+		if (NULL == treeview)
+			return;
 		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
 		gtk_tree_selection_unselect_all (selection);
 	}
