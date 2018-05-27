@@ -633,7 +633,7 @@ get_hostname (void)
 #define HOST_NAME_MAX 255
 #endif
 	char hostname[HOST_NAME_MAX];
-	if (gethostname (hostname, HOST_NAME_MAX))
+	if (gethostname (hostname, sizeof(hostname)))
 		return g_strdup ("(unknown)");
 	return g_strdup_printf ("%s", hostname);
 }
