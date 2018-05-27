@@ -137,16 +137,21 @@ setting_changed (GObject *object, GParamSpec *pspec, XtmTaskManager *manager)
 static gchar *
 pretty_cmdline (gchar *cmdline, gchar *comm)
 {
-	gchar *text = g_strchomp (g_strdelimit (g_strdup (cmdline), "\n\r", ' '));
-	if (!full_cmdline && g_utf8_strlen (text, -1) > 3)
+	/* Use the printable range of 0x20-0x7E */
+	const gchar *valid_chars = " !\"#$%&'()*+,-./0123456789:;<=>?@"
+				   "ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`"
+				   "abcdefghijklmnopqrstuvwxyz{|}~";
+	gchar *text = g_strstrip (g_strcanon (g_strdup (cmdline), valid_chars, ' '));
+	gsize text_size = (gsize)strlen (text);
+	if (!full_cmdline && text_size > 3)
 	{
 		/* Shorten full path to commands and wine applications */
 		if (text[0] == '/' || (g_ascii_isupper (text[0]) && text[1] == ':' && text[2] == '\\'))
 		{
-			gchar *p = g_strstr_len (text, -1, comm);
+			gchar *p = g_strstr_len (text, (gssize)text_size, comm);
 			if (p != NULL)
 			{
-				g_strlcpy (text, p, g_utf8_strlen (text, -1));
+				g_strlcpy (text, p, text_size);
 			}
 		}
 	}
