@@ -262,7 +262,7 @@ get_task_list (GArray *task_list)
 }
 
 gboolean
-pid_is_sleeping (guint pid)
+pid_is_sleeping (GPid pid)
 {
 	kvm_t *kd;
 	struct kinfo_proc *kp;

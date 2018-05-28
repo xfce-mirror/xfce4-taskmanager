@@ -157,7 +157,7 @@ gboolean get_task_list (GArray *task_list)
 }
 
 gboolean
-pid_is_sleeping (guint pid)
+pid_is_sleeping (GPid pid)
 {
 	int mib[6];
 #ifdef __OpenBSD__

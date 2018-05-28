@@ -38,12 +38,12 @@ G_DEFINE_TYPE (XtmAppManager, xtm_app_manager, G_TYPE_OBJECT)
 
 static void	xtm_app_manager_finalize			(GObject *object);
 
-static gint	app_get_pid					(WnckApplication *application);
+static GPid	app_get_pid					(WnckApplication *application);
 static gint	app_pid_compare_fn				(gconstpointer a, gconstpointer b);
 
-static void	apps_add_application				(GArray *apps, WnckApplication *application, gint pid);
+static void	apps_add_application				(GArray *apps, WnckApplication *application, GPid pid);
 static void	apps_remove_application				(GArray *apps, WnckApplication *application);
-static App *	apps_lookup_pid					(GArray *apps, gint pid);
+static App *	apps_lookup_pid					(GArray *apps, GPid pid);
 static void	application_opened				(WnckScreen *screen, WnckApplication *application, XtmAppManager *manager);
 static void	application_closed				(WnckScreen *screen, WnckApplication *application, XtmAppManager *manager);
 
@@ -93,10 +93,10 @@ xtm_app_manager_finalize (GObject *object)
 	g_array_free (XTM_APP_MANAGER (object)->apps, TRUE);
 }
 
-static gint
+static GPid
 app_get_pid(WnckApplication *application)
 {
-	gint pid;
+	GPid pid;
 	if (NULL == application)
 		return (0);
 	pid = wnck_application_get_pid (application);
@@ -112,7 +112,7 @@ app_pid_compare_fn(gconstpointer a, gconstpointer b)
 }
 
 static void
-apps_add_application (GArray *apps, WnckApplication *application, gint pid)
+apps_add_application (GArray *apps, WnckApplication *application, GPid pid)
 {
 	App app;
 
@@ -141,7 +141,7 @@ apps_remove_application (GArray *apps, WnckApplication *application)
 }
 
 static App *
-apps_lookup_pid (GArray *apps, gint pid)
+apps_lookup_pid (GArray *apps, GPid pid)
 {
 	App tapp;
 
@@ -153,7 +153,7 @@ apps_lookup_pid (GArray *apps, gint pid)
 static void
 application_opened (WnckScreen *screen, WnckApplication *application, XtmAppManager *manager)
 {
-	gint pid = app_get_pid (application);
+	GPid pid = app_get_pid (application);
 	G_DEBUG_FMT ("Application opened %p %d", (void*)application, pid);
 	apps_add_application (manager->apps, application, pid);
 }
@@ -174,7 +174,7 @@ xtm_app_manager_new (void)
 }
 
 App *
-xtm_app_manager_get_app_from_pid (XtmAppManager *manager, gint pid)
+xtm_app_manager_get_app_from_pid (XtmAppManager *manager, GPid pid)
 {
 	return apps_lookup_pid (manager->apps, pid);
 }

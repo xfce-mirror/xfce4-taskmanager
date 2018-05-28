@@ -356,7 +356,7 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 	XtmSettings *settings;
 	gboolean prompt_terminate_task;
 	GtkWidget *dialog;
-	guint pid = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "pid"));
+	GPid pid = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (mi), "pid"));
 	gint xtm_signal = GPOINTER_TO_INT (user_data);
 
 	settings = xtm_settings_get_default ();
@@ -407,7 +407,7 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 static void
 cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 {
-	guint pid = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (mi), "pid"));
+	GPid pid = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (mi), "pid"));
 	gint priority = GPOINTER_TO_INT (user_data);
 
 	if (!set_priority_to_pid (pid, priority))
@@ -424,7 +424,7 @@ cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 }
 
 static GtkWidget *
-build_context_menu (XtmProcessTreeView *treeview, guint pid)
+build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 {
 	GtkWidget *menu, *menu_priority, *mi;
 
@@ -433,53 +433,53 @@ build_context_menu (XtmProcessTreeView *treeview, guint pid)
 	if (!pid_is_sleeping (pid))
 	{
 		mi = gtk_menu_item_new_with_label (_("Stop"));
-		g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+		g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 		gtk_container_add (GTK_CONTAINER (menu), mi);
 		g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_STOP));
 	}
 	else
 	{
 		mi = gtk_menu_item_new_with_label (_("Continue"));
-		g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+		g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 		gtk_container_add (GTK_CONTAINER (menu), mi);
 		g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_CONTINUE));
 	}
 
 	mi = gtk_menu_item_new_with_label (_("Terminate"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 	g_object_set_data (G_OBJECT (mi), "treeview", treeview);
 	gtk_container_add (GTK_CONTAINER (menu), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
 
 	mi = gtk_menu_item_new_with_label (_("Kill"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 	gtk_container_add (GTK_CONTAINER (menu), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_KILL));
 
 	menu_priority = gtk_menu_new ();
 
 	mi = gtk_menu_item_new_with_label (_("Very low"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_VERY_LOW));
 
 	mi = gtk_menu_item_new_with_label (_("Low"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_LOW));
 
 	mi = gtk_menu_item_new_with_label (_("Normal"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_NORMAL));
 
 	mi = gtk_menu_item_new_with_label (_("High"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_HIGH));
 
 	mi = gtk_menu_item_new_with_label (_("Very high"));
-	g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_VERY_HIGH));
 
@@ -502,7 +502,7 @@ position_menu (GtkMenu *menu, gint *x, gint *y, gboolean *push_in, XtmProcessTre
 }
 
 static void
-popup_menu (XtmProcessTreeView *treeview, guint pid, guint activate_time, gboolean at_pointer_position)
+popup_menu (XtmProcessTreeView *treeview, GPid pid, guint activate_time, gboolean at_pointer_position)
 {
 	static GtkWidget *menu = NULL;
 	GtkMenuPositionFunc position_func = NULL;
@@ -520,7 +520,7 @@ popup_menu (XtmProcessTreeView *treeview, guint pid, guint activate_time, gboole
 static gboolean
 treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 {
-	guint pid;
+	GPid pid;
 
 	if (event->button != 3)
 		return FALSE;
@@ -556,7 +556,7 @@ treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 static gboolean
 treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event)
 {
-	guint pid;
+	GPid pid;
 
 	GtkTreeModel *model;
 	GtkTreeSelection *selection;
@@ -582,7 +582,7 @@ treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event)
 		/* Fake menuitem for the cb_send_signal callback */
 		GtkWidget *mi;
 		mi = gtk_menu_item_new_with_label (_("Stop"));
-		g_object_set_data (G_OBJECT (mi), "pid", GUINT_TO_POINTER (pid));
+		g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 		if ((event->state & modifiers) == GDK_SHIFT_MASK)
 			cb_send_signal (GTK_MENU_ITEM (mi), GINT_TO_POINTER (XTM_SIGNAL_KILL));
 		else
@@ -768,13 +768,13 @@ xtm_process_tree_view_get_model (XtmProcessTreeView *treeview)
 }
 
 void
-xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, guint pid) {
+xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid) {
 	GtkTreeModel	*model;
 	GtkTreePath		*path;
 	GtkTreeIter 	 iter;
 	gboolean     	 valid;
 	gboolean			 tree;
-	guint					 pid_iter;
+	GPid		pid_iter;
 	GtkTreeIter	child_iter;
 	gboolean validParent;
 

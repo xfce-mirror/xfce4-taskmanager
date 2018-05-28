@@ -90,7 +90,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 }
 
 static void
-get_cpu_percent (guint pid, gulong ticks_user, gfloat *cpu_user, gulong ticks_system, gfloat *cpu_system)
+get_cpu_percent (GPid pid, gulong ticks_user, gfloat *cpu_user, gulong ticks_system, gfloat *cpu_system)
 {
 	static GHashTable *hash_cpu_user = NULL;
 	static GHashTable *hash_cpu_system = NULL;
@@ -102,10 +102,10 @@ get_cpu_percent (guint pid, gulong ticks_user, gfloat *cpu_user, gulong ticks_sy
 		hash_cpu_system = g_hash_table_new (NULL, NULL);
 	}
 
-	ticks_user_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_user, GUINT_TO_POINTER (pid)));
-	ticks_system_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_system, GUINT_TO_POINTER (pid)));
-	g_hash_table_insert (hash_cpu_user, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (ticks_user));
-	g_hash_table_insert (hash_cpu_system, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (ticks_system));
+	ticks_user_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_user, GINT_TO_POINTER (pid)));
+	ticks_system_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_system, GINT_TO_POINTER (pid)));
+	g_hash_table_insert (hash_cpu_user, GINT_TO_POINTER (pid), GUINT_TO_POINTER (ticks_user));
+	g_hash_table_insert (hash_cpu_system, GINT_TO_POINTER (pid), GUINT_TO_POINTER (ticks_system));
 
 	if (ticks_user < ticks_user_old || ticks_system < ticks_system_old)
 		return;
@@ -169,7 +169,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 }
 
 static gboolean
-get_task_details (guint pid, Task *task)
+get_task_details (GPid pid, Task *task)
 {
 	FILE *file;
 	gchar filename[96];
@@ -187,8 +187,8 @@ get_task_details (guint pid, Task *task)
 	}
 
 	bzero(task, sizeof(Task));
-	task->pid = (guint)process.pr_pid;
-	task->ppid = (guint)process.pr_ppid;
+	task->pid = process.pr_pid;
+	task->ppid = process.pr_ppid;
 	g_strlcpy (task->name, process.pr_fname, sizeof(task->name));
 	snprintf (task->cmdline, sizeof(task->cmdline), "%s", process.pr_psargs);
 	snprintf (task->state, sizeof(task->state), "%c", process.pr_lwp.pr_sname);
@@ -210,7 +210,7 @@ get_task_list (GArray *task_list)
 {
 	GDir *dir;
 	const gchar *name;
-	guint pid;
+	GPid pid;
 	Task task;
 
 	if ((dir = g_dir_open ("/proc", 0, NULL)) == NULL)
@@ -218,7 +218,7 @@ get_task_list (GArray *task_list)
 
 	while ((name = g_dir_read_name(dir)) != NULL)
 	{
-		if ((pid = (guint)g_ascii_strtoull (name, NULL, 0)) > 0)
+		if ((pid = (GPid)g_ascii_strtoull (name, NULL, 0)) > 0)
 		{
 			if (get_task_details (pid, &task))
 				g_array_append_val(task_list, task);
@@ -233,7 +233,7 @@ get_task_list (GArray *task_list)
 }
 
 gboolean
-pid_is_sleeping (guint pid)
+pid_is_sleeping (GPid pid)
 {
 	FILE *file;
 	gchar filename[96];

@@ -77,7 +77,7 @@ static void	model_add_task					(XtmTaskManager *manager, Task *task, glong times
 static void	model_update_tree_iter				(XtmTaskManager *manager, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task);
 static void	model_mark_tree_iter_as_removed			(GtkTreeModel *model, GtkTreeIter *iter, glong timestamp);
 static void	model_remove_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter);
-static gboolean	task_list_find_for_pid				(GArray *task_list, guint pid, Task **task, guint *idx);
+static gboolean	task_list_find_for_pid				(GArray *task_list, GPid pid, Task **task, guint *idx);
 static glong	__current_timestamp				(void);
 
 
@@ -290,7 +290,7 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 }
 
 static gboolean
-task_list_find_for_pid (GArray *task_list, guint pid, Task **task, guint *idx)
+task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx)
 {
 	Task *task_tmp, tkey;
 	tkey.pid = pid;
@@ -409,7 +409,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	valid = gtk_tree_model_get_iter_first (manager->model, &iter);
 	while (valid)
 	{
-		gint pid;
+		GPid pid;
 		gchar *cpu_str;
 		glong old_timestamp;
 		gboolean found;
@@ -525,7 +525,7 @@ get_hostname (void)
 }
 
 gboolean
-send_signal_to_pid (guint pid, gint xtm_signal)
+send_signal_to_pid (GPid pid, gint xtm_signal)
 {
 	gint sig;
 	gint res;
@@ -551,7 +551,7 @@ send_signal_to_pid (guint pid, gint xtm_signal)
 }
 
 gboolean
-set_priority_to_pid (guint pid, gint priority)
+set_priority_to_pid (GPid pid, gint priority)
 {
 	gint prio;
 	gint res;

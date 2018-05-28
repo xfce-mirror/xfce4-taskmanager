@@ -156,7 +156,7 @@ get_task_cmdline (Task *task)
 }
 
 static void
-get_cpu_percent (guint pid, gulong jiffies_user, gfloat *cpu_user, gulong jiffies_system, gfloat *cpu_system)
+get_cpu_percent (GPid pid, gulong jiffies_user, gfloat *cpu_user, gulong jiffies_system, gfloat *cpu_system)
 {
 	static GHashTable *hash_cpu_user = NULL;
 	static GHashTable *hash_cpu_system = NULL;
@@ -168,10 +168,10 @@ get_cpu_percent (guint pid, gulong jiffies_user, gfloat *cpu_user, gulong jiffie
 		hash_cpu_system = g_hash_table_new (NULL, NULL);
 	}
 
-	jiffies_user_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_user, GUINT_TO_POINTER (pid)));
-	jiffies_system_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_system, GUINT_TO_POINTER (pid)));
-	g_hash_table_insert (hash_cpu_user, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_user));
-	g_hash_table_insert (hash_cpu_system, GUINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_system));
+	jiffies_user_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_user, GINT_TO_POINTER (pid)));
+	jiffies_system_old = GPOINTER_TO_UINT (g_hash_table_lookup (hash_cpu_system, GINT_TO_POINTER (pid)));
+	g_hash_table_insert (hash_cpu_user, GINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_user));
+	g_hash_table_insert (hash_cpu_system, GINT_TO_POINTER (pid), GUINT_TO_POINTER (jiffies_system));
 
 	if (jiffies_user < jiffies_user_old || jiffies_system < jiffies_system_old)
 		return;
@@ -188,7 +188,7 @@ get_cpu_percent (guint pid, gulong jiffies_user, gfloat *cpu_user, gulong jiffie
 }
 
 static gboolean
-get_task_details (guint pid, Task *task)
+get_task_details (GPid pid, Task *task)
 {
 	FILE *file;
 	gchar filename[96];
@@ -314,7 +314,7 @@ get_task_list (GArray *task_list)
 {
 	GDir *dir;
 	const gchar *name;
-	guint pid;
+	GPid pid;
 	Task task;
 
 	if ((dir = g_dir_open ("/proc", 0, NULL)) == NULL)
@@ -322,7 +322,7 @@ get_task_list (GArray *task_list)
 
 	while ((name = g_dir_read_name(dir)) != NULL)
 	{
-		if ((pid = (guint)g_ascii_strtoull (name, NULL, 0)) > 0)
+		if ((pid = (GPid)g_ascii_strtoull (name, NULL, 0)) > 0)
 		{
 			if (get_task_details (pid, &task))
 			{
@@ -339,7 +339,7 @@ get_task_list (GArray *task_list)
 }
 
 gboolean
-pid_is_sleeping (guint pid)
+pid_is_sleeping (GPid pid)
 {
 	FILE *file;
 	gchar filename[96];

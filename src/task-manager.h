@@ -26,8 +26,8 @@ struct _Task
 {
 	guint		uid;
 	gchar		uid_name[256];
-	guint		pid;
-	guint		ppid;
+	GPid		pid;
+	GPid		ppid;
 	gchar		name[256];
 	gchar		cmdline[1024];
 	gchar		state[16];
@@ -45,7 +45,7 @@ struct _Task
 gboolean	get_memory_usage	(guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);
 gboolean	get_cpu_usage		(gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system);
 gboolean	get_task_list		(GArray *task_list);
-gboolean	pid_is_sleeping		(guint pid);
+gboolean	pid_is_sleeping		(GPid pid);
 
 /**
  * GObject class used to update the graphical widgets.
@@ -94,9 +94,9 @@ enum
 
 void		get_owner_uid		(guint *owner_uid, gchar **owner_uid_name);
 gchar *		get_hostname		(void);
-gboolean	send_signal_to_pid	(guint pid, gint xtm_signal);
+gboolean	send_signal_to_pid	(GPid pid, gint xtm_signal);
 gint		task_pid_compare_fn	(gconstpointer a, gconstpointer b);
-gboolean	set_priority_to_pid	(guint pid, gint priority);
+gboolean	set_priority_to_pid	(GPid pid, gint priority);
 
 
 #if DEBUG

@@ -23,7 +23,7 @@ typedef struct _App App;
 struct _App
 {
 	WnckApplication *	application;
-	gint			pid;
+	GPid			pid;
 	gchar			name[1024];
 	GdkPixbuf *		icon;
 };
@@ -39,6 +39,6 @@ typedef struct _XtmAppManager XtmAppManager;
 
 GType			xtm_app_manager_get_type			(void);
 XtmAppManager *		xtm_app_manager_new				(void);
-App *			xtm_app_manager_get_app_from_pid		(XtmAppManager *manager, gint pid);
+App *			xtm_app_manager_get_app_from_pid		(XtmAppManager *manager, GPid pid);
 
 #endif /* !APP_MANAGER_H */
