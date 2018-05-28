@@ -71,8 +71,13 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	static gulong jiffies_user_old = 0, jiffies_system_old = 0, jiffies_total_old = 0;
 	gulong user = 0, user_nice = 0, system = 0, idle = 0;
 
-	if ((file = fopen (filename, "r")) == NULL || fgets (buffer, sizeof(buffer), file) == NULL)
+	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
+	if (fgets (buffer, sizeof(buffer), file) == NULL)
+	{
+		fclose (file);
+		return FALSE;
+	}
 
 	sscanf (buffer, "cpu\t%lu %lu %lu %lu", &user, &user_nice, &system, &idle);
 
@@ -195,8 +200,13 @@ get_task_details (GPid pid, Task *task)
 	gchar buffer[1024];
 
 	snprintf (filename, sizeof(filename), "/proc/%d/stat", pid);
-	if ((file = fopen (filename, "r")) == NULL || fgets (buffer, sizeof(buffer), file) == NULL)
+	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
+	if (fgets (buffer, sizeof(buffer), file) == NULL)
+	{
+		fclose (file);
+		return FALSE;
+	}
 	fclose (file);
 
 	bzero(task, sizeof(Task));
