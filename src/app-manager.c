@@ -60,6 +60,7 @@ xtm_app_manager_class_init (XtmAppManagerClass *klass)
 static void
 xtm_app_manager_init (XtmAppManager *manager)
 {
+	WnckApplication *application;
 	WnckScreen *screen = wnck_screen_get_default ();
 	GList *windows, *l;
 
@@ -75,7 +76,7 @@ xtm_app_manager_init (XtmAppManager *manager)
 		if (wnck_window_get_window_type (window) != WNCK_WINDOW_NORMAL)
 			continue;
 
-		WnckApplication *application = wnck_window_get_application (window);
+		application = wnck_window_get_application (window);
 		apps_add_application (manager->apps, application, app_get_pid (application));
 	}
 
@@ -95,9 +96,10 @@ xtm_app_manager_finalize (GObject *object)
 static gint
 app_get_pid(WnckApplication *application)
 {
+	gint pid;
 	if (NULL == application)
 		return (0);
-	gint pid = wnck_application_get_pid (application);
+	pid = wnck_application_get_pid (application);
 	if (pid != 0)
 		return (pid);
 	return (wnck_window_get_pid (WNCK_WINDOW (wnck_application_get_windows (application)->data)));
