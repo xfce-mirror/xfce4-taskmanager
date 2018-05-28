@@ -27,6 +27,12 @@ static GtkWidget *window;
 static GtkStatusIcon *status_icon;
 static XtmTaskManager *task_manager;
 static gboolean timeout = FALSE;
+static gboolean start_hidden = FALSE;
+
+static GOptionEntry main_entries[] = {
+	{ "start-hidden", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &start_hidden, "Don't open a task manager window" },
+	{ NULL }
+};
 
 static void
 status_icon_activated (void)
@@ -175,6 +181,7 @@ int main (int argc, char *argv[])
 #if GLIB_CHECK_VERSION(2, 28, 0)
 	GApplication *app;
 	GError *error = NULL;
+	GOptionContext *opt_context;
 #endif
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -186,6 +193,15 @@ int main (int argc, char *argv[])
 	g_set_application_name (_("Task Manager"));
 
 #if GLIB_CHECK_VERSION(2, 28, 0)
+	opt_context = g_option_context_new ("");
+	g_option_context_add_main_entries (opt_context, main_entries, NULL);
+	g_option_context_add_group (opt_context, gtk_get_option_group (TRUE));
+	if (!g_option_context_parse (opt_context, &argc, &argv, &error))
+	{
+		g_print ("Unable to parse arguments: %s\n", error->message);
+		exit (1);
+	}
+
 	app = g_application_new ("xfce.taskmanager", 0);
 	g_application_register (G_APPLICATION (app), NULL, &error);
 	if (error != NULL)
@@ -211,7 +227,10 @@ int main (int argc, char *argv[])
 	g_signal_connect (status_icon, "popup-menu", G_CALLBACK (status_icon_popup_menu), NULL);
 
 	window = xtm_process_window_new ();
-	gtk_widget_show (window);
+
+	if (!start_hidden)
+		gtk_widget_show (window);
+
 #if GLIB_CHECK_VERSION(2, 28, 0)
 	g_signal_connect_swapped (app, "activate", G_CALLBACK (xtm_process_window_show), window);
 #endif
@@ -229,7 +248,8 @@ int main (int argc, char *argv[])
 	g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
 	g_signal_connect (window, "delete-event", G_CALLBACK (delete_window), NULL);
 
-	gtk_main ();
+	if (gtk_widget_get_visible (window) || gtk_status_icon_get_visible (status_icon))
+		gtk_main ();
 
 	if (timeout > 0)
 		g_source_remove (timeout);
