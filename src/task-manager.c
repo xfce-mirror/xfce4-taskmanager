@@ -73,13 +73,8 @@ G_DEFINE_TYPE (XtmTaskManager, xtm_task_manager, G_TYPE_OBJECT)
 static void	xtm_task_manager_finalize			(GObject *object);
 
 static void	setting_changed					(GObject *object, GParamSpec *pspec, XtmTaskManager *manager);
-#ifdef HAVE_WNCK
-static void	model_add_task					(GtkTreeModel *model, Task *task, App *app, glong timestamp);
-static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task, App *app);
-#else
-static void	model_add_task					(GtkTreeModel *model, Task *task, glong timestamp);
-static void	model_update_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task);
-#endif
+static void	model_add_task					(XtmTaskManager *manager, Task *task, glong timestamp);
+static void	model_update_tree_iter				(XtmTaskManager *manager, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task);
 static void	model_mark_tree_iter_as_removed			(GtkTreeModel *model, GtkTreeIter *iter, glong timestamp);
 static void	model_remove_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter);
 static gboolean	task_list_find_for_pid				(GArray *task_list, guint pid, Task **task, guint *idx);
@@ -167,13 +162,10 @@ _xtm_task_manager_set_model (XtmTaskManager *manager, GtkTreeModel *model)
 }
 
 static void
-#ifdef HAVE_WNCK
-model_add_task (GtkTreeModel *model, Task *task, App *app, glong timestamp)
-#else
-model_add_task (GtkTreeModel *model, Task *task, glong timestamp)
-#endif
+model_add_task (XtmTaskManager *manager, Task *task, glong timestamp)
 {
 	GtkTreeIter iter;
+	GtkTreeModel *model = manager->model;
 
 	gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 	gtk_list_store_set (GTK_LIST_STORE (model), &iter,
@@ -185,11 +177,7 @@ model_add_task (GtkTreeModel *model, Task *task, glong timestamp)
 		XTM_PTV_COLUMN_FOREGROUND, NULL,
 		XTM_PTV_COLUMN_TIMESTAMP, timestamp,
 		-1);
-#ifdef HAVE_WNCK
-	model_update_tree_iter (model, &iter, timestamp, TRUE, task, app);
-#else
-	model_update_tree_iter (model, &iter, timestamp, TRUE, task);
-#endif
+	model_update_tree_iter (manager, &iter, timestamp, TRUE, task);
 }
 
 static void
@@ -211,18 +199,16 @@ model_remove_tree_iter (GtkTreeModel *model, GtkTreeIter *iter)
 }
 
 static void
-#ifdef HAVE_WNCK
-model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task, App *app)
-#else
-model_update_tree_iter (GtkTreeModel *model, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task)
-#endif
+model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task)
 {
+	GtkTreeModel *model = manager->model;
 	gchar *vsz, *rss, cpu[16];
 	gchar value[14];
 	glong old_timestamp;
 	gchar *old_state;
 	gchar *background, *foreground;
 #ifdef HAVE_WNCK
+	App *app = xtm_app_manager_get_app_from_pid (manager->app_manager, task->pid);
 	GdkPixbuf *icon;
 #endif
 
@@ -409,9 +395,6 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	GtkTreeIter iter;
 	gboolean valid;
 	glong timestamp;
-#ifdef HAVE_WNCK
-	App *app;
-#endif
 
 	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
 
@@ -461,9 +444,6 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		}
 
 		/* Task alive, check for update. */
-#ifdef HAVE_WNCK
-		app = xtm_app_manager_get_app_from_pid (manager->app_manager, pid);
-#endif
 		gboolean need_update = FALSE;
 		gboolean update_cmd_line = FALSE;
 
@@ -490,11 +470,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		
 		if (need_update)
 		{
-#ifdef HAVE_WNCK
-			model_update_tree_iter (manager->model, &cur_iter, timestamp, update_cmd_line, task_new, app);
-#else
-			model_update_tree_iter (manager->model, &cur_iter, timestamp, update_cmd_line, task_new);
-#endif
+			model_update_tree_iter (manager, &cur_iter, timestamp, update_cmd_line, task);
 		}
 	}
 
@@ -505,12 +481,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 
 		if (task_list_find_for_pid (manager->tasks, tasktmp->pid, NULL, NULL))
 			continue;
-#ifdef HAVE_WNCK
-		app = xtm_app_manager_get_app_from_pid (manager->app_manager, tasktmp->pid);
-		model_add_task (manager->model, tasktmp, app, timestamp);
-#else
-		model_add_task (manager->model, tasktmp, timestamp);
-#endif
+		model_add_task (manager, tasktmp, timestamp);
 		/* XXX: add bininsert() here. */
 		g_array_append_val (manager->tasks, *tasktmp);
 		g_array_sort (manager->tasks, task_pid_compare_fn);
