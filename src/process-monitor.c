@@ -130,7 +130,7 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 }
 #else
 static gboolean
-xtm_process_monitor_expose (GtkWidget *widget, GdkEventExpose *event)
+xtm_process_monitor_expose (GtkWidget *widget, GdkEventExpose *event __unused)
 {
 	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (widget);
 	guint minimum_history_length;

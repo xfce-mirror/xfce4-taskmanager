@@ -70,7 +70,6 @@ struct _XtmSettings
 	/*<private>*/
 	GValue			values[N_PROPS];
 };
-#define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XTM_TYPE_SETTINGS, XtmSettingsPriv))
 G_DEFINE_TYPE (XtmSettings, xtm_settings, G_TYPE_OBJECT)
 
 static void	xtm_settings_get_property			(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);

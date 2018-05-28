@@ -122,7 +122,7 @@ xtm_task_manager_finalize (GObject *object)
 }
 
 static void
-setting_changed (GObject *object, GParamSpec *pspec, XtmTaskManager *manager)
+setting_changed (GObject *object, GParamSpec *pspec __unused, XtmTaskManager *manager __unused)
 {
 	g_object_get (object, "more-precision", &more_precision, NULL);
 	g_object_get (object, "full-command-line", &full_cmdline, NULL);

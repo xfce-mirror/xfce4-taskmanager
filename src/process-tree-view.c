@@ -493,7 +493,7 @@ build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 }
 
 static void
-position_menu (GtkMenu *menu, gint *x, gint *y, gboolean *push_in, XtmProcessTreeView *treeview)
+position_menu (GtkMenu *menu __unused, gint *x, gint *y, gboolean *push_in, XtmProcessTreeView *treeview)
 {
 	gdk_window_get_origin (gtk_tree_view_get_bin_window (GTK_TREE_VIEW (treeview)), x, y);
 	*x += 5;
@@ -664,7 +664,7 @@ visible_func (GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treevi
 }
 
 static gboolean
-search_func (GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data)
+search_func (GtkTreeModel *model, gint column __unused, const gchar *key, GtkTreeIter *iter, gpointer user_data __unused)
 {
 	gchar *cmdline, *cmdline_lower;
 	gchar *key_lower;
@@ -741,7 +741,7 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 
 
 static void
-expand_row (GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, XtmProcessTreeView *treeview)
+expand_row (GtkTreeModel *model __unused, GtkTreePath *path, GtkTreeIter *iter __unused, XtmProcessTreeView *treeview)
 {
 	gtk_tree_view_expand_row (GTK_TREE_VIEW (treeview), path, FALSE);
 }

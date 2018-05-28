@@ -81,8 +81,8 @@ static void	show_about_dialog				(XtmProcessWindow *window);
 static void
 filter_entry_icon_pressed_cb (GtkEntry *entry,
                               gint position,
-                              GdkEventButton *event,
-                              gpointer data)
+                              GdkEventButton *event __unused,
+                              gpointer data __unused)
 {
 	if (position == GTK_ENTRY_ICON_SECONDARY) {
 		gtk_entry_set_text (entry, "");
@@ -137,7 +137,7 @@ Select_Window (Display *dpy, int screen)
 }
 
 static void
-xwininfo_clicked_cb (GtkButton *button, gpointer user_data) {
+xwininfo_clicked_cb (GtkButton *button __unused, gpointer user_data) {
 	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
 	Window selected_window;
 	Display *dpy;
@@ -553,7 +553,7 @@ xtm_process_window_get_model (XtmProcessWindow *window)
 }
 
 void
-xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar* memory_str, gfloat swap, gchar* swap_str)
+xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar* memory_str, gfloat swap __unused, gchar* swap_str)
 {
 	gchar text[100];
 	gchar value[4];

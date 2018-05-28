@@ -118,7 +118,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 }
 
 static gboolean
-get_task_details (kvm_t *kd, struct kinfo_proc *kp, Task *task)
+get_task_details (struct kinfo_proc *kp, Task *task)
 {
 	struct passwd *pw;
 	char buf[1024], *p;
@@ -250,7 +250,7 @@ get_task_list (GArray *task_list)
 
 	for (i = 0; i < cnt; kp++, i++)
 	{
-		get_task_details (kd, kp, &task);
+		get_task_details (kp, &task);
 		g_array_append_val (task_list, task);
 	}
 

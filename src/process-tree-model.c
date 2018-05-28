@@ -154,7 +154,7 @@ xtm_process_tree_model_finalize (GObject *object)
 }
 
 static void
-xtm_process_tree_model_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
+xtm_process_tree_model_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec __unused)
 {
 	XtmProcessTreeModel *treemodel = XTM_PROCESS_TREE_MODEL (object);
 	switch (property_id)
@@ -166,7 +166,7 @@ xtm_process_tree_model_set_property (GObject *object, guint property_id, const G
 }
 
 static void
-xtm_process_tree_model_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec)
+xtm_process_tree_model_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec __unused)
 {
 	XtmProcessTreeModel *treemodel = XTM_PROCESS_TREE_MODEL (object);
 	switch (property_id)
@@ -178,7 +178,7 @@ xtm_process_tree_model_get_property (GObject *object, guint property_id, GValue 
 }
 
 static GtkTreeModelFlags
-xtm_process_tree_model_get_flags (GtkTreeModel *model)
+xtm_process_tree_model_get_flags (GtkTreeModel *model __unused)
 {
 	return GTK_TREE_MODEL_ITERS_PERSIST;
 }
@@ -857,7 +857,7 @@ reorder_children (GNode *parent, gpointer data)
 }
 
 static void
-xtm_process_tree_model_rows_reordered (XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeIter *iter, gint *new_order, GtkTreeModel *model)
+xtm_process_tree_model_rows_reordered (XtmProcessTreeModel *treemodel, GtkTreePath *path __unused, GtkTreeIter *iter __unused, gint *new_order, GtkTreeModel *model)
 {
 	gint i, size;
 	GSequence *s_list;

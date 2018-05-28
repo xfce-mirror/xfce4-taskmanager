@@ -99,6 +99,10 @@ gint		task_pid_compare_fn	(gconstpointer a, gconstpointer b);
 gboolean	set_priority_to_pid	(GPid pid, gint priority);
 
 
+#ifndef __unused
+#	define __unused				__attribute__((__unused__))
+#endif
+
 #if DEBUG
 #	define G_DEBUG_FMT(fmt, args...)	g_debug((fmt), ##args)
 #else

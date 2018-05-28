@@ -151,7 +151,7 @@ apps_lookup_pid (GArray *apps, GPid pid)
 }
 
 static void
-application_opened (WnckScreen *screen, WnckApplication *application, XtmAppManager *manager)
+application_opened (WnckScreen *screen __unused, WnckApplication *application, XtmAppManager *manager)
 {
 	GPid pid = app_get_pid (application);
 	G_DEBUG_FMT ("Application opened %p %d", (void*)application, pid);
@@ -159,7 +159,7 @@ application_opened (WnckScreen *screen, WnckApplication *application, XtmAppMana
 }
 
 static void
-application_closed (WnckScreen *screen, WnckApplication *application, XtmAppManager *manager)
+application_closed (WnckScreen *screen __unused, WnckApplication *application, XtmAppManager *manager)
 {
 	G_DEBUG_FMT ("Application closed %p", (void*)application);
 	apps_remove_application (manager->apps, application);
