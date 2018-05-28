@@ -199,7 +199,7 @@ int main (int argc, char *argv[])
 	if (!g_option_context_parse (opt_context, &argc, &argv, &error))
 	{
 		g_print ("Unable to parse arguments: %s\n", error->message);
-		exit (1);
+		return 1;
 	}
 
 	app = g_application_new ("xfce.taskmanager", 0);
@@ -213,7 +213,8 @@ int main (int argc, char *argv[])
 
 	if (g_application_get_is_remote (G_APPLICATION (app)))
 	{
-		g_application_activate (G_APPLICATION (app));
+		if (!start_hidden)
+			g_application_activate (G_APPLICATION (app));
 		g_object_unref (app);
 		return 0;
 	}
@@ -250,6 +251,8 @@ int main (int argc, char *argv[])
 
 	if (gtk_widget_get_visible (window) || gtk_status_icon_get_visible (status_icon))
 		gtk_main ();
+	else
+		g_warning ("Nothing to do: activate hiding to the notification area when using --start-hidden");
 
 	if (timeout > 0)
 		g_source_remove (timeout);
