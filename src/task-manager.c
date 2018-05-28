@@ -393,7 +393,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	GArray *array;
 	guint i;
 	GtkTreeIter iter;
-	gboolean valid;
+	gboolean valid, need_update, update_cmd_line;
 	glong timestamp;
 
 	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
@@ -444,8 +444,8 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		}
 
 		/* Task alive, check for update. */
-		gboolean need_update = FALSE;
-		gboolean update_cmd_line = FALSE;
+		need_update = FALSE;
+		update_cmd_line = FALSE;
 
 		/* Update the model (with the rest) only if needed, this keeps the CPU cool */
 		if (model_update_forced || 0 != memcmp(task, task_new, sizeof(Task)))
