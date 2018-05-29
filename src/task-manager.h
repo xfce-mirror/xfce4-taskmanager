@@ -25,7 +25,6 @@ typedef struct _Task Task;
 struct _Task
 {
 	guint		uid;
-	gchar		uid_name[256];
 	GPid		pid;
 	GPid		ppid;
 	gchar		name[256];
@@ -94,6 +93,7 @@ enum
 
 void		get_owner_uid		(guint *owner_uid, gchar **owner_uid_name);
 gchar *		get_hostname		(void);
+gchar *		get_uid_name		(guint uid);
 gboolean	send_signal_to_pid	(GPid pid, gint xtm_signal);
 gint		task_pid_compare_fn	(gconstpointer a, gconstpointer b);
 gboolean	set_priority_to_pid	(GPid pid, gint priority);

@@ -166,17 +166,17 @@ model_add_task (XtmTaskManager *manager, Task *task, glong timestamp)
 {
 	GtkTreeIter iter;
 	GtkTreeModel *model = manager->model;
+	gchar *uid_name = get_uid_name (task->uid);
 
 	gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 	gtk_list_store_set (GTK_LIST_STORE (model), &iter,
 		XTM_PTV_COLUMN_PID, task->pid,
 		XTM_PTV_COLUMN_STATE, task->state,
 		XTM_PTV_COLUMN_UID, task->uid,
-		XTM_PTV_COLUMN_UID_STR, task->uid_name,
-		XTM_PTV_COLUMN_BACKGROUND, NULL,
-		XTM_PTV_COLUMN_FOREGROUND, NULL,
+		XTM_PTV_COLUMN_UID_STR, uid_name,
 		XTM_PTV_COLUMN_TIMESTAMP, timestamp,
 		-1);
+	g_free(uid_name);
 	model_update_tree_iter (manager, &iter, timestamp, TRUE, task);
 }
 
@@ -522,6 +522,19 @@ get_hostname (void)
 	if (gethostname (hostname, sizeof(hostname)))
 		return g_strdup ("(unknown)");
 	return g_strdup_printf ("%s", hostname);
+}
+
+gchar *
+get_uid_name (guint uid)
+{
+	int error;
+	struct passwd *pw = NULL, pwd_buf;
+	char buf[4096];
+
+	bzero(buf, sizeof(buf));
+	error = getpwuid_r(uid, &pwd_buf, buf, sizeof(buf), &pw);
+
+	return (g_strdup ((0 == error && pw != NULL) ? pw->pw_name : "nobody"));
 }
 
 gboolean

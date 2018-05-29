@@ -18,9 +18,7 @@
 
 #include <stdlib.h>
 #include <err.h>
-/* for getpwuid() */
 #include <sys/types.h>
-#include <pwd.h>
 /* for sysctl() */
 #include <sys/param.h>
 #include <sys/sched.h>
@@ -54,7 +52,6 @@ gboolean get_task_list (GArray *task_list)
 	struct kinfo_proc2 *kp;
 #endif
 	Task t;
-	struct passwd *passwdp;
 	char **args;
 	gchar* buf;
 	int nproc, i;
@@ -143,10 +140,6 @@ gboolean get_task_list (GArray *task_list)
 
 		t.cpu_user = (100.0 * ((double) p.p_pctcpu / FSCALE));
 		t.cpu_system = 0.0f; /* TODO ? */
-		/* get username from uid */
-		passwdp = getpwuid(t.uid);
-		if(passwdp != NULL && passwdp->pw_name != NULL)
-			g_strlcpy(t.uid_name, passwdp->pw_name, sizeof t.uid_name);
 		g_array_append_val(task_list, t);
 	}
 	free(kp);

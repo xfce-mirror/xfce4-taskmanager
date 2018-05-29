@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <pwd.h>
 #include <unistd.h>
 #include <string.h>
 
@@ -294,7 +293,6 @@ get_task_details (GPid pid, Task *task)
 
 	/* Parse the status file: it contains the UIDs */
 	{
-		struct passwd *pw;
 		guint dummy;
 
 		snprintf(filename, sizeof (filename), "/proc/%d/status", pid);
@@ -307,9 +305,6 @@ get_task_details (GPid pid, Task *task)
 				break;
 		}
 		fclose (file);
-
-		pw = getpwuid (task->uid);
-		g_strlcpy (task->uid_name, (pw != NULL) ? pw->pw_name : "nobody", sizeof (task->uid_name));
 	}
 
 	/* Read the full command line */

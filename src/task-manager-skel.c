@@ -11,7 +11,6 @@
 /* Add includes for system functions needed */
 /* Example:
 #include <stdio.h>
-#include <pwd.h>
 #include <unistd.h>
 #include <string.h>
 */

@@ -15,7 +15,6 @@
 #include <sys/sysctl.h>
 #include <sys/user.h>
 #include <sys/proc.h>
-#include <pwd.h>
 #include <fcntl.h>
 #include <paths.h>
 #include <unistd.h>
@@ -120,7 +119,6 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 static gboolean
 get_task_details (struct kinfo_proc *kp, Task *task)
 {
-	struct passwd *pw;
 	char buf[1024], *p;
 	size_t bufsz;
 	int i, oid[4];
@@ -132,9 +130,7 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	task->cpu_system = 0.0f;
 	task->vsz = kp->ki_size;
 	task->rss = kp->ki_rssize * getpagesize ();
-	pw = getpwuid (kp->ki_uid);
 	task->uid = kp->ki_uid;
-	g_strlcpy (task->uid_name, (pw != NULL) ? pw->pw_name : "nobody", sizeof (task->uid_name));
 	task->prio = (gushort)kp->ki_nice;
 	g_strlcpy (task->name, kp->ki_comm, sizeof(task->name));
 

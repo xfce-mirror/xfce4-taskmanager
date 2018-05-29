@@ -9,7 +9,6 @@
  */
 
 #include <kstat.h>
-#include <pwd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -173,7 +172,6 @@ get_task_details (GPid pid, Task *task)
 {
 	FILE *file;
 	gchar filename[96];
-	struct passwd *pw;
 	psinfo_t process;
 
 	snprintf (filename, sizeof(filename), "/proc/%d/psinfo", pid);
@@ -195,9 +193,7 @@ get_task_details (GPid pid, Task *task)
 	task->vsz = (guint64)process.pr_size * 1024;
 	task->rss = (guint64)process.pr_rssize * 1024;
 	task->prio = (gushort)process.pr_lwp.pr_pri;
-	pw = getpwuid (process.pr_uid);
 	task->uid = (guint)process.pr_uid;
-	g_strlcpy (task->uid_name, (pw != NULL) ? pw->pw_name : "nobody", sizeof (task->uid_name));
 	get_cpu_percent (task->pid, (process.pr_time.tv_sec * 1000 + process.pr_time.tv_nsec / 100000), &task->cpu_user, 0, &task->cpu_system);
 
 	fclose (file);
