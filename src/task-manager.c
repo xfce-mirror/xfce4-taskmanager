@@ -55,9 +55,6 @@ struct _XtmTaskManager
 #endif
 	GtkTreeModel *		model;
 	GArray *		tasks;
-	guint			owner_uid;
-	gchar *			owner_uid_name;
-	gchar *			hostname;
 	gushort			cpu_count;
 	gfloat			cpu_user;
 	gfloat			cpu_system;
@@ -97,8 +94,6 @@ xtm_task_manager_init (XtmTaskManager *manager)
 	manager->app_manager = xtm_app_manager_new ();
 #endif
 	manager->tasks = g_array_new (FALSE, FALSE, sizeof (Task));
-	get_owner_uid (&(manager->owner_uid), &(manager->owner_uid_name));
-	manager->hostname = get_hostname ();
 
 	/* Listen to settings changes and force an update on the whole model */
 	settings = xtm_settings_get_default ();
@@ -113,8 +108,6 @@ xtm_task_manager_finalize (GObject *object)
 {
 	XtmTaskManager *manager = XTM_TASK_MANAGER (object);
 	g_array_free (manager->tasks, TRUE);
-	g_free (manager->owner_uid_name);
-	g_free (manager->hostname);
 #ifdef HAVE_WNCK
 	g_object_unref (manager->app_manager);
 #endif
@@ -332,20 +325,6 @@ xtm_task_manager_new (GtkTreeModel *model)
 	return manager;
 }
 
-const gchar *
-xtm_task_manager_get_username (XtmTaskManager *manager)
-{
-	g_return_val_if_fail (XTM_IS_TASK_MANAGER (manager), NULL);
-	return manager->owner_uid_name;
-}
-
-const gchar *
-xtm_task_manager_get_hostname (XtmTaskManager *manager)
-{
-	g_return_val_if_fail (XTM_IS_TASK_MANAGER (manager), NULL);
-	return manager->hostname;
-}
-
 void
 xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gfloat *cpu,
 				  guint64 *memory_used, guint64 *memory_total,
@@ -494,35 +473,6 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	return;
 }
 
-
-
-void
-get_owner_uid (guint *owner_uid, gchar **owner_uid_name)
-{
-	uid_t uid;
-	struct passwd *pw;
-	gchar *username = NULL;
-
-	uid = getuid ();
-	pw = getpwuid (uid);
-
-	username = g_strdup ((pw != NULL) ? pw->pw_name : "nobody");
-
-	*owner_uid = (guint) uid;
-	*owner_uid_name = username;
-}
-
-gchar *
-get_hostname (void)
-{
-#ifndef HOST_NAME_MAX
-#define HOST_NAME_MAX 255
-#endif
-	char hostname[HOST_NAME_MAX];
-	if (gethostname (hostname, sizeof(hostname)))
-		return g_strdup ("(unknown)");
-	return g_strdup_printf ("%s", hostname);
-}
 
 gchar *
 get_uid_name (guint uid)

@@ -11,6 +11,7 @@
 #include <config.h>
 #endif
 
+#include <unistd.h>
 #include <glib-object.h>
 #include <glib/gi18n.h>
 #include <glib/gprintf.h>
@@ -90,14 +91,9 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	gboolean tree;
 
 	treeview->settings = xtm_settings_get_default ();
+	treeview->owner_uid = getuid ();
 	g_signal_connect (treeview->settings, "notify", G_CALLBACK (settings_changed), treeview);
-
-	{
-		gchar *uid_name;
-		get_owner_uid (&treeview->owner_uid, &uid_name);
-		g_free (uid_name);
-		g_object_get (treeview->settings, "show-all-processes", &treeview->show_all_processes_cached, "process-tree", &tree, NULL);
-	}
+	g_object_get (treeview->settings, "show-all-processes", &treeview->show_all_processes_cached, "process-tree", &tree, NULL);
 
 	/* Create tree view model */
 #ifdef HAVE_WNCK

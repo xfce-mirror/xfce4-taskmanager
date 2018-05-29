@@ -61,8 +61,6 @@ typedef struct _XtmTaskManager XtmTaskManager;
 
 GType			xtm_task_manager_get_type			(void);
 XtmTaskManager *	xtm_task_manager_new				(GtkTreeModel *model);
-const gchar *		xtm_task_manager_get_username			(XtmTaskManager *manager);
-const gchar *		xtm_task_manager_get_hostname			(XtmTaskManager *manager);
 void			xtm_task_manager_get_system_info		(XtmTaskManager *manager, guint *num_processes, gfloat *cpu,
 									 guint64 *memory_used, guint64 *memory_total,
 									 guint64 *swap_used, guint64 *swap_total);
@@ -91,8 +89,6 @@ enum
 	XTM_PRIORITY_VERY_HIGH,
 };
 
-void		get_owner_uid		(guint *owner_uid, gchar **owner_uid_name);
-gchar *		get_hostname		(void);
 gchar *		get_uid_name		(guint uid);
 gboolean	send_signal_to_pid	(GPid pid, gint xtm_signal);
 gint		task_pid_compare_fn	(gconstpointer a, gconstpointer b);
