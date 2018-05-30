@@ -118,6 +118,7 @@ gboolean get_task_list (GArray *task_list)
 			for (;; size *= 2) {
 				if ((args = realloc(args, size)) == NULL)
 					errx(1,"failed to allocate memory (size=%zu) for argv structures of pid %d", size, t.pid);
+				bzero(args, size);
 				mib[0] = CTL_KERN;
 				mib[1] = KERN_PROC_ARGS;
 				mib[2] = t.pid;
