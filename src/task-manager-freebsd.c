@@ -39,14 +39,14 @@ get_mem_by_bytes (const gchar *name)
 	return buf;
 }
 
-guint64
+static guint64
 get_mem_by_pages (const gchar *name)
 {
 	guint64 res;
 
 	res = get_mem_by_bytes (name);
 	if (res > 0)
-		res *= getpagesize ();
+		res *= (guint64)getpagesize ();
 
 	return res;
 }
@@ -71,8 +71,8 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 			return FALSE;
 
 		kvm_getswapinfo (kd, &kswap, 1, 0);
-		*swap_total = ((guint64)kswap.ksw_total) * getpagesize ();
-		*swap_free = ((guint64)(kswap.ksw_total - kswap.ksw_used)) * getpagesize ();
+		*swap_total = (guint64)kswap.ksw_total * (guint64)getpagesize ();
+		*swap_free = ((guint64)(kswap.ksw_total - kswap.ksw_used)) * (guint64)getpagesize ();
 
 		kvm_close (kd);
 	}
@@ -129,9 +129,9 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	task->cpu_user = 100.0f * ((float)kp->ki_pctcpu / FSCALE);
 	task->cpu_system = 0.0f;
 	task->vsz = kp->ki_size;
-	task->rss = kp->ki_rssize * getpagesize ();
+	task->rss = ((guint64)kp->ki_rssize * (guint64)getpagesize ());
 	task->uid = kp->ki_uid;
-	task->prio = (gushort)kp->ki_nice;
+	task->prio = (gshort)kp->ki_nice;
 	g_strlcpy (task->name, kp->ki_comm, sizeof(task->name));
 
 	oid[0] = CTL_KERN;
