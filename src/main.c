@@ -30,8 +30,8 @@ static gboolean timeout = FALSE;
 static gboolean start_hidden = FALSE;
 
 static GOptionEntry main_entries[] = {
-	{ "start-hidden", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &start_hidden, "Don't open a task manager window" },
-	{ NULL }
+	{ "start-hidden", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &start_hidden, "Don't open a task manager window", NULL },
+	{ NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
 static void
