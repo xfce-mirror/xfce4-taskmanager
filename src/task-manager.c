@@ -267,7 +267,7 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 		XTM_PTV_COLUMN_VSZ_STR, vsz,
 		XTM_PTV_COLUMN_RSS, task->rss,
 		XTM_PTV_COLUMN_RSS_STR, rss,
-		XTM_PTV_COLUMN_CPU, task->cpu_user + task->cpu_system,
+		XTM_PTV_COLUMN_CPU, (task->cpu_user + task->cpu_system),
 		XTM_PTV_COLUMN_CPU_STR, cpu,
 		XTM_PTV_COLUMN_PRIORITY, task->prio,
 		XTM_PTV_COLUMN_BACKGROUND, background,
