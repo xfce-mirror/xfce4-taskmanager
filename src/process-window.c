@@ -90,7 +90,7 @@ filter_entry_icon_pressed_cb (GtkEntry *entry,
 	}
 }
 
-Window
+static Window
 Select_Window (Display *dpy, int screen)
 {
 	int status;
