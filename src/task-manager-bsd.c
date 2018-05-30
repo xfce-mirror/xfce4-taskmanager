@@ -111,7 +111,7 @@ gboolean get_task_list (GArray *task_list)
 		g_strlcpy(t.name, p.p_comm, strlen(p.p_comm) + 1);
 		/* shamelessly stolen from top/machine.c */
 		if (!P_ZOMBIE(&p)) {
-			size = 128;
+			size = 1024;
 			if ((args = malloc(size)) == NULL)
 				errx(1,"failed to allocate memory for argv structures at %zu", size);
 			bzero(args, size);
