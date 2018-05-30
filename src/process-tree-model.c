@@ -231,7 +231,9 @@ xtm_process_tree_model_get_path (GtkTreeModel *model, GtkTreeIter *iter)
 	GtkTreePath *path;
 	GNode *child, *parent;
 	XtmProcessTreeModel *treemodel = XTM_PROCESS_TREE_MODEL (model);
+
 	g_return_val_if_fail (iter->stamp == treemodel->stamp, NULL);
+
 	child = iter->user_data;
 	parent = child->parent;
 	path = gtk_tree_path_new ();
@@ -268,7 +270,9 @@ xtm_process_tree_model_iter_next (GtkTreeModel *model, GtkTreeIter *iter)
 {
 	GNode *node;
 	XtmProcessTreeModel *treemodel = XTM_PROCESS_TREE_MODEL (model);
+
 	g_return_val_if_fail (iter->stamp == treemodel->stamp, FALSE);
+
 	node = iter->user_data;
 	iter->user_data = g_node_next_sibling (node);
 	/* Make iter invalid if no node has been found */
@@ -298,7 +302,9 @@ xtm_process_tree_model_iter_has_child (GtkTreeModel *model, GtkTreeIter *iter)
 {
 	GNode *node;
 	XtmProcessTreeModel *treemodel = XTM_PROCESS_TREE_MODEL (model);
+
 	g_return_val_if_fail (iter->stamp == treemodel->stamp, FALSE);
+
 	node = iter->user_data;
 	return g_node_first_child (node) != NULL;
 }
