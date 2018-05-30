@@ -260,7 +260,7 @@ xtm_process_tree_model_get_value (GtkTreeModel *model, GtkTreeIter *iter, gint c
 	/* Use path for non-persistent models */
 	if (lnk->path)
 		gtk_tree_model_get_iter (model, iter, lnk->path);
-	return gtk_tree_model_get_value (model, iter, column, value);
+	gtk_tree_model_get_value (model, iter, column, value);
 }
 
 static gboolean
