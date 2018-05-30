@@ -27,7 +27,19 @@
 
 #include "task-manager.h"
 
-guint64
+static const gchar ki_stat2state[] = {
+	' ', /* - */
+	'R', /* SIDL */
+	'R', /* SRUN */
+	'S', /* SSLEEP */
+	'T', /* SSTOP */
+	'Z', /* SZOMB */
+	'W', /* SWAIT */
+	'L' /* SLOCK */
+};
+
+
+static guint64
 get_mem_by_bytes (const gchar *name)
 {
 	guint64 buf = 0;
@@ -170,36 +182,24 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	i = 0;
 	switch (kp->ki_stat)
 	{
+		case SIDL:
+		case SRUN:
 		case SSTOP:
-		task->state[i] = 'T';
-		break;
+		case SZOMB:
+		case SWAIT:
+		case SLOCK:
+			task->state[i] = ki_stat2state[(size_t)kp->ki_stat];
+			break;
 
 		case SSLEEP:
-		if (kp->ki_tdflags & TDF_SINTR)
-			task->state[i] = kp->ki_slptime >= MAXSLP ? 'I' : 'S';
-		else
-			task->state[i] = 'D';
-		break;
-
-		case SRUN:
-		case SIDL:
-		task->state[i] = 'R';
-		break;
-
-		case SWAIT:
-		task->state[i] = 'W';
-		break;
-
-		case SLOCK:
-		task->state[i] = 'L';
-		break;
-
-		case SZOMB:
-		task->state[i] = 'Z';
-		break;
+			if (kp->ki_tdflags & TDF_SINTR)
+				task->state[i] = kp->ki_slptime >= MAXSLP ? 'I' : 'S';
+			else
+				task->state[i] = 'D';
+			break;
 
 		default:
-		task->state[i] = '?';
+			task->state[i] = '?';
 	}
 	i++;
 	if (!(kp->ki_sflag & PS_INMEM))
@@ -222,7 +222,6 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 		task->state[i++] = '+';
 	if (kp->ki_flag & P_JAILED)
 		task->state[i++] = 'J';
-	task->state[i] = '\0';
 
 	return TRUE;
 }
