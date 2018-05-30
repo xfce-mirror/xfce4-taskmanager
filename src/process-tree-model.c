@@ -137,7 +137,7 @@ xtm_process_tree_model_init (XtmProcessTreeModel *treemodel)
 	treemodel->c_column = XTM_PTV_COLUMN_PID;
 	treemodel->p_column = XTM_PTV_COLUMN_PPID;
 
-	treemodel->stamp = g_random_int ();
+	treemodel->stamp = (gint)g_random_int ();
 	if (treemodel->stamp == 0)
 		treemodel->stamp = 1;
 }
@@ -215,7 +215,7 @@ xtm_process_tree_model_get_iter (GtkTreeModel *model, GtkTreeIter *iter, GtkTree
 	/* Walk the tree to create the iter */
 	for (i = 0; i < depth; i++)
 	{
-		node = g_node_nth_child (node, indices[i]);
+		node = g_node_nth_child (node, (guint)indices[i]);
 		if (node == NULL)
 			break;
 	}
@@ -313,7 +313,7 @@ xtm_process_tree_model_iter_n_children (GtkTreeModel *model, GtkTreeIter *iter)
 		node = treemodel->tree;
 	else
 		node = iter->user_data;
-	return g_node_n_children (node);
+	return (gint)g_node_n_children (node);
 }
 
 static gboolean
@@ -326,7 +326,7 @@ xtm_process_tree_model_iter_nth_child (GtkTreeModel *model, GtkTreeIter *iter, G
 		node = treemodel->tree;
 	else
 		node = parent->user_data;
-	iter->user_data = g_node_nth_child (node, n);
+	iter->user_data = g_node_nth_child (node, (guint)n);
 	/* Make iter only valid if a node has been found */
 	iter->stamp = iter->user_data ? treemodel->stamp : 0;
 	return iter->user_data != NULL;
@@ -589,7 +589,7 @@ static void
 do_path (gpointer data, gpointer user_data)
 {
 	XtmCrossLink *lnk = data;
-	void (*func) (GtkTreePath*) = user_data;
+	void (*func) (GtkTreePath*) = (void (*) (GtkTreePath*))user_data;
 	/* Use path for non-persistent models */
 	g_return_if_fail (lnk->path);
 	func (lnk->path);
@@ -633,7 +633,7 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 	/* Need to update all path caches after the insert and increment them with one */
 	if (not_persist)
 		g_sequence_foreach_range (g_sequence_iter_next (lnk->list), g_sequence_get_end_iter (treemodel->list),
-			do_path, gtk_tree_path_next);
+			do_path, (gpointer)gtk_tree_path_next);
 
 	found.parent = treemodel->tree;
 	found.treemodel = treemodel;
@@ -748,7 +748,7 @@ xtm_process_tree_model_row_deleted (XtmProcessTreeModel *treemodel, GtkTreePath 
 	/* Need to update all path caches after the remove and decrement them with one */
 	if (not_persist)
 		g_sequence_foreach_range (g_sequence_iter_next (lnk->list), g_sequence_get_end_iter (treemodel->list),
-			do_path, gtk_tree_path_prev);
+			do_path, (gpointer)gtk_tree_path_prev);
 
 	del_node = lnk->tree;
 	old_parent = del_node->parent;
@@ -809,7 +809,7 @@ reorder_children (GNode *parent, gpointer data)
 	new_order = g_new (gint, size);
 	for (i = 0; i < size; i++)
 	{
-		new_order[i] = i;
+		new_order[i] = (gint)i;
 	}
 	i = 0;
 	/* Walk the whole list in the new order */
@@ -832,7 +832,7 @@ reorder_children (GNode *parent, gpointer data)
 			if (c_pos > 0)
 			{
 				/* move the items in between to keep order list in sync with the current tree */
-				memmove (new_order + i + 1, new_order + i, c_pos * sizeof(gint));
+				memmove ((new_order + i + 1), (new_order + i), ((guint)c_pos * sizeof(gint)));
 				moved = TRUE;
 			}
 			/* Store the old position at the new location */

@@ -188,7 +188,7 @@ transform_string_to_int (const GValue *src, GValue *dst)
 static void
 transform_string_to_uint (const GValue *src, GValue *dst)
 {
-	g_value_set_uint (dst, (gint)strtoul (g_value_get_string (src), NULL, 10));
+	g_value_set_uint (dst, (guint)strtoul (g_value_get_string (src), NULL, 10));
 }
 
 static void
@@ -344,7 +344,7 @@ xtm_settings_save_settings (XtmSettings *settings)
 		}
 
 		data = g_key_file_to_data (rc, &length, NULL);
-		if (!g_file_set_contents (filename, data, length, &error))
+		if (!g_file_set_contents (filename, data, (gssize)length, &error))
 		{
 			g_warning ("Unable to save settings: %s", error->message);
 			g_error_free (error);

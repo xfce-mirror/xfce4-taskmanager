@@ -208,11 +208,12 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 
 	/* Set initial sort column */
 	{
-		guint sort_column_id;
+		guint sort_column_idu;
+		gint sort_column_id;
 		GtkSortType sort_type;
 
-		g_object_get (treeview->settings, "sort-column-id", &sort_column_id, "sort-type", &sort_type, NULL);
-		treeview->sort_column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[sort_column_id]);
+		g_object_get (treeview->settings, "sort-column-id", &sort_column_idu, "sort-type", &sort_type, NULL);
+		treeview->sort_column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[sort_column_idu]);
 		gtk_tree_view_column_set_sort_indicator (treeview->sort_column, TRUE);
 		gtk_tree_view_column_set_sort_order (treeview->sort_column, sort_type);
 		sort_column_id = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (treeview->sort_column), "sort-column-id"));
@@ -288,7 +289,7 @@ columns_changed (XtmProcessTreeView *treeview)
 	GList *columns, *l;
 	GtkTreeViewColumn *column;
 	gint column_id;
-	gint i;
+	gushort i;
 
 	columns = gtk_tree_view_get_columns (GTK_TREE_VIEW (treeview));
 	if (g_list_length (columns) < N_COLUMNS)
@@ -311,7 +312,7 @@ columns_changed (XtmProcessTreeView *treeview)
 static void
 read_columns_positions (XtmProcessTreeView *treeview)
 {
-	gint i;
+	gushort i;
 	gchar *columns_positions;
 	gchar **columns_positions_split;
 
@@ -326,7 +327,7 @@ read_columns_positions (XtmProcessTreeView *treeview)
 	{
 		columns_positions_split = g_strsplit (columns_positions, ";", N_COLUMNS + 1);
 		for (i = 0; i < N_COLUMNS && columns_positions_split[i] != NULL; i++)
-			treeview->columns_positions[i] = (gint)g_ascii_strtoll (columns_positions_split[i], NULL, 10);
+			treeview->columns_positions[i] = (gushort)g_ascii_strtoll (columns_positions_split[i], NULL, 10);
 		g_strfreev (columns_positions_split);
 		g_free (columns_positions);
 	}
@@ -336,12 +337,12 @@ static void
 save_columns_positions (XtmProcessTreeView *treeview)
 {
 	gint i;
-	gint offset = 0;
+	gulong offset = 0;
 #define COLUMNS_POSITIONS_STRLEN (N_COLUMNS * 4 + 1)
 	gchar columns_positions[COLUMNS_POSITIONS_STRLEN] = { 0 };
 
 	for (i = 0; i < N_COLUMNS; i++)
-		offset += g_snprintf (&columns_positions[offset], (sizeof(columns_positions) - offset), "%d;", treeview->columns_positions[i]);
+		offset += (gulong)g_snprintf (&columns_positions[offset], (sizeof(columns_positions) - offset), "%d;", treeview->columns_positions[i]);
 
 	g_object_set (treeview->settings, "columns-positions", columns_positions, NULL);
 }
@@ -730,7 +731,7 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 		}
 		else
 		{
-			g_signal_handlers_disconnect_by_func (treeview->model_tree, G_CALLBACK (expand_row), treeview);
+			g_signal_handlers_disconnect_by_func (treeview->model_tree, (gpointer)G_CALLBACK (expand_row), treeview);
 		}
 	}
 }

@@ -121,7 +121,7 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (widget);
 	guint minimum_history_length;
 
-	minimum_history_length = gtk_widget_get_allocated_width(widget) / monitor->step_size;
+	minimum_history_length = (guint)(gtk_widget_get_allocated_width(widget) / monitor->step_size);
 	if (monitor->history->len < minimum_history_length)
 		g_array_set_size (monitor->history, minimum_history_length + 1);
 
@@ -136,7 +136,7 @@ xtm_process_monitor_expose (GtkWidget *widget, GdkEventExpose *event __unused)
 	guint minimum_history_length;
 	cairo_t *cr;
 
-	minimum_history_length = widget->allocation.width / monitor->step_size;
+	minimum_history_length = (guint)(widget->allocation.width / monitor->step_size);
 	if (monitor->history->len < minimum_history_length)
 		g_array_set_size (monitor->history, minimum_history_length + 1);
 
@@ -153,7 +153,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	cairo_t *cr;
 	cairo_surface_t *graph_surface;
 	gfloat *peak;
-	gfloat step_size;
+	gdouble step_size;
 	gint i;
 
 	if (monitor->history->len <= 1)
@@ -161,7 +161,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 		g_warning ("Cannot paint graph with n_peak <= 1");
 		return NULL;
 	}
-	step_size = monitor->step_size;
+	step_size = (gdouble)monitor->step_size;
 
 	graph_surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
 	cr = cairo_create (graph_surface);
@@ -180,7 +180,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	{
 		peak = &g_array_index (monitor->history, gfloat, i);
 		cairo_translate (cr, -step_size, 0);
-		cairo_line_to (cr, width, (1.0 - *peak) * height);
+		cairo_line_to (cr, width, (1.0 - ((gdouble)(*peak))) * height);
 	}
 	cairo_line_to (cr, width, height);
 	cairo_fill (cr);
@@ -201,7 +201,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	{
 		peak = &g_array_index (monitor->history, gfloat, i);
 		cairo_translate (cr, -step_size, 0);
-		cairo_line_to (cr, width, (1.0 - *peak) * height);
+		cairo_line_to (cr, width, (1.0 - ((gdouble)(*peak))) * height);
 	}
 	cairo_stroke (cr);
 

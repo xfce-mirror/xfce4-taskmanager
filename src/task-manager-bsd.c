@@ -138,7 +138,7 @@ gboolean get_task_list (GArray *task_list)
 			free(args);
 		}
 
-		t.cpu_user = (100.0 * ((double) p.p_pctcpu / FSCALE));
+		t.cpu_user = (100.0f * ((gfloat)p.p_pctcpu / FSCALE));
 		t.cpu_system = 0.0f; /* TODO ? */
 		g_array_append_val(task_list, t);
 	}

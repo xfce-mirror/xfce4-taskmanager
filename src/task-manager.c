@@ -297,7 +297,7 @@ task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx)
 	{
 		if (NULL != task_tmp)
 		{
-			(*idx) = (((size_t)task_tmp - (size_t)task_list->data) / sizeof(Task));
+			(*idx) = (guint)(((size_t)task_tmp - (size_t)task_list->data) / sizeof(Task));
 		}
 		else
 		{
@@ -545,5 +545,5 @@ set_priority_to_pid (GPid pid, gint priority)
 gint
 task_pid_compare_fn(gconstpointer a, gconstpointer b)
 {
-	return (((Task*)a)->pid - ((Task*)b)->pid);
+	return (((const Task*)a)->pid - ((const Task*)b)->pid);
 }

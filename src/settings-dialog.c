@@ -83,7 +83,7 @@ builder_bind_toggle_button (GtkBuilder *builder, gchar *widget_name, XtmSettings
 static void
 combobox_changed (GtkComboBox *combobox, XtmSettings *settings)
 {
-	guint active = gtk_combo_box_get_active (combobox);
+	gint active = gtk_combo_box_get_active (combobox);
 	gchar *setting_name = g_object_get_data (G_OBJECT (combobox), "setting-name");
 	g_object_set (settings, setting_name, active, NULL);
 }
@@ -141,7 +141,7 @@ xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 
 		g_object_get (dialog->settings, "toolbar-style", &toolbar_style, NULL);
 		g_object_set_data (G_OBJECT (combobox), "setting-name", "toolbar-style");
-		gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), toolbar_style);
+		gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), (gint)toolbar_style);
 		g_signal_connect (combobox, "changed", G_CALLBACK (combobox_changed), dialog->settings);
 	}
 
@@ -189,7 +189,7 @@ xtm_settings_dialog_hide (GtkWidget *widget)
 	gtk_widget_hide (XTM_SETTINGS_DIALOG (widget)->window);
 	gtk_window_move (GTK_WINDOW (XTM_SETTINGS_DIALOG (widget)->window), winx, winy);
 #if !GTK_CHECK_VERSION(3, 0, 0)
-	GTK_WIDGET_UNSET_FLAGS (widget, GTK_VISIBLE);
+	GTK_WIDGET_UNSET_FLAGS (widget, (guint)GTK_VISIBLE);
 #endif
 }
 
