@@ -395,10 +395,10 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		Task *task, *task_new;
 		GtkTreeIter cur_iter = iter;
 
-		gtk_tree_model_get (manager->model, &iter, XTM_PTV_COLUMN_CPU_STR, &cpu_str, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_PID, &pid, -1);
+		valid = gtk_tree_model_iter_next (manager->model, &iter);
+		gtk_tree_model_get (manager->model, &cur_iter, XTM_PTV_COLUMN_CPU_STR, &cpu_str, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_PID, &pid, -1);
 		found = (g_strcmp0 (cpu_str, "-") == 0);
 		g_free (cpu_str);
-		valid = gtk_tree_model_iter_next (manager->model, &iter);
 		if (found && (timestamp - old_timestamp) > TIMESTAMP_DELTA)
 		{
 			G_DEBUG_FMT ("Remove old task %d", pid);
@@ -446,7 +446,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 			}
 			g_free (color);
 		}
-		
+
 		if (need_update)
 		{
 			model_update_tree_iter (manager, &cur_iter, timestamp, update_cmd_line, task);
