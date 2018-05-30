@@ -26,7 +26,7 @@ static XtmSettings *settings;
 static GtkWidget *window;
 static GtkStatusIcon *status_icon;
 static XtmTaskManager *task_manager;
-static gboolean timeout = FALSE;
+static guint timeout = 0;
 static gboolean start_hidden = FALSE;
 
 static GOptionEntry main_entries[] = {
