@@ -517,33 +517,28 @@ popup_menu (XtmProcessTreeView *treeview, GPid pid, guint activate_time, gboolea
 static gboolean
 treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 {
+	GtkTreeModel *model;
+	GtkTreeSelection *selection;
+	GtkTreePath *path;
+	GtkTreeIter iter;
+	gboolean tree;
 	GPid pid;
 
 	if (event->button != 3)
 		return FALSE;
 
-	{
-		GtkTreeModel *model;
-		GtkTreeSelection *selection;
-		GtkTreePath *path;
-		GtkTreeIter iter;
-		gboolean tree;
+	g_object_get (treeview->settings, "process-tree", &tree, NULL);
+	model = GTK_TREE_MODEL (tree ? treeview->model_tree : treeview->model_filter);
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+	gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (treeview), (gint)event->x, (gint)event->y, &path, NULL, NULL, NULL);
+	if (path == NULL)
+		return FALSE;
+	gtk_tree_model_get_iter (model, &iter, path);
+	gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid, -1);
+	gtk_tree_selection_select_path (selection, path);
+	gtk_tree_path_free (path);
 
-		g_object_get (treeview->settings, "process-tree", &tree, NULL);
-		model = GTK_TREE_MODEL (tree ? treeview->model_tree : treeview->model_filter);
-		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-		gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (treeview), (gint)event->x, (gint)event->y, &path, NULL, NULL, NULL);
-
-		if (path == NULL)
-			return FALSE;
-
-		gtk_tree_model_get_iter (model, &iter, path);
-		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid, -1);
-		gtk_tree_selection_select_path (selection, path);
-		gtk_tree_path_free (path);
-
-		G_DEBUG_FMT ("Found iter with pid %d", pid);
-	}
+	G_DEBUG_FMT ("Found iter with pid %d", pid);
 
 	popup_menu (treeview, pid, event->time, TRUE);
 
