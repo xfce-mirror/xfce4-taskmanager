@@ -16,6 +16,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
+#include "task-manager.h"
 #include "process-tree-view.h"
 #include "process-tree-model.h"
 

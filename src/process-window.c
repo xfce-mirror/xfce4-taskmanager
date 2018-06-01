@@ -29,6 +29,7 @@
 #include <gdk/gdkkeysyms.h>
 
 #include "settings.h"
+#include "task-manager.h"
 #include "process-window.h"
 #if GTK_CHECK_VERSION(3, 0, 0)
 #include "process-window-gtk3_ui.h"

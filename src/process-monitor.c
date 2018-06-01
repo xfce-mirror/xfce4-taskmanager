@@ -14,6 +14,7 @@
 #include <gtk/gtk.h>
 #include <cairo.h>
 
+#include "task-manager.h"
 #include "process-monitor.h"
 
 
