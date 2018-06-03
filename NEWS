@@ -1,3 +1,12 @@
+1.2.1
+
+- New Feature: add --start-hidden commandline argument (Bug #14343)
+- Fix incorrect UID reporting (Bug #12970)
+- Fix memory usage display (Bug #13371)
+- Fix various types/casts/initializations/leaks (Bug #14401, #14402, #14403)
+- Possible fix for a crash when lots of processes were spawned/disappeared
+- Dozens of translation updates (thanks to everyone!)
+
 1.2.0
 
 - New Feature: identify windows by clicking on them (Simon Steinbeiss, Florian Schüller)
