@@ -135,7 +135,7 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	size_t bufsz;
 	int i, oid[4];
 
-	bzero(task, sizeof(Task));
+	memset(task, 0, sizeof(Task));
 	task->pid = kp->ki_pid;
 	task->ppid = kp->ki_ppid;
 	task->cpu_user = 100.0f * ((float)kp->ki_pctcpu / FSCALE);
@@ -151,7 +151,7 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	oid[2] = KERN_PROC_ARGS;
 	oid[3] = kp->ki_pid;
 	bufsz = sizeof(buf);
-	bzero(buf, sizeof(buf));
+	memset(buf, 0, sizeof(buf));
 	if (sysctl(oid, 4, buf, &bufsz, 0, 0) == -1) {
 		/*
 		 * If the supplied buf is too short to hold the requested

@@ -208,7 +208,7 @@ get_task_details (GPid pid, Task *task)
 	}
 	fclose (file);
 
-	bzero(task, sizeof(Task));
+	memset(task, 0, sizeof(Task));
 
 	/* Scanning the short process name is unreliable with scanf when it contains
 	 * spaces, retrieve it manually and fill the buffer */

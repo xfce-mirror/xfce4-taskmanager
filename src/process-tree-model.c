@@ -465,7 +465,7 @@ xtm_process_tree_model_row_changed (XtmProcessTreeModel *treemodel, GtkTreePath 
 	s_iter.user_data3 = NULL;
 
 	/* Use the root entry as fall-back if no parent could be found */
-	bzero(&found, sizeof(found));
+	memset(&found, 0, sizeof(found));
 	found.parent = treemodel->tree;
 	found.treemodel = treemodel;
 	gtk_tree_model_get_value (model, iter, treemodel->p_column, &found.p_value);
@@ -643,7 +643,7 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 		g_sequence_foreach_range (g_sequence_iter_next (lnk->list), g_sequence_get_end_iter (treemodel->list),
 			do_path, (gpointer)gtk_tree_path_next);
 
-	bzero(&found, sizeof(found));
+	memset(&found, 0, sizeof(found));
 	found.parent = treemodel->tree;
 	found.treemodel = treemodel;
 	gtk_tree_model_get_value (model, iter, treemodel->p_column, &found.p_value);

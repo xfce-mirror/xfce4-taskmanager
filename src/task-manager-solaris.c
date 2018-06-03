@@ -184,7 +184,7 @@ get_task_details (GPid pid, Task *task)
 		return FALSE;
 	}
 
-	bzero(task, sizeof(Task));
+	memset(task, 0, sizeof(Task));
 	task->pid = process.pr_pid;
 	task->ppid = process.pr_ppid;
 	g_strlcpy (task->name, process.pr_fname, sizeof(task->name));

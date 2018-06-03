@@ -481,7 +481,7 @@ get_uid_name (guint uid)
 	struct passwd *pw = NULL, pwd_buf;
 	char buf[4096];
 
-	bzero(buf, sizeof(buf));
+	memset(buf, 0, sizeof(buf));
 	error = getpwuid_r(uid, &pwd_buf, buf, sizeof(buf), &pw);
 
 	return (g_strdup ((0 == error && pw != NULL) ? pw->pw_name : "nobody"));
