@@ -36,12 +36,12 @@ xfce4_taskmanager_SOURCES =						\
 	task-manager.c			task-manager.h			\
 	$(NULL)
 
-if USE_GTK3
+if USE_GTK2
+xfce4_taskmanager_LDADD +=	$(GTK2_LIBS) $(WNCK_LIBS)
+xfce4_taskmanager_CFLAGS +=	$(GTK2_CFLAGS) $(WNCK_CFLAGS)
+else
 xfce4_taskmanager_LDADD +=	$(GTK3_LIBS) $(WNCK_LIBS)
 xfce4_taskmanager_CFLAGS +=	$(GTK3_CFLAGS) $(WNCK_CFLAGS)
-else
-xfce4_taskmanager_LDADD +=	$(GTK_LIBS) $(WNCK_LIBS)
-xfce4_taskmanager_CFLAGS +=	$(GTK_CFLAGS) $(WNCK_CFLAGS)
 endif
 
 if HAVE_WNCK
