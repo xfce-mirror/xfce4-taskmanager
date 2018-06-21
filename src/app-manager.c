@@ -44,6 +44,7 @@ static gint	app_pid_compare_fn				(gconstpointer a, gconstpointer b);
 static void	apps_add_application				(GArray *apps, WnckApplication *application, GPid pid);
 static void	apps_remove_application				(GArray *apps, WnckApplication *application);
 static App *	apps_lookup_pid					(GArray *apps, GPid pid);
+static App *	apps_lookup_app					(GArray *apps, WnckApplication *application);
 static void	application_opened				(WnckScreen *screen, WnckApplication *application, XtmAppManager *manager);
 static void	application_closed				(WnckScreen *screen, WnckApplication *application, XtmAppManager *manager);
 
@@ -97,12 +98,17 @@ static GPid
 app_get_pid(WnckApplication *application)
 {
 	GPid pid;
+	GList *windows;
+
 	if (NULL == application)
 		return (0);
 	pid = wnck_application_get_pid (application);
 	if (pid != 0)
 		return (pid);
-	return (wnck_window_get_pid (WNCK_WINDOW (wnck_application_get_windows (application)->data)));
+	windows = wnck_application_get_windows (application);
+	if (NULL != windows && NULL != windows->data)
+		return (wnck_window_get_pid (WNCK_WINDOW (windows->data)));
+	return (0);
 }
 
 static gint
@@ -135,6 +141,8 @@ apps_remove_application (GArray *apps, WnckApplication *application)
 	App *app = apps_lookup_pid(apps, app_get_pid (application));
 
 	if (app == NULL)
+		app = apps_lookup_app(apps, application);
+	if (app == NULL)
 		return;
 	g_object_unref (app->icon);
 	g_array_remove_index (apps, (guint)(((size_t)app - (size_t)apps->data) / sizeof(App)));
@@ -148,6 +156,21 @@ apps_lookup_pid (GArray *apps, GPid pid)
 	tapp.pid = pid;
 
 	return (bsearch(&tapp, apps->data, apps->len, sizeof(App), app_pid_compare_fn));
+}
+
+static App *
+apps_lookup_app (GArray *apps, WnckApplication *application)
+{
+	App *tapp;
+	guint i;
+
+	for (i = 0; i < apps->len; i++) {
+		tapp = &g_array_index (apps, App, i);
+		if (tapp->application == application)
+			return (tapp);
+	}
+
+	return (NULL);
 }
 
 static void
