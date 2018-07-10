@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Cristian Marchi <cri.penta@gmail.com>, 2009-2010,2014
+# Emanuele Petriglia <inbox@emanuelepetriglia.me>, 2018
 # Enrico B. <enricobe@hotmail.com>, 2017
 # Fabio Riga <usul@aruba.it>, 2007
 # Mauro Giubileo <debianmaverick@gmail.com>, 2014
@@ -12,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2018-06-16 16:27+0000\n"
+"PO-Revision-Date: 2018-07-10 08:30+0000\n"
 "Last-Translator: Emanuele Petriglia <inbox@emanuelepetriglia.me>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +49,7 @@ msgstr "Esegui il gestore dei processi come root"
 #: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
 #: ../src/exec-tool-button.c:196
 msgid "Run Program..."
-msgstr "Esegui programma..."
+msgstr "Esegui programma…"
 
 #: ../src/exec-tool-button.c:199
 msgid "Application Finder"
@@ -261,7 +262,7 @@ msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
 "<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> Avvio processo\n<span foreground='#000000' background='#fff176'>    </span> Modifica processo\n<span foreground='#000000' background='#e57373'>    </span> Interruzione processo"
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Avvio del processo in corso\n<span foreground='#000000' background='#fff176'>    </span> Modifica del processo in corso\n<span foreground='#000000' background='#e57373'>    </span> Interruzione del processo in corso"
 
 #: ../src/process-window.c:328
 msgid "Filter on process name"
@@ -269,7 +270,7 @@ msgstr "Filtra in base al nome del processo"
 
 #: ../src/process-window.c:510
 msgid "translator-credits"
-msgstr "Fabio Riga\nCristian Marchi, 2009, 2010, 2014"
+msgstr "Emanuele Petriglia, <inbox@emanuelepetriglia.me> 2018\nFabio Riga\nCristian Marchi, 2009, 2010, 2014"
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
