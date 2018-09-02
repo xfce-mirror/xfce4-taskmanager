@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2018-03-17 09:26+0000\n"
+"PO-Revision-Date: 2018-09-02 14:00+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Executa el programa..."
 
 #: ../src/exec-tool-button.c:199
 msgid "Application Finder"
-msgstr "Descobridor d'aplicacions"
+msgstr "Cercador d'aplicacions"
 
 #: ../src/exec-tool-button.c:202
 msgid "Terminal emulator"
