@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Sveinn í Felli <sv1@fellsnet.is>, 2013-2016
+# Sveinn í Felli <sv1@fellsnet.is>, 2013-2016,2018
 # Sveinn í Felli <sv1@fellsnet.is>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2018-09-14 00:15+0000\n"
+"PO-Revision-Date: 2018-11-05 20:26+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/xfce/xfce-apps/language/is/)\n"
 "MIME-Version: 1.0\n"
@@ -147,15 +147,15 @@ msgstr "Kála verkefni"
 #: ../src/process-tree-view.c:372
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr ""
+msgstr "Ertu viss um að þú viljir senda %s merkið til PID %d?"
 
 #: ../src/process-tree-view.c:373
 msgid "terminate"
-msgstr ""
+msgstr "ljúka (terminate)"
 
 #: ../src/process-tree-view.c:373
 msgid "kill"
-msgstr ""
+msgstr "kála (kill)"
 
 #: ../src/process-tree-view.c:385
 msgid "Error sending signal"
@@ -221,37 +221,37 @@ msgstr "Forgangur"
 
 #: ../src/process-window.c:171
 msgid "Bad Window"
-msgstr ""
+msgstr "Rangur gluggi"
 
 #: ../src/process-window.c:171
 #, c-format
 msgid "Window id 0x%lx does not exist!"
-msgstr ""
+msgstr "Gluggaauðkenni id 0x%lx er ekki til!"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
-msgstr ""
+msgstr "XGetWindowProperty mistókst"
 
 #: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
-msgstr ""
+msgstr "XGetWindowProperty mistókst!"
 
 #: ../src/process-window.c:181
 msgid "No PID found"
-msgstr ""
+msgstr "Ekkert PID fannst"
 
 #: ../src/process-window.c:181
 #, c-format
 msgid "No PID found for window 0x%lx."
-msgstr ""
+msgstr "Ekkert PID fannst fyrir gluggann 0x%lx."
 
 #: ../src/process-window.c:251
 msgid "Identify Window"
-msgstr ""
+msgstr "Bera kennsl á glugga"
 
 #: ../src/process-window.c:252
 msgid "Identify an open window by clicking on it."
-msgstr ""
+msgstr "Bera kennsl á opinn glugga með því að smella á hann."
 
 #: ../src/process-window.c:318
 #, c-format
