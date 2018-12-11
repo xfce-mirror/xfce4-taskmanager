@@ -172,7 +172,7 @@ pretty_cmdline (gchar *cmdline, gchar *comm)
 			gchar *p = g_strstr_len (text, (gssize)text_size, comm);
 			if (p != NULL)
 			{
-				memmove (text, p, (gsize)(text_size - (gsize)(p - text)));
+				memmove (text, p, (gsize)(text_size - (gsize)(p - text) + 1));
 			}
 		}
 	}
