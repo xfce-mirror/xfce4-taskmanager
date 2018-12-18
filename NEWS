@@ -1,3 +1,12 @@
+1.2.2
+
+- Default to build with Gtk3, Gtk2 still available but will be removed in the next release
+- Appease valgrind by properly calculating size when using memmove
+- Remove g_object_unref() calls at the end of main, were causing double-frees with Gtk3 on OpenBSD
+- Better utf-8 normalization (bug 14172)
+- Improve app search on close (bug 14466)
+- Many translation updates
+
 1.2.1
 
 - New Feature: add --start-hidden commandline argument (Bug #14343)
