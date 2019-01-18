@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Besnik <besnik@programeshqip.org>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2018-09-14 00:15+0000\n"
+"PO-Revision-Date: 2019-01-18 16:02+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/xfce-apps/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -333,7 +334,7 @@ msgstr "<b>Të ndryshme</b>"
 
 #: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
 msgid "Refresh rate:"
-msgstr ""
+msgstr "Shpejtësi rifreskimi:"
 
 #: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "Columns:"
@@ -378,7 +379,7 @@ msgstr "Shfaqi krejt proceset"
 
 #: ../src/settings-tool-button.c:168
 msgid "Refresh rate"
-msgstr ""
+msgstr "Shpejtësi rifreskimi:"
 
 #: ../src/settings-tool-button.c:178
 msgid "Virtual Bytes"
