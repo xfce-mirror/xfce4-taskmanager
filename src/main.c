@@ -34,6 +34,9 @@ static GOptionEntry main_entries[] = {
 	{ NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
+static void	destroy_window (void);
+
+
 static void
 status_icon_activated (void)
 {
@@ -53,7 +56,7 @@ status_icon_popup_menu (GtkStatusIcon *_status_icon, guint button, guint activat
 		GtkWidget *mi;
 		menu = gtk_menu_new ();
 		mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_QUIT, NULL);
-		g_signal_connect (mi, "activate", G_CALLBACK (gtk_main_quit), NULL);
+		g_signal_connect (mi, "activate", G_CALLBACK (destroy_window), NULL);
 		gtk_container_add (GTK_CONTAINER (menu), mi);
 		gtk_widget_show_all (menu);
 	}
@@ -72,8 +75,10 @@ show_hide_status_icon (void)
 static void
 destroy_window (void)
 {
-	if (gtk_main_level () > 0)
+	if (gtk_main_level () > 0) {
+		xtm_settings_save_settings(settings);
 		gtk_main_quit ();
+	}
 }
 
 static gboolean
@@ -81,6 +86,7 @@ delete_window (void)
 {
 	if (!gtk_status_icon_get_visible (status_icon))
 	{
+		xtm_settings_save_settings(settings);
 		gtk_main_quit ();
 		return FALSE;
 	}

@@ -70,6 +70,7 @@ struct _XtmSettings
 	GObject			parent;
 	/*<private>*/
 	GValue			values[N_PROPS];
+	gint			loading; /* Setting loading now, do not save. */
 };
 G_DEFINE_TYPE (XtmSettings, xtm_settings, G_TYPE_OBJECT)
 
@@ -77,8 +78,6 @@ static void	xtm_settings_get_property			(GObject *object, guint property_id, GVa
 static void	xtm_settings_set_property			(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 
 static void	xtm_settings_load_settings			(XtmSettings *settings);
-static void	xtm_settings_save_settings			(XtmSettings *settings);
-
 
 
 static void
@@ -170,7 +169,15 @@ xtm_settings_set_property (GObject *object, guint property_id, const GValue *val
 	if (g_param_values_cmp (pspec, value, dest) != 0)
 	{
 		g_value_copy (value, dest);
-		xtm_settings_save_settings (XTM_SETTINGS (object));
+		/* Do not save some noisy changed props on fly. */
+		switch (property_id) {
+		case PROP_WINDOW_WIDTH:
+		case PROP_WINDOW_HEIGHT:
+			break;
+		default:
+			xtm_settings_save_settings (XTM_SETTINGS (object));
+			break;
+		}
 	}
 }
 
@@ -236,6 +243,7 @@ xtm_settings_load_settings (XtmSettings *settings)
 
 	register_transformable ();
 
+	settings->loading = 1;
 	g_object_freeze_notify (G_OBJECT (settings));
 
 	rc = g_key_file_new ();
@@ -288,14 +296,17 @@ xtm_settings_load_settings (XtmSettings *settings)
 	g_key_file_free (rc);
 
 	g_object_thaw_notify (G_OBJECT (settings));
+	settings->loading = 0;
 }
 
-static void
+void
 xtm_settings_save_settings (XtmSettings *settings)
 {
 	GKeyFile *rc;
 	gchar *filename;
 
+	if (0 != settings->loading)
+		return;
 	rc = g_key_file_new ();
 	filename = g_strdup_printf ("%s/xfce4/xfce4-taskmanager.rc", g_get_user_config_dir ());
 

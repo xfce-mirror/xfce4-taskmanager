@@ -612,6 +612,11 @@ column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview)
 	gtk_tree_view_column_set_sort_order (column, sort_type);
 
 	treeview->sort_column = column;
+
+	g_object_set(treeview->settings,
+	    "sort-column-id", GPOINTER_TO_INT(g_object_get_data(G_OBJECT(treeview->sort_column), "column-id")),
+	    "sort-type", sort_type,
+	    NULL);
 }
 
 void
@@ -744,13 +749,6 @@ GtkWidget *
 xtm_process_tree_view_new (void)
 {
 	return g_object_new (XTM_TYPE_PROCESS_TREE_VIEW, NULL);
-}
-
-void
-xtm_process_tree_view_get_sort_column_id (XtmProcessTreeView *treeview, gint *sort_column_id, GtkSortType *sort_type)
-{
-	*sort_column_id = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (treeview->sort_column), "column-id"));
-	*sort_type = gtk_tree_view_column_get_sort_order (treeview->sort_column);
 }
 
 GtkTreeModel *

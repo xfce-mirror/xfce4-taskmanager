@@ -72,7 +72,8 @@ static void	xtm_process_window_finalize			(GObject *object);
 static void	xtm_process_window_hide				(GtkWidget *widget);
 
 static void	emit_destroy_signal				(XtmProcessWindow *window);
-static gboolean	emit_delete_event_signal			(XtmProcessWindow *window, GdkEvent *event);
+static gboolean	xtm_process_window_configure_event		(XtmProcessWindow *window, GdkEvent *event);
+static gboolean	xtm_process_vpaned_move_event			(XtmProcessWindow *window, GdkEventButton *event);
 static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
 static void	toolbar_update_style				(XtmProcessWindow *window);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
@@ -242,8 +243,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 	if (width >= 1 && height >= 1)
 		gtk_window_resize (GTK_WINDOW (window->window), width, height);
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
-	g_signal_connect_swapped (window->window, "delete-event", G_CALLBACK (emit_delete_event_signal), window);
 	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
+	g_signal_connect_swapped(window->window, "configure-event",
+	    G_CALLBACK(xtm_process_window_configure_event), window);
 
 	window->toolbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-toolbar"));
 	g_signal_connect_swapped (window->settings, "notify::toolbar-style", G_CALLBACK (toolbar_update_style), window);
@@ -281,6 +283,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 		window->vpaned = GTK_WIDGET (gtk_builder_get_object (window->builder, "mainview-vpaned"));
 		if (handle_position > -1)
 			gtk_paned_set_position (GTK_PANED (window->vpaned), handle_position);
+		g_signal_connect_swapped(window->vpaned, "button-release-event",
+		    G_CALLBACK(xtm_process_vpaned_move_event), window);
 
 		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "graph-cpu"));
 		window->cpu_monitor = xtm_process_monitor_new ();
@@ -375,28 +379,33 @@ emit_destroy_signal (XtmProcessWindow *window)
 }
 
 static gboolean
-emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event)
-{
-	gboolean ret;
-	gint width, height, handle_position;
-	guint sort_column_id;
-	GtkSortType sort_type;
+xtm_process_window_configure_event(XtmProcessWindow *window,
+    GdkEvent *event) {
 
-	gtk_window_get_size (GTK_WINDOW (window->window), &width, &height);
-	xtm_process_tree_view_get_sort_column_id (XTM_PROCESS_TREE_VIEW (window->treeview), (gint*)&sort_column_id, &sort_type);
+	if (NULL != window &&
+	    NULL != event && GDK_CONFIGURE == event->configure.type) {
+		g_object_set (window->settings,
+		    "window-width", event->configure.width,
+		    "window-height", event->configure.height,
+		    NULL);
+	}
 
-	handle_position = gtk_paned_get_position (GTK_PANED (window->vpaned));
+	return (FALSE);
+}
 
-	g_object_set (window->settings,
-				  "window-width", width,
-				  "window-height", height,
-				  "sort-column-id", sort_column_id,
-				  "sort-type", sort_type,
-				  "handle-position", handle_position,
-				  NULL);
+static gboolean
+xtm_process_vpaned_move_event(XtmProcessWindow *window,
+    GdkEventButton *event __unused) {
+	gint handle_position;
 
-	g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
-	return ret;
+	if (NULL != window) {
+		handle_position = gtk_paned_get_position(GTK_PANED(window->vpaned));
+		g_object_set (window->settings,
+		    "handle-position", handle_position,
+		    NULL);
+	}
+
+	return (FALSE);
 }
 
 static gboolean
@@ -406,7 +415,6 @@ xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
 
 	if (event->keyval == GDK_KEY_Escape ||
 		(event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK))) {
-		emit_delete_event_signal (window, (GdkEvent*) event);
 		ret = TRUE;
 	}
 	else if (event->keyval == GDK_KEY_f && (event->state & GDK_CONTROL_MASK)) {
