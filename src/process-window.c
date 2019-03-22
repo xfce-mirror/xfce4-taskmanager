@@ -462,6 +462,7 @@ static void
 show_about_dialog (XtmProcessWindow *window)
 {
 	const gchar *authors[] = {
+		"(c) 2018-2019 Rozhuk Ivan",
 		"(c) 2014 Landry Breuil",
 		"(c) 2014 Harald Judt",
 		"(c) 2014 Peter de Ridder",
@@ -470,6 +471,7 @@ show_about_dialog (XtmProcessWindow *window)
 		"(c) 2005-2008 Johannes Zellner",
 		"",
 		"FreeBSD",
+		"  \342\200\242 Rozhuk Ivan",
 		"  \342\200\242 Mike Massonnet",
 		"  \342\200\242 Oliver Lehmann",
 		"",
@@ -496,7 +498,7 @@ show_about_dialog (XtmProcessWindow *window)
 	gtk_show_about_dialog (GTK_WINDOW (window->window),
 		"program-name", _("Task Manager"),
 		"version", PACKAGE_VERSION,
-		"copyright", "Copyright \302\251 2005-2014 The Xfce development team",
+		"copyright", "Copyright \302\251 2005-2019 The Xfce development team",
 		"logo-icon-name", "utilities-system-monitor",
 #if !GTK_CHECK_VERSION(3, 0, 0)
 		"icon-name", GTK_STOCK_ABOUT,
