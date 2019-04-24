@@ -181,6 +181,10 @@ construct_menu (void)
 	menu_append_item (GTK_MENU (menu), _("CPU"), "column-cpu", settings);
 	menu_append_item (GTK_MENU (menu), _("Priority"), "column-priority", settings);
 
+	mi = gtk_separator_menu_item_new ();
+	gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
+	menu_append_item (GTK_MENU (menu), _("Show Legend"), "show-legend", settings);
+
 	gtk_widget_show_all (menu);
 
 	return menu;

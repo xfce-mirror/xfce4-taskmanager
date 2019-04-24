@@ -213,13 +213,24 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 }
 
 static void
+xtm_show_legend (XtmProcessWindow *window)
+{
+	gboolean show_legend;
+
+	g_object_get (window->settings,
+				  "show-legend", &show_legend,
+				  NULL);
+	gtk_widget_set_visible (GTK_WIDGET (gtk_builder_get_object (window->builder, "legend")), show_legend);
+}
+
+static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
 	GtkWidget *icon;
 	GtkToolItem *xwininfo;
 	gint width, height;
-	gchar *markup;
+	gboolean show_legend;
 
 	window->settings = xtm_settings_get_default ();
 
@@ -243,6 +254,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	window->settings_button = xtm_settings_tool_button_new ();
 	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 1);
+	g_signal_connect_swapped (window->settings, "notify::show-legend", G_CALLBACK (xtm_show_legend), window);
+	g_object_notify (G_OBJECT (window->settings), "show-legend");
 
 	icon = gtk_image_new_from_icon_name ("xc_crosshair", GTK_ICON_SIZE_LARGE_TOOLBAR);
 	xwininfo = gtk_tool_button_new (icon, _("Identify Window"));
@@ -312,12 +325,12 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	window->treeview = xtm_process_tree_view_new ();
 	gtk_widget_show (window->treeview);
-	markup = g_strdup_printf (_("<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
-								"<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
-								"<span foreground='#000000' background='#e57373'>    </span> Terminating task"));
-	gtk_widget_set_tooltip_markup (GTK_WIDGET (gtk_builder_get_object (window->builder, "scrolledwindow")), markup);
-	g_free (markup);
 	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->builder, "scrolledwindow")), window->treeview);
+
+	g_object_get (window->settings,
+				  "show-legend", &show_legend,
+				  NULL);
+	gtk_widget_set_visible (GTK_WIDGET (gtk_builder_get_object (window->builder, "legend")), show_legend);
 
 	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
 	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
@@ -325,9 +338,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_set_tooltip_text (window->filter_entry, _("Filter on process name"));
 
 	gtk_widget_grab_focus (GTK_WIDGET (window->filter_entry));
-
-	g_object_unref (window->builder);
-	window->builder = NULL;
 }
 
 static void
@@ -349,6 +359,9 @@ xtm_process_window_finalize (GObject *object)
 
 	if (XTM_IS_SETTINGS (window->settings))
 		g_object_unref (window->settings);
+
+	g_object_unref (window->builder);
+	window->builder = NULL;
 }
 
 /**

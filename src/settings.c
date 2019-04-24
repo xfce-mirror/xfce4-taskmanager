@@ -33,6 +33,7 @@
 enum
 {
 	PROP_SHOW_ALL_PROCESSES = 1,
+	PROP_SHOW_LEGEND,
 	PROP_MORE_PRECISION,
 	PROP_FULL_COMMAND_LINE,
 	PROP_SHOW_STATUS_ICON,
@@ -89,6 +90,8 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 	class->set_property = xtm_settings_set_property;
 	g_object_class_install_property (class, PROP_SHOW_ALL_PROCESSES,
 		g_param_spec_boolean ("show-all-processes", "ShowAllProcesses", "Show all processes", FALSE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_SHOW_LEGEND,
+		g_param_spec_boolean ("show-legend", "ShowLegend", "Show legend", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_MORE_PRECISION,
 		g_param_spec_boolean ("more-precision", "MorePrecision", "More precision", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_FULL_COMMAND_LINE,
