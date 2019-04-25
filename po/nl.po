@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pjotr <pjotrvertaalt@gmail.com>, 2014,2017
+# Pjotr <pjotrvertaalt@gmail.com>, 2014,2017,2019
 # Stephan Arts <stephan@xfce.org>, 2007
 # Vincent <msn_vincent@hotmail.com>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2017-09-23 19:02+0000\n"
+"POT-Creation-Date: 2019-04-25 00:32+0200\n"
+"PO-Revision-Date: 2019-04-25 21:22+0000\n"
 "Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/xfce/xfce-apps/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -21,14 +21,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
-#: ../src/process-tree-view.c:417 ../src/process-window.c:500
+#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
+#: ../src/process-tree-view.c:416 ../src/process-window.c:512
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Taakbeheerder"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:507
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
 msgid "Easy to use task manager"
 msgstr "Gemakkelijk te gebruiken taakbeheerder"
 
@@ -61,7 +61,7 @@ msgstr "Terminalvenster"
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:126
+#: ../src/main.c:132
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -70,7 +70,7 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Processen:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Geheugen:</b> %s\n<b>Wisselgeheugen:</b> %s"
 
-#: ../src/main.c:134
+#: ../src/main.c:140
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -79,12 +79,12 @@ msgid ""
 "Swap: %s"
 msgstr "Processen: %u\nCPU: %.0f%%\nGeheugen: %s\nWisselgeheugen: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:572
+#: ../src/process-statusbar.c:147 ../src/process-window.c:584
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:576
+#: ../src/process-statusbar.c:162 ../src/process-window.c:588
 #, c-format
 msgid "Memory: %s"
 msgstr "Geheugen: %s"
@@ -99,174 +99,166 @@ msgstr "Wisselgeheugen: %s"
 msgid "Processes: %d"
 msgstr "Processen: %d"
 
-#: ../src/process-tree-view.c:137
+#: ../src/process-tree-view.c:133
 msgid "Task"
 msgstr "Taak"
 
-#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:160 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "Status"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:169
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:177
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:193 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:202
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:367
 msgid "Terminate task"
 msgstr "Beëindig taak"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:367
 msgid "Kill task"
 msgstr "Breek taak af"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:369
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Weet u zeker dat u het signaal %s wilt zenden naar de PID %d?"
 
-#: ../src/process-tree-view.c:373
+#: ../src/process-tree-view.c:370
 msgid "terminate"
 msgstr "beëindigen"
 
-#: ../src/process-tree-view.c:373
+#: ../src/process-tree-view.c:370
 msgid "kill"
 msgstr "afbreken"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:382
 msgid "Error sending signal"
 msgstr "Fout bij zenden van signaal"
 
-#: ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:384
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Er trad een fout op bij het zenden van een signaal naar de PID %d. Waarschijnlijk hebt u niet de vereiste rechten."
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:413
 msgid "Error setting priority"
 msgstr "Fout bij instellen prioriteit"
 
-#: ../src/process-tree-view.c:415
+#: ../src/process-tree-view.c:414
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Er trad een fout op bij het instellen van een prioriteit voor de PID %d. Waarschijnlijk hebt u niet de vereiste rechten."
 
-#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
+#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:576
 msgid "Stop"
 msgstr "Stoppen"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:439
 msgid "Continue"
 msgstr "Doorgaan"
 
-#: ../src/process-tree-view.c:446
+#: ../src/process-tree-view.c:445
 msgid "Terminate"
 msgstr "Beëindigen"
 
-#: ../src/process-tree-view.c:452
+#: ../src/process-tree-view.c:451
 msgid "Kill"
 msgstr "Afbreken"
 
-#: ../src/process-tree-view.c:459
+#: ../src/process-tree-view.c:458
 msgid "Very low"
 msgstr "Zeer laag"
 
-#: ../src/process-tree-view.c:464
+#: ../src/process-tree-view.c:463
 msgid "Low"
 msgstr "Laag"
 
-#: ../src/process-tree-view.c:469
+#: ../src/process-tree-view.c:468
 msgid "Normal"
 msgstr "Normaal"
 
-#: ../src/process-tree-view.c:474
+#: ../src/process-tree-view.c:473
 msgid "High"
 msgstr "Hoog"
 
-#: ../src/process-tree-view.c:479
+#: ../src/process-tree-view.c:478
 msgid "Very high"
 msgstr "Zeer hoog"
 
-#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Prioriteit"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "Slecht venster"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Venster id 0x%lx bestaat niet."
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty is mislukt"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty is mislukt."
 
-#: ../src/process-window.c:181
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "Geen PID gevonden"
 
-#: ../src/process-window.c:181
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Geen PID gevonden voor venster 0x%lx."
 
-#: ../src/process-window.c:251
+#: ../src/process-window.c:261
 msgid "Identify Window"
 msgstr "Venster identificeren"
 
-#: ../src/process-window.c:252
+#: ../src/process-window.c:262
 msgid "Identify an open window by clicking on it."
 msgstr "Identificeer een geopend venster door erop te klikken."
 
-#: ../src/process-window.c:318
-#, c-format
-msgid ""
-"<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
-"<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
-"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> Taak aan het starten\n<span foreground='#000000' background='#fff176'>    </span> Taak aan het veranderen\n<span foreground='#000000' background='#e57373'>    </span> Taak aan het staken"
-
-#: ../src/process-window.c:328
+#: ../src/process-window.c:338
 msgid "Filter on process name"
 msgstr "Filteren op procesnaam"
 
-#: ../src/process-window.c:510
+#: ../src/process-window.c:522
 msgid "translator-credits"
 msgstr "Stephan Arts\nVincent\nPjotr <pjotrvertaalt@gmail.com>"
 
@@ -274,19 +266,34 @@ msgstr "Stephan Arts\nVincent\nPjotr <pjotrvertaalt@gmail.com>"
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Waarschuwing: u gebruikt het root-account, u kunt uw systeem beschadigen."
 
-#: ../src/settings.c:387
+#: ../src/process-window-gtk3.ui.h:3
+msgid ""
+"<span foreground='#000000' background='#aed581'>    </span> Starting task"
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Taak starten"
+
+#: ../src/process-window-gtk3.ui.h:4
+msgid ""
+"<span foreground='#000000' background='#fff176'>    </span> Changing task"
+msgstr "<span foreground='#000000' background='#fff176'>    </span> Taak wijzigen"
+
+#: ../src/process-window-gtk3.ui.h:5
+msgid ""
+"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
+msgstr "<span foreground='#000000' background='#e57373'>    </span> Taak beëindigen"
+
+#: ../src/settings.c:389
 msgid "Default"
 msgstr "Standaard"
 
-#: ../src/settings.c:388
+#: ../src/settings.c:390
 msgid "Small"
 msgstr "Klein"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:391
 msgid "Large"
 msgstr "Groot"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:392
 msgid "Text"
 msgstr "Tekst"
 
@@ -391,7 +398,11 @@ msgstr "Virtuele bytes"
 msgid "Private Bytes"
 msgstr "Privé-bytes"
 
-#: ../src/task-manager.c:241
+#: ../src/settings-tool-button.c:186
+msgid "Show Legend"
+msgstr "Legenda tonen"
+
+#: ../src/task-manager.c:245
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
