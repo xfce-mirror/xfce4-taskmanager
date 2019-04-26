@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Edin Veskovic <edin.lockedin@gmail.com>, 2019
 # Edin Veskovic <edin.lockedin@gmail.com>, 2014,2017
 # Edin Veskovic <edin.lockedin@gmail.com>, 2014
 # Ivica  Kolić <ikoli@yahoo.com>, 2013,2016
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2018-09-14 00:15+0000\n"
+"POT-Creation-Date: 2019-04-25 00:32+0200\n"
+"PO-Revision-Date: 2019-04-26 07:05+0000\n"
 "Last-Translator: Edin Veskovic <edin.lockedin@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/xfce/xfce-apps/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -22,14 +23,14 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
-#: ../src/process-tree-view.c:417 ../src/process-window.c:500
+#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
+#: ../src/process-tree-view.c:416 ../src/process-window.c:512
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Upravitelj zadacima"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:507
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
 msgid "Easy to use task manager"
 msgstr "Lagan za korištenje upravitelj zadacima"
 
@@ -62,7 +63,7 @@ msgstr "Emulator terminala"
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:126
+#: ../src/main.c:132
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -71,7 +72,7 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Procesi:</b> %u\n<b>Procesor:</b> %.0f%%\n<b>Memorija:</b> %s\n<b>Swap:</b> %s"
 
-#: ../src/main.c:134
+#: ../src/main.c:140
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -80,12 +81,12 @@ msgid ""
 "Swap: %s"
 msgstr "Procesi: %u\nProcesor: %.0f%%\nMemorija: %s\nSwap: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:572
+#: ../src/process-statusbar.c:147 ../src/process-window.c:584
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Procesor: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:576
+#: ../src/process-statusbar.c:162 ../src/process-window.c:588
 #, c-format
 msgid "Memory: %s"
 msgstr "Memorija: %s"
@@ -100,174 +101,166 @@ msgstr "Swap: %s"
 msgid "Processes: %d"
 msgstr "Procesi: %d"
 
-#: ../src/process-tree-view.c:137
+#: ../src/process-tree-view.c:133
 msgid "Task"
 msgstr "Zadatak"
 
-#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:160 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "Stanje"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:169
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:177
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:193 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "Procesor"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:202
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:367
 msgid "Terminate task"
 msgstr "Terminiraj zadatak"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:367
 msgid "Kill task"
 msgstr "Ubij zadatak"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:369
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Da li ste sigurni da želite poslati %s signal za PID %d?"
 
-#: ../src/process-tree-view.c:373
+#: ../src/process-tree-view.c:370
 msgid "terminate"
 msgstr "prekini"
 
-#: ../src/process-tree-view.c:373
+#: ../src/process-tree-view.c:370
 msgid "kill"
 msgstr "ubij"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:382
 msgid "Error sending signal"
 msgstr "Greška slanja signala"
 
-#: ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:384
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Dogodila se greška slanjem signala PID-u %d. Čini se kao da nemate potrebne privilegije."
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:413
 msgid "Error setting priority"
 msgstr "Greška pri postavljanju prioriteta"
 
-#: ../src/process-tree-view.c:415
+#: ../src/process-tree-view.c:414
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Dogodila se greška postavljanjem prioriteta PID-u %d. Čini se kao da nemate potrebne privilegije."
 
-#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
+#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:576
 msgid "Stop"
 msgstr "Stop"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:439
 msgid "Continue"
 msgstr "Nastavi"
 
-#: ../src/process-tree-view.c:446
+#: ../src/process-tree-view.c:445
 msgid "Terminate"
 msgstr "Terminiraj"
 
-#: ../src/process-tree-view.c:452
+#: ../src/process-tree-view.c:451
 msgid "Kill"
 msgstr "Ubij"
 
-#: ../src/process-tree-view.c:459
+#: ../src/process-tree-view.c:458
 msgid "Very low"
 msgstr "Vrlo nizak"
 
-#: ../src/process-tree-view.c:464
+#: ../src/process-tree-view.c:463
 msgid "Low"
 msgstr "Nizak"
 
-#: ../src/process-tree-view.c:469
+#: ../src/process-tree-view.c:468
 msgid "Normal"
 msgstr "Normalno"
 
-#: ../src/process-tree-view.c:474
+#: ../src/process-tree-view.c:473
 msgid "High"
 msgstr "Visok"
 
-#: ../src/process-tree-view.c:479
+#: ../src/process-tree-view.c:478
 msgid "Very high"
 msgstr "Vrlo visok"
 
-#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Prioritet"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "Nevaljan prozor"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "ID prozora 0x%lx ne postoji!"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty nije uspio"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty nije uspio!"
 
-#: ../src/process-window.c:181
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "Nije pronađen PID"
 
-#: ../src/process-window.c:181
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Nije pronađen PID za prozor 0x%lx."
 
-#: ../src/process-window.c:251
+#: ../src/process-window.c:261
 msgid "Identify Window"
 msgstr "Identificiraj prozor"
 
-#: ../src/process-window.c:252
+#: ../src/process-window.c:262
 msgid "Identify an open window by clicking on it."
 msgstr "Identificiraj otvoreni prozor klikom na isti."
 
-#: ../src/process-window.c:318
-#, c-format
-msgid ""
-"<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
-"<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
-"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> Pokretanje zadatka\n<span foreground='#000000' background='#fff176'>    </span> Mijenjanje zadatka\n<span foreground='#000000' background='#e57373'>    </span> Gašenje zadatka"
-
-#: ../src/process-window.c:328
+#: ../src/process-window.c:338
 msgid "Filter on process name"
 msgstr "Filtriraj prema imenu procesa"
 
-#: ../src/process-window.c:510
+#: ../src/process-window.c:522
 msgid "translator-credits"
 msgstr "Ivica Kolić (zvacet) <ikoli@yahoo.com>"
 
@@ -275,19 +268,34 @@ msgstr "Ivica Kolić (zvacet) <ikoli@yahoo.com>"
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Upozorenje, koristite korijenski račun, možete oštetiti vaš sustav."
 
-#: ../src/settings.c:387
+#: ../src/process-window-gtk3.ui.h:3
+msgid ""
+"<span foreground='#000000' background='#aed581'>    </span> Starting task"
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Pokretanja zadatka"
+
+#: ../src/process-window-gtk3.ui.h:4
+msgid ""
+"<span foreground='#000000' background='#fff176'>    </span> Changing task"
+msgstr "<span foreground='#000000' background='#fff176'>    </span> Promijena zadatka"
+
+#: ../src/process-window-gtk3.ui.h:5
+msgid ""
+"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
+msgstr "<span foreground='#000000' background='#e57373'>    </span> Gašenje zadatka"
+
+#: ../src/settings.c:389
 msgid "Default"
 msgstr "Zadano"
 
-#: ../src/settings.c:388
+#: ../src/settings.c:390
 msgid "Small"
 msgstr "Malo"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:391
 msgid "Large"
 msgstr "Veliko"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:392
 msgid "Text"
 msgstr "Tekst"
 
@@ -392,7 +400,11 @@ msgstr "Virtualni bajtovi"
 msgid "Private Bytes"
 msgstr "Privatni bajtovi"
 
-#: ../src/task-manager.c:241
+#: ../src/settings-tool-button.c:186
+msgid "Show Legend"
+msgstr "Pokaži legendu"
+
+#: ../src/task-manager.c:245
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
