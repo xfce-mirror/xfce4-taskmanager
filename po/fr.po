@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-25 19:27+0000\n"
+"PO-Revision-Date: 2019-04-30 20:06+0000\n"
 "Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/xfce/xfce-apps/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -275,17 +275,17 @@ msgstr "Attention, vous utilisez le compte administrateur, vous risquez d’endo
 #: ../src/process-window-gtk3.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Initialisation de la tâche"
 
 #: ../src/process-window-gtk3.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#fff176'>    </span> Changement de tâche en cours"
 
 #: ../src/process-window-gtk3.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#e57373'>    </span> Fin de tâche en cours"
 
 #: ../src/settings.c:389
 msgid "Default"
