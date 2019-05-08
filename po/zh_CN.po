@@ -6,13 +6,13 @@
 # Chipong Luo <chipong.luo@yahoo.com>, 2013
 # elhuevogrande <kbusch21@yahoo.com>, 2013
 # Mingcong Bai <jeffbai@aosc.xyz>, 2017
-# 玉堂白鹤 <yjwork@qq.com>, 2015
+# 玉堂白鹤 <yjwork@qq.com>, 2015,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-27 00:30+0100\n"
-"PO-Revision-Date: 2019-03-23 08:25+0000\n"
+"POT-Creation-Date: 2019-04-25 00:32+0200\n"
+"PO-Revision-Date: 2019-04-25 03:01+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -22,14 +22,14 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:186
-#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
-#: ../src/process-tree-view.c:417 ../src/process-window.c:500
+#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
+#: ../src/process-tree-view.c:416 ../src/process-window.c:512
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "任务管理器"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:507
+#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
 msgid "Easy to use task manager"
 msgstr "易用的任务管理器"
 
@@ -62,7 +62,7 @@ msgstr "终端模拟器"
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:126
+#: ../src/main.c:132
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -71,7 +71,7 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>进程数:</b> %u\n<b>CPU:</b> %.0f%%\n<b>内存:</b> %s\n<b>交换分区:</b> %s"
 
-#: ../src/main.c:134
+#: ../src/main.c:140
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -80,12 +80,12 @@ msgid ""
 "Swap: %s"
 msgstr "进程数: %u\nCPU: %.0f%%\n内存: %s\n交换分区: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:572
+#: ../src/process-statusbar.c:147 ../src/process-window.c:584
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:576
+#: ../src/process-statusbar.c:162 ../src/process-window.c:588
 #, c-format
 msgid "Memory: %s"
 msgstr "内存: %s"
@@ -100,174 +100,166 @@ msgstr "交换分区: %s"
 msgid "Processes: %d"
 msgstr "进程数: %d"
 
-#: ../src/process-tree-view.c:137
+#: ../src/process-tree-view.c:133
 msgid "Task"
 msgstr "任务"
 
-#: ../src/process-tree-view.c:148 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:156 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:164 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:160 ../src/settings-tool-button.c:177
 msgid "State"
 msgstr "状态"
 
-#: ../src/process-tree-view.c:173
+#: ../src/process-tree-view.c:169
 msgid "VSZ"
 msgstr "虚拟内存"
 
-#: ../src/process-tree-view.c:181
+#: ../src/process-tree-view.c:177
 msgid "RSS"
 msgstr "物理内存"
 
-#: ../src/process-tree-view.c:189 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:197 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:193 ../src/settings-tool-button.c:181
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:206
+#: ../src/process-tree-view.c:202
 msgid "Prio."
 msgstr "优先级."
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:367
 msgid "Terminate task"
 msgstr "终止任务"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:367
 msgid "Kill task"
 msgstr "杀死任务"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:369
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "您确定要发送 %s 信号至 PID %d 吗？"
 
-#: ../src/process-tree-view.c:373
+#: ../src/process-tree-view.c:370
 msgid "terminate"
 msgstr "终止"
 
-#: ../src/process-tree-view.c:373
+#: ../src/process-tree-view.c:370
 msgid "kill"
 msgstr "杀死"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:382
 msgid "Error sending signal"
 msgstr "发送信号时出错误"
 
-#: ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:384
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "发送信号至 PID %d 时出错。您可能没有所需的权限。"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:413
 msgid "Error setting priority"
 msgstr "设置优先级时出错"
 
-#: ../src/process-tree-view.c:415
+#: ../src/process-tree-view.c:414
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "设置 PID %d 的优先级时出错。您可能没有所需的权限。"
 
-#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:584
+#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:576
 msgid "Stop"
 msgstr "停止"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:439
 msgid "Continue"
 msgstr "继续"
 
-#: ../src/process-tree-view.c:446
+#: ../src/process-tree-view.c:445
 msgid "Terminate"
 msgstr "终止"
 
-#: ../src/process-tree-view.c:452
+#: ../src/process-tree-view.c:451
 msgid "Kill"
 msgstr "杀死"
 
-#: ../src/process-tree-view.c:459
+#: ../src/process-tree-view.c:458
 msgid "Very low"
 msgstr "非常低"
 
-#: ../src/process-tree-view.c:464
+#: ../src/process-tree-view.c:463
 msgid "Low"
 msgstr "低"
 
-#: ../src/process-tree-view.c:469
+#: ../src/process-tree-view.c:468
 msgid "Normal"
 msgstr "正常"
 
-#: ../src/process-tree-view.c:474
+#: ../src/process-tree-view.c:473
 msgid "High"
 msgstr "高"
 
-#: ../src/process-tree-view.c:479
+#: ../src/process-tree-view.c:478
 msgid "Very high"
 msgstr "非常高"
 
-#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "优先级"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "无效窗口"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "窗口 ID 0x%lx 不存在！"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty 失败"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty 失败！"
 
-#: ../src/process-window.c:181
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "未找到 PID"
 
-#: ../src/process-window.c:181
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "未为窗口 0x%lx 找到 PID。"
 
-#: ../src/process-window.c:251
+#: ../src/process-window.c:261
 msgid "Identify Window"
 msgstr "辨识窗口"
 
-#: ../src/process-window.c:252
+#: ../src/process-window.c:262
 msgid "Identify an open window by clicking on it."
 msgstr "点击窗口以辨识。"
 
-#: ../src/process-window.c:318
-#, c-format
-msgid ""
-"<span foreground='#000000' background='#aed581'>    </span> Starting task\n"
-"<span foreground='#000000' background='#fff176'>    </span> Changing task\n"
-"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> 正在启动任务\n<span foreground='#000000' background='#fff176'>    </span> 正在更改任务\n<span foreground='#000000' background='#e57373'>    </span> 正在终止任务"
-
-#: ../src/process-window.c:328
+#: ../src/process-window.c:338
 msgid "Filter on process name"
 msgstr "进程名称过滤器"
 
-#: ../src/process-window.c:510
+#: ../src/process-window.c:522
 msgid "translator-credits"
 msgstr "Hunt Xu <huntxu@live.cn>, 2008, 2010.\nMingcong Bai <jeffbai@aosc.xyz>, 2014, 2015, 2016, 2017."
 
@@ -275,19 +267,34 @@ msgstr "Hunt Xu <huntxu@live.cn>, 2008, 2010.\nMingcong Bai <jeffbai@aosc.xyz>, 
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "警告，您正在使用 root 帐户，有可能会损害您的系统。"
 
-#: ../src/settings.c:387
+#: ../src/process-window-gtk3.ui.h:3
+msgid ""
+"<span foreground='#000000' background='#aed581'>    </span> Starting task"
+msgstr "<span foreground='#000000' background='#aed581'>    </span> 启动任务"
+
+#: ../src/process-window-gtk3.ui.h:4
+msgid ""
+"<span foreground='#000000' background='#fff176'>    </span> Changing task"
+msgstr "<span foreground='#000000' background='#fff176'>    </span> 更改任务"
+
+#: ../src/process-window-gtk3.ui.h:5
+msgid ""
+"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
+msgstr "<span foreground='#000000' background='#e57373'>    </span> 终止任务"
+
+#: ../src/settings.c:389
 msgid "Default"
 msgstr "默认"
 
-#: ../src/settings.c:388
+#: ../src/settings.c:390
 msgid "Small"
 msgstr "小"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:391
 msgid "Large"
 msgstr "大"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:392
 msgid "Text"
 msgstr "文本"
 
@@ -392,7 +399,11 @@ msgstr "虚拟占用内存"
 msgid "Private Bytes"
 msgstr "私有占用内存"
 
-#: ../src/task-manager.c:241
+#: ../src/settings-tool-button.c:186
+msgid "Show Legend"
+msgstr " 显示图例"
+
+#: ../src/task-manager.c:245
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
