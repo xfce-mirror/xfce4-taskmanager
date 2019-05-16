@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-05-14 22:58+0000\n"
+"PO-Revision-Date: 2019-05-16 19:09+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -230,11 +230,11 @@ msgstr "Vindue-id 0x%lx findes ikke!"
 
 #: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
-msgstr "XGetWindowProperty fejlede"
+msgstr "XGetWindowProperty mislykkedes"
 
 #: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
-msgstr "XGetWindowProperty fejlede!"
+msgstr "XGetWindowProperty mislykkedes!"
 
 #: ../src/process-window.c:178
 msgid "No PID found"
