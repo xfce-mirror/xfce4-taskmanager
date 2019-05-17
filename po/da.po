@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-05-16 19:09+0000\n"
+"PO-Revision-Date: 2019-05-17 11:44+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Kør opgavehåndteringen som root"
 #: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
 #: ../src/exec-tool-button.c:196
 msgid "Run Program..."
-msgstr "Kør program..."
+msgstr "Kør program ..."
 
 #: ../src/exec-tool-button.c:199
 msgid "Application Finder"
@@ -166,7 +166,7 @@ msgstr "Fejl ved signalafsendelse"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "Stødte på en fejl under afsendelse af signal til PID'et %d. Du har sandsynligvis ikke de påkrævede privilegier."
+msgstr "Stødte på en fejl under afsendelse af signal til PID'et %d. Du har sandsynligvis ikke de påkrævede rettigheder."
 
 #: ../src/process-tree-view.c:413
 msgid "Error setting priority"
@@ -177,7 +177,7 @@ msgstr "Fejl ved angivelse af prioritet"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "Stødte på en fejl under angivelse af prioritet for PID'et %d. Du har sandsynligvis ikke de påkrævede privilegier."
+msgstr "Stødte på en fejl under angivelse af prioritet for PID'et %d. Du har sandsynligvis ikke de påkrævede rettigheder."
 
 #: ../src/process-tree-view.c:432 ../src/process-tree-view.c:576
 msgid "Stop"
