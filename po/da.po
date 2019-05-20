@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-05-19 18:59+0000\n"
+"PO-Revision-Date: 2019-05-20 12:08+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -334,7 +334,7 @@ msgstr "Spørg ved lukning af opgaver"
 
 #: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "Hide into the notification area"
-msgstr "Skjul i underretningsområdet"
+msgstr "Vis i underretningsområdet"
 
 #: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "<b>Miscellaneous</b>"
