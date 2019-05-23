@@ -8,13 +8,14 @@
 # Emin Tufan <etcetin@gmail.com>, 2018
 # Natavan Mirzayeva <mirzayevanatavan@gmail.com>, 2014
 # Necdet Yücel <necdetyucel@gmail.com>, 2014,2017
+# Serdar Sağlam <teknomobil@msn.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-26 12:37+0000\n"
-"Last-Translator: Demiray Muhterem <mdemiray@msn.com>\n"
+"PO-Revision-Date: 2019-05-23 15:41+0000\n"
+"Last-Translator: Serdar Sağlam <teknomobil@msn.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfce-apps/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +50,7 @@ msgstr "Yönetici olarak çalıştır"
 #: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
 #: ../src/exec-tool-button.c:196
 msgid "Run Program..."
-msgstr "Program Çalıştır"
+msgstr "Program Çalıştır..."
 
 #: ../src/exec-tool-button.c:199
 msgid "Application Finder"
@@ -94,7 +95,7 @@ msgstr "Bellek: %s"
 #: ../src/process-statusbar.c:176
 #, c-format
 msgid "Swap: %s"
-msgstr "Takas Alanı: %s"
+msgstr "Takas: %s"
 
 #: ../src/process-statusbar.c:190
 #, c-format
@@ -131,7 +132,7 @@ msgstr "UID"
 
 #: ../src/process-tree-view.c:193 ../src/settings-tool-button.c:181
 msgid "CPU"
-msgstr "MİB"
+msgstr "İşlemci"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
@@ -196,7 +197,7 @@ msgstr "Sonlandır"
 
 #: ../src/process-tree-view.c:451
 msgid "Kill"
-msgstr "Sonlandır"
+msgstr "Öldür"
 
 #: ../src/process-tree-view.c:458
 msgid "Very low"
@@ -229,7 +230,7 @@ msgstr "Kötü Pencere"
 #: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
-msgstr "Window id 0x%lx mevcut değil!"
+msgstr "Pencere kimliği 0x%lx mevcut değil!"
 
 #: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
@@ -262,7 +263,7 @@ msgstr "Süreç adına göre süz"
 
 #: ../src/process-window.c:522
 msgid "translator-credits"
-msgstr "Samed Beyribey <ras0ir@eventualis.org>, 2008 Ayhan YALÇINSOY<ayhanyalcinsoy@gmail.com>,2010"
+msgstr "Samed Beyribey <ras0ir@eventualis.org>, 2008\nAyhan YALÇINSOY<ayhanyalcinsoy@gmail.com>,2010\nSerdar Sağlam <teknomobil@yandex.com>,2019"
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
@@ -317,7 +318,7 @@ msgstr "Değerleri daha hassas göster"
 
 #: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
 msgid "Show processes as tree"
-msgstr "Tüm işlemleri agaç olarak göster"
+msgstr "İşlemleri ağaç olarak göster"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
 msgid "Show memory usage in bytes"
@@ -325,11 +326,11 @@ msgstr "Bellek kullanımını baytlarla göster"
 
 #: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
-msgstr "Araç çubğu stili:"
+msgstr "Araç çubuğu biçimi:"
 
 #: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "<b>Interface style</b>"
-msgstr "<b>Arayüz Stili</b>"
+msgstr "<b>Arayüz biçimi</b>"
 
 #: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Prompt for terminating tasks"
@@ -394,11 +395,11 @@ msgstr "Yenileme oranı"
 
 #: ../src/settings-tool-button.c:178
 msgid "Virtual Bytes"
-msgstr "Sanal Bitler"
+msgstr "Sanal Baytlar"
 
 #: ../src/settings-tool-button.c:179
 msgid "Private Bytes"
-msgstr "Özel Bitler"
+msgstr "Özel Baytlar"
 
 #: ../src/settings-tool-button.c:186
 msgid "Show Legend"
