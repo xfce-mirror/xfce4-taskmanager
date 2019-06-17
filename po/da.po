@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-06-01 14:18+0000\n"
+"PO-Revision-Date: 2019-06-17 18:42+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Opgavehåndtering som er nem at bruge"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
-msgstr "Fejl under udførsel"
+msgstr "Fejl under kørsel"
 
 #: ../src/exec-tool-button.c:150
 msgid "Couldn't find any default command to run."
