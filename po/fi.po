@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Juhani Numminen <juhaninumminen0@gmail.com>, 2013
 # Pasi Lallinaho <pasi@shimmerproject.org>, 2015,2017
 msgid ""
@@ -10,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-24 22:32+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2019-07-17 08:15+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/xfce/xfce-apps/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,7 +148,7 @@ msgstr "Tapa tehtävä"
 #: ../src/process-tree-view.c:369
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr "Oletko varma että haluat lähettää signaalin %s PID:lle %d?"
+msgstr "Haluatko varmasti lähettää signaalin %s PID:lle %d?"
 
 #: ../src/process-tree-view.c:370
 msgid "terminate"
@@ -322,7 +323,7 @@ msgstr "Näytä muistin käyttö tavuina"
 
 #: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
-msgstr "Työkalupalkkityyli:"
+msgstr "Työkalupalkin tyyli:"
 
 #: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "<b>Interface style</b>"
