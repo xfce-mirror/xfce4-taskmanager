@@ -5,6 +5,7 @@
 # Translators:
 # Cristian Marchi <cri.penta@gmail.com>, 2009-2010,2014
 # Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2018-2019
+# Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2019
 # Enrico B. <enricobe@hotmail.com>, 2017
 # Fabio Riga <usul@aruba.it>, 2007
 # Mauro Giubileo <debianmaverick@gmail.com>, 2014
@@ -13,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-25 16:31+0000\n"
+"PO-Revision-Date: 2019-07-23 17:00+0000\n"
 "Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -262,7 +263,7 @@ msgstr "Filtra in base al nome del processo"
 
 #: ../src/process-window.c:522
 msgid "translator-credits"
-msgstr "Emanuele Petriglia, <inbox@emanuelepetriglia.me> 2018\nFabio Riga\nCristian Marchi, 2009, 2010, 2014"
+msgstr "Emanuele Petriglia, <inbox@emanuelepetriglia.com> 2018-2019\nFabio Riga\nCristian Marchi, 2009, 2010, 2014"
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
