@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-27 16:15+0000\n"
+"PO-Revision-Date: 2019-08-04 16:03+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgstr "Prio."
 
 #: ../src/process-tree-view.c:367
 msgid "Terminate task"
-msgstr "Rematar a tarefa"
+msgstr "Terminar a tarefa"
 
 #: ../src/process-tree-view.c:367
 msgid "Kill task"
@@ -168,7 +168,7 @@ msgstr "Produciuse un erro ao enviar o sinal"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "Produciuse un erro ao enviar un sinal ao PID %d. O máis probable é que non teña os permisos necesarios."
+msgstr "Produciuse un erro ao enviar un sinal ao PID %d. O máis probábel é que non teña os permisos requiridos."
 
 #: ../src/process-tree-view.c:413
 msgid "Error setting priority"
@@ -179,7 +179,7 @@ msgstr "Produciuse un erro ao definir a prioridade"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "Produciuse un erro ao definir a prioridade do PID %d. O máis probable é que non teña os permisos necesarios."
+msgstr "Produciuse un erro ao definir a prioridade do PID %d. O máis probábel é que non teña os permisos requiridos."
 
 #: ../src/process-tree-view.c:432 ../src/process-tree-view.c:576
 msgid "Stop"
@@ -191,7 +191,7 @@ msgstr "Continuar"
 
 #: ../src/process-tree-view.c:445
 msgid "Terminate"
-msgstr "Rematar"
+msgstr "Terminar"
 
 #: ../src/process-tree-view.c:451
 msgid "Kill"
@@ -280,7 +280,7 @@ msgstr "<span foreground='#000000' background='#fff176'>    </span> Mudando a ta
 #: ../src/process-window-gtk3.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#e57373'>    </span> Rematando a tarefa"
+msgstr "<span foreground='#000000' background='#e57373'>    </span> Terminando a tarefa"
 
 #: ../src/settings.c:389
 msgid "Default"
@@ -332,7 +332,7 @@ msgstr "<b>Estilo da interface</b>"
 
 #: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Prompt for terminating tasks"
-msgstr "Preguntar para rematar as tarefas"
+msgstr "Preguntar antes de rematar as tarefas"
 
 #: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "Hide into the notification area"
