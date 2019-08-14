@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-08-04 16:03+0000\n"
+"PO-Revision-Date: 2019-08-14 11:55+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Erro de execución"
 
 #: ../src/exec-tool-button.c:150
 msgid "Couldn't find any default command to run."
-msgstr "Non foi posible atopar ningunha orde predefinida para executar."
+msgstr "Non se puido atopar ningunha orde predeterminada para executar."
 
 #: ../src/exec-tool-button.c:181
 msgid "Run Task Manager as root"
@@ -304,23 +304,23 @@ msgstr "Opcións do Xestor de tarefas"
 
 #: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
 msgid "Show application icons"
-msgstr "Mostrar iconas dos aplicativos"
+msgstr "Amosar as iconas dos aplicativos"
 
 #: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
 msgid "Show full command lines"
-msgstr "Mostrar liñas de ordes completas"
+msgstr "Amosar liñas de ordes completas"
 
 #: ../src/settings-dialog.ui.h:4 ../src/settings-dialog-gtk3.ui.h:4
 msgid "Show values with more precision"
-msgstr "Mostrar os valores con máis precisión"
+msgstr "Amosar os valores con máis precisión"
 
 #: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
 msgid "Show processes as tree"
-msgstr "Mostrar os procesos nunha árbore"
+msgstr "Amosar os procesos nunha árbore"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
 msgid "Show memory usage in bytes"
-msgstr "Mostrar o uso da memoria en bytes"
+msgstr "Amosar o uso da memoria en bytes"
 
 #: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
@@ -332,7 +332,7 @@ msgstr "<b>Estilo da interface</b>"
 
 #: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Prompt for terminating tasks"
-msgstr "Preguntar antes de rematar as tarefas"
+msgstr "Preguntar antes de terminar as tarefas"
 
 #: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "Hide into the notification area"
@@ -385,7 +385,7 @@ msgstr "10s"
 
 #: ../src/settings-tool-button.c:165
 msgid "Show all processes"
-msgstr "Mostrar todos os procesos"
+msgstr "Amosar todos os procesos"
 
 #: ../src/settings-tool-button.c:168
 msgid "Refresh rate"
