@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-08-14 11:55+0000\n"
+"PO-Revision-Date: 2019-08-21 13:19+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Executar programa..."
 
 #: ../src/exec-tool-button.c:199
 msgid "Application Finder"
-msgstr "Buscador de aplicativos"
+msgstr "Buscador de aplicacións"
 
 #: ../src/exec-tool-button.c:202
 msgid "Terminal emulator"
@@ -265,7 +265,7 @@ msgstr "Leandro Regueiro <leandro.regueiro@gmail.com>, 2006, 2008, 2009, 2010.\n
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Advertencia, está usando a conta de root, pode danar o sistema."
+msgstr "Aviso, está usando a conta de root, pode danar o sistema."
 
 #: ../src/process-window-gtk3.ui.h:3
 msgid ""
@@ -304,7 +304,7 @@ msgstr "Opcións do Xestor de tarefas"
 
 #: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
 msgid "Show application icons"
-msgstr "Amosar as iconas dos aplicativos"
+msgstr "Amosar as iconas das aplicacións"
 
 #: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
 msgid "Show full command lines"
@@ -336,7 +336,7 @@ msgstr "Preguntar antes de terminar as tarefas"
 
 #: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "Hide into the notification area"
-msgstr "Ocultar na área de notificación"
+msgstr "Agochar na área de notificación"
 
 #: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "<b>Miscellaneous</b>"
