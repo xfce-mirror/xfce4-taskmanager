@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
+  <requires lib="gtk+" version="3.20"/>
   <object class="GtkDialog" id="settings-dialog">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
-    <property name="title" translatable="yes">Settings for Task Manager</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">gtk-preferences</property>
     <property name="type_hint">normal</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title" translatable="yes">Settings to TaskManager</property>
+        <property name="show_close_button">True</property>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="0">button-close</action-widget>
+    </action-widgets>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox">
         <property name="visible">True</property>
@@ -31,8 +41,8 @@
                 <property name="use_stock">True</property>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -348,8 +358,8 @@
                                   <object class="GtkLabel" id="label-columns">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">0</property>
                                     <property name="label" translatable="yes">Columns:</property>
+                                    <property name="xalign">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>

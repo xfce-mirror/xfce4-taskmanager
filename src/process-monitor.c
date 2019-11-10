@@ -229,15 +229,15 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 	if (height < 3)
 		return;
 
-	/* Paint the graph's background box */
+	/* Paint the graph's background box 
 	cairo_rectangle (cr, 0.0, 0.0, width, height);
-	cairo_set_source_rgb (cr, 0.96, 0.96, 0.96);
+	cairo_set_source_rgb (cr, 1, 1, 1);
 	cairo_fill_preserve (cr);
 	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0); 
 	cairo_set_line_width (cr, 0.75);
 	cairo_stroke (cr);
-  
-	/* Paint dashed lines at 25%, 50% and 75% */
+/*  
+	// Paint dashed lines at 25%, 50% and 75% 
 	cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3); 
 	cairo_set_line_width (cr, 1.0);
 	cairo_set_dash(cr, dashed, 1.0, 0);
@@ -247,6 +247,26 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 		cairo_line_to (cr, width - 0.5, i * height / 100 + 0.5);
 		cairo_stroke (cr);
 	}
+*/
+	/* Paint the graph's background box */
+
+	double radius = 5;
+	double degree = 3.14 / 180.0;
+
+	cairo_new_sub_path(cr);
+	cairo_arc(cr, width - radius, radius, radius, -90 * degree, 0.0);
+	cairo_arc(cr, width - radius, height - radius, radius, 0.0, 90 * degree);
+	cairo_arc(cr, radius, height - radius, radius, 90 * degree, 180 * degree);
+	cairo_arc(cr, radius, radius, radius, 180* degree, 270* degree);
+	cairo_close_path(cr);
+
+	cairo_set_source_rgb (cr, 1, 1, 1);
+	cairo_fill_preserve (cr);
+	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0); 
+	cairo_set_line_width (cr, 0.75);
+	cairo_stroke (cr);
+
+
 
 	/* Paint the graph on a slightly smaller surface not to overlap with the background box */
 	graph_surface = xtm_process_monitor_graph_surface_create (monitor, width - 1, height - 1);
