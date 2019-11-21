@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Daichi Kawahata <daichi@xfce.org>, 2006
-# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008,2017
+# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008,2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-24 22:32+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2019-11-21 21:57+0000\n"
+"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/xfce/xfce-apps/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -268,17 +268,17 @@ msgstr "警告: あなたは root アカウントを使用しており、シス�
 #: ../src/process-window-gtk3.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#aed581'>    </span> 起動中のタスク"
 
 #: ../src/process-window-gtk3.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#fff176'>    </span> 切り替え中のタスク"
 
 #: ../src/process-window-gtk3.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#e57373'>    </span> 終了中のタスク"
 
 #: ../src/settings.c:389
 msgid "Default"
@@ -399,7 +399,7 @@ msgstr "プライベートメモリ"
 
 #: ../src/settings-tool-button.c:186
 msgid "Show Legend"
-msgstr ""
+msgstr "凡例を表示"
 
 #: ../src/task-manager.c:245
 #, c-format
