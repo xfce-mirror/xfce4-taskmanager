@@ -5,6 +5,7 @@
 # Translators:
 # Alex Nordlund <deep.alexander@gmail.com>, 2013
 # Alex Nordlund <deep.alexander@gmail.com>, 2013
+# Arve Eriksson <031299870@telia.com>, 2020
 # Påvel Nicklasson<pavel@frimix.se>, 2015
 # Påvel Nicklasson <pavel2@frimix.se>, 2015
 msgid ""
@@ -12,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-24 22:32+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2020-01-05 13:35+0000\n"
+"Last-Translator: Arve Eriksson <031299870@telia.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/xfce/xfce-apps/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -270,17 +271,17 @@ msgstr "Varning, du använder rot-kontot, du kan skada ditt system."
 #: ../src/process-window-gtk3.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Startar uppgift"
 
 #: ../src/process-window-gtk3.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#fff176'>    </span> Ändrar uppgift"
 
 #: ../src/process-window-gtk3.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#e57373'>    </span> Avslutar uppgift"
 
 #: ../src/settings.c:389
 msgid "Default"
@@ -401,7 +402,7 @@ msgstr "Privata byte"
 
 #: ../src/settings-tool-button.c:186
 msgid "Show Legend"
-msgstr ""
+msgstr "Visa teckenförklaring"
 
 #: ../src/task-manager.c:245
 #, c-format
