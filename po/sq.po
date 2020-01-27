@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Besnik <besnik@programeshqip.org>, 2019
+# Besnik <besnik@programeshqip.org>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-25 08:47+0000\n"
+"PO-Revision-Date: 2020-01-27 21:15+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/xfce-apps/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -258,7 +259,7 @@ msgstr "Filtrojini proceset sipas emrash"
 
 #: ../src/process-window.c:522
 msgid "translator-credits"
-msgstr "translator-credits"
+msgstr "Besnik Bleta"
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
@@ -317,7 +318,7 @@ msgstr "Shfaqi proceset si një pemë"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
 msgid "Show memory usage in bytes"
-msgstr "Shfaq përdorim kujtese në bajt"
+msgstr "Shfaq përdorim kujtese në bajte"
 
 #: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
@@ -386,7 +387,7 @@ msgstr "Shfaqi krejt proceset"
 
 #: ../src/settings-tool-button.c:168
 msgid "Refresh rate"
-msgstr "Shpejtësi rifreskimi:"
+msgstr "Shpejtësi rifreskimi"
 
 #: ../src/settings-tool-button.c:178
 msgid "Virtual Bytes"
