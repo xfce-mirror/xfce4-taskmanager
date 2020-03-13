@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Zmicer Turok <zmicerturok@gmail.com>, 2019
+# Zmicer Turok <nashtlumach@gmail.com>, 2019
+# Zmicer Turok <nashtlumach@gmail.com>, 2019
 # Zmicer Turok <zmicerturok@gmail.com >, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-05-07 19:08+0000\n"
-"Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
+"PO-Revision-Date: 2020-03-13 11:53+0000\n"
+"Last-Translator: Zmicer Turok <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/xfce-apps/language/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr "Кіраўнік задач"
 
 #: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
 msgid "Easy to use task manager"
-msgstr "Зручны ў выкарыстанні кіраўнік задач"
+msgstr "Просты ў выкарыстанні кіраўнік задач"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
@@ -263,7 +264,7 @@ msgstr "перакладчыкі"
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Будзьце ўважлівы, вы дзейнічаеце ад рахунка root. Можна пашкодзіць сістэму."
+msgstr "Будзьце ўважлівы, вы дзейнічаеце ад акаўета root. Можна пашкодзіць сістэму."
 
 #: ../src/process-window-gtk3.ui.h:3
 msgid ""
@@ -298,7 +299,7 @@ msgstr "Тэкст"
 
 #: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
 msgid "Settings for Task Manager"
-msgstr "Налады кіраўніка працэсаў"
+msgstr "Налады кіраўніка задач"
 
 #: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
 msgid "Show application icons"
@@ -322,7 +323,7 @@ msgstr "Паказваць значэнні выкарыстання памяц�
 
 #: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
-msgstr "Стыль панэлі прылад:"
+msgstr "Стыль панэлі інструментаў:"
 
 #: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "<b>Interface style</b>"
