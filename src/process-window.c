@@ -415,10 +415,8 @@ xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
 
 	if (event->keyval == GDK_KEY_Escape ||
 		(event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK))) {
-		if (gtk_main_level () > 0) {
-			xtm_settings_save_settings (window->settings);
-			g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
-		}
+		xtm_settings_save_settings (window->settings);
+		g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
 		ret = TRUE;
 	}
 	else if (event->keyval == GDK_KEY_f && (event->state & GDK_CONTROL_MASK)) {
