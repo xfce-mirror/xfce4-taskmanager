@@ -1,3 +1,19 @@
+1.2.3
+======
+- Improve settings saving (bug #15213)
+- Fix closing taskman with Esc (Bug #16656)
+- Move legend from tooltip to hide-able statusbar (Bug #14131)
+- Update copyright
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Asturian, Basque, Belarusian,
+  Bulgarian, Catalan, Chinese (China), Chinese (Hong Kong), Chinese
+  (Taiwan), Croatian, Czech, Danish, Dutch, English (Australia), English
+  (United Kingdom), Finnish, French, Galician, German, Greek, Hebrew,
+  Hungarian, Icelandic, Indonesian, Italian, Japanese, Kazakh, Korean,
+  Lithuanian, Malay, Norwegian Bokmål, Occitan (post 1500), Polish,
+  Portuguese, Portuguese (Brazil), Russian, Serbian, Slovak, Spanish,
+  Swedish, Telugu, Thai, Turkish, Uighur, Ukrainian
+
 1.2.2
 
 - Default to build with Gtk3, Gtk2 still available but will be removed in the next release
