@@ -579,7 +579,7 @@ xtm_process_window_get_model (XtmProcessWindow *window)
 }
 
 void
-xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar* memory_str, gfloat swap __unused, gchar* swap_str)
+xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat cpuHz, gfloat memory, gchar* memory_str, gfloat swap __unused, gchar* swap_str)
 {
 	gchar text[100];
 	gchar value[4];
@@ -587,7 +587,7 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 	g_return_if_fail (XTM_IS_PROCESS_WINDOW (window));
 	g_return_if_fail (GTK_IS_BOX (window->statusbar));
 
-	g_object_set (window->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory_str, "swap", swap_str, NULL);
+	g_object_set (window->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory_str, "swap", swap_str, "cpuHz", cpuHz, NULL);
 
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->cpu_monitor), cpu / 100.0f);
 	g_snprintf (value, sizeof(value), "%.0f", cpu);

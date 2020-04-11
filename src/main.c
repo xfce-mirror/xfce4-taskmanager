@@ -98,12 +98,12 @@ static gboolean
 init_timeout (void)
 {
 	guint num_processes;
-	gfloat cpu, memory_percent, swap_percent;
+	gfloat cpu, memory_percent, swap_percent, cpuHz;
 	guint64 swap_used, swap_free, swap_total, memory_used, memory_total;
 	gchar *used, *total, tooltip[1024], memory_info[64], swap_info[64];
 	gboolean show_memory_in_xbytes;
 
-	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory_used, &memory_total, &swap_used, &swap_total);
+	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory_used, &memory_total, &swap_used, &swap_total, &cpuHz);
 
 	memory_percent = (memory_total != 0) ? ((memory_used * 100.0f) / (float)memory_total) : 0.0f;
 	swap_percent = (swap_total != 0) ? ((swap_used * 100.0f) / (float)swap_total) : 0.0f;
@@ -126,7 +126,7 @@ init_timeout (void)
 	  g_snprintf (swap_info, sizeof(swap_info), "%.0f%%", swap_percent);
 	}
 
-	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory_percent, memory_info, swap_percent, swap_info);
+	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, cpuHz,memory_percent, memory_info, swap_percent, swap_info);
 
 	xtm_task_manager_get_swap_usage (task_manager, &swap_free, &swap_total);
 	xtm_process_window_show_swap_usage (XTM_PROCESS_WINDOW (window), (swap_total > 0));
@@ -137,17 +137,19 @@ init_timeout (void)
 		g_snprintf (tooltip, sizeof(tooltip),
 				_("<b>Processes:</b> %u\n"
 				"<b>CPU:</b> %.0f%%\n"
+				"<b>CPU Speed</b> %f\n"
 				"<b>Memory:</b> %s\n"
 				"<b>Swap:</b> %s"),
-				num_processes, cpu, memory_info, swap_info);
+				num_processes, cpu, cpuHz, memory_info, swap_info);
 		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon), tooltip);
 #else
 		g_snprintf (tooltip, sizeof(tooltip),
 				_("Processes: %u\n"
 				"CPU: %.0f%%\n"
+				"CPU Speed: %f\n"
 				"Memory: %s\n"
 				"Swap: %s"),
-				num_processes, cpu, memory_info, swap_info);
+				num_processes, cpu, cpuHz, memory_info, swap_info);
 		gtk_status_icon_set_tooltip (GTK_STATUS_ICON (status_icon), tooltip);
 #endif
 	}

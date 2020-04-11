@@ -40,7 +40,7 @@ GType		xtm_process_window_get_type			(void);
 GtkWidget *	xtm_process_window_new				(void);
 void		xtm_process_window_show				(GtkWidget *widget);
 GtkTreeModel *	xtm_process_window_get_model			(XtmProcessWindow *window);
-void		xtm_process_window_set_system_info		(XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar* memory_str, gfloat swap, gchar* swap_str);
+void		xtm_process_window_set_system_info		(XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat cpuHz, gfloat memory, gchar* memory_str, gfloat swap, gchar* swap_str);
 void		xtm_process_window_show_swap_usage		(XtmProcessWindow *window, gboolean show_swap_usage);
 
 #endif /* !PROCESS_WINDOW_H */

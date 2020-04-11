@@ -27,6 +27,7 @@ enum
 	PROP_SWAP,
 	PROP_SHOW_SWAP,
 	PROP_NUM_PROCESSES,
+	PROP_CPU_HZ
 };
 typedef struct _XtmProcessStatusbarClass XtmProcessStatusbarClass;
 struct _XtmProcessStatusbarClass
@@ -41,10 +42,13 @@ struct _XtmProcessStatusbar
 
 	GtkWidget *		label_num_processes;
 	GtkWidget *		label_cpu;
+	GtkWidget *		label_cpuHz;
 	GtkWidget *		label_memory;
 	GtkWidget *		label_swap;
+	
 
 	gfloat			cpu;
+	gfloat			cpuHz;
 	gchar			memory[64];
 	gchar			swap[64];
 	guint			num_processes;
@@ -65,6 +69,10 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 	class->set_property = xtm_process_statusbar_set_property;
 	g_object_class_install_property (class, PROP_CPU,
 		g_param_spec_float ("cpu", "CPU", "CPU usage", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+	
+	g_object_class_install_property (class, PROP_CPU_HZ,
+		g_param_spec_float ("cpuHz", "CPUHZ", "CPU usage in Hz", 0, 10000, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+	
 	g_object_class_install_property (class, PROP_MEMORY,
 		g_param_spec_string ("memory", "Memory", "Memory usage", "", G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_SWAP,
@@ -93,6 +101,9 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 
 	statusbar->label_cpu = gtk_label_new (NULL);
 	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_cpu, TRUE, FALSE, 0);
+
+	statusbar->label_cpuHz = gtk_label_new (NULL);
+	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_cpuHz, TRUE, FALSE, 0);
 
 	statusbar->label_num_processes = gtk_label_new (NULL);
 	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_num_processes, TRUE, FALSE, 0);
@@ -141,6 +152,13 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 
 	switch (property_id)
 	{
+		case PROP_CPU_HZ:
+		statusbar->cpuHz = g_value_get_float (value);
+		text = g_strdup_printf (_("CPUHz: %fHz"), statusbar->cpuHz);
+		gtk_label_set_text(GTK_LABEL (statusbar->label_cpuHz), text);
+		g_free(text);
+		break;
+
 		case PROP_CPU:
 		statusbar->cpu = g_value_get_float (value);
 		float_value = rounded_float_value (statusbar->cpu, statusbar->settings);

@@ -65,6 +65,7 @@ struct _XtmTaskManager
 	guint64			memory_buffers;
 	guint64			swap_total;
 	guint64			swap_free;
+	gfloat			cpuHz
 };
 G_DEFINE_TYPE (XtmTaskManager, xtm_task_manager, G_TYPE_OBJECT)
 
@@ -361,7 +362,7 @@ xtm_task_manager_new (GtkTreeModel *model)
 void
 xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gfloat *cpu,
 				  guint64 *memory_used, guint64 *memory_total,
-				  guint64 *swap_used, guint64 *swap_total)
+				  guint64 *swap_used, guint64 *swap_total, gfloat *cpuHz )
 
 {
 	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
@@ -379,8 +380,9 @@ xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes,
 	*swap_total = manager->swap_total;
 
 	/* Set CPU usage */
-	get_cpu_usage (&manager->cpu_count, &manager->cpu_user, &manager->cpu_system);
+	get_cpu_usage (&manager->cpu_count, &manager->cpu_user, &manager->cpu_system, &manager->cpuHz );
 	*cpu = manager->cpu_user + manager->cpu_system;
+	*cpuHz = manager->cpuHz;
 }
 
 void

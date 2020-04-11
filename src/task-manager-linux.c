@@ -61,7 +61,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 }
 
 gboolean
-get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
+get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system, gfloat *cpuHz)
 {
 	FILE *file;
 	gchar *filename = "/proc/stat";
@@ -110,6 +110,22 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 		*cpu_system = (((jiffies_system - jiffies_system_old) * 100.0f) / (float)jiffies_total_delta);
 	}
 	*cpu_count = _cpu_count;
+
+	FILE *ptrFile = popen("sh -c \"lscpu |grep Hz|cut -f2 -d:|tr -d \' '\" ", "r");
+	if ( ptrFile == NULL )
+		return FALSE;
+	char buff[100];
+	
+
+	char* read = fgets(buff, 100, ptrFile);
+
+	if ( read != NULL ){
+		sscanf(buff, "%f", cpuHz);
+	}
+	else{
+		*cpuHz = 0.0f;
+	}
+	pclose(ptrFile);
 
 	return TRUE;
 }
