@@ -6,7 +6,7 @@
 # Andreas Eitel <github-aneitel@online.de>, 2019
 # Christoph Wickert <christoph.wickert@gmail.com>, 2014
 # Georg Eckert <eckert.georg@gmx.de>, 2013
-# Harald Judt <h.judt@gmx.at>, 2014
+# Harald Judt <h.judt@gmx.at>, 2014,2020
 # Simon Steinbeiß <simon.steinbeiss@gmail.com>, 2017
 # Tobias Bannert <tobannert@gmail.com>, 2014-2015,2017
 msgid ""
@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-25 16:16+0000\n"
-"Last-Translator: Andreas Eitel <github-aneitel@online.de>\n"
+"PO-Revision-Date: 2020-04-13 20:33+0000\n"
+"Last-Translator: Harald Judt <h.judt@gmx.at>\n"
 "Language-Team: German (http://www.transifex.com/xfce/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -272,17 +272,17 @@ msgstr "Achtung, Sie benutzen das Systemverwalterkonto und können Ihr System be
 #: ../src/process-window-gtk3.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr "<span foreground='#000000' background='#aed581'></span> Aufgabe starten"
+msgstr "<span foreground='#000000' background='#aed581'>   </span> startender Prozess"
 
 #: ../src/process-window-gtk3.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr "<span foreground='#000000' background='#fff176'></span> Aufgabe ändern"
+msgstr "<span foreground='#000000' background='#fff176'>   </span> sich ändernder Prozess"
 
 #: ../src/process-window-gtk3.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#e57373'></span> Aufgabe beenden "
+msgstr "<span foreground='#000000' background='#e57373'>    </span> terminierender Prozess "
 
 #: ../src/settings.c:389
 msgid "Default"
