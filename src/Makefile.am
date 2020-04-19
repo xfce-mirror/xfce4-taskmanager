@@ -67,13 +67,13 @@ endif
 if MAINTAINER_MODE
 BUILT_SOURCES = process-window_ui.h settings-dialog_ui.h process-window-gtk3_ui.h settings-dialog-gtk3_ui.h
 process-window_ui.h: process-window.ui
-	$(AM_V_GEN) exo-csource --static --strip-comments --strip-content --name=process_window_ui $< >$@
+	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=process_window_ui $< >$@
 settings-dialog_ui.h: settings-dialog.ui
-	$(AM_V_GEN) exo-csource --static --strip-comments --strip-content --name=settings_dialog_ui $< >$@
+	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=settings_dialog_ui $< >$@
 process-window-gtk3_ui.h: process-window-gtk3.ui
-	$(AM_V_GEN) exo-csource --static --strip-comments --strip-content --name=process_window_ui $< >$@
+	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=process_window_ui $< >$@
 settings-dialog-gtk3_ui.h: settings-dialog-gtk3.ui
-	$(AM_V_GEN) exo-csource --static --strip-comments --strip-content --name=settings_dialog_ui $< >$@
+	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=settings_dialog_ui $< >$@
 endif
 
 EXTRA_DIST = process-window.ui settings-dialog.ui process-window-gtk3.ui settings-dialog-gtk3.ui
