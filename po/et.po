@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2020-05-09 21:26+0000\n"
+"PO-Revision-Date: 2020-05-15 21:57+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce-apps/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -258,7 +258,7 @@ msgstr "Filtreeri protsessi nime alusel"
 
 #: ../src/process-window.c:522
 msgid "translator-credits"
-msgstr "Kristjan Siimson <epost@ksiimson.se> & tolge.pingviin.org"
+msgstr "Kristjan Siimson <epost@ksiimson.se> & tolge.pingviin.org\nPriit Jõerüüt 2020"
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
@@ -277,7 +277,7 @@ msgstr "<span foreground='#000000' background='#fff176'>    </span> Muudan tegum
 #: ../src/process-window-gtk3.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#e57373'>    </span> Lõpetan tegumi tööd"
+msgstr "<span foreground='#000000' background='#e57373'>    </span> Lõpetan tegumit"
 
 #: ../src/settings.c:389
 msgid "Default"
@@ -390,15 +390,15 @@ msgstr "Värskendussagedus"
 
 #: ../src/settings-tool-button.c:178
 msgid "Virtual Bytes"
-msgstr ""
+msgstr "VSZ"
 
 #: ../src/settings-tool-button.c:179
 msgid "Private Bytes"
-msgstr ""
+msgstr "RSS"
 
 #: ../src/settings-tool-button.c:186
 msgid "Show Legend"
-msgstr ""
+msgstr "Näita selgitust"
 
 #: ../src/task-manager.c:245
 #, c-format
