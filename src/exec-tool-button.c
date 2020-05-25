@@ -199,9 +199,9 @@ construct_menu (void)
 		menu_append_item (GTK_MENU (menu), _("Application Finder"), "xfce4-appfinder", "xfce4-appfinder");
 	/* Find a terminal emulator */
 	if (program_exists ("exo-open"))
-		menu_append_item (GTK_MENU (menu), _("Terminal emulator"), "exo-open --launch TerminalEmulator", "terminal");
+		menu_append_item (GTK_MENU (menu), _("Terminal emulator"), "exo-open --launch TerminalEmulator", "utilities-terminal");
 	else if (program_exists ("xterm"))
-		menu_append_item (GTK_MENU (menu), _("XTerm"), "xterm -fg grey -bg black", "terminal");
+		menu_append_item (GTK_MENU (menu), _("XTerm"), "xterm -fg grey -bg black", "utilities-terminal");
 
 	gtk_widget_show_all (menu);
 
