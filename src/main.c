@@ -109,13 +109,13 @@ init_timeout (void)
 
 	used = g_format_size_full(memory_used, G_FORMAT_SIZE_IEC_UNITS);
 	total = g_format_size_full(memory_total, G_FORMAT_SIZE_IEC_UNITS);
-	g_snprintf (memory_info, sizeof(memory_info), "%.0f%% (%s / %s)", used, total, memory_percent);
+	g_snprintf (memory_info, sizeof(memory_info), "%.0f%% (%s / %s)", memory_percent, used, total);
 	g_free(used);
 	g_free(total);
 
 	used = g_format_size_full(swap_used, G_FORMAT_SIZE_IEC_UNITS);
 	total = g_format_size_full(swap_total, G_FORMAT_SIZE_IEC_UNITS);
-	g_snprintf (swap_info, sizeof(swap_info), "%.0f%% (%s / %s)", used, total, swap_percent);
+	g_snprintf (swap_info, sizeof(swap_info), "%.0f%% (%s / %s)", swap_percent, used, total);
 	g_free(used);
 	g_free(total);
 
