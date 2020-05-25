@@ -111,7 +111,6 @@ xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 	builder_bind_toggle_button (builder, "button-more-precision", dialog->settings, "more-precision");
 	builder_bind_toggle_button (builder, "button-prompt-terminate-task", dialog->settings, "prompt-terminate-task");
 	builder_bind_toggle_button (builder, "button-show-status-icon", dialog->settings, "show-status-icon");
-	builder_bind_toggle_button (builder, "button-show-memory-in-xbytes", dialog->settings, "show-memory-in-xbytes");
 	builder_bind_toggle_button (builder, "button-process-tree", dialog->settings, "process-tree");
 
 	{

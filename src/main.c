@@ -101,30 +101,23 @@ init_timeout (void)
 	gfloat cpu, memory_percent, swap_percent;
 	guint64 swap_used, swap_free, swap_total, memory_used, memory_total;
 	gchar *used, *total, tooltip[1024], memory_info[64], swap_info[64];
-	gboolean show_memory_in_xbytes;
 
 	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory_used, &memory_total, &swap_used, &swap_total);
 
 	memory_percent = (memory_total != 0) ? ((memory_used * 100.0f) / (float)memory_total) : 0.0f;
 	swap_percent = (swap_total != 0) ? ((swap_used * 100.0f) / (float)swap_total) : 0.0f;
 
-	g_object_get (settings, "show-memory-in-xbytes", &show_memory_in_xbytes, NULL);
-	if (show_memory_in_xbytes) {
-	  used = g_format_size_full(memory_used, G_FORMAT_SIZE_IEC_UNITS);
-	  total = g_format_size_full(memory_total, G_FORMAT_SIZE_IEC_UNITS);
-	  g_snprintf (memory_info, sizeof(memory_info), "%s / %s", used, total);
-	  g_free(used);
-	  g_free(total);
+	used = g_format_size_full(memory_used, G_FORMAT_SIZE_IEC_UNITS);
+	total = g_format_size_full(memory_total, G_FORMAT_SIZE_IEC_UNITS);
+	g_snprintf (memory_info, sizeof(memory_info), "%.0f%% (%s / %s)", used, total, memory_percent);
+	g_free(used);
+	g_free(total);
 
-	  used = g_format_size_full(swap_used, G_FORMAT_SIZE_IEC_UNITS);
-	  total = g_format_size_full(swap_total, G_FORMAT_SIZE_IEC_UNITS);
-	  g_snprintf (swap_info, sizeof(swap_info), "%s / %s", used, total);
-	  g_free(used);
-	  g_free(total);
-	} else {
-	  g_snprintf (memory_info, sizeof(memory_info), "%.0f%%", memory_percent);
-	  g_snprintf (swap_info, sizeof(swap_info), "%.0f%%", swap_percent);
-	}
+	used = g_format_size_full(swap_used, G_FORMAT_SIZE_IEC_UNITS);
+	total = g_format_size_full(swap_total, G_FORMAT_SIZE_IEC_UNITS);
+	g_snprintf (swap_info, sizeof(swap_info), "%.0f%% (%s / %s)", used, total, swap_percent);
+	g_free(used);
+	g_free(total);
 
 	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory_percent, memory_info, swap_percent, swap_info);
 
@@ -249,7 +242,6 @@ int main (int argc, char *argv[])
 	g_signal_connect_after (settings, "notify::more-precision", G_CALLBACK (force_timeout_update), NULL);
 	g_signal_connect_after (settings, "notify::full-command-line", G_CALLBACK (force_timeout_update), NULL);
 	g_signal_connect (settings, "notify::show-status-icon", G_CALLBACK (show_hide_status_icon), NULL);
-	g_signal_connect (settings, "notify::show-memory-in-xbytes", G_CALLBACK (force_timeout_update), NULL);
 
 	g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
 	g_signal_connect (window, "delete-event", G_CALLBACK (delete_window), NULL);
