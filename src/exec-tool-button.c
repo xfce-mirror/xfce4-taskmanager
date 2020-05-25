@@ -196,7 +196,7 @@ construct_menu (void)
 		menu_append_item (GTK_MENU (menu), _("Run Program..."), "gexec", "system-run");
 	/* Find an applications-listing program */
 	if (program_exists ("xfce4-appfinder"))
-		menu_append_item (GTK_MENU (menu), _("Application Finder"), "xfce4-appfinder", "xfce4-appfinder");
+		menu_append_item (GTK_MENU (menu), _("Application Finder"), "xfce4-appfinder", "edit-find");
 	/* Find a terminal emulator */
 	if (program_exists ("exo-open"))
 		menu_append_item (GTK_MENU (menu), _("Terminal emulator"), "exo-open --launch TerminalEmulator", "utilities-terminal");
