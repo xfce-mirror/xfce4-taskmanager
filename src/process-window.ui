@@ -7,7 +7,7 @@
     <property name="title" translatable="yes">Task Manager</property>
     <property name="default_width">490</property>
     <property name="default_height">465</property>
-    <property name="icon_name">utilities-system-monitor</property>
+    <property name="icon_name">org.xfce.taskmanager</property>
     <child>
       <object class="GtkVBox" id="process-vbox">
         <property name="visible">True</property>

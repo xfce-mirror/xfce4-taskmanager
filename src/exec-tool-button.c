@@ -177,7 +177,7 @@ construct_menu (void)
 	/* Run task manager as root */
 	if (geteuid () != 0)
 	{
-		GtkWidget *image = gtk_image_new_from_icon_name ("utilities-system-monitor", GTK_ICON_SIZE_MENU);
+		GtkWidget *image = gtk_image_new_from_icon_name ("org.xfce.taskmanager", GTK_ICON_SIZE_MENU);
 		GtkWidget *mi = gtk_image_menu_item_new_with_label (_("Run Task Manager as root"));
 		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
 		gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
@@ -215,4 +215,3 @@ xtm_exec_tool_button_new (void)
 {
 	return g_object_new (XTM_TYPE_EXEC_TOOL_BUTTON, NULL);
 }
-

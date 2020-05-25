@@ -522,7 +522,7 @@ show_about_dialog (XtmProcessWindow *window)
 		"program-name", _("Task Manager"),
 		"version", PACKAGE_VERSION,
 		"copyright", "Copyright \302\251 2005-2019 The Xfce development team",
-		"logo-icon-name", "utilities-system-monitor",
+		"logo-icon-name", "org.xfce.taskmanager",
 #if !GTK_CHECK_VERSION(3, 0, 0)
 		"icon-name", GTK_STOCK_ABOUT,
 #endif

@@ -228,7 +228,7 @@ int main (int argc, char *argv[])
 
 	settings = xtm_settings_get_default ();
 
-	status_icon = gtk_status_icon_new_from_icon_name ("utilities-system-monitor");
+	status_icon = gtk_status_icon_new_from_icon_name ("org.xfce.taskmanager");
 	show_hide_status_icon ();
 	g_signal_connect (status_icon, "activate", G_CALLBACK (status_icon_activated), NULL);
 	g_signal_connect (status_icon, "popup-menu", G_CALLBACK (status_icon_popup_menu), NULL);
@@ -264,4 +264,3 @@ int main (int argc, char *argv[])
 
 	return 0;
 }
-
