@@ -8,13 +8,13 @@
 # Emin Tufan <etcetin@gmail.com>, 2018
 # Natavan Mirzayeva <mirzayevanatavan@gmail.com>, 2014
 # Necdet Yücel <necdetyucel@gmail.com>, 2014,2017
-# Serdar Sağlam <teknomobil@msn.com>, 2019
+# Serdar Sağlam <teknomobil@msn.com>, 2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-05-24 01:23+0000\n"
+"POT-Creation-Date: 2020-05-26 12:48+0200\n"
+"PO-Revision-Date: 2020-05-28 11:16+0000\n"
 "Last-Translator: Serdar Sağlam <teknomobil@msn.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfce-apps/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -24,16 +24,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../src/exec-tool-button.c:151 ../src/main.c:192
 #: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:512
+#: ../src/process-tree-view.c:416 ../src/process-window.c:522
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Görev Yöneticisi"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
-msgid "Easy to use task manager"
-msgstr "Kullanımı kolay görev yöneticisi"
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Easy to use application to monitor system resources"
+msgstr "Sistem kaynaklarını izlemek için kullanımı kolay uygulama"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
@@ -64,7 +64,7 @@ msgstr "Terminal öykünücüsü"
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:132
+#: ../src/main.c:131
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -73,7 +73,7 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Süreçler:</b> %u\n<b>Merkezi İşlem Birimi:</b> %.0f%%\n<b>Bellek:</b> %s\n<b>Takas Alanı:</b> %s"
 
-#: ../src/main.c:140
+#: ../src/main.c:139
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -82,12 +82,12 @@ msgid ""
 "Swap: %s"
 msgstr "Süreçler: %u\nMerkezi İşlem Birimi : %.0f%%\nBellek: %s\nTakas Alanı: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:584
+#: ../src/process-statusbar.c:147 ../src/process-window.c:594
 #, c-format
 msgid "CPU: %s%%"
 msgstr "İşlemci : %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:588
+#: ../src/process-statusbar.c:162 ../src/process-window.c:598
 #, c-format
 msgid "Memory: %s"
 msgstr "Bellek: %s"
@@ -223,45 +223,49 @@ msgstr "Çok yüksek"
 msgid "Priority"
 msgstr "Öncelik"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 msgid "Bad Window"
 msgstr "Kötü Pencere"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Pencere kimliği 0x%lx mevcut değil!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty başarısız oldu"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty başarısız oldu!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 msgid "No PID found"
 msgstr "PID bulunamadı"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Pencere 0x%lx için PID bulunamadı."
 
-#: ../src/process-window.c:261
+#: ../src/process-window.c:263
 msgid "Identify Window"
 msgstr "Pencereyi Tanımla"
 
-#: ../src/process-window.c:262
+#: ../src/process-window.c:264
 msgid "Identify an open window by clicking on it."
 msgstr "Üzerine tıklayarak açık bir pencereyi tanımlayın."
 
-#: ../src/process-window.c:338
+#: ../src/process-window.c:342
 msgid "Filter on process name"
 msgstr "Süreç adına göre süz"
 
-#: ../src/process-window.c:522
+#: ../src/process-window.c:529
+msgid "Easy to use task manager"
+msgstr "Kullanımı kolay görev yöneticisi"
+
+#: ../src/process-window.c:532
 msgid "translator-credits"
 msgstr "Samed Beyribey <ras0ir@eventualis.org>, 2008\nAyhan YALÇINSOY<ayhanyalcinsoy@gmail.com>,2010\nSerdar Sağlam <teknomobil@yandex.com>,2019"
 
@@ -284,19 +288,19 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Görev iptali"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:397
 msgid "Default"
 msgstr "Öntanımlı"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:398
 msgid "Small"
 msgstr "Küçük"
 
-#: ../src/settings.c:391
+#: ../src/settings.c:399
 msgid "Large"
 msgstr "Büyük"
 
-#: ../src/settings.c:392
+#: ../src/settings.c:400
 msgid "Text"
 msgstr "Metin"
 
@@ -321,42 +325,38 @@ msgid "Show processes as tree"
 msgstr "İşlemleri ağaç olarak göster"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
-msgid "Show memory usage in bytes"
-msgstr "Bellek kullanımını baytlarla göster"
-
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
 msgstr "Araç çubuğu biçimi:"
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>Arayüz biçimi</b>"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Görevleri sonlandırmadan önce sor"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Hide into the notification area"
 msgstr "Bildirim alanında sakla"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Çeşitli</b>"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "Refresh rate:"
 msgstr "Yenileme oranı:"
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
 msgid "Columns:"
 msgstr "Sütunlar:"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>Bilgi</b>"
 
-#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
+#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
 msgid "Settings"
 msgstr "Ayarlar"
 
