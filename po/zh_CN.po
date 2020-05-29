@@ -6,13 +6,13 @@
 # Chipong Luo <chipong.luo@yahoo.com>, 2013
 # elhuevogrande <kbusch21@yahoo.com>, 2013
 # Mingcong Bai <jeffbai@aosc.xyz>, 2017
-# 玉堂白鹤 <yjwork@qq.com>, 2015,2019
+# 玉堂白鹤 <yjwork@qq.com>, 2015,2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-25 03:01+0000\n"
+"POT-Creation-Date: 2020-05-26 12:48+0200\n"
+"PO-Revision-Date: 2020-05-29 00:26+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -22,16 +22,16 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../src/exec-tool-button.c:151 ../src/main.c:192
 #: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:512
+#: ../src/process-tree-view.c:416 ../src/process-window.c:522
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "任务管理器"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
-msgid "Easy to use task manager"
-msgstr "易用的任务管理器"
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Easy to use application to monitor system resources"
+msgstr "用来监视系统资源的易用程序"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
@@ -62,7 +62,7 @@ msgstr "终端模拟器"
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:132
+#: ../src/main.c:131
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -71,7 +71,7 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>进程数:</b> %u\n<b>CPU:</b> %.0f%%\n<b>内存:</b> %s\n<b>交换分区:</b> %s"
 
-#: ../src/main.c:140
+#: ../src/main.c:139
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -80,12 +80,12 @@ msgid ""
 "Swap: %s"
 msgstr "进程数: %u\nCPU: %.0f%%\n内存: %s\n交换分区: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:584
+#: ../src/process-statusbar.c:147 ../src/process-window.c:594
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:588
+#: ../src/process-statusbar.c:162 ../src/process-window.c:598
 #, c-format
 msgid "Memory: %s"
 msgstr "内存: %s"
@@ -221,45 +221,49 @@ msgstr "非常高"
 msgid "Priority"
 msgstr "优先级"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 msgid "Bad Window"
 msgstr "无效窗口"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "窗口 ID 0x%lx 不存在！"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty 失败"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty 失败！"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 msgid "No PID found"
 msgstr "未找到 PID"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "未为窗口 0x%lx 找到 PID。"
 
-#: ../src/process-window.c:261
+#: ../src/process-window.c:263
 msgid "Identify Window"
 msgstr "辨识窗口"
 
-#: ../src/process-window.c:262
+#: ../src/process-window.c:264
 msgid "Identify an open window by clicking on it."
 msgstr "点击窗口以辨识。"
 
-#: ../src/process-window.c:338
+#: ../src/process-window.c:342
 msgid "Filter on process name"
 msgstr "进程名称过滤器"
 
-#: ../src/process-window.c:522
+#: ../src/process-window.c:529
+msgid "Easy to use task manager"
+msgstr "易用的任务管理器"
+
+#: ../src/process-window.c:532
 msgid "translator-credits"
 msgstr "Hunt Xu <huntxu@live.cn>, 2008, 2010.\nMingcong Bai <jeffbai@aosc.xyz>, 2014, 2015, 2016, 2017."
 
@@ -282,19 +286,19 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> 终止任务"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:397
 msgid "Default"
 msgstr "默认"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:398
 msgid "Small"
 msgstr "小"
 
-#: ../src/settings.c:391
+#: ../src/settings.c:399
 msgid "Large"
 msgstr "大"
 
-#: ../src/settings.c:392
+#: ../src/settings.c:400
 msgid "Text"
 msgstr "文本"
 
@@ -319,42 +323,38 @@ msgid "Show processes as tree"
 msgstr "以树状显示进程"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
-msgid "Show memory usage in bytes"
-msgstr "以字节为单位显示内存使用情况"
-
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
 msgstr "工具栏样式："
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>界面风格</b>"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "终止任务时提示"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Hide into the notification area"
 msgstr "隐藏至通知区域"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>杂项</b>"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "Refresh rate:"
 msgstr "刷新率："
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
 msgid "Columns:"
 msgstr "栏:"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>信息</b>"
 
-#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
+#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
 msgid "Settings"
 msgstr "设置"
 
