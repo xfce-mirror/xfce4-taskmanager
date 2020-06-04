@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2020-05-15 21:57+0000\n"
+"POT-Creation-Date: 2020-05-26 12:48+0200\n"
+"PO-Revision-Date: 2020-06-04 14:11+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce-apps/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -19,16 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../src/exec-tool-button.c:151 ../src/main.c:192
 #: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:512
+#: ../src/process-tree-view.c:416 ../src/process-window.c:522
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Tegumihaldur"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
-msgid "Easy to use task manager"
-msgstr "Lihtsaltkasutatav tegumihaldur"
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Easy to use application to monitor system resources"
+msgstr ""
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
@@ -59,7 +59,7 @@ msgstr "Terminaliemulaator"
 msgid "XTerm"
 msgstr "Klassikaline XTerm"
 
-#: ../src/main.c:132
+#: ../src/main.c:131
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -68,7 +68,7 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Protsesse:</b> %u\n<b>Protsessori koormus:</b> %.0f%%\n<b>Mälu:</b> %s\n<b>Saaleala:</b> %s"
 
-#: ../src/main.c:140
+#: ../src/main.c:139
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -77,12 +77,12 @@ msgid ""
 "Swap: %s"
 msgstr "Protsesse: %u\nProtsessori koormus: %.0f%%\nMälu: %s\nSaaleala: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:584
+#: ../src/process-statusbar.c:147 ../src/process-window.c:594
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Protsessor: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:588
+#: ../src/process-statusbar.c:162 ../src/process-window.c:598
 #, c-format
 msgid "Memory: %s"
 msgstr "Mälu: %s"
@@ -218,47 +218,51 @@ msgstr "Väga kõrge"
 msgid "Priority"
 msgstr "Prioriteet"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 msgid "Bad Window"
 msgstr "Vigane aken"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Aken id'ga 0x%lx ei ole olemas!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty ebaõnnestus"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty ebaõnnestus!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 msgid "No PID found"
 msgstr "Ei leidnud Protsessi ID'd"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Ei leidnud Protsessi ID'd aknale 0x%lx."
 
-#: ../src/process-window.c:261
+#: ../src/process-window.c:263
 msgid "Identify Window"
 msgstr "Leia aken"
 
-#: ../src/process-window.c:262
+#: ../src/process-window.c:264
 msgid "Identify an open window by clicking on it."
 msgstr "Leia aknale klikates vastav kirje "
 
-#: ../src/process-window.c:338
+#: ../src/process-window.c:342
 msgid "Filter on process name"
 msgstr "Filtreeri protsessi nime alusel"
 
-#: ../src/process-window.c:522
+#: ../src/process-window.c:529
+msgid "Easy to use task manager"
+msgstr "Lihtsaltkasutatav tegumihaldur"
+
+#: ../src/process-window.c:532
 msgid "translator-credits"
-msgstr "Kristjan Siimson <epost@ksiimson.se> & tolge.pingviin.org\nPriit Jõerüüt 2020"
+msgstr "Kristjan Siimson <epost@ksiimson.se> &amp; tolge.pingviin.org\nPriit Jõerüüt 2020"
 
 #: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
@@ -279,19 +283,19 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Lõpetan tegumit"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:397
 msgid "Default"
 msgstr "Vaikimisi"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:398
 msgid "Small"
 msgstr "Väike"
 
-#: ../src/settings.c:391
+#: ../src/settings.c:399
 msgid "Large"
 msgstr "Suur"
 
-#: ../src/settings.c:392
+#: ../src/settings.c:400
 msgid "Text"
 msgstr "Tekst"
 
@@ -316,42 +320,38 @@ msgid "Show processes as tree"
 msgstr "Näita protsesse puuna"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
-msgid "Show memory usage in bytes"
-msgstr "Näita mälukasutust baitides"
-
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
 msgstr "Tööriistariba stiil:"
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>Liidese stiil</b>"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Tegumi töö lõpetamisel küsi minult kinnitust"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Hide into the notification area"
 msgstr "Peida teadete ribale"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Mitmesugust</b>"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "Refresh rate:"
 msgstr "Värskendussagedus:"
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
 msgid "Columns:"
 msgstr "Veerud:"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>Teave</b>"
 
-#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
+#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
 msgid "Settings"
 msgstr "Seadistused"
 
