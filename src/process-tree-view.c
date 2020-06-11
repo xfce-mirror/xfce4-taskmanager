@@ -220,6 +220,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 		gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (treeview->model), sort_column_id, sort_type);
 	}
 
+	gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), XTM_PTV_COLUMN_COMMAND);
 	gtk_tree_view_set_search_equal_func (GTK_TREE_VIEW (treeview), (GtkTreeViewSearchEqualFunc)search_func, NULL, NULL);
 	g_signal_connect (treeview, "columns-changed", G_CALLBACK (columns_changed), NULL);
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
