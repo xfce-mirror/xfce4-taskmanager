@@ -126,7 +126,6 @@ init_timeout (void)
 
 	if (gtk_status_icon_get_visible (status_icon))
 	{
-#if GTK_CHECK_VERSION (2,16,0)
 		g_snprintf (tooltip, sizeof(tooltip),
 				_("<b>Processes:</b> %u\n"
 				"<b>CPU:</b> %.0f%%\n"
@@ -134,15 +133,6 @@ init_timeout (void)
 				"<b>Swap:</b> %s"),
 				num_processes, cpu, memory_info, swap_info);
 		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon), tooltip);
-#else
-		g_snprintf (tooltip, sizeof(tooltip),
-				_("Processes: %u\n"
-				"CPU: %.0f%%\n"
-				"Memory: %s\n"
-				"Swap: %s"),
-				num_processes, cpu, memory_info, swap_info);
-		gtk_status_icon_set_tooltip (GTK_STATUS_ICON (status_icon), tooltip);
-#endif
 	}
 
 	xtm_task_manager_update_model (task_manager);

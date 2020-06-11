@@ -81,15 +81,9 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	GtkWidget *hbox, *hbox_cpu, *hbox_mem;
 	statusbar->settings = xtm_settings_get_default ();
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 	hbox_cpu = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 	hbox_mem = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
-#else
-	hbox = gtk_hbox_new (FALSE, 16);
-	hbox_cpu = gtk_hbox_new (FALSE, 16);
-	hbox_mem = gtk_hbox_new (FALSE, 16);
-#endif
 
 	statusbar->label_cpu = gtk_label_new (NULL);
 	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_cpu, TRUE, FALSE, 0);
@@ -133,11 +127,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 	XtmProcessStatusbar *statusbar = XTM_PROCESS_STATUSBAR (object);
 	gchar *text;
 	gchar *float_value;
-#if GTK_CHECK_VERSION(3, 0, 0)
 	GdkRGBA color;
-#else
-	GdkColor color;
-#endif
 
 	switch (property_id)
 	{
@@ -146,13 +136,8 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		float_value = rounded_float_value (statusbar->cpu, statusbar->settings);
 		text = g_strdup_printf (_("CPU: %s%%"), float_value);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_cpu), text);
-#if GTK_CHECK_VERSION(3, 0, 0)
 		gdk_rgba_parse (&color, "#ff6e00");
 		gtk_widget_override_color (statusbar->label_cpu, GTK_STATE_NORMAL, &color);
-#else
-		gdk_color_parse ("#ff6e00", &color);
-		gtk_widget_modify_fg (statusbar->label_cpu, GTK_STATE_NORMAL, &color);
-#endif
 		g_free (float_value);
 		g_free (text);
 		break;
@@ -161,13 +146,8 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		g_strlcpy(statusbar->memory, g_value_get_string (value), sizeof(statusbar->memory));
 		text = g_strdup_printf (_("Memory: %s"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
-#if GTK_CHECK_VERSION(3, 0, 0)
 		gdk_rgba_parse (&color, "#ab1852");
 		gtk_widget_override_color (statusbar->label_memory, GTK_STATE_NORMAL, &color);
-#else
-		gdk_color_parse ("#ab1852", &color);
-		gtk_widget_modify_fg (statusbar->label_memory, GTK_STATE_NORMAL, &color);
-#endif
 		g_free (text);
 		break;
 
