@@ -41,12 +41,8 @@ G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
 static void	xtm_process_monitor_get_property	(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void	xtm_process_monitor_set_property	(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
-#if GTK_CHECK_VERSION(3, 0, 0)
 static gboolean	xtm_process_monitor_draw		(GtkWidget *widget, cairo_t *cr);
-#else
-static gboolean	xtm_process_monitor_expose		(GtkWidget *widget, GdkEventExpose *event);
-#endif
-static void	xtm_process_monitor_paint		(XtmProcessMonitor *monitor, cairo_t *cr);
+static void	xtm_process_monitor_paint			(XtmProcessMonitor *monitor, cairo_t *cr);
 
 
 
@@ -58,11 +54,8 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	xtm_process_monitor_parent_class = g_type_class_peek_parent (klass);
 	class->get_property = xtm_process_monitor_get_property;
 	class->set_property = xtm_process_monitor_set_property;
-#if GTK_CHECK_VERSION(3, 0, 0)
 	widget_class->draw = xtm_process_monitor_draw;
-#else
-	widget_class->expose_event = xtm_process_monitor_expose;
-#endif
+
 	g_object_class_install_property (class, PROP_STEP_SIZE,
 		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1f, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_TYPE,
@@ -115,7 +108,6 @@ xtm_process_monitor_set_property (GObject *object, guint property_id, const GVal
 	}
 }
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 static gboolean
 xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 {
@@ -129,24 +121,6 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 	xtm_process_monitor_paint (monitor, cr);
 	return FALSE;
 }
-#else
-static gboolean
-xtm_process_monitor_expose (GtkWidget *widget, GdkEventExpose *event __unused)
-{
-	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (widget);
-	guint minimum_history_length;
-	cairo_t *cr;
-
-	minimum_history_length = (guint)(widget->allocation.width / monitor->step_size);
-	if (monitor->history->len < minimum_history_length)
-		g_array_set_size (monitor->history, minimum_history_length + 1);
-
-	cr = gdk_cairo_create (gtk_widget_get_window(GTK_WIDGET(monitor)));
-	xtm_process_monitor_paint (monitor, cr);
-	cairo_destroy (cr);
-	return FALSE;
-}
-#endif
 
 static cairo_surface_t *
 xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width, gint height)
@@ -218,13 +192,9 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 	gint width, height;
 	static const double dashed[] = {1.5};
 	gint i;
-#if GTK_CHECK_VERSION(3, 0, 0)
 	width = gtk_widget_get_allocated_width(GTK_WIDGET(monitor));
 	height = gtk_widget_get_allocated_height(GTK_WIDGET(monitor));
-#else
-	width = GTK_WIDGET (monitor)->allocation.width;
-	height = GTK_WIDGET (monitor)->allocation.height;
-#endif
+
 	/* Don't draw anything if the graph is too small */
 	if (height < 3)
 		return;
