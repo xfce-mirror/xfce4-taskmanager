@@ -11,6 +11,8 @@ xfce4_taskmanager_CFLAGS =						\
 	$(GKSU_CFLAGS)							\
 	$(LIBX11_CFLAGS)						\
 	$(LIBXMU_CFLAGS)						\
+	$(GTK3_CFLAGS)							\
+	$(WNCK_CFLAGS)							\
 	$(NULL)
 
 xfce4_taskmanager_LDADD = 						\
@@ -18,11 +20,13 @@ xfce4_taskmanager_LDADD = 						\
 	$(GKSU_LIBS)							\
 	$(LIBX11_LIBS)						\
 	$(LIBXMU_LIBS)						\
+	$(GTK3_LIBS) 						\
+	$(WNCK_LIBS)						\
 	$(NULL)
 
 xfce4_taskmanager_SOURCES =						\
 	main.c								\
-	process-window_ui.h		process-window-gtk3_ui.h	\
+	process-window_ui.h					\
 	process-window.c		process-window.h		\
 	process-monitor.c		process-monitor.h		\
 	process-tree-model.c		process-tree-model.h		\
@@ -30,19 +34,11 @@ xfce4_taskmanager_SOURCES =						\
 	process-statusbar.c		process-statusbar.h		\
 	exec-tool-button.c		exec-tool-button.h		\
 	settings-tool-button.c		settings-tool-button.h		\
-	settings-dialog_ui.h		settings-dialog-gtk3_ui.h	\
+	settings-dialog_ui.h									\
 	settings-dialog.c		settings-dialog.h		\
 	settings.c			settings.h			\
 	task-manager.c			task-manager.h			\
 	$(NULL)
-
-if USE_GTK2
-xfce4_taskmanager_LDADD +=	$(GTK2_LIBS) $(WNCK_LIBS)
-xfce4_taskmanager_CFLAGS +=	$(GTK2_CFLAGS) $(WNCK_CFLAGS)
-else
-xfce4_taskmanager_LDADD +=	$(GTK3_LIBS) $(WNCK_LIBS)
-xfce4_taskmanager_CFLAGS +=	$(GTK3_CFLAGS) $(WNCK_CFLAGS)
-endif
 
 if HAVE_WNCK
 xfce4_taskmanager_SOURCES += app-manager.c app-manager.h
@@ -65,15 +61,11 @@ xfce4_taskmanager_SOURCES += task-manager-skel.c
 endif
 
 if MAINTAINER_MODE
-BUILT_SOURCES = process-window_ui.h settings-dialog_ui.h process-window-gtk3_ui.h settings-dialog-gtk3_ui.h
+BUILT_SOURCES = process-window_ui.h settings-dialog_ui.h
 process-window_ui.h: process-window.ui
 	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=process_window_ui $< >$@
 settings-dialog_ui.h: settings-dialog.ui
 	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=settings_dialog_ui $< >$@
-process-window-gtk3_ui.h: process-window-gtk3.ui
-	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=process_window_ui $< >$@
-settings-dialog-gtk3_ui.h: settings-dialog-gtk3.ui
-	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=settings_dialog_ui $< >$@
 endif
 
-EXTRA_DIST = process-window.ui settings-dialog.ui process-window-gtk3.ui settings-dialog-gtk3.ui
+EXTRA_DIST = process-window.ui settings-dialog.ui
