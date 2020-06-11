@@ -31,11 +31,7 @@
 #include "settings.h"
 #include "task-manager.h"
 #include "process-window.h"
-#if GTK_CHECK_VERSION(3, 0, 0)
-#include "process-window-gtk3_ui.h"
-#else
 #include "process-window_ui.h"
-#endif
 #include "process-monitor.h"
 #include "process-tree-view.h"
 #include "process-statusbar.h"
@@ -309,7 +305,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	if (geteuid () == 0)
 	{
-#if GTK_CHECK_VERSION(3, 0, 0)
 		GtkCssProvider *css_provider;
 		css_provider = gtk_css_provider_new ();
 		gtk_css_provider_load_from_data (css_provider,
@@ -318,11 +313,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_style_context_add_provider_for_screen (gdk_screen_get_default (), GTK_STYLE_PROVIDER (css_provider),
                                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 		g_object_unref (css_provider);
-#else
-		gtk_rc_parse_string ("style\"root-warning-style\"{bg[NORMAL]=\"#e53935\"\nfg[NORMAL]=\"#ffffff\"}\n"
-				"widget\"GtkWindow.*.root-warning\"style\"root-warning-style\"\n"
-				"widget\"GtkWindow.*.root-warning.GtkLabel\"style\"root-warning-style\"");
-#endif
 		gtk_widget_set_name (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-ebox")), "root-warning");
 		gtk_widget_show_all (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-box")));
 	}
@@ -466,7 +456,6 @@ monitor_update_step_size (XtmProcessWindow *window)
 	g_object_set (window->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
 }
 
-#if !GTK_CHECK_VERSION(2,18,0)
 static void
 url_hook_about_dialog (GtkAboutDialog *dialog, const gchar *uri, gpointer user_data)
 {
@@ -479,7 +468,6 @@ url_hook_about_dialog (GtkAboutDialog *dialog, const gchar *uri, gpointer user_d
 	}
 	g_free (command);
 }
-#endif
 
 static void
 show_about_dialog (XtmProcessWindow *window)
@@ -515,17 +503,11 @@ show_about_dialog (XtmProcessWindow *window)
 		"the Free Software Foundation; either version 2 of the License, or\n"
 		"(at your option) any later version.\n";
 
-#if !GTK_CHECK_VERSION(2,18,0)
-	gtk_about_dialog_set_url_hook (url_hook_about_dialog, NULL, NULL);
-#endif
 	gtk_show_about_dialog (GTK_WINDOW (window->window),
 		"program-name", _("Task Manager"),
 		"version", PACKAGE_VERSION,
 		"copyright", "Copyright \302\251 2005-2019 The Xfce development team",
 		"logo-icon-name", "org.xfce.taskmanager",
-#if !GTK_CHECK_VERSION(3, 0, 0)
-		"icon-name", GTK_STOCK_ABOUT,
-#endif
 		"comments", _("Easy to use task manager"),
 		"license", license,
 		"authors", authors,
