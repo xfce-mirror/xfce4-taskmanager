@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Саша Петровић <salepetronije@gmail.com>, 2012-2013,2017
+# Саша Петровић <salepetronije@gmail.com>, 2012-2014,2017,2019
 # Саша Петровић <salepetronije@gmail.com>, 2014
 # Саша Петровић <salepetronije@gmail.com>, 2014,2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-10-31 09:02+0000\n"
+"POT-Creation-Date: 2020-05-26 12:48+0200\n"
+"PO-Revision-Date: 2020-06-12 12:41+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/xfce-apps/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -21,16 +21,16 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../src/exec-tool-button.c:151 ../src/main.c:192
 #: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:512
+#: ../src/process-tree-view.c:416 ../src/process-window.c:522
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Управник задатака"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
-msgid "Easy to use task manager"
-msgstr "Управник задатака лак за коришћење"
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Easy to use application to monitor system resources"
+msgstr "Програм за надгледање система лак за употребу"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
@@ -61,7 +61,7 @@ msgstr "Опонашач терминала"
 msgid "XTerm"
 msgstr "ИксТерм"
 
-#: ../src/main.c:132
+#: ../src/main.c:131
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -70,7 +70,7 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Процеси:</b> %u\n<b>Процесор:</b> %.0f%%\n<b>Меморија:</b> %s\n<b>Заменска меморија:</b> %s"
 
-#: ../src/main.c:140
+#: ../src/main.c:139
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -79,12 +79,12 @@ msgid ""
 "Swap: %s"
 msgstr "Процеси: %u\nПроцесор: %.0f%%\nМеморија: %s\nЗаменска меморија: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:584
+#: ../src/process-statusbar.c:147 ../src/process-window.c:594
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Процесор: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:588
+#: ../src/process-statusbar.c:162 ../src/process-window.c:598
 #, c-format
 msgid "Memory: %s"
 msgstr "Меморија: %s"
@@ -220,45 +220,49 @@ msgstr "Врло висок"
 msgid "Priority"
 msgstr "Предност"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 msgid "Bad Window"
 msgstr "Неваљали прозор"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "ЛБ прозора 0x%lx не постоји!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed"
 msgstr "Није успео XGetWindowProperty"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed!"
 msgstr "Није успео XGetWindowProperty!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 msgid "No PID found"
 msgstr "Није пронађен ПЛБ"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Није пронађен ПЛБ прозора 0x%lx."
 
-#: ../src/process-window.c:261
+#: ../src/process-window.c:263
 msgid "Identify Window"
 msgstr "Означи прозор"
 
-#: ../src/process-window.c:262
+#: ../src/process-window.c:264
 msgid "Identify an open window by clicking on it."
 msgstr "Означи отворени прозор кликом на њега."
 
-#: ../src/process-window.c:338
+#: ../src/process-window.c:342
 msgid "Filter on process name"
 msgstr "Преглед по имену процеса"
 
-#: ../src/process-window.c:522
+#: ../src/process-window.c:529
+msgid "Easy to use task manager"
+msgstr "Управник задатака лак за коришћење"
+
+#: ../src/process-window.c:532
 msgid "translator-credits"
 msgstr "Саша Петровић <salepetronije@gmail.com>"
 
@@ -281,19 +285,19 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "span foreground='#000000' background='#e57373'>    </span> Завршни задатак"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:397
 msgid "Default"
 msgstr "Подразумевано"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:398
 msgid "Small"
 msgstr "Мали"
 
-#: ../src/settings.c:391
+#: ../src/settings.c:399
 msgid "Large"
 msgstr "Велики"
 
-#: ../src/settings.c:392
+#: ../src/settings.c:400
 msgid "Text"
 msgstr "Писмо"
 
@@ -318,42 +322,38 @@ msgid "Show processes as tree"
 msgstr "Приказуј процесе као гранање"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
-msgid "Show memory usage in bytes"
-msgstr "Приказуј заузеће меморије у бајтима"
-
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
 msgstr "Изглед траке алата:"
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>Изглед сучеља</b>"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Питај за обуставу задатака"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Hide into the notification area"
 msgstr "Сакриј у обавештајну област"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Остало</b>"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "Refresh rate:"
 msgstr "Учесталост освежавања:"
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
 msgid "Columns:"
 msgstr "Ступци:"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>Обавештења</b>"
 
-#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
+#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
 msgid "Settings"
 msgstr "Поставке"
 
