@@ -6,15 +6,16 @@
 # Alex Nordlund <deep.alexander@gmail.com>, 2013
 # Alex Nordlund <deep.alexander@gmail.com>, 2013
 # Arve Eriksson <031299870@telia.com>, 2020
+# Carlos Dz <cls567@tuta.io>, 2020
 # Påvel Nicklasson<pavel@frimix.se>, 2015
 # Påvel Nicklasson <pavel2@frimix.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2020-01-05 13:35+0000\n"
-"Last-Translator: Arve Eriksson <031299870@telia.com>\n"
+"POT-Creation-Date: 2020-05-26 12:48+0200\n"
+"PO-Revision-Date: 2020-06-14 11:51+0000\n"
+"Last-Translator: Carlos Dz <cls567@tuta.io>\n"
 "Language-Team: Swedish (http://www.transifex.com/xfce/xfce-apps/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,16 +24,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../src/exec-tool-button.c:151 ../src/main.c:192
 #: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:512
+#: ../src/process-tree-view.c:416 ../src/process-window.c:522
 #: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
 msgid "Task Manager"
 msgstr "Aktivitetshanterare"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
-msgid "Easy to use task manager"
-msgstr "Lättanvänd aktivitetshanterare"
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Easy to use application to monitor system resources"
+msgstr "Lättanvänd applikation för att övervaka systemets resurser"
 
 #: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
 msgid "Execution error"
@@ -63,7 +64,7 @@ msgstr "Terminalemulator"
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:132
+#: ../src/main.c:131
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -72,7 +73,7 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Processer:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Minne:</b> %s\n<b>Swap:</b> %s"
 
-#: ../src/main.c:140
+#: ../src/main.c:139
 #, c-format
 msgid ""
 "Processes: %u\n"
@@ -81,12 +82,12 @@ msgid ""
 "Swap: %s"
 msgstr "Processer: %u\nCPU: %.0f%%\nMinne: %s\nSwap: %s"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:584
+#: ../src/process-statusbar.c:147 ../src/process-window.c:594
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:588
+#: ../src/process-statusbar.c:162 ../src/process-window.c:598
 #, c-format
 msgid "Memory: %s"
 msgstr "Minne: %s"
@@ -222,45 +223,49 @@ msgstr "Mycket hög"
 msgid "Priority"
 msgstr "Prioritering"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 msgid "Bad Window"
 msgstr "Dåligt fönster"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Fönster-id 0x%lx existerar inte!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty misslyckades"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:172
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty misslyckades!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 msgid "No PID found"
 msgstr "Inget PID hittades"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:179
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Inget PID hittades för fönster 0x%lx."
 
-#: ../src/process-window.c:261
+#: ../src/process-window.c:263
 msgid "Identify Window"
 msgstr "Identifiera fönster"
 
-#: ../src/process-window.c:262
+#: ../src/process-window.c:264
 msgid "Identify an open window by clicking on it."
 msgstr "Identifiera ett öppet fönster genom att klicka på det."
 
-#: ../src/process-window.c:338
+#: ../src/process-window.c:342
 msgid "Filter on process name"
 msgstr "Filter på processnamn"
 
-#: ../src/process-window.c:522
+#: ../src/process-window.c:529
+msgid "Easy to use task manager"
+msgstr "Lättanvänd aktivitetshanterare"
+
+#: ../src/process-window.c:532
 msgid "translator-credits"
 msgstr "Påvel Nicklasson"
 
@@ -283,19 +288,19 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Avslutar uppgift"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:397
 msgid "Default"
 msgstr "Standard"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:398
 msgid "Small"
 msgstr "Liten"
 
-#: ../src/settings.c:391
+#: ../src/settings.c:399
 msgid "Large"
 msgstr "Stor"
 
-#: ../src/settings.c:392
+#: ../src/settings.c:400
 msgid "Text"
 msgstr "Text"
 
@@ -320,42 +325,38 @@ msgid "Show processes as tree"
 msgstr "Visa processer som träd"
 
 #: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
-msgid "Show memory usage in bytes"
-msgstr "Visa minnesanvändning i bits"
-
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "Toolbar style:"
 msgstr "Stil på verktygsfält"
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>Stil på gränssnitt</b>"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Varna för att avsluta aktiviteter"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
 msgid "Hide into the notification area"
 msgstr "Dölj i meddelandefältet"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Diverse</b>"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
 msgid "Refresh rate:"
 msgstr "Uppdateringsfrekvens:"
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
 msgid "Columns:"
 msgstr "Kolumner:"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>Information</b>"
 
-#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
+#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
 msgid "Settings"
 msgstr "Inställningar"
 
