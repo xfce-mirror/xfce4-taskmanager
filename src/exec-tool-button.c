@@ -79,7 +79,6 @@ static void
 execute_command (const gchar *command)
 {
 	GError *error = NULL;
-#if GTK_CHECK_VERSION(3, 0, 0)
 	GdkScreen *screen;
 	GdkDisplay *display;
 	GdkAppLaunchContext *launch_context;
@@ -95,9 +94,7 @@ execute_command (const gchar *command)
 		g_object_unref (launch_context);
 	}
 	g_object_unref (app_info);
-#else
-	gdk_spawn_command_line_on_screen (gdk_screen_get_default (), command, &error);
-#endif
+
 	if (error != NULL)
 	{
 		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
