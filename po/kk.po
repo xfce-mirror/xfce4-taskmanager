@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2015,2017,2019
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2015,2017,2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-05-07 04:38+0000\n"
+"POT-Creation-Date: 2020-06-27 00:46+0200\n"
+"PO-Revision-Date: 2020-06-28 08:54+0000\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh (http://www.transifex.com/xfce/xfce-apps/language/kk/)\n"
 "MIME-Version: 1.0\n"
@@ -18,48 +18,48 @@ msgstr ""
 "Language: kk\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:103
+#: ../src/exec-tool-button.c:148 ../src/main.c:182
 #: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:512
-#: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
+#: ../src/process-tree-view.c:416 ../src/process-window.c:507
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Үрдістерді басқарушысы"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
-msgid "Easy to use task manager"
-msgstr "Жүйе үрдістерін ыңғайлы басқару"
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Easy to use application to monitor system resources"
+msgstr "Жүйелік ресурстарды бақылауға арналған, пайдалануға оңай қосымша"
 
-#: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
+#: ../src/exec-tool-button.c:101 ../src/exec-tool-button.c:145
 msgid "Execution error"
 msgstr "Орындау қатесі"
 
-#: ../src/exec-tool-button.c:150
+#: ../src/exec-tool-button.c:147
 msgid "Couldn't find any default command to run."
 msgstr "Жөнелту үшін бастапқы команданы табу мүмкін емес."
 
-#: ../src/exec-tool-button.c:181
+#: ../src/exec-tool-button.c:178
 msgid "Run Task Manager as root"
 msgstr "Task Manager-ді root атынан жіберу"
 
-#: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
-#: ../src/exec-tool-button.c:196
+#: ../src/exec-tool-button.c:189 ../src/exec-tool-button.c:191
+#: ../src/exec-tool-button.c:193
 msgid "Run Program..."
 msgstr "Бағдарламаны жіберу..."
 
-#: ../src/exec-tool-button.c:199
+#: ../src/exec-tool-button.c:196
 msgid "Application Finder"
 msgstr "Қолданбалар табушы"
 
-#: ../src/exec-tool-button.c:202
+#: ../src/exec-tool-button.c:199
 msgid "Terminal emulator"
 msgstr "Терминал эмуляторы"
 
-#: ../src/exec-tool-button.c:204
+#: ../src/exec-tool-button.c:201
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:132
+#: ../src/main.c:130
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -68,31 +68,22 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Үрдістер:</b> %u\n<b>Процессор:</b> %.0f%%\n<b>Жады:</b> %s\n<b>Своп:</b> %s"
 
-#: ../src/main.c:140
-#, c-format
-msgid ""
-"Processes: %u\n"
-"CPU: %.0f%%\n"
-"Memory: %s\n"
-"Swap: %s"
-msgstr "Үрдістер: %u\nПроцессор: %.0f%%\nЖады: %s\nСвоп: %s"
-
-#: ../src/process-statusbar.c:147 ../src/process-window.c:584
+#: ../src/process-statusbar.c:137 ../src/process-window.c:576
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:588
+#: ../src/process-statusbar.c:147 ../src/process-window.c:580
 #, c-format
 msgid "Memory: %s"
 msgstr "Жады: %s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:156
 #, c-format
 msgid "Swap: %s"
 msgstr "Своп: %s"
 
-#: ../src/process-statusbar.c:190
+#: ../src/process-statusbar.c:170
 #, c-format
 msgid "Processes: %d"
 msgstr "Үрдістер: %d"
@@ -218,140 +209,140 @@ msgstr "Өте жоғары"
 msgid "Priority"
 msgstr "Приоритеті"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:165
 msgid "Bad Window"
 msgstr "Жаман терезе"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Терезе id 0x%lx жоқ болып тұр!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty сәтсіз аяқталды"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty сәтсіз аяқталды!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:175
 msgid "No PID found"
 msgstr "PID табылмады"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:175
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "0x%lx терезесі үшін PID табылмады."
 
-#: ../src/process-window.c:261
+#: ../src/process-window.c:259
 msgid "Identify Window"
 msgstr "Терезені анықтау"
 
-#: ../src/process-window.c:262
+#: ../src/process-window.c:260
 msgid "Identify an open window by clicking on it."
 msgstr "Ашық терезені оған шерту арқылы анықтау."
 
-#: ../src/process-window.c:338
+#: ../src/process-window.c:332
 msgid "Filter on process name"
 msgstr "Үрдіс атымен сүзу"
 
-#: ../src/process-window.c:522
+#: ../src/process-window.c:511
+msgid "Easy to use task manager"
+msgstr "Жүйе үрдістерін ыңғайлы басқару"
+
+#: ../src/process-window.c:514
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com> 2010"
 
-#: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
+#: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Ескерту, сіз root тіркелгісін қолданудасыз, жүйеңізге зақым келтіруге болады."
 
-#: ../src/process-window-gtk3.ui.h:3
+#: ../src/process-window.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Процесті жөнелтуде"
 
-#: ../src/process-window-gtk3.ui.h:4
+#: ../src/process-window.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Процесті өзгертуде"
 
-#: ../src/process-window-gtk3.ui.h:5
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Процесті аяқтауда"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:397
 msgid "Default"
 msgstr "Бастапқы"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:398
 msgid "Small"
 msgstr "Кіші"
 
-#: ../src/settings.c:391
+#: ../src/settings.c:399
 msgid "Large"
 msgstr "Үлкен"
 
-#: ../src/settings.c:392
+#: ../src/settings.c:400
 msgid "Text"
 msgstr "Мәтін"
 
-#: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
+#: ../src/settings-dialog.ui.h:1
 msgid "Settings for Task Manager"
 msgstr "Үрдістерді басқарушысының баптаулары"
 
-#: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
+#: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
 msgstr "Қолданбалар таңбашаларын көрсету"
 
-#: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
+#: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
 msgstr "Толық командалық жолды көрсету"
 
-#: ../src/settings-dialog.ui.h:4 ../src/settings-dialog-gtk3.ui.h:4
+#: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
 msgstr "Мәндерді дәлірек көрсету"
 
-#: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
+#: ../src/settings-dialog.ui.h:5
 msgid "Show processes as tree"
 msgstr "Үрдістерді ағаш ретінде көрсету"
 
-#: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
-msgid "Show memory usage in bytes"
-msgstr "Жады қолданылуын байтпен көрсету"
-
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
+#: ../src/settings-dialog.ui.h:6
 msgid "Toolbar style:"
 msgstr "Панель стилі:"
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>Сыртқы түрі</b>"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Үрдістерді аяқтауды растау"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
 msgstr "Хабарламалар сөресіне жасыру"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Әр түрлі</b>"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
 msgstr "Жаңарту жиілігі:"
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:12
 msgid "Columns:"
 msgstr "Бағандар:"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>Ақпарат</b>"
 
-#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
+#: ../src/settings-dialog.ui.h:14
 msgid "Settings"
 msgstr "Баптаулар"
 
