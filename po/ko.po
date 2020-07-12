@@ -5,13 +5,13 @@
 # Translators:
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2013
 # 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>, 2017
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2015,2019
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2015,2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-10-17 05:42+0000\n"
+"POT-Creation-Date: 2020-06-27 00:46+0200\n"
+"PO-Revision-Date: 2020-07-12 12:49+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/xfce/xfce-apps/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -20,48 +20,48 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:193
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:103
+#: ../src/exec-tool-button.c:148 ../src/main.c:182
 #: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:512
-#: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
+#: ../src/process-tree-view.c:416 ../src/process-window.c:507
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "작업 관리자"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
-msgid "Easy to use task manager"
-msgstr "쓰기 쉬운 작업관리자"
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Easy to use application to monitor system resources"
+msgstr "시스템 자원 감시에 용이한 프로그램"
 
-#: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
+#: ../src/exec-tool-button.c:101 ../src/exec-tool-button.c:145
 msgid "Execution error"
 msgstr "실행 오류"
 
-#: ../src/exec-tool-button.c:150
+#: ../src/exec-tool-button.c:147
 msgid "Couldn't find any default command to run."
 msgstr "실행할 기본 명령을 찾을 수 없습니다"
 
-#: ../src/exec-tool-button.c:181
+#: ../src/exec-tool-button.c:178
 msgid "Run Task Manager as root"
 msgstr "루트 권한으로 작업 관리자 실행"
 
-#: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
-#: ../src/exec-tool-button.c:196
+#: ../src/exec-tool-button.c:189 ../src/exec-tool-button.c:191
+#: ../src/exec-tool-button.c:193
 msgid "Run Program..."
 msgstr "프로그램 실행..."
 
-#: ../src/exec-tool-button.c:199
+#: ../src/exec-tool-button.c:196
 msgid "Application Finder"
 msgstr "프로그래 검색기"
 
-#: ../src/exec-tool-button.c:202
+#: ../src/exec-tool-button.c:199
 msgid "Terminal emulator"
 msgstr "터미널 에뮬레이터"
 
-#: ../src/exec-tool-button.c:204
+#: ../src/exec-tool-button.c:201
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:132
+#: ../src/main.c:130
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -70,31 +70,22 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>프로세스:</b> %u\n<b>C   P   U:</b> %.0f%%\n<b>메  모  리:</b> %s\n<b>스       왑:</b> %s"
 
-#: ../src/main.c:140
-#, c-format
-msgid ""
-"Processes: %u\n"
-"CPU: %.0f%%\n"
-"Memory: %s\n"
-"Swap: %s"
-msgstr "프로세스: %u\nC   P   U: %.0f%%\n메  모  리: %s\n스       왑: %s"
-
-#: ../src/process-statusbar.c:147 ../src/process-window.c:584
+#: ../src/process-statusbar.c:137 ../src/process-window.c:576
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:588
+#: ../src/process-statusbar.c:147 ../src/process-window.c:580
 #, c-format
 msgid "Memory: %s"
 msgstr "메  모  리: %s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:156
 #, c-format
 msgid "Swap: %s"
 msgstr "스       왑: %s"
 
-#: ../src/process-statusbar.c:190
+#: ../src/process-statusbar.c:170
 #, c-format
 msgid "Processes: %d"
 msgstr "프로세스: %d"
@@ -220,140 +211,140 @@ msgstr "매우 높게"
 msgid "Priority"
 msgstr "우선순위"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:165
 msgid "Bad Window"
 msgstr "없는 창"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "ID 0x%lx인 창은 없습니다!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty 실패"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:168
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty 실패함!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:175
 msgid "No PID found"
 msgstr "PID 없음"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:175
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "창 0x%lx의 PID가 없습니다."
 
-#: ../src/process-window.c:261
+#: ../src/process-window.c:259
 msgid "Identify Window"
 msgstr "창 식별"
 
-#: ../src/process-window.c:262
+#: ../src/process-window.c:260
 msgid "Identify an open window by clicking on it."
 msgstr "클릭해서 창이 열려 있는지 확인합니다."
 
-#: ../src/process-window.c:338
+#: ../src/process-window.c:332
 msgid "Filter on process name"
 msgstr "프로세스 이름으로 검색"
 
-#: ../src/process-window.c:522
+#: ../src/process-window.c:511
+msgid "Easy to use task manager"
+msgstr "쓰기 쉬운 작업관리자"
+
+#: ../src/process-window.c:514
 msgid "translator-credits"
 msgstr "Seong-ho Cho <darkcircle.0426@gmail.com>"
 
-#: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
+#: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "경고, 루트 계정을 사용중이며, 시스템에 해를 끼칠 수 있습니다."
 
-#: ../src/process-window-gtk3.ui.h:3
+#: ../src/process-window.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> 작업 시작 중"
 
-#: ../src/process-window-gtk3.ui.h:4
+#: ../src/process-window.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> 작업 전환 중"
 
-#: ../src/process-window-gtk3.ui.h:5
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> 작업 끝내는 중"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:397
 msgid "Default"
 msgstr "기본"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:398
 msgid "Small"
 msgstr "작게"
 
-#: ../src/settings.c:391
+#: ../src/settings.c:399
 msgid "Large"
 msgstr "크게"
 
-#: ../src/settings.c:392
+#: ../src/settings.c:400
 msgid "Text"
 msgstr "글자"
 
-#: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
+#: ../src/settings-dialog.ui.h:1
 msgid "Settings for Task Manager"
 msgstr "작업 관리자 설정"
 
-#: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
+#: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
 msgstr "프로그램 아이콘 표시"
 
-#: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
+#: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
 msgstr "전체 명령줄 표시"
 
-#: ../src/settings-dialog.ui.h:4 ../src/settings-dialog-gtk3.ui.h:4
+#: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
 msgstr "값을 좀 더 정확하게 표시"
 
-#: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
+#: ../src/settings-dialog.ui.h:5
 msgid "Show processes as tree"
 msgstr "프로세스를 트리 모양으로 표시"
 
-#: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
-msgid "Show memory usage in bytes"
-msgstr "메모리 사용량을 바이트 단위로 표시"
-
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
+#: ../src/settings-dialog.ui.h:6
 msgid "Toolbar style:"
 msgstr "도구모음 형태:"
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>인터페이스 방식</b>"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "작업 중지 프롬프트"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
 msgstr "알림 영역으로 숨기기"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>기타</b>"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
 msgstr "새로고침 주기:"
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:12
 msgid "Columns:"
 msgstr "컬럼:"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>정보</b>"
 
-#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
+#: ../src/settings-dialog.ui.h:14
 msgid "Settings"
 msgstr "설정"
 
