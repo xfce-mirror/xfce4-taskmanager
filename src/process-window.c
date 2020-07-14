@@ -45,6 +45,7 @@ struct _XtmProcessWindowClass
 {
 	GtkWidgetClass		parent_class;
 };
+
 struct _XtmProcessWindow
 {
 	GtkWidget		parent;
@@ -84,7 +85,7 @@ filter_entry_icon_pressed_cb (GtkEntry *entry,
 {
 	if (position == GTK_ENTRY_ICON_SECONDARY) {
 		gtk_entry_set_text (entry, "");
-		gtk_widget_grab_focus(GTK_WIDGET(entry));
+		gtk_widget_grab_focus (GTK_WIDGET(entry));
 	}
 }
 
@@ -457,19 +458,6 @@ monitor_update_step_size (XtmProcessWindow *window)
 }
 
 static void
-url_hook_about_dialog (GtkAboutDialog *dialog, const gchar *uri, gpointer user_data)
-{
-	gchar *command = g_strdup_printf ("exo-open %s", uri);
-	if (!g_spawn_command_line_async (command, NULL))
-	{
-		g_free (command);
-		command = g_strdup_printf ("firefox %s", uri);
-		g_spawn_command_line_async (command, NULL);
-	}
-	g_free (command);
-}
-
-static void
 show_about_dialog (XtmProcessWindow *window)
 {
 	const gchar *authors[] = {
@@ -516,8 +504,6 @@ show_about_dialog (XtmProcessWindow *window)
 		"website-label", "goodies.xfce.org",
 		NULL);
 }
-
-
 
 /**
  * Class functions
