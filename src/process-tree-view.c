@@ -73,6 +73,7 @@ static gboolean		visible_func					(GtkTreeModel *model, GtkTreeIter *iter, XtmPr
 static gboolean		search_func					(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data);
 static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
 static void		expand_row					(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, XtmProcessTreeView *treeview);
+static gboolean treeview_query_tooltip		(GtkWidget  *widget, gint x, gint y, gboolean keyboard_tip, GtkTooltip *tooltip, gpointer data);
 
 static void
 xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
@@ -220,11 +221,13 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 		gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (treeview->model), sort_column_id, sort_type);
 	}
 
-	gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW (treeview), XTM_PTV_COLUMN_COMMAND);
 	gtk_tree_view_set_search_equal_func (GTK_TREE_VIEW (treeview), (GtkTreeViewSearchEqualFunc)search_func, NULL, NULL);
 	g_signal_connect (treeview, "columns-changed", G_CALLBACK (columns_changed), NULL);
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
 	g_signal_connect (treeview, "key-press-event", G_CALLBACK (treeview_key_pressed), NULL);
+
+	g_signal_connect (treeview, "query-tooltip", G_CALLBACK (treeview_query_tooltip), NULL);
+	gtk_widget_set_has_tooltip (GTK_WIDGET (treeview), TRUE);
 }
 
 static void
@@ -801,4 +804,60 @@ xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid) {
 			}
 		}
 	}
+}
+
+static gboolean
+treeview_query_tooltip (GtkWidget  *widget,
+						gint x,
+						gint y,
+						gboolean keyboard_tip,
+						GtkTooltip *tooltip,
+						gpointer data)
+{
+	gchar *escaped;
+	GValue value = G_VALUE_INIT;
+	GValue transformed = G_VALUE_INIT;
+	GtkTreeIter iter;
+	GtkTreePath *path;
+	GtkTreeModel *model;
+	GtkTreeView *tree_view = GTK_TREE_VIEW (widget);
+
+	if (!gtk_tree_view_get_tooltip_context (GTK_TREE_VIEW(widget), &x, &y,
+											keyboard_tip, &model, &path, &iter))
+	{
+		return FALSE;
+	}
+
+	gtk_tree_model_get_value (model, &iter, XTM_PTV_COLUMN_COMMAND, &value);
+
+	g_value_init (&transformed, G_TYPE_STRING);
+
+	if (!g_value_transform (&value, &transformed))
+	{
+		g_value_unset (&value);
+		gtk_tree_path_free (path);
+
+		return FALSE;
+	}
+
+	g_value_unset (&value);
+
+	if (!g_value_get_string (&transformed))
+	{
+		g_value_unset (&transformed);
+		gtk_tree_path_free (path);
+
+		return FALSE;
+	}
+
+	escaped = g_markup_escape_text (g_value_get_string (&transformed), -1);
+	gtk_tooltip_set_markup (tooltip, escaped);
+	g_free (escaped);
+
+	gtk_tree_view_set_tooltip_row (tree_view, tooltip, path);
+
+	gtk_tree_path_free (path);
+	g_value_unset (&transformed);
+
+	return TRUE;
 }
