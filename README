@@ -14,7 +14,8 @@ see if there is a newer version available before reporting bugs.
 
 GTK+ 3.22
 Cairo 1.5
-Libwnck 2.0 (optional)
+Xmu 1.1.2
+Libwnck 3.2 (optional)
 
 ** Building **
 
