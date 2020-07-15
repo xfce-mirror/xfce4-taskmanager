@@ -76,7 +76,6 @@ dnl ***********************************
 XDT_CHECK_OPTIONAL_PACKAGE([WNCK], [libwnck-3.0], [3.2], [wnck3], [building with libwnck3 for window icons/names], [yes])
 
 AM_CONDITIONAL([HAVE_WNCK], [test x"$WNCK_FOUND" = x"yes"])
-AM_CONDITIONAL([HAVE_GKSU], [test x"$GKSU_FOUND" = x"yes"])
 dnl ***********************************
 dnl ********** Check for skel *********
 dnl ***********************************
@@ -156,7 +155,6 @@ dnl ***************************
 echo
 echo "Build Configuration:"
 echo
-echo "* Gksu:          ${GKSU_VERSION:-no}"
 echo "* Wnck:          ${WNCK_VERSION:-no}"
 echo "* Cairo:         ${CAIRO_VERSION}"
 echo "* GTK+:          ${GTK3_VERSION}"

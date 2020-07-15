@@ -15,23 +15,20 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#ifdef HAVE_GKSU
-#include <libgksu/libgksu.h>
-#endif
-
 #include "exec-tool-button.h"
 
 
 
 typedef struct _XtmExecToolButtonClass XtmExecToolButtonClass;
+
 struct _XtmExecToolButtonClass
 {
 	GtkMenuToolButtonClass	parent_class;
 };
+
 struct _XtmExecToolButton
 {
 	GtkMenuToolButton	parent;
-	/*<private>*/
 };
 G_DEFINE_TYPE (XtmExecToolButton, xtm_exec_tool_button, GTK_TYPE_MENU_TOOL_BUTTON)
 
@@ -60,20 +57,6 @@ xtm_exec_tool_button_init (XtmExecToolButton *button)
 
 	gtk_widget_show_all (GTK_WIDGET (button));
 }
-
-
-
-#ifdef HAVE_GKSU
-static void
-run_as_root (GtkWidget *mi)
-{
-	// TODO hide status icon
-	GtkWidget *window = gtk_widget_get_toplevel (mi);
-	gtk_widget_hide (window);
-	gksu_run (g_get_prgname (), NULL);
-	gtk_widget_show (window);
-}
-#endif
 
 static void
 execute_command (const gchar *command)
@@ -170,20 +153,6 @@ construct_menu (void)
 {
 	GtkWidget *menu = gtk_menu_new ();
 
-#ifdef HAVE_GKSU
-	/* Run task manager as root */
-	if (geteuid () != 0)
-	{
-		GtkWidget *image = gtk_image_new_from_icon_name ("org.xfce.taskmanager", GTK_ICON_SIZE_MENU);
-		GtkWidget *mi = gtk_image_menu_item_new_with_label (_("Run Task Manager as root"));
-		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
-		gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-		g_signal_connect (mi, "activate", G_CALLBACK (run_as_root), NULL);
-		mi = gtk_separator_menu_item_new ();
-		gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-	}
-#endif
-
 	/* Find a runner program */
 	if (program_exists ("xfrun4"))
 		menu_append_item (GTK_MENU (menu), _("Run Program..."), "xfrun4", "system-run");
@@ -204,8 +173,6 @@ construct_menu (void)
 
 	return menu;
 }
-
-
 
 GtkWidget *
 xtm_exec_tool_button_new (void)

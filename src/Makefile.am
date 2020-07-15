@@ -8,7 +8,6 @@ bin_PROGRAMS =								\
 
 xfce4_taskmanager_CFLAGS =						\
 	$(CAIRO_CFLAGS)							\
-	$(GKSU_CFLAGS)							\
 	$(LIBX11_CFLAGS)						\
 	$(LIBXMU_CFLAGS)						\
 	$(GTK3_CFLAGS)							\
@@ -17,7 +16,6 @@ xfce4_taskmanager_CFLAGS =						\
 
 xfce4_taskmanager_LDADD = 						\
 	$(CAIRO_LIBS)							\
-	$(GKSU_LIBS)							\
 	$(LIBX11_LIBS)						\
 	$(LIBXMU_LIBS)						\
 	$(GTK3_LIBS) 						\
