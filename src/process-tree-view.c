@@ -490,29 +490,16 @@ build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 	return menu;
 }
 
-static void
-position_menu (GtkMenu *menu __unused, gint *x, gint *y, gboolean *push_in, XtmProcessTreeView *treeview)
-{
-	gdk_window_get_origin (gtk_tree_view_get_bin_window (GTK_TREE_VIEW (treeview)), x, y);
-	*x += 5;
-	*y += 5;
-	*push_in = TRUE;
-}
-
-static void
-popup_menu (XtmProcessTreeView *treeview, GPid pid, guint activate_time, gboolean at_pointer_position)
+static GtkWidget *
+create_popup_menu (XtmProcessTreeView *treeview, GPid pid, guint activate_time)
 {
 	static GtkWidget *menu = NULL;
-	GtkMenuPositionFunc position_func = NULL;
-
-	if (at_pointer_position == FALSE)
-		position_func = (GtkMenuPositionFunc)position_menu;
 
 	if (menu != NULL)
 		gtk_widget_destroy (menu);
 
 	menu = build_context_menu (treeview, pid);
-	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, position_func, treeview, 1, activate_time);
+    return menu;
 }
 
 static gboolean
@@ -541,7 +528,7 @@ treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event)
 
 	G_DEBUG_FMT ("Found iter with pid %d", pid);
 
-	popup_menu (treeview, pid, event->time, TRUE);
+    gtk_menu_popup_at_pointer (GTK_MENU (create_popup_menu (treeview, pid, event->time)), NULL);
 
 	return TRUE;
 }
@@ -567,7 +554,11 @@ treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event)
 
 	if (event->keyval == GDK_KEY_Menu)
 	{
-		popup_menu (treeview, pid, event->time, FALSE);
+        GdkRectangle rect = { .x = 5, .y = 5, .width = 0, .height = 0 };
+        GdkWindow *window = gtk_tree_view_get_bin_window (GTK_TREE_VIEW (treeview));
+
+        gtk_menu_popup_at_rect (GTK_MENU (create_popup_menu (treeview, pid, event->time)),
+                                window, &rect, GDK_GRAVITY_NORTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
 		return TRUE;
 	}
 	else if (event->keyval == GDK_KEY_Delete)
