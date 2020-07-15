@@ -12,7 +12,7 @@ see if there is a newer version available before reporting bugs.
 
 ** Requirements **
 
-GTK+ 2.12
+GTK+ 3.22
 Cairo 1.5
 Libwnck 2.0 (optional)
 
