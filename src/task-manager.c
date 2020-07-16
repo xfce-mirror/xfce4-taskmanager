@@ -343,12 +343,9 @@ task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx)
 static glong
 __current_timestamp (void)
 {
-	GTimeVal current_time;
-	g_get_current_time (&current_time);
-	return current_time.tv_sec;
+	gint64 tv = g_get_real_time ();
+	return tv / G_USEC_PER_SEC;
 }
-
-
 
 XtmTaskManager *
 xtm_task_manager_new (GtkTreeModel *model)
