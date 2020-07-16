@@ -343,7 +343,7 @@ task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx)
 static glong
 __current_timestamp (void)
 {
-    gint64 tv = g_get_real_time ();
+	gint64 tv = g_get_real_time ();
 	return tv / G_USEC_PER_SEC;
 }
 
