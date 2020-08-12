@@ -22,7 +22,7 @@ AC_COPYRIGHT([Copyright (c) 2006-2008
 AC_INIT([Xfce4 Taskmanager], [taskmanager_version], [http://bugzilla.xfce.org/], [xfce4-taskmanager],
         [http://goodies.xfce.org/projects/applications/xfce4-taskmanager])
 AC_PREREQ([2.60])
-AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIRS([m4])
 AC_CANONICAL_TARGET()
 AC_REVISION([taskmanager_version_build])
 
