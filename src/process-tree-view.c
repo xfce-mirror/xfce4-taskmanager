@@ -822,7 +822,7 @@ treeview_query_tooltip (GtkWidget  *widget,
 	GtkTreeModel *model;
 	GtkTreeView *tree_view = GTK_TREE_VIEW (widget);
 
-	if (!gtk_tree_view_get_tooltip_context (GTK_TREE_VIEW(widget), &x, &y,
+	if (!gtk_tree_view_get_tooltip_context (GTK_TREE_VIEW (widget), &x, &y,
 											keyboard_tip, &model, &path, &iter))
 	{
 		return FALSE;
