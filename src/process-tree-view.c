@@ -73,7 +73,7 @@ static gboolean		visible_func					(GtkTreeModel *model, GtkTreeIter *iter, XtmPr
 static gboolean		search_func					(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data);
 static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
 static void		expand_row					(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, XtmProcessTreeView *treeview);
-static gboolean treeview_query_tooltip		(GtkWidget  *widget, gint x, gint y, gboolean keyboard_tip, GtkTooltip *tooltip, gpointer data);
+static gboolean		treeview_query_tooltip		(GtkWidget *widget, gint x, gint y, gboolean keyboard_tip, GtkTooltip *tooltip, gpointer data);
 
 static void
 xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
@@ -225,7 +225,6 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_signal_connect (treeview, "columns-changed", G_CALLBACK (columns_changed), NULL);
 	g_signal_connect (treeview, "button-press-event", G_CALLBACK (treeview_clicked), NULL);
 	g_signal_connect (treeview, "key-press-event", G_CALLBACK (treeview_key_pressed), NULL);
-
 	g_signal_connect (treeview, "query-tooltip", G_CALLBACK (treeview_query_tooltip), NULL);
 	gtk_widget_set_has_tooltip (GTK_WIDGET (treeview), TRUE);
 }
@@ -807,12 +806,7 @@ xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid) {
 }
 
 static gboolean
-treeview_query_tooltip (GtkWidget  *widget,
-						gint x,
-						gint y,
-						gboolean keyboard_tip,
-						GtkTooltip *tooltip,
-						gpointer data)
+treeview_query_tooltip	(GtkWidget *widget, gint x, gint y, gboolean keyboard_tip, GtkTooltip *tooltip, gpointer data)
 {
 	gchar *escaped;
 	GValue value = G_VALUE_INIT;
