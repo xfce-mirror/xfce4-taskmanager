@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-26 12:48+0200\n"
-"PO-Revision-Date: 2020-06-04 12:28+0000\n"
+"POT-Creation-Date: 2020-08-03 00:47+0200\n"
+"PO-Revision-Date: 2020-08-21 13:25+0000\n"
 "Last-Translator: Arman Harutyunyan <arman.harut468@gmail.com>\n"
 "Language-Team: Eastern Armenian (http://www.transifex.com/xfce/xfce-apps/language/hye/)\n"
 "MIME-Version: 1.0\n"
@@ -19,48 +19,44 @@ msgstr ""
 "Language: hye\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:192
-#: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:522
-#: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:86
+#: ../src/exec-tool-button.c:131 ../src/main.c:182
+#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:417 ../src/process-window.c:495
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Առաջադրանքների Կառավարիչ"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
 msgid "Easy to use application to monitor system resources"
-msgstr ""
+msgstr "Հեշտ աւգտագործման ծրագիր՝ համակարգի պաշարները վերահսկելու համար"
 
-#: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
+#: ../src/exec-tool-button.c:84 ../src/exec-tool-button.c:128
 msgid "Execution error"
 msgstr "Կատարման սխալ"
 
-#: ../src/exec-tool-button.c:150
+#: ../src/exec-tool-button.c:130
 msgid "Couldn't find any default command to run."
 msgstr "Չյաջողուեց գտնել լռելեայն հրաման գործարկման համար։"
 
-#: ../src/exec-tool-button.c:181
-msgid "Run Task Manager as root"
-msgstr "Գործարկել առաջադրանքների կառավարիչը որպէս արմարտային"
-
-#: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
-#: ../src/exec-tool-button.c:196
+#: ../src/exec-tool-button.c:158 ../src/exec-tool-button.c:160
+#: ../src/exec-tool-button.c:162
 msgid "Run Program..."
 msgstr "Գործարկել ծրագիր․․․"
 
-#: ../src/exec-tool-button.c:199
+#: ../src/exec-tool-button.c:165
 msgid "Application Finder"
 msgstr "Յաւելուածների որոնիչ"
 
-#: ../src/exec-tool-button.c:202
+#: ../src/exec-tool-button.c:168
 msgid "Terminal emulator"
 msgstr "Վահանակի նմանակիչ"
 
-#: ../src/exec-tool-button.c:204
+#: ../src/exec-tool-button.c:170
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:131
+#: ../src/main.c:130
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -69,31 +65,22 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Գործընթացներ՝</b> %u\n<b>CPU՝</b> %.0f%%\n<b>Յիշողութիւն՝</b> %s\n<b>Փոխանակում՝</b> %s"
 
-#: ../src/main.c:139
-#, c-format
-msgid ""
-"Processes: %u\n"
-"CPU: %.0f%%\n"
-"Memory: %s\n"
-"Swap: %s"
-msgstr "Գործընթացներ %u\nCPU: %.0f%%\nMemory: %s\nSwap: %s"
-
-#: ../src/process-statusbar.c:147 ../src/process-window.c:594
+#: ../src/process-statusbar.c:137 ../src/process-window.c:562
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU՝ %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:598
+#: ../src/process-statusbar.c:147 ../src/process-window.c:566
 #, c-format
 msgid "Memory: %s"
 msgstr "Յիշողութիւն՝ %s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:156
 #, c-format
 msgid "Swap: %s"
 msgstr "Փոխանակում՝ %s"
 
-#: ../src/process-statusbar.c:190
+#: ../src/process-statusbar.c:170
 #, c-format
 msgid "Processes: %d"
 msgstr "Գործընթացներ՝ %d"
@@ -136,150 +123,150 @@ msgstr "CPU"
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:367
+#: ../src/process-tree-view.c:368
 msgid "Terminate task"
 msgstr "Աւարտել առաջադրանքը"
 
-#: ../src/process-tree-view.c:367
+#: ../src/process-tree-view.c:368
 msgid "Kill task"
 msgstr "Ոչնչացնել առաջադրանքը"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Ուղարկե՞լ %s ազդանշանը PID %d֊ին։"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "terminate"
 msgstr "աւարտել"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "kill"
 msgstr "ոչնչացնել"
 
-#: ../src/process-tree-view.c:382
+#: ../src/process-tree-view.c:383
 msgid "Error sending signal"
 msgstr "Ազդանշանի ուղարկման սխալ"
 
-#: ../src/process-tree-view.c:384
+#: ../src/process-tree-view.c:385
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Չյաջողուեց ուղարկել  PID %d ֊ին ազդանշան։ Հաւանաբար Դուք չունէք պէտքական արտոնութիւնը։"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 msgid "Error setting priority"
 msgstr "Առաջնահերթութեան սահմանման սխալ"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Չյաջողուեց սահմանել առաջնահերթութիւնը PID %d ֊ի համար։ Հաւանաբար Դուք չունէք պէտքական արտոնութիւնը։"
 
-#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:576
+#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:568
 msgid "Stop"
 msgstr "Դադար"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:440
 msgid "Continue"
 msgstr "Շարունակել"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:446
 msgid "Terminate"
 msgstr "Աւարտել"
 
-#: ../src/process-tree-view.c:451
+#: ../src/process-tree-view.c:452
 msgid "Kill"
 msgstr "Ոչնչացնել"
 
-#: ../src/process-tree-view.c:458
+#: ../src/process-tree-view.c:459
 msgid "Very low"
 msgstr "Շատ ցածր"
 
-#: ../src/process-tree-view.c:463
+#: ../src/process-tree-view.c:464
 msgid "Low"
 msgstr "Ցածր"
 
-#: ../src/process-tree-view.c:468
+#: ../src/process-tree-view.c:469
 msgid "Normal"
 msgstr "Սովորական"
 
-#: ../src/process-tree-view.c:473
+#: ../src/process-tree-view.c:474
 msgid "High"
 msgstr "Բարձր"
 
-#: ../src/process-tree-view.c:478
+#: ../src/process-tree-view.c:479
 msgid "Very high"
 msgstr "Շատ բարձր"
 
-#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Առաջնահերթութիւն"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:166
 msgid "Bad Window"
 msgstr "Վատ պատուհան"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:166
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Պատուհանի id 0x%lx ֊ը  գոյութիւն չունի։"
 
-#: ../src/process-window.c:172
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty ֊ը ձախողուեց։"
 
-#: ../src/process-window.c:172
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty ֊ը ձախողուեց։"
 
-#: ../src/process-window.c:179
+#: ../src/process-window.c:176
 msgid "No PID found"
 msgstr "PID չի գտնուել"
 
-#: ../src/process-window.c:179
+#: ../src/process-window.c:176
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "0x%lx պատուհանի համար PID չի գտնուել"
 
-#: ../src/process-window.c:263
+#: ../src/process-window.c:260
 msgid "Identify Window"
 msgstr "Նոյնացնել Պատուհանը"
 
-#: ../src/process-window.c:264
+#: ../src/process-window.c:261
 msgid "Identify an open window by clicking on it."
 msgstr "Նոյնացնել բաց պատուհանը իրեն սեղմելով։"
 
-#: ../src/process-window.c:342
+#: ../src/process-window.c:333
 msgid "Filter on process name"
 msgstr "Զտիչ գործընթացի անուան մէջ"
 
-#: ../src/process-window.c:529
+#: ../src/process-window.c:499
 msgid "Easy to use task manager"
 msgstr "Առաջադրանքների կառավարչի հեշտ կիրառում"
 
-#: ../src/process-window.c:532
+#: ../src/process-window.c:502
 msgid "translator-credits"
 msgstr "E-Hayq LLC, 2018"
 
-#: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
+#: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Զգուշացէք, Դուք աւգտագործում էք արմատային հաշիւ, Դուք կարող էք վնասել Ձեր համակարգին։"
 
-#: ../src/process-window-gtk3.ui.h:3
+#: ../src/process-window.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Միացման առաջադրանք"
 
-#: ../src/process-window-gtk3.ui.h:4
+#: ../src/process-window.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Առաջադրանքի փոփոխում"
 
-#: ../src/process-window-gtk3.ui.h:5
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Աւարտել առաջադրանքը"
@@ -300,59 +287,59 @@ msgstr "Մեծ"
 msgid "Text"
 msgstr "Գրոյթ"
 
-#: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
+#: ../src/settings-dialog.ui.h:1
 msgid "Settings for Task Manager"
 msgstr "Առաջադրանքների Կառավարչի կարգաւորումներ"
 
-#: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
+#: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
 msgstr "Ցուցադրել յաւելուածների պատկերակները"
 
-#: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
+#: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
 msgstr "Ցուցադրել հրամանների ամբողջական տողերը"
 
-#: ../src/settings-dialog.ui.h:4 ../src/settings-dialog-gtk3.ui.h:4
+#: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
 msgstr "Ցուցադրել արժեքները աւելի ճշգրիտ"
 
-#: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
+#: ../src/settings-dialog.ui.h:5
 msgid "Show processes as tree"
 msgstr "Ցուցադրել գործընթացները ծառի տեսքով"
 
-#: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
+#: ../src/settings-dialog.ui.h:6
 msgid "Toolbar style:"
 msgstr "Գործիքների գոտու ոճ․"
 
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
+#: ../src/settings-dialog.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>Միջերեսի ոճ</b>"
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Հուշուածք առաջադրանքների աւարտման համար"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
 msgstr "Թաքցնել ծանուցադաշտում"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Խառնաբնոյթ</b>"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
 msgstr "Թարմացնել արագութիւնը․"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:12
 msgid "Columns:"
 msgstr "Սիւնակներ․"
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>Տեղեկութիւն</b>"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:14
 msgid "Settings"
 msgstr "Կարգաւորումներ"
 
