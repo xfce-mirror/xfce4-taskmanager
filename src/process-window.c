@@ -70,7 +70,6 @@ static void	xtm_process_window_hide				(GtkWidget *widget);
 
 static void	emit_destroy_signal				(XtmProcessWindow *window);
 static gboolean	xtm_process_window_configure_event		(XtmProcessWindow *window, GdkEvent *event);
-static gboolean	xtm_process_vpaned_move_event			(XtmProcessWindow *window, GdkEventButton *event);
 static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
 static void	toolbar_update_style				(XtmProcessWindow *window);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
@@ -277,11 +276,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 					  "handle-position", &handle_position,
 					  NULL);
 
-		window->vpaned = GTK_WIDGET (gtk_builder_get_object (window->builder, "mainview-vpaned"));
-		if (handle_position > -1)
-			gtk_paned_set_position (GTK_PANED (window->vpaned), handle_position);
-		g_signal_connect_swapped(window->vpaned, "button-release-event",
-		    G_CALLBACK(xtm_process_vpaned_move_event), window);
 
 		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "graph-cpu"));
 		window->cpu_monitor = xtm_process_monitor_new ();
@@ -302,7 +296,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	window->statusbar = xtm_process_statusbar_new ();
 	gtk_widget_show (window->statusbar);
-	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->builder, "graph-vbox")), window->statusbar, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->builder, "statusbar-box")), window->statusbar, FALSE, FALSE, 0);
 
 	if (geteuid () == 0)
 	{
@@ -384,20 +378,7 @@ xtm_process_window_configure_event(XtmProcessWindow *window,
 	return (FALSE);
 }
 
-static gboolean
-xtm_process_vpaned_move_event(XtmProcessWindow *window,
-    GdkEventButton *event __unused) {
-	gint handle_position;
 
-	if (NULL != window) {
-		handle_position = gtk_paned_get_position(GTK_PANED(window->vpaned));
-		g_object_set (window->settings,
-		    "handle-position", handle_position,
-		    NULL);
-	}
-
-	return (FALSE);
-}
 
 static gboolean
 xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)

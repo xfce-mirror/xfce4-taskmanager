@@ -143,7 +143,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 
 	/* Draw area below the line, distinguish between CPU (0) and Mem (1) color-wise */
 	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
+		cairo_set_source_rgba (cr, 0.66, 0.55, 1.0, 0.3);
 	else
 		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3);
 	cairo_set_line_width (cr, 0.0);
@@ -164,7 +164,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	cairo_translate (cr, step_size * i, 0);
 
 	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0);
+		cairo_set_source_rgba (cr, 0.66, 0.55, 1.0, 1.0);
 	else
 		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0);
 	cairo_set_line_width (cr, 0.85);
@@ -201,21 +201,48 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 
 	/* Paint the graph's background box */
 	cairo_rectangle (cr, 0.0, 0.0, width, height);
-	cairo_set_source_rgb (cr, 0.96, 0.96, 0.96);
-	cairo_fill_preserve (cr);
-	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0); 
-	cairo_set_line_width (cr, 0.75);
-	cairo_stroke (cr);
+	if (monitor->type == 0)	cairo_set_source_rgba(cr, 0.66, 0.55, 1.0, 0.04);
+	else                    cairo_set_source_rgba(cr, 0.67, 0.09, 0.32, 0.04);
+	cairo_fill_preserve(cr);
+
+	if (monitor->type == 0) cairo_set_source_rgba(cr, 0.66, 0.55, 1.0, 0.7);
+	else 					cairo_set_source_rgba(cr, 0.67, 0.09, 0.32, 0.7);
+	cairo_set_line_width(cr, 2.5);
+	cairo_stroke(cr);
   
 	/* Paint dashed lines at 25%, 50% and 75% */
-	cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3); 
+	if (monitor->type == 0)
+		cairo_set_source_rgba (cr, 0.66, 0.55, 1.0, 0.4); 
+	else 
+		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.4); 
 	cairo_set_line_width (cr, 1.0);
 	cairo_set_dash(cr, dashed, 1.0, 0);
 	for (i = 25; i <= 75; i += 25)
 	{
+		/* Draw horizontal lines */
 		cairo_move_to (cr, 1.5, i * height / 100 + 0.5);
 		cairo_line_to (cr, width - 0.5, i * height / 100 + 0.5);
 		cairo_stroke (cr);
+
+		/* Draw Vertical lines */
+		cairo_move_to (cr, i * width / 100 + 0.5, 1.5);
+		cairo_line_to (cr, i * width / 100 + 0.5, height - 0.5);
+		cairo_stroke (cr);
+	}
+
+	int font_size = height < width ? height / 10 : width / 10;
+	if (font_size <= 18) font_size = 18;
+	if (font_size >= 28) font_size = 28;
+
+	cairo_set_font_size(cr, font_size);
+	if (monitor->type == 0) {
+		cairo_move_to(cr, (width / 2) - (font_size * 2) / 2 , height / 2 );
+		cairo_set_source_rgba(cr, 0.66, 0.55, 1.0, 0.5);
+		cairo_show_text(cr, "CPU");
+	} else {
+		cairo_move_to(cr, (width / 2) - (font_size * 4) / 2 , height / 2 );
+		cairo_set_source_rgba(cr, 0.67, 0.09, 0.32, 0.5);
+		cairo_show_text(cr, "Memory");
 	}
 
 	/* Paint the graph on a slightly smaller surface not to overlap with the background box */
