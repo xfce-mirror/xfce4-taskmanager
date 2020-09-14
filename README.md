@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/xfce/xfce4-taskmanager/COPYING)
+[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/apps/xfce4-taskmanager/-/blob/master/COPYING)
 
 # xfce4-taskmanager
 
@@ -8,7 +8,7 @@ The xfce4-taskmanager component is an easy to use graphical task manager.
 
 ### Homepage
 
-[xfce4-taskmanager documentation](https://docs.xfce.org/apps/xfce4-taskmanager/start)
+[Xfce4-taskmanager documentation](https://docs.xfce.org/apps/xfce4-taskmanager/start)
 
 ### Changelog
 
@@ -16,13 +16,13 @@ See [NEWS](https://gitlab.xfce.org/apps/xfce4-taskmanager/-/blob/master/NEWS) fo
 
 ### Source Code Repository
 
-[xfce4-taskmanager source code](https://gitlab.xfce.org/apps/xfce4-taskmanager)
+[Xfce4-taskmanager source code](https://gitlab.xfce.org/apps/xfce4-taskmanager)
 
-### Download A Release Tarball
+### Download a Release Tarball
 
-[xfce4-taskmanager archive](https://archive.xfce.org/src/apps/xfce4-taskmanager)
+[Xfce4-taskmanager archive](https://archive.xfce.org/src/apps/xfce4-taskmanager)
     or
-[xfce4-taskmanager tags](https://gitlab.xfce.org/apps/xfce4-taskmanager/-/tags)
+[Xfce4-taskmanager tags](https://gitlab.xfce.org/apps/xfce4-taskmanager/-/tags)
 
 ### Installation
 
