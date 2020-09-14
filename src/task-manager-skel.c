@@ -25,12 +25,13 @@ static gushort _cpu_count = 0;
 */
 
 gboolean
-get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
+get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
 {
 	*memory_total = 0;
 	*memory_free = 0;
 	*memory_cache = 0;
 	*memory_buffers = 0;
+	*memory_available = *memory_free + *memory_cache + *memory_buffers;
 	*swap_total = 0;
 	*swap_free = 0;
 
