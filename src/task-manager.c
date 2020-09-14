@@ -60,6 +60,7 @@ struct _XtmTaskManager
 	gfloat			cpu_user;
 	gfloat			cpu_system;
 	guint64			memory_total;
+	guint64			memory_available; /* free + cache + buffers + an-OS-specific-value */
 	guint64			memory_free;
 	guint64			memory_cache;
 	guint64			memory_buffers;
@@ -367,10 +368,10 @@ xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes,
 	*num_processes = manager->tasks->len;
 
 	/* Set memory and swap usage */
-	get_memory_usage (&manager->memory_total, &manager->memory_free, &manager->memory_cache, &manager->memory_buffers,
+	get_memory_usage (&manager->memory_total, &manager->memory_available, &manager->memory_free, &manager->memory_cache, &manager->memory_buffers,
 			&manager->swap_total, &manager->swap_free);
 
-	*memory_used = manager->memory_total - manager->memory_free - manager->memory_cache - manager->memory_buffers;
+	*memory_used = manager->memory_total - manager->memory_available;
 	*memory_total = manager->memory_total;
 	*swap_used = manager->swap_total - manager->swap_free;
 	*swap_total = manager->swap_total;

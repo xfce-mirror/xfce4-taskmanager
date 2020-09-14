@@ -22,42 +22,49 @@ static gushort _cpu_count = 0;
 static gulong jiffies_total_delta = 0;
 
 gboolean
-get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
+get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
 {
 	FILE *file;
-	gchar buffer[1024];
 	gchar *filename = "/proc/meminfo";
-	gushort found = 0;
+	gulong mem_total = 0,
+	       mem_free = 0,
+	       mem_avail = 0,
+	       mem_cached = 0,
+	       mem_buffers = 0,
+	       swp_total = 0,
+	       swp_free = 0;
 
-	if ((file = fopen (filename, "r")) == NULL)
-		return FALSE;
-
-	*memory_total = 0;
-	*memory_free = 0;
-	*memory_cache = 0;
-	*memory_buffers = 0;
-	*swap_total = 0;
-	*swap_free = 0;
-
-	while (found < 6 && fgets (buffer, sizeof(buffer), file) != NULL)
+	if ((file = fopen (filename, "r")) != NULL)
 	{
-		found += sscanf (buffer, "MemTotal:\t%llu kB", (unsigned long long*)memory_total);
-		found += sscanf (buffer, "MemFree:\t%llu kB", (unsigned long long*)memory_free);
-		found += sscanf (buffer, "Cached:\t%llu kB", (unsigned long long*)memory_cache);
-		found += sscanf (buffer, "Buffers:\t%llu kB", (unsigned long long*)memory_buffers);
-		found += sscanf (buffer, "SwapTotal:\t%llu kB", (unsigned long long*)swap_total);
-		found += sscanf (buffer, "SwapFree:\t%llu kB", (unsigned long long*)swap_free);
+		gint found = 0;
+		gchar buffer[256];
+		while (found < 7 && fgets (buffer, sizeof(buffer), file) != NULL)
+		{
+			found += !mem_total ? sscanf (buffer, "MemTotal:\t%lu kB", &mem_total) : 0;
+			found += !mem_free ? sscanf (buffer, "MemFree:\t%lu kB", &mem_free) : 0;
+			found += !mem_avail ? sscanf (buffer, "MemAvailable:\t%lu kB", &mem_avail) : 0; /* Since Linux 3.14 */
+			found += !mem_cached ? sscanf (buffer, "Cached:\t%lu kB", &mem_cached) : 0;
+			found += !mem_buffers ? sscanf (buffer, "Buffers:\t%lu kB", &mem_buffers) : 0;
+			found += !swp_total ? sscanf (buffer, "SwapTotal:\t%lu kB", &swp_total) : 0;
+			found += !swp_free ? sscanf (buffer, "SwapFree:\t%lu kB", &swp_free) : 0;
+		}
+		fclose (file);
 	}
-	fclose (file);
 
-	*memory_total *= 1024;
-	*memory_free *= 1024;
-	*memory_cache *= 1024;
-	*memory_buffers *= 1024;
-	*swap_total *= 1024;
-	*swap_free *= 1024;
+	if (mem_avail == 0)
+	{
+		mem_avail = mem_free + mem_cached + mem_buffers;
+	}
 
-	return TRUE;
+	*memory_total = mem_total * 1024;
+	*memory_available = mem_avail * 1024;
+	*memory_free = mem_free * 1024;
+	*memory_cache = mem_cached * 1024;
+	*memory_buffers = mem_buffers * 1024;
+	*swap_total = swp_total * 1024;
+	*swap_free = swp_free * 1024;
+
+	return file ? TRUE : FALSE;
 }
 
 gboolean
