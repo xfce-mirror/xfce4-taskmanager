@@ -64,7 +64,7 @@ get_mem_by_pages (const gchar *name)
 }
 
 gboolean
-get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
+get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
 {
 	/* Get memory usage */
 	{
@@ -72,6 +72,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 		*memory_free = get_mem_by_pages ("vm.stats.vm.v_free_count");
 		*memory_cache = get_mem_by_pages ("vm.stats.vm.v_inactive_count");
 		*memory_buffers = get_mem_by_bytes ("vfs.bufspace");
+		*memory_available = *memory_free + *memory_cache + *memory_buffers;
 	}
 
 	/* Get swap usage */

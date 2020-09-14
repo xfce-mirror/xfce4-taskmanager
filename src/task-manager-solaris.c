@@ -34,7 +34,7 @@ init_stats (void)
 }
 
 gboolean
-get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
+get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
 {
 	kstat_t *ksp;
 	kstat_named_t *knp;
@@ -52,6 +52,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_free, guint64 *memory_c
 	*memory_free = getpagesize () * knp->value.ui64;
 	*memory_cache = 0;
 	*memory_buffers = 0;
+	*memory_available = *memory_free + *memory_cache + *memory_buffers;
 
 	*swap_total = *swap_free = 0;
 	if ((n = swapctl (SC_GETNSWP, NULL)) > 0)
