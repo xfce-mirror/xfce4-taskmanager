@@ -14,6 +14,7 @@ ChangeLog: Makefile
 	ChangeLog-git.sh > $(srcdir)/ChangeLog || touch $(srcdir)/ChangeLog
 
 EXTRA_DIST =								\
+	README.md								\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in						\
