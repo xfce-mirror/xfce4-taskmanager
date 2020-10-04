@@ -31,7 +31,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 	*memory_free = 0;
 	*memory_cache = 0;
 	*memory_buffers = 0;
-	*memory_available = *memory_free + *memory_cache + *memory_buffers;
+	*memory_available = 0;
 	*swap_total = 0;
 	*swap_free = 0;
 
