@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-27 00:46+0200\n"
-"PO-Revision-Date: 2020-07-06 08:12+0000\n"
-"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
+"POT-Creation-Date: 2020-08-03 00:47+0200\n"
+"PO-Revision-Date: 2020-08-02 22:47+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce-apps/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,10 +18,10 @@ msgstr ""
 "Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:103
-#: ../src/exec-tool-button.c:148 ../src/main.c:182
-#: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:507
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:86
+#: ../src/exec-tool-button.c:131 ../src/main.c:182
+#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:417 ../src/process-window.c:495
 #: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Tegumihaldur"
@@ -30,32 +30,28 @@ msgstr "Tegumihaldur"
 msgid "Easy to use application to monitor system resources"
 msgstr "Lihtsaltkasutatav rakendus süsteemi jõudluse jälgimiseks"
 
-#: ../src/exec-tool-button.c:101 ../src/exec-tool-button.c:145
+#: ../src/exec-tool-button.c:84 ../src/exec-tool-button.c:128
 msgid "Execution error"
 msgstr "Viga käivitamisel"
 
-#: ../src/exec-tool-button.c:147
+#: ../src/exec-tool-button.c:130
 msgid "Couldn't find any default command to run."
 msgstr "Ei leidnud ühtegi käivitamiseks sobilikku vaikimisi käsku."
 
-#: ../src/exec-tool-button.c:178
-msgid "Run Task Manager as root"
-msgstr "Käivita Tegumihaldur juurkasutaja õigustes"
-
-#: ../src/exec-tool-button.c:189 ../src/exec-tool-button.c:191
-#: ../src/exec-tool-button.c:193
+#: ../src/exec-tool-button.c:158 ../src/exec-tool-button.c:160
+#: ../src/exec-tool-button.c:162
 msgid "Run Program..."
 msgstr "Käivita programm..."
 
-#: ../src/exec-tool-button.c:196
+#: ../src/exec-tool-button.c:165
 msgid "Application Finder"
 msgstr "Rakenduste leidja"
 
-#: ../src/exec-tool-button.c:199
+#: ../src/exec-tool-button.c:168
 msgid "Terminal emulator"
 msgstr "Terminaliemulaator"
 
-#: ../src/exec-tool-button.c:201
+#: ../src/exec-tool-button.c:170
 msgid "XTerm"
 msgstr "Klassikaline XTerm"
 
@@ -68,12 +64,12 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Protsesse:</b> %u\n<b>Protsessori koormus:</b> %.0f%%\n<b>Mälu:</b> %s\n<b>Saaleala:</b> %s"
 
-#: ../src/process-statusbar.c:137 ../src/process-window.c:576
+#: ../src/process-statusbar.c:137 ../src/process-window.c:562
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Protsessor: %s%%"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:580
+#: ../src/process-statusbar.c:147 ../src/process-window.c:566
 #, c-format
 msgid "Memory: %s"
 msgstr "Mälu: %s"
@@ -126,132 +122,132 @@ msgstr "CPU"
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:367
+#: ../src/process-tree-view.c:368
 msgid "Terminate task"
 msgstr "Hävita tegum (TERM)"
 
-#: ../src/process-tree-view.c:367
+#: ../src/process-tree-view.c:368
 msgid "Kill task"
 msgstr "Tapa tegum (KILL)"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Kas oled kindel et soovid saata %s signaali protsessile ID'ga %d?"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "terminate"
 msgstr "hävita"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "kill"
 msgstr "tapa"
 
-#: ../src/process-tree-view.c:382
+#: ../src/process-tree-view.c:383
 msgid "Error sending signal"
 msgstr "Viga signaali saatmisel"
 
-#: ../src/process-tree-view.c:384
+#: ../src/process-tree-view.c:385
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Signaali saatmisel protsessile ID'ga %d tekkis viga. Sul ilmselt pole vajalikke õigusi."
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 msgid "Error setting priority"
 msgstr "Viga prioriteedi määramisel"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Protsessile ID'ga %d prioriteedi seadmisel tekkis viga. Sul ilmselt pole vajalikke õigusi."
 
-#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:576
+#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:568
 msgid "Stop"
 msgstr "Peata"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:440
 msgid "Continue"
 msgstr "Jätka"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:446
 msgid "Terminate"
 msgstr "Hävita"
 
-#: ../src/process-tree-view.c:451
+#: ../src/process-tree-view.c:452
 msgid "Kill"
 msgstr "Tapa"
 
-#: ../src/process-tree-view.c:458
+#: ../src/process-tree-view.c:459
 msgid "Very low"
 msgstr "Väga madal"
 
-#: ../src/process-tree-view.c:463
+#: ../src/process-tree-view.c:464
 msgid "Low"
 msgstr "Madal"
 
-#: ../src/process-tree-view.c:468
+#: ../src/process-tree-view.c:469
 msgid "Normal"
 msgstr "Tavaline"
 
-#: ../src/process-tree-view.c:473
+#: ../src/process-tree-view.c:474
 msgid "High"
 msgstr "Kõrge"
 
-#: ../src/process-tree-view.c:478
+#: ../src/process-tree-view.c:479
 msgid "Very high"
 msgstr "Väga kõrge"
 
-#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Prioriteet"
 
-#: ../src/process-window.c:165
+#: ../src/process-window.c:166
 msgid "Bad Window"
 msgstr "Vigane aken"
 
-#: ../src/process-window.c:165
+#: ../src/process-window.c:166
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Aken id'ga 0x%lx ei ole olemas!"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty ebaõnnestus"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty ebaõnnestus!"
 
-#: ../src/process-window.c:175
+#: ../src/process-window.c:176
 msgid "No PID found"
 msgstr "Ei leidnud Protsessi ID'd"
 
-#: ../src/process-window.c:175
+#: ../src/process-window.c:176
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Ei leidnud Protsessi ID'd aknale 0x%lx."
 
-#: ../src/process-window.c:259
+#: ../src/process-window.c:260
 msgid "Identify Window"
 msgstr "Leia aken"
 
-#: ../src/process-window.c:260
+#: ../src/process-window.c:261
 msgid "Identify an open window by clicking on it."
 msgstr "Leia aknale klikates vastav kirje "
 
-#: ../src/process-window.c:332
+#: ../src/process-window.c:333
 msgid "Filter on process name"
 msgstr "Filtreeri protsessi nime alusel"
 
-#: ../src/process-window.c:511
+#: ../src/process-window.c:499
 msgid "Easy to use task manager"
 msgstr "Lihtsaltkasutatav tegumihaldur"
 
-#: ../src/process-window.c:514
+#: ../src/process-window.c:502
 msgid "translator-credits"
 msgstr "Kristjan Siimson <epost@ksiimson.se> &amp; tolge.pingviin.org\nPriit Jõerüüt 2020"
 
