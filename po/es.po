@@ -6,16 +6,16 @@
 # Adolfo Jayme-Barrientos, 2014
 # Adolfo Jayme Barrientos, 2014
 # Adolfo Jayme-Barrientos, 2014
-# Casper casper, 2019
+# Casper casper, 2019-2020
 # prflr88 <prflr88@gmail.com>, 2014
 # prflr88 <prflr88@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-04-25 07:01+0000\n"
-"Last-Translator: Casper casper\n"
+"POT-Creation-Date: 2020-08-03 00:47+0200\n"
+"PO-Revision-Date: 2020-08-02 22:47+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-apps/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,48 +23,44 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:193
-#: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:512
-#: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:86
+#: ../src/exec-tool-button.c:131 ../src/main.c:182
+#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:417 ../src/process-window.c:495
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "Gestor de tareas"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
-msgid "Easy to use task manager"
-msgstr "Un gestor de tareas fácil de usar"
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Easy to use application to monitor system resources"
+msgstr "Aplicación fácil de usar para monitorear los recursos del sistema"
 
-#: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
+#: ../src/exec-tool-button.c:84 ../src/exec-tool-button.c:128
 msgid "Execution error"
 msgstr "Error de ejecución"
 
-#: ../src/exec-tool-button.c:150
+#: ../src/exec-tool-button.c:130
 msgid "Couldn't find any default command to run."
 msgstr "No se pudo encontrar ninguna orden predeterminada a ejecutar."
 
-#: ../src/exec-tool-button.c:181
-msgid "Run Task Manager as root"
-msgstr "Ejecutar el Gestor de Tareas como administrador"
-
-#: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
-#: ../src/exec-tool-button.c:196
+#: ../src/exec-tool-button.c:158 ../src/exec-tool-button.c:160
+#: ../src/exec-tool-button.c:162
 msgid "Run Program..."
 msgstr "Ejecutar un programa…"
 
-#: ../src/exec-tool-button.c:199
+#: ../src/exec-tool-button.c:165
 msgid "Application Finder"
 msgstr "Buscador de aplicaciones"
 
-#: ../src/exec-tool-button.c:202
+#: ../src/exec-tool-button.c:168
 msgid "Terminal emulator"
 msgstr "Emulador de terminal"
 
-#: ../src/exec-tool-button.c:204
+#: ../src/exec-tool-button.c:170
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:132
+#: ../src/main.c:130
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -73,31 +69,22 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Procesos:</b> %u\n<b>CPU:</b> %.0f %%\n<b>Memoria:</b> %s\n<b>Área de intercambio:</b> %s"
 
-#: ../src/main.c:140
-#, c-format
-msgid ""
-"Processes: %u\n"
-"CPU: %.0f%%\n"
-"Memory: %s\n"
-"Swap: %s"
-msgstr "Procesos: %u\nCPU: %.0f %%\nMemoria: %s\nÁrea de intercambio: %s"
-
-#: ../src/process-statusbar.c:147 ../src/process-window.c:584
+#: ../src/process-statusbar.c:137 ../src/process-window.c:562
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s %%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:588
+#: ../src/process-statusbar.c:147 ../src/process-window.c:566
 #, c-format
 msgid "Memory: %s"
 msgstr "Memoria: %s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:156
 #, c-format
 msgid "Swap: %s"
 msgstr "Área de intercambio: %s"
 
-#: ../src/process-statusbar.c:190
+#: ../src/process-statusbar.c:170
 #, c-format
 msgid "Processes: %d"
 msgstr "Procesos: %d"
@@ -140,223 +127,223 @@ msgstr "CPU"
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:367
+#: ../src/process-tree-view.c:368
 msgid "Terminate task"
 msgstr "Terminar tarea"
 
-#: ../src/process-tree-view.c:367
+#: ../src/process-tree-view.c:368
 msgid "Kill task"
 msgstr "Matar tarea"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "¿Seguro que quiere enviar la señal %s al PID %d?"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "terminate"
 msgstr "terminar"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "kill"
 msgstr "matar"
 
-#: ../src/process-tree-view.c:382
+#: ../src/process-tree-view.c:383
 msgid "Error sending signal"
 msgstr "Error al enviar la señal"
 
-#: ../src/process-tree-view.c:384
+#: ../src/process-tree-view.c:385
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Se detectó un error al enviar una señal al PID %d. Es probable que no tenga los privilegios necesarios."
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 msgid "Error setting priority"
 msgstr "Error al establecer la prioridad"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Se detectó un error al establecer una prioridad para el PID %d. Es probable que no tenga los privilegios necesarios."
 
-#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:576
+#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:568
 msgid "Stop"
 msgstr "Detener"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:440
 msgid "Continue"
 msgstr "Continuar"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:446
 msgid "Terminate"
 msgstr "Terminar"
 
-#: ../src/process-tree-view.c:451
+#: ../src/process-tree-view.c:452
 msgid "Kill"
 msgstr "Matar"
 
-#: ../src/process-tree-view.c:458
+#: ../src/process-tree-view.c:459
 msgid "Very low"
 msgstr "Muy baja"
 
-#: ../src/process-tree-view.c:463
+#: ../src/process-tree-view.c:464
 msgid "Low"
 msgstr "Baja"
 
-#: ../src/process-tree-view.c:468
+#: ../src/process-tree-view.c:469
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/process-tree-view.c:473
+#: ../src/process-tree-view.c:474
 msgid "High"
 msgstr "Alta"
 
-#: ../src/process-tree-view.c:478
+#: ../src/process-tree-view.c:479
 msgid "Very high"
 msgstr "Muy alta"
 
-#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "Prioridad"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:166
 msgid "Bad Window"
 msgstr "Ventana incorrecta"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:166
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "¡La ventana con id 0x%lx no existe!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed"
 msgstr "Ha fallado XGetWindowProperty"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed!"
 msgstr "¡Ha fallado XGetWindowProperty!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:176
 msgid "No PID found"
 msgstr "PID no encontrado"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:176
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "No se encuentra el PID de la ventana 0x%lx."
 
-#: ../src/process-window.c:261
+#: ../src/process-window.c:260
 msgid "Identify Window"
 msgstr "Identificar ventana"
 
-#: ../src/process-window.c:262
+#: ../src/process-window.c:261
 msgid "Identify an open window by clicking on it."
 msgstr "Identifica una ventana haciendo clic sobre ella."
 
-#: ../src/process-window.c:338
+#: ../src/process-window.c:333
 msgid "Filter on process name"
 msgstr "Filtrar procesos por nombre"
 
-#: ../src/process-window.c:522
+#: ../src/process-window.c:499
+msgid "Easy to use task manager"
+msgstr "Un gestor de tareas fácil de usar"
+
+#: ../src/process-window.c:502
 msgid "translator-credits"
 msgstr "Abel Martín <abel.martin.ruiz@gmail.com>, 2009-2010\nAdolfo Jayme Barrientos <fito@libreoffice.org>, 2014\nPablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>, 2014-2015"
 
-#: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
+#: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "Aviso: está usando la cuenta de administrador, puede dañar su sistema."
 
-#: ../src/process-window-gtk3.ui.h:3
+#: ../src/process-window.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Iniciando tarea"
 
-#: ../src/process-window-gtk3.ui.h:4
+#: ../src/process-window.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Cambiando de tarea "
 
-#: ../src/process-window-gtk3.ui.h:5
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span>  Terminando la tarea"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:397
 msgid "Default"
 msgstr "Predeterminado"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:398
 msgid "Small"
 msgstr "Pequeño"
 
-#: ../src/settings.c:391
+#: ../src/settings.c:399
 msgid "Large"
 msgstr "Grande"
 
-#: ../src/settings.c:392
+#: ../src/settings.c:400
 msgid "Text"
 msgstr "Texto"
 
-#: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
+#: ../src/settings-dialog.ui.h:1
 msgid "Settings for Task Manager"
 msgstr "Configuración del Gestor de tareas"
 
-#: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
+#: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
 msgstr "Mostrar los iconos de las aplicaciones"
 
-#: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
+#: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
 msgstr "Mostrar líneas de órdenes completas"
 
-#: ../src/settings-dialog.ui.h:4 ../src/settings-dialog-gtk3.ui.h:4
+#: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
 msgstr "Mostrar valores con más precisión"
 
-#: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
+#: ../src/settings-dialog.ui.h:5
 msgid "Show processes as tree"
 msgstr "Mostrar árbol de procesos"
 
-#: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
-msgid "Show memory usage in bytes"
-msgstr "Mostrar uso de memoria en bytes"
-
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
+#: ../src/settings-dialog.ui.h:6
 msgid "Toolbar style:"
 msgstr "Estilo de la barra:"
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>Estilo de la interfaz</b>"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "Avisar antes de terminar una tarea"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
 msgstr "Ocultar en el área de notificación"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Varias</b>"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
 msgstr "Tasa de actualización:"
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:12
 msgid "Columns:"
 msgstr "Columnas:"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>Información</b>"
 
-#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
+#: ../src/settings-dialog.ui.h:14
 msgid "Settings"
 msgstr "Configuración"
 
