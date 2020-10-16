@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 00:32+0200\n"
-"PO-Revision-Date: 2019-05-27 07:47+0000\n"
-"Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
+"POT-Creation-Date: 2020-08-03 00:47+0200\n"
+"PO-Revision-Date: 2020-08-02 22:47+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Thai (http://www.transifex.com/xfce/xfce-apps/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,48 +19,44 @@ msgstr ""
 "Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:106
-#: ../src/exec-tool-button.c:151 ../src/main.c:193
-#: ../src/process-tree-view.c:371 ../src/process-tree-view.c:386
-#: ../src/process-tree-view.c:416 ../src/process-window.c:512
-#: ../src/process-window.ui.h:1 ../src/process-window-gtk3.ui.h:1
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:86
+#: ../src/exec-tool-button.c:131 ../src/main.c:182
+#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:417 ../src/process-window.c:495
+#: ../src/process-window.ui.h:1
 msgid "Task Manager"
 msgstr "โปรแกรมจัดการทาสก์"
 
-#: ../xfce4-taskmanager.desktop.in.h:2 ../src/process-window.c:519
-msgid "Easy to use task manager"
-msgstr "โปรแกรมจัดการทาสก์สะดวกใช้"
+#: ../xfce4-taskmanager.desktop.in.h:2
+msgid "Easy to use application to monitor system resources"
+msgstr ""
 
-#: ../src/exec-tool-button.c:104 ../src/exec-tool-button.c:148
+#: ../src/exec-tool-button.c:84 ../src/exec-tool-button.c:128
 msgid "Execution error"
 msgstr "ข้อผิดพลาดของการเรียกทำงาน"
 
-#: ../src/exec-tool-button.c:150
+#: ../src/exec-tool-button.c:130
 msgid "Couldn't find any default command to run."
 msgstr "ไม่พบคำสั่งปริยายที่จะเรียก"
 
-#: ../src/exec-tool-button.c:181
-msgid "Run Task Manager as root"
-msgstr "เรียกทำงานโปรแกรมจัดการทาสก์ในฐานะ root"
-
-#: ../src/exec-tool-button.c:192 ../src/exec-tool-button.c:194
-#: ../src/exec-tool-button.c:196
+#: ../src/exec-tool-button.c:158 ../src/exec-tool-button.c:160
+#: ../src/exec-tool-button.c:162
 msgid "Run Program..."
 msgstr "เรียกโปรแกรม..."
 
-#: ../src/exec-tool-button.c:199
+#: ../src/exec-tool-button.c:165
 msgid "Application Finder"
 msgstr "เครื่องมือค้นหาโปรแกรม"
 
-#: ../src/exec-tool-button.c:202
+#: ../src/exec-tool-button.c:168
 msgid "Terminal emulator"
 msgstr "โปรแกรมจำลองเทอร์มินัล"
 
-#: ../src/exec-tool-button.c:204
+#: ../src/exec-tool-button.c:170
 msgid "XTerm"
 msgstr "XTerm"
 
-#: ../src/main.c:132
+#: ../src/main.c:130
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -69,31 +65,22 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>โพรเซส:</b> %u\n<b>ซีพียู:</b> %.0f%%\n<b>หน่วยความจำ:</b> %s\n<b>พื้นที่สลับ:</b> %s"
 
-#: ../src/main.c:140
-#, c-format
-msgid ""
-"Processes: %u\n"
-"CPU: %.0f%%\n"
-"Memory: %s\n"
-"Swap: %s"
-msgstr "โพรเซส: %u\nซีพียู: %.0f%%\nหน่วยความจำ: %s\nพื้นที่สลับ: %s"
-
-#: ../src/process-statusbar.c:147 ../src/process-window.c:584
+#: ../src/process-statusbar.c:137 ../src/process-window.c:562
 #, c-format
 msgid "CPU: %s%%"
 msgstr "ซีพียู: %s%%"
 
-#: ../src/process-statusbar.c:162 ../src/process-window.c:588
+#: ../src/process-statusbar.c:147 ../src/process-window.c:566
 #, c-format
 msgid "Memory: %s"
 msgstr "หน่วยความจำ: %s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:156
 #, c-format
 msgid "Swap: %s"
 msgstr "พื้นที่สลับ: %s"
 
-#: ../src/process-statusbar.c:190
+#: ../src/process-statusbar.c:170
 #, c-format
 msgid "Processes: %d"
 msgstr "โพรเซส: %d"
@@ -136,223 +123,223 @@ msgstr "ซีพียู"
 msgid "Prio."
 msgstr "สำคัญ"
 
-#: ../src/process-tree-view.c:367
+#: ../src/process-tree-view.c:368
 msgid "Terminate task"
 msgstr "จบทาสก์"
 
-#: ../src/process-tree-view.c:367
+#: ../src/process-tree-view.c:368
 msgid "Kill task"
 msgstr "ฆ่าทาสก์"
 
-#: ../src/process-tree-view.c:369
+#: ../src/process-tree-view.c:370
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการส่งสัญญาณ '%s' ไปยัง PID %d?"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "terminate"
 msgstr "จบ"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "kill"
 msgstr "ฆ่า"
 
-#: ../src/process-tree-view.c:382
+#: ../src/process-tree-view.c:383
 msgid "Error sending signal"
 msgstr "ผิดพลาดขณะส่งสัญญาณ"
 
-#: ../src/process-tree-view.c:384
+#: ../src/process-tree-view.c:385
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "เกิดข้อผิดพลาดขณะส่งสัญญาณไปยัง PID %d เป็นไปได้ว่าคุณไม่มีสิทธิ์เพียงพอที่จะทำ"
 
-#: ../src/process-tree-view.c:413
+#: ../src/process-tree-view.c:414
 msgid "Error setting priority"
 msgstr "ผิดพลาดขณะกำหนดลำดับความสำคัญ"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:415
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "เกิดข้อผิดพลาดขณะกำหนดลำดับความสำคัญของ PID %d เป็นไปได้ว่าคุณไม่มีสิทธิ์เพียงพอที่จะทำ"
 
-#: ../src/process-tree-view.c:432 ../src/process-tree-view.c:576
+#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:568
 msgid "Stop"
 msgstr "หยุด"
 
-#: ../src/process-tree-view.c:439
+#: ../src/process-tree-view.c:440
 msgid "Continue"
 msgstr "ทำต่อ"
 
-#: ../src/process-tree-view.c:445
+#: ../src/process-tree-view.c:446
 msgid "Terminate"
 msgstr "จบ"
 
-#: ../src/process-tree-view.c:451
+#: ../src/process-tree-view.c:452
 msgid "Kill"
 msgstr "ฆ่า"
 
-#: ../src/process-tree-view.c:458
+#: ../src/process-tree-view.c:459
 msgid "Very low"
 msgstr "ต่ำมาก"
 
-#: ../src/process-tree-view.c:463
+#: ../src/process-tree-view.c:464
 msgid "Low"
 msgstr "ต่ำ"
 
-#: ../src/process-tree-view.c:468
+#: ../src/process-tree-view.c:469
 msgid "Normal"
 msgstr "ปกติ"
 
-#: ../src/process-tree-view.c:473
+#: ../src/process-tree-view.c:474
 msgid "High"
 msgstr "สูง"
 
-#: ../src/process-tree-view.c:478
+#: ../src/process-tree-view.c:479
 msgid "Very high"
 msgstr "สูงมาก"
 
-#: ../src/process-tree-view.c:483 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
 msgid "Priority"
 msgstr "ลำดับความสำคัญ"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:166
 msgid "Bad Window"
 msgstr "หน้าต่างไม่ถูกต้อง"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:166
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "ไม่มีหน้าต่าง id 0x%lx อยู่!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty ล้มเหลว"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty ล้มเหลว!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:176
 msgid "No PID found"
 msgstr "ไม่พบ PID"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:176
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "ไม่พบ PID สำหรับหน้าต่าง 0x%lx"
 
-#: ../src/process-window.c:261
+#: ../src/process-window.c:260
 msgid "Identify Window"
 msgstr "ระบุหน้าต่าง"
 
-#: ../src/process-window.c:262
+#: ../src/process-window.c:261
 msgid "Identify an open window by clicking on it."
 msgstr "ระบุหน้าต่างโดยคลิกบนหน้าต่างที่ต้องการ"
 
-#: ../src/process-window.c:338
+#: ../src/process-window.c:333
 msgid "Filter on process name"
 msgstr "กรองชื่อโพรเซส"
 
-#: ../src/process-window.c:522
+#: ../src/process-window.c:499
+msgid "Easy to use task manager"
+msgstr "โปรแกรมจัดการทาสก์สะดวกใช้"
+
+#: ../src/process-window.c:502
 msgid "translator-credits"
 msgstr "Theppitak Karoonboonyanan <theppitak@gmail.com>"
 
-#: ../src/process-window.ui.h:2 ../src/process-window-gtk3.ui.h:2
+#: ../src/process-window.ui.h:2
 msgid "Warning, you are using the root account, you may harm your system."
 msgstr "คำเตือน: คุณกำลังใช้บัญชี root ซึ่งอาจสร้างความเสียหายต่อระบบของคุณได้"
 
-#: ../src/process-window-gtk3.ui.h:3
+#: ../src/process-window.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> ทาสก์ที่กำลังเริ่ม"
 
-#: ../src/process-window-gtk3.ui.h:4
+#: ../src/process-window.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> ทาสก์ที่กำลังเปลี่ยน"
 
-#: ../src/process-window-gtk3.ui.h:5
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> ทาสก์ที่กำลังจบ"
 
-#: ../src/settings.c:389
+#: ../src/settings.c:397
 msgid "Default"
 msgstr "ปริยาย"
 
-#: ../src/settings.c:390
+#: ../src/settings.c:398
 msgid "Small"
 msgstr "เล็ก"
 
-#: ../src/settings.c:391
+#: ../src/settings.c:399
 msgid "Large"
 msgstr "ใหญ่"
 
-#: ../src/settings.c:392
+#: ../src/settings.c:400
 msgid "Text"
 msgstr "ข้อความ"
 
-#: ../src/settings-dialog.ui.h:1 ../src/settings-dialog-gtk3.ui.h:1
+#: ../src/settings-dialog.ui.h:1
 msgid "Settings for Task Manager"
 msgstr "ตั้งค่าโปรแกรมจัดการทาสก์"
 
-#: ../src/settings-dialog.ui.h:2 ../src/settings-dialog-gtk3.ui.h:2
+#: ../src/settings-dialog.ui.h:2
 msgid "Show application icons"
 msgstr "แสดงไอคอนของโปรแกรม"
 
-#: ../src/settings-dialog.ui.h:3 ../src/settings-dialog-gtk3.ui.h:3
+#: ../src/settings-dialog.ui.h:3
 msgid "Show full command lines"
 msgstr "แสดงบรรทัดคำสั่งเต็ม"
 
-#: ../src/settings-dialog.ui.h:4 ../src/settings-dialog-gtk3.ui.h:4
+#: ../src/settings-dialog.ui.h:4
 msgid "Show values with more precision"
 msgstr "แสดงค่าแบบความละเอียดสูง"
 
-#: ../src/settings-dialog.ui.h:5 ../src/settings-dialog-gtk3.ui.h:5
+#: ../src/settings-dialog.ui.h:5
 msgid "Show processes as tree"
 msgstr "แสดงโพรเซสเป็นโครงสร้างต้นไม้"
 
-#: ../src/settings-dialog.ui.h:6 ../src/settings-dialog-gtk3.ui.h:6
-msgid "Show memory usage in bytes"
-msgstr "แสดงการใช้หน่วยความจำเป็นไบต์"
-
-#: ../src/settings-dialog.ui.h:7 ../src/settings-dialog-gtk3.ui.h:7
+#: ../src/settings-dialog.ui.h:6
 msgid "Toolbar style:"
 msgstr "รูปแบบแถบเครื่องมือ:"
 
-#: ../src/settings-dialog.ui.h:8 ../src/settings-dialog-gtk3.ui.h:8
+#: ../src/settings-dialog.ui.h:7
 msgid "<b>Interface style</b>"
 msgstr "<b>รูปแบบส่วนติดต่อ</b>"
 
-#: ../src/settings-dialog.ui.h:9 ../src/settings-dialog-gtk3.ui.h:9
+#: ../src/settings-dialog.ui.h:8
 msgid "Prompt for terminating tasks"
 msgstr "ถามก่อนจบทาสก์"
 
-#: ../src/settings-dialog.ui.h:10 ../src/settings-dialog-gtk3.ui.h:10
+#: ../src/settings-dialog.ui.h:9
 msgid "Hide into the notification area"
 msgstr "ซ่อนตัวลงในพื้นที่แจ้งเหตุ"
 
-#: ../src/settings-dialog.ui.h:11 ../src/settings-dialog-gtk3.ui.h:11
+#: ../src/settings-dialog.ui.h:10
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>เบ็ดเตล็ด</b>"
 
-#: ../src/settings-dialog.ui.h:12 ../src/settings-dialog-gtk3.ui.h:12
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate:"
 msgstr "อัตราการปรับข้อมูล:"
 
-#: ../src/settings-dialog.ui.h:13 ../src/settings-dialog-gtk3.ui.h:13
+#: ../src/settings-dialog.ui.h:12
 msgid "Columns:"
 msgstr "คอลัมน์:"
 
-#: ../src/settings-dialog.ui.h:14 ../src/settings-dialog-gtk3.ui.h:14
+#: ../src/settings-dialog.ui.h:13
 msgid "<b>Information</b>"
 msgstr "<b>ข้อมูล</b>"
 
-#: ../src/settings-dialog.ui.h:15 ../src/settings-dialog-gtk3.ui.h:15
+#: ../src/settings-dialog.ui.h:14
 msgid "Settings"
 msgstr "ตั้งค่า"
 
