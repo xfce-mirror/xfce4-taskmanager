@@ -26,7 +26,7 @@ static XtmSettings *settings;
 static GtkWidget *window;
 static GtkStatusIcon *status_icon;
 static XtmTaskManager *task_manager;
-static guint timeout = 0;
+static guint timer_id;
 static gboolean start_hidden = FALSE;
 
 static GOptionEntry main_entries[] = {
@@ -94,8 +94,8 @@ delete_window (void)
 	return TRUE;
 }
 
-static gboolean
-init_timeout (void)
+static void
+collect_data (void)
 {
 	guint num_processes;
 	gfloat cpu, memory_percent, swap_percent;
@@ -136,32 +136,33 @@ init_timeout (void)
 	}
 
 	xtm_task_manager_update_model (task_manager);
+}
 
-	if (timeout == 0)
-	{
-		guint refresh_rate;
-		g_object_get (settings, "refresh-rate", &refresh_rate, NULL);
-		timeout = g_timeout_add (refresh_rate, (GSourceFunc)init_timeout, NULL);
-	}
-
+static gboolean
+init_timeout_cb (gpointer user_data)
+{
+	collect_data ();
 	return TRUE;
 }
 
 static void
-force_timeout_update (void)
+init_timeout (void)
 {
-	init_timeout ();
+	guint refresh_rate;
+
+	g_object_get (settings, "refresh-rate", &refresh_rate, NULL);
+	timer_id = g_timeout_add (refresh_rate, init_timeout_cb, NULL);
 }
 
 static void
 refresh_rate_changed (void)
 {
-	if (!g_source_remove (timeout))
+	if (!g_source_remove (timer_id))
 	{
 		g_critical ("Unable to remove source");
 		return;
 	}
-	timeout = 0;
+	timer_id = 0;
 	init_timeout ();
 }
 
@@ -227,10 +228,11 @@ int main (int argc, char *argv[])
 
 	task_manager = xtm_task_manager_new (xtm_process_window_get_model (XTM_PROCESS_WINDOW (window)));
 
+	collect_data ();
 	init_timeout ();
 	g_signal_connect (settings, "notify::refresh-rate", G_CALLBACK (refresh_rate_changed), NULL);
-	g_signal_connect_after (settings, "notify::more-precision", G_CALLBACK (force_timeout_update), NULL);
-	g_signal_connect_after (settings, "notify::full-command-line", G_CALLBACK (force_timeout_update), NULL);
+	g_signal_connect_after (settings, "notify::more-precision", G_CALLBACK (collect_data), NULL);
+	g_signal_connect_after (settings, "notify::full-command-line", G_CALLBACK (collect_data), NULL);
 	g_signal_connect (settings, "notify::show-status-icon", G_CALLBACK (show_hide_status_icon), NULL);
 
 	g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
@@ -241,8 +243,8 @@ int main (int argc, char *argv[])
 	else
 		g_warning ("Nothing to do: activate hiding to the notification area when using --start-hidden");
 
-	if (timeout > 0)
-		g_source_remove (timeout);
+	if (timer_id > 0)
+		g_source_remove (timer_id);
 
 	return 0;
 }
