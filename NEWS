@@ -1,3 +1,39 @@
+1.4.0
+======
+- Drop Gtk2 support
+- Add support for MemAvailable (!10)
+- statusbar: Use color with better contrast for dark themes
+- Fix: some times processes are not removed from the list
+- Add tooltip to show full command
+- Add application icon (Issue #23)
+- Replace appfinder icon with edit-find (Fixes #23)
+- Replace old icon name with utilities-terminal #23
+- Replace old icon name with system-run #23
+- Always show memory usage in bytes and percent (Fixes #24)
+- Improve comment in desktop file (Fixes #20)
+- Add basic GitLab pipeline
+- Add README.md
+- Update libwnck and xmu deps in README
+- Remove GKSU leftovers
+- Remove unused url_hook_about_dialog function
+- Replace deprecated gtk_menu_popup
+- Fix GTimeVal deprecation warning
+- Fix indentation
+- Update .gitignore
+- AC_CONFIG_MACRO_DIR → AC_CONFIG_MACRO_DIRS
+- Bump minimal xdt version
+- Bug #16717: Move from exo-csource to xdt-csource
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Asturian, Basque, Belarusian,
+  Bulgarian, Catalan, Chinese (China), Chinese (Hong Kong), Chinese
+  (Taiwan), Croatian, Czech, Danish, Dutch, Eastern Armenian, English
+  (Australia), English (United Kingdom), Estonian, Finnish, French,
+  Galician, German, Greek, Hebrew, Hungarian, Icelandic, Indonesian,
+  Interlingue, Italian, Japanese, Kazakh, Korean, Lithuanian, Malay,
+  Norwegian Bokmål, Occitan (post 1500), Polish, Portuguese,
+  Portuguese (Brazil), Russian, Serbian, Slovak, Spanish, Swedish,
+  Telugu, Thai, Turkish, Ukrainian, Uyghur
+
 1.2.3
 ======
 - Improve settings saving (bug #15213)
