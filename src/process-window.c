@@ -70,7 +70,6 @@ static void	emit_destroy_signal				(XtmProcessWindow *window);
 static gboolean	xtm_process_window_configure_event		(XtmProcessWindow *window, GdkEvent *event);
 static gboolean	xtm_process_vpaned_move_event			(XtmProcessWindow *window, GdkEventButton *event);
 static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
-static void	toolbar_update_style				(XtmProcessWindow *window);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
 static void	show_about_dialog				(XtmProcessWindow *window);
 
@@ -243,8 +242,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 	    G_CALLBACK(xtm_process_window_configure_event), window);
 
 	window->toolbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-toolbar"));
-	g_signal_connect_swapped (window->settings, "notify::toolbar-style", G_CALLBACK (toolbar_update_style), window);
-	g_object_notify (G_OBJECT (window->settings), "toolbar-style");
 
 	window->settings_button = xtm_settings_tool_button_new ();
 	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 1);
@@ -408,36 +405,6 @@ xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
 	}
 
 	return ret;
-}
-
-static void
-toolbar_update_style (XtmProcessWindow *window)
-{
-	XtmToolbarStyle toolbar_style;
-	g_object_get (window->settings, "toolbar-style", &toolbar_style, NULL);
-	switch (toolbar_style)
-	{
-		default:
-		case XTM_TOOLBAR_STYLE_DEFAULT:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_MENU);
-		gtk_toolbar_unset_style (GTK_TOOLBAR (window->toolbar));
-		break;
-
-		case XTM_TOOLBAR_STYLE_SMALL:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_SMALL_TOOLBAR);
-		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_ICONS);
-		break;
-
-		case XTM_TOOLBAR_STYLE_LARGE:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_LARGE_TOOLBAR);
-		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_ICONS);
-		break;
-
-		case XTM_TOOLBAR_STYLE_TEXT:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_MENU);
-		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_BOTH);
-		break;
-	}
 }
 
 static void
