@@ -38,7 +38,7 @@ G_DEFINE_TYPE (XtmSettingsDialog, xtm_settings_dialog, GTK_TYPE_WIDGET)
 static void	xtm_settings_dialog_finalize				(GObject *object);
 static void	xtm_settings_dialog_show				(GtkWidget *widget);
 static void	xtm_settings_dialog_hide				(GtkWidget *widget);
-
+static void	show_about_dialog				(GtkWidget *widget);
 
 
 static void
@@ -85,9 +85,58 @@ combobox_changed (GtkComboBox *combobox, XtmSettings *settings)
 }
 
 static void
+show_about_dialog (GtkWidget *widget)
+{
+	const gchar *authors[] = {
+		"(c) 2018-2019 Rozhuk Ivan",
+		"(c) 2014 Landry Breuil",
+		"(c) 2014 Harald Judt",
+		"(c) 2014 Peter de Ridder",
+		"(c) 2014 Simon Steinbeiss",
+		"(c) 2008-2010 Mike Massonnet",
+		"(c) 2005-2008 Johannes Zellner",
+		"",
+		"FreeBSD",
+		"  \342\200\242 Rozhuk Ivan",
+		"  \342\200\242 Mike Massonnet",
+		"  \342\200\242 Oliver Lehmann",
+		"",
+		"OpenBSD",
+		"  \342\200\242 Landry Breuil",
+		"",
+		"Linux",
+		"  \342\200\242 Johannes Zellner",
+		"  \342\200\242 Mike Massonnet",
+		"",
+		"OpenSolaris",
+		"  \342\200\242 Mike Massonnet",
+		"  \342\200\242 Peter Tribble",
+		NULL };
+	const gchar *license =
+		"This program is free software; you can redistribute it and/or modify\n"
+		"it under the terms of the GNU General Public License as published by\n"
+		"the Free Software Foundation; either version 2 of the License, or\n"
+		"(at your option) any later version.\n";
+
+	gtk_show_about_dialog (GTK_WINDOW (widget),
+		"program-name", _("Task Manager"),
+		"version", PACKAGE_VERSION,
+		"copyright", "Copyright \302\251 2005-2019 The Xfce development team",
+		"logo-icon-name", "org.xfce.taskmanager",
+		"comments", _("Easy to use task manager"),
+		"license", license,
+		"authors", authors,
+		"translator-credits", _("translator-credits"),
+		"website", "http://goodies.xfce.org/projects/applications/xfce4-taskmanager",
+		"website-label", "goodies.xfce.org",
+		NULL);
+}
+
+static void
 xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 {
 	GtkBuilder *builder;
+	GtkWidget *about;
 
 	g_object_ref_sink (dialog);
 
@@ -108,6 +157,9 @@ xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 	builder_bind_toggle_button (builder, "button-prompt-terminate-task", dialog->settings, "prompt-terminate-task");
 	builder_bind_toggle_button (builder, "button-show-status-icon", dialog->settings, "show-status-icon");
 	builder_bind_toggle_button (builder, "button-process-tree", dialog->settings, "process-tree");
+
+	about = GTK_WIDGET (gtk_builder_get_object (builder, "button-about"));
+	g_signal_connect_swapped (about, "clicked", G_CALLBACK (show_about_dialog), dialog->window);
 
 	g_object_unref (builder);
 }

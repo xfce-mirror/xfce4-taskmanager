@@ -23,18 +23,6 @@
             <property name="show_arrow">False</property>
             <property name="icon_size">1</property>
             <child>
-              <object class="GtkToolButton" id="toolbutton-about">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-about</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkToolItem" id="filter-toolitem">
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
