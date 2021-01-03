@@ -109,29 +109,6 @@ xtm_settings_dialog_init (XtmSettingsDialog *dialog)
 	builder_bind_toggle_button (builder, "button-show-status-icon", dialog->settings, "show-status-icon");
 	builder_bind_toggle_button (builder, "button-process-tree", dialog->settings, "process-tree");
 
-	{
-		guint n;
-		GEnumClass *klass;
-		GtkWidget *box;
-		GtkWidget *combobox;
-		XtmToolbarStyle toolbar_style;
-
-		box = GTK_WIDGET (gtk_builder_get_object (builder, "hbox-toolbar-style"));
-		combobox = gtk_combo_box_text_new ();
-		gtk_box_pack_start (GTK_BOX (box), combobox, FALSE, FALSE, 0);
-		gtk_widget_show (combobox);
-
-		klass = g_type_class_ref (XTM_TYPE_TOOLBAR_STYLE);
-		for (n = 0; n < klass->n_values; ++n)
-			gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (combobox), _(klass->values[n].value_nick));
-		g_type_class_unref (klass);
-
-		g_object_get (dialog->settings, "toolbar-style", &toolbar_style, NULL);
-		g_object_set_data (G_OBJECT (combobox), "setting-name", "toolbar-style");
-		gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), (gint)toolbar_style);
-		g_signal_connect (combobox, "changed", G_CALLBACK (combobox_changed), dialog->settings);
-	}
-
 	g_object_unref (builder);
 }
 
