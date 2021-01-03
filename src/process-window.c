@@ -35,7 +35,6 @@
 #include "process-monitor.h"
 #include "process-tree-view.h"
 #include "process-statusbar.h"
-#include "exec-tool-button.h"
 #include "settings-tool-button.h"
 
 
@@ -59,7 +58,6 @@ struct _XtmProcessWindow
 	GtkWidget *		vpaned;
 	GtkWidget *		treeview;
 	GtkWidget *		statusbar;
-	GtkWidget *		exec_button;
 	GtkWidget *		settings_button;
 	XtmSettings *		settings;
 };
@@ -248,9 +246,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect_swapped (window->settings, "notify::toolbar-style", G_CALLBACK (toolbar_update_style), window);
 	g_object_notify (G_OBJECT (window->settings), "toolbar-style");
 
-	window->exec_button = xtm_exec_tool_button_new ();
-	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->exec_button), 0);
-
 	window->settings_button = xtm_settings_tool_button_new ();
 	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 1);
 	g_signal_connect_swapped (window->settings, "notify::show-legend", G_CALLBACK (xtm_show_legend), window);
@@ -345,9 +340,6 @@ xtm_process_window_finalize (GObject *object)
 
 	if (GTK_IS_BOX (window->statusbar))
 		gtk_widget_destroy (window->statusbar);
-
-	if (GTK_IS_TOOL_ITEM (window->exec_button))
-		gtk_widget_destroy (window->exec_button);
 
 	if (GTK_IS_TOOL_ITEM (window->settings_button))
 		gtk_widget_destroy (window->settings_button);

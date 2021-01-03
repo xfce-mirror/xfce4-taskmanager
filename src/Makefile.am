@@ -30,7 +30,6 @@ xfce4_taskmanager_SOURCES =						\
 	process-tree-model.c		process-tree-model.h		\
 	process-tree-view.c		process-tree-view.h		\
 	process-statusbar.c		process-statusbar.h		\
-	exec-tool-button.c		exec-tool-button.h		\
 	settings-tool-button.c		settings-tool-button.h		\
 	settings-dialog_ui.h									\
 	settings-dialog.c		settings-dialog.h		\
