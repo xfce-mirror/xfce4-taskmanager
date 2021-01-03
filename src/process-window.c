@@ -71,7 +71,6 @@ static gboolean	xtm_process_window_configure_event		(XtmProcessWindow *window, G
 static gboolean	xtm_process_vpaned_move_event			(XtmProcessWindow *window, GdkEventButton *event);
 static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
-static void	show_about_dialog				(XtmProcessWindow *window);
 
 
 static void
@@ -256,9 +255,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 										G_CALLBACK (xwininfo_clicked_cb), window);
 	gtk_widget_show_all (GTK_WIDGET (xwininfo));
 
-	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "toolbutton-about"));
-	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
-
 	{
 		GtkWidget *toolitem;
 		guint refresh_rate;
@@ -414,54 +410,6 @@ monitor_update_step_size (XtmProcessWindow *window)
 	g_object_get (window->settings, "refresh-rate", &refresh_rate, NULL);
 	g_object_set (window->cpu_monitor, "step-size", refresh_rate / 1000.0, NULL);
 	g_object_set (window->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
-}
-
-static void
-show_about_dialog (XtmProcessWindow *window)
-{
-	const gchar *authors[] = {
-		"(c) 2018-2019 Rozhuk Ivan",
-		"(c) 2014 Landry Breuil",
-		"(c) 2014 Harald Judt",
-		"(c) 2014 Peter de Ridder",
-		"(c) 2014 Simon Steinbeiss",
-		"(c) 2008-2010 Mike Massonnet",
-		"(c) 2005-2008 Johannes Zellner",
-		"",
-		"FreeBSD",
-		"  \342\200\242 Rozhuk Ivan",
-		"  \342\200\242 Mike Massonnet",
-		"  \342\200\242 Oliver Lehmann",
-		"",
-		"OpenBSD",
-		"  \342\200\242 Landry Breuil",
-		"",
-		"Linux",
-		"  \342\200\242 Johannes Zellner",
-		"  \342\200\242 Mike Massonnet",
-		"",
-		"OpenSolaris",
-		"  \342\200\242 Mike Massonnet",
-		"  \342\200\242 Peter Tribble",
-		NULL };
-	const gchar *license =
-		"This program is free software; you can redistribute it and/or modify\n"
-		"it under the terms of the GNU General Public License as published by\n"
-		"the Free Software Foundation; either version 2 of the License, or\n"
-		"(at your option) any later version.\n";
-
-	gtk_show_about_dialog (GTK_WINDOW (window->window),
-		"program-name", _("Task Manager"),
-		"version", PACKAGE_VERSION,
-		"copyright", "Copyright \302\251 2005-2019 The Xfce development team",
-		"logo-icon-name", "org.xfce.taskmanager",
-		"comments", _("Easy to use task manager"),
-		"license", license,
-		"authors", authors,
-		"translator-credits", _("translator-credits"),
-		"website", "http://goodies.xfce.org/projects/applications/xfce4-taskmanager",
-		"website-label", "goodies.xfce.org",
-		NULL);
 }
 
 /**
