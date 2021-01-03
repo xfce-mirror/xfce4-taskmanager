@@ -385,25 +385,3 @@ xtm_settings_get_default (void)
 	}
 	return settings;
 }
-
-
-
-GType
-xtm_toolbar_style_get_type (void)
-{
-	static GType type = G_TYPE_INVALID;
-
-	static const GEnumValue values[] = {
-		{ XTM_TOOLBAR_STYLE_DEFAULT, "DEFAULT", N_("Default") },
-		{ XTM_TOOLBAR_STYLE_SMALL, "SMALL", N_("Small") },
-		{ XTM_TOOLBAR_STYLE_LARGE, "LARGE", N_("Large") },
-		{ XTM_TOOLBAR_STYLE_TEXT, "TEXT", N_("Text") },
-		{ 0, NULL, NULL }
-	};
-
-	if (type != G_TYPE_INVALID)
-		return type;
-
-	type = g_enum_register_static ("XtmToolbarStyle", values);
-	return type;
-}
