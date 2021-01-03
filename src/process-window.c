@@ -457,7 +457,7 @@ show_about_dialog (XtmProcessWindow *window)
 		"(c) 2014 Landry Breuil",
 		"(c) 2014 Harald Judt",
 		"(c) 2014 Peter de Ridder",
-		"(c) 2014 Simon Steinbess",
+		"(c) 2014 Simon Steinbeiss",
 		"(c) 2008-2010 Mike Massonnet",
 		"(c) 2005-2008 Johannes Zellner",
 		"",
