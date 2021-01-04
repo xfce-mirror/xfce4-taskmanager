@@ -65,9 +65,8 @@ static void
 show_settings_dialog (XtmSettingsToolButton *button)
 {
 	GtkWidget *parent_window = gtk_widget_get_ancestor (GTK_WIDGET (button), GTK_TYPE_WINDOW);
-	GtkWidget *dialog = xtm_settings_dialog_new (GTK_WINDOW (parent_window));
-	xtm_settings_dialog_run (XTM_SETTINGS_DIALOG (dialog));
-	g_object_unref (dialog);
+
+	xtm_settings_dialog_run (parent_window);
 }
 
 static void
