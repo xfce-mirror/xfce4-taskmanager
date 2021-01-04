@@ -24,7 +24,7 @@
 
 static XtmSettings *settings;
 static GtkWidget *window;
-static GtkStatusIcon *status_icon;
+static GtkStatusIcon *status_icon_or_null = NULL;
 static XtmTaskManager *task_manager;
 static guint timeout = 0;
 static gboolean start_hidden = FALSE;
@@ -65,11 +65,37 @@ status_icon_popup_menu (GtkStatusIcon *_status_icon, guint button, guint activat
 }
 
 static void
+create_status_icon (void)
+{
+	if (!status_icon_or_null)
+	{
+		GtkStatusIcon *status_icon = gtk_status_icon_new_from_icon_name ("org.xfce.taskmanager");
+		g_signal_connect (status_icon, "activate", G_CALLBACK (status_icon_activated), NULL);
+		g_signal_connect (status_icon, "popup-menu", G_CALLBACK (status_icon_popup_menu), NULL);
+		status_icon_or_null = status_icon;
+	}
+}
+
+static gboolean
+status_icon_get_visible ()
+{
+	return status_icon_or_null && gtk_status_icon_get_visible (status_icon_or_null);
+}
+
+static void
 show_hide_status_icon (void)
 {
 	gboolean show_status_icon;
 	g_object_get (settings, "show-status-icon", &show_status_icon, NULL);
-	gtk_status_icon_set_visible (status_icon, show_status_icon);
+	if (show_status_icon)
+	{
+		create_status_icon ();
+		gtk_status_icon_set_visible (status_icon_or_null, TRUE);
+	}
+	else if (status_icon_get_visible ())
+	{
+		gtk_status_icon_set_visible (status_icon_or_null, FALSE);
+	}
 }
 
 static void
@@ -84,7 +110,7 @@ destroy_window (void)
 static gboolean
 delete_window (void)
 {
-	if (!gtk_status_icon_get_visible (status_icon))
+	if (!status_icon_get_visible ())
 	{
 		xtm_settings_save_settings(settings);
 		gtk_main_quit ();
@@ -124,7 +150,7 @@ init_timeout (void)
 	xtm_task_manager_get_swap_usage (task_manager, &swap_free, &swap_total);
 	xtm_process_window_show_swap_usage (XTM_PROCESS_WINDOW (window), (swap_total > 0));
 
-	if (gtk_status_icon_get_visible (status_icon))
+	if (status_icon_get_visible ())
 	{
 		g_snprintf (tooltip, sizeof(tooltip),
 				_("<b>Processes:</b> %u\n"
@@ -132,7 +158,7 @@ init_timeout (void)
 				"<b>Memory:</b> %s\n"
 				"<b>Swap:</b> %s"),
 				num_processes, cpu, memory_info, swap_info);
-		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon), tooltip);
+		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon_or_null), tooltip);
 	}
 
 	xtm_task_manager_update_model (task_manager);
@@ -210,11 +236,7 @@ int main (int argc, char *argv[])
 #endif
 
 	settings = xtm_settings_get_default ();
-
-	status_icon = gtk_status_icon_new_from_icon_name ("org.xfce.taskmanager");
 	show_hide_status_icon ();
-	g_signal_connect (status_icon, "activate", G_CALLBACK (status_icon_activated), NULL);
-	g_signal_connect (status_icon, "popup-menu", G_CALLBACK (status_icon_popup_menu), NULL);
 
 	window = xtm_process_window_new ();
 
@@ -236,7 +258,7 @@ int main (int argc, char *argv[])
 	g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
 	g_signal_connect (window, "delete-event", G_CALLBACK (delete_window), NULL);
 
-	if (gtk_widget_get_visible (window) || gtk_status_icon_get_visible (status_icon))
+	if (gtk_widget_get_visible (window) || status_icon_get_visible ())
 		gtk_main ();
 	else
 		g_warning ("Nothing to do: activate hiding to the notification area when using --start-hidden");
