@@ -56,7 +56,7 @@ show_about_dialog (GtkWidget *widget)
 		"(c) 2014 Landry Breuil",
 		"(c) 2014 Harald Judt",
 		"(c) 2014 Peter de Ridder",
-		"(c) 2014 Simon Steinbeiss",
+		"(c) 2014-2020 Simon Steinbeiss",
 		"(c) 2008-2010 Mike Massonnet",
 		"(c) 2005-2008 Johannes Zellner",
 		"",
@@ -85,14 +85,14 @@ show_about_dialog (GtkWidget *widget)
 	gtk_show_about_dialog (GTK_WINDOW (widget),
 		"program-name", _("Task Manager"),
 		"version", PACKAGE_VERSION,
-		"copyright", "Copyright \302\251 2005-2019 The Xfce development team",
+		"copyright", "Copyright \302\251 2005-2020 The Xfce development team",
 		"logo-icon-name", "org.xfce.taskmanager",
 		"comments", _("Easy to use task manager"),
 		"license", license,
 		"authors", authors,
 		"translator-credits", _("translator-credits"),
-		"website", "http://goodies.xfce.org/projects/applications/xfce4-taskmanager",
-		"website-label", "goodies.xfce.org",
+		"website", "https://docs.xfce.org/apps/xfce4-taskmanager/start",
+		"website-label", "docs.xfce.org",
 		NULL);
 }
 
