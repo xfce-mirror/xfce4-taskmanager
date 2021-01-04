@@ -28,6 +28,8 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
+#include <libxfce4ui/libxfce4ui.h>
+
 #include "settings.h"
 #include "task-manager.h"
 #include "process-window.h"

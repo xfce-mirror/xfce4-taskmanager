@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.22.1 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
-  <object class="GtkWindow" id="process-window">
+  <requires lib="gtk+" version="3.22"/>
+  <object class="XfceTitledDialog" id="process-window">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Task Manager</property>
     <property name="default_width">490</property>
     <property name="default_height">465</property>
     <property name="icon_name">org.xfce.taskmanager</property>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
+    <child internal-child="vbox">
       <object class="GtkBox" id="process-vbox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
