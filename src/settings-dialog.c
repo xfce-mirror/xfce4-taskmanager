@@ -21,7 +21,7 @@
 #include "settings-dialog.h"
 #include "settings-dialog_ui.h"
 
-static void	show_about_dialog				(GtkWidget *widget);
+static void	show_about_dialog				(GtkWidget *widget, gpointer user_data);
 static GtkWidget *xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window);
 
 
@@ -49,7 +49,7 @@ builder_bind_toggle_button (GtkBuilder *builder, gchar *widget_name, XtmSettings
 }
 
 static void
-show_about_dialog (GtkWidget *widget)
+show_about_dialog (GtkWidget *widget, gpointer user_data)
 {
 	const gchar *authors[] = {
 		"(c) 2018-2019 Rozhuk Ivan",
@@ -96,6 +96,20 @@ show_about_dialog (GtkWidget *widget)
 		NULL);
 }
 
+static void
+show_help (GtkWidget *widget, gpointer user_data)
+{
+	xfce_dialog_show_help_with_version (GTK_WINDOW (widget), "xfce4-taskmanager", "start", NULL, NULL);
+}
+
+static void
+dialog_close (GtkWidget *widget, gpointer user_data)
+{
+	GtkDialog *dialog = GTK_DIALOG (user_data);
+
+	gtk_dialog_response (GTK_DIALOG (dialog), GTK_RESPONSE_CLOSE);
+}
+
 static GtkWidget *
 xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 {
@@ -119,7 +133,13 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	builder_bind_toggle_button (builder, "button-process-tree", settings, "process-tree");
 
 	button = GTK_WIDGET (gtk_builder_get_object (builder, "button-about"));
-	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), dialog);
+	g_signal_connect (button, "clicked", G_CALLBACK (show_about_dialog), dialog);
+
+	button = GTK_WIDGET (gtk_builder_get_object (builder, "button-help"));
+	g_signal_connect (button, "clicked", G_CALLBACK (show_help), dialog);
+
+	button = GTK_WIDGET (gtk_builder_get_object (builder, "button-close"));
+	g_signal_connect (button, "clicked", G_CALLBACK (dialog_close), dialog);
 
 	return dialog;
 }
@@ -129,6 +149,7 @@ xtm_settings_dialog_run (GtkWidget *parent_window)
 {
 	GtkBuilder *builder;
 	GtkWidget *dialog;
+	gint response;
 
 	builder = gtk_builder_new ();
 	gtk_builder_add_from_string (builder, settings_dialog_ui, settings_dialog_ui_length, NULL);
@@ -137,5 +158,8 @@ xtm_settings_dialog_run (GtkWidget *parent_window)
 	dialog = xtm_settings_dialog_new (builder, parent_window);
 
 	g_object_unref (builder);
-	gtk_dialog_run (GTK_DIALOG (dialog));
+	response = gtk_dialog_run (GTK_DIALOG (dialog));
+
+	if (response == GTK_RESPONSE_CLOSE)
+		gtk_widget_destroy (dialog);
 }
