@@ -100,8 +100,6 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_boolean ("monitor-paint-box", "MonitorPaintBox", "Paint box around monitor", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SHOW_APPLICATION_ICONS,
 		g_param_spec_boolean ("show-application-icons", "ShowApplicationIcons", "Show application icons", TRUE, G_PARAM_READWRITE));
-	g_object_class_install_property (class, PROP_TOOLBAR_STYLE,
-		g_param_spec_enum ("toolbar-style", "ToolbarStyle", "Toolbar style", XTM_TYPE_TOOLBAR_STYLE, XTM_TOOLBAR_STYLE_DEFAULT, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_PROMPT_TERMINATE_TASK,
 		g_param_spec_boolean ("prompt-terminate-task", "PromptTerminateTask", "Prompt dialog for terminating a task", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_REFRESH_RATE,
