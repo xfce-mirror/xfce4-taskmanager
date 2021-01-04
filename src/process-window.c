@@ -243,14 +243,14 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->toolbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-toolbar"));
 
 	window->settings_button = xtm_settings_tool_button_new ();
-	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 1);
+	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 0);
 	g_signal_connect_swapped (window->settings, "notify::show-legend", G_CALLBACK (xtm_show_legend), window);
 	g_object_notify (G_OBJECT (window->settings), "show-legend");
 
 	icon = gtk_image_new_from_icon_name ("xc_crosshair", GTK_ICON_SIZE_LARGE_TOOLBAR);
 	xwininfo = gtk_tool_button_new (icon, _("Identify Window"));
 	gtk_widget_set_tooltip_text (GTK_WIDGET (xwininfo), _("Identify an open window by clicking on it."));
-	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (xwininfo), 2);
+	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (xwininfo), 1);
 	g_signal_connect (G_OBJECT (xwininfo), "clicked",
 										G_CALLBACK (xwininfo_clicked_cb), window);
 	gtk_widget_show_all (GTK_WIDGET (xwininfo));
