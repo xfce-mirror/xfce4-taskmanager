@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.22.2 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
+  <requires lib="gtk+" version="3.22"/>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -22,6 +22,9 @@
     <property name="title" translatable="yes">Task Manager Settings</property>
     <property name="icon_name">org.xfce.taskmanager</property>
     <property name="type_hint">dialog</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -414,7 +417,7 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button-close</action-widget>
+      <action-widget response="-7">button-close</action-widget>
     </action-widgets>
   </object>
 </interface>
