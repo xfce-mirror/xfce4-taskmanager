@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# beriain, 2021
 # Piarres Beobide <pi@beobide.net>, 2006-2008
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-03 00:47+0200\n"
-"PO-Revision-Date: 2020-08-02 22:47+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2021-01-11 16:14+0000\n"
+"Last-Translator: beriain\n"
 "Language-Team: Basque (http://www.transifex.com/xfce/xfce-apps/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr "Zeregin kudeatzailea"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
 msgid "Easy to use application to monitor system resources"
-msgstr ""
+msgstr "Sistemaren baliabideak monitorizatzeko aplikazio erabilerraz bat"
 
 #: ../src/exec-tool-button.c:84 ../src/exec-tool-button.c:128
 msgid "Execution error"
@@ -62,7 +63,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %s\n"
 "<b>Swap:</b> %s"
-msgstr ""
+msgstr "<b>Prozesuak:</b> %u\n<b>PUZ:</b> %.0f%%\n<b>Memoria:</b> %s\n<b>Swap:</b> %s"
 
 #: ../src/process-statusbar.c:137 ../src/process-window.c:562
 #, c-format
@@ -72,12 +73,12 @@ msgstr "CPU: %s%%"
 #: ../src/process-statusbar.c:147 ../src/process-window.c:566
 #, c-format
 msgid "Memory: %s"
-msgstr ""
+msgstr "Memoria: %s"
 
 #: ../src/process-statusbar.c:156
 #, c-format
 msgid "Swap: %s"
-msgstr ""
+msgstr "Swap: %s"
 
 #: ../src/process-statusbar.c:170
 #, c-format
@@ -133,15 +134,15 @@ msgstr "Hil zeregina"
 #: ../src/process-tree-view.c:370
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr ""
+msgstr "%s seinalea bidali nahi diozu %d PIDari?"
 
 #: ../src/process-tree-view.c:371
 msgid "terminate"
-msgstr ""
+msgstr "amaitu"
 
 #: ../src/process-tree-view.c:371
 msgid "kill"
-msgstr ""
+msgstr "hil"
 
 #: ../src/process-tree-view.c:383
 msgid "Error sending signal"
@@ -207,41 +208,41 @@ msgstr "Lehentasuna"
 
 #: ../src/process-window.c:166
 msgid "Bad Window"
-msgstr ""
+msgstr "Leiho okerra"
 
 #: ../src/process-window.c:166
 #, c-format
 msgid "Window id 0x%lx does not exist!"
-msgstr ""
+msgstr "0x%lx id-a duen leihoa ez da existitzen!"
 
 #: ../src/process-window.c:169
 msgid "XGetWindowProperty failed"
-msgstr ""
+msgstr "XGetWindowProperty-k huts egin du"
 
 #: ../src/process-window.c:169
 msgid "XGetWindowProperty failed!"
-msgstr ""
+msgstr "XGetWindowProperty-k huts egin du!"
 
 #: ../src/process-window.c:176
 msgid "No PID found"
-msgstr ""
+msgstr "PIDa ez da aurkitu"
 
 #: ../src/process-window.c:176
 #, c-format
 msgid "No PID found for window 0x%lx."
-msgstr ""
+msgstr "Ez da PIDa aurkitu 0x%lx leihorako."
 
 #: ../src/process-window.c:260
 msgid "Identify Window"
-msgstr ""
+msgstr "Leihoa identifikatu"
 
 #: ../src/process-window.c:261
 msgid "Identify an open window by clicking on it."
-msgstr ""
+msgstr "Irekitako leiho bat identifikatu bera klikatuz."
 
 #: ../src/process-window.c:333
 msgid "Filter on process name"
-msgstr ""
+msgstr "Prozesu izenaren arabera iragazi"
 
 #: ../src/process-window.c:499
 msgid "Easy to use task manager"
@@ -258,17 +259,17 @@ msgstr "Adi, root kontua erabiltzen ari zara, zure sistema hondatu dezakezu."
 #: ../src/process-window.ui.h:3
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Zeregina abiarazten"
 
 #: ../src/process-window.ui.h:4
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#fff176'>    </span> Zeregina aldatzen"
 
 #: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#e57373'>    </span> Zeregina amaitzen"
 
 #: ../src/settings.c:397
 msgid "Default"
@@ -304,7 +305,7 @@ msgstr "Ikusi balioak zehaztasun handiagoz"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Show processes as tree"
-msgstr ""
+msgstr "Prozesuak zuhaitz bezala erakutsi"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Toolbar style:"
@@ -385,7 +386,7 @@ msgstr "Byte pribatuak"
 
 #: ../src/settings-tool-button.c:186
 msgid "Show Legend"
-msgstr ""
+msgstr "Legenda erakutsi"
 
 #: ../src/task-manager.c:245
 #, c-format
