@@ -125,12 +125,28 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "button-show-application-icons")));
 #endif
 
+	// Interface
+	builder_bind_toggle_button (builder, "button-show-all-processes", settings, "show-all-processes");
 	builder_bind_toggle_button (builder, "button-show-application-icons", settings, "show-application-icons");
 	builder_bind_toggle_button (builder, "button-full-command-line", settings, "full-command-line");
 	builder_bind_toggle_button (builder, "button-more-precision", settings, "more-precision");
+	builder_bind_toggle_button (builder, "button-process-tree", settings, "process-tree");
+	builder_bind_toggle_button (builder, "button-show-legend", settings, "show-legend");
+	// Miscellaneous
 	builder_bind_toggle_button (builder, "button-prompt-terminate-task", settings, "prompt-terminate-task");
 	builder_bind_toggle_button (builder, "button-show-status-icon", settings, "show-status-icon");
-	builder_bind_toggle_button (builder, "button-process-tree", settings, "process-tree");
+
+
+	// Columns
+	builder_bind_toggle_button (builder, "pid", settings, "column-pid");
+	builder_bind_toggle_button (builder, "ppid", settings, "column-ppid");
+	builder_bind_toggle_button (builder, "state", settings, "column-state");
+	builder_bind_toggle_button (builder, "vbytes", settings, "column-vsz");
+	builder_bind_toggle_button (builder, "pbytes", settings, "column-rss");
+	builder_bind_toggle_button (builder, "uid", settings, "column-uid");
+	builder_bind_toggle_button (builder, "cpu", settings, "column-cpu");
+	builder_bind_toggle_button (builder, "priority", settings, "column-priority");
+
 
 	button = GTK_WIDGET (gtk_builder_get_object (builder, "button-about"));
 	g_signal_connect (button, "clicked", G_CALLBACK (show_about_dialog), dialog);
