@@ -109,7 +109,7 @@
                         <property name="orientation">vertical</property>
                         <property name="spacing">6</property>
                         <child>
-                          <object class="GtkCheckButton" id="show-all">
+                          <object class="GtkCheckButton" id="button-show-all-processes">
                             <property name="label" translatable="yes">Show all processes</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
@@ -165,6 +165,20 @@
                           </packing>
                         </child>
                         <child>
+                          <object class="GtkCheckButton" id="button-show-legend">
+                            <property name="label" translatable="yes">Show legend</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                        <child>
                           <object class="GtkCheckButton" id="button-more-precision">
                             <property name="label" translatable="yes">Show values with more precision</property>
                             <property name="visible">True</property>
@@ -175,7 +189,7 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">False</property>
-                            <property name="position">4</property>
+                            <property name="position">5</property>
                           </packing>
                         </child>
                         <child>
@@ -210,7 +224,7 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">False</property>
-                            <property name="position">5</property>
+                            <property name="position">6</property>
                           </packing>
                         </child>
                       </object>
