@@ -25,6 +25,11 @@ static void	show_about_dialog				(GtkWidget *widget, gpointer user_data);
 static GtkWidget *xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window);
 
 
+typedef struct
+{
+	GtkWidget		*combobox;
+	guint		rate;
+} XtmRefreshRate;
 
 static void
 button_toggled (GtkToggleButton *button, XtmSettings *settings)
@@ -46,6 +51,57 @@ builder_bind_toggle_button (GtkBuilder *builder, gchar *widget_name, XtmSettings
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), active);
 	g_object_set_data (G_OBJECT (button), "setting-name", setting_name);
 	g_signal_connect (button, "toggled", G_CALLBACK (button_toggled), settings);
+}
+
+static void
+combobox_changed (GtkComboBox *combobox, XtmSettings *settings)
+{
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+	GValue prop = { 0, };
+	gint rate;
+
+	gtk_combo_box_get_active_iter (combobox, &iter);
+	model = gtk_combo_box_get_model (combobox);
+	gtk_tree_model_get_value (model, &iter, 0, &prop);
+	rate = g_value_get_int (&prop);
+	g_object_set (settings, "refresh-rate", GUINT_TO_POINTER (rate), NULL);
+}
+
+static gboolean
+combobox_foreach (GtkTreeModel *model,
+                                      GtkTreePath  *path,
+                                      GtkTreeIter  *iter,
+                                      gpointer      user_data)
+{
+	XtmRefreshRate *refresh_rate = user_data;
+	GValue prop = { 0, };
+
+	gtk_tree_model_get_value (model, iter, 0, &prop);
+
+	if (g_value_get_int (&prop) == refresh_rate->rate)
+	{
+		gtk_combo_box_set_active_iter (GTK_COMBO_BOX (refresh_rate->combobox), iter);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+static void
+builder_bind_combobox (GtkBuilder *builder, XtmSettings *settings)
+{
+	XtmRefreshRate *refresh_rate;
+	GtkTreeModel *model;
+
+	refresh_rate = g_new0 (XtmRefreshRate, 1);
+	g_object_get (settings, "refresh-rate", &refresh_rate->rate, NULL);
+
+	refresh_rate->combobox = GTK_WIDGET (gtk_builder_get_object (builder, "combobox-refresh-rate"));
+	model = gtk_combo_box_get_model (GTK_COMBO_BOX (refresh_rate->combobox));
+	gtk_tree_model_foreach (model, combobox_foreach, refresh_rate);
+	g_object_set_data (G_OBJECT (refresh_rate->combobox), "setting-name", "refresh-rate");
+	g_signal_connect (refresh_rate->combobox, "changed", G_CALLBACK (combobox_changed), settings);
 }
 
 static void
@@ -132,6 +188,7 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	builder_bind_toggle_button (builder, "button-more-precision", settings, "more-precision");
 	builder_bind_toggle_button (builder, "button-process-tree", settings, "process-tree");
 	builder_bind_toggle_button (builder, "button-show-legend", settings, "show-legend");
+	builder_bind_combobox (builder, settings);
 	// Miscellaneous
 	builder_bind_toggle_button (builder, "button-prompt-terminate-task", settings, "prompt-terminate-task");
 	builder_bind_toggle_button (builder, "button-show-status-icon", settings, "show-status-icon");
