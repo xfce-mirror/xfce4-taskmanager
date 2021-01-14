@@ -9,5 +9,4 @@ src/process-window.c
 src/settings.c
 src/settings-dialog.c
 [type: gettext/glade]src/settings-dialog.ui
-src/settings-tool-button.c
 src/task-manager.c
