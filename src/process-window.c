@@ -37,7 +37,7 @@
 #include "process-monitor.h"
 #include "process-tree-view.h"
 #include "process-statusbar.h"
-#include "settings-tool-button.h"
+#include "settings-dialog.h"
 
 
 
@@ -53,7 +53,6 @@ struct _XtmProcessWindow
 	/*<private>*/
 	GtkBuilder *		builder;
 	GtkWidget *		window;
-	GtkWidget *		toolbar;
 	GtkWidget *		filter_entry;
 	GtkWidget *		cpu_monitor;
 	GtkWidget *		mem_monitor;
@@ -209,6 +208,12 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 }
 
 static void
+show_settings_dialog (GtkButton *button, GtkWidget *parent)
+{
+	xtm_settings_dialog_run (parent);
+}
+
+static void
 xtm_show_legend (XtmProcessWindow *window)
 {
 	gboolean show_legend;
@@ -224,7 +229,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
 	GtkWidget *icon;
-	GtkToolItem *xwininfo;
 	gint width, height;
 	gboolean show_legend;
 
@@ -242,20 +246,16 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect_swapped(window->window, "configure-event",
 	    G_CALLBACK(xtm_process_window_configure_event), window);
 
-	window->toolbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-toolbar"));
-
-	window->settings_button = xtm_settings_tool_button_new ();
-	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 0);
 	g_signal_connect_swapped (window->settings, "notify::show-legend", G_CALLBACK (xtm_show_legend), window);
 	g_object_notify (G_OBJECT (window->settings), "show-legend");
 
-	icon = gtk_image_new_from_icon_name ("xc_crosshair", GTK_ICON_SIZE_LARGE_TOOLBAR);
-	xwininfo = gtk_tool_button_new (icon, _("Identify Window"));
-	gtk_widget_set_tooltip_text (GTK_WIDGET (xwininfo), _("Identify an open window by clicking on it."));
-	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (xwininfo), 1);
-	g_signal_connect (G_OBJECT (xwininfo), "clicked",
+	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-settings"));
+	g_signal_connect (G_OBJECT (button), "clicked",
+										G_CALLBACK (show_settings_dialog), GTK_WIDGET (window->window));
+
+	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-identify"));
+	g_signal_connect (G_OBJECT (button), "clicked",
 										G_CALLBACK (xwininfo_clicked_cb), window);
-	gtk_widget_show_all (GTK_WIDGET (xwininfo));
 
 	{
 		GtkWidget *toolitem;
@@ -335,9 +335,6 @@ xtm_process_window_finalize (GObject *object)
 
 	if (GTK_IS_BOX (window->statusbar))
 		gtk_widget_destroy (window->statusbar);
-
-	if (GTK_IS_TOOL_ITEM (window->settings_button))
-		gtk_widget_destroy (window->settings_button);
 
 	if (XTM_IS_SETTINGS (window->settings))
 		g_object_unref (window->settings);
