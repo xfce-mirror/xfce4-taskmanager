@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-03 00:47+0200\n"
-"PO-Revision-Date: 2021-01-11 16:14+0000\n"
+"PO-Revision-Date: 2021-01-16 11:46+0000\n"
 "Last-Translator: beriain\n"
 "Language-Team: Basque (http://www.transifex.com/xfce/xfce-apps/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -246,7 +246,7 @@ msgstr "Prozesu izenaren arabera iragazi"
 
 #: ../src/process-window.c:499
 msgid "Easy to use task manager"
-msgstr " Zeregin kudeatzaile erabilerraz bat da"
+msgstr " Zeregin kudeatzaile erabilerraz bat"
 
 #: ../src/process-window.c:502
 msgid "translator-credits"
