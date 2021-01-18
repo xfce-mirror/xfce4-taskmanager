@@ -54,6 +54,7 @@ struct _XtmProcessWindow
 	GtkBuilder *		builder;
 	GtkWidget *		window;
 	GtkWidget *		filter_entry;
+	GtkWidget *		filter_searchbar;
 	GtkWidget *		cpu_monitor;
 	GtkWidget *		mem_monitor;
 	GtkWidget *		vpaned;
@@ -225,6 +226,16 @@ xtm_show_legend (XtmProcessWindow *window)
 }
 
 static void
+show_filter_toggled_cb (GtkToggleButton *button, gpointer user_data)
+{
+	XtmProcessWindow *window = user_data;
+	gboolean active;
+
+	active = gtk_toggle_button_get_active (button);
+	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), active);
+}
+
+static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
@@ -256,6 +267,15 @@ xtm_process_window_init (XtmProcessWindow *window)
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-identify"));
 	g_signal_connect (G_OBJECT (button), "clicked",
 										G_CALLBACK (xwininfo_clicked_cb), window);
+
+	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
+	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-show-filter"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
+																gtk_revealer_get_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar)))));
+	g_signal_connect (G_OBJECT (button), "toggled",
+										G_CALLBACK (show_filter_toggled_cb), window);
+	g_object_bind_property (G_OBJECT (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), "reveal-child",
+													G_OBJECT (button), "active", G_BINDING_BIDIRECTIONAL);
 
 	{
 		GtkWidget *toolitem;
