@@ -90,21 +90,23 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox" id="root-warning-box">
+          <object class="GtkInfoBar" id="root-warning-box">
+            <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkEventBox" id="root-warning-ebox">
-                <property name="visible">True</property>
+            <property name="message_type">warning</property>
+            <child internal-child="action_area">
+              <object class="GtkButtonBox">
                 <property name="can_focus">False</property>
+                <property name="spacing">6</property>
+                <property name="layout_style">end</property>
                 <child>
-                  <object class="GtkLabel" id="root-warning-label">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="xpad">6</property>
-                    <property name="ypad">3</property>
-                    <property name="label" translatable="yes">Warning, you are using the root account, you may harm your system.</property>
-                  </object>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>
@@ -113,13 +115,37 @@
                 <property name="position">0</property>
               </packing>
             </child>
-            <child>
-              <object class="GtkSeparator" id="root-warning-separator">
-                <property name="visible">True</property>
+            <child internal-child="content_area">
+              <object class="GtkBox">
                 <property name="can_focus">False</property>
+                <property name="spacing">16</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">dialog-warning-symbolic</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child type="center">
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">You are using the root account, you may harm your system.</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
@@ -127,8 +153,8 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">2</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
@@ -291,7 +317,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
       </object>
