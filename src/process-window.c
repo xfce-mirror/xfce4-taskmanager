@@ -314,19 +314,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_show (window->statusbar);
 	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->builder, "graph-vbox")), window->statusbar, FALSE, FALSE, 0);
 
-	if (geteuid () == 0)
-	{
-		GtkCssProvider *css_provider;
-		css_provider = gtk_css_provider_new ();
-		gtk_css_provider_load_from_data (css_provider,
-										"#root-warning { background-color: #e53935; color: #ffffff; }",
-										-1, NULL);
-		gtk_style_context_add_provider_for_screen (gdk_screen_get_default (), GTK_STYLE_PROVIDER (css_provider),
-                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-		g_object_unref (css_provider);
-		gtk_widget_set_name (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-ebox")), "root-warning");
-		gtk_widget_show_all (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-box")));
-	}
+	gtk_widget_set_visible (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-box")), geteuid () == 0);
 
 	window->treeview = xtm_process_tree_view_new ();
 	gtk_widget_show (window->treeview);
