@@ -19,6 +19,7 @@
   </object>
   <object class="GtkWindow" id="process-window">
     <property name="can_focus">False</property>
+    <property name="icon_name">org.xfce.taskmanager</property>
     <child type="titlebar">
       <object class="GtkHeaderBar">
         <property name="visible">True</property>
