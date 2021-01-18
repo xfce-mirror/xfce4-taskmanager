@@ -92,9 +92,11 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_num_processes, TRUE, FALSE, 0);
 
 	statusbar->label_memory = gtk_label_new (NULL);
+	gtk_label_set_ellipsize (GTK_LABEL (statusbar->label_memory), PANGO_ELLIPSIZE_END);
 	gtk_box_pack_start (GTK_BOX (hbox_mem), statusbar->label_memory, TRUE, FALSE, 0);
 
 	statusbar->label_swap = gtk_label_new (NULL);
+	gtk_label_set_ellipsize (GTK_LABEL (statusbar->label_swap), PANGO_ELLIPSIZE_END);
 	gtk_box_pack_start (GTK_BOX (hbox_mem), statusbar->label_swap, TRUE, FALSE, 0);
 
 	gtk_box_pack_start (GTK_BOX (hbox), hbox_cpu, TRUE, TRUE, 0);
@@ -146,6 +148,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		g_strlcpy(statusbar->memory, g_value_get_string (value), sizeof(statusbar->memory));
 		text = g_strdup_printf (_("Memory: %s"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
+		gtk_widget_set_tooltip_text (statusbar->label_memory, text);
 		gdk_rgba_parse (&color, "#cb386c");
 		gtk_widget_override_color (statusbar->label_memory, GTK_STATE_NORMAL, &color);
 		g_free (text);
@@ -155,6 +158,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		g_strlcpy(statusbar->swap, g_value_get_string (value), sizeof(statusbar->swap));
 		text = g_strdup_printf (_("Swap: %s"), statusbar->swap);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_swap), text);
+		gtk_widget_set_tooltip_text (statusbar->label_swap, text);
 		g_free (text);
 		break;
 
