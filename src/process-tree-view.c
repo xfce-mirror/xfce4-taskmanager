@@ -808,50 +808,24 @@ xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid) {
 static gboolean
 treeview_query_tooltip (GtkWidget *widget, gint x, gint y, gboolean keyboard_tip, GtkTooltip *tooltip, gpointer data)
 {
-	gchar *escaped;
-	GValue value = G_VALUE_INIT;
-	GValue transformed = G_VALUE_INIT;
 	GtkTreeIter iter;
 	GtkTreePath *path;
 	GtkTreeModel *model;
 	GtkTreeView *tree_view = GTK_TREE_VIEW (widget);
 
-	if (!gtk_tree_view_get_tooltip_context (GTK_TREE_VIEW (widget), &x, &y,
-											keyboard_tip, &model, &path, &iter))
+	if (gtk_tree_view_get_tooltip_context (tree_view, &x, &y, keyboard_tip, &model, &path, &iter))
 	{
-		return FALSE;
-	}
+		gchar *tooltip_text;
 
-	gtk_tree_model_get_value (model, &iter, XTM_PTV_COLUMN_COMMAND, &value);
+		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_COMMAND, &tooltip_text, -1);
+		gtk_tooltip_set_text (tooltip, tooltip_text);
+		gtk_tree_view_set_tooltip_row (tree_view, tooltip, path);
 
-	g_value_init (&transformed, G_TYPE_STRING);
-
-	if (!g_value_transform (&value, &transformed))
-	{
-		g_value_unset (&value);
 		gtk_tree_path_free (path);
+		g_free (tooltip_text);
 
-		return FALSE;
+		return TRUE;
 	}
 
-	g_value_unset (&value);
-
-	if (!g_value_get_string (&transformed))
-	{
-		g_value_unset (&transformed);
-		gtk_tree_path_free (path);
-
-		return FALSE;
-	}
-
-	escaped = g_markup_escape_text (g_value_get_string (&transformed), -1);
-	gtk_tooltip_set_markup (tooltip, escaped);
-	g_free (escaped);
-
-	gtk_tree_view_set_tooltip_row (tree_view, tooltip, path);
-
-	gtk_tree_path_free (path);
-	g_value_unset (&transformed);
-
-	return TRUE;
+	return FALSE;
 }
