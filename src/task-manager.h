@@ -101,7 +101,7 @@ gboolean	set_priority_to_pid	(GPid pid, gint priority);
 #	define __unused				__attribute__((__unused__))
 #endif
 
-#if DEBUG
+#ifdef DEBUG
 #	define G_DEBUG_FMT(fmt, args...)	g_debug((fmt), ##args)
 #else
 #	define G_DEBUG_FMT(fmt, args...)

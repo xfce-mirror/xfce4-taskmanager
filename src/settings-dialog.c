@@ -12,7 +12,6 @@
 #endif
 
 #include <glib-object.h>
-#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include <libxfce4ui/libxfce4ui.h>
@@ -79,7 +78,7 @@ combobox_foreach (GtkTreeModel *model,
 
 	gtk_tree_model_get_value (model, iter, 0, &prop);
 
-	if (g_value_get_int (&prop) == refresh_rate->rate)
+	if ((guint) g_value_get_int (&prop) == refresh_rate->rate)
 	{
 		gtk_combo_box_set_active_iter (GTK_COMBO_BOX (refresh_rate->combobox), iter);
 		return TRUE;
