@@ -27,6 +27,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
+#include <xfconf/xfconf.h>
 #include <libxfce4ui/libxfce4ui.h>
 
 #include "settings.h"
@@ -61,6 +62,7 @@ struct _XtmProcessWindow
 	GtkWidget *		statusbar;
 	GtkWidget *		settings_button;
 	XtmSettings *		settings;
+	XfconfChannel *		channel;
 };
 G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 
@@ -68,8 +70,6 @@ static void	xtm_process_window_finalize			(GObject *object);
 static void	xtm_process_window_hide				(GtkWidget *widget);
 
 static void	emit_destroy_signal				(XtmProcessWindow *window);
-static gboolean	xtm_process_window_configure_event		(XtmProcessWindow *window, GdkEvent *event);
-static gboolean	xtm_process_vpaned_move_event			(XtmProcessWindow *window, GdkEventButton *event);
 static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
 
@@ -208,30 +208,11 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 }
 
 static void
-show_settings_dialog (GtkButton *button, GtkWidget *parent)
+show_settings_dialog (GtkButton *button, gpointer user_data)
 {
-	xtm_settings_dialog_run (parent);
-}
+	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
 
-static void
-xtm_show_legend (XtmProcessWindow *window)
-{
-	gboolean show_legend;
-
-	g_object_get (window->settings,
-				  "show-legend", &show_legend,
-				  NULL);
-	gtk_widget_set_visible (GTK_WIDGET (gtk_builder_get_object (window->builder, "legend")), show_legend);
-}
-
-static void
-show_filter_toggled_cb (GtkToggleButton *button, gpointer user_data)
-{
-	XtmProcessWindow *window = user_data;
-	gboolean active;
-
-	active = gtk_toggle_button_get_active (button);
-	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), active);
+	xtm_settings_dialog_run (window->window, window->channel);
 }
 
 static void
@@ -239,9 +220,10 @@ xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
 	gint width, height;
-	gboolean show_legend;
+	gboolean active;
 
 	window->settings = xtm_settings_get_default ();
+	window->channel = xfconf_channel_new (CHANNEL);
 
 	window->builder = gtk_builder_new ();
 	gtk_builder_add_from_string (window->builder, process_window_ui, process_window_ui_length, NULL);
@@ -252,15 +234,10 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_window_resize (GTK_WINDOW (window->window), width, height);
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
 	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
-	g_signal_connect_swapped(window->window, "configure-event",
-	    G_CALLBACK(xtm_process_window_configure_event), window);
-
-	g_signal_connect_swapped (window->settings, "notify::show-legend", G_CALLBACK (xtm_show_legend), window);
-	g_object_notify (G_OBJECT (window->settings), "show-legend");
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-settings"));
 	g_signal_connect (G_OBJECT (button), "clicked",
-										G_CALLBACK (show_settings_dialog), GTK_WIDGET (window->window));
+										G_CALLBACK (show_settings_dialog), window);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-identify"));
 	g_signal_connect (G_OBJECT (button), "clicked",
@@ -268,11 +245,11 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-show-filter"));
-	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), FALSE);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
-																gtk_revealer_get_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar)))));
-	g_signal_connect (G_OBJECT (button), "toggled",
-										G_CALLBACK (show_filter_toggled_cb), window);
+	xfconf_g_property_bind (window->channel, "/interface/show-filter", G_TYPE_BOOLEAN,
+		G_OBJECT (button), "active");
+	active = xfconf_channel_get_bool (window->channel, "/interface/show-filter", FALSE);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), active);
+	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), active);
 	g_object_bind_property (G_OBJECT (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), "reveal-child",
 													G_OBJECT (button), "active", G_BINDING_BIDIRECTIONAL);
 
@@ -287,10 +264,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 					  NULL);
 
 		window->vpaned = GTK_WIDGET (gtk_builder_get_object (window->builder, "mainview-vpaned"));
-		if (handle_position > -1)
-			gtk_paned_set_position (GTK_PANED (window->vpaned), handle_position);
-		g_signal_connect_swapped(window->vpaned, "button-release-event",
-		    G_CALLBACK(xtm_process_vpaned_move_event), window);
+		xfconf_g_property_bind (window->channel, "/interface/handle-position", G_TYPE_INT,
+			G_OBJECT (window->vpaned), "position");
 
 		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "graph-cpu"));
 		window->cpu_monitor = xtm_process_monitor_new ();
@@ -319,10 +294,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_show (window->treeview);
 	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->builder, "scrolledwindow")), window->treeview);
 
-	g_object_get (window->settings,
-				  "show-legend", &show_legend,
-				  NULL);
-	gtk_widget_set_visible (GTK_WIDGET (gtk_builder_get_object (window->builder, "legend")), show_legend);
+	xfconf_g_property_bind (window->channel, "/interface/show-legend", G_TYPE_BOOLEAN,
+		gtk_builder_get_object (window->builder, "legend"), "visible");
 
 	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
 	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
@@ -358,36 +331,6 @@ static void
 emit_destroy_signal (XtmProcessWindow *window)
 {
 	g_signal_emit_by_name (window, "destroy", G_TYPE_NONE);
-}
-
-static gboolean
-xtm_process_window_configure_event(XtmProcessWindow *window,
-    GdkEvent *event) {
-
-	if (NULL != window &&
-	    NULL != event && GDK_CONFIGURE == event->configure.type) {
-		g_object_set (window->settings,
-		    "window-width", event->configure.width,
-		    "window-height", event->configure.height,
-		    NULL);
-	}
-
-	return (FALSE);
-}
-
-static gboolean
-xtm_process_vpaned_move_event(XtmProcessWindow *window,
-    GdkEventButton *event __unused) {
-	gint handle_position;
-
-	if (NULL != window) {
-		handle_position = gtk_paned_get_position(GTK_PANED(window->vpaned));
-		g_object_set (window->settings,
-		    "handle-position", handle_position,
-		    NULL);
-	}
-
-	return (FALSE);
 }
 
 static gboolean
