@@ -227,7 +227,7 @@
                               <object class="GtkLabel" id="label-refresh-rate">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">Refresh rate:</property>
+                                <property name="label" translatable="yes">Refresh rate (ms):</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
