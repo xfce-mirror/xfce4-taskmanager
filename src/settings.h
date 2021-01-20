@@ -16,6 +16,29 @@
 
 #include <glib-object.h>
 
+#define CHANNEL                           "xfce4-taskmanager"
+
+#define SETTING_SHOW_STATUS_ICON          "/show-status-icon"
+#define SETTING_PROMPT_TERMINATE_TASK    "/prompt-terminate-task"
+
+#define SETTING_SHOW_FILTER               "/interface/show-filter"
+#define SETTING_SHOW_LEGEND               "/interface/show-legend"
+#define SETTING_SHOW_ALL_PROCESSES       "/interface/show-all-processes"
+#define SETTING_SHOW_APPLICATION_ICONS   "/interface/show-application-icons"
+#define SETTING_FULL_COMMAND_LINE        "/interface/full-command-line"
+#define SETTING_MORE_PRECISION           "/interface/more-precision"
+#define SETTING_PROCESS_TREE             "/interface/process-tree"
+#define SETTING_REFRESH_RATE             "/interface/refresh-rate"
+
+#define SETTING_COLUMN_PID "/columns/column-pid"
+#define SETTING_COLUMN_PPID "/columns/column-ppid"
+#define SETTING_COLUMN_STATE "/columns/column-state"
+#define SETTING_COLUMN_VSZ "/columns/column-vsz"
+#define SETTING_COLUMN_RSS "/columns/column-rss"
+#define SETTING_COLUMN_UID "/columns/column-uid"
+#define SETTING_COLUMN_CPU "/columns/column-cpu"
+#define SETTING_COLUMN_PRIORITY "/columns/column-priority"
+
 #define XTM_TYPE_SETTINGS			(xtm_settings_get_type ())
 #define XTM_SETTINGS(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), XTM_TYPE_SETTINGS, XtmSettings))
 #define XTM_SETTINGS_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), XTM_TYPE_SETTINGS, XtmSettingsClass))
