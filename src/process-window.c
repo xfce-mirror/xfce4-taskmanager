@@ -28,6 +28,8 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
+#include <libxfce4ui/libxfce4ui.h>
+
 #include "settings.h"
 #include "task-manager.h"
 #include "process-window.h"
@@ -35,8 +37,7 @@
 #include "process-monitor.h"
 #include "process-tree-view.h"
 #include "process-statusbar.h"
-#include "exec-tool-button.h"
-#include "settings-tool-button.h"
+#include "settings-dialog.h"
 
 
 
@@ -52,14 +53,13 @@ struct _XtmProcessWindow
 	/*<private>*/
 	GtkBuilder *		builder;
 	GtkWidget *		window;
-	GtkWidget *		toolbar;
 	GtkWidget *		filter_entry;
+	GtkWidget *		filter_searchbar;
 	GtkWidget *		cpu_monitor;
 	GtkWidget *		mem_monitor;
 	GtkWidget *		vpaned;
 	GtkWidget *		treeview;
 	GtkWidget *		statusbar;
-	GtkWidget *		exec_button;
 	GtkWidget *		settings_button;
 	XtmSettings *		settings;
 };
@@ -72,9 +72,7 @@ static void	emit_destroy_signal				(XtmProcessWindow *window);
 static gboolean	xtm_process_window_configure_event		(XtmProcessWindow *window, GdkEvent *event);
 static gboolean	xtm_process_vpaned_move_event			(XtmProcessWindow *window, GdkEventButton *event);
 static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
-static void	toolbar_update_style				(XtmProcessWindow *window);
 static void	monitor_update_step_size			(XtmProcessWindow *window);
-static void	show_about_dialog				(XtmProcessWindow *window);
 
 
 static void
@@ -211,6 +209,12 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 }
 
 static void
+show_settings_dialog (GtkButton *button, GtkWidget *parent)
+{
+	xtm_settings_dialog_run (parent);
+}
+
+static void
 xtm_show_legend (XtmProcessWindow *window)
 {
 	gboolean show_legend;
@@ -222,11 +226,20 @@ xtm_show_legend (XtmProcessWindow *window)
 }
 
 static void
+show_filter_toggled_cb (GtkToggleButton *button, gpointer user_data)
+{
+	XtmProcessWindow *window = user_data;
+	gboolean active;
+
+	active = gtk_toggle_button_get_active (button);
+	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), active);
+}
+
+static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
 	GtkWidget *icon;
-	GtkToolItem *xwininfo;
 	gint width, height;
 	gboolean show_legend;
 
@@ -244,28 +257,26 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect_swapped(window->window, "configure-event",
 	    G_CALLBACK(xtm_process_window_configure_event), window);
 
-	window->toolbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-toolbar"));
-	g_signal_connect_swapped (window->settings, "notify::toolbar-style", G_CALLBACK (toolbar_update_style), window);
-	g_object_notify (G_OBJECT (window->settings), "toolbar-style");
-
-	window->exec_button = xtm_exec_tool_button_new ();
-	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->exec_button), 0);
-
-	window->settings_button = xtm_settings_tool_button_new ();
-	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (window->settings_button), 1);
 	g_signal_connect_swapped (window->settings, "notify::show-legend", G_CALLBACK (xtm_show_legend), window);
 	g_object_notify (G_OBJECT (window->settings), "show-legend");
 
-	icon = gtk_image_new_from_icon_name ("xc_crosshair", GTK_ICON_SIZE_LARGE_TOOLBAR);
-	xwininfo = gtk_tool_button_new (icon, _("Identify Window"));
-	gtk_widget_set_tooltip_text (GTK_WIDGET (xwininfo), _("Identify an open window by clicking on it."));
-	gtk_toolbar_insert (GTK_TOOLBAR (window->toolbar), GTK_TOOL_ITEM (xwininfo), 2);
-	g_signal_connect (G_OBJECT (xwininfo), "clicked",
-										G_CALLBACK (xwininfo_clicked_cb), window);
-	gtk_widget_show_all (GTK_WIDGET (xwininfo));
+	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-settings"));
+	g_signal_connect (G_OBJECT (button), "clicked",
+										G_CALLBACK (show_settings_dialog), GTK_WIDGET (window->window));
 
-	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "toolbutton-about"));
-	g_signal_connect_swapped (button, "clicked", G_CALLBACK (show_about_dialog), window);
+	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-identify"));
+	g_signal_connect (G_OBJECT (button), "clicked",
+										G_CALLBACK (xwininfo_clicked_cb), window);
+
+	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
+	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-show-filter"));
+	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), FALSE);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
+																gtk_revealer_get_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar)))));
+	g_signal_connect (G_OBJECT (button), "toggled",
+										G_CALLBACK (show_filter_toggled_cb), window);
+	g_object_bind_property (G_OBJECT (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), "reveal-child",
+													G_OBJECT (button), "active", G_BINDING_BIDIRECTIONAL);
 
 	{
 		GtkWidget *toolitem;
@@ -304,19 +315,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_show (window->statusbar);
 	gtk_box_pack_start (GTK_BOX (gtk_builder_get_object (window->builder, "graph-vbox")), window->statusbar, FALSE, FALSE, 0);
 
-	if (geteuid () == 0)
-	{
-		GtkCssProvider *css_provider;
-		css_provider = gtk_css_provider_new ();
-		gtk_css_provider_load_from_data (css_provider,
-										"#root-warning { background-color: #e53935; color: #ffffff; }",
-										-1, NULL);
-		gtk_style_context_add_provider_for_screen (gdk_screen_get_default (), GTK_STYLE_PROVIDER (css_provider),
-                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-		g_object_unref (css_provider);
-		gtk_widget_set_name (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-ebox")), "root-warning");
-		gtk_widget_show_all (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-box")));
-	}
+	gtk_widget_set_visible (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-box")), geteuid () == 0);
 
 	window->treeview = xtm_process_tree_view_new ();
 	gtk_widget_show (window->treeview);
@@ -345,12 +344,6 @@ xtm_process_window_finalize (GObject *object)
 
 	if (GTK_IS_BOX (window->statusbar))
 		gtk_widget_destroy (window->statusbar);
-
-	if (GTK_IS_TOOL_ITEM (window->exec_button))
-		gtk_widget_destroy (window->exec_button);
-
-	if (GTK_IS_TOOL_ITEM (window->settings_button))
-		gtk_widget_destroy (window->settings_button);
 
 	if (XTM_IS_SETTINGS (window->settings))
 		g_object_unref (window->settings);
@@ -419,90 +412,12 @@ xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
 }
 
 static void
-toolbar_update_style (XtmProcessWindow *window)
-{
-	XtmToolbarStyle toolbar_style;
-	g_object_get (window->settings, "toolbar-style", &toolbar_style, NULL);
-	switch (toolbar_style)
-	{
-		default:
-		case XTM_TOOLBAR_STYLE_DEFAULT:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_MENU);
-		gtk_toolbar_unset_style (GTK_TOOLBAR (window->toolbar));
-		break;
-
-		case XTM_TOOLBAR_STYLE_SMALL:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_SMALL_TOOLBAR);
-		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_ICONS);
-		break;
-
-		case XTM_TOOLBAR_STYLE_LARGE:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_LARGE_TOOLBAR);
-		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_ICONS);
-		break;
-
-		case XTM_TOOLBAR_STYLE_TEXT:
-		gtk_toolbar_set_icon_size (GTK_TOOLBAR (window->toolbar), GTK_ICON_SIZE_MENU);
-		gtk_toolbar_set_style (GTK_TOOLBAR (window->toolbar), GTK_TOOLBAR_BOTH);
-		break;
-	}
-}
-
-static void
 monitor_update_step_size (XtmProcessWindow *window)
 {
 	guint refresh_rate;
 	g_object_get (window->settings, "refresh-rate", &refresh_rate, NULL);
 	g_object_set (window->cpu_monitor, "step-size", refresh_rate / 1000.0, NULL);
 	g_object_set (window->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
-}
-
-static void
-show_about_dialog (XtmProcessWindow *window)
-{
-	const gchar *authors[] = {
-		"(c) 2018-2019 Rozhuk Ivan",
-		"(c) 2014 Landry Breuil",
-		"(c) 2014 Harald Judt",
-		"(c) 2014 Peter de Ridder",
-		"(c) 2014 Simon Steinbess",
-		"(c) 2008-2010 Mike Massonnet",
-		"(c) 2005-2008 Johannes Zellner",
-		"",
-		"FreeBSD",
-		"  \342\200\242 Rozhuk Ivan",
-		"  \342\200\242 Mike Massonnet",
-		"  \342\200\242 Oliver Lehmann",
-		"",
-		"OpenBSD",
-		"  \342\200\242 Landry Breuil",
-		"",
-		"Linux",
-		"  \342\200\242 Johannes Zellner",
-		"  \342\200\242 Mike Massonnet",
-		"",
-		"OpenSolaris",
-		"  \342\200\242 Mike Massonnet",
-		"  \342\200\242 Peter Tribble",
-		NULL };
-	const gchar *license =
-		"This program is free software; you can redistribute it and/or modify\n"
-		"it under the terms of the GNU General Public License as published by\n"
-		"the Free Software Foundation; either version 2 of the License, or\n"
-		"(at your option) any later version.\n";
-
-	gtk_show_about_dialog (GTK_WINDOW (window->window),
-		"program-name", _("Task Manager"),
-		"version", PACKAGE_VERSION,
-		"copyright", "Copyright \302\251 2005-2019 The Xfce development team",
-		"logo-icon-name", "org.xfce.taskmanager",
-		"comments", _("Easy to use task manager"),
-		"license", license,
-		"authors", authors,
-		"translator-credits", _("translator-credits"),
-		"website", "http://goodies.xfce.org/projects/applications/xfce4-taskmanager",
-		"website-label", "goodies.xfce.org",
-		NULL);
 }
 
 /**

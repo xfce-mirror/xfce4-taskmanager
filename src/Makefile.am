@@ -12,6 +12,7 @@ xfce4_taskmanager_CFLAGS =						\
 	$(LIBXMU_CFLAGS)						\
 	$(GTK3_CFLAGS)							\
 	$(WNCK_CFLAGS)							\
+	$(LIBXFCE4UI_CFLAGS)				\
 	$(NULL)
 
 xfce4_taskmanager_LDADD = 						\
@@ -20,6 +21,7 @@ xfce4_taskmanager_LDADD = 						\
 	$(LIBXMU_LIBS)						\
 	$(GTK3_LIBS) 						\
 	$(WNCK_LIBS)						\
+	$(LIBXFCE4UI_LIBS)			\
 	$(NULL)
 
 xfce4_taskmanager_SOURCES =						\
@@ -30,8 +32,6 @@ xfce4_taskmanager_SOURCES =						\
 	process-tree-model.c		process-tree-model.h		\
 	process-tree-view.c		process-tree-view.h		\
 	process-statusbar.c		process-statusbar.h		\
-	exec-tool-button.c		exec-tool-button.h		\
-	settings-tool-button.c		settings-tool-button.h		\
 	settings-dialog_ui.h									\
 	settings-dialog.c		settings-dialog.h		\
 	settings.c			settings.h			\

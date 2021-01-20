@@ -100,8 +100,6 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_boolean ("monitor-paint-box", "MonitorPaintBox", "Paint box around monitor", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SHOW_APPLICATION_ICONS,
 		g_param_spec_boolean ("show-application-icons", "ShowApplicationIcons", "Show application icons", TRUE, G_PARAM_READWRITE));
-	g_object_class_install_property (class, PROP_TOOLBAR_STYLE,
-		g_param_spec_enum ("toolbar-style", "ToolbarStyle", "Toolbar style", XTM_TYPE_TOOLBAR_STYLE, XTM_TOOLBAR_STYLE_DEFAULT, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_PROMPT_TERMINATE_TASK,
 		g_param_spec_boolean ("prompt-terminate-task", "PromptTerminateTask", "Prompt dialog for terminating a task", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_REFRESH_RATE,
@@ -384,26 +382,4 @@ xtm_settings_get_default (void)
 		g_object_ref (settings);
 	}
 	return settings;
-}
-
-
-
-GType
-xtm_toolbar_style_get_type (void)
-{
-	static GType type = G_TYPE_INVALID;
-
-	static const GEnumValue values[] = {
-		{ XTM_TOOLBAR_STYLE_DEFAULT, "DEFAULT", N_("Default") },
-		{ XTM_TOOLBAR_STYLE_SMALL, "SMALL", N_("Small") },
-		{ XTM_TOOLBAR_STYLE_LARGE, "LARGE", N_("Large") },
-		{ XTM_TOOLBAR_STYLE_TEXT, "TEXT", N_("Text") },
-		{ 0, NULL, NULL }
-	};
-
-	if (type != G_TYPE_INVALID)
-		return type;
-
-	type = g_enum_register_static ("XtmToolbarStyle", values);
-	return type;
 }
