@@ -18,6 +18,9 @@
 #include <gio/gio.h>
 #endif
 
+#include <xfconf/xfconf.h>
+#include <libxfce4ui/libxfce4ui.h>
+
 #include "settings.h"
 #include "process-window.h"
 #include "task-manager.h"
@@ -102,7 +105,7 @@ static void
 destroy_window (void)
 {
 	if (gtk_main_level () > 0) {
-		xtm_settings_save_settings(settings);
+		xfconf_shutdown();
 		gtk_main_quit ();
 	}
 }
@@ -112,7 +115,7 @@ delete_window (void)
 {
 	if (!status_icon_get_visible ())
 	{
-		xtm_settings_save_settings(settings);
+		xfconf_shutdown();
 		gtk_main_quit ();
 		return FALSE;
 	}
@@ -194,6 +197,7 @@ refresh_rate_changed (void)
 
 int main (int argc, char *argv[])
 {
+	XfconfChannel *channel;
 #if GLIB_CHECK_VERSION(2, 28, 0)
 	GApplication *app;
 	GError *error = NULL;
@@ -236,7 +240,20 @@ int main (int argc, char *argv[])
 	}
 #endif
 
+	if (!xfconf_init (&error))
+	{
+		xfce_message_dialog (NULL, _("Xfce Notify Daemon"),
+			"dialog-error",
+			_("Settings daemon is unavailable"),
+			error->message,
+			"application-exit", GTK_RESPONSE_ACCEPT,
+			NULL);
+		exit (EXIT_FAILURE);
+	}
+
+	channel = xfconf_channel_new (CHANNEL);
 	settings = xtm_settings_get_default ();
+	xtm_settings_bind_xfconf (settings, channel);
 	show_hide_status_icon ();
 
 	window = xtm_process_window_new ();
