@@ -77,7 +77,7 @@ create_status_icon (void)
 }
 
 static gboolean
-status_icon_get_visible ()
+status_icon_get_visible (void)
 {
 	return status_icon_or_null && gtk_status_icon_get_visible (status_icon_or_null);
 }

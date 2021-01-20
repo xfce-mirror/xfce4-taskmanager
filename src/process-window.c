@@ -24,7 +24,6 @@
 #include <X11/Xproto.h>
 
 #include <glib-object.h>
-#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
@@ -239,7 +238,6 @@ static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
-	GtkWidget *icon;
 	gint width, height;
 	gboolean show_legend;
 
