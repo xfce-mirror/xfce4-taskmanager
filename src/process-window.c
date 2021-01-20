@@ -270,6 +270,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-show-filter"));
+	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), FALSE);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
 																gtk_revealer_get_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar)))));
 	g_signal_connect (G_OBJECT (button), "toggled",
