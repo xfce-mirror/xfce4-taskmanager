@@ -44,7 +44,7 @@ AC_PROG_CC()
 AM_PROG_CC_C_O()
 AC_PROG_LD()
 AC_PROG_INSTALL()
-AC_PROG_INTLTOOL()
+IT_PROG_INTLTOOL()
 
 dnl ************************************
 dnl *** Checks for library functions ***
