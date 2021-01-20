@@ -14,6 +14,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
+#include <xfconf/xfconf.h>
 #include <libxfce4ui/libxfce4ui.h>
 
 #include "settings.h"
@@ -21,7 +22,7 @@
 #include "settings-dialog_ui.h"
 
 static void	show_about_dialog				(GtkWidget *widget, gpointer user_data);
-static GtkWidget *xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window);
+static GtkWidget *xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window, XfconfChannel *channel);
 
 
 typedef struct
@@ -31,25 +32,13 @@ typedef struct
 } XtmRefreshRate;
 
 static void
-button_toggled (GtkToggleButton *button, XtmSettings *settings)
+builder_bind_toggle_button (GtkBuilder *builder, gchar *widget_name, XfconfChannel *channel, gchar *setting_name)
 {
-	gboolean active = gtk_toggle_button_get_active (button);
-	gchar *setting_name = g_object_get_data (G_OBJECT (button), "setting-name");
-	g_object_set (settings, setting_name, active, NULL);
-}
-
-static void
-builder_bind_toggle_button (GtkBuilder *builder, gchar *widget_name, XtmSettings *settings, gchar *setting_name)
-{
-	gboolean active;
 	GtkWidget *button;
 
-	g_object_get (settings, setting_name, &active, NULL);
-
 	button = GTK_WIDGET (gtk_builder_get_object (builder, widget_name));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), active);
-	g_object_set_data (G_OBJECT (button), "setting-name", setting_name);
-	g_signal_connect (button, "toggled", G_CALLBACK (button_toggled), settings);
+	xfconf_g_property_bind (channel, setting_name, G_TYPE_BOOLEAN,
+		G_OBJECT (button), "active");
 }
 
 static void
@@ -166,7 +155,7 @@ dialog_close (GtkWidget *widget, gpointer user_data)
 }
 
 static GtkWidget *
-xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
+xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window, XfconfChannel *channel)
 {
 	GtkWidget *dialog;
 	GtkWidget *button;
@@ -181,27 +170,26 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 #endif
 
 	// Interface
-	builder_bind_toggle_button (builder, "button-show-all-processes", settings, "show-all-processes");
-	builder_bind_toggle_button (builder, "button-show-application-icons", settings, "show-application-icons");
-	builder_bind_toggle_button (builder, "button-full-command-line", settings, "full-command-line");
-	builder_bind_toggle_button (builder, "button-more-precision", settings, "more-precision");
-	builder_bind_toggle_button (builder, "button-process-tree", settings, "process-tree");
-	builder_bind_toggle_button (builder, "button-show-legend", settings, "show-legend");
+	builder_bind_toggle_button (builder, "button-show-all-processes", channel, SETTING_SHOW_ALL_PROCESSES);
+	builder_bind_toggle_button (builder, "button-show-application-icons", channel, SETTING_SHOW_APPLICATION_ICONS);
+	builder_bind_toggle_button (builder, "button-full-command-line", channel, SETTING_FULL_COMMAND_LINE);
+	builder_bind_toggle_button (builder, "button-more-precision", channel, SETTING_MORE_PRECISION);
+	builder_bind_toggle_button (builder, "button-process-tree", channel, SETTING_PROCESS_TREE);
+	builder_bind_toggle_button (builder, "button-show-legend", channel, SETTING_SHOW_LEGEND);
 	builder_bind_combobox (builder, settings);
 	// Miscellaneous
-	builder_bind_toggle_button (builder, "button-prompt-terminate-task", settings, "prompt-terminate-task");
-	builder_bind_toggle_button (builder, "button-show-status-icon", settings, "show-status-icon");
-
+	builder_bind_toggle_button (builder, "button-prompt-terminate-task", channel, SETTING_PROMPT_TERMINATE_TASK);
+	builder_bind_toggle_button (builder, "button-show-status-icon", channel, SETTING_SHOW_STATUS_ICON);
 
 	// Columns
-	builder_bind_toggle_button (builder, "pid", settings, "column-pid");
-	builder_bind_toggle_button (builder, "ppid", settings, "column-ppid");
-	builder_bind_toggle_button (builder, "state", settings, "column-state");
-	builder_bind_toggle_button (builder, "vbytes", settings, "column-vsz");
-	builder_bind_toggle_button (builder, "pbytes", settings, "column-rss");
-	builder_bind_toggle_button (builder, "uid", settings, "column-uid");
-	builder_bind_toggle_button (builder, "cpu", settings, "column-cpu");
-	builder_bind_toggle_button (builder, "priority", settings, "column-priority");
+	builder_bind_toggle_button (builder, "pid", channel, SETTING_COLUMN_PID);
+	builder_bind_toggle_button (builder, "ppid", channel, SETTING_COLUMN_PPID);
+	builder_bind_toggle_button (builder, "state", channel, SETTING_COLUMN_STATE);
+	builder_bind_toggle_button (builder, "vbytes", channel, SETTING_COLUMN_VSZ);
+	builder_bind_toggle_button (builder, "pbytes", channel, SETTING_COLUMN_RSS);
+	builder_bind_toggle_button (builder, "uid", channel, SETTING_COLUMN_UID);
+	builder_bind_toggle_button (builder, "cpu", channel, SETTING_COLUMN_CPU);
+	builder_bind_toggle_button (builder, "priority", channel, SETTING_COLUMN_PRIORITY);
 
 
 	button = GTK_WIDGET (gtk_builder_get_object (builder, "button-about"));
@@ -217,8 +205,9 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 }
 
 void
-xtm_settings_dialog_run (GtkWidget *parent_window)
+xtm_settings_dialog_run (GtkWidget *parent_window, XfconfChannel *channel)
 {
+	GError *error = NULL;
 	GtkBuilder *builder;
 	GtkWidget *dialog;
 	gint response;
@@ -227,7 +216,7 @@ xtm_settings_dialog_run (GtkWidget *parent_window)
 	gtk_builder_add_from_string (builder, settings_dialog_ui, settings_dialog_ui_length, NULL);
 	g_return_if_fail (GTK_IS_BUILDER (builder));
 
-	dialog = xtm_settings_dialog_new (builder, parent_window);
+	dialog = xtm_settings_dialog_new (builder, parent_window, channel);
 
 	g_object_unref (builder);
 	response = gtk_dialog_run (GTK_DIALOG (dialog));
