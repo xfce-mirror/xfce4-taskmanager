@@ -32,6 +32,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Settings</property>
             <property name="image">image2</property>
           </object>
         </child>
@@ -52,6 +53,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Show/hide process filter</property>
             <property name="image">image3</property>
           </object>
           <packing>
