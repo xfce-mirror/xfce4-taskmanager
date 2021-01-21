@@ -104,7 +104,6 @@ static void
 destroy_window (void)
 {
 	if (gtk_main_level () > 0) {
-		xtm_settings_save_settings(settings);
 		xfconf_shutdown();
 		gtk_main_quit ();
 	}
@@ -115,7 +114,6 @@ delete_window (void)
 {
 	if (!status_icon_get_visible ())
 	{
-		xtm_settings_save_settings(settings);
 		xfconf_shutdown();
 		gtk_main_quit ();
 		return FALSE;
@@ -254,6 +252,7 @@ int main (int argc, char *argv[])
 
 	channel = xfconf_channel_new (CHANNEL);
 	settings = xtm_settings_get_default ();
+	xtm_settings_bind_xfconf (settings, channel);
 	show_hide_status_icon ();
 
 	window = xtm_process_window_new ();

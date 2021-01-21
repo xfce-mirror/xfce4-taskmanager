@@ -29,6 +29,8 @@
 #include "settings.h"
 
 
+#define WINDOW_HEIGHT	600
+#define WINDOW_WIDTH	400
 
 enum
 {
@@ -75,9 +77,6 @@ G_DEFINE_TYPE (XtmSettings, xtm_settings, G_TYPE_OBJECT)
 
 static void	xtm_settings_get_property			(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void	xtm_settings_set_property			(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
-
-static void	xtm_settings_load_settings			(XtmSettings *settings);
-
 
 static void
 xtm_settings_class_init (XtmSettingsClass *klass)
@@ -139,7 +138,7 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 static void
 xtm_settings_init (XtmSettings *settings)
 {
-	xtm_settings_load_settings (settings);
+
 }
 
 static void
@@ -170,203 +169,63 @@ xtm_settings_set_property (GObject *object, guint property_id, const GValue *val
 		case PROP_WINDOW_HEIGHT:
 			break;
 		default:
-			xtm_settings_save_settings (XTM_SETTINGS (object));
+			//xtm_settings_save_settings (XTM_SETTINGS (object));
 			break;
 		}
 	}
-}
-
-
-
-static void
-transform_string_to_boolean (const GValue *src, GValue *dst)
-{
-	g_value_set_boolean (dst, (gboolean)strcmp (g_value_get_string (src), "FALSE") != 0);
-}
-
-static void
-transform_string_to_int (const GValue *src, GValue *dst)
-{
-	g_value_set_int (dst, (gint)strtol (g_value_get_string (src), NULL, 10));
-}
-
-static void
-transform_string_to_uint (const GValue *src, GValue *dst)
-{
-	g_value_set_uint (dst, (guint)strtoul (g_value_get_string (src), NULL, 10));
-}
-
-static void
-transform_string_to_enum (const GValue *src, GValue *dst)
-{
-	GEnumClass *klass;
-	gint value = 0;
-	guint n;
-
-	klass = g_type_class_ref (G_VALUE_TYPE (dst));
-	for (n = 0; n < klass->n_values; ++n)
-	{
-		value = klass->values[n].value;
-		if (!g_ascii_strcasecmp (klass->values[n].value_name, g_value_get_string (src)))
-			break;
-	}
-	g_type_class_unref (klass);
-
-	g_value_set_enum (dst, value);
-}
-
-static void
-register_transformable (void)
-{
-	if (!g_value_type_transformable (G_TYPE_STRING, G_TYPE_BOOLEAN))
-		g_value_register_transform_func (G_TYPE_STRING, G_TYPE_BOOLEAN, transform_string_to_boolean);
-
-	if (!g_value_type_transformable (G_TYPE_STRING, G_TYPE_INT))
-		g_value_register_transform_func (G_TYPE_STRING, G_TYPE_INT, transform_string_to_int);
-
-	if (!g_value_type_transformable (G_TYPE_STRING, G_TYPE_UINT))
-		g_value_register_transform_func (G_TYPE_STRING, G_TYPE_UINT, transform_string_to_uint);
-
-	g_value_register_transform_func (G_TYPE_STRING, G_TYPE_ENUM, transform_string_to_enum);
-}
-
-static void
-xtm_settings_load_settings (XtmSettings *settings)
-{
-	GKeyFile *rc;
-	gchar *filename;
-
-	register_transformable ();
-
-	settings->loading = 1;
-	g_object_freeze_notify (G_OBJECT (settings));
-
-	rc = g_key_file_new ();
-	filename = g_strdup_printf ("%s/xfce4/xfce4-taskmanager.rc", g_get_user_config_dir ());
-
-	if (g_key_file_load_from_file (rc, filename, G_KEY_FILE_NONE, NULL))
-	{
-		gchar *string;
-		GValue dst = {0};
-		GValue src = {0};
-		GParamSpec **specs;
-		GParamSpec *spec;
-		guint nspecs;
-		guint n;
-
-		specs = g_object_class_list_properties (G_OBJECT_GET_CLASS (settings), &nspecs);
-		for (n = 0; n < nspecs; ++n)
-		{
-			spec = specs[n];
-			string = g_key_file_get_string (rc, "Settings", g_param_spec_get_nick (spec), NULL);
-			if (string == NULL)
-				continue;
-
-			g_value_init (&src, G_TYPE_STRING);
-			g_value_set_string (&src, string);
-			g_free (string);
-
-			if (spec->value_type == G_TYPE_STRING)
-			{
-				g_object_set_property (G_OBJECT (settings), spec->name, &src);
-			}
-			else if (g_value_type_transformable (G_TYPE_STRING, spec->value_type))
-			{
-				g_value_init (&dst, spec->value_type);
-				if (g_value_transform (&src, &dst))
-					g_object_set_property (G_OBJECT (settings), spec->name, &dst);
-				g_value_unset (&dst);
-			}
-			else
-			{
-				g_warning ("Failed to load property \"%s\"", spec->name);
-			}
-
-			g_value_unset (&src);
-		}
-		g_free (specs);
-	}
-
-	g_free (filename);
-	g_key_file_free (rc);
-
-	g_object_thaw_notify (G_OBJECT (settings));
-	settings->loading = 0;
 }
 
 void
-xtm_settings_save_settings (XtmSettings *settings)
+xtm_settings_bind_xfconf (XtmSettings *settings, XfconfChannel *channel)
 {
-	GKeyFile *rc;
-	gchar *filename;
+	gint width, height;
 
-	if (0 != settings->loading)
-		return;
-	rc = g_key_file_new ();
-	filename = g_strdup_printf ("%s/xfce4/xfce4-taskmanager.rc", g_get_user_config_dir ());
+	/* general settings */
+	width = xfconf_channel_get_int (channel, SETTING_WINDOW_WIDTH, WINDOW_WIDTH);
+	height = xfconf_channel_get_int (channel, SETTING_WINDOW_HEIGHT, WINDOW_HEIGHT);
+	g_warning ("width / height: %d / %d", width, height);
+	g_object_set (settings, "window-width", width, NULL);
+	g_object_set (settings, "window-height", height, NULL);
 
-	{
-		const gchar *string;
-		GValue dst = {0};
-		GValue src = {0};
-		GParamSpec **specs;
-		GParamSpec *spec;
-		guint nspecs;
-		guint n;
+	xfconf_g_property_bind (channel, SETTING_SHOW_STATUS_ICON, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "show-status-icon");
+	xfconf_g_property_bind (channel, SETTING_PROMPT_TERMINATE_TASK, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "prompt-terminate-task");
 
-		specs = g_object_class_list_properties (G_OBJECT_GET_CLASS (settings), &nspecs);
-		for (n = 0; n < nspecs; ++n)
-		{
-			spec = specs[n];
-			g_value_init (&dst, G_TYPE_STRING);
-			if (spec->value_type == G_TYPE_STRING)
-			{
-				g_object_get_property (G_OBJECT (settings), spec->name, &dst);
-			}
-			else
-			{
-				g_value_init (&src, spec->value_type);
-				g_object_get_property (G_OBJECT (settings), spec->name, &src);
-				g_value_transform (&src, &dst);
-				g_value_unset (&src);
-			}
-			string = g_value_get_string (&dst);
+	/* interface settings */
+	xfconf_g_property_bind (channel, SETTING_SHOW_ALL_PROCESSES, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "show-all-processes");
+	xfconf_g_property_bind (channel, SETTING_SHOW_APPLICATION_ICONS, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "show-application-icons");
+	xfconf_g_property_bind (channel, SETTING_FULL_COMMAND_LINE, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "full-command-line");
+	xfconf_g_property_bind (channel, SETTING_MORE_PRECISION, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "more-precision");
+	xfconf_g_property_bind (channel, SETTING_PROCESS_TREE, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "process-tree");
+	xfconf_g_property_bind (channel, SETTING_REFRESH_RATE, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "prompt-terminate-task");
+	xfconf_g_property_bind (channel, SETTING_REFRESH_RATE, G_TYPE_UINT,
+		G_OBJECT (settings), "refresh-rate");
 
-			if (string != NULL)
-				g_key_file_set_string (rc, "Settings", g_param_spec_get_nick (spec), string);
-
-			g_value_unset (&dst);
-		}
-		g_free (specs);
-	}
-
-	{
-		GError *error = NULL;
-		gchar *data;
-		gsize length;
-
-		if (!g_file_test (filename, G_FILE_TEST_EXISTS))
-		{
-			gchar *path = g_strdup_printf ("%s/xfce4", g_get_user_config_dir ());
-			g_mkdir_with_parents (path, 0700);
-			g_free (path);
-		}
-
-		data = g_key_file_to_data (rc, &length, NULL);
-		if (!g_file_set_contents (filename, data, (gssize)length, &error))
-		{
-			g_warning ("Unable to save settings: %s", error->message);
-			g_error_free (error);
-		}
-
-		g_free (data);
-	}
-
-	g_free (filename);
-	g_key_file_free (rc);
+	/* column visibility */
+	xfconf_g_property_bind (channel, SETTING_COLUMN_PID, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-pid");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_PPID, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-ppid");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_STATE, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-state");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_VSZ, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-vsz");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_RSS, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-rss");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_UID, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-uid");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_CPU, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-cpu");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_PRIORITY, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-priority");
 }
-
-
 
 XtmSettings *
 xtm_settings_get_default (void)
