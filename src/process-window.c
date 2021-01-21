@@ -247,9 +247,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-show-filter"));
-	xfconf_g_property_bind (window->channel, "/interface/show-filter", G_TYPE_BOOLEAN,
+	xfconf_g_property_bind (window->channel, SETTING_SHOW_FILTER, G_TYPE_BOOLEAN,
 		G_OBJECT (button), "active");
-	active = xfconf_channel_get_bool (window->channel, "/interface/show-filter", FALSE);
+	active = xfconf_channel_get_bool (window->channel, SETTING_SHOW_FILTER, FALSE);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), active);
 	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), active);
 	g_object_bind_property (G_OBJECT (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), "reveal-child",
@@ -266,7 +266,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 					  NULL);
 
 		window->vpaned = GTK_WIDGET (gtk_builder_get_object (window->builder, "mainview-vpaned"));
-		xfconf_g_property_bind (window->channel, "/interface/handle-position", G_TYPE_INT,
+		xfconf_g_property_bind (window->channel, SETTING_HANDLE_POSITION, G_TYPE_INT,
 			G_OBJECT (window->vpaned), "position");
 
 		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "graph-cpu"));
@@ -296,7 +296,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_show (window->treeview);
 	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->builder, "scrolledwindow")), window->treeview);
 
-	xfconf_g_property_bind (window->channel, "/interface/show-legend", G_TYPE_BOOLEAN,
+	xfconf_g_property_bind (window->channel, SETTING_SHOW_LEGEND, G_TYPE_BOOLEAN,
 		gtk_builder_get_object (window->builder, "legend"), "visible");
 
 	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
@@ -342,7 +342,6 @@ xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
 
 	if (event->keyval == GDK_KEY_Escape ||
 		(event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK))) {
-		xtm_settings_save_settings (window->settings);
 		g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
 		ret = TRUE;
 	}
