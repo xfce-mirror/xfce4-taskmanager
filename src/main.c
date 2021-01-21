@@ -19,6 +19,7 @@
 #endif
 
 #include <xfconf/xfconf.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "settings.h"
 #include "process-window.h"
