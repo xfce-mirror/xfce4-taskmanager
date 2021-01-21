@@ -208,7 +208,6 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window, XfconfCh
 void
 xtm_settings_dialog_run (GtkWidget *parent_window, XfconfChannel *channel)
 {
-	GError *error = NULL;
 	GtkBuilder *builder;
 	GtkWidget *dialog;
 	gint response;
