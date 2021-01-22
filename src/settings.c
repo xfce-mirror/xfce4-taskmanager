@@ -29,8 +29,6 @@
 #include "settings.h"
 
 
-#define WINDOW_HEIGHT	600
-#define WINDOW_WIDTH	400
 
 enum
 {
@@ -55,8 +53,6 @@ enum
 	PROP_COLUMN_PRIORITY,
 	PROP_SORT_COLUMN_ID,
 	PROP_SORT_TYPE,
-	PROP_WINDOW_WIDTH,
-	PROP_WINDOW_HEIGHT,
 	PROP_HANDLE_POSITION,
 	PROP_PROCESS_TREE,
 	N_PROPS,
@@ -125,10 +121,6 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_uint ("sort-column-id", "SortColumn", "Sort by column id", 0, G_MAXUINT, 0, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SORT_TYPE,
 		g_param_spec_uint ("sort-type", "SortType", "Sort type (asc/dsc)", 0, 1, 0, G_PARAM_READWRITE));
-	g_object_class_install_property (class, PROP_WINDOW_WIDTH,
-		g_param_spec_int ("window-width", "WindowWidth", "Window width", -1, G_MAXINT, -1, G_PARAM_READWRITE));
-	g_object_class_install_property (class, PROP_WINDOW_HEIGHT,
-		g_param_spec_int ("window-height", "WindowHeight", "Window height", -1, G_MAXINT, -1, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_HANDLE_POSITION,
 		g_param_spec_int ("handle-position", "HandlePosition", "Handle position", -1, G_MAXINT, -1, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_PROCESS_TREE,
@@ -165,9 +157,6 @@ xtm_settings_set_property (GObject *object, guint property_id, const GValue *val
 		g_value_copy (value, dest);
 		/* Do not save some noisy changed props on fly. */
 		switch (property_id) {
-		case PROP_WINDOW_WIDTH:
-		case PROP_WINDOW_HEIGHT:
-			break;
 		default:
 			//xtm_settings_save_settings (XTM_SETTINGS (object));
 			break;
@@ -178,15 +167,7 @@ xtm_settings_set_property (GObject *object, guint property_id, const GValue *val
 void
 xtm_settings_bind_xfconf (XtmSettings *settings, XfconfChannel *channel)
 {
-	gint width, height;
-
 	/* general settings */
-	width = xfconf_channel_get_int (channel, SETTING_WINDOW_WIDTH, WINDOW_WIDTH);
-	height = xfconf_channel_get_int (channel, SETTING_WINDOW_HEIGHT, WINDOW_HEIGHT);
-	g_warning ("width / height: %d / %d", width, height);
-	g_object_set (settings, "window-width", width, NULL);
-	g_object_set (settings, "window-height", height, NULL);
-
 	xfconf_g_property_bind (channel, SETTING_SHOW_STATUS_ICON, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "show-status-icon");
 	xfconf_g_property_bind (channel, SETTING_PROMPT_TERMINATE_TASK, G_TYPE_BOOLEAN,
