@@ -64,6 +64,8 @@ struct _XtmProcessWindow
 	GtkWidget *		settings_button;
 	XtmSettings *		settings;
 	XfconfChannel *		channel;
+	gint		width;
+	gint		height;
 };
 G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 
@@ -217,11 +219,28 @@ show_settings_dialog (GtkButton *button, gpointer user_data)
 }
 
 static void
+xtm_process_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation, gpointer user_data)
+{
+	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
+
+	gtk_window_get_size (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), &window->width, &window->height);
+}
+
+static gboolean
+xtm_process_window_delete_event (GtkWidget *widget, GdkEvent *event, gpointer user_data)
+{
+	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
+
+	xfconf_channel_set_int (XTM_PROCESS_WINDOW (widget)->channel, SETTING_WINDOW_WIDTH, window->width);
+	xfconf_channel_set_int (XTM_PROCESS_WINDOW (widget)->channel, SETTING_WINDOW_HEIGHT, window->height);
+
+	return FALSE;
+}
+
+static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
-	GtkWidget *icon;
-	gint width, height;
 	gboolean active;
 
 	window->settings = xtm_settings_get_default ();
@@ -231,10 +250,14 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_builder_add_from_string (window->builder, process_window_ui, process_window_ui_length, NULL);
 
 	window->window = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-window"));
-	g_object_get (window->settings, "window-width", &width, "window-height", &height, NULL);
-	if (width >= 1 && height >= 1)
-		gtk_window_resize (GTK_WINDOW (window->window), width, height);
+	window->width = xfconf_channel_get_int (window->channel, SETTING_WINDOW_WIDTH, DEFAULT_WINDOW_WIDTH);
+	window->height = xfconf_channel_get_int (window->channel, SETTING_WINDOW_HEIGHT, DEFAULT_WINDOW_HEIGHT);
+	if (window->width >= 1 && window->height >= 1)
+		gtk_window_set_default_size (GTK_WINDOW (window->window), window->width, window->height);
+
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
+	g_signal_connect_swapped (window->window, "size-allocate", G_CALLBACK (xtm_process_window_size_allocate), window);
+	g_signal_connect_swapped (window->window, "delete-event", G_CALLBACK (xtm_process_window_delete_event), window);
 	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-settings"));

@@ -18,6 +18,9 @@
 
 #include <xfconf/xfconf.h>
 
+#define DEFAULT_WINDOW_HEIGHT	600
+#define DEFAULT_WINDOW_WIDTH	400
+
 #define CHANNEL                          "xfce4-taskmanager"
 
 /* general settings */
