@@ -237,7 +237,7 @@ show_settings_dialog (GtkButton *button, gpointer user_data)
 	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
 
 	g_signal_handler_block (G_OBJECT (window->window), window->handler);
-	xtm_settings_dialog_run (window->window, window->channel);
+	xtm_settings_dialog_run (window->window);
 	g_signal_handler_unblock (G_OBJECT (window->window), window->handler);
 }
 
