@@ -60,7 +60,7 @@
 
 typedef struct _XtmSettings XtmSettings;
 
-void		xtm_settings_bind_xfconf		  (XtmSettings *settings, XfconfChannel *channel);
+void		xtm_settings_bind_xfconf			(XtmSettings *settings, XfconfChannel *channel);
 GType		xtm_settings_get_type				(void);
 XtmSettings *	xtm_settings_get_default			(void);
 
