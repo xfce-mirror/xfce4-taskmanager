@@ -221,7 +221,6 @@ xtm_settings_dialog_run (GtkWidget *parent_window)
 {
 	GtkBuilder *builder;
 	GtkWidget *dialog;
-	gint response;
 
 	builder = gtk_builder_new ();
 	gtk_builder_add_from_string (builder, settings_dialog_ui, settings_dialog_ui_length, NULL);
@@ -230,8 +229,7 @@ xtm_settings_dialog_run (GtkWidget *parent_window)
 	dialog = xtm_settings_dialog_new (builder, parent_window);
 
 	g_object_unref (builder);
-	response = gtk_dialog_run (GTK_DIALOG (dialog));
+	gtk_dialog_run (GTK_DIALOG (dialog));
 
-	if (response == GTK_RESPONSE_CLOSE)
-		gtk_widget_destroy (dialog);
+	gtk_widget_destroy (dialog);
 }
