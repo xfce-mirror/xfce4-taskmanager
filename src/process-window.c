@@ -63,9 +63,9 @@ struct _XtmProcessWindow
 	GtkWidget *		settings_button;
 	XtmSettings *		settings;
 	XfconfChannel *		channel;
-	gint		width;
-	gint		height;
-	gulong		handler;
+	gint			width;
+	gint			height;
+	gulong			handler;
 };
 G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 

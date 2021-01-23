@@ -52,7 +52,6 @@ builder_bind_toggle_button (GtkBuilder *builder, gchar *widget_name, XtmSettings
 	g_signal_connect (button, "toggled", G_CALLBACK (button_toggled), settings);
 }
 
-
 static void
 combobox_changed (GtkComboBox *combobox, XtmSettings *settings)
 {
@@ -192,6 +191,7 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	// Miscellaneous
 	builder_bind_toggle_button (builder, "button-prompt-terminate-task", settings, "prompt-terminate-task");
 	builder_bind_toggle_button (builder, "button-show-status-icon", settings, "show-status-icon");
+
 
 	// Columns
 	builder_bind_toggle_button (builder, "pid", settings, "column-pid");
