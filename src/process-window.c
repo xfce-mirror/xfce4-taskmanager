@@ -65,6 +65,7 @@ struct _XtmProcessWindow
 	XfconfChannel *		channel;
 	gint		width;
 	gint		height;
+	gulong		handler;
 };
 G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 
@@ -210,17 +211,11 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 }
 
 static void
-show_settings_dialog (GtkButton *button, gpointer user_data)
-{
-	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
-
-	xtm_settings_dialog_run (window->window, window->channel);
-}
-
-static void
 xtm_process_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation, gpointer user_data)
 {
 	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
+
+	g_return_if_fail (GTK_IS_WINDOW (XTM_PROCESS_WINDOW (widget)->window));
 
 	gtk_window_get_size (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), &window->width, &window->height);
 }
@@ -234,6 +229,16 @@ xtm_process_window_delete_event (GtkWidget *widget, GdkEvent *event, gpointer us
 	xfconf_channel_set_int (XTM_PROCESS_WINDOW (widget)->channel, SETTING_WINDOW_HEIGHT, window->height);
 
 	return FALSE;
+}
+
+static void
+show_settings_dialog (GtkButton *button, gpointer user_data)
+{
+	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
+
+	g_signal_handler_block (G_OBJECT (window->window), window->handler);
+	xtm_settings_dialog_run (window->window, window->channel);
+	g_signal_handler_unblock (G_OBJECT (window->window), window->handler);
 }
 
 static void
@@ -255,7 +260,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_window_set_default_size (GTK_WINDOW (window->window), window->width, window->height);
 
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
-	g_signal_connect_swapped (window->window, "size-allocate", G_CALLBACK (xtm_process_window_size_allocate), window);
+	window->handler = g_signal_connect_swapped (window->window, "size-allocate", G_CALLBACK (xtm_process_window_size_allocate), window);
 	g_signal_connect_swapped (window->window, "delete-event", G_CALLBACK (xtm_process_window_delete_event), window);
 	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
 
