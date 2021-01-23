@@ -37,9 +37,7 @@ enum
 	PROP_MORE_PRECISION,
 	PROP_FULL_COMMAND_LINE,
 	PROP_SHOW_STATUS_ICON,
-	PROP_MONITOR_PAINT_BOX,
 	PROP_SHOW_APPLICATION_ICONS,
-	PROP_TOOLBAR_STYLE,
 	PROP_PROMPT_TERMINATE_TASK,
 	PROP_REFRESH_RATE,
 	PROP_COLUMNS_POSITIONS,
@@ -67,7 +65,6 @@ struct _XtmSettings
 	GObject			parent;
 	/*<private>*/
 	GValue			values[N_PROPS];
-	gint			loading; /* Setting loading now, do not save. */
 };
 G_DEFINE_TYPE (XtmSettings, xtm_settings, G_TYPE_OBJECT)
 
@@ -91,8 +88,6 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_boolean ("full-command-line", "FullCommandLine", "Full command line", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SHOW_STATUS_ICON,
 		g_param_spec_boolean ("show-status-icon", "ShowStatusIcon", "Show/hide the status icon", FALSE, G_PARAM_READWRITE));
-	g_object_class_install_property (class, PROP_MONITOR_PAINT_BOX,
-		g_param_spec_boolean ("monitor-paint-box", "MonitorPaintBox", "Paint box around monitor", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SHOW_APPLICATION_ICONS,
 		g_param_spec_boolean ("show-application-icons", "ShowApplicationIcons", "Show application icons", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_PROMPT_TERMINATE_TASK,
@@ -147,7 +142,7 @@ static void
 xtm_settings_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
 {
 	GValue *dest = XTM_SETTINGS (object)->values + property_id;
-	if (!G_IS_VALUE(dest))
+	if (!G_IS_VALUE (dest))
 	{
 		g_value_init (dest, pspec->value_type);
 		g_param_value_set_default (pspec, dest);
@@ -155,12 +150,6 @@ xtm_settings_set_property (GObject *object, guint property_id, const GValue *val
 	if (g_param_values_cmp (pspec, value, dest) != 0)
 	{
 		g_value_copy (value, dest);
-		/* Do not save some noisy changed props on fly. */
-		switch (property_id) {
-		default:
-			//xtm_settings_save_settings (XTM_SETTINGS (object));
-			break;
-		}
 	}
 }
 
