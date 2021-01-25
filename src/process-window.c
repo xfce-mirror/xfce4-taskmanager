@@ -285,11 +285,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 	{
 		GtkWidget *toolitem;
 		guint refresh_rate;
-		gint handle_position;
 
 		g_object_get (window->settings,
 					  "refresh-rate", &refresh_rate,
-					  "handle-position", &handle_position,
 					  NULL);
 
 		window->vpaned = GTK_WIDGET (gtk_builder_get_object (window->builder, "mainview-vpaned"));

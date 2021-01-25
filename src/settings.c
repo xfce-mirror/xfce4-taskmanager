@@ -116,8 +116,6 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_uint ("sort-column-id", "SortColumn", "Sort by column id", 0, G_MAXUINT, 0, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SORT_TYPE,
 		g_param_spec_uint ("sort-type", "SortType", "Sort type (asc/dsc)", 0, 1, 0, G_PARAM_READWRITE));
-	g_object_class_install_property (class, PROP_HANDLE_POSITION,
-		g_param_spec_int ("handle-position", "HandlePosition", "Handle position", -1, G_MAXINT, -1, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_PROCESS_TREE,
 		g_param_spec_boolean ("process-tree", "ProcessTreeView", "Process tree", FALSE, G_PARAM_READWRITE));
 }
