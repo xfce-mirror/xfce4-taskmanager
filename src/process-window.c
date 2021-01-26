@@ -321,8 +321,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_show (window->treeview);
 	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->builder, "scrolledwindow")), window->treeview);
 
-	xfconf_g_property_bind (window->channel, SETTING_SHOW_LEGEND, G_TYPE_BOOLEAN,
-		gtk_builder_get_object (window->builder, "legend"), "visible");
+	g_object_bind_property (gtk_builder_get_object (window->builder, "legend"), "visible",
+			window->settings, "show-legend", G_BINDING_BIDIRECTIONAL);
 
 	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
 	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
