@@ -12,6 +12,7 @@
 #include <config.h>
 #endif
 
+#include <stdlib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gio/gio.h>
