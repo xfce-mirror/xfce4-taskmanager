@@ -149,7 +149,7 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		text = g_strdup_printf (_("Memory: %s"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
 		gtk_widget_set_tooltip_text (statusbar->label_memory, text);
-		gdk_rgba_parse (&color, "#d34572");
+		gdk_rgba_parse (&color, "#cb386c");
 		gtk_widget_override_color (statusbar->label_memory, GTK_STATE_FLAG_NORMAL, &color);
 		g_free (text);
 		break;
