@@ -12,11 +12,10 @@
 #include <config.h>
 #endif
 
+#include <stdlib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#if GLIB_CHECK_VERSION(2, 28, 0)
 #include <gio/gio.h>
-#endif
 
 #include <xfconf/xfconf.h>
 #include <libxfce4ui/libxfce4ui.h>
@@ -198,11 +197,9 @@ refresh_rate_changed (void)
 int main (int argc, char *argv[])
 {
 	XfconfChannel *channel;
-#if GLIB_CHECK_VERSION(2, 28, 0)
 	GApplication *app;
 	GError *error = NULL;
 	GOptionContext *opt_context;
-#endif
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -212,7 +209,6 @@ int main (int argc, char *argv[])
 	gtk_init (&argc, &argv);
 	g_set_application_name (_("Task Manager"));
 
-#if GLIB_CHECK_VERSION(2, 28, 0)
 	opt_context = g_option_context_new ("");
 	g_option_context_add_main_entries (opt_context, main_entries, NULL);
 	g_option_context_add_group (opt_context, gtk_get_option_group (TRUE));
@@ -238,7 +234,6 @@ int main (int argc, char *argv[])
 		g_object_unref (app);
 		return 0;
 	}
-#endif
 
 	if (!xfconf_init (&error))
 	{
@@ -261,9 +256,7 @@ int main (int argc, char *argv[])
 	if (!start_hidden)
 		gtk_widget_show (window);
 
-#if GLIB_CHECK_VERSION(2, 28, 0)
 	g_signal_connect_swapped (app, "activate", G_CALLBACK (xtm_process_window_show), window);
-#endif
 
 	task_manager = xtm_task_manager_new (xtm_process_window_get_model (XTM_PROCESS_WINDOW (window)));
 
