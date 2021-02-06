@@ -1,3 +1,41 @@
+1.5.0
+======
+Please note that this is a development release
+- Port to xfconf
+- Move to Client-side decorations
+- Migrate all settings to the settings dialog
+- settings: Switch to XfceTitledDialog
+- Use infobar for root warning box
+- Drop exec button from toolbar
+- include stdlib.h because exit() is used
+- remove GLIB_CHECK_VERSION checks
+- statusbar: Use better color that works well with both light and dark 
+themes (!17)
+- Fix handling "show-legend" setting
+- Handle Esc key correctly with hidden filter
+- Drop unused var and sort copyright
+- Show/hide filterbar with Ctrl+f and clear with Esc
+- Properly close settings dialog
+- Remove GSourceFunc casts
+- Fix compilation warnings
+- Replace AC_PROG_LIBTOOL with IT_PROG_INTLTOOL
+- Simplify "query-tooltip" signal handler
+- Ellipsize memory and swap labels (Fixes #32)
+- Set window icon in glade file
+- Replace filter entry with GtkSearchBar
+- Fix doc links and bump dates
+- Simplify settings dialog code
+- Drop leftover function for toolbar style
+- Move about dialog to settings
+- Drop toolbar style setting
+- Fix typo
+- Fix tooltip markdown issue
+- Create notification area icon only if needed (Bug #25)
+- Translation Updates:
+  Basque, Belarusian, Chinese (China), Chinese (Taiwan), Czech, French,
+  Galician, Italian, Japanese, Lithuanian, Norwegian Bokmål,
+  Portuguese (Brazil), Serbian, Turkish
+
 1.4.0
 ======
 - Drop Gtk2 support
