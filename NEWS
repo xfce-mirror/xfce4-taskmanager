@@ -1,3 +1,13 @@
+1.4.1
+======
+- Replace AC_PROG_LIBTOOL with IT_PROG_INTLTOOL
+- Simplify "query-tooltip" signal handler
+- statusbar: Use better color that works well with both light and dark
+  themes (!17)
+- Fix tooltip markdown issue
+- Create notification area icon only if needed (Bug #25)
+
+
 1.4.0
 ======
 - Drop Gtk2 support
