@@ -171,8 +171,6 @@ xtm_settings_bind_xfconf (XtmSettings *settings, XfconfChannel *channel)
 		G_OBJECT (settings), "more-precision");
 	xfconf_g_property_bind (channel, SETTING_PROCESS_TREE, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "process-tree");
-	xfconf_g_property_bind (channel, SETTING_REFRESH_RATE, G_TYPE_BOOLEAN,
-		G_OBJECT (settings), "prompt-terminate-task");
 	xfconf_g_property_bind (channel, SETTING_REFRESH_RATE, G_TYPE_UINT,
 		G_OBJECT (settings), "refresh-rate");
 
