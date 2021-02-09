@@ -1,3 +1,8 @@
+1.4.2
+======
+- Ellipsize memory and swap labels (Fixes #32)
+
+
 1.4.1
 ======
 - Replace AC_PROG_LIBTOOL with IT_PROG_INTLTOOL
