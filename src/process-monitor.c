@@ -36,6 +36,7 @@ struct _XtmProcessMonitor
 	gfloat			step_size;
 	gint			type;
 	GArray *		history;
+	GArray *		history_swap;
 };
 G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
@@ -66,6 +67,7 @@ static void
 xtm_process_monitor_init (XtmProcessMonitor *monitor)
 {
 	monitor->history = g_array_new (FALSE, TRUE, sizeof (gfloat));
+	monitor->history_swap = g_array_new (FALSE, TRUE, sizeof (gfloat));
 }
 
 static void
@@ -116,7 +118,12 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 
 	minimum_history_length = (guint)(gtk_widget_get_allocated_width(widget) / monitor->step_size);
 	if (monitor->history->len < minimum_history_length)
+	{
 		g_array_set_size (monitor->history, minimum_history_length + 1);
+		if (monitor->type == 1)
+			g_array_set_size (monitor->history_swap, minimum_history_length + 1);
+	}
+
 
 	xtm_process_monitor_paint (monitor, cr);
 	return FALSE;
@@ -141,32 +148,8 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	graph_surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
 	cr = cairo_create (graph_surface);
 
-	/* Draw area below the line, distinguish between CPU (0) and Mem (1) color-wise */
-	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
-	else
-		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3);
-	cairo_set_line_width (cr, 0.0);
-	cairo_set_antialias (cr, CAIRO_ANTIALIAS_DEFAULT);
-
-	cairo_move_to (cr, width, height);
+	/* Draw line and area below the line, distinguish between CPU (0) and Mem (1) color-wise */
 	cairo_translate (cr, step_size, 0);
-	for (i = 0; (step_size * (i - 1)) <= width; i++)
-	{
-		peak = &g_array_index (monitor->history, gfloat, i);
-		cairo_translate (cr, -step_size, 0);
-		cairo_line_to (cr, width, (1.0 - ((gdouble)(*peak))) * height);
-	}
-	cairo_line_to (cr, width, height);
-	cairo_fill (cr);
-
-	/* Draw line */
-	cairo_translate (cr, step_size * i, 0);
-
-	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0);
-	else
-		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0);
 	cairo_set_line_width (cr, 0.85);
 	cairo_set_line_cap (cr, CAIRO_LINE_CAP_ROUND);
 	cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
@@ -178,7 +161,35 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 		cairo_translate (cr, -step_size, 0);
 		cairo_line_to (cr, width, (1.0 - ((gdouble)(*peak))) * height);
 	}
+
+	if (monitor->type == 0)
+		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
+	else
+		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3);
+	cairo_fill_preserve (cr);
+
+	if (monitor->type == 0)
+		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0);
+	else
+		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0);
 	cairo_stroke (cr);
+
+	/* Draw Swap graph */
+	if (monitor->type == 1)
+	{
+		cairo_translate (cr, step_size * i, 0);
+		cairo_move_to (cr, width, height);
+		for (i = 0; (step_size * (i - 1)) <= width; i++)
+		{
+			peak = &g_array_index (monitor->history_swap, gfloat, i);
+			cairo_translate (cr, -step_size, 0);
+			cairo_line_to (cr, width, (1.0 - ((gdouble)(*peak))) * height);
+		}
+		cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 0.3);
+		cairo_fill_preserve (cr);
+		cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 1.0);
+		cairo_stroke (cr);
+	}
 
 	cairo_destroy (cr);
 
@@ -203,12 +214,12 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 	cairo_rectangle (cr, 0.0, 0.0, width, height);
 	cairo_set_source_rgb (cr, 0.96, 0.96, 0.96);
 	cairo_fill_preserve (cr);
-	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0); 
+	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
 	cairo_set_line_width (cr, 0.75);
 	cairo_stroke (cr);
-  
+
 	/* Paint dashed lines at 25%, 50% and 75% */
-	cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3); 
+	cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3);
 	cairo_set_line_width (cr, 1.0);
 	cairo_set_dash(cr, dashed, 1.0, 0);
 	for (i = 25; i <= 75; i += 25)
@@ -235,7 +246,7 @@ xtm_process_monitor_new (void)
 }
 
 void
-xtm_process_monitor_add_peak (XtmProcessMonitor *monitor, gfloat peak)
+xtm_process_monitor_add_peak (XtmProcessMonitor *monitor, gfloat peak, gfloat peak_swap)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_return_if_fail (peak >= 0.0f && peak <= 1.0f);
@@ -243,6 +254,13 @@ xtm_process_monitor_add_peak (XtmProcessMonitor *monitor, gfloat peak)
 	g_array_prepend_val (monitor->history, peak);
 	if (monitor->history->len > 1)
 		g_array_remove_index (monitor->history, monitor->history->len - 1);
+
+	if (monitor->type == 1)
+	{
+		g_array_prepend_val (monitor->history_swap, peak_swap);
+		if (monitor->history_swap->len > 1)
+			g_array_remove_index (monitor->history_swap, monitor->history_swap->len - 1);
+	}
 
 	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
 		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
@@ -269,6 +287,7 @@ xtm_process_monitor_clear (XtmProcessMonitor *monitor)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_array_set_size (monitor->history, 0);
+	g_array_set_size (monitor->history_swap, 0);
 	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
 		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
 }

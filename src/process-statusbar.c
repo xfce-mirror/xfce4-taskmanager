@@ -159,6 +159,8 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		text = g_strdup_printf (_("Swap: %s"), statusbar->swap);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_swap), text);
 		gtk_widget_set_tooltip_text (statusbar->label_swap, text);
+		gdk_rgba_parse (&color, "#75324d");
+		gtk_widget_override_color (statusbar->label_swap, GTK_STATE_FLAG_NORMAL, &color);
 		g_free (text);
 		break;
 
