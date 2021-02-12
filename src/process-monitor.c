@@ -141,32 +141,8 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	graph_surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
 	cr = cairo_create (graph_surface);
 
-	/* Draw area below the line, distinguish between CPU (0) and Mem (1) color-wise */
-	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
-	else
-		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3);
-	cairo_set_line_width (cr, 0.0);
-	cairo_set_antialias (cr, CAIRO_ANTIALIAS_DEFAULT);
-
-	cairo_move_to (cr, width, height);
+	/* Draw line and area below the line, distinguish between CPU (0) and Mem (1) color-wise */
 	cairo_translate (cr, step_size, 0);
-	for (i = 0; (step_size * (i - 1)) <= width; i++)
-	{
-		peak = &g_array_index (monitor->history, gfloat, i);
-		cairo_translate (cr, -step_size, 0);
-		cairo_line_to (cr, width, (1.0 - ((gdouble)(*peak))) * height);
-	}
-	cairo_line_to (cr, width, height);
-	cairo_fill (cr);
-
-	/* Draw line */
-	cairo_translate (cr, step_size * i, 0);
-
-	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0);
-	else
-		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0);
 	cairo_set_line_width (cr, 0.85);
 	cairo_set_line_cap (cr, CAIRO_LINE_CAP_ROUND);
 	cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
@@ -178,6 +154,17 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 		cairo_translate (cr, -step_size, 0);
 		cairo_line_to (cr, width, (1.0 - ((gdouble)(*peak))) * height);
 	}
+
+	if (monitor->type == 0)
+		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
+	else
+		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3);
+	cairo_fill_preserve (cr);
+
+	if (monitor->type == 0)
+		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0);
+	else
+		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0);
 	cairo_stroke (cr);
 
 	cairo_destroy (cr);
@@ -203,12 +190,12 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 	cairo_rectangle (cr, 0.0, 0.0, width, height);
 	cairo_set_source_rgb (cr, 0.96, 0.96, 0.96);
 	cairo_fill_preserve (cr);
-	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0); 
+	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
 	cairo_set_line_width (cr, 0.75);
 	cairo_stroke (cr);
-  
+
 	/* Paint dashed lines at 25%, 50% and 75% */
-	cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3); 
+	cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3);
 	cairo_set_line_width (cr, 1.0);
 	cairo_set_dash(cr, dashed, 1.0, 0);
 	for (i = 25; i <= 75; i += 25)
