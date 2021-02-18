@@ -52,6 +52,7 @@
 #define SETTING_COLUMN_PRIORITY          "/columns/column-priority"
 #define SETTING_COLUMN_SORT_ID           "/columns/sort-id"
 #define SETTING_COLUMN_SORT_TYPE         "/columns/sort-type"
+#define SETTING_COLUMN_POSITIONS         "/columns/positions"
 
 #define XTM_TYPE_SETTINGS			(xtm_settings_get_type ())
 #define XTM_SETTINGS(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), XTM_TYPE_SETTINGS, XtmSettings))
