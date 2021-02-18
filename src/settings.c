@@ -191,6 +191,11 @@ xtm_settings_bind_xfconf (XtmSettings *settings, XfconfChannel *channel)
 		G_OBJECT (settings), "column-cpu");
 	xfconf_g_property_bind (channel, SETTING_COLUMN_PRIORITY, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "column-priority");
+
+	xfconf_g_property_bind (channel, SETTING_COLUMN_SORT_ID, G_TYPE_UINT,
+		G_OBJECT (settings), "sort-column-id");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_SORT_TYPE, G_TYPE_UINT,
+		G_OBJECT (settings), "sort-type");
 }
 
 XtmSettings *
