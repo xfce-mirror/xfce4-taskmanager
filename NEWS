@@ -1,3 +1,13 @@
+1.5.1
+======
+- Fix erroneous binding of settings (Fixes #37)
+- Store column positions again
+- Store sort-column-id and sort-type (Fixes #36)
+- Also include swap in the memory graph
+- Reduce drawing code
+- Reduce borders of graphs
+- Replace GtkImageMenuItem with GtkMenuItem
+
 1.5.0
 ======
 Please note that this is a development release
