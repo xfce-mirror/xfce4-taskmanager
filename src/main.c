@@ -57,7 +57,7 @@ status_icon_popup_menu (GtkStatusIcon *_status_icon, guint button, guint activat
 	{
 		GtkWidget *mi;
 		menu = gtk_menu_new ();
-		mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_QUIT, NULL);
+		mi = gtk_menu_item_new_with_label (_("Quit"));
 		g_signal_connect (mi, "activate", G_CALLBACK (destroy_window), NULL);
 		gtk_container_add (GTK_CONTAINER (menu), mi);
 		gtk_widget_show_all (menu);
