@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-26 12:48+0100\n"
-"PO-Revision-Date: 2021-01-31 14:45+0000\n"
+"POT-Creation-Date: 2021-02-19 00:47+0100\n"
+"PO-Revision-Date: 2021-02-20 09:25+0000\n"
 "Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:213
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:141
@@ -35,7 +35,11 @@ msgstr "Gestore dei processi"
 msgid "Easy to use application to monitor system resources"
 msgstr "Un'applicazione per controllare le risorse del sistema facile da usare"
 
-#: ../src/main.c:159
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "Esci"
+
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -44,11 +48,11 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Processi:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memoria:</b> %s\n<b>Swap:</b> %s"
 
-#: ../src/main.c:245
+#: ../src/main.c:240
 msgid "Xfce Notify Daemon"
 msgstr "Demone di notifica di Xfce"
 
-#: ../src/main.c:247
+#: ../src/main.c:242
 msgid "Settings daemon is unavailable"
 msgstr "Il demone delle impostazioni non è disponibile"
 
@@ -67,7 +71,7 @@ msgstr "Memoria: %s"
 msgid "Swap: %s"
 msgstr "Swap: %s"
 
-#: ../src/process-statusbar.c:174
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "Processi: %d"
