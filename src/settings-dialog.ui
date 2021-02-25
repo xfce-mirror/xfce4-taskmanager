@@ -307,7 +307,7 @@
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="button-show-status-icon">
-                            <property name="label" translatable="yes">Hide into the notification area</property>
+                            <property name="label" translatable="yes">Keep in the notification area</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
