@@ -215,20 +215,9 @@ xtm_process_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation, 
 {
 	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
 
-	g_return_if_fail (GTK_IS_WINDOW (XTM_PROCESS_WINDOW (widget)->window));
+	g_return_if_fail (gtk_widget_is_toplevel (widget));
 
-	gtk_window_get_size (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), &window->width, &window->height);
-}
-
-static gboolean
-xtm_process_window_delete_event (GtkWidget *widget, GdkEvent *event, gpointer user_data)
-{
-	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
-
-	xfconf_channel_set_int (XTM_PROCESS_WINDOW (widget)->channel, SETTING_WINDOW_WIDTH, window->width);
-	xfconf_channel_set_int (XTM_PROCESS_WINDOW (widget)->channel, SETTING_WINDOW_HEIGHT, window->height);
-
-	return FALSE;
+	gtk_window_get_size (GTK_WINDOW (widget), &window->width, &window->height);
 }
 
 static void
@@ -260,8 +249,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_window_set_default_size (GTK_WINDOW (window->window), window->width, window->height);
 
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
-	window->handler = g_signal_connect_swapped (window->window, "size-allocate", G_CALLBACK (xtm_process_window_size_allocate), window);
-	g_signal_connect_swapped (window->window, "delete-event", G_CALLBACK (xtm_process_window_delete_event), window);
+	window->handler = g_signal_connect (window->window, "size-allocate", G_CALLBACK (xtm_process_window_size_allocate), window);
 	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-settings"));
@@ -357,6 +345,10 @@ xtm_process_window_finalize (GObject *object)
 static void
 emit_destroy_signal (XtmProcessWindow *window)
 {
+	/* Store window size */
+	xfconf_channel_set_int (window->channel, SETTING_WINDOW_WIDTH, window->width);
+	xfconf_channel_set_int (window->channel, SETTING_WINDOW_HEIGHT, window->height);
+
 	g_signal_emit_by_name (window, "destroy", G_TYPE_NONE);
 }
 
