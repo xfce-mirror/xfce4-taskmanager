@@ -1,3 +1,10 @@
+1.5.2
+======
+- Fix restoring the window size (Fixes #39)
+- Improve wording of systray option (Fixes #19)
+- Translation Updates:
+  Italian
+
 1.5.1
 ======
 - Fix erroneous binding of settings (Fixes #37)
