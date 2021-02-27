@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 12:48+0100\n"
-"PO-Revision-Date: 2021-01-21 02:36+0000\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-02-27 01:20+0000\n"
 "Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/xfce/xfce-apps/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -20,10 +20,10 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:142
+#: ../src/settings-dialog.c:141
 msgid "Task Manager"
 msgstr "タスクマネージャー"
 
@@ -31,7 +31,11 @@ msgstr "タスクマネージャー"
 msgid "Easy to use application to monitor system resources"
 msgstr "システムリソースを監視するための使いやすいアプリケーション"
 
-#: ../src/main.c:156
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "終了"
+
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -40,12 +44,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>プロセス数:</b> %u\n<b>CPU:</b> %.0f%%\n<b>メモリ:</b> %s\n<b>スワップ:</b> %s"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:477
+#: ../src/main.c:240
+msgid "Xfce Notify Daemon"
+msgstr "Xfce 通知デーモン"
+
+#: ../src/main.c:242
+msgid "Settings daemon is unavailable"
+msgstr "設定デーモンは使用できません"
+
+#: ../src/process-statusbar.c:139 ../src/process-window.c:455
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:481
+#: ../src/process-statusbar.c:149 ../src/process-window.c:459
 #, c-format
 msgid "Memory: %s"
 msgstr "メモリ: %s"
@@ -55,7 +67,7 @@ msgstr "メモリ: %s"
 msgid "Swap: %s"
 msgstr "スワップ: %s"
 
-#: ../src/process-statusbar.c:174
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "プロセス: %d"
@@ -181,33 +193,33 @@ msgstr "とても高い"
 msgid "Priority"
 msgstr "優先度"
 
-#: ../src/process-window.c:164
+#: ../src/process-window.c:166
 msgid "Bad Window"
 msgstr "不正なウィンドウ"
 
-#: ../src/process-window.c:164
+#: ../src/process-window.c:166
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "ウィンドウ ID 0x%lx が存在しません!"
 
-#: ../src/process-window.c:167
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty 失敗"
 
-#: ../src/process-window.c:167
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty が失敗しました！"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:176
 msgid "No PID found"
 msgstr "PID が見つかりません"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:176
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "ウィンドウ 0x%lx の PID が見つかりません"
 
-#: ../src/process-window.c:332
+#: ../src/process-window.c:330
 msgid "Filter on process name"
 msgstr "プロセス名でフィルターをかけます"
 
@@ -242,11 +254,11 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> 終了中のタスク"
 
-#: ../src/settings-dialog.c:146
+#: ../src/settings-dialog.c:145
 msgid "Easy to use task manager"
 msgstr "使いやすいタスクマネージャーです"
 
-#: ../src/settings-dialog.c:149
+#: ../src/settings-dialog.c:148
 msgid "translator-credits"
 msgstr "Daichi Kawahata\nNobuhiro Iwamatsu\nMasato Hashimoto"
 
@@ -299,8 +311,8 @@ msgid "Prompt for terminating tasks"
 msgstr "タスクを終了させる時に確認する"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Hide into the notification area"
-msgstr "ウィンドウを閉じたら通知エリアに隠す"
+msgid "Keep in the notification area"
+msgstr "通知エリアを保持"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
