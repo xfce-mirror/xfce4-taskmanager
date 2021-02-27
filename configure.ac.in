@@ -1,8 +1,13 @@
 dnl
 dnl xfce4-taskmanager - A small taskmanager based on the Xfce 4 libraries.
 dnl
-dnl 2010 Mike Massonnet <mmassonnet@xfce.org>
-dnl 2005-2007 Johannes Zellner <webmaster@nebulon.de>
+dnl 2014-2021 Simon Steinbess
+dnl 2018-2019 Rozhuk Ivan
+dnl 2014 Landry Breuil
+dnl 2014 Harald Judt
+dnl 2014 Peter de Ridder
+dnl 2008-2010 Mike Massonnet <mmassonnet@xfce.org>
+dnl 2005-2008 Johannes Zellner <webmaster@nebulon.de>
 
 dnl ***************************
 dnl *** Version information ***
@@ -17,10 +22,10 @@ m4_define([taskmanager_version], [taskmanager_version_major().taskmanager_versio
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2006-2008
+AC_COPYRIGHT([Copyright (c) 2005-2021
         The Xfce development team. All rights reserved.])
-AC_INIT([Xfce4 Taskmanager], [taskmanager_version], [http://bugzilla.xfce.org/], [xfce4-taskmanager],
-        [http://goodies.xfce.org/projects/applications/xfce4-taskmanager])
+AC_INIT([Xfce4 Taskmanager], [taskmanager_version], [https://gitlab.xfce.org/apps/xfce4-taskmanager/], [xfce4-taskmanager],
+        [https://docs.xfce.org/apps/xfce4-taskmanager/start])
 AC_PREREQ([2.60])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_CANONICAL_TARGET()

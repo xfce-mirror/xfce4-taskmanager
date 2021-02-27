@@ -107,7 +107,7 @@ static void
 show_about_dialog (GtkWidget *widget, gpointer user_data)
 {
 	const gchar *authors[] = {
-		"(c) 2014-2020 Simon Steinbeiss",
+		"(c) 2014-2021 Simon Steinbeiss",
 		"(c) 2018-2019 Rozhuk Ivan",
 		"(c) 2014 Landry Breuil",
 		"(c) 2014 Harald Judt",
@@ -140,14 +140,14 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 	gtk_show_about_dialog (GTK_WINDOW (widget),
 		"program-name", _("Task Manager"),
 		"version", PACKAGE_VERSION,
-		"copyright", "Copyright \302\251 2005-2020 The Xfce development team",
+		"copyright", "Copyright \302\251 2005-2021 The Xfce development team",
 		"logo-icon-name", "org.xfce.taskmanager",
 		"comments", _("Easy to use task manager"),
 		"license", license,
 		"authors", authors,
 		"translator-credits", _("translator-credits"),
 		"website", "https://docs.xfce.org/apps/xfce4-taskmanager/start",
-		"website-label", "docs.xfce.org",
+		"website-label", "Website",
 		NULL);
 }
 
