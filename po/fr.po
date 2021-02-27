@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-26 12:48+0100\n"
-"PO-Revision-Date: 2021-01-30 22:21+0000\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-02-27 16:52+0000\n"
 "Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/xfce/xfce-apps/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:213
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:141
@@ -37,7 +37,11 @@ msgstr "Gestionnaire de tâches"
 msgid "Easy to use application to monitor system resources"
 msgstr "Application simple d’utilisation pour surveiller les ressources du système"
 
-#: ../src/main.c:159
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "Quitter"
+
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -46,11 +50,11 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Processus :</b> %u\n<b>CPU :</b> %.0f %%\n<b>Mémoire :</b> %s\n<b>Fichier d’échange :</b> %s"
 
-#: ../src/main.c:245
+#: ../src/main.c:240
 msgid "Xfce Notify Daemon"
 msgstr "Démon de notification Xfce"
 
-#: ../src/main.c:247
+#: ../src/main.c:242
 msgid "Settings daemon is unavailable"
 msgstr "Le démon des paramètres est indisponible"
 
@@ -69,7 +73,7 @@ msgstr "Mémoire : %s"
 msgid "Swap: %s"
 msgstr "Fichier d’échange : %s"
 
-#: ../src/process-statusbar.c:174
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "Processus : %d"
@@ -313,8 +317,8 @@ msgid "Prompt for terminating tasks"
 msgstr "Fenêtre d’invite pour terminer les tâches"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Hide into the notification area"
-msgstr "Masquer dans la zone de notification"
+msgid "Keep in the notification area"
+msgstr "Garder dans la zone de notification"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
