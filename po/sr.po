@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-26 12:48+0100\n"
-"PO-Revision-Date: 2021-01-29 09:05+0000\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-03-01 12:21+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/xfce-apps/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:213
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:141
@@ -31,7 +31,11 @@ msgstr "Управник задатака"
 msgid "Easy to use application to monitor system resources"
 msgstr "Програм за надгледање система лак за употребу"
 
-#: ../src/main.c:159
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "Напусти"
+
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -40,11 +44,11 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Процеси:</b> %u\n<b>Процесор:</b> %.0f%%\n<b>Меморија:</b> %s\n<b>Заменска меморија:</b> %s"
 
-#: ../src/main.c:245
+#: ../src/main.c:240
 msgid "Xfce Notify Daemon"
 msgstr "Домар обавештавања ИксФЦЕ-а"
 
-#: ../src/main.c:247
+#: ../src/main.c:242
 msgid "Settings daemon is unavailable"
 msgstr "Домар поставки није доступан"
 
@@ -63,7 +67,7 @@ msgstr "Меморија: %s"
 msgid "Swap: %s"
 msgstr "Заменска меморија: %s"
 
-#: ../src/process-statusbar.c:174
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "Процеси: %d"
@@ -307,8 +311,8 @@ msgid "Prompt for terminating tasks"
 msgstr "Питај за обуставу задатака"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Hide into the notification area"
-msgstr "Сакриј у обавештајну област"
+msgid "Keep in the notification area"
+msgstr "Држи у обавештајној области"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
