@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 12:48+0100\n"
-"PO-Revision-Date: 2021-01-21 01:50+0000\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-03-02 01:30+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/xfce/xfce-apps/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -20,10 +20,10 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:142
+#: ../src/settings-dialog.c:141
 msgid "Task Manager"
 msgstr "工作管理員"
 
@@ -31,7 +31,11 @@ msgstr "工作管理員"
 msgid "Easy to use application to monitor system resources"
 msgstr "易於使用的系統資源監視程式"
 
-#: ../src/main.c:156
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "結束"
+
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -40,12 +44,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>程序：</b> %u\n<b>CPU：</b> %.0f%%\n<b>記憶體：</b> %s\n<b>置換空間：</b> %s"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:477
+#: ../src/main.c:240
+msgid "Xfce Notify Daemon"
+msgstr "Xfce 通知幕後程式"
+
+#: ../src/main.c:242
+msgid "Settings daemon is unavailable"
+msgstr "設定值幕後程式無法使用"
+
+#: ../src/process-statusbar.c:139 ../src/process-window.c:455
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU：%s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:481
+#: ../src/process-statusbar.c:149 ../src/process-window.c:459
 #, c-format
 msgid "Memory: %s"
 msgstr "記憶體：%s"
@@ -55,7 +67,7 @@ msgstr "記憶體：%s"
 msgid "Swap: %s"
 msgstr "置換空間：%s"
 
-#: ../src/process-statusbar.c:174
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "程序：%d"
@@ -181,33 +193,33 @@ msgstr "非常高"
 msgid "Priority"
 msgstr "優先權"
 
-#: ../src/process-window.c:164
+#: ../src/process-window.c:166
 msgid "Bad Window"
 msgstr "無效的視窗"
 
-#: ../src/process-window.c:164
+#: ../src/process-window.c:166
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "視窗 id 0x%lx 不存在！"
 
-#: ../src/process-window.c:167
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty 失敗"
 
-#: ../src/process-window.c:167
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty 失敗！"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:176
 msgid "No PID found"
 msgstr "找不到 PID"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:176
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "找不到視窗 0x%lx 的 PID。"
 
-#: ../src/process-window.c:332
+#: ../src/process-window.c:330
 msgid "Filter on process name"
 msgstr "行程名稱的過濾器"
 
@@ -242,11 +254,11 @@ msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> 結束任務"
 
-#: ../src/settings-dialog.c:146
+#: ../src/settings-dialog.c:145
 msgid "Easy to use task manager"
 msgstr "易於使用的工作管理員"
 
-#: ../src/settings-dialog.c:149
+#: ../src/settings-dialog.c:148
 msgid "translator-credits"
 msgstr "Cosmo Chene\nCheng-Chia Tseng <pswo10680@gmail.com>, 2012."
 
@@ -299,8 +311,8 @@ msgid "Prompt for terminating tasks"
 msgstr "提請終止工作"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Hide into the notification area"
-msgstr "隱藏至通知區域"
+msgid "Keep in the notification area"
+msgstr "保留在通知區域"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
