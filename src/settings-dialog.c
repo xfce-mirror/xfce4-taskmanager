@@ -147,7 +147,6 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 		"authors", authors,
 		"translator-credits", _("translator-credits"),
 		"website", "https://docs.xfce.org/apps/xfce4-taskmanager/start",
-		"website-label", "Website",
 		NULL);
 }
 
