@@ -306,6 +306,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_widget_set_visible (GTK_WIDGET (gtk_builder_get_object (window->builder, "root-warning-box")), geteuid () == 0);
 
 	window->treeview = xtm_process_tree_view_new ();
+	gtk_tree_view_set_enable_search (GTK_TREE_VIEW (window->treeview), FALSE);
 	gtk_widget_show (window->treeview);
 	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->builder, "scrolledwindow")), window->treeview);
 
@@ -316,8 +317,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
 	g_signal_connect (G_OBJECT(window->filter_entry), "changed", G_CALLBACK(filter_entry_keyrelease_handler), window->treeview);
 	gtk_widget_set_tooltip_text (window->filter_entry, _("Filter on process name"));
-
-	gtk_widget_grab_focus (GTK_WIDGET (window->filter_entry));
 }
 
 static void
