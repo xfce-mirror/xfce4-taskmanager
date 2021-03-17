@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>, 2010
+# Butterfly <gokhanlnx@gmail.com>, 2021
 # Demiray Muhterem <mdemiray@msn.com>, 2019
 # Emin Tufan Çetin <etcetin@gmail.com>, 2020-2021
 # Emin Tufan Çetin <etcetin@gmail.com>, 2018,2020
@@ -14,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 12:48+0100\n"
-"PO-Revision-Date: 2021-01-24 15:19+0000\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-03-17 13:26+0000\n"
+"Last-Translator: Butterfly <gokhanlnx@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfce-apps/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,10 +25,10 @@ msgstr ""
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:142
+#: ../src/settings-dialog.c:141
 msgid "Task Manager"
 msgstr "Görev Yöneticisi"
 
@@ -35,7 +36,11 @@ msgstr "Görev Yöneticisi"
 msgid "Easy to use application to monitor system resources"
 msgstr "Sistem kaynaklarını izlemek için kullanımı kolay uygulama"
 
-#: ../src/main.c:156
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "Çık"
+
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -44,12 +49,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Süreçler:</b> %u\n<b>MİB:</b> %%%.0f\n<b>Bellek:</b> %s\n<b>Takas Alanı:</b> %s"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:477
+#: ../src/main.c:240
+msgid "Xfce Notify Daemon"
+msgstr "Xfce Bildiri Servisi"
+
+#: ../src/main.c:242
+msgid "Settings daemon is unavailable"
+msgstr "Servis ayarları kullanılamıyor"
+
+#: ../src/process-statusbar.c:139 ../src/process-window.c:455
 #, c-format
 msgid "CPU: %s%%"
 msgstr "MİB: %%%s"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:481
+#: ../src/process-statusbar.c:149 ../src/process-window.c:459
 #, c-format
 msgid "Memory: %s"
 msgstr "Bellek: %s"
@@ -59,7 +72,7 @@ msgstr "Bellek: %s"
 msgid "Swap: %s"
 msgstr "Takas: %s"
 
-#: ../src/process-statusbar.c:174
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "İşlemler : %d"
@@ -185,33 +198,33 @@ msgstr "Çok yüksek"
 msgid "Priority"
 msgstr "Öncelik"
 
-#: ../src/process-window.c:164
+#: ../src/process-window.c:166
 msgid "Bad Window"
 msgstr "Kötü Pencere"
 
-#: ../src/process-window.c:164
+#: ../src/process-window.c:166
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Pencere kimliği 0x%lx yok!"
 
-#: ../src/process-window.c:167
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty başarısız oldu"
 
-#: ../src/process-window.c:167
+#: ../src/process-window.c:169
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty başarısız oldu!"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:176
 msgid "No PID found"
 msgstr "PID bulunamadı"
 
-#: ../src/process-window.c:174
+#: ../src/process-window.c:176
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Pencere 0x%lx için PID bulunamadı."
 
-#: ../src/process-window.c:332
+#: ../src/process-window.c:330
 msgid "Filter on process name"
 msgstr "Süreç adına göre süz"
 
@@ -234,25 +247,25 @@ msgstr "Kök hesabı kullanıyorsunuz, sisteminize zarar verebilirsiniz."
 #: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> Başlangıç görevi"
+msgstr "<span foreground='#000000' background='#aed581'>    </span> Başlatılan görev"
 
 #: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr "<span foreground='#000000' background='#fff176'>    </span> Görevi değiştirme"
+msgstr "<span foreground='#000000' background='#fff176'>    </span> Değiştirilen görev"
 
 #: ../src/process-window.ui.h:8
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#e57373'>    </span> Görev iptali"
+msgstr "<span foreground='#000000' background='#e57373'>    </span> Sonlandırılan görev"
 
-#: ../src/settings-dialog.c:146
+#: ../src/settings-dialog.c:145
 msgid "Easy to use task manager"
 msgstr "Kullanımı kolay görev yöneticisi"
 
-#: ../src/settings-dialog.c:149
+#: ../src/settings-dialog.c:148
 msgid "translator-credits"
-msgstr "Samed Beyribey <ras0ir@eventualis.org>, 2008\nAyhan YALÇINSOY<ayhanyalcinsoy@gmail.com>,2010\nSerdar Sağlam <teknomobil@yandex.com>,2019"
+msgstr "Samed Beyribey <ras0ir@eventualis.org>\nAyhan YALÇINSOY<ayhanyalcinsoy@gmail.com>\nSerdar Sağlam <teknomobil@yandex.com>"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "Task Manager Settings"
@@ -303,8 +316,8 @@ msgid "Prompt for terminating tasks"
 msgstr "Görevleri sonlandırmadan önce sor"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Hide into the notification area"
-msgstr "Bildirim alanında sakla"
+msgid "Keep in the notification area"
+msgstr "Bildirim alanında tut"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
