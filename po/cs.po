@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-26 12:48+0100\n"
-"PO-Revision-Date: 2021-01-29 00:34+0000\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-02-26 14:41+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/xfce/xfce-apps/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:213
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:141
@@ -30,7 +30,11 @@ msgstr "Správce úloh"
 msgid "Easy to use application to monitor system resources"
 msgstr "Snadno použitelná aplikace k monitorování systémových zdrojů"
 
-#: ../src/main.c:159
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "Ukončit"
+
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -39,11 +43,11 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Procesy:</b> %u\n<b>Procesor CPU:</b> %.0f%%\n<b>Paměť:</b> %s\n<b>Stránkovací soubor:</b> %s"
 
-#: ../src/main.c:245
+#: ../src/main.c:240
 msgid "Xfce Notify Daemon"
 msgstr "Služba oznamování pro prostředí Xfce"
 
-#: ../src/main.c:247
+#: ../src/main.c:242
 msgid "Settings daemon is unavailable"
 msgstr "Služba pro nastavení není dostupná"
 
@@ -62,7 +66,7 @@ msgstr "Paměť: %s"
 msgid "Swap: %s"
 msgstr "Stránkovací soubor: %s"
 
-#: ../src/process-statusbar.c:174
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "Procesy: %d"
@@ -306,8 +310,8 @@ msgid "Prompt for terminating tasks"
 msgstr "Ptát se na ukončování úloh"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Hide into the notification area"
-msgstr "Skrýt do oznamovací oblasti"
+msgid "Keep in the notification area"
+msgstr "Ponechat v oznamovací oblasti"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
