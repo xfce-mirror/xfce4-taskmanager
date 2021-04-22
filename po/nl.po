@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pjotr <pjotrvertaalt@gmail.com>, 2014,2017,2019-2020
+# Pjotr <pjotrvertaalt@gmail.com>, 2014,2017,2019-2021
 # Stephan Arts <stephan@xfce.org>, 2007
 # Vincent <msn_vincent@hotmail.com>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 00:47+0200\n"
-"PO-Revision-Date: 2020-08-02 22:47+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-02-26 19:11+0000\n"
+"Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/xfce/xfce-apps/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +20,10 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:86
-#: ../src/exec-tool-button.c:131 ../src/main.c:182
-#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:417 ../src/process-window.c:495
-#: ../src/process-window.ui.h:1
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
+#: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
+#: ../src/settings-dialog.c:141
 msgid "Task Manager"
 msgstr "Taakbeheerder"
 
@@ -32,32 +31,11 @@ msgstr "Taakbeheerder"
 msgid "Easy to use application to monitor system resources"
 msgstr "Gemakkelijk te gebruiken toepassing om systeembelasting te bewaken"
 
-#: ../src/exec-tool-button.c:84 ../src/exec-tool-button.c:128
-msgid "Execution error"
-msgstr "Uitvoeringsfout"
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "Sluiten"
 
-#: ../src/exec-tool-button.c:130
-msgid "Couldn't find any default command to run."
-msgstr "Kon geen standaardopdracht vinden om te draaien."
-
-#: ../src/exec-tool-button.c:158 ../src/exec-tool-button.c:160
-#: ../src/exec-tool-button.c:162
-msgid "Run Program..."
-msgstr "Draai programma..."
-
-#: ../src/exec-tool-button.c:165
-msgid "Application Finder"
-msgstr "Toepassingenzoeker"
-
-#: ../src/exec-tool-button.c:168
-msgid "Terminal emulator"
-msgstr "Terminalvenster"
-
-#: ../src/exec-tool-button.c:170
-msgid "XTerm"
-msgstr "XTerm"
-
-#: ../src/main.c:130
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -66,144 +44,152 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Processen:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Geheugen:</b> %s\n<b>Wisselgeheugen:</b> %s"
 
-#: ../src/process-statusbar.c:137 ../src/process-window.c:562
+#: ../src/main.c:240
+msgid "Xfce Notify Daemon"
+msgstr "Xfce Melding-achtergronddienst"
+
+#: ../src/main.c:242
+msgid "Settings daemon is unavailable"
+msgstr "Instellingendienst is niet beschikbaar"
+
+#: ../src/process-statusbar.c:139 ../src/process-window.c:455
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:566
+#: ../src/process-statusbar.c:149 ../src/process-window.c:459
 #, c-format
 msgid "Memory: %s"
 msgstr "Geheugen: %s"
 
-#: ../src/process-statusbar.c:156
+#: ../src/process-statusbar.c:159
 #, c-format
 msgid "Swap: %s"
 msgstr "Wisselgeheugen: %s"
 
-#: ../src/process-statusbar.c:170
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "Processen: %d"
 
-#: ../src/process-tree-view.c:133
+#: ../src/process-tree-view.c:134
 msgid "Task"
 msgstr "Taak"
 
-#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:145 ../src/settings-dialog.ui.h:16
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:153 ../src/settings-dialog.ui.h:17
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:160 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:161 ../src/settings-dialog.ui.h:18
 msgid "State"
 msgstr "Status"
 
-#: ../src/process-tree-view.c:169
+#: ../src/process-tree-view.c:170
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:177
+#: ../src/process-tree-view.c:178
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:186 ../src/settings-dialog.ui.h:21
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:193 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:194 ../src/settings-dialog.ui.h:22
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:202
+#: ../src/process-tree-view.c:203
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:368
+#: ../src/process-tree-view.c:370
 msgid "Terminate task"
 msgstr "Beëindig taak"
 
-#: ../src/process-tree-view.c:368
+#: ../src/process-tree-view.c:370
 msgid "Kill task"
 msgstr "Breek taak af"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:372
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Weet u zeker dat u het signaal %s wilt zenden naar de PID %d?"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:373
 msgid "terminate"
 msgstr "beëindigen"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:373
 msgid "kill"
 msgstr "afbreken"
 
-#: ../src/process-tree-view.c:383
+#: ../src/process-tree-view.c:385
 msgid "Error sending signal"
 msgstr "Fout bij zenden van signaal"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Er trad een fout op bij het zenden van een signaal naar de PID %d. Waarschijnlijk hebt u niet de vereiste rechten."
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:416
 msgid "Error setting priority"
 msgstr "Fout bij instellen prioriteit"
 
-#: ../src/process-tree-view.c:415
+#: ../src/process-tree-view.c:417
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Er trad een fout op bij het instellen van een prioriteit voor de PID %d. Waarschijnlijk hebt u niet de vereiste rechten."
 
-#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:568
+#: ../src/process-tree-view.c:435 ../src/process-tree-view.c:570
 msgid "Stop"
 msgstr "Stoppen"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:442
 msgid "Continue"
 msgstr "Doorgaan"
 
-#: ../src/process-tree-view.c:446
+#: ../src/process-tree-view.c:448
 msgid "Terminate"
 msgstr "Beëindigen"
 
-#: ../src/process-tree-view.c:452
+#: ../src/process-tree-view.c:454
 msgid "Kill"
 msgstr "Afbreken"
 
-#: ../src/process-tree-view.c:459
+#: ../src/process-tree-view.c:461
 msgid "Very low"
 msgstr "Zeer laag"
 
-#: ../src/process-tree-view.c:464
+#: ../src/process-tree-view.c:466
 msgid "Low"
 msgstr "Laag"
 
-#: ../src/process-tree-view.c:469
+#: ../src/process-tree-view.c:471
 msgid "Normal"
 msgstr "Normaal"
 
-#: ../src/process-tree-view.c:474
+#: ../src/process-tree-view.c:476
 msgid "High"
 msgstr "Hoog"
 
-#: ../src/process-tree-view.c:479
+#: ../src/process-tree-view.c:481
 msgid "Very high"
 msgstr "Zeer hoog"
 
-#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:486 ../src/settings-dialog.ui.h:23
 msgid "Priority"
 msgstr "Prioriteit"
 
@@ -233,163 +219,122 @@ msgstr "Geen PID gevonden"
 msgid "No PID found for window 0x%lx."
 msgstr "Geen PID gevonden voor venster 0x%lx."
 
-#: ../src/process-window.c:260
-msgid "Identify Window"
-msgstr "Venster identificeren"
-
-#: ../src/process-window.c:261
-msgid "Identify an open window by clicking on it."
-msgstr "Identificeer een geopend venster door erop te klikken."
-
-#: ../src/process-window.c:333
+#: ../src/process-window.c:330
 msgid "Filter on process name"
 msgstr "Filteren op procesnaam"
 
-#: ../src/process-window.c:499
-msgid "Easy to use task manager"
-msgstr "Gemakkelijk te gebruiken taakbeheerder"
-
-#: ../src/process-window.c:502
-msgid "translator-credits"
-msgstr "Stephan Arts\nVincent\nPjotr <pjotrvertaalt@gmail.com>"
-
 #: ../src/process-window.ui.h:2
-msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Waarschuwing: u gebruikt het root-account, u kunt uw systeem beschadigen."
+msgid "Settings"
+msgstr "Instellingen"
 
 #: ../src/process-window.ui.h:3
+msgid "Identify an open window by clicking on it."
+msgstr "Identificeer een geopend venster door erop te klikken."
+
+#: ../src/process-window.ui.h:4
+msgid "Show/hide process filter"
+msgstr "Toon/verberg procesfilter"
+
+#: ../src/process-window.ui.h:5
+msgid "You are using the root account, you may harm your system."
+msgstr "U gebruikt het rootaccount; u zou uw systeem kunnen beschadigen."
+
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Taak starten"
 
-#: ../src/process-window.ui.h:4
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Taak wijzigen"
 
-#: ../src/process-window.ui.h:5
+#: ../src/process-window.ui.h:8
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Taak beëindigen"
 
-#: ../src/settings.c:397
-msgid "Default"
-msgstr "Standaard"
+#: ../src/settings-dialog.c:145
+msgid "Easy to use task manager"
+msgstr "Gemakkelijk te gebruiken taakbeheerder"
 
-#: ../src/settings.c:398
-msgid "Small"
-msgstr "Klein"
-
-#: ../src/settings.c:399
-msgid "Large"
-msgstr "Groot"
-
-#: ../src/settings.c:400
-msgid "Text"
-msgstr "Tekst"
+#: ../src/settings-dialog.c:148
+msgid "translator-credits"
+msgstr "Stephan Arts\nVincent\nPjotr <pjotrvertaalt@gmail.com>"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "Settings for Task Manager"
-msgstr "Instellingen voor Taakbeheerder"
+msgid "Task Manager Settings"
+msgstr "Instellingen van Taakbeheerder"
 
 #: ../src/settings-dialog.ui.h:2
-msgid "Show application icons"
-msgstr "Toon toepassingpictogrammen"
+msgid "_Help"
+msgstr "_Hulp"
 
 #: ../src/settings-dialog.ui.h:3
-msgid "Show full command lines"
-msgstr "Toon volledige opdrachtregels"
+msgid "About"
+msgstr "Over"
 
 #: ../src/settings-dialog.ui.h:4
-msgid "Show values with more precision"
-msgstr "Toon waarden met meer precisie"
-
-#: ../src/settings-dialog.ui.h:5
-msgid "Show processes as tree"
-msgstr "Toon processen als boomstructuur"
-
-#: ../src/settings-dialog.ui.h:6
-msgid "Toolbar style:"
-msgstr "Werkbalkstijl:"
-
-#: ../src/settings-dialog.ui.h:7
-msgid "<b>Interface style</b>"
-msgstr "<b>Stijl van gebruikersschil</b>"
-
-#: ../src/settings-dialog.ui.h:8
-msgid "Prompt for terminating tasks"
-msgstr "Vraag bij beëindigen van taken"
-
-#: ../src/settings-dialog.ui.h:9
-msgid "Hide into the notification area"
-msgstr "Verberg naar het meldingenvak"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Gemengd</b>"
-
-#: ../src/settings-dialog.ui.h:11
-msgid "Refresh rate:"
-msgstr "Verversingssnelheid:"
-
-#: ../src/settings-dialog.ui.h:12
-msgid "Columns:"
-msgstr "Rijen:"
-
-#: ../src/settings-dialog.ui.h:13
-msgid "<b>Information</b>"
-msgstr "<b>Informatie</b>"
-
-#: ../src/settings-dialog.ui.h:14
-msgid "Settings"
-msgstr "Instellingen"
-
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/settings-tool-button.c:111
-msgid "500ms"
-msgstr "500ms"
-
-#: ../src/settings-tool-button.c:112
-msgid "750ms"
-msgstr "750ms"
-
-#: ../src/settings-tool-button.c:113
-msgid "1s"
-msgstr "1s"
-
-#: ../src/settings-tool-button.c:114
-msgid "2s"
-msgstr "2s"
-
-#: ../src/settings-tool-button.c:115
-msgid "5s"
-msgstr "5s"
-
-#: ../src/settings-tool-button.c:116
-msgid "10s"
-msgstr "10s"
-
-#: ../src/settings-tool-button.c:165
 msgid "Show all processes"
 msgstr "Toon alle processen"
 
-#: ../src/settings-tool-button.c:168
-msgid "Refresh rate"
-msgstr "Verversingssnelheid"
+#: ../src/settings-dialog.ui.h:5
+msgid "Show application icons"
+msgstr "Toon toepassingspictogrammen"
 
-#: ../src/settings-tool-button.c:178
+#: ../src/settings-dialog.ui.h:6
+msgid "Show full command lines"
+msgstr "Toon volledige opdrachtregels"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Show processes as tree"
+msgstr "Toon processen als boomstructuur"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Show legend"
+msgstr "Toon legenda"
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Show values with more precision"
+msgstr "Toon waarden met meer precisie"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Refresh rate (ms):"
+msgstr "Verversingssnelheid (ms):"
+
+#: ../src/settings-dialog.ui.h:11
+msgid "<b>Interface</b>"
+msgstr "<b>Apparaat</b>"
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Prompt for terminating tasks"
+msgstr "Vraag bij beëindigen van taken"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Keep in the notification area"
+msgstr "Behoud in het meldingengebied"
+
+#: ../src/settings-dialog.ui.h:14
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Gemengd</b>"
+
+#: ../src/settings-dialog.ui.h:15
+msgid "General"
+msgstr "Algemeen"
+
+#: ../src/settings-dialog.ui.h:19
 msgid "Virtual Bytes"
 msgstr "Virtuele bytes"
 
-#: ../src/settings-tool-button.c:179
+#: ../src/settings-dialog.ui.h:20
 msgid "Private Bytes"
 msgstr "Privé-bytes"
 
-#: ../src/settings-tool-button.c:186
-msgid "Show Legend"
-msgstr "Legenda tonen"
+#: ../src/settings-dialog.ui.h:24
+msgid "Columns"
+msgstr "Kolommen"
 
-#: ../src/task-manager.c:245
+#: ../src/task-manager.c:246
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
