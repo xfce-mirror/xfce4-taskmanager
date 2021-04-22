@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 00:47+0200\n"
-"PO-Revision-Date: 2020-08-02 22:47+0000\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-02-26 11:52+0000\n"
 "Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Thai (http://www.transifex.com/xfce/xfce-apps/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,10 @@ msgstr ""
 "Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:86
-#: ../src/exec-tool-button.c:131 ../src/main.c:182
-#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:417 ../src/process-window.c:495
-#: ../src/process-window.ui.h:1
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
+#: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
+#: ../src/settings-dialog.c:141
 msgid "Task Manager"
 msgstr "โปรแกรมจัดการทาสก์"
 
@@ -31,32 +30,11 @@ msgstr "โปรแกรมจัดการทาสก์"
 msgid "Easy to use application to monitor system resources"
 msgstr ""
 
-#: ../src/exec-tool-button.c:84 ../src/exec-tool-button.c:128
-msgid "Execution error"
-msgstr "ข้อผิดพลาดของการเรียกทำงาน"
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "ออก"
 
-#: ../src/exec-tool-button.c:130
-msgid "Couldn't find any default command to run."
-msgstr "ไม่พบคำสั่งปริยายที่จะเรียก"
-
-#: ../src/exec-tool-button.c:158 ../src/exec-tool-button.c:160
-#: ../src/exec-tool-button.c:162
-msgid "Run Program..."
-msgstr "เรียกโปรแกรม..."
-
-#: ../src/exec-tool-button.c:165
-msgid "Application Finder"
-msgstr "เครื่องมือค้นหาโปรแกรม"
-
-#: ../src/exec-tool-button.c:168
-msgid "Terminal emulator"
-msgstr "โปรแกรมจำลองเทอร์มินัล"
-
-#: ../src/exec-tool-button.c:170
-msgid "XTerm"
-msgstr "XTerm"
-
-#: ../src/main.c:130
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -65,144 +43,152 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>โพรเซส:</b> %u\n<b>ซีพียู:</b> %.0f%%\n<b>หน่วยความจำ:</b> %s\n<b>พื้นที่สลับ:</b> %s"
 
-#: ../src/process-statusbar.c:137 ../src/process-window.c:562
+#: ../src/main.c:240
+msgid "Xfce Notify Daemon"
+msgstr "ดีมอนแจ้งเหตุของ Xfce"
+
+#: ../src/main.c:242
+msgid "Settings daemon is unavailable"
+msgstr "ไม่มีดีมอนค่าตั้งอยู่"
+
+#: ../src/process-statusbar.c:139 ../src/process-window.c:455
 #, c-format
 msgid "CPU: %s%%"
 msgstr "ซีพียู: %s%%"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:566
+#: ../src/process-statusbar.c:149 ../src/process-window.c:459
 #, c-format
 msgid "Memory: %s"
 msgstr "หน่วยความจำ: %s"
 
-#: ../src/process-statusbar.c:156
+#: ../src/process-statusbar.c:159
 #, c-format
 msgid "Swap: %s"
 msgstr "พื้นที่สลับ: %s"
 
-#: ../src/process-statusbar.c:170
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "โพรเซส: %d"
 
-#: ../src/process-tree-view.c:133
+#: ../src/process-tree-view.c:134
 msgid "Task"
 msgstr "ทาสก์"
 
-#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:145 ../src/settings-dialog.ui.h:16
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:153 ../src/settings-dialog.ui.h:17
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:160 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:161 ../src/settings-dialog.ui.h:18
 msgid "State"
 msgstr "สถานะ"
 
-#: ../src/process-tree-view.c:169
+#: ../src/process-tree-view.c:170
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:177
+#: ../src/process-tree-view.c:178
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:186 ../src/settings-dialog.ui.h:21
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:193 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:194 ../src/settings-dialog.ui.h:22
 msgid "CPU"
 msgstr "ซีพียู"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:202
+#: ../src/process-tree-view.c:203
 msgid "Prio."
 msgstr "สำคัญ"
 
-#: ../src/process-tree-view.c:368
+#: ../src/process-tree-view.c:370
 msgid "Terminate task"
 msgstr "จบทาสก์"
 
-#: ../src/process-tree-view.c:368
+#: ../src/process-tree-view.c:370
 msgid "Kill task"
 msgstr "ฆ่าทาสก์"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:372
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการส่งสัญญาณ '%s' ไปยัง PID %d?"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:373
 msgid "terminate"
 msgstr "จบ"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:373
 msgid "kill"
 msgstr "ฆ่า"
 
-#: ../src/process-tree-view.c:383
+#: ../src/process-tree-view.c:385
 msgid "Error sending signal"
 msgstr "ผิดพลาดขณะส่งสัญญาณ"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "เกิดข้อผิดพลาดขณะส่งสัญญาณไปยัง PID %d เป็นไปได้ว่าคุณไม่มีสิทธิ์เพียงพอที่จะทำ"
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:416
 msgid "Error setting priority"
 msgstr "ผิดพลาดขณะกำหนดลำดับความสำคัญ"
 
-#: ../src/process-tree-view.c:415
+#: ../src/process-tree-view.c:417
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "เกิดข้อผิดพลาดขณะกำหนดลำดับความสำคัญของ PID %d เป็นไปได้ว่าคุณไม่มีสิทธิ์เพียงพอที่จะทำ"
 
-#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:568
+#: ../src/process-tree-view.c:435 ../src/process-tree-view.c:570
 msgid "Stop"
 msgstr "หยุด"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:442
 msgid "Continue"
 msgstr "ทำต่อ"
 
-#: ../src/process-tree-view.c:446
+#: ../src/process-tree-view.c:448
 msgid "Terminate"
 msgstr "จบ"
 
-#: ../src/process-tree-view.c:452
+#: ../src/process-tree-view.c:454
 msgid "Kill"
 msgstr "ฆ่า"
 
-#: ../src/process-tree-view.c:459
+#: ../src/process-tree-view.c:461
 msgid "Very low"
 msgstr "ต่ำมาก"
 
-#: ../src/process-tree-view.c:464
+#: ../src/process-tree-view.c:466
 msgid "Low"
 msgstr "ต่ำ"
 
-#: ../src/process-tree-view.c:469
+#: ../src/process-tree-view.c:471
 msgid "Normal"
 msgstr "ปกติ"
 
-#: ../src/process-tree-view.c:474
+#: ../src/process-tree-view.c:476
 msgid "High"
 msgstr "สูง"
 
-#: ../src/process-tree-view.c:479
+#: ../src/process-tree-view.c:481
 msgid "Very high"
 msgstr "สูงมาก"
 
-#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:486 ../src/settings-dialog.ui.h:23
 msgid "Priority"
 msgstr "ลำดับความสำคัญ"
 
@@ -232,163 +218,122 @@ msgstr "ไม่พบ PID"
 msgid "No PID found for window 0x%lx."
 msgstr "ไม่พบ PID สำหรับหน้าต่าง 0x%lx"
 
-#: ../src/process-window.c:260
-msgid "Identify Window"
-msgstr "ระบุหน้าต่าง"
-
-#: ../src/process-window.c:261
-msgid "Identify an open window by clicking on it."
-msgstr "ระบุหน้าต่างโดยคลิกบนหน้าต่างที่ต้องการ"
-
-#: ../src/process-window.c:333
+#: ../src/process-window.c:330
 msgid "Filter on process name"
 msgstr "กรองชื่อโพรเซส"
 
-#: ../src/process-window.c:499
-msgid "Easy to use task manager"
-msgstr "โปรแกรมจัดการทาสก์สะดวกใช้"
-
-#: ../src/process-window.c:502
-msgid "translator-credits"
-msgstr "Theppitak Karoonboonyanan <theppitak@gmail.com>"
-
 #: ../src/process-window.ui.h:2
-msgid "Warning, you are using the root account, you may harm your system."
-msgstr "คำเตือน: คุณกำลังใช้บัญชี root ซึ่งอาจสร้างความเสียหายต่อระบบของคุณได้"
+msgid "Settings"
+msgstr "ตั้งค่า"
 
 #: ../src/process-window.ui.h:3
+msgid "Identify an open window by clicking on it."
+msgstr "ระบุหน้าต่างโดยคลิกบนหน้าต่างที่ต้องการ"
+
+#: ../src/process-window.ui.h:4
+msgid "Show/hide process filter"
+msgstr ""
+
+#: ../src/process-window.ui.h:5
+msgid "You are using the root account, you may harm your system."
+msgstr ""
+
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> ทาสก์ที่กำลังเริ่ม"
 
-#: ../src/process-window.ui.h:4
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> ทาสก์ที่กำลังเปลี่ยน"
 
-#: ../src/process-window.ui.h:5
+#: ../src/process-window.ui.h:8
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> ทาสก์ที่กำลังจบ"
 
-#: ../src/settings.c:397
-msgid "Default"
-msgstr "ปริยาย"
+#: ../src/settings-dialog.c:145
+msgid "Easy to use task manager"
+msgstr "โปรแกรมจัดการทาสก์สะดวกใช้"
 
-#: ../src/settings.c:398
-msgid "Small"
-msgstr "เล็ก"
-
-#: ../src/settings.c:399
-msgid "Large"
-msgstr "ใหญ่"
-
-#: ../src/settings.c:400
-msgid "Text"
-msgstr "ข้อความ"
+#: ../src/settings-dialog.c:148
+msgid "translator-credits"
+msgstr "Theppitak Karoonboonyanan <theppitak@gmail.com>"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "Settings for Task Manager"
-msgstr "ตั้งค่าโปรแกรมจัดการทาสก์"
+msgid "Task Manager Settings"
+msgstr ""
 
 #: ../src/settings-dialog.ui.h:2
-msgid "Show application icons"
-msgstr "แสดงไอคอนของโปรแกรม"
+msgid "_Help"
+msgstr "_วิธีใช้"
 
 #: ../src/settings-dialog.ui.h:3
-msgid "Show full command lines"
-msgstr "แสดงบรรทัดคำสั่งเต็ม"
+msgid "About"
+msgstr "เกี่ยวกับ"
 
 #: ../src/settings-dialog.ui.h:4
-msgid "Show values with more precision"
-msgstr "แสดงค่าแบบความละเอียดสูง"
-
-#: ../src/settings-dialog.ui.h:5
-msgid "Show processes as tree"
-msgstr "แสดงโพรเซสเป็นโครงสร้างต้นไม้"
-
-#: ../src/settings-dialog.ui.h:6
-msgid "Toolbar style:"
-msgstr "รูปแบบแถบเครื่องมือ:"
-
-#: ../src/settings-dialog.ui.h:7
-msgid "<b>Interface style</b>"
-msgstr "<b>รูปแบบส่วนติดต่อ</b>"
-
-#: ../src/settings-dialog.ui.h:8
-msgid "Prompt for terminating tasks"
-msgstr "ถามก่อนจบทาสก์"
-
-#: ../src/settings-dialog.ui.h:9
-msgid "Hide into the notification area"
-msgstr "ซ่อนตัวลงในพื้นที่แจ้งเหตุ"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>เบ็ดเตล็ด</b>"
-
-#: ../src/settings-dialog.ui.h:11
-msgid "Refresh rate:"
-msgstr "อัตราการปรับข้อมูล:"
-
-#: ../src/settings-dialog.ui.h:12
-msgid "Columns:"
-msgstr "คอลัมน์:"
-
-#: ../src/settings-dialog.ui.h:13
-msgid "<b>Information</b>"
-msgstr "<b>ข้อมูล</b>"
-
-#: ../src/settings-dialog.ui.h:14
-msgid "Settings"
-msgstr "ตั้งค่า"
-
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/settings-tool-button.c:111
-msgid "500ms"
-msgstr "500ms"
-
-#: ../src/settings-tool-button.c:112
-msgid "750ms"
-msgstr "750ms"
-
-#: ../src/settings-tool-button.c:113
-msgid "1s"
-msgstr "1s"
-
-#: ../src/settings-tool-button.c:114
-msgid "2s"
-msgstr "2s"
-
-#: ../src/settings-tool-button.c:115
-msgid "5s"
-msgstr "5s"
-
-#: ../src/settings-tool-button.c:116
-msgid "10s"
-msgstr "10s"
-
-#: ../src/settings-tool-button.c:165
 msgid "Show all processes"
 msgstr "แสดงโพรเซสทั้งหมด"
 
-#: ../src/settings-tool-button.c:168
-msgid "Refresh rate"
-msgstr "อัตราการปรับข้อมูล"
+#: ../src/settings-dialog.ui.h:5
+msgid "Show application icons"
+msgstr "แสดงไอคอนของโปรแกรม"
 
-#: ../src/settings-tool-button.c:178
+#: ../src/settings-dialog.ui.h:6
+msgid "Show full command lines"
+msgstr "แสดงบรรทัดคำสั่งเต็ม"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Show processes as tree"
+msgstr "แสดงโพรเซสเป็นโครงสร้างต้นไม้"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Show legend"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Show values with more precision"
+msgstr "แสดงค่าแบบความละเอียดสูง"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Refresh rate (ms):"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:11
+msgid "<b>Interface</b>"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Prompt for terminating tasks"
+msgstr "ถามก่อนจบทาสก์"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Keep in the notification area"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:14
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>เบ็ดเตล็ด</b>"
+
+#: ../src/settings-dialog.ui.h:15
+msgid "General"
+msgstr "ทั่วไป"
+
+#: ../src/settings-dialog.ui.h:19
 msgid "Virtual Bytes"
 msgstr "ความจำเสมือน"
 
-#: ../src/settings-tool-button.c:179
+#: ../src/settings-dialog.ui.h:20
 msgid "Private Bytes"
 msgstr "ความจำเครื่อง"
 
-#: ../src/settings-tool-button.c:186
-msgid "Show Legend"
-msgstr "แสดงคำอธิบายสัญลักษณ์"
+#: ../src/settings-dialog.ui.h:24
+msgid "Columns"
+msgstr ""
 
-#: ../src/task-manager.c:245
+#: ../src/task-manager.c:246
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
