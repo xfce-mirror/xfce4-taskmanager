@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 00:47+0200\n"
-"PO-Revision-Date: 2020-08-02 22:47+0000\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-02-26 11:52+0000\n"
 "Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Malay (http://www.transifex.com/xfce/xfce-apps/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,10 @@ msgstr ""
 "Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/exec-tool-button.c:86
-#: ../src/exec-tool-button.c:131 ../src/main.c:182
-#: ../src/process-tree-view.c:372 ../src/process-tree-view.c:387
-#: ../src/process-tree-view.c:417 ../src/process-window.c:495
-#: ../src/process-window.ui.h:1
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
+#: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
+#: ../src/settings-dialog.c:141
 msgid "Task Manager"
 msgstr "Pengurus Tugas"
 
@@ -30,32 +29,11 @@ msgstr "Pengurus Tugas"
 msgid "Easy to use application to monitor system resources"
 msgstr ""
 
-#: ../src/exec-tool-button.c:84 ../src/exec-tool-button.c:128
-msgid "Execution error"
-msgstr "Ralat pelakuan"
+#: ../src/main.c:60
+msgid "Quit"
+msgstr "Keluar"
 
-#: ../src/exec-tool-button.c:130
-msgid "Couldn't find any default command to run."
-msgstr "Tidak dapat cari perintah lalai untuk dijalankan."
-
-#: ../src/exec-tool-button.c:158 ../src/exec-tool-button.c:160
-#: ../src/exec-tool-button.c:162
-msgid "Run Program..."
-msgstr "Jalan Program..."
-
-#: ../src/exec-tool-button.c:165
-msgid "Application Finder"
-msgstr "Pencari Aplikasi"
-
-#: ../src/exec-tool-button.c:168
-msgid "Terminal emulator"
-msgstr "Emulator terminal"
-
-#: ../src/exec-tool-button.c:170
-msgid "XTerm"
-msgstr "XTerm"
-
-#: ../src/main.c:130
+#: ../src/main.c:158
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -64,144 +42,152 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Proses:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Ingatan:</b> %s\n<b>Silih:</b> %s"
 
-#: ../src/process-statusbar.c:137 ../src/process-window.c:562
+#: ../src/main.c:240
+msgid "Xfce Notify Daemon"
+msgstr "Daemon Maklum Xfce"
+
+#: ../src/main.c:242
+msgid "Settings daemon is unavailable"
+msgstr "Daemon tetapan tidak tersedia"
+
+#: ../src/process-statusbar.c:139 ../src/process-window.c:455
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:147 ../src/process-window.c:566
+#: ../src/process-statusbar.c:149 ../src/process-window.c:459
 #, c-format
 msgid "Memory: %s"
 msgstr "Ingatan: %s"
 
-#: ../src/process-statusbar.c:156
+#: ../src/process-statusbar.c:159
 #, c-format
 msgid "Swap: %s"
 msgstr "Silih: %s"
 
-#: ../src/process-statusbar.c:170
+#: ../src/process-statusbar.c:176
 #, c-format
 msgid "Processes: %d"
 msgstr "Proses: %d"
 
-#: ../src/process-tree-view.c:133
+#: ../src/process-tree-view.c:134
 msgid "Task"
 msgstr "Tugas"
 
-#: ../src/process-tree-view.c:144 ../src/settings-tool-button.c:175
+#: ../src/process-tree-view.c:145 ../src/settings-dialog.ui.h:16
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:152 ../src/settings-tool-button.c:176
+#: ../src/process-tree-view.c:153 ../src/settings-dialog.ui.h:17
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:160 ../src/settings-tool-button.c:177
+#: ../src/process-tree-view.c:161 ../src/settings-dialog.ui.h:18
 msgid "State"
 msgstr "Keadaan"
 
-#: ../src/process-tree-view.c:169
+#: ../src/process-tree-view.c:170
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:177
+#: ../src/process-tree-view.c:178
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:185 ../src/settings-tool-button.c:180
+#: ../src/process-tree-view.c:186 ../src/settings-dialog.ui.h:21
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:193 ../src/settings-tool-button.c:181
+#: ../src/process-tree-view.c:194 ../src/settings-dialog.ui.h:22
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:202
+#: ../src/process-tree-view.c:203
 msgid "Prio."
 msgstr "Keut."
 
-#: ../src/process-tree-view.c:368
+#: ../src/process-tree-view.c:370
 msgid "Terminate task"
 msgstr "Hentikan tugas"
 
-#: ../src/process-tree-view.c:368
+#: ../src/process-tree-view.c:370
 msgid "Kill task"
 msgstr "Matikan tugas"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:372
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Anda pasti ingin menghantar isyarat %s ke PID %d?"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:373
 msgid "terminate"
 msgstr "tamatkan"
 
-#: ../src/process-tree-view.c:371
+#: ../src/process-tree-view.c:373
 msgid "kill"
 msgstr "matikan"
 
-#: ../src/process-tree-view.c:383
+#: ../src/process-tree-view.c:385
 msgid "Error sending signal"
 msgstr "Ralat menghantar isyarat"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:387
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Satu ralat dihadapi dengan menghantar isyarat ke PID %d. Ia berkemungkinan anda tidak mempunyai kelayakan."
 
-#: ../src/process-tree-view.c:414
+#: ../src/process-tree-view.c:416
 msgid "Error setting priority"
 msgstr "Ralat menetapkan keutamaan"
 
-#: ../src/process-tree-view.c:415
+#: ../src/process-tree-view.c:417
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Satu ralat telah dihadapi dengan menetapkan keutamaan ke PID %d. Ia berkemungkinan anda tidak mempunyai kelayakan yang diperlukan."
 
-#: ../src/process-tree-view.c:433 ../src/process-tree-view.c:568
+#: ../src/process-tree-view.c:435 ../src/process-tree-view.c:570
 msgid "Stop"
 msgstr "Henti"
 
-#: ../src/process-tree-view.c:440
+#: ../src/process-tree-view.c:442
 msgid "Continue"
 msgstr "Teruskan"
 
-#: ../src/process-tree-view.c:446
+#: ../src/process-tree-view.c:448
 msgid "Terminate"
 msgstr "Tamat"
 
-#: ../src/process-tree-view.c:452
+#: ../src/process-tree-view.c:454
 msgid "Kill"
 msgstr "Matikan"
 
-#: ../src/process-tree-view.c:459
+#: ../src/process-tree-view.c:461
 msgid "Very low"
 msgstr "Sangat rendah"
 
-#: ../src/process-tree-view.c:464
+#: ../src/process-tree-view.c:466
 msgid "Low"
 msgstr "Rendah"
 
-#: ../src/process-tree-view.c:469
+#: ../src/process-tree-view.c:471
 msgid "Normal"
 msgstr "Biasa"
 
-#: ../src/process-tree-view.c:474
+#: ../src/process-tree-view.c:476
 msgid "High"
 msgstr "Tinggi"
 
-#: ../src/process-tree-view.c:479
+#: ../src/process-tree-view.c:481
 msgid "Very high"
 msgstr "Sangat tinggi"
 
-#: ../src/process-tree-view.c:484 ../src/settings-tool-button.c:182
+#: ../src/process-tree-view.c:486 ../src/settings-dialog.ui.h:23
 msgid "Priority"
 msgstr "Keutamaan"
 
@@ -231,163 +217,122 @@ msgstr "Tiada PID ditemui"
 msgid "No PID found for window 0x%lx."
 msgstr "Tiada PID ditemui untuk tetingkap 0x%lx."
 
-#: ../src/process-window.c:260
-msgid "Identify Window"
-msgstr "Kenalpasti Tetingkap"
-
-#: ../src/process-window.c:261
-msgid "Identify an open window by clicking on it."
-msgstr "Kenalpasti tetingkap terbuka dengan mengklik padanya."
-
-#: ../src/process-window.c:333
+#: ../src/process-window.c:330
 msgid "Filter on process name"
 msgstr "Tapis mengikut nama proses"
 
-#: ../src/process-window.c:499
-msgid "Easy to use task manager"
-msgstr "Pengurus tugas yang mudah digunakan"
-
-#: ../src/process-window.c:502
-msgid "translator-credits"
-msgstr "Abuyop <abuyop@gmail.com>"
-
 #: ../src/process-window.ui.h:2
-msgid "Warning, you are using the root account, you may harm your system."
-msgstr "Amaran, anda menggunakan akaun root, anda mungkin merosakkan sistem anda."
+msgid "Settings"
+msgstr "Tetapan"
 
 #: ../src/process-window.ui.h:3
+msgid "Identify an open window by clicking on it."
+msgstr "Kenalpasti tetingkap terbuka dengan mengklik padanya."
+
+#: ../src/process-window.ui.h:4
+msgid "Show/hide process filter"
+msgstr ""
+
+#: ../src/process-window.ui.h:5
+msgid "You are using the root account, you may harm your system."
+msgstr ""
+
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Memulakan tugas"
 
-#: ../src/process-window.ui.h:4
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Mengubah tugas"
 
-#: ../src/process-window.ui.h:5
+#: ../src/process-window.ui.h:8
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Menamatkan tugas"
 
-#: ../src/settings.c:397
-msgid "Default"
-msgstr "Lalai"
+#: ../src/settings-dialog.c:145
+msgid "Easy to use task manager"
+msgstr "Pengurus tugas yang mudah digunakan"
 
-#: ../src/settings.c:398
-msgid "Small"
-msgstr "Kecil"
-
-#: ../src/settings.c:399
-msgid "Large"
-msgstr "Besar"
-
-#: ../src/settings.c:400
-msgid "Text"
-msgstr "Teks"
+#: ../src/settings-dialog.c:148
+msgid "translator-credits"
+msgstr "Abuyop <abuyop@gmail.com>"
 
 #: ../src/settings-dialog.ui.h:1
-msgid "Settings for Task Manager"
-msgstr "Tetapan untuk Pengurus Tugas"
+msgid "Task Manager Settings"
+msgstr ""
 
 #: ../src/settings-dialog.ui.h:2
-msgid "Show application icons"
-msgstr "Tunjuk ikon aplikasi"
+msgid "_Help"
+msgstr "_Bantuan"
 
 #: ../src/settings-dialog.ui.h:3
-msgid "Show full command lines"
-msgstr "Tunjuk baris perintah penuh"
+msgid "About"
+msgstr "Perihal"
 
 #: ../src/settings-dialog.ui.h:4
-msgid "Show values with more precision"
-msgstr "Tunjuk nilai dengan lebih ketepatan"
-
-#: ../src/settings-dialog.ui.h:5
-msgid "Show processes as tree"
-msgstr "Tunjuk proses sebagai pepohon"
-
-#: ../src/settings-dialog.ui.h:6
-msgid "Toolbar style:"
-msgstr "Gaya palang alat:"
-
-#: ../src/settings-dialog.ui.h:7
-msgid "<b>Interface style</b>"
-msgstr "<b>Gaya antaramuka</b>"
-
-#: ../src/settings-dialog.ui.h:8
-msgid "Prompt for terminating tasks"
-msgstr "Maklum untuk menghentikan tugas"
-
-#: ../src/settings-dialog.ui.h:9
-msgid "Hide into the notification area"
-msgstr "Sembunyi ke dalam kawasan pemberitahuan"
-
-#: ../src/settings-dialog.ui.h:10
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Pelbagai</b>"
-
-#: ../src/settings-dialog.ui.h:11
-msgid "Refresh rate:"
-msgstr "Kadar segar semula:"
-
-#: ../src/settings-dialog.ui.h:12
-msgid "Columns:"
-msgstr "Lajur:"
-
-#: ../src/settings-dialog.ui.h:13
-msgid "<b>Information</b>"
-msgstr "<b>Maklumat</b>"
-
-#: ../src/settings-dialog.ui.h:14
-msgid "Settings"
-msgstr "Tetapan"
-
-#. TRANSLATORS: The next values are in seconds or milliseconds
-#: ../src/settings-tool-button.c:111
-msgid "500ms"
-msgstr "500ms"
-
-#: ../src/settings-tool-button.c:112
-msgid "750ms"
-msgstr "750ms"
-
-#: ../src/settings-tool-button.c:113
-msgid "1s"
-msgstr "1s"
-
-#: ../src/settings-tool-button.c:114
-msgid "2s"
-msgstr "2s"
-
-#: ../src/settings-tool-button.c:115
-msgid "5s"
-msgstr "5s"
-
-#: ../src/settings-tool-button.c:116
-msgid "10s"
-msgstr "10s"
-
-#: ../src/settings-tool-button.c:165
 msgid "Show all processes"
 msgstr "Tunjuk semua proses"
 
-#: ../src/settings-tool-button.c:168
-msgid "Refresh rate"
-msgstr "Kadar segar semula"
+#: ../src/settings-dialog.ui.h:5
+msgid "Show application icons"
+msgstr "Tunjuk ikon aplikasi"
 
-#: ../src/settings-tool-button.c:178
+#: ../src/settings-dialog.ui.h:6
+msgid "Show full command lines"
+msgstr "Tunjuk baris perintah penuh"
+
+#: ../src/settings-dialog.ui.h:7
+msgid "Show processes as tree"
+msgstr "Tunjuk proses sebagai pepohon"
+
+#: ../src/settings-dialog.ui.h:8
+msgid "Show legend"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:9
+msgid "Show values with more precision"
+msgstr "Tunjuk nilai dengan lebih ketepatan"
+
+#: ../src/settings-dialog.ui.h:10
+msgid "Refresh rate (ms):"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:11
+msgid "<b>Interface</b>"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:12
+msgid "Prompt for terminating tasks"
+msgstr "Maklum untuk menghentikan tugas"
+
+#: ../src/settings-dialog.ui.h:13
+msgid "Keep in the notification area"
+msgstr ""
+
+#: ../src/settings-dialog.ui.h:14
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Pelbagai</b>"
+
+#: ../src/settings-dialog.ui.h:15
+msgid "General"
+msgstr "Am"
+
+#: ../src/settings-dialog.ui.h:19
 msgid "Virtual Bytes"
 msgstr "Bait Maya"
 
-#: ../src/settings-tool-button.c:179
+#: ../src/settings-dialog.ui.h:20
 msgid "Private Bytes"
 msgstr "Bait Persendirian"
 
-#: ../src/settings-tool-button.c:186
-msgid "Show Legend"
-msgstr "Tunjuk Petunjuk"
+#: ../src/settings-dialog.ui.h:24
+msgid "Columns"
+msgstr ""
 
-#: ../src/task-manager.c:245
+#: ../src/task-manager.c:246
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
