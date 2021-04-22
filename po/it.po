@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-19 00:47+0100\n"
-"PO-Revision-Date: 2021-02-20 09:25+0000\n"
+"POT-Creation-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-02-26 17:35+0000\n"
 "Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -315,8 +315,8 @@ msgid "Prompt for terminating tasks"
 msgstr "Chiedi conferma per terminare i processi"
 
 #: ../src/settings-dialog.ui.h:13
-msgid "Hide into the notification area"
-msgstr "Nascondi nell'area di notifica"
+msgid "Keep in the notification area"
+msgstr "Mantieni nell'area di notifica"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
