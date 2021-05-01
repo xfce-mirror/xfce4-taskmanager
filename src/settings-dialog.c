@@ -106,6 +106,8 @@ builder_bind_combobox (GtkBuilder *builder, XtmSettings *settings)
 static void
 show_about_dialog (GtkWidget *widget, gpointer user_data)
 {
+	GtkDialog *dialog = GTK_DIALOG (user_data);
+
 	const gchar *authors[] = {
 		"(c) 2014-2021 Simon Steinbeiss",
 		"(c) 2018-2019 Rozhuk Ivan",
@@ -137,7 +139,7 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 		"the Free Software Foundation; either version 2 of the License, or\n"
 		"(at your option) any later version.\n";
 
-	gtk_show_about_dialog (GTK_WINDOW (widget),
+	gtk_show_about_dialog (GTK_WINDOW (dialog),
 		"program-name", _("Task Manager"),
 		"version", PACKAGE_VERSION,
 		"copyright", "Copyright \302\251 2005-2021 The Xfce development team",
@@ -153,7 +155,9 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 static void
 show_help (GtkWidget *widget, gpointer user_data)
 {
-	xfce_dialog_show_help_with_version (GTK_WINDOW (widget), "xfce4-taskmanager", "start", NULL, NULL);
+	GtkDialog *dialog = GTK_DIALOG (user_data);
+
+	xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-taskmanager", "start", NULL, NULL);
 }
 
 static void
