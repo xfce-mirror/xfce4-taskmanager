@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-26 12:51+0100\n"
-"PO-Revision-Date: 2021-04-30 18:08+0000\n"
+"PO-Revision-Date: 2021-05-01 06:29+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-apps/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,7 @@ msgstr "<span foreground='#000000' background='#aed581'>    </span> Iniciando la
 #: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr "<span foreground='#000000' background='#fff176'>    </span> Cambiando de tarea "
+msgstr "<span foreground='#000000' background='#fff176'>    </span> Cambiando de tarea"
 
 #: ../src/process-window.ui.h:8
 msgid ""
