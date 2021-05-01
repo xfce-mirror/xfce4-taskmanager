@@ -153,7 +153,9 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 static void
 show_help (GtkWidget *widget, gpointer user_data)
 {
-	xfce_dialog_show_help_with_version (GTK_WINDOW (widget), "xfce4-taskmanager", "start", NULL, NULL);
+	GtkDialog *dialog = GTK_DIALOG (user_data);
+
+	xfce_dialog_show_help_with_version (GTK_WINDOW (user_data), "xfce4-taskmanager", "start", NULL, NULL);
 }
 
 static void
