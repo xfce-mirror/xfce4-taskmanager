@@ -423,6 +423,13 @@ cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 	}
 }
 
+/**
+ * Process the "Copy command line" context menu item.
+ *
+ * The clipboard is only modified if finding the process was successful,
+ * i.e. if the process died while the user had the context menu open and then
+ * chose to copy the command line afterwards, nothing happens.
+ */
 static void
 cb_copy_command_line (GtkMenuItem *mi, gpointer user_data)
 {
@@ -436,26 +443,29 @@ cb_copy_command_line (GtkMenuItem *mi, gpointer user_data)
 		return;
 	}
 
-	GPid pid_iter;
-	gboolean has_next = TRUE;
-	gchar *cmdline = NULL;
+	gboolean keep_looking = TRUE;
 
-	while (has_next)
+	/* Look up the process in the model by the known PID */
+	while (keep_looking)
 	{
+		GPid pid_iter;
 		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid_iter, -1);
 
 		if (pid_iter == pid)
 		{
+			gchar *cmdline;
 			gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_COMMAND, &cmdline, -1);
-			break;
+
+			GtkClipboard *clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+			gtk_clipboard_set_text (clipboard, cmdline, -1);
+
+			keep_looking = FALSE;
 		}
-
-		has_next = gtk_tree_model_iter_next (model, &iter);
+		else
+		{
+			keep_looking = gtk_tree_model_iter_next (model, &iter);
+		}
 	}
-
-	fprintf(stderr, "pid: %d\n", pid);
-	fprintf(stderr, "pid_iter: %d\n", pid_iter);
-	fprintf(stderr, "%s\n", cmdline == NULL ? "(null)" : cmdline);
 }
 
 static GtkWidget *
