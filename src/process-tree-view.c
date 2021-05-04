@@ -423,12 +423,25 @@ cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 	}
 }
 
+static void
+cb_copy_command_line (GtkMenuItem *menu_item, gpointer user_data)
+{
+	GPid pid = GPOINTER_TO_INT(g_object_get_data (G_OBJECT (menu_item), "pid"));
+
+	fprintf(stderr, "pid: %d\n", pid);
+}
+
 static GtkWidget *
 build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 {
 	GtkWidget *menu, *menu_priority, *mi;
 
 	menu = gtk_menu_new ();
+
+	mi = gtk_menu_item_new_with_label (_("Copy command line"));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_copy_command_line), NULL);
 
 	if (!pid_is_sleeping (pid))
 	{
