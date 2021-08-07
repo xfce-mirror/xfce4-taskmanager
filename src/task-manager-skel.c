@@ -53,7 +53,7 @@ get_task_details (GPid pid, Task *task)
 	memset(task, 0, sizeof(Task));
 	g_snprintf (task->name, sizeof(task->name), "foo");
 	g_snprintf (task->cmdline, sizeof(task->cmdline), "foo -bar");
-	g_snprintf (task->uid_name, sizeof(task->uid_name), "baz");
+	task->uid = 1000;
 
 	return TRUE;
 }
