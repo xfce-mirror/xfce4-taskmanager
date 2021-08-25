@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-26 12:51+0100\n"
-"PO-Revision-Date: 2021-02-27 13:01+0000\n"
+"PO-Revision-Date: 2021-08-25 03:07+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -333,7 +333,7 @@ msgstr "私有占用内存"
 
 #: ../src/settings-dialog.ui.h:24
 msgid "Columns"
-msgstr "列"
+msgstr "显示项"
 
 #: ../src/task-manager.c:246
 #, c-format
