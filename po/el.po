@@ -8,13 +8,14 @@
 # ebal <ebalaskas@ebalaskas.gr>, 2008
 # Stavros Giannouris <stavrosg@hellug.gr>, 2008
 # Πέτρος Σαμαράς <psamaras1@gmail.com>, 2017
+# Στέργιος Γέμελας <sgemelas@protonmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-26 12:51+0100\n"
-"PO-Revision-Date: 2021-02-26 11:52+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2021-08-30 12:35+0000\n"
+"Last-Translator: Στέργιος Γέμελας <sgemelas@protonmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce-apps/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr "Διαχειριστής εργασιών"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
 msgid "Easy to use application to monitor system resources"
-msgstr ""
+msgstr "Εύκολη στη χρήση εφαρμογή για παρακολούθηση των πόρων του συστήματος "
 
 #: ../src/main.c:60
 msgid "Quit"
@@ -235,26 +236,26 @@ msgstr "Εντοπισμός παραθύρου με κλικ πάνω σε αυ
 
 #: ../src/process-window.ui.h:4
 msgid "Show/hide process filter"
-msgstr ""
+msgstr "Δείξε/κρύψε το φίλτρο διεργασιών"
 
 #: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
-msgstr ""
+msgstr "Χρησιμοποιείτε το λογαριασμό root, μπορεί να βλάψετε το σύστημά σας."
 
 #: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#aed581'> </span> Εργασία που ξεκινά"
 
 #: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#fff176'> </span> Μεταβαλλόμενη εργασία "
 
 #: ../src/process-window.ui.h:8
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr ""
+msgstr "<span foreground='#000000' background='#e57373'> </span> Τερματιζόμενη εργασία"
 
 #: ../src/settings-dialog.c:145
 msgid "Easy to use task manager"
@@ -266,7 +267,7 @@ msgstr "Ευάγγελος Μπαλάσκας <ebalaskas@ebalaskas.gr>\nΣταύ
 
 #: ../src/settings-dialog.ui.h:1
 msgid "Task Manager Settings"
-msgstr ""
+msgstr "Ρυθμίσεις του Διαχειριστή Εργασιών"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "_Help"
@@ -294,7 +295,7 @@ msgstr "Εμφάνιση διεργασιών σε δένδρο"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Show legend"
-msgstr ""
+msgstr "Εμφάνιση λεζάντας"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Show values with more precision"
@@ -302,11 +303,11 @@ msgstr "Εμφάνιση τιμών με μεγαλύτερη ακρίβεια"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "Refresh rate (ms):"
-msgstr ""
+msgstr "Ρυθμός ανανέωσης (ms):"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "<b>Interface</b>"
-msgstr ""
+msgstr "<b>Διεπαφή</b>"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Prompt for terminating tasks"
@@ -314,7 +315,7 @@ msgstr "Ερώτηση για τον τερματισμό διεργασιών"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Keep in the notification area"
-msgstr ""
+msgstr "Διατήρηση στην περιοχή ειδοποιήσεων"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
