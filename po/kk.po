@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2015,2017,2019-2020
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2015,2017,2019-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-26 12:51+0100\n"
-"PO-Revision-Date: 2021-02-26 11:52+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2021-09-01 15:43+0000\n"
+"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh (http://www.transifex.com/xfce/xfce-apps/language/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,11 +231,11 @@ msgstr "Ашық терезені оған шерту арқылы анықта�
 
 #: ../src/process-window.ui.h:4
 msgid "Show/hide process filter"
-msgstr ""
+msgstr "Үрдістер сүзгісін көрсету/жасыру"
 
 #: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
-msgstr ""
+msgstr "Сіз root тіркелгісін қолданудасыз, жүйеңізге зақым келтіруге болады."
 
 #: ../src/process-window.ui.h:6
 msgid ""
@@ -262,7 +262,7 @@ msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com> 2010"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "Task Manager Settings"
-msgstr ""
+msgstr "Тапсырмалар басқарушысы баптаулары"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "_Help"
@@ -290,7 +290,7 @@ msgstr "Үрдістерді ағаш ретінде көрсету"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Show legend"
-msgstr ""
+msgstr "Аңызды көрсету"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Show values with more precision"
@@ -298,11 +298,11 @@ msgstr "Мәндерді дәлірек көрсету"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "Refresh rate (ms):"
-msgstr ""
+msgstr "Жаңарту жиілігі (мс):"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "<b>Interface</b>"
-msgstr ""
+msgstr "<b>Интерфейс</b>"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Prompt for terminating tasks"
@@ -310,7 +310,7 @@ msgstr "Үрдістерді аяқтауды растау"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Keep in the notification area"
-msgstr ""
+msgstr "Хабарламалар сөресінде ұстау"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
@@ -330,7 +330,7 @@ msgstr "Меншік байттар"
 
 #: ../src/settings-dialog.ui.h:24
 msgid "Columns"
-msgstr ""
+msgstr "Бағандар"
 
 #: ../src/task-manager.c:246
 #, c-format
