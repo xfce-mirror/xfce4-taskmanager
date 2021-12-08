@@ -625,6 +625,14 @@ treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event)
 			cb_send_signal (GTK_MENU_ITEM (mi), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
 		return TRUE;
 	}
+	else if (event->keyval == GDK_KEY_c && (event->state & modifiers) == GDK_CONTROL_MASK)
+	{
+		/* Same trick as above */
+		GtkWidget *mi = gtk_menu_item_new_with_label (_("Copy command line"));
+		g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
+		cb_copy_command_line (GTK_MENU_ITEM (mi), treeview);
+		return TRUE;
+	}
 
 	else
 		return FALSE;
