@@ -423,10 +423,55 @@ cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 	}
 }
 
+/**
+ * Process the "Copy command line" context menu item.
+ *
+ * The clipboard is only modified if finding the process was successful,
+ * i.e. if the process died while the user had the context menu open and then
+ * chose to copy the command line afterwards, nothing happens.
+ */
+static void
+cb_copy_command_line (GtkMenuItem *mi, gpointer user_data)
+{
+	XtmProcessTreeView *view = XTM_PROCESS_TREE_VIEW (user_data);
+	GPid pid = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (mi), "pid"));
+	GtkTreeModel *model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
+	gboolean keep_looking = TRUE;
+	GtkTreeIter iter;
+	GtkClipboard *clipboard;
+
+	if (!gtk_tree_model_get_iter_first (model, &iter))
+	{
+		return;
+	}
+
+	/* Look up the process in the model by the known PID */
+	while (keep_looking)
+	{
+		GPid pid_iter;
+		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid_iter, -1);
+
+		if (pid_iter == pid)
+		{
+			gchar *cmdline;
+			gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_COMMAND, &cmdline, -1);
+
+			clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+			gtk_clipboard_set_text (clipboard, cmdline, -1);
+
+			keep_looking = FALSE;
+		}
+		else
+		{
+			keep_looking = gtk_tree_model_iter_next (model, &iter);
+		}
+	}
+}
+
 static GtkWidget *
 build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 {
-	GtkWidget *menu, *menu_priority, *mi;
+	GtkWidget *menu, *menu_priority, *mi, *accel_label;
 
 	menu = gtk_menu_new ();
 
@@ -486,6 +531,14 @@ build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 	mi = gtk_menu_item_new_with_label (_("Priority"));
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), menu_priority);
 	gtk_container_add (GTK_CONTAINER (menu), mi);
+
+	mi = gtk_menu_item_new_with_label (_("Copy command line"));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_copy_command_line), treeview);
+	/* Refer to treeview_key_pressed to see how the Ctrl-c press is handled */
+	accel_label = gtk_bin_get_child (GTK_BIN (mi));
+	gtk_accel_label_set_accel(GTK_ACCEL_LABEL (accel_label), GDK_KEY_c, GDK_CONTROL_MASK);
 
 	gtk_widget_show_all (menu);
 
@@ -573,6 +626,14 @@ treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event)
 			cb_send_signal (GTK_MENU_ITEM (mi), GINT_TO_POINTER (XTM_SIGNAL_KILL));
 		else
 			cb_send_signal (GTK_MENU_ITEM (mi), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
+		return TRUE;
+	}
+	else if (event->keyval == GDK_KEY_c && (event->state & modifiers) == GDK_CONTROL_MASK)
+	{
+		/* Same trick as above */
+		GtkWidget *mi = gtk_menu_item_new_with_label (_("Copy command line"));
+		g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
+		cb_copy_command_line (GTK_MENU_ITEM (mi), treeview);
 		return TRUE;
 	}
 
