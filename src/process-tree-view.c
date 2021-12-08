@@ -436,14 +436,14 @@ cb_copy_command_line (GtkMenuItem *mi, gpointer user_data)
 	XtmProcessTreeView *view = XTM_PROCESS_TREE_VIEW (user_data);
 	GPid pid = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (mi), "pid"));
 	GtkTreeModel *model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
+	gboolean keep_looking = TRUE;
 	GtkTreeIter iter;
+	GtkClipboard *clipboard;
 
 	if (!gtk_tree_model_get_iter_first (model, &iter))
 	{
 		return;
 	}
-
-	gboolean keep_looking = TRUE;
 
 	/* Look up the process in the model by the known PID */
 	while (keep_looking)
@@ -456,7 +456,7 @@ cb_copy_command_line (GtkMenuItem *mi, gpointer user_data)
 			gchar *cmdline;
 			gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_COMMAND, &cmdline, -1);
 
-			GtkClipboard *clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+			clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 			gtk_clipboard_set_text (clipboard, cmdline, -1);
 
 			keep_looking = FALSE;
