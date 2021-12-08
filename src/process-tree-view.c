@@ -471,7 +471,7 @@ cb_copy_command_line (GtkMenuItem *mi, gpointer user_data)
 static GtkWidget *
 build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 {
-	GtkWidget *menu, *menu_priority, *mi;
+	GtkWidget *menu, *menu_priority, *mi, *accel_label;
 
 	menu = gtk_menu_new ();
 
@@ -536,6 +536,9 @@ build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
 	gtk_container_add (GTK_CONTAINER (menu), mi);
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_copy_command_line), treeview);
+	/* Refer to treeview_key_pressed to see how the Ctrl-c press is handled */
+	accel_label = gtk_bin_get_child (GTK_BIN (mi));
+	gtk_accel_label_set_accel(GTK_ACCEL_LABEL (accel_label), GDK_KEY_c, GDK_CONTROL_MASK);
 
 	gtk_widget_show_all (menu);
 
