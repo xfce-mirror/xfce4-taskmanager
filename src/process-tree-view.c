@@ -475,11 +475,6 @@ build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 
 	menu = gtk_menu_new ();
 
-	mi = gtk_menu_item_new_with_label (_("Copy command line"));
-	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_copy_command_line), treeview);
-
 	if (!pid_is_sleeping (pid))
 	{
 		mi = gtk_menu_item_new_with_label (_("Stop"));
@@ -536,6 +531,11 @@ build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 	mi = gtk_menu_item_new_with_label (_("Priority"));
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), menu_priority);
 	gtk_container_add (GTK_CONTAINER (menu), mi);
+
+	mi = gtk_menu_item_new_with_label (_("Copy command line"));
+	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
+	gtk_container_add (GTK_CONTAINER (menu), mi);
+	g_signal_connect (mi, "activate", G_CALLBACK (cb_copy_command_line), treeview);
 
 	gtk_widget_show_all (menu);
 
