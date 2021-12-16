@@ -295,6 +295,7 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 	}
 
 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
+		XTM_PTV_COLUMN_COMMAND_RAW, task->cmdline,
 		XTM_PTV_COLUMN_PPID, task->ppid,
 		XTM_PTV_COLUMN_STATE, task->state,
 		XTM_PTV_COLUMN_VSZ, task->vsz,
