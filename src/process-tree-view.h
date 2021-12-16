@@ -21,7 +21,10 @@ enum
 #ifdef HAVE_WNCK
 	XTM_PTV_COLUMN_ICON,
 #endif
+	/* might be prettified; shown to user */
 	XTM_PTV_COLUMN_COMMAND,
+	/* never prettified; used for copying command line to clipboard */
+	XTM_PTV_COLUMN_COMMAND_RAW,
 	XTM_PTV_COLUMN_PID,
 	XTM_PTV_COLUMN_PPID,
 	XTM_PTV_COLUMN_STATE,
