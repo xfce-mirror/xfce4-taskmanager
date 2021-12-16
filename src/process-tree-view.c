@@ -100,7 +100,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 #ifdef HAVE_WNCK
 	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, GDK_TYPE_PIXBUF,
 #else
-	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, 
+	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS,
 #endif
 		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
 		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT,
