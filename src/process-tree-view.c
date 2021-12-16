@@ -98,10 +98,11 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 
 	/* Create tree view model */
 #ifdef HAVE_WNCK
-	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
+	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, GDK_TYPE_PIXBUF,
 #else
-	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
+	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, 
 #endif
+		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
 		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT,
 		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_LONG);
 
@@ -454,7 +455,7 @@ cb_copy_command_line (GtkMenuItem *mi, gpointer user_data)
 		if (pid_iter == pid)
 		{
 			gchar *cmdline;
-			gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_COMMAND, &cmdline, -1);
+			gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_COMMAND_RAW, &cmdline, -1);
 
 			clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 			gtk_clipboard_set_text (clipboard, cmdline, -1);
