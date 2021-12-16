@@ -229,7 +229,7 @@ static void
 model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task)
 {
 	GtkTreeModel *model = manager->model;
-	gchar *cmdline_raw, *vsz, *rss, cpu[16];
+	gchar *vsz, *rss, cpu[16];
 	gchar value[14];
 	glong old_timestamp;
 	gchar *old_state;
