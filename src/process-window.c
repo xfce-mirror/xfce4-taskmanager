@@ -234,7 +234,6 @@ static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
-	gboolean active;
 
 	window->settings = xtm_settings_get_default ();
 	window->channel = xfconf_channel_new (CHANNEL);
