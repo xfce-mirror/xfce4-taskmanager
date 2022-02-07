@@ -62,6 +62,7 @@ struct _XtmProcessWindow
 	GtkWidget *		statusbar;
 	GtkWidget *		settings_button;
 	XtmSettings *		settings;
+	GtkSettings *		gtk_settings;
 	XfconfChannel *		channel;
 	gint			width;
 	gint			height;
@@ -231,12 +232,34 @@ show_settings_dialog (GtkButton *button, gpointer user_data)
 }
 
 static void
+xtm_process_window_header_bar_toggled (XtmProcessWindow *window)
+{
+	gboolean   use_gtk_header_bar;
+	GtkWidget *gtk_header_bar;
+
+	g_object_get (window->gtk_settings, "gtk-dialogs-use-header", &use_gtk_header_bar, NULL);
+
+	if (use_gtk_header_bar == TRUE)
+	{
+		gtk_header_bar = gtk_header_bar_new ();
+		gtk_header_bar_set_show_close_button(GTK_HEADER_BAR (gtk_header_bar), TRUE);
+		gtk_window_set_titlebar(GTK_WINDOW (window->window), gtk_header_bar);
+		gtk_widget_show (gtk_header_bar);
+	}
+	else
+	{
+		gtk_window_set_titlebar(GTK_WINDOW (window->window), NULL);
+	}
+}
+
+static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
 	gboolean active;
 
 	window->settings = xtm_settings_get_default ();
+	window->gtk_settings = gtk_settings_get_default ();
 	window->channel = xfconf_channel_new (CHANNEL);
 
 	window->builder = gtk_builder_new ();
@@ -259,6 +282,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-identify"));
 	g_signal_connect (G_OBJECT (button), "clicked",
 										G_CALLBACK (xwininfo_clicked_cb), window);
+
+	g_signal_connect_swapped (window->gtk_settings, "notify::gtk-dialogs-use-header", G_CALLBACK (xtm_process_window_header_bar_toggled), window);
 
 	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-show-filter"));
@@ -331,6 +356,9 @@ xtm_process_window_finalize (GObject *object)
 
 	if (XTM_IS_SETTINGS (window->settings))
 		g_object_unref (window->settings);
+
+	if (GTK_IS_SETTINGS (window->gtk_settings))
+		g_object_unref (window->gtk_settings);
 
 	g_object_unref (window->builder);
 	window->builder = NULL;
