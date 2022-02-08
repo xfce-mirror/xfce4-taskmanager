@@ -411,8 +411,8 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="pbytes">
-                    <property name="label" translatable="yes">Private Bytes</property>
+                  <object class="GtkCheckButton" id="rbytes">
+                    <property name="label" translatable="yes">Resident Bytes</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
