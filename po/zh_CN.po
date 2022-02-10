@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-26 12:51+0100\n"
-"PO-Revision-Date: 2021-08-25 03:07+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
+"POT-Creation-Date: 2022-02-10 12:51+0100\n"
+"PO-Revision-Date: 2022-02-10 11:51+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:141
+#: ../src/settings-dialog.c:143
 msgid "Task Manager"
 msgstr "任务管理器"
 
@@ -53,12 +53,12 @@ msgstr "Xfce 提示守护进程"
 msgid "Settings daemon is unavailable"
 msgstr "设置守护进程无效"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:455
+#: ../src/process-statusbar.c:139 ../src/process-window.c:436
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:459
+#: ../src/process-statusbar.c:149 ../src/process-window.c:440
 #, c-format
 msgid "Memory: %s"
 msgstr "内存: %s"
@@ -220,7 +220,7 @@ msgstr "未找到 PID"
 msgid "No PID found for window 0x%lx."
 msgstr "未为窗口 0x%lx 找到 PID。"
 
-#: ../src/process-window.c:330
+#: ../src/process-window.c:308
 msgid "Filter on process name"
 msgstr "进程名称过滤器"
 
@@ -233,33 +233,29 @@ msgid "Identify an open window by clicking on it."
 msgstr "点击窗口以辨识。"
 
 #: ../src/process-window.ui.h:4
-msgid "Show/hide process filter"
-msgstr "显示/隐藏进程过滤器"
-
-#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "您正在使用 root 帐户，可能会损坏系统。"
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> 启动任务"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> 更改任务"
 
-#: ../src/process-window.ui.h:8
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> 终止任务"
 
-#: ../src/settings-dialog.c:145
+#: ../src/settings-dialog.c:147
 msgid "Easy to use task manager"
 msgstr "易用的任务管理器"
 
-#: ../src/settings-dialog.c:148
+#: ../src/settings-dialog.c:150
 msgid "translator-credits"
 msgstr "Hunt Xu <huntxu@live.cn>, 2008, 2010.\nMingcong Bai <jeffbai@aosc.xyz>, 2014, 2015, 2016, 2017.\n玉堂白鹤 <yjwork@qq.com>,2020."
 
