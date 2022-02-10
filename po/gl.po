@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-26 12:51+0100\n"
-"PO-Revision-Date: 2021-02-27 05:52+0000\n"
-"Last-Translator: Daniel Muñiz Fontoira <dani@damufo.eu>\n"
+"POT-Creation-Date: 2022-02-10 12:51+0100\n"
+"PO-Revision-Date: 2022-02-10 11:51+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:141
+#: ../src/settings-dialog.c:143
 msgid "Task Manager"
 msgstr "Xestor de tarefas"
 
@@ -53,12 +53,12 @@ msgstr "Servizo de notificación de Xfce"
 msgid "Settings daemon is unavailable"
 msgstr "O servizo de configuración non está dispoñíbel"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:455
+#: ../src/process-statusbar.c:139 ../src/process-window.c:436
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:459
+#: ../src/process-statusbar.c:149 ../src/process-window.c:440
 #, c-format
 msgid "Memory: %s"
 msgstr "Memoria: %s"
@@ -220,7 +220,7 @@ msgstr "Non se atopou o PID"
 msgid "No PID found for window 0x%lx."
 msgstr "Non se atopou o PID da xanela 0x%lx."
 
-#: ../src/process-window.c:330
+#: ../src/process-window.c:308
 msgid "Filter on process name"
 msgstr "Filtrar polo nome do proceso"
 
@@ -233,33 +233,29 @@ msgid "Identify an open window by clicking on it."
 msgstr "Identificar unha xanela aberta ao premela."
 
 #: ../src/process-window.ui.h:4
-msgid "Show/hide process filter"
-msgstr "Amosar/agochar o filtro de procesos"
-
-#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "Está a usar a conta root. Pode prexudicar o seu sistema."
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Comezando a tarefa"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Mudando a tarefa"
 
-#: ../src/process-window.ui.h:8
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Terminando a tarefa"
 
-#: ../src/settings-dialog.c:145
+#: ../src/settings-dialog.c:147
 msgid "Easy to use task manager"
 msgstr "Xestor de tarefas fácil de usar"
 
-#: ../src/settings-dialog.c:148
+#: ../src/settings-dialog.c:150
 msgid "translator-credits"
 msgstr "Leandro Regueiro <leandro.regueiro@gmail.com>, 2006, 2008, 2009, 2010.\nMiguel Anxo Bouzada <mbouzada@gmail.com>, 2008.\n\nProxecto Trasno http://www.trasno.net"
 
