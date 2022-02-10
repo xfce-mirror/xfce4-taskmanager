@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-26 12:51+0100\n"
-"PO-Revision-Date: 2021-04-18 07:55+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"POT-Creation-Date: 2022-02-10 12:51+0100\n"
+"PO-Revision-Date: 2022-02-10 11:51+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Korean (http://www.transifex.com/xfce/xfce-apps/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
 #: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:141
+#: ../src/settings-dialog.c:143
 msgid "Task Manager"
 msgstr "작업 관리자"
 
@@ -52,12 +52,12 @@ msgstr "Xfce 알림 데몬"
 msgid "Settings daemon is unavailable"
 msgstr "설정 데몬을 사용할 수 없습니다"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:455
+#: ../src/process-statusbar.c:139 ../src/process-window.c:436
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:459
+#: ../src/process-statusbar.c:149 ../src/process-window.c:440
 #, c-format
 msgid "Memory: %s"
 msgstr "메  모  리: %s"
@@ -219,7 +219,7 @@ msgstr "PID 없음"
 msgid "No PID found for window 0x%lx."
 msgstr "창 0x%lx의 PID가 없습니다."
 
-#: ../src/process-window.c:330
+#: ../src/process-window.c:308
 msgid "Filter on process name"
 msgstr "프로세스 이름으로 검색"
 
@@ -232,33 +232,29 @@ msgid "Identify an open window by clicking on it."
 msgstr "클릭해서 창이 열려 있는지 확인합니다."
 
 #: ../src/process-window.ui.h:4
-msgid "Show/hide process filter"
-msgstr "프로세스 필터 표시/숨기기"
-
-#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "루트 계정을 사용하고 있어, 시스템에 해를 끼칠 수 있습니다."
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> 작업 시작 중"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> 작업 전환 중"
 
-#: ../src/process-window.ui.h:8
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> 작업 끝내는 중"
 
-#: ../src/settings-dialog.c:145
+#: ../src/settings-dialog.c:147
 msgid "Easy to use task manager"
 msgstr "쓰기 쉬운 작업관리자"
 
-#: ../src/settings-dialog.c:148
+#: ../src/settings-dialog.c:150
 msgid "translator-credits"
 msgstr "Seong-ho Cho <darkcircle.0426@gmail.com>"
 
