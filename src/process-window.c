@@ -230,11 +230,23 @@ show_settings_dialog (GtkButton *button, gpointer user_data)
 	g_signal_handler_unblock (G_OBJECT (window->window), window->handler);
 }
 
+GtkWidget*
+xtm_process_window_add_gtk_header_bar (GtkWindow *window)
+{
+	GtkWidget *gtk_header_bar;
+	gtk_header_bar = gtk_header_bar_new ();
+	gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (gtk_header_bar), TRUE);
+	gtk_window_set_titlebar (window, gtk_header_bar);
+	gtk_widget_show (gtk_header_bar);
+	return gtk_header_bar;
+}
+
 static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
-	GtkWidget *button;
-	gboolean active;
+	GtkWidget   *button;
+	gboolean     use_gtk_header_bar;
+	GtkSettings *gtk_settings;
 
 	window->settings = xtm_settings_get_default ();
 	window->channel = xfconf_channel_new (CHANNEL);
@@ -260,16 +272,16 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect (G_OBJECT (button), "clicked",
 										G_CALLBACK (xwininfo_clicked_cb), window);
 
-	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
-	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-show-filter"));
-	xfconf_g_property_bind (window->channel, SETTING_SHOW_FILTER, G_TYPE_BOOLEAN,
-		G_OBJECT (button), "active");
-	active = xfconf_channel_get_bool (window->channel, SETTING_SHOW_FILTER, FALSE);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), active);
-	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), active);
-	g_object_bind_property (G_OBJECT (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), "reveal-child",
-													G_OBJECT (button), "active", G_BINDING_BIDIRECTIONAL);
+	gtk_settings = gtk_settings_get_default ();
+	if (gtk_settings != NULL)
+	{
+		g_object_get (gtk_settings, "gtk-dialogs-use-header", &use_gtk_header_bar, NULL);
+		if (use_gtk_header_bar)
+			xtm_process_window_add_gtk_header_bar (GTK_WINDOW (window->window));
+		g_object_unref (gtk_settings);
+	}
 
+	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
 	{
 		GtkWidget *toolitem;
 		guint refresh_rate;
@@ -316,6 +328,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
 	g_signal_connect (G_OBJECT(window->filter_entry), "changed", G_CALLBACK(filter_entry_keyrelease_handler), window->treeview);
 	gtk_widget_set_tooltip_text (window->filter_entry, _("Filter on process name"));
+	gtk_widget_grab_focus (window->filter_entry);
 }
 
 static void
