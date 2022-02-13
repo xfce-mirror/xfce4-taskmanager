@@ -230,7 +230,7 @@ show_settings_dialog (GtkButton *button, gpointer user_data)
 	g_signal_handler_unblock (G_OBJECT (window->window), window->handler);
 }
 
-GtkWidget*
+static GtkWidget*
 xtm_process_window_add_gtk_header_bar (GtkWindow *window)
 {
 	GtkWidget *gtk_header_bar;
