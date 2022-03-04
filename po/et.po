@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 12:51+0100\n"
-"PO-Revision-Date: 2022-02-10 11:51+0000\n"
+"POT-Creation-Date: 2022-03-04 12:53+0100\n"
+"PO-Revision-Date: 2022-03-04 11:53+0000\n"
 "Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce-apps/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
-#: ../src/process-tree-view.c:374 ../src/process-tree-view.c:389
-#: ../src/process-tree-view.c:419 ../src/process-window.ui.h:1
+#: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
+#: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
 msgid "Task Manager"
 msgstr "Tegumihaldur"
@@ -70,126 +70,131 @@ msgstr "Saaleala: %s"
 msgid "Processes: %d"
 msgstr "Protsesse: %d"
 
-#: ../src/process-tree-view.c:134
+#: ../src/process-tree-view.c:135
 msgid "Task"
 msgstr "Protsessi nimi"
 
-#: ../src/process-tree-view.c:145 ../src/settings-dialog.ui.h:16
+#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:16
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:153 ../src/settings-dialog.ui.h:17
+#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:17
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:161 ../src/settings-dialog.ui.h:18
+#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:18
 msgid "State"
 msgstr "Olek"
 
-#: ../src/process-tree-view.c:170
+#: ../src/process-tree-view.c:171
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:178
+#: ../src/process-tree-view.c:179
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:186 ../src/settings-dialog.ui.h:21
+#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:21
 msgid "UID"
 msgstr "Kasutaja"
 
-#: ../src/process-tree-view.c:194 ../src/settings-dialog.ui.h:22
+#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:22
 msgid "CPU"
 msgstr "CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:203
+#: ../src/process-tree-view.c:204
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "Terminate task"
 msgstr "Hävita tegum (TERM)"
 
-#: ../src/process-tree-view.c:370
+#: ../src/process-tree-view.c:371
 msgid "Kill task"
 msgstr "Tapa tegum (KILL)"
 
-#: ../src/process-tree-view.c:372
+#: ../src/process-tree-view.c:373
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Kas oled kindel et soovid saata %s signaali protsessile ID'ga %d?"
 
-#: ../src/process-tree-view.c:373
+#: ../src/process-tree-view.c:374
 msgid "terminate"
 msgstr "hävita"
 
-#: ../src/process-tree-view.c:373
+#: ../src/process-tree-view.c:374
 msgid "kill"
 msgstr "tapa"
 
-#: ../src/process-tree-view.c:385
+#: ../src/process-tree-view.c:386
 msgid "Error sending signal"
 msgstr "Viga signaali saatmisel"
 
-#: ../src/process-tree-view.c:387
+#: ../src/process-tree-view.c:388
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Signaali saatmisel protsessile ID'ga %d tekkis viga. Sul ilmselt pole vajalikke õigusi."
 
-#: ../src/process-tree-view.c:416
+#: ../src/process-tree-view.c:417
 msgid "Error setting priority"
 msgstr "Viga prioriteedi määramisel"
 
-#: ../src/process-tree-view.c:417
+#: ../src/process-tree-view.c:418
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Protsessile ID'ga %d prioriteedi seadmisel tekkis viga. Sul ilmselt pole vajalikke õigusi."
 
-#: ../src/process-tree-view.c:435 ../src/process-tree-view.c:570
+#: ../src/process-tree-view.c:481 ../src/process-tree-view.c:624
 msgid "Stop"
 msgstr "Peata"
 
-#: ../src/process-tree-view.c:442
+#: ../src/process-tree-view.c:488
 msgid "Continue"
 msgstr "Jätka"
 
-#: ../src/process-tree-view.c:448
+#: ../src/process-tree-view.c:494
 msgid "Terminate"
 msgstr "Hävita"
 
-#: ../src/process-tree-view.c:454
+#: ../src/process-tree-view.c:500
 msgid "Kill"
 msgstr "Tapa"
 
-#: ../src/process-tree-view.c:461
+#: ../src/process-tree-view.c:507
 msgid "Very low"
 msgstr "Väga madal"
 
-#: ../src/process-tree-view.c:466
+#: ../src/process-tree-view.c:512
 msgid "Low"
 msgstr "Madal"
 
-#: ../src/process-tree-view.c:471
+#: ../src/process-tree-view.c:517
 msgid "Normal"
 msgstr "Tavaline"
 
-#: ../src/process-tree-view.c:476
+#: ../src/process-tree-view.c:522
 msgid "High"
 msgstr "Kõrge"
 
-#: ../src/process-tree-view.c:481
+#: ../src/process-tree-view.c:527
 msgid "Very high"
 msgstr "Väga kõrge"
 
-#: ../src/process-tree-view.c:486 ../src/settings-dialog.ui.h:23
+#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:23
 msgid "Priority"
 msgstr "Prioriteet"
+
+#. Same trick as above
+#: ../src/process-tree-view.c:536 ../src/process-tree-view.c:635
+msgid "Copy command line"
+msgstr ""
 
 #: ../src/process-window.c:166
 msgid "Bad Window"
@@ -321,8 +326,8 @@ msgid "Virtual Bytes"
 msgstr "VSZ"
 
 #: ../src/settings-dialog.ui.h:20
-msgid "Private Bytes"
-msgstr "RSS"
+msgid "Resident Bytes"
+msgstr ""
 
 #: ../src/settings-dialog.ui.h:24
 msgid "Columns"
