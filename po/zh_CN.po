@@ -6,14 +6,14 @@
 # Chipong Luo <chipong.luo@yahoo.com>, 2013
 # elhuevogrande <kbusch21@yahoo.com>, 2013
 # Mingcong Bai <jeffbai@aosc.xyz>, 2017
-# 玉堂白鹤 <yjwork@qq.com>, 2015,2019-2021
+# 玉堂白鹤 <yjwork@qq.com>, 2015,2019-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-04 12:53+0100\n"
-"PO-Revision-Date: 2022-03-04 11:53+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2022-03-10 06:04+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -197,7 +197,7 @@ msgstr "优先级"
 #. Same trick as above
 #: ../src/process-tree-view.c:536 ../src/process-tree-view.c:635
 msgid "Copy command line"
-msgstr ""
+msgstr "复制命令行"
 
 #: ../src/process-window.c:166
 msgid "Bad Window"
@@ -326,11 +326,11 @@ msgstr "通用"
 
 #: ../src/settings-dialog.ui.h:19
 msgid "Virtual Bytes"
-msgstr "虚拟占用内存"
+msgstr "虚拟字节"
 
 #: ../src/settings-dialog.ui.h:20
 msgid "Resident Bytes"
-msgstr ""
+msgstr "常驻字节"
 
 #: ../src/settings-dialog.ui.h:24
 msgid "Columns"
