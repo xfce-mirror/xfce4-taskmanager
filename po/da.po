@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Aputsiak Niels Janussen <aj@isit.gl>, 2013
-# scootergrisen, 2016-2017,2019-2021
+# scootergrisen, 2016-2017,2019-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-04 12:53+0100\n"
-"PO-Revision-Date: 2022-03-04 11:53+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2013-07-03 18:41+0000\n"
+"Last-Translator: scootergrisen, 2016-2017,2019-2022\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -195,7 +195,7 @@ msgstr "Prioritet"
 #. Same trick as above
 #: ../src/process-tree-view.c:536 ../src/process-tree-view.c:635
 msgid "Copy command line"
-msgstr ""
+msgstr "Kopiér kommandolinje"
 
 #: ../src/process-window.c:166
 msgid "Bad Window"
