@@ -260,7 +260,7 @@ msgstr "Opgavehåndtering som er nem at bruge"
 
 #: ../src/settings-dialog.c:150
 msgid "translator-credits"
-msgstr "Per Kongstad\nAputsiak Niels Janussen\nscootergrisen\n\nDansk-gruppen\nWebsted http://dansk-gruppen.dk\nE-mail <dansk@dansk-gruppen.dk>"
+msgstr "Per Kongstad\nAputsiak Niels Janussen\nscootergrisen"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "Task Manager Settings"
@@ -328,7 +328,7 @@ msgstr "Virtuelle bytes"
 
 #: ../src/settings-dialog.ui.h:20
 msgid "Resident Bytes"
-msgstr ""
+msgstr "Residente bytes"
 
 #: ../src/settings-dialog.ui.h:24
 msgid "Columns"
