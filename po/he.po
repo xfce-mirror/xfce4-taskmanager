@@ -5,16 +5,16 @@
 # Translators:
 # Elishai Eliyahu <elishai@mailfence.com>, 2017,2019-2020
 # Elishai Eliyahu <elishai@mailfence.com>, 2021
-# GenghisKhan <genghiskhan@gmx.ca>, 2014-2015
-# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
+# gk <genghiskhan@gmx.ca>, 2014-2015
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021-2022
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-04 12:53+0100\n"
-"PO-Revision-Date: 2022-03-04 11:53+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2013-07-03 18:41+0000\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2021-2022\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr "מנהל משימות"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
 msgid "Easy to use application to monitor system resources"
-msgstr "ישום קל לשימוש למעקב אחר משאבי המערכת"
+msgstr "יישום פשוט למעקב אחר משאבי המערכת"
 
 #: ../src/main.c:60
 msgid "Quit"
@@ -123,7 +123,7 @@ msgstr "הרוג משימה"
 #: ../src/process-tree-view.c:373
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr "האם אתה בטוח שברצונך לשלוח את האות %s ל-PID %d?"
+msgstr "האם אתה בטוח שברצונך לשלוח את האות %s למזהה תהליך %d?"
 
 #: ../src/process-tree-view.c:374
 msgid "terminate"
@@ -198,7 +198,7 @@ msgstr "עדיפות"
 #. Same trick as above
 #: ../src/process-tree-view.c:536 ../src/process-tree-view.c:635
 msgid "Copy command line"
-msgstr ""
+msgstr "העתק משורת הפקודה"
 
 #: ../src/process-window.c:166
 msgid "Bad Window"
@@ -219,16 +219,16 @@ msgstr "XGetWindowProperty נכשל!"
 
 #: ../src/process-window.c:176
 msgid "No PID found"
-msgstr "לא נמצא PID "
+msgstr "לא נמצא מזהה תהליך"
 
 #: ../src/process-window.c:176
 #, c-format
 msgid "No PID found for window 0x%lx."
-msgstr "לא נמצא PID לחלון 0x%lx."
+msgstr "לא נמצא מזהה תהליך לחלון 0x%lx."
 
 #: ../src/process-window.c:308
 msgid "Filter on process name"
-msgstr "סנן על שם תהליך"
+msgstr "סנן לפי שם התהליך"
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
