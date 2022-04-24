@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# abuyop <abuyop@gmail.com>, 2014,2017,2019
+# abuyop <abuyop@gmail.com>, 2014,2017,2019,2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-04 12:53+0100\n"
-"PO-Revision-Date: 2022-03-04 11:53+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2013-07-03 18:41+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>, 2014,2017,2019,2022\n"
 "Language-Team: Malay (http://www.transifex.com/xfce/xfce-apps/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +27,7 @@ msgstr "Pengurus Tugas"
 
 #: ../xfce4-taskmanager.desktop.in.h:2
 msgid "Easy to use application to monitor system resources"
-msgstr ""
+msgstr "Aplikasi mudah yang digunakan untuk memantau sumber sistem"
 
 #: ../src/main.c:60
 msgid "Quit"
@@ -194,7 +194,7 @@ msgstr "Keutamaan"
 #. Same trick as above
 #: ../src/process-tree-view.c:536 ../src/process-tree-view.c:635
 msgid "Copy command line"
-msgstr ""
+msgstr "Salin baris perintah"
 
 #: ../src/process-window.c:166
 msgid "Bad Window"
@@ -236,7 +236,7 @@ msgstr "Kenalpasti tetingkap terbuka dengan mengklik padanya."
 
 #: ../src/process-window.ui.h:4
 msgid "You are using the root account, you may harm your system."
-msgstr ""
+msgstr "Amaran, anda menggunakan akaun root, anda boleh rosakkan sistem anda."
 
 #: ../src/process-window.ui.h:5
 msgid ""
@@ -263,7 +263,7 @@ msgstr "Abuyop <abuyop@gmail.com>"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "Task Manager Settings"
-msgstr ""
+msgstr "Tetapan Pengurus Tugas"
 
 #: ../src/settings-dialog.ui.h:2
 msgid "_Help"
@@ -291,7 +291,7 @@ msgstr "Tunjuk proses sebagai pepohon"
 
 #: ../src/settings-dialog.ui.h:8
 msgid "Show legend"
-msgstr ""
+msgstr "Tunjuk Petunjuk"
 
 #: ../src/settings-dialog.ui.h:9
 msgid "Show values with more precision"
@@ -299,11 +299,11 @@ msgstr "Tunjuk nilai dengan lebih ketepatan"
 
 #: ../src/settings-dialog.ui.h:10
 msgid "Refresh rate (ms):"
-msgstr ""
+msgstr "Kadar segar semula (ms):"
 
 #: ../src/settings-dialog.ui.h:11
 msgid "<b>Interface</b>"
-msgstr ""
+msgstr "<b>Antara Muka</b>"
 
 #: ../src/settings-dialog.ui.h:12
 msgid "Prompt for terminating tasks"
@@ -311,7 +311,7 @@ msgstr "Maklum untuk menghentikan tugas"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Keep in the notification area"
-msgstr ""
+msgstr "Biarkan dalam kawasan pemberitahuan"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "<b>Miscellaneous</b>"
@@ -327,11 +327,11 @@ msgstr "Bait Maya"
 
 #: ../src/settings-dialog.ui.h:20
 msgid "Resident Bytes"
-msgstr ""
+msgstr "Bait Residen"
 
 #: ../src/settings-dialog.ui.h:24
 msgid "Columns"
-msgstr ""
+msgstr "Lajur"
 
 #: ../src/task-manager.c:246
 #, c-format
