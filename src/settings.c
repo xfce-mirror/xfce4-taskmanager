@@ -165,6 +165,8 @@ xtm_settings_bind_xfconf (XtmSettings *settings, XfconfChannel *channel)
 		G_OBJECT (settings), "show-all-processes");
 	xfconf_g_property_bind (channel, SETTING_SHOW_APPLICATION_ICONS, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "show-application-icons");
+	xfconf_g_property_bind (channel, SETTING_SHOW_LEGEND, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "show-legend");
 	xfconf_g_property_bind (channel, SETTING_FULL_COMMAND_LINE, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "full-command-line");
 	xfconf_g_property_bind (channel, SETTING_MORE_PRECISION, G_TYPE_BOOLEAN,
