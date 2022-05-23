@@ -166,6 +166,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
 	else
 		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3);
+	cairo_line_to (cr, width, height);
 	cairo_fill_preserve (cr);
 
 	if (monitor->type == 0)
