@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 12:53+0100\n"
+"POT-Creation-Date: 2022-05-24 12:52+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Ápo. <apostolos.papadimitriu@gmail.com>, 2022\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce-apps/language/el/)\n"
@@ -56,12 +56,12 @@ msgstr "Υπηρεσία ειδοποιήσεων Xfce"
 msgid "Settings daemon is unavailable"
 msgstr "Η υπηρεσία ρυθμίσεων δεν είναι διαθέσιμη"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:436
+#: ../src/process-statusbar.c:139 ../src/process-window.c:446
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Επεξεργαστής: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:440
+#: ../src/process-statusbar.c:149 ../src/process-window.c:450
 #, c-format
 msgid "Memory: %s"
 msgstr "Μνήμη: %s"
@@ -228,7 +228,7 @@ msgstr "Δε βρέθηκε PID"
 msgid "No PID found for window 0x%lx."
 msgstr "Δεν βρέθηκε PID για το παράθυρο 0x%lx"
 
-#: ../src/process-window.c:308
+#: ../src/process-window.c:319
 msgid "Filter on process name"
 msgstr "Φίλτρο στο όνομα της διεργασίας"
 
@@ -241,20 +241,24 @@ msgid "Identify an open window by clicking on it."
 msgstr "Εντοπισμός παραθύρου με κλικ πάνω σε αυτό"
 
 #: ../src/process-window.ui.h:4
+msgid "Show/hide process filter"
+msgstr "Δείξε/κρύψε το φίλτρο διεργασιών"
+
+#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "Χρησιμοποιείτε το λογαριασμό root, μπορεί να βλάψετε το σύστημά σας."
 
-#: ../src/process-window.ui.h:5
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'> </span> Εργασία που ξεκινά"
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'> </span> Μεταβαλλόμενη εργασία "
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:8
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'> </span> Τερματιζόμενη εργασία"
