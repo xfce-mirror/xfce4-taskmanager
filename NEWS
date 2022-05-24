@@ -1,3 +1,28 @@
+1.5.3
+======
+- Fix rendering bug (Fixes #44)
+- Fix rendering bug for swap graph (relates to #44)
+- Fix bindings related to the "show-legend" setting
+- Allow to copy full process command line (#33)
+- Rename Private to Resident Bytes (#7)
+- Avoid grabbing the filter entry if it is not realized
+- Fix intltool lock file problem during make distcheck
+- `uid_name` has been removed from `task` struct
+- Fix invalid casts for "About" and "Help" (Fixes #43)
+- Show localized website label
+- Update COPYING (Issue #49)
+- Updated copyright year, authors, and project links
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Asturian, Azerbaijani, Basque,
+  Belarusian, Bulgarian, Catalan, Chinese (China), Chinese (Hong Kong),
+  Chinese (Taiwan), Croatian, Czech, Danish, Dutch, Eastern Armenian,
+  English (Australia), English (United Kingdom), Estonian, Finnish,
+  French, Galician, German, Greek, Hebrew, Hungarian, Icelandic,
+  Indonesian, Interlingue, Italian, Japanese, Kazakh, Korean,
+  Lithuanian, Malay, Norwegian Bokmål, Occitan (post 1500), Persian
+  (Iran), Polish, Portuguese, Portuguese (Brazil), Russian, Serbian,
+  Slovak, Spanish, Swedish, Telugu, Thai, Turkish, Ukrainian, Uyghur
+
 1.5.2
 ======
 - Fix restoring the window size (Fixes #39)
