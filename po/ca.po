@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 12:53+0100\n"
-"PO-Revision-Date: 2022-03-04 11:53+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"POT-Creation-Date: 2022-05-24 12:52+0200\n"
+"PO-Revision-Date: 2013-07-03 18:41+0000\n"
+"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2016-2021\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,12 +54,12 @@ msgstr "Dimoni de notificacions de Xfce"
 msgid "Settings daemon is unavailable"
 msgstr "El dimoni d'ajusts no està disponible"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:436
+#: ../src/process-statusbar.c:139 ../src/process-window.c:446
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:440
+#: ../src/process-statusbar.c:149 ../src/process-window.c:450
 #, c-format
 msgid "Memory: %s"
 msgstr "Memòria: %s"
@@ -226,7 +226,7 @@ msgstr "PID no trobat"
 msgid "No PID found for window 0x%lx."
 msgstr "No s'ha trobat cap PID per a la finestra 0x%lx."
 
-#: ../src/process-window.c:308
+#: ../src/process-window.c:319
 msgid "Filter on process name"
 msgstr "Filtra amb el nom del procés"
 
@@ -239,20 +239,24 @@ msgid "Identify an open window by clicking on it."
 msgstr "Identifica una finestra en fer-hi clic."
 
 #: ../src/process-window.ui.h:4
+msgid "Show/hide process filter"
+msgstr "Mostra/oculta el filtre de processos"
+
+#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "Esteu utilitzant el compte root, això podria malmetre el sistema."
 
-#: ../src/process-window.ui.h:5
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Iniciar la tasca"
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Canviar de tasca"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:8
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Acabar la tasca"
