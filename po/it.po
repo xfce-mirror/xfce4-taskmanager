@@ -14,15 +14,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 12:53+0100\n"
-"PO-Revision-Date: 2022-03-06 14:12+0000\n"
-"Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>\n"
+"POT-Creation-Date: 2022-05-24 12:52+0200\n"
+"PO-Revision-Date: 2013-07-03 18:41+0000\n"
+"Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2019-2022\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
@@ -56,12 +56,12 @@ msgstr "Demone di notifica di Xfce"
 msgid "Settings daemon is unavailable"
 msgstr "Il demone delle impostazioni non è disponibile"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:436
+#: ../src/process-statusbar.c:139 ../src/process-window.c:446
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:440
+#: ../src/process-statusbar.c:149 ../src/process-window.c:450
 #, c-format
 msgid "Memory: %s"
 msgstr "Memoria: %s"
@@ -228,7 +228,7 @@ msgstr "Nessun PID trovato"
 msgid "No PID found for window 0x%lx."
 msgstr "Nessun PID trovato per la finestra 0x%lx."
 
-#: ../src/process-window.c:308
+#: ../src/process-window.c:319
 msgid "Filter on process name"
 msgstr "Filtra in base al nome del processo"
 
@@ -241,20 +241,24 @@ msgid "Identify an open window by clicking on it."
 msgstr "Identifica una finestra aperta cliccando su di essa."
 
 #: ../src/process-window.ui.h:4
+msgid "Show/hide process filter"
+msgstr "Mostra/nascondi il filtro dei processi"
+
+#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "Si sta utilizzando l'account amministratore, si potrebbe danneggiare il sistema."
 
-#: ../src/process-window.ui.h:5
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> Inizializzazione processo"
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Cambio processo in corso"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:8
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> Terminazione processo in corso"
