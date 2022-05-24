@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 12:53+0100\n"
+"POT-Creation-Date: 2022-05-24 12:52+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Andrij Mizyk <andmizyk@gmail.com>, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/xfce/xfce-apps/language/uk/)\n"
@@ -53,12 +53,12 @@ msgstr "Демон повідомлень Xfce"
 msgid "Settings daemon is unavailable"
 msgstr "Демон налаштувань не доступний"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:436
+#: ../src/process-statusbar.c:139 ../src/process-window.c:446
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Проц: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:440
+#: ../src/process-statusbar.c:149 ../src/process-window.c:450
 #, c-format
 msgid "Memory: %s"
 msgstr "Пам’ять: %s"
@@ -225,7 +225,7 @@ msgstr "Не знайдено жодного PID"
 msgid "No PID found for window 0x%lx."
 msgstr "Не знайдено PID для вікна 0x%lx."
 
-#: ../src/process-window.c:308
+#: ../src/process-window.c:319
 msgid "Filter on process name"
 msgstr "Фільтр на назву процесу"
 
@@ -238,20 +238,24 @@ msgid "Identify an open window by clicking on it."
 msgstr "Розпізнати відкрите вікно, клацнувши на ньому."
 
 #: ../src/process-window.ui.h:4
+msgid "Show/hide process filter"
+msgstr "Показати/сховати фільтр процесів"
+
+#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "Ви використовуєте користувача root, ви можете нашкодите системі "
 
-#: ../src/process-window.ui.h:5
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span>Запуск завдання"
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Зміна завдання"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:8
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span>Завершити завдання"
