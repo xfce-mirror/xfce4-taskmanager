@@ -187,6 +187,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 			cairo_line_to (cr, width, (1.0 - ((gdouble)(*peak))) * height);
 		}
 		cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 0.3);
+		cairo_line_to (cr, width, height);
 		cairo_fill_preserve (cr);
 		cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 1.0);
 		cairo_stroke (cr);
