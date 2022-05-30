@@ -13,7 +13,6 @@
 #endif
 
 #include <stdlib.h>
-#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gio/gio.h>
 
@@ -200,11 +199,8 @@ int main (int argc, char *argv[])
 	GApplication *app;
 	GError *error = NULL;
 	GOptionContext *opt_context;
-#ifdef ENABLE_NLS
-	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain (GETTEXT_PACKAGE);
-#endif
+
+	xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
 	gtk_init (&argc, &argv);
 	g_set_application_name (_("Task Manager"));
