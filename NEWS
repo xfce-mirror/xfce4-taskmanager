@@ -1,3 +1,15 @@
+1.5.4
+======
+- Update configure.ac.in syntax
+- Fix #53: taskmanager translations
+- Translation Updates:
+  Albanian, Basque, Belarusian, Bulgarian, Catalan, Chinese (China),
+  Chinese (Taiwan), Czech, Danish, Dutch, Estonian, French, Galician,
+  German, Greek, Hebrew, Indonesian, Italian, Japanese, Kazakh, Korean,
+  Lithuanian, Norwegian Bokmål, Polish, Portuguese, Portuguese
+  (Brazil), Russian, Serbian, Slovak, Spanish, Swedish, Thai, Turkish,
+  Ukrainian
+
 1.5.3
 ======
 - Fix rendering bug (Fixes #44)
