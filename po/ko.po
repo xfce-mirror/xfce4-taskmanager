@@ -289,7 +289,7 @@ msgstr "프로그램 아이콘 표시"
 
 #: ../src/settings-dialog.ui.h:6
 msgid "Show full command lines"
-msgstr "전체 명령줄 표시"
+msgstr "전체 명령행 표시"
 
 #: ../src/settings-dialog.ui.h:7
 msgid "Show processes as tree"
