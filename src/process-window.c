@@ -234,7 +234,6 @@ static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
-	gboolean active;
 
 	window->settings = xtm_settings_get_default ();
 	window->channel = xfconf_channel_new (CHANNEL);
@@ -261,15 +260,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 										G_CALLBACK (xwininfo_clicked_cb), window);
 
 	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
-	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-show-filter"));
-	xfconf_g_property_bind (window->channel, SETTING_SHOW_FILTER, G_TYPE_BOOLEAN,
-		G_OBJECT (button), "active");
-	active = xfconf_channel_get_bool (window->channel, SETTING_SHOW_FILTER, FALSE);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), active);
-	gtk_revealer_set_reveal_child (GTK_REVEALER (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), active);
-	g_object_bind_property (G_OBJECT (gtk_bin_get_child (GTK_BIN (window->filter_searchbar))), "reveal-child",
-													G_OBJECT (button), "active", G_BINDING_BIDIRECTIONAL);
-
 	{
 		GtkWidget *toolitem;
 		guint refresh_rate;
@@ -317,6 +307,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
 	g_signal_connect (G_OBJECT(window->filter_entry), "changed", G_CALLBACK(filter_entry_keyrelease_handler), window->treeview);
 	gtk_widget_set_tooltip_text (window->filter_entry, _("Filter on process name"));
+	gtk_widget_grab_focus (window->filter_entry);
 }
 
 static void
