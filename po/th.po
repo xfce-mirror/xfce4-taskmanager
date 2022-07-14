@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-24 12:52+0200\n"
+"POT-Creation-Date: 2022-07-14 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014,2017,2019,2021\n"
 "Language-Team: Thai (http://www.transifex.com/xfce/xfce-apps/language/th/)\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -30,11 +30,11 @@ msgstr "โปรแกรมจัดการทาสก์"
 msgid "Easy to use application to monitor system resources"
 msgstr "แอปพลิเคชันสะดวกใช้สำหรับเฝ้าสังเกตทรัพยากรระบบ"
 
-#: ../src/main.c:60
+#: ../src/main.c:59
 msgid "Quit"
 msgstr "ออก"
 
-#: ../src/main.c:158
+#: ../src/main.c:157
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -43,20 +43,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>โพรเซส:</b> %u\n<b>ซีพียู:</b> %.0f%%\n<b>หน่วยความจำ:</b> %s\n<b>พื้นที่สลับ:</b> %s"
 
-#: ../src/main.c:240
+#: ../src/main.c:236
 msgid "Xfce Notify Daemon"
 msgstr "ดีมอนแจ้งเหตุของ Xfce"
 
-#: ../src/main.c:242
+#: ../src/main.c:238
 msgid "Settings daemon is unavailable"
 msgstr "ไม่มีดีมอนค่าตั้งอยู่"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:446
+#: ../src/process-statusbar.c:139 ../src/process-window.c:437
 #, c-format
 msgid "CPU: %s%%"
 msgstr "ซีพียู: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:450
+#: ../src/process-statusbar.c:149 ../src/process-window.c:441
 #, c-format
 msgid "Memory: %s"
 msgstr "หน่วยความจำ: %s"
@@ -223,7 +223,7 @@ msgstr "ไม่พบ PID"
 msgid "No PID found for window 0x%lx."
 msgstr "ไม่พบ PID สำหรับหน้าต่าง 0x%lx"
 
-#: ../src/process-window.c:319
+#: ../src/process-window.c:309
 msgid "Filter on process name"
 msgstr "กรองชื่อโพรเซส"
 
@@ -236,24 +236,20 @@ msgid "Identify an open window by clicking on it."
 msgstr "ระบุหน้าต่างโดยคลิกบนหน้าต่างที่ต้องการ"
 
 #: ../src/process-window.ui.h:4
-msgid "Show/hide process filter"
-msgstr "แสดง/ซ่อนตัวกรองโพรเซส"
-
-#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "คุณกำลังใช้บัญชี root ซึ่งอาจทำอันตรายต่อระบบของคุณได้"
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> ทาสก์ที่กำลังเริ่ม"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> ทาสก์ที่กำลังเปลี่ยน"
 
-#: ../src/process-window.ui.h:8
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> ทาสก์ที่กำลังจบ"
