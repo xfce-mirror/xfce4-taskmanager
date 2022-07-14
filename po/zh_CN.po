@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-24 12:52+0200\n"
+"POT-Creation-Date: 2022-07-14 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2015,2019-2022\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -32,11 +32,11 @@ msgstr "任务管理器"
 msgid "Easy to use application to monitor system resources"
 msgstr "用来监视系统资源的易用程序"
 
-#: ../src/main.c:60
+#: ../src/main.c:59
 msgid "Quit"
 msgstr "退出"
 
-#: ../src/main.c:158
+#: ../src/main.c:157
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -45,20 +45,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>进程数:</b> %u\n<b>CPU:</b> %.0f%%\n<b>内存:</b> %s\n<b>交换分区:</b> %s"
 
-#: ../src/main.c:240
+#: ../src/main.c:236
 msgid "Xfce Notify Daemon"
 msgstr "Xfce 提示守护进程"
 
-#: ../src/main.c:242
+#: ../src/main.c:238
 msgid "Settings daemon is unavailable"
 msgstr "设置守护进程无效"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:446
+#: ../src/process-statusbar.c:139 ../src/process-window.c:437
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:450
+#: ../src/process-statusbar.c:149 ../src/process-window.c:441
 #, c-format
 msgid "Memory: %s"
 msgstr "内存: %s"
@@ -225,7 +225,7 @@ msgstr "未找到 PID"
 msgid "No PID found for window 0x%lx."
 msgstr "未为窗口 0x%lx 找到 PID。"
 
-#: ../src/process-window.c:319
+#: ../src/process-window.c:309
 msgid "Filter on process name"
 msgstr "进程名称过滤器"
 
@@ -238,24 +238,20 @@ msgid "Identify an open window by clicking on it."
 msgstr "点击窗口以辨识。"
 
 #: ../src/process-window.ui.h:4
-msgid "Show/hide process filter"
-msgstr "显示/隐藏进程过滤器"
-
-#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "您正在使用 root 帐户，可能会损坏系统。"
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> 启动任务"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> 更改任务"
 
-#: ../src/process-window.ui.h:8
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> 终止任务"
