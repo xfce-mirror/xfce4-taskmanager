@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-24 12:52+0200\n"
+"POT-Creation-Date: 2022-07-14 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2015,2019-2022\n"
 "Language-Team: Korean (http://www.transifex.com/xfce/xfce-apps/language/ko/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -31,11 +31,11 @@ msgstr "작업 관리자"
 msgid "Easy to use application to monitor system resources"
 msgstr "시스템 자원 감시에 용이한 프로그램"
 
-#: ../src/main.c:60
+#: ../src/main.c:59
 msgid "Quit"
 msgstr "끝내기"
 
-#: ../src/main.c:158
+#: ../src/main.c:157
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -44,20 +44,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>프로세스:</b> %u\n<b>C   P   U:</b> %.0f%%\n<b>메  모  리:</b> %s\n<b>스       왑:</b> %s"
 
-#: ../src/main.c:240
+#: ../src/main.c:236
 msgid "Xfce Notify Daemon"
 msgstr "Xfce 알림 데몬"
 
-#: ../src/main.c:242
+#: ../src/main.c:238
 msgid "Settings daemon is unavailable"
 msgstr "설정 데몬을 사용할 수 없습니다"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:446
+#: ../src/process-statusbar.c:139 ../src/process-window.c:437
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:450
+#: ../src/process-statusbar.c:149 ../src/process-window.c:441
 #, c-format
 msgid "Memory: %s"
 msgstr "메  모  리: %s"
@@ -224,7 +224,7 @@ msgstr "PID 없음"
 msgid "No PID found for window 0x%lx."
 msgstr "창 0x%lx의 PID가 없습니다."
 
-#: ../src/process-window.c:319
+#: ../src/process-window.c:309
 msgid "Filter on process name"
 msgstr "프로세스 이름으로 검색"
 
@@ -237,24 +237,20 @@ msgid "Identify an open window by clicking on it."
 msgstr "클릭해서 창이 열려 있는지 확인합니다."
 
 #: ../src/process-window.ui.h:4
-msgid "Show/hide process filter"
-msgstr "프로세스 필터 표시/숨기기"
-
-#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "루트 계정을 사용하고 있어, 시스템에 해를 끼칠 수 있습니다."
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> 작업 시작 중"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> 작업 전환 중"
 
-#: ../src/process-window.ui.h:8
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> 작업 끝내는 중"
