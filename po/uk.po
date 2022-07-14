@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Andrij Mizyk <andmizyk@gmail.com>, 2022
+# f977cb811fcf66493f48eac227fd7473_b98aa5d <2419f1d8d12d92441152e78ae3e3bde0_722180>, 2022
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2008
 # Vasyl Khrystiuk <h6.msangel@gmail.com>, 2021
 # Yarema aka Knedlyk <yupadmin@gmail.com>, 2014,2017
@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-24 12:52+0200\n"
+"POT-Creation-Date: 2022-07-14 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Andrij Mizyk <andmizyk@gmail.com>, 2022\n"
+"Last-Translator: f977cb811fcf66493f48eac227fd7473_b98aa5d <2419f1d8d12d92441152e78ae3e3bde0_722180>, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/xfce/xfce-apps/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -32,11 +32,11 @@ msgstr "Диспетчер задач"
 msgid "Easy to use application to monitor system resources"
 msgstr "Додаток легко використовувати для відслідковування системних ресурсів"
 
-#: ../src/main.c:60
+#: ../src/main.c:59
 msgid "Quit"
 msgstr "Вийти"
 
-#: ../src/main.c:158
+#: ../src/main.c:157
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -45,20 +45,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Процеси:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Пам’ять:</b> %s\n<b>Обмін:</b> %s"
 
-#: ../src/main.c:240
+#: ../src/main.c:236
 msgid "Xfce Notify Daemon"
 msgstr "Демон повідомлень Xfce"
 
-#: ../src/main.c:242
+#: ../src/main.c:238
 msgid "Settings daemon is unavailable"
 msgstr "Демон налаштувань не доступний"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:446
+#: ../src/process-statusbar.c:139 ../src/process-window.c:437
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Проц: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:450
+#: ../src/process-statusbar.c:149 ../src/process-window.c:441
 #, c-format
 msgid "Memory: %s"
 msgstr "Пам’ять: %s"
@@ -225,7 +225,7 @@ msgstr "Не знайдено жодного PID"
 msgid "No PID found for window 0x%lx."
 msgstr "Не знайдено PID для вікна 0x%lx."
 
-#: ../src/process-window.c:319
+#: ../src/process-window.c:309
 msgid "Filter on process name"
 msgstr "Фільтр на назву процесу"
 
@@ -238,24 +238,20 @@ msgid "Identify an open window by clicking on it."
 msgstr "Розпізнати відкрите вікно, клацнувши на ньому."
 
 #: ../src/process-window.ui.h:4
-msgid "Show/hide process filter"
-msgstr "Показати/сховати фільтр процесів"
-
-#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "Ви використовуєте користувача root, ви можете нашкодите системі "
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span>Запуск завдання"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> Зміна завдання"
 
-#: ../src/process-window.ui.h:8
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span>Завершити завдання"
