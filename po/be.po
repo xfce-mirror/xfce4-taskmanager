@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-24 12:52+0200\n"
+"POT-Creation-Date: 2022-07-14 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Zmicer Turok <zmicerturok@gmail.com >, 2018\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/xfce-apps/language/be/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Language: be\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -32,11 +32,11 @@ msgstr "Кіраўнік задач"
 msgid "Easy to use application to monitor system resources"
 msgstr "Простая праграма для назірання за выкарыстаннем сістэмных рэсурсаў"
 
-#: ../src/main.c:60
+#: ../src/main.c:59
 msgid "Quit"
 msgstr "Выйсці"
 
-#: ../src/main.c:158
+#: ../src/main.c:157
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -45,20 +45,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Працэсы:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Памяць:</b> %s\n<b>Swap:</b> %s"
 
-#: ../src/main.c:240
+#: ../src/main.c:236
 msgid "Xfce Notify Daemon"
 msgstr "Дэман апавяшчэнняў Xfce"
 
-#: ../src/main.c:242
+#: ../src/main.c:238
 msgid "Settings daemon is unavailable"
 msgstr "Дэман налад недаступны"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:446
+#: ../src/process-statusbar.c:139 ../src/process-window.c:437
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:450
+#: ../src/process-statusbar.c:149 ../src/process-window.c:441
 #, c-format
 msgid "Memory: %s"
 msgstr "Памяць: %s"
@@ -225,7 +225,7 @@ msgstr "Аніводнага PID не знойдзена"
 msgid "No PID found for window 0x%lx."
 msgstr "Аніводнага PID для акна 0x%lx не знойдзена."
 
-#: ../src/process-window.c:319
+#: ../src/process-window.c:309
 msgid "Filter on process name"
 msgstr "Фільтраваць па назве працэсу"
 
@@ -238,24 +238,20 @@ msgid "Identify an open window by clicking on it."
 msgstr "Вызначыць адкрытае акно пстрыкнуўшы па яму."
 
 #: ../src/process-window.ui.h:4
-msgid "Show/hide process filter"
-msgstr "Паказаць / схаваць фільтр працэсаў"
-
-#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "Выкарыстоўваючы root-акаўнт можна пашкодзіць сістэму."
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'></span> Запуск задачы"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'></span> Змена задачы"
 
-#: ../src/process-window.ui.h:8
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'></span> Знішчэнне задачы"
