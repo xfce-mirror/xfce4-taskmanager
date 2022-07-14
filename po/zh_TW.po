@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-24 12:52+0200\n"
+"POT-Creation-Date: 2022-07-14 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2020-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/xfce/xfce-apps/language/zh_TW/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -31,11 +31,11 @@ msgstr "工作管理員"
 msgid "Easy to use application to monitor system resources"
 msgstr "易於使用的系統資源監視程式"
 
-#: ../src/main.c:60
+#: ../src/main.c:59
 msgid "Quit"
 msgstr "結束"
 
-#: ../src/main.c:158
+#: ../src/main.c:157
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -44,20 +44,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>程序：</b> %u\n<b>CPU：</b> %.0f%%\n<b>記憶體：</b> %s\n<b>置換空間：</b> %s"
 
-#: ../src/main.c:240
+#: ../src/main.c:236
 msgid "Xfce Notify Daemon"
 msgstr "Xfce 通知幕後程式"
 
-#: ../src/main.c:242
+#: ../src/main.c:238
 msgid "Settings daemon is unavailable"
 msgstr "設定值幕後程式無法使用"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:446
+#: ../src/process-statusbar.c:139 ../src/process-window.c:437
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU：%s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:450
+#: ../src/process-statusbar.c:149 ../src/process-window.c:441
 #, c-format
 msgid "Memory: %s"
 msgstr "記憶體：%s"
@@ -224,7 +224,7 @@ msgstr "找不到 PID"
 msgid "No PID found for window 0x%lx."
 msgstr "找不到視窗 0x%lx 的 PID。"
 
-#: ../src/process-window.c:319
+#: ../src/process-window.c:309
 msgid "Filter on process name"
 msgstr "行程名稱的過濾器"
 
@@ -237,24 +237,20 @@ msgid "Identify an open window by clicking on it."
 msgstr "在開啟的視窗上點擊以識別它。"
 
 #: ../src/process-window.ui.h:4
-msgid "Show/hide process filter"
-msgstr "顯示／隱藏處理程序過濾器"
-
-#: ../src/process-window.ui.h:5
 msgid "You are using the root account, you may harm your system."
 msgstr "您正使用 root 帳號，您有可能因此損害到您的系統。"
 
-#: ../src/process-window.ui.h:6
+#: ../src/process-window.ui.h:5
 msgid ""
 "<span foreground='#000000' background='#aed581'>    </span> Starting task"
 msgstr "<span foreground='#000000' background='#aed581'>    </span> 開始任務"
 
-#: ../src/process-window.ui.h:7
+#: ../src/process-window.ui.h:6
 msgid ""
 "<span foreground='#000000' background='#fff176'>    </span> Changing task"
 msgstr "<span foreground='#000000' background='#fff176'>    </span> 變更任務"
 
-#: ../src/process-window.ui.h:8
+#: ../src/process-window.ui.h:7
 msgid ""
 "<span foreground='#000000' background='#e57373'>    </span> Terminating task"
 msgstr "<span foreground='#000000' background='#e57373'>    </span> 結束任務"
