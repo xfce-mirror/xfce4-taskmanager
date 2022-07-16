@@ -121,7 +121,7 @@ msgstr "작업 끝내기"
 #: ../src/process-tree-view.c:373
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr "정말로 %s 시그널을 PID %d에 보내시겠습니까?"
+msgstr "정말로 %s 시그널을 PID %d에 보내시렵니까?"
 
 #: ../src/process-tree-view.c:374
 msgid "terminate"
