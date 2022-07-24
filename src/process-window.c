@@ -66,6 +66,7 @@ struct _XtmProcessWindow
 	gint			width;
 	gint			height;
 	gulong			handler;
+	gboolean		view_stuck;
 };
 G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 
@@ -231,6 +232,52 @@ show_settings_dialog (GtkButton *button, gpointer user_data)
 }
 
 static void
+xtm_process_window_stick_view (GtkAdjustment *adjustment, XtmProcessWindow *window)
+{
+	if (window->view_stuck)
+		gtk_adjustment_set_value (adjustment, 0);
+	else if (gtk_adjustment_get_value (adjustment) == 0)
+		window->view_stuck = TRUE;
+}
+
+static gboolean
+xtm_process_window_unstick_view_event (GtkWidget *widget, GdkEvent *event, XtmProcessWindow *window)
+{
+	GdkScrollDirection dir;
+	gdouble y;
+
+	if (! window->view_stuck)
+		return FALSE;
+
+	if (event->type == GDK_SCROLL && (
+				(gdk_event_get_scroll_direction (event, &dir) && dir == GDK_SCROLL_UP)
+				|| (gdk_event_get_scroll_deltas (event, NULL, &y) && y <= 0)
+			))
+		return FALSE;
+
+	window->view_stuck = FALSE;
+
+	return FALSE;
+}
+
+static void
+xtm_process_window_unstick_view_cursor (GtkTreeView *tree_view, XtmProcessWindow *window)
+{
+	GtkTreePath *cursor, *end;
+
+	if (! window->view_stuck)
+		return;
+
+	gtk_tree_view_get_cursor (tree_view, &cursor, NULL);
+	gtk_tree_view_get_visible_range (tree_view, NULL, &end);
+	if (gtk_tree_path_compare (cursor, end) >= 0)
+		window->view_stuck = FALSE;
+
+	gtk_tree_path_free (cursor);
+	gtk_tree_path_free (end);
+}
+
+static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
 	GtkWidget *button;
@@ -297,7 +344,23 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	window->treeview = xtm_process_tree_view_new ();
 	gtk_widget_show (window->treeview);
-	gtk_container_add (GTK_CONTAINER (gtk_builder_get_object (window->builder, "scrolledwindow")), window->treeview);
+	{
+		GtkScrolledWindow *s_window;
+		GtkWidget *bar;
+		GtkAdjustment *adjust;
+
+		s_window = GTK_SCROLLED_WINDOW (gtk_builder_get_object (window->builder, "scrolledwindow"));
+		bar = gtk_scrolled_window_get_vscrollbar (s_window);
+		adjust = gtk_scrolled_window_get_vadjustment (s_window);
+		window->view_stuck = TRUE;
+
+		gtk_container_add (GTK_CONTAINER (s_window), window->treeview);
+		g_signal_connect (adjust, "value-changed", G_CALLBACK (xtm_process_window_stick_view), window);
+		g_signal_connect (bar, "button-press-event", G_CALLBACK (xtm_process_window_unstick_view_event), window);
+		g_signal_connect (bar, "scroll-event", G_CALLBACK (xtm_process_window_unstick_view_event), window);
+		g_signal_connect (window->treeview, "scroll-event", G_CALLBACK (xtm_process_window_unstick_view_event), window);
+		g_signal_connect (window->treeview, "cursor-changed", G_CALLBACK (xtm_process_window_unstick_view_cursor), window);
+	}
 
 	g_object_bind_property(window->settings, "show-legend",
 			gtk_builder_get_object(window->builder, "legend"), "visible",
