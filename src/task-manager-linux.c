@@ -30,7 +30,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 {
 	FILE *file;
 	gchar *filename = "/proc/meminfo";
-	gulong mem_total = 0,
+	guint64 mem_total = 0,
 	       mem_free = 0,
 	       mem_avail = 0,
 	       mem_cached = 0,
