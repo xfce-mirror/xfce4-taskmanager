@@ -839,6 +839,9 @@ xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid) {
 		{
 			path = gtk_tree_model_get_path (model, &iter);
 			gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview)), path);
+
+			/* set cursor before scrolling to unstick the view from top if needed */
+			gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL, FALSE);
 			gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path, NULL, TRUE, 0.5, 0);
 			gtk_tree_path_free (path);
 			break;
