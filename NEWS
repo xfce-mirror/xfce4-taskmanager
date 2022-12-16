@@ -1,3 +1,15 @@
+1.5.5 (2022-12-16)
+=====
+- Stick process view at the top in the absence of user action
+- Get rid of GtkHeaderBar
+- Translation Updates:
+  Albanian, Basque, Belarusian, Bulgarian, Catalan, Chinese (China),
+  Chinese (Taiwan), Czech, Danish, Dutch, Estonian, French, Galician,
+  German, Greek, Hebrew, Indonesian, Italian, Japanese, Kazakh, Korean,
+  Lithuanian, Norwegian Bokmål, Occitan (post 1500), Persian (Iran),
+  Polish, Portuguese, Portuguese (Brazil), Russian, Serbian, Slovak,
+  Spanish, Swedish, Telugu, Thai, Turkish, Ukrainian
+
 1.5.4
 ======
 - Update configure.ac.in syntax
