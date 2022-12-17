@@ -268,13 +268,13 @@ xtm_process_window_unstick_view_cursor (GtkTreeView *tree_view, XtmProcessWindow
 	if (! window->view_stuck)
 		return;
 
-	gtk_tree_view_get_cursor (tree_view, &cursor, NULL);
-	gtk_tree_view_get_visible_range (tree_view, NULL, &end);
-	if (gtk_tree_path_compare (cursor, end) >= 0)
-		window->view_stuck = FALSE;
-
-	gtk_tree_path_free (cursor);
-	gtk_tree_path_free (end);
+	if (gtk_tree_view_get_visible_range (tree_view, NULL, &end) == TRUE) {
+		gtk_tree_view_get_cursor (tree_view, &cursor, NULL);
+		if (gtk_tree_path_compare (cursor, end) >= 0)
+			window->view_stuck = FALSE;
+		gtk_tree_path_free (cursor);
+		gtk_tree_path_free (end);
+	}
 }
 
 static void
