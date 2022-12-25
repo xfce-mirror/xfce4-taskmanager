@@ -254,8 +254,9 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 	*memory_available = *memory_free + *memory_cache + *memory_buffers;
 
 	/* get swap stats */
+	*swap_total = *swap_free = 0;
 	if ((nswap = swapctl(SWAP_NSWAP, 0, 0)) == 0)
-		errx(1,"failed to get swap device count");
+		return TRUE;
 
 	if ((swdev = calloc(nswap, sizeof(*swdev))) == NULL)
 		errx(1,"failed to allocate memory for swdev structures");
@@ -266,7 +267,6 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 	}
 
 	/* Total things up */
-	*swap_total = *swap_free = 0;
 	for (i = 0; i < nswap; i++) {
 		if (swdev[i].se_flags & SWF_ENABLE) {
 			*swap_free += (swdev[i].se_nblks - swdev[i].se_inuse);
