@@ -9,6 +9,10 @@
  * (at your option) any later version.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <kvm.h>
 #include <sys/types.h>
 #include <sys/param.h>

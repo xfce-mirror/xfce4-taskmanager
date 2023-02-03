@@ -1,5 +1,5 @@
 po/*.gmo
-po/.intltool-merge-cache
+po/.intltool-merge-cache*
 *Makefile
 *Makefile.in
 po/Makefile.in.in
