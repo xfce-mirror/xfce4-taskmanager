@@ -103,7 +103,8 @@ static void
 destroy_window (void)
 {
 	if (gtk_main_level () > 0) {
-		xfconf_shutdown();
+		if (timer_id > 0)
+			g_source_remove (timer_id);
 		gtk_main_quit ();
 	}
 }
@@ -113,7 +114,8 @@ delete_window (void)
 {
 	if (!status_icon_get_visible ())
 	{
-		xfconf_shutdown();
+		if (timer_id > 0)
+			g_source_remove (timer_id);
 		gtk_main_quit ();
 		return FALSE;
 	}
@@ -271,8 +273,7 @@ int main (int argc, char *argv[])
 	else
 		g_warning ("Nothing to do: activate hiding to the notification area when using --start-hidden");
 
-	if (timer_id > 0)
-		g_source_remove (timer_id);
+	xfconf_shutdown();
 
 	return 0;
 }
