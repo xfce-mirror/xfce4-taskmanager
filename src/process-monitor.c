@@ -154,6 +154,11 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
 	cairo_set_antialias (cr, CAIRO_ANTIALIAS_DEFAULT);
 	cairo_move_to (cr, width, height);
+
+	/* Create a line before the call to cairo_translate, to avoid creating a downward sloping line going off the graph */
+	peak = g_array_index (monitor->history, gfloat, 0);
+	cairo_line_to (cr, width, (1.0 - peak) * height);
+
 	for (i = 0; (step_size * (i - 1)) <= width; i++)
 	{
 		peak = g_array_index (monitor->history, gfloat, i);
@@ -179,6 +184,10 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	{
 		cairo_translate (cr, step_size * i, 0);
 		cairo_move_to (cr, width, height);
+
+		peak = g_array_index (monitor->history_swap, gfloat, 0);
+		cairo_line_to (cr, width, (1.0 - peak) * height);
+
 		for (i = 0; (step_size * (i - 1)) <= width; i++)
 		{
 			peak = g_array_index (monitor->history_swap, gfloat, i);
