@@ -24,6 +24,10 @@
 #include <gtk/gtk.h>
 #include <gmodule.h>
 
+#ifdef HAVE_WNCK
+#include <gdk/gdkx.h>
+#endif
+
 #include "task-manager.h"
 #ifdef HAVE_WNCK
 #include "app-manager.h"
@@ -93,7 +97,9 @@ static void
 xtm_task_manager_init (XtmTaskManager *manager)
 {
 #ifdef HAVE_WNCK
-	manager->app_manager = xtm_app_manager_new ();
+	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ())) {
+		manager->app_manager = xtm_app_manager_new ();
+	}
 #endif
 	manager->tasks = g_array_new (FALSE, FALSE, sizeof (Task));
 
@@ -111,7 +117,9 @@ xtm_task_manager_finalize (GObject *object)
 	XtmTaskManager *manager = XTM_TASK_MANAGER (object);
 	g_array_free (manager->tasks, TRUE);
 #ifdef HAVE_WNCK
-	g_object_unref (manager->app_manager);
+	if (manager->app_manager != NULL) {
+		g_object_unref (manager->app_manager);
+	}
 #endif
 	g_object_unref (settings);
 }
@@ -235,8 +243,8 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 	gchar *old_state;
 	gchar *background, *foreground;
 #ifdef HAVE_WNCK
-	App *app = xtm_app_manager_get_app_from_pid (manager->app_manager, task->pid);
-	GdkPixbuf *icon;
+	App *app = manager->app_manager != NULL ? xtm_app_manager_get_app_from_pid (manager->app_manager, task->pid) : NULL;
+	GdkPixbuf *icon = NULL;
 #endif
 
 	vsz = g_format_size_full (task->vsz, G_FORMAT_SIZE_IEC_UNITS);
