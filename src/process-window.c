@@ -24,6 +24,7 @@
 #include <X11/Xproto.h>
 
 #include <glib-object.h>
+#include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
@@ -303,8 +304,12 @@ xtm_process_window_init (XtmProcessWindow *window)
 										G_CALLBACK (show_settings_dialog), window);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-identify"));
-	g_signal_connect (G_OBJECT (button), "clicked",
-										G_CALLBACK (xwininfo_clicked_cb), window);
+	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ())) {
+		g_signal_connect (G_OBJECT (button), "clicked",
+						  G_CALLBACK (xwininfo_clicked_cb), window);
+	} else {
+		gtk_widget_hide (button);
+	}
 
 	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
 	{
