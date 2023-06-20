@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Priit Jõerüüt <transifex@joeruut.com>, 2020-2022
+# Priit Jõerüüt <transifex@joeruut.com>, 2020-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-14 00:51+0200\n"
+"POT-Creation-Date: 2023-05-30 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020-2022\n"
-"Language-Team: Estonian (http://www.transifex.com/xfce/xfce-apps/language/et/)\n"
+"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020-2023\n"
+"Language-Team: Estonian (http://app.transifex.com/xfce/xfce-apps/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -33,7 +33,7 @@ msgstr "Lihtsaltkasutatav rakendus süsteemi jõudluse jälgimiseks"
 msgid "Quit"
 msgstr "Välju"
 
-#: ../src/main.c:157
+#: ../src/main.c:159
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -42,20 +42,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Protsesse:</b> %u\n<b>Protsessori koormus:</b> %.0f%%\n<b>Mälu:</b> %s\n<b>Saaleala:</b> %s"
 
-#: ../src/main.c:236
+#: ../src/main.c:238
 msgid "Xfce Notify Daemon"
 msgstr "Xfce teadete taustaprogramm"
 
-#: ../src/main.c:238
+#: ../src/main.c:240
 msgid "Settings daemon is unavailable"
 msgstr "Seadistuste taustaprogramm ei ole saadaval"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:437
+#: ../src/process-statusbar.c:139 ../src/process-window.c:505
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Protsessor: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:441
+#: ../src/process-statusbar.c:149 ../src/process-window.c:509
 #, c-format
 msgid "Memory: %s"
 msgstr "Mälu: %s"
@@ -196,33 +196,33 @@ msgstr "Prioriteet"
 msgid "Copy command line"
 msgstr "Kopeeri terve käsurida"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "Vigane aken"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Aken id'ga 0x%lx ei ole olemas!"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty ebaõnnestus"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty ebaõnnestus!"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "Ei leidnud Protsessi ID'd"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Ei leidnud Protsessi ID'd aknale 0x%lx."
 
-#: ../src/process-window.c:309
+#: ../src/process-window.c:377
 msgid "Filter on process name"
 msgstr "Filtreeri protsessi nime alusel"
 
@@ -327,13 +327,13 @@ msgstr "VSZ"
 
 #: ../src/settings-dialog.ui.h:20
 msgid "Resident Bytes"
-msgstr ""
+msgstr "Protsessi mälukasutus"
 
 #: ../src/settings-dialog.ui.h:24
 msgid "Columns"
 msgstr "Veerud"
 
-#: ../src/task-manager.c:246
+#: ../src/task-manager.c:254
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
