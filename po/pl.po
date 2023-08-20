@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-30 00:52+0200\n"
+"POT-Creation-Date: 2023-08-20 00:48+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Marek Adamski, 2022-2023\n"
 "Language-Team: Polish (http://app.transifex.com/xfce/xfce-apps/language/pl/)\n"
@@ -82,15 +82,15 @@ msgstr "Ilość procesów: %d"
 msgid "Task"
 msgstr "Zadanie"
 
-#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:16
+#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:17
 msgid "PID"
 msgstr "Identyfikator"
 
-#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:17
+#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:18
 msgid "PPID"
 msgstr "Identyfikator rodzica"
 
-#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:18
+#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:19
 msgid "State"
 msgstr "Stan"
 
@@ -102,11 +102,11 @@ msgstr "Pamięć przydzielona"
 msgid "RSS"
 msgstr "Pamięć zajęta"
 
-#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:21
+#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:22
 msgid "UID"
 msgstr "Użytkownik"
 
-#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:22
+#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:23
 msgid "CPU"
 msgstr "Obciążenie CPU"
 
@@ -195,7 +195,7 @@ msgstr "Wysoki"
 msgid "Very high"
 msgstr "Bardzo wysoki"
 
-#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:23
+#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:24
 msgid "Priority"
 msgstr "Priorytet"
 
@@ -282,62 +282,66 @@ msgid "About"
 msgstr "O programie"
 
 #: ../src/settings-dialog.ui.h:4
+msgid "_Close"
+msgstr "_Zamknij"
+
+#: ../src/settings-dialog.ui.h:5
 msgid "Show all processes"
 msgstr "Wszystkie procesy"
 
-#: ../src/settings-dialog.ui.h:5
+#: ../src/settings-dialog.ui.h:6
 msgid "Show application icons"
 msgstr "Ikony programów"
 
-#: ../src/settings-dialog.ui.h:6
+#: ../src/settings-dialog.ui.h:7
 msgid "Show full command lines"
 msgstr "Pełne ścieżki poleceń"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:8
 msgid "Show processes as tree"
 msgstr "Wyświetlanie drzewa procesów"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
 msgid "Show legend"
 msgstr "Wyświetlanie legendy"
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:10
 msgid "Show values with more precision"
 msgstr "Wyświetlanie bardziej dokładnych wartości"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate (ms):"
 msgstr "Tempo odświeżania (ms):"
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:12
 msgid "<b>Interface</b>"
 msgstr "<b>Interfejs</b>"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Prompt for terminating tasks"
 msgstr "Wyświetlanie potwierdzenia kończenia zadania"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Keep in the notification area"
 msgstr "Utrzymywanie w obszarze powiadomień"
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:15
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Różne</b>"
 
-#: ../src/settings-dialog.ui.h:15
+#: ../src/settings-dialog.ui.h:16
 msgid "General"
 msgstr "Ogólne"
 
-#: ../src/settings-dialog.ui.h:19
+#: ../src/settings-dialog.ui.h:20
 msgid "Virtual Bytes"
 msgstr "Pamięć przydzielona"
 
-#: ../src/settings-dialog.ui.h:20
+#: ../src/settings-dialog.ui.h:21
 msgid "Resident Bytes"
 msgstr "Pamięć rezydentna"
 
-#: ../src/settings-dialog.ui.h:24
+#: ../src/settings-dialog.ui.h:25
 msgid "Columns"
 msgstr "Kolumny"
 
