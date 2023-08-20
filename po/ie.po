@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 12:53+0100\n"
-"PO-Revision-Date: 2022-03-04 11:53+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Interlingue (http://www.transifex.com/xfce/xfce-apps/language/ie/)\n"
+"POT-Creation-Date: 2023-08-20 00:48+0200\n"
+"PO-Revision-Date: 2013-07-03 18:41+0000\n"
+"Last-Translator: Danishka Navin, 2010\n"
+"Language-Team: Interlingue (http://app.transifex.com/xfce/xfce-apps/language/ie/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ie\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -29,11 +29,11 @@ msgstr "Gerente de taches"
 msgid "Easy to use application to monitor system resources"
 msgstr ""
 
-#: ../src/main.c:60
+#: ../src/main.c:59
 msgid "Quit"
 msgstr "Surtir"
 
-#: ../src/main.c:158
+#: ../src/main.c:159
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -42,20 +42,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Processus:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memorie:</b> %s\n<b>Swap:</b> %s"
 
-#: ../src/main.c:240
+#: ../src/main.c:238
 msgid "Xfce Notify Daemon"
 msgstr "Daemon de notificationes Xfce"
 
-#: ../src/main.c:242
+#: ../src/main.c:240
 msgid "Settings daemon is unavailable"
 msgstr "Daemon de parametres es índisponibil"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:436
+#: ../src/process-statusbar.c:139 ../src/process-window.c:505
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:440
+#: ../src/process-statusbar.c:149 ../src/process-window.c:509
 #, c-format
 msgid "Memory: %s"
 msgstr "Memorie: %s"
@@ -74,15 +74,15 @@ msgstr "Processus: %d"
 msgid "Task"
 msgstr "Tache"
 
-#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:16
+#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:17
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:17
+#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:18
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:18
+#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:19
 msgid "State"
 msgstr "Statu"
 
@@ -94,11 +94,11 @@ msgstr "VGD"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:21
+#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:22
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:22
+#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:23
 msgid "CPU"
 msgstr "CPU"
 
@@ -187,7 +187,7 @@ msgstr "Alt"
 msgid "Very high"
 msgstr "Altissim"
 
-#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:23
+#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:24
 msgid "Priority"
 msgstr "Prioritá"
 
@@ -196,33 +196,33 @@ msgstr "Prioritá"
 msgid "Copy command line"
 msgstr ""
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "Ínvalid fenestre"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Un fenestre con id 0x%lx ne existe!"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty ne successat"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty ne successat!"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "Null PID trovat"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Null pid trovat por li fenestre 0x%lx."
 
-#: ../src/process-window.c:308
+#: ../src/process-window.c:377
 msgid "Filter on process name"
 msgstr "Filtrar li nómine de processu"
 
@@ -274,66 +274,70 @@ msgid "About"
 msgstr ""
 
 #: ../src/settings-dialog.ui.h:4
+msgid "_Close"
+msgstr "_Clúder"
+
+#: ../src/settings-dialog.ui.h:5
 msgid "Show all processes"
 msgstr "Monstrar omni processus"
 
-#: ../src/settings-dialog.ui.h:5
+#: ../src/settings-dialog.ui.h:6
 msgid "Show application icons"
 msgstr "Monstrar icones de application"
 
-#: ../src/settings-dialog.ui.h:6
+#: ../src/settings-dialog.ui.h:7
 msgid "Show full command lines"
 msgstr "Monstrar complet lineas de comandes"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:8
 msgid "Show processes as tree"
 msgstr "Monstrar processus quam un árbor"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
 msgid "Show legend"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:10
 msgid "Show values with more precision"
 msgstr "Monstrar plu precis valores"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate (ms):"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:12
 msgid "<b>Interface</b>"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Prompt for terminating tasks"
 msgstr "Confirmar termination de taches"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Keep in the notification area"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:15
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Diversi</b>"
 
-#: ../src/settings-dialog.ui.h:15
+#: ../src/settings-dialog.ui.h:16
 msgid "General"
 msgstr "General"
 
-#: ../src/settings-dialog.ui.h:19
+#: ../src/settings-dialog.ui.h:20
 msgid "Virtual Bytes"
 msgstr "Octetes virtual"
 
-#: ../src/settings-dialog.ui.h:20
+#: ../src/settings-dialog.ui.h:21
 msgid "Resident Bytes"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:24
+#: ../src/settings-dialog.ui.h:25
 msgid "Columns"
 msgstr "Columnes"
 
-#: ../src/task-manager.c:246
+#: ../src/task-manager.c:254
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
