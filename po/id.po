@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-14 00:51+0200\n"
+"POT-Creation-Date: 2023-08-20 00:48+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Faisal Rachmadin <frachmadin@gmail.com>, 2022\n"
-"Language-Team: Indonesian (http://www.transifex.com/xfce/xfce-apps/language/id/)\n"
+"Language-Team: Indonesian (http://app.transifex.com/xfce/xfce-apps/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -34,7 +34,7 @@ msgstr "Aplikasi untuk memonitor sumber daya sistem yang mudah digunakan"
 msgid "Quit"
 msgstr "Keluar"
 
-#: ../src/main.c:157
+#: ../src/main.c:159
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -43,20 +43,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Proses:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memori:</b> %s\n<b>Swap:</b> %s"
 
-#: ../src/main.c:236
+#: ../src/main.c:238
 msgid "Xfce Notify Daemon"
 msgstr "Jurik Notifikasi Xfce"
 
-#: ../src/main.c:238
+#: ../src/main.c:240
 msgid "Settings daemon is unavailable"
 msgstr "Jurik pengaturan tak tersedia"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:437
+#: ../src/process-statusbar.c:139 ../src/process-window.c:505
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:441
+#: ../src/process-statusbar.c:149 ../src/process-window.c:509
 #, c-format
 msgid "Memory: %s"
 msgstr "Memori: %s"
@@ -75,15 +75,15 @@ msgstr "Proses: %d"
 msgid "Task"
 msgstr "Tugas"
 
-#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:16
+#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:17
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:17
+#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:18
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:18
+#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:19
 msgid "State"
 msgstr "Status"
 
@@ -95,11 +95,11 @@ msgstr "VSZ"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:21
+#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:22
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:22
+#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:23
 msgid "CPU"
 msgstr "CPU"
 
@@ -188,7 +188,7 @@ msgstr "Tinggi"
 msgid "Very high"
 msgstr "Sangat tinggi"
 
-#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:23
+#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:24
 msgid "Priority"
 msgstr "Prioritas"
 
@@ -197,33 +197,33 @@ msgstr "Prioritas"
 msgid "Copy command line"
 msgstr "Salin baris perintah"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "Jendela Buruk"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Jendela id 0x%lx tidak ada!"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty gagal"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty gagal!"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "Tidak ditemukan PID"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Tidak ada PID yang ditemukan untuk jendela 0x%lx."
 
-#: ../src/process-window.c:309
+#: ../src/process-window.c:377
 msgid "Filter on process name"
 msgstr "Penyaring pada nama proses"
 
@@ -275,66 +275,70 @@ msgid "About"
 msgstr "Tentang"
 
 #: ../src/settings-dialog.ui.h:4
+msgid "_Close"
+msgstr "_Tutup"
+
+#: ../src/settings-dialog.ui.h:5
 msgid "Show all processes"
 msgstr "Tampilkan semua proses"
 
-#: ../src/settings-dialog.ui.h:5
+#: ../src/settings-dialog.ui.h:6
 msgid "Show application icons"
 msgstr "Tampilkan ikon aplikasi"
 
-#: ../src/settings-dialog.ui.h:6
+#: ../src/settings-dialog.ui.h:7
 msgid "Show full command lines"
 msgstr "Tampilkan penuh baris perintah"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:8
 msgid "Show processes as tree"
 msgstr "Tampilkan proses sebagai pohon"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
 msgid "Show legend"
 msgstr "Tampilkan legenda"
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:10
 msgid "Show values with more precision"
 msgstr "Tampilkan nilai dengan presisi lebih"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate (ms):"
 msgstr "Laju penyegaran (md):"
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:12
 msgid "<b>Interface</b>"
 msgstr "<b>Antarmuka</b>"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Prompt for terminating tasks"
 msgstr "Peringatkan untuk mematikan tugas"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Keep in the notification area"
 msgstr "Tetap ada di area notifikasi"
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:15
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Lain-lain</b>"
 
-#: ../src/settings-dialog.ui.h:15
+#: ../src/settings-dialog.ui.h:16
 msgid "General"
 msgstr "Umum"
 
-#: ../src/settings-dialog.ui.h:19
+#: ../src/settings-dialog.ui.h:20
 msgid "Virtual Bytes"
 msgstr "Bita Virtual"
 
-#: ../src/settings-dialog.ui.h:20
+#: ../src/settings-dialog.ui.h:21
 msgid "Resident Bytes"
 msgstr "Bita Residen"
 
-#: ../src/settings-dialog.ui.h:24
+#: ../src/settings-dialog.ui.h:25
 msgid "Columns"
 msgstr "Kolom"
 
-#: ../src/task-manager.c:246
+#: ../src/task-manager.c:254
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
