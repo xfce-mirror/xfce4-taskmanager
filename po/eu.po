@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-14 00:51+0200\n"
+"POT-Creation-Date: 2023-08-20 00:48+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: beriain, 2021\n"
-"Language-Team: Basque (http://www.transifex.com/xfce/xfce-apps/language/eu/)\n"
+"Language-Team: Basque (http://app.transifex.com/xfce/xfce-apps/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -34,7 +34,7 @@ msgstr "Sistemaren baliabideak monitorizatzeko aplikazio erabilerraz bat"
 msgid "Quit"
 msgstr "Irten"
 
-#: ../src/main.c:157
+#: ../src/main.c:159
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -43,20 +43,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Prozesuak:</b> %u\n<b>PUZ:</b> %.0f%%\n<b>Memoria:</b> %s\n<b>Swap:</b> %s"
 
-#: ../src/main.c:236
+#: ../src/main.c:238
 msgid "Xfce Notify Daemon"
 msgstr "Xfce berri-emate deabrua"
 
-#: ../src/main.c:238
+#: ../src/main.c:240
 msgid "Settings daemon is unavailable"
 msgstr "Ezarpen deabrua ez dago erabilgarri"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:437
+#: ../src/process-statusbar.c:139 ../src/process-window.c:505
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:441
+#: ../src/process-statusbar.c:149 ../src/process-window.c:509
 #, c-format
 msgid "Memory: %s"
 msgstr "Memoria: %s"
@@ -75,15 +75,15 @@ msgstr "Prozesuak: %d"
 msgid "Task"
 msgstr "Zeregina"
 
-#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:16
+#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:17
 msgid "PID"
 msgstr "PIDa"
 
-#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:17
+#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:18
 msgid "PPID"
 msgstr "PPIDa"
 
-#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:18
+#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:19
 msgid "State"
 msgstr "Egoera"
 
@@ -95,11 +95,11 @@ msgstr "VSZ"
 msgid "RSS"
 msgstr "RSSa"
 
-#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:21
+#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:22
 msgid "UID"
 msgstr "UIDa"
 
-#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:22
+#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:23
 msgid "CPU"
 msgstr "CPU"
 
@@ -188,7 +188,7 @@ msgstr "Altua"
 msgid "Very high"
 msgstr "Oso altua"
 
-#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:23
+#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:24
 msgid "Priority"
 msgstr "Lehentasuna"
 
@@ -197,33 +197,33 @@ msgstr "Lehentasuna"
 msgid "Copy command line"
 msgstr ""
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "Leiho okerra"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "0x%lx id-a duen leihoa ez da existitzen!"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty-k huts egin du"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty-k huts egin du!"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "PIDa ez da aurkitu"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Ez da PIDa aurkitu 0x%lx leihorako."
 
-#: ../src/process-window.c:309
+#: ../src/process-window.c:377
 msgid "Filter on process name"
 msgstr "Prozesu izenaren arabera iragazi"
 
@@ -275,66 +275,70 @@ msgid "About"
 msgstr "Honi buruz"
 
 #: ../src/settings-dialog.ui.h:4
+msgid "_Close"
+msgstr "It_xi"
+
+#: ../src/settings-dialog.ui.h:5
 msgid "Show all processes"
 msgstr "Ikusi prozesu guztiak"
 
-#: ../src/settings-dialog.ui.h:5
+#: ../src/settings-dialog.ui.h:6
 msgid "Show application icons"
 msgstr "Ikusi aplikazio ikonoak"
 
-#: ../src/settings-dialog.ui.h:6
+#: ../src/settings-dialog.ui.h:7
 msgid "Show full command lines"
 msgstr "Ikusi komando-lerro osoak"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:8
 msgid "Show processes as tree"
 msgstr "Prozesuak zuhaitz bezala erakutsi"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
 msgid "Show legend"
 msgstr "Legenda erakutsi"
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:10
 msgid "Show values with more precision"
 msgstr "Ikusi balioak zehaztasun handiagoz"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate (ms):"
 msgstr "Freskatze aldia (ms):"
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:12
 msgid "<b>Interface</b>"
 msgstr "<b>Interfazea</b>"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Prompt for terminating tasks"
 msgstr "Galdetu zereginak amaitzeko"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Keep in the notification area"
 msgstr "Mantendu berri-emate eremuan"
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:15
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Bestelakoak</b>"
 
-#: ../src/settings-dialog.ui.h:15
+#: ../src/settings-dialog.ui.h:16
 msgid "General"
 msgstr "Orokorra"
 
-#: ../src/settings-dialog.ui.h:19
+#: ../src/settings-dialog.ui.h:20
 msgid "Virtual Bytes"
 msgstr "Byte birtualak"
 
-#: ../src/settings-dialog.ui.h:20
+#: ../src/settings-dialog.ui.h:21
 msgid "Resident Bytes"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:24
+#: ../src/settings-dialog.ui.h:25
 msgid "Columns"
 msgstr "Zutabeak"
 
-#: ../src/task-manager.c:246
+#: ../src/task-manager.c:254
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
