@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 12:53+0100\n"
-"PO-Revision-Date: 2022-03-04 11:53+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Armenian (Armenia) (http://www.transifex.com/xfce/xfce-apps/language/hy_AM/)\n"
+"POT-Creation-Date: 2023-08-20 00:48+0200\n"
+"PO-Revision-Date: 2013-07-03 18:41+0000\n"
+"Last-Translator: Real School <localization@ehayq.am>, 2019\n"
+"Language-Team: Armenian (Armenia) (http://app.transifex.com/xfce/xfce-apps/language/hy_AM/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hy_AM\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:210
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -29,11 +29,11 @@ msgstr "Առաջադրանքների Կառավարիչ"
 msgid "Easy to use application to monitor system resources"
 msgstr ""
 
-#: ../src/main.c:60
+#: ../src/main.c:59
 msgid "Quit"
 msgstr "Լքել"
 
-#: ../src/main.c:158
+#: ../src/main.c:159
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -42,20 +42,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Գործընթացներ՝</b> %u\n<b>CPU՝</b> %.0f%%\n<b>Հիշողութիւն՝</b> %s\n<b>Փոխանակում՝</b> %s"
 
-#: ../src/main.c:240
+#: ../src/main.c:238
 msgid "Xfce Notify Daemon"
 msgstr "Xfce ծանուցման աւժանդակ ծրագիր"
 
-#: ../src/main.c:242
+#: ../src/main.c:240
 msgid "Settings daemon is unavailable"
 msgstr "Կարգաւորումների աւժանդակ ծրագիրը հասանելի չէ"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:436
+#: ../src/process-statusbar.c:139 ../src/process-window.c:505
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU՝ %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:440
+#: ../src/process-statusbar.c:149 ../src/process-window.c:509
 #, c-format
 msgid "Memory: %s"
 msgstr "Հիշողութիւն՝ %s"
@@ -74,15 +74,15 @@ msgstr "Գործընթացներ՝ %d"
 msgid "Task"
 msgstr "Առաջադրանք"
 
-#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:16
+#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:17
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:17
+#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:18
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:18
+#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:19
 msgid "State"
 msgstr "Վիճակ"
 
@@ -94,11 +94,11 @@ msgstr "VSZ"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:21
+#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:22
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:22
+#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:23
 msgid "CPU"
 msgstr "CPU"
 
@@ -187,7 +187,7 @@ msgstr "Բարձր"
 msgid "Very high"
 msgstr "Շատ բարձր"
 
-#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:23
+#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:24
 msgid "Priority"
 msgstr "Առաջնահերթութիւն"
 
@@ -196,33 +196,33 @@ msgstr "Առաջնահերթութիւն"
 msgid "Copy command line"
 msgstr ""
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "Վատ պատուհան"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Պատուհանի id 0x%lx ֊ը  գոյութիւն չունի։"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty ֊ը ձախողուեց։"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty ֊ը ձախողուեց։"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "PID չի գտնուել"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "0x%lx պատուհանի համար PID չի գտնուել"
 
-#: ../src/process-window.c:308
+#: ../src/process-window.c:377
 msgid "Filter on process name"
 msgstr "Զտիչ գործընթացի անուան մէջ"
 
@@ -274,66 +274,70 @@ msgid "About"
 msgstr "Մասին"
 
 #: ../src/settings-dialog.ui.h:4
+msgid "_Close"
+msgstr "_Փակել"
+
+#: ../src/settings-dialog.ui.h:5
 msgid "Show all processes"
 msgstr "Ցուցադրել բոլոր գործընթացները"
 
-#: ../src/settings-dialog.ui.h:5
+#: ../src/settings-dialog.ui.h:6
 msgid "Show application icons"
 msgstr "Ցուցադրել յաւելուածների պատկերակները"
 
-#: ../src/settings-dialog.ui.h:6
+#: ../src/settings-dialog.ui.h:7
 msgid "Show full command lines"
 msgstr "Ցուցադրել հրամանների ամբողջական տողերը"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:8
 msgid "Show processes as tree"
 msgstr "Ցուցադրել գործընթացները ծառի տեսքով"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
 msgid "Show legend"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:10
 msgid "Show values with more precision"
 msgstr "Ցուցադրել արժեքները աւելի ճշգրիտ"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate (ms):"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:12
 msgid "<b>Interface</b>"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Prompt for terminating tasks"
 msgstr "Հուշուածք առաջադրանքների աւարտման համար"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Keep in the notification area"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:15
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Խառնաբնոյթ</b>"
 
-#: ../src/settings-dialog.ui.h:15
+#: ../src/settings-dialog.ui.h:16
 msgid "General"
 msgstr "Ընդհանուր"
 
-#: ../src/settings-dialog.ui.h:19
+#: ../src/settings-dialog.ui.h:20
 msgid "Virtual Bytes"
 msgstr "Վերիրային բայթեր"
 
-#: ../src/settings-dialog.ui.h:20
+#: ../src/settings-dialog.ui.h:21
 msgid "Resident Bytes"
 msgstr ""
 
-#: ../src/settings-dialog.ui.h:24
+#: ../src/settings-dialog.ui.h:25
 msgid "Columns"
 msgstr ""
 
-#: ../src/task-manager.c:246
+#: ../src/task-manager.c:254
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
