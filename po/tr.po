@@ -15,17 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-14 00:51+0200\n"
+"POT-Creation-Date: 2023-08-20 00:48+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2019,2022\n"
-"Language-Team: Turkish (http://www.transifex.com/xfce/xfce-apps/language/tr/)\n"
+"Language-Team: Turkish (http://app.transifex.com/xfce/xfce-apps/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -40,7 +40,7 @@ msgstr "Sistem kaynaklarını izlemek için kullanımı kolay uygulama"
 msgid "Quit"
 msgstr "Çık"
 
-#: ../src/main.c:157
+#: ../src/main.c:159
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -49,20 +49,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Süreçler:</b> %u\n<b>MİB:</b> %%%.0f\n<b>Bellek:</b> %s\n<b>Takas Alanı:</b> %s"
 
-#: ../src/main.c:236
+#: ../src/main.c:238
 msgid "Xfce Notify Daemon"
 msgstr "Xfce Bildiri Servisi"
 
-#: ../src/main.c:238
+#: ../src/main.c:240
 msgid "Settings daemon is unavailable"
 msgstr "Servis ayarları kullanılamıyor"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:437
+#: ../src/process-statusbar.c:139 ../src/process-window.c:505
 #, c-format
 msgid "CPU: %s%%"
 msgstr "MİB: %%%s"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:441
+#: ../src/process-statusbar.c:149 ../src/process-window.c:509
 #, c-format
 msgid "Memory: %s"
 msgstr "Bellek: %s"
@@ -81,15 +81,15 @@ msgstr "İşlemler : %d"
 msgid "Task"
 msgstr "Görev"
 
-#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:16
+#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:17
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:17
+#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:18
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:18
+#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:19
 msgid "State"
 msgstr "Durum"
 
@@ -101,11 +101,11 @@ msgstr "VSZ"
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:21
+#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:22
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:22
+#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:23
 msgid "CPU"
 msgstr "İşlemci"
 
@@ -194,7 +194,7 @@ msgstr "Yüksek"
 msgid "Very high"
 msgstr "Çok yüksek"
 
-#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:23
+#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:24
 msgid "Priority"
 msgstr "Öncelik"
 
@@ -203,33 +203,33 @@ msgstr "Öncelik"
 msgid "Copy command line"
 msgstr "Komut satırını kopyala"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "Kötü Pencere"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Pencere kimliği 0x%lx yok!"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty başarısız oldu"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty başarısız oldu!"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "PID bulunamadı"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Pencere 0x%lx için PID bulunamadı."
 
-#: ../src/process-window.c:309
+#: ../src/process-window.c:377
 msgid "Filter on process name"
 msgstr "Süreç adına göre süz"
 
@@ -281,66 +281,70 @@ msgid "About"
 msgstr "Hakkında"
 
 #: ../src/settings-dialog.ui.h:4
+msgid "_Close"
+msgstr "_Kapat"
+
+#: ../src/settings-dialog.ui.h:5
 msgid "Show all processes"
 msgstr "Tüm işlemleri göster"
 
-#: ../src/settings-dialog.ui.h:5
+#: ../src/settings-dialog.ui.h:6
 msgid "Show application icons"
 msgstr "Uygulama simgelerini göster"
 
-#: ../src/settings-dialog.ui.h:6
+#: ../src/settings-dialog.ui.h:7
 msgid "Show full command lines"
 msgstr "Tam komut satırını göster"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:8
 msgid "Show processes as tree"
 msgstr "İşlemleri ağaç olarak göster"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
 msgid "Show legend"
 msgstr "Göstergeyi göster"
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:10
 msgid "Show values with more precision"
 msgstr "Değerleri daha hassas göster"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate (ms):"
 msgstr "Yenileme hızı (ms):"
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:12
 msgid "<b>Interface</b>"
 msgstr "<b>Arayüz</b>"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Prompt for terminating tasks"
 msgstr "Görevleri sonlandırmadan önce sor"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Keep in the notification area"
 msgstr "Bildirim alanında tut"
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:15
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Türlü</b>"
 
-#: ../src/settings-dialog.ui.h:15
+#: ../src/settings-dialog.ui.h:16
 msgid "General"
 msgstr "Genel"
 
-#: ../src/settings-dialog.ui.h:19
+#: ../src/settings-dialog.ui.h:20
 msgid "Virtual Bytes"
 msgstr "Sanal Baytlar"
 
-#: ../src/settings-dialog.ui.h:20
+#: ../src/settings-dialog.ui.h:21
 msgid "Resident Bytes"
 msgstr "Yerleşik Bayt"
 
-#: ../src/settings-dialog.ui.h:24
+#: ../src/settings-dialog.ui.h:25
 msgid "Columns"
 msgstr "Sütunlar"
 
-#: ../src/task-manager.c:246
+#: ../src/task-manager.c:254
 #, c-format
 msgid "%s%%"
 msgstr "%%%s"
