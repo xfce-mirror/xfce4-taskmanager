@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 15:02+0100\n"
+"POT-Creation-Date: 2023-08-20 00:48+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Andrei Stepanov, 2022-2023\n"
 "Language-Team: Russian (http://app.transifex.com/xfce/xfce-apps/language/ru/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:206
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
 #: ../src/settings-dialog.c:143
@@ -40,7 +40,7 @@ msgstr "Простое приложение для мониторинга сис
 msgid "Quit"
 msgstr "Выйти"
 
-#: ../src/main.c:157
+#: ../src/main.c:159
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -49,20 +49,20 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Процессов:</b> %u\n<b>ЦП:</b> %.0f%%\n<b>Память:</b> %s\n<b>Подкач.:</b> %s"
 
-#: ../src/main.c:236
+#: ../src/main.c:238
 msgid "Xfce Notify Daemon"
 msgstr "Сервис оповещений Xfce"
 
-#: ../src/main.c:238
+#: ../src/main.c:240
 msgid "Settings daemon is unavailable"
 msgstr "Сервис настроек недоступен"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:437
+#: ../src/process-statusbar.c:139 ../src/process-window.c:505
 #, c-format
 msgid "CPU: %s%%"
 msgstr "ЦП: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:441
+#: ../src/process-statusbar.c:149 ../src/process-window.c:509
 #, c-format
 msgid "Memory: %s"
 msgstr "Память: %s"
@@ -81,15 +81,15 @@ msgstr "Процессы: %d"
 msgid "Task"
 msgstr "Задача"
 
-#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:16
+#: ../src/process-tree-view.c:146 ../src/settings-dialog.ui.h:17
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:17
+#: ../src/process-tree-view.c:154 ../src/settings-dialog.ui.h:18
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:18
+#: ../src/process-tree-view.c:162 ../src/settings-dialog.ui.h:19
 msgid "State"
 msgstr "Состояние"
 
@@ -101,11 +101,11 @@ msgstr "Виртуальная"
 msgid "RSS"
 msgstr "Резидентная"
 
-#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:21
+#: ../src/process-tree-view.c:187 ../src/settings-dialog.ui.h:22
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:22
+#: ../src/process-tree-view.c:195 ../src/settings-dialog.ui.h:23
 msgid "CPU"
 msgstr "ЦП"
 
@@ -194,7 +194,7 @@ msgstr "Высокий"
 msgid "Very high"
 msgstr "Очень высокий"
 
-#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:23
+#: ../src/process-tree-view.c:532 ../src/settings-dialog.ui.h:24
 msgid "Priority"
 msgstr "Приоритет"
 
@@ -203,33 +203,33 @@ msgstr "Приоритет"
 msgid "Copy command line"
 msgstr "Копировать командную строку"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 msgid "Bad Window"
 msgstr "Плохое окно"
 
-#: ../src/process-window.c:166
+#: ../src/process-window.c:168
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Идентификатор окна 0x%lx не существует!"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed"
 msgstr "Вызов XGetWindowProperty не удался"
 
-#: ../src/process-window.c:169
+#: ../src/process-window.c:171
 msgid "XGetWindowProperty failed!"
 msgstr "Вызов XGetWindowProperty не удался!"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 msgid "No PID found"
 msgstr "PID не найден"
 
-#: ../src/process-window.c:176
+#: ../src/process-window.c:178
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Не найден PID для окна 0x%lx."
 
-#: ../src/process-window.c:309
+#: ../src/process-window.c:377
 msgid "Filter on process name"
 msgstr "Фильтровать по имени процесса"
 
@@ -281,66 +281,70 @@ msgid "About"
 msgstr "О программе"
 
 #: ../src/settings-dialog.ui.h:4
+msgid "_Close"
+msgstr "Закрыть"
+
+#: ../src/settings-dialog.ui.h:5
 msgid "Show all processes"
 msgstr "Показывать все процессы"
 
-#: ../src/settings-dialog.ui.h:5
+#: ../src/settings-dialog.ui.h:6
 msgid "Show application icons"
 msgstr "Показывать значки приложений"
 
-#: ../src/settings-dialog.ui.h:6
+#: ../src/settings-dialog.ui.h:7
 msgid "Show full command lines"
 msgstr "Показывать строки команд полностью"
 
-#: ../src/settings-dialog.ui.h:7
+#: ../src/settings-dialog.ui.h:8
 msgid "Show processes as tree"
 msgstr "Показывать процессы в виде дерева"
 
-#: ../src/settings-dialog.ui.h:8
+#: ../src/settings-dialog.ui.h:9
 msgid "Show legend"
 msgstr "Показывать легенду"
 
-#: ../src/settings-dialog.ui.h:9
+#: ../src/settings-dialog.ui.h:10
 msgid "Show values with more precision"
 msgstr "Показывать значения с большей точностью"
 
-#: ../src/settings-dialog.ui.h:10
+#: ../src/settings-dialog.ui.h:11
 msgid "Refresh rate (ms):"
 msgstr "Частота обновления, мс"
 
-#: ../src/settings-dialog.ui.h:11
+#: ../src/settings-dialog.ui.h:12
 msgid "<b>Interface</b>"
 msgstr "<b>Интерфейс</b>"
 
-#: ../src/settings-dialog.ui.h:12
+#: ../src/settings-dialog.ui.h:13
 msgid "Prompt for terminating tasks"
 msgstr "Запрашивать подтверждение при завершении задач"
 
-#: ../src/settings-dialog.ui.h:13
+#: ../src/settings-dialog.ui.h:14
 msgid "Keep in the notification area"
 msgstr "Удерживать в области уведомления"
 
-#: ../src/settings-dialog.ui.h:14
+#: ../src/settings-dialog.ui.h:15
 msgid "<b>Miscellaneous</b>"
 msgstr "<b>Дополнительно</b>"
 
-#: ../src/settings-dialog.ui.h:15
+#: ../src/settings-dialog.ui.h:16
 msgid "General"
 msgstr "Общее"
 
-#: ../src/settings-dialog.ui.h:19
+#: ../src/settings-dialog.ui.h:20
 msgid "Virtual Bytes"
 msgstr "Виртуальная память"
 
-#: ../src/settings-dialog.ui.h:20
+#: ../src/settings-dialog.ui.h:21
 msgid "Resident Bytes"
 msgstr "Резидентные байты"
 
-#: ../src/settings-dialog.ui.h:24
+#: ../src/settings-dialog.ui.h:25
 msgid "Columns"
 msgstr "Столбцы"
 
-#: ../src/task-manager.c:246
+#: ../src/task-manager.c:254
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
