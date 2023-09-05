@@ -79,6 +79,8 @@ static void
 xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 {
 	GtkWidget *hbox, *hbox_cpu, *hbox_mem;
+	GtkStyleContext *context;
+	GtkCssProvider *provider;
 	statusbar->settings = xtm_settings_get_default ();
 
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
@@ -87,6 +89,11 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 
 	statusbar->label_cpu = gtk_label_new (NULL);
 	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_cpu, TRUE, FALSE, 0);
+	context  = gtk_widget_get_style_context (statusbar->label_cpu);
+	provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_data (provider, "* { color: #ff6e00; }", -1, NULL);
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	g_object_unref (provider);
 
 	statusbar->label_num_processes = gtk_label_new (NULL);
 	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_num_processes, TRUE, FALSE, 0);
@@ -94,10 +101,20 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	statusbar->label_memory = gtk_label_new (NULL);
 	gtk_label_set_ellipsize (GTK_LABEL (statusbar->label_memory), PANGO_ELLIPSIZE_END);
 	gtk_box_pack_start (GTK_BOX (hbox_mem), statusbar->label_memory, TRUE, FALSE, 0);
+	context  = gtk_widget_get_style_context (statusbar->label_memory);
+	provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_data (provider, "* { color: #cb386c; }", -1, NULL);
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	g_object_unref (provider);
 
 	statusbar->label_swap = gtk_label_new (NULL);
 	gtk_label_set_ellipsize (GTK_LABEL (statusbar->label_swap), PANGO_ELLIPSIZE_END);
 	gtk_box_pack_start (GTK_BOX (hbox_mem), statusbar->label_swap, TRUE, FALSE, 0);
+	context  = gtk_widget_get_style_context (statusbar->label_swap);
+	provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_data (provider, "* { color: #75324d; }", -1, NULL);
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	g_object_unref (provider);
 
 	gtk_box_pack_start (GTK_BOX (hbox), hbox_cpu, TRUE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), hbox_mem, TRUE, TRUE, 0);
@@ -129,7 +146,6 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 	XtmProcessStatusbar *statusbar = XTM_PROCESS_STATUSBAR (object);
 	gchar *text;
 	gchar *float_value;
-	GdkRGBA color;
 
 	switch (property_id)
 	{
@@ -138,8 +154,6 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		float_value = rounded_float_value (statusbar->cpu, statusbar->settings);
 		text = g_strdup_printf (_("CPU: %s%%"), float_value);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_cpu), text);
-		gdk_rgba_parse (&color, "#ff6e00");
-		gtk_widget_override_color (statusbar->label_cpu, GTK_STATE_FLAG_NORMAL, &color);
 		g_free (float_value);
 		g_free (text);
 		break;
@@ -149,8 +163,6 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		text = g_strdup_printf (_("Memory: %s"), statusbar->memory);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_memory), text);
 		gtk_widget_set_tooltip_text (statusbar->label_memory, text);
-		gdk_rgba_parse (&color, "#cb386c");
-		gtk_widget_override_color (statusbar->label_memory, GTK_STATE_FLAG_NORMAL, &color);
 		g_free (text);
 		break;
 
@@ -159,8 +171,6 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 		text = g_strdup_printf (_("Swap: %s"), statusbar->swap);
 		gtk_label_set_text (GTK_LABEL (statusbar->label_swap), text);
 		gtk_widget_set_tooltip_text (statusbar->label_swap, text);
-		gdk_rgba_parse (&color, "#75324d");
-		gtk_widget_override_color (statusbar->label_swap, GTK_STATE_FLAG_NORMAL, &color);
 		g_free (text);
 		break;
 
