@@ -24,12 +24,9 @@
 #include <gtk/gtk.h>
 #include <gmodule.h>
 
-#ifdef HAVE_WNCK
-#include <gdk/gdkx.h>
-#endif
-
 #include "task-manager.h"
 #ifdef HAVE_WNCK
+#include <gdk/gdkx.h>
 #include "app-manager.h"
 #endif
 #include "process-tree-view.h" /* for the columns of the model */

@@ -69,7 +69,6 @@ XDT_I18N([@LINGUAS@])
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
-XDT_CHECK_LIBX11_REQUIRE()
 XDT_CHECK_PACKAGE([LIBXMU], [xmu], [1.1.2])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.22.0])
@@ -80,9 +79,9 @@ XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.14.0])
 dnl ***********************************
 dnl *** Check for optional packages ***
 dnl ***********************************
+XDT_CHECK_OPTIONAL_PACKAGE([LIBX11], [x11], [1.6.7], [libx11], [Libx11 support])
 XDT_CHECK_OPTIONAL_PACKAGE([WNCK], [libwnck-3.0], [3.2], [wnck3], [building with libwnck3 for window icons/names], [yes])
 
-AM_CONDITIONAL([HAVE_WNCK], [test x"$WNCK_FOUND" = x"yes"])
 dnl ***********************************
 dnl ********** Check for skel *********
 dnl ***********************************
@@ -166,6 +165,7 @@ dnl ***************************
 echo
 echo "Build Configuration:"
 echo
+echo "* Libx11:        ${LIBX11_VERSION:-no}"
 echo "* Wnck:          ${WNCK_VERSION:-no}"
 echo "* Cairo:         ${CAIRO_VERSION}"
 echo "* GTK+:          ${GTK3_VERSION}"

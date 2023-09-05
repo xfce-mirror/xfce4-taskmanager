@@ -13,6 +13,9 @@
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#endif
 
 #include <libxfce4ui/libxfce4ui.h>
 
@@ -179,8 +182,10 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	dialog = GTK_WIDGET (gtk_builder_get_object (builder, "settings-dialog"));
 	gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent_window));
 
-#ifndef HAVE_WNCK
 	gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "button-show-application-icons")));
+#ifdef HAVE_WNCK
+	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+		gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (builder, "button-show-application-icons")));
 #endif
 
 	// Interface
@@ -191,10 +196,15 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	builder_bind_toggle_button (builder, "button-process-tree", settings, "process-tree");
 	builder_bind_toggle_button (builder, "button-show-legend", settings, "show-legend");
 	builder_bind_combobox (builder, settings);
+
 	// Miscellaneous
 	builder_bind_toggle_button (builder, "button-prompt-terminate-task", settings, "prompt-terminate-task");
 	builder_bind_toggle_button (builder, "button-show-status-icon", settings, "show-status-icon");
-
+	gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "button-show-status-icon")));
+#ifdef GDK_WINDOWING_X11
+	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+		gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (builder, "button-show-status-icon")));
+#endif
 
 	// Columns
 	builder_bind_toggle_button (builder, "pid", settings, "column-pid");

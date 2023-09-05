@@ -25,6 +25,9 @@
 #include <glib-object.h>
 #include <glib.h>
 #include <glib/gi18n.h>
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#endif
 
 #include "settings.h"
 
@@ -155,8 +158,11 @@ void
 xtm_settings_bind_xfconf (XtmSettings *settings, XfconfChannel *channel)
 {
 	/* general settings */
-	xfconf_g_property_bind (channel, SETTING_SHOW_STATUS_ICON, G_TYPE_BOOLEAN,
-		G_OBJECT (settings), "show-status-icon");
+#ifdef GDK_WINDOWING_X11
+	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+		xfconf_g_property_bind (channel, SETTING_SHOW_STATUS_ICON, G_TYPE_BOOLEAN,
+			G_OBJECT (settings), "show-status-icon");
+#endif
 	xfconf_g_property_bind (channel, SETTING_PROMPT_TERMINATE_TASK, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "prompt-terminate-task");
 
