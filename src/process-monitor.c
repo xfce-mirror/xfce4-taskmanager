@@ -40,7 +40,7 @@ struct _XtmProcessMonitor
 };
 G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
-static void xtm_process_monitor_finalize      (GObject *object);
+static void	xtm_process_monitor_finalize		(GObject *object);
 static void	xtm_process_monitor_get_property	(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void	xtm_process_monitor_set_property	(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 static gboolean	xtm_process_monitor_draw		(GtkWidget *widget, cairo_t *cr);
@@ -54,7 +54,7 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	GObjectClass *class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 	xtm_process_monitor_parent_class = g_type_class_peek_parent (klass);
-  class->finalize = xtm_process_monitor_finalize;
+	class->finalize = xtm_process_monitor_finalize;
 	class->get_property = xtm_process_monitor_get_property;
 	class->set_property = xtm_process_monitor_set_property;
 	widget_class->draw = xtm_process_monitor_draw;
@@ -75,12 +75,12 @@ xtm_process_monitor_init (XtmProcessMonitor *monitor)
 static void
 xtm_process_monitor_finalize (GObject *object)
 {
-  XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (object);
+	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (object);
 
-  g_array_free (monitor->history, TRUE);
-  g_array_free (monitor->history_swap, TRUE);
+	g_array_free (monitor->history, TRUE);
+	g_array_free (monitor->history_swap, TRUE);
 
-  G_OBJECT_CLASS (xtm_process_monitor_parent_class)->finalize (object);
+	G_OBJECT_CLASS (xtm_process_monitor_parent_class)->finalize (object);
 }
 
 static void
