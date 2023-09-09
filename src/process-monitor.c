@@ -21,7 +21,8 @@
 
 enum
 {
-	PROP_STEP_SIZE = 1
+	PROP_STEP_SIZE = 1,
+	PROP_TYPE,
 };
 typedef struct _XtmProcessMonitorClass XtmProcessMonitorClass;
 struct _XtmProcessMonitorClass
@@ -34,8 +35,7 @@ struct _XtmProcessMonitor
 	/*<private>*/
 	gfloat			step_size;
 	XtmProcessMonitorType	type;
-	GArray *		history;
-	GArray *		history_swap;
+	GArray *		history[XTM_PM_TYPE_N];
 };
 G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
@@ -45,7 +45,17 @@ static void	xtm_process_monitor_set_property	(GObject *object, guint property_id
 static gboolean	xtm_process_monitor_draw		(GtkWidget *widget, cairo_t *cr);
 static void	xtm_process_monitor_paint			(XtmProcessMonitor *monitor, cairo_t *cr);
 
+static void
+xtm_process_monitor_constructed (GObject *object)
+{
+	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (object);
+	monitor->history[XTM_PM_TYPE_CPU] = g_array_new (FALSE, TRUE, sizeof (gfloat));
+	monitor->history[XTM_PM_TYPE_MEM] = monitor->type == XTM_PM_TYPE_MEM ?
+											g_array_new (FALSE, TRUE, sizeof (gfloat)) :
+											NULL;
 
+	G_OBJECT_CLASS (xtm_process_monitor_parent_class)->constructed (object);
+}
 
 static void
 xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
@@ -53,6 +63,7 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	GObjectClass *class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 	xtm_process_monitor_parent_class = g_type_class_peek_parent (klass);
+	class->constructed = xtm_process_monitor_constructed;
 	class->finalize = xtm_process_monitor_finalize;
 	class->get_property = xtm_process_monitor_get_property;
 	class->set_property = xtm_process_monitor_set_property;
@@ -60,12 +71,14 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 
 	g_object_class_install_property (class, PROP_STEP_SIZE,
 		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1f, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_TYPE,
+		g_param_spec_int ("type", "Type", "Type of graph to render", 0, G_MAXINT, 0, G_PARAM_CONSTRUCT_ONLY|G_PARAM_READWRITE));
 }
 
 static void
 xtm_process_monitor_init (XtmProcessMonitor *monitor)
 {
-	monitor->history = g_array_new (FALSE, TRUE, sizeof (gfloat));
+
 }
 
 static void
@@ -73,10 +86,8 @@ xtm_process_monitor_finalize (GObject *object)
 {
 	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (object);
 
-	g_array_free (monitor->history, TRUE);
-
-	if (monitor->history_swap)
-		g_array_free (monitor->history_swap, TRUE);
+	g_array_free (monitor->history[XTM_PM_TYPE_CPU], TRUE);
+	g_array_free (monitor->history[XTM_PM_TYPE_SWP], TRUE);
 
 	G_OBJECT_CLASS (xtm_process_monitor_parent_class)->finalize (object);
 }
@@ -89,6 +100,10 @@ xtm_process_monitor_get_property (GObject *object, guint property_id, GValue *va
 	{
 		case PROP_STEP_SIZE:
 		g_value_set_float (value, monitor->step_size);
+		break;
+
+		case PROP_TYPE:
+		g_value_set_int (value, monitor->type);
 		break;
 
 		default:
@@ -107,6 +122,10 @@ xtm_process_monitor_set_property (GObject *object, guint property_id, const GVal
 		monitor->step_size = g_value_get_float (value);
 		break;
 
+		case PROP_TYPE:
+		monitor->type = g_value_get_int (value);
+		break;
+
 		default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 		break;
@@ -120,11 +139,11 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 	guint minimum_history_length;
 
 	minimum_history_length = (guint)(gtk_widget_get_allocated_width(widget) / monitor->step_size);
-	if (monitor->history->len < minimum_history_length)
+	if (monitor->history[XTM_PM_TYPE_CPU]->len < minimum_history_length)
 	{
-		g_array_set_size (monitor->history, minimum_history_length + 1);
+		g_array_set_size (monitor->history[XTM_PM_TYPE_CPU], minimum_history_length + 1);
 		if (monitor->type == XTM_PM_TYPE_MEM)
-			g_array_set_size (monitor->history_swap, minimum_history_length + 1);
+			g_array_set_size (monitor->history[XTM_PM_TYPE_SWP], minimum_history_length + 1);
 	}
 
 
@@ -140,7 +159,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	gdouble peak, step_size;
 	gint i;
 
-	if (monitor->history->len <= 1)
+	if (monitor->history[XTM_PM_TYPE_CPU]->len <= 1)
 	{
 		g_warning ("Cannot paint graph with n_peak <= 1");
 		return NULL;
@@ -160,12 +179,12 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 
 	/* Create a line before the call to cairo_translate,
 	 * to avoid creating a downward sloping line going off the graph */
-	peak = g_array_index (monitor->history, gfloat, 0);
+	peak = g_array_index (monitor->history[XTM_PM_TYPE_CPU], gfloat, 0);
 	cairo_line_to (cr, width, (1.0 - peak) * height);
 
 	for (i = 0; (step_size * (i - 1)) <= width; i++)
 	{
-		peak = g_array_index (monitor->history, gfloat, i);
+		peak = g_array_index (monitor->history[XTM_PM_TYPE_CPU], gfloat, i);
 		cairo_translate (cr, -step_size, 0);
 		cairo_line_to (cr, width, (1.0 - peak) * height);
 	}
@@ -184,17 +203,17 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	cairo_stroke (cr);
 
 	/* Draw Swap graph */
-	if (monitor->type == XTM_PM_TYPE_MEM)
+	if (monitor->type == XTM_PM_TYPE_SWP)
 	{
 		cairo_translate (cr, step_size * i, 0);
 		cairo_move_to (cr, width, height);
 
-		peak = g_array_index (monitor->history_swap, gfloat, 0);
+		peak = g_array_index (monitor->history[XTM_PM_TYPE_SWP], gfloat, 0);
 		cairo_line_to (cr, width, (1.0 - peak) * height);
 
 		for (i = 0; (step_size * (i - 1)) <= width; i++)
 		{
-			peak = g_array_index (monitor->history_swap, gfloat, i);
+			peak = g_array_index (monitor->history[XTM_PM_TYPE_SWP], gfloat, i);
 			cairo_translate (cr, -step_size, 0);
 			cairo_line_to (cr, width, (1.0 - peak) * height);
 		}
@@ -254,15 +273,9 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 }
 
 GtkWidget *
-xtm_process_monitor_new (XtmProcessMonitorType monitor_type)
+xtm_process_monitor_new (XtmProcessMonitorType type)
 {
-	XtmProcessMonitor *monitor = g_object_new (XTM_TYPE_PROCESS_MONITOR, NULL);
-	monitor->type = monitor_type;
-	monitor->history_swap = monitor->type == XTM_PM_TYPE_MEM ?
-							g_array_new (FALSE, TRUE, sizeof (gfloat)) :
-							NULL;
-
-	return GTK_WIDGET (monitor);
+	return g_object_new (XTM_TYPE_PROCESS_MONITOR, "type", GINT_TO_POINTER (type), NULL);
 }
 
 void
@@ -271,19 +284,26 @@ xtm_process_monitor_add_peak (XtmProcessMonitor *monitor, gfloat peak, gfloat pe
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_return_if_fail (peak >= 0.0f && peak <= 1.0f);
 
-	g_array_prepend_val (monitor->history, peak);
-	if (monitor->history->len > 1)
-		g_array_remove_index (monitor->history, monitor->history->len - 1);
+	g_array_prepend_val (monitor->history[XTM_PM_TYPE_CPU], peak);
+	if (monitor->history[XTM_PM_TYPE_CPU]->len > 1)
+		g_array_remove_index (monitor->history[XTM_PM_TYPE_CPU], monitor->history[XTM_PM_TYPE_CPU]->len - 1);
 
 	if (monitor->type == XTM_PM_TYPE_MEM)
 	{
-		g_array_prepend_val (monitor->history_swap, peak_swap);
-		if (monitor->history_swap->len > 1)
-			g_array_remove_index (monitor->history_swap, monitor->history_swap->len - 1);
+		g_array_prepend_val (monitor->history[XTM_PM_TYPE_SWP], peak_swap);
+		if (monitor->history[XTM_PM_TYPE_SWP]->len > 1)
+			g_array_remove_index (monitor->history[XTM_PM_TYPE_SWP], monitor->history[XTM_PM_TYPE_SWP]->len - 1);
 	}
 
 	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
 		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
+}
+
+void
+xtm_process_monitor_set_type (XtmProcessMonitor *monitor, gint type)
+{
+	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
+	g_object_set (monitor, "type", type, NULL);
 }
 
 void
@@ -299,8 +319,8 @@ void
 xtm_process_monitor_clear (XtmProcessMonitor *monitor)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
-	g_array_set_size (monitor->history, 0);
-	g_array_set_size (monitor->history_swap, 0);
+	g_array_set_size (monitor->history[XTM_PM_TYPE_CPU], 0);
+	g_array_set_size (monitor->history[XTM_PM_TYPE_SWP], 0);
 	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
 		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
 }

@@ -27,8 +27,9 @@ typedef struct _XtmProcessMonitor XtmProcessMonitor;
 
 typedef enum
 {
-	XTM_PM_TYPE_CPU,
+	XTM_PM_TYPE_CPU = 0,
 	XTM_PM_TYPE_MEM,
+	XTM_PM_TYPE_SWP = XTM_PM_TYPE_MEM,
 	XTM_PM_TYPE_N
 } XtmProcessMonitorType;
 
@@ -36,6 +37,7 @@ GType		xtm_process_monitor_get_type			(void);
 GtkWidget *	xtm_process_monitor_new				(XtmProcessMonitorType monitor_type);
 void		xtm_process_monitor_add_peak			(XtmProcessMonitor *monitor, gfloat peak, gfloat peak_swap);
 void		xtm_process_monitor_set_step_size		(XtmProcessMonitor *monitor, gfloat step_size);
+void		xtm_process_monitor_set_type			(XtmProcessMonitor *monitor, gint type);
 void		xtm_process_monitor_clear			(XtmProcessMonitor *monitor);
 
 #endif /* !PROCESS_MONITOR_H */
