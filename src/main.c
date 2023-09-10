@@ -225,8 +225,11 @@ int main (int argc, char *argv[])
 	if (!g_option_context_parse (opt_context, &argc, &argv, &error))
 	{
 		g_print ("Unable to parse arguments: %s\n", error->message);
+		g_error_free (error);
+		g_option_context_free (opt_context);
 		return 1;
 	}
+	g_option_context_free (opt_context);
 
 	app = g_application_new ("xfce.taskmanager", 0);
 	g_application_register (G_APPLICATION (app), NULL, &error);

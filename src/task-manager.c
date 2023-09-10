@@ -259,7 +259,9 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 			-1);
 
 #ifdef HAVE_WNCK
-	if (app != NULL && icon == NULL)
+	if (icon != NULL)
+		g_object_unref (icon);
+	else if (app != NULL)
 		gtk_list_store_set (GTK_LIST_STORE (model), iter, XTM_PTV_COLUMN_ICON, app->icon, -1);
 
 	if (app != NULL && full_cmdline == FALSE)
@@ -281,6 +283,8 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 	if (g_strcmp0 (task->state, old_state) != 0 && background == NULL)
 	{
 		/* Set yellow color for changing state */
+		g_free (background);
+		g_free (foreground);
 		background = g_strdup ("#fff176");
 		foreground = g_strdup ("#000000");
 		old_timestamp = timestamp - TIMESTAMP_DELTA + 3;
@@ -295,6 +299,8 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 	else
 	{
 		/* Reset color */
+		g_free (background);
+		g_free (foreground);
 		background = NULL;
 		foreground = NULL;
 	}

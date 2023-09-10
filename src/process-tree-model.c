@@ -92,6 +92,19 @@ xtm_cross_link_new (void)
 
 
 static void
+xtm_cross_link_free (gpointer data)
+{
+	XtmCrossLink *lnk = data;
+
+	if (lnk != NULL && lnk->path != NULL)
+		gtk_tree_path_free (lnk->path);
+
+	g_free (lnk);
+}
+
+
+
+static void
 xtm_process_tree_model_class_init (XtmProcessTreeModelClass *klass)
 {
 	GObjectClass *class = G_OBJECT_CLASS (klass);
@@ -132,7 +145,7 @@ xtm_process_tree_model_iface_init (GtkTreeModelIface *iface)
 static void
 xtm_process_tree_model_init (XtmProcessTreeModel *treemodel)
 {
-	treemodel->list = g_sequence_new (g_free);
+	treemodel->list = g_sequence_new (xtm_cross_link_free);
 	treemodel->tree = g_node_new (NULL);
 
 	treemodel->c_column = XTM_PTV_COLUMN_PID;
@@ -883,7 +896,7 @@ xtm_process_tree_model_rows_reordered (XtmProcessTreeModel *treemodel, GtkTreePa
 	not_persist = ! (gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_ITERS_PERSIST);
 
 	/* New list to hold the new order */
-	s_list = g_sequence_new (g_free);
+	s_list = g_sequence_new (xtm_cross_link_free);
 	s_iter = g_sequence_get_end_iter (s_list);
 
 	for (i = 0; i < size; i++)
