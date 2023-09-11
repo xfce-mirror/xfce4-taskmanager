@@ -388,17 +388,10 @@ xtm_process_window_finalize (GObject *object)
 {
 	XtmProcessWindow *window = XTM_PROCESS_WINDOW (object);
 
-	if (GTK_IS_TREE_VIEW (window->treeview))
-		gtk_widget_destroy (window->treeview);
-
-	if (GTK_IS_BOX (window->statusbar))
-		gtk_widget_destroy (window->statusbar);
-
-	if (XTM_IS_SETTINGS (window->settings))
-		g_object_unref (window->settings);
-
+	g_object_unref (window->settings);
 	g_object_unref (window->builder);
-	window->builder = NULL;
+
+	G_OBJECT_CLASS (xtm_process_window_parent_class)->finalize (object);
 }
 
 /**

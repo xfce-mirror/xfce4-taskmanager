@@ -264,7 +264,7 @@ int main (int argc, char *argv[])
 	xtm_settings_bind_xfconf (settings, channel);
 	show_hide_status_icon ();
 
-	window = xtm_process_window_new ();
+	window = g_object_ref_sink (xtm_process_window_new ());
 
 	if (!start_hidden)
 		gtk_widget_show (window);
@@ -288,6 +288,11 @@ int main (int argc, char *argv[])
 	else
 		g_warning ("Nothing to do: activate hiding to the notification area when using --start-hidden");
 
+	g_object_unref (task_manager);
+	g_object_unref (window);
+	g_object_unref (settings);
+	if (status_icon_or_null != NULL)
+		g_object_unref (status_icon_or_null);
 	xfconf_shutdown();
 
 	return 0;

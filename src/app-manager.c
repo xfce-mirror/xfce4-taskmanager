@@ -92,6 +92,8 @@ static void
 xtm_app_manager_finalize (GObject *object)
 {
 	g_array_free (XTM_APP_MANAGER (object)->apps, TRUE);
+
+	G_OBJECT_CLASS (xtm_app_manager_parent_class)->finalize (object);
 }
 
 static GPid

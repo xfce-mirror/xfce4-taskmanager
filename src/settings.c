@@ -74,6 +74,7 @@ G_DEFINE_TYPE (XtmSettings, xtm_settings, G_TYPE_OBJECT)
 
 static void	xtm_settings_get_property			(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 static void	xtm_settings_set_property			(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
+static void	xtm_settings_finalize			(GObject *object);
 
 static void
 xtm_settings_class_init (XtmSettingsClass *klass)
@@ -82,6 +83,7 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 	xtm_settings_parent_class = g_type_class_peek_parent (klass);
 	class->get_property = xtm_settings_get_property;
 	class->set_property = xtm_settings_set_property;
+	class->finalize = xtm_settings_finalize;
 	g_object_class_install_property (class, PROP_SHOW_ALL_PROCESSES,
 		g_param_spec_boolean ("show-all-processes", "ShowAllProcesses", "Show all processes", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SHOW_LEGEND,
@@ -153,6 +155,20 @@ xtm_settings_set_property (GObject *object, guint property_id, const GValue *val
 	{
 		g_value_copy (value, dest);
 	}
+}
+
+static void
+xtm_settings_finalize (GObject *object)
+{
+	XtmSettings *settings = XTM_SETTINGS (object);
+
+	for (gint i = 0; i < N_PROPS; i++)
+	{
+		if (G_IS_VALUE (settings->values + i))
+			g_value_unset (settings->values + i);
+	}
+
+	G_OBJECT_CLASS (xtm_settings_parent_class)->finalize (object);
 }
 
 void

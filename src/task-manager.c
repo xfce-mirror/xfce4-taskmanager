@@ -119,6 +119,8 @@ xtm_task_manager_finalize (GObject *object)
 	}
 #endif
 	g_object_unref (settings);
+
+	G_OBJECT_CLASS (xtm_task_manager_parent_class)->finalize (object);
 }
 
 static void
