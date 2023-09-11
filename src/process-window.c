@@ -299,6 +299,13 @@ xtm_process_window_init (XtmProcessWindow *window)
 	if (window->width >= 1 && window->height >= 1)
 		gtk_window_set_default_size (GTK_WINDOW (window->window), window->width, window->height);
 
+	/* Center the window on screen */
+	gtk_window_set_position (GTK_WINDOW (window->window), GTK_WIN_POS_CENTER);
+
+	/* If the window was closed maximized, reopen it maximized again */
+	if (xfconf_channel_get_bool (window->channel, SETTING_WINDOW_MAXIMIZED, FALSE))
+		gtk_window_maximize (GTK_WINDOW (window->window));
+
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
 	window->handler = g_signal_connect (window->window, "size-allocate", G_CALLBACK (xtm_process_window_size_allocate), window);
 	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
@@ -401,9 +408,16 @@ xtm_process_window_finalize (GObject *object)
 static void
 emit_destroy_signal (XtmProcessWindow *window)
 {
-	/* Store window size */
-	xfconf_channel_set_int (window->channel, SETTING_WINDOW_WIDTH, window->width);
-	xfconf_channel_set_int (window->channel, SETTING_WINDOW_HEIGHT, window->height);
+	gboolean maximized = gtk_window_is_maximized (GTK_WINDOW(window->window));
+	/* Store whether window is maximized */
+	xfconf_channel_set_bool (window->channel, SETTING_WINDOW_MAXIMIZED, maximized);
+
+	if (!maximized)
+	{
+		/* Store window size */
+		xfconf_channel_set_int (window->channel, SETTING_WINDOW_WIDTH, window->width);
+		xfconf_channel_set_int (window->channel, SETTING_WINDOW_HEIGHT, window->height);
+	}
 
 	g_signal_emit_by_name (window, "destroy", G_TYPE_NONE);
 }
