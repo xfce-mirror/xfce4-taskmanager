@@ -299,9 +299,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 	if (window->width >= 1 && window->height >= 1)
 		gtk_window_set_default_size (GTK_WINDOW (window->window), window->width, window->height);
 
-	/* Center the window on screen */
-	gtk_window_set_position (GTK_WINDOW (window->window), GTK_WIN_POS_CENTER);
-
 	/* If the window was closed maximized, reopen it maximized again */
 	if (xfconf_channel_get_bool (window->channel, SETTING_WINDOW_MAXIMIZED, FALSE))
 		gtk_window_maximize (GTK_WINDOW (window->window));
