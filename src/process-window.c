@@ -236,6 +236,17 @@ show_settings_dialog (GtkButton *button, gpointer user_data)
 	g_signal_handler_unblock (G_OBJECT (window->window), window->handler);
 }
 
+static GtkWidget*
+xtm_process_window_add_gtk_header_bar (GtkWindow *window)
+{
+	GtkWidget *gtk_header_bar;
+	gtk_header_bar = gtk_header_bar_new ();
+	gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (gtk_header_bar), TRUE);
+	gtk_window_set_titlebar (window, gtk_header_bar);
+	gtk_widget_show (gtk_header_bar);
+	return gtk_header_bar;
+}
+
 static void
 xtm_process_window_stick_view (GtkAdjustment *adjustment, XtmProcessWindow *window)
 {
@@ -285,7 +296,9 @@ xtm_process_window_unstick_view_cursor (GtkTreeView *tree_view, XtmProcessWindow
 static void
 xtm_process_window_init (XtmProcessWindow *window)
 {
-	GtkWidget *button;
+	GtkWidget   *button;
+	gboolean     use_gtk_header_bar;
+	GtkSettings *gtk_settings;
 
 	window->settings = xtm_settings_get_default ();
 	window->channel = xfconf_channel_new (CHANNEL);
@@ -315,6 +328,15 @@ xtm_process_window_init (XtmProcessWindow *window)
 	else
 #endif
 		gtk_widget_hide (button);
+
+	gtk_settings = gtk_settings_get_default ();
+	if (gtk_settings != NULL)
+	{
+		g_object_get (gtk_settings, "gtk-dialogs-use-header", &use_gtk_header_bar, NULL);
+		if (use_gtk_header_bar)
+			xtm_process_window_add_gtk_header_bar (GTK_WINDOW (window->window));
+		g_object_unref (gtk_settings);
+	}
 
 	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
 	{
