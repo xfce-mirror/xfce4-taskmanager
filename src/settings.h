@@ -26,6 +26,7 @@
 /* general settings */
 #define SETTING_SHOW_STATUS_ICON         "/show-status-icon"
 #define SETTING_PROMPT_TERMINATE_TASK    "/prompt-terminate-task"
+#define SETTING_WINDOW_MAXIMIZED         "/window-maximized"
 #define SETTING_WINDOW_WIDTH             "/window-width"
 #define SETTING_WINDOW_HEIGHT            "/window-height"
 
