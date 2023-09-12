@@ -409,6 +409,7 @@ static void
 emit_destroy_signal (XtmProcessWindow *window)
 {
 	gboolean maximized = gtk_window_is_maximized (GTK_WINDOW (window->window));
+
 	/* Store whether window is maximized */
 	xfconf_channel_set_bool (window->channel, SETTING_WINDOW_MAXIMIZED, maximized);
 
