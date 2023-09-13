@@ -334,16 +334,14 @@ xtm_process_window_init (XtmProcessWindow *window)
 			G_OBJECT (window->vpaned), "position");
 
 		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "graph-cpu"));
-		window->cpu_monitor = xtm_process_monitor_new ();
+		window->cpu_monitor = xtm_process_monitor_new (XTM_PM_TYPE_CPU);
 		xtm_process_monitor_set_step_size (XTM_PROCESS_MONITOR (window->cpu_monitor), refresh_rate / 1000.0f);
-		xtm_process_monitor_set_type (XTM_PROCESS_MONITOR (window->cpu_monitor), 0);
 		gtk_widget_show (window->cpu_monitor);
 		gtk_container_add (GTK_CONTAINER (toolitem), window->cpu_monitor);
 
 		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "graph-mem"));
-		window->mem_monitor = xtm_process_monitor_new ();
+		window->mem_monitor = xtm_process_monitor_new (XTM_PM_TYPE_MEM);
 		xtm_process_monitor_set_step_size (XTM_PROCESS_MONITOR (window->mem_monitor), refresh_rate / 1000.0f);
-		xtm_process_monitor_set_type (XTM_PROCESS_MONITOR (window->mem_monitor), 1);
 		gtk_widget_show (window->mem_monitor);
 		gtk_container_add (GTK_CONTAINER (toolitem), window->mem_monitor);
 
