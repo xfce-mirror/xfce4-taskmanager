@@ -473,73 +473,177 @@ static GtkWidget *
 build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 {
 	GtkWidget *menu, *menu_priority, *mi, *accel_label;
+	GtkWidget *box, *icon, *label;
 
 	menu = gtk_menu_new ();
-
-	if (!pid_is_sleeping (pid))
-	{
-		mi = gtk_menu_item_new_with_label (_("Stop"));
-		g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-		gtk_container_add (GTK_CONTAINER (menu), mi);
-		g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_STOP));
-	}
-	else
-	{
-		mi = gtk_menu_item_new_with_label (_("Continue"));
-		g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-		gtk_container_add (GTK_CONTAINER (menu), mi);
-		g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_CONTINUE));
-	}
-
-	mi = gtk_menu_item_new_with_label (_("Terminate"));
-	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-	g_object_set_data (G_OBJECT (mi), "treeview", treeview);
-	gtk_container_add (GTK_CONTAINER (menu), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_TERMINATE));
-
-	mi = gtk_menu_item_new_with_label (_("Kill"));
-	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_send_signal), GINT_TO_POINTER (XTM_SIGNAL_KILL));
+	gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
 
 	menu_priority = gtk_menu_new ();
 
-	mi = gtk_menu_item_new_with_label (_("Very low"));
-	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_VERY_LOW));
+	/* Creating the priority submenu */
 
-	mi = gtk_menu_item_new_with_label (_("Low"));
-	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_LOW));
+	/* The enum version of the menu item text */
+	enum {VERY_HIGH, HIGH, NORMAL, LOW, VERY_LOW};
 
-	mi = gtk_menu_item_new_with_label (_("Normal"));
-	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_NORMAL));
+	/* Priority label text */
+	const gchar *const PRIO_CAPTIONS[] =
+	{
+		[VERY_HIGH]	= "Very high",
+		[HIGH]			= "High",
+		[NORMAL]		= "Normal",
+		[LOW]				= "Low",
+		[VERY_LOW]	= "Very low",
+	};
+	/* The priority for the process to be set */
+	const gint PRIORITIES[] =
+	{
+		[VERY_HIGH]	= XTM_PRIORITY_VERY_HIGH,
+		[HIGH]			= XTM_PRIORITY_HIGH,
+		[NORMAL]		= XTM_PRIORITY_NORMAL,
+		[LOW]				= XTM_PRIORITY_LOW,
+		[VERY_LOW]	= XTM_PRIORITY_VERY_LOW,
+	};
 
-	mi = gtk_menu_item_new_with_label (_("High"));
-	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_HIGH));
+	for (guint8 i = 0; i != sizeof PRIO_CAPTIONS / sizeof PRIO_CAPTIONS[0]; ++i)
+	{
+		mi = gtk_menu_item_new_with_label (_(PRIO_CAPTIONS[i]));
+		g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
+		g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (PRIORITIES[i]));
+		gtk_container_add (GTK_CONTAINER (menu_priority), mi);
+	}
 
-	mi = gtk_menu_item_new_with_label (_("Very high"));
-	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu_priority), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_set_priority), GINT_TO_POINTER (XTM_PRIORITY_VERY_HIGH));
+	gboolean _pid_is_sleeping_ = pid_is_sleeping (pid);
 
-	mi = gtk_menu_item_new_with_label (_("Priority"));
-	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), menu_priority);
-	gtk_container_add (GTK_CONTAINER (menu), mi);
+	/* Creating the main menu */
 
-	mi = gtk_menu_item_new_with_label (_("Copy command line"));
-	g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
-	gtk_container_add (GTK_CONTAINER (menu), mi);
-	g_signal_connect (mi, "activate", G_CALLBACK (cb_copy_command_line), treeview);
-	/* Refer to treeview_key_pressed to see how the Ctrl-c press is handled */
-	accel_label = gtk_bin_get_child (GTK_BIN (mi));
-	gtk_accel_label_set_accel(GTK_ACCEL_LABEL (accel_label), GDK_KEY_c, GDK_CONTROL_MASK);
+	/* The enum version of the menu item text */
+	enum {STOP, CONTINUE, TERMINATE, KILL, PRIORITY, COPY_COMMAND_LINE};
+
+	/* Menu item icon name */
+	const gchar *const ICONS[] =
+	{
+		[STOP]							= "dialog-error-symbolic",
+		[CONTINUE]					= "",
+		[TERMINATE]					= "application-exit-symbolic",
+		[KILL]							= "edit-delete-symbolic",
+		[PRIORITY]					= "",
+		[COPY_COMMAND_LINE]	= "utilities-terminal-symbolic",
+	};
+	/* Menu item text */
+	const gchar *const CAPTIONS[] =
+	{
+		[STOP]							= "Stop",
+		[CONTINUE]					= "Continue",
+		[TERMINATE]					= "Terminate",
+		[KILL]							= "Kill",
+		[PRIORITY]					= "Priority",
+		[COPY_COMMAND_LINE]	= "Copy command line"
+	};
+	/* Whether the menu item should be visible/created */
+	const gboolean VISIBLE[] =
+	{
+		[STOP]							= !_pid_is_sleeping_,
+		[CONTINUE]					= _pid_is_sleeping_,
+		[TERMINATE]					= TRUE,
+		[KILL]							= TRUE,
+		[PRIORITY]					= TRUE,
+		[COPY_COMMAND_LINE]	= TRUE,
+	};
+	/* The accelerator key to use for the menu item */
+	const gint ACCEL_KEY[] =
+	{
+		[STOP]							= 0, // None
+		[CONTINUE]					= 0, // None
+		[TERMINATE]					= 0, // None
+		[KILL]							= 0, // None
+		[PRIORITY]					= 0, // None
+		[COPY_COMMAND_LINE]	= GDK_KEY_c,
+	};
+	/* The accelerator modifier keys to use for the menu item */
+	const GdkModifierType ACCEL_MODIFIER_KEYS[] =
+	{
+		[STOP]							= 0, // None
+		[CONTINUE]					= 0, // None
+		[TERMINATE]					= 0, // None
+		[KILL]							= 0, // None
+		[PRIORITY]					= 0, // None
+		[COPY_COMMAND_LINE]	= GDK_CONTROL_MASK,
+	};
+	const GtkWidget *const SUBMENU[] =
+	{
+		[STOP]							= NULL, // None
+		[CONTINUE]					= NULL, // None
+		[TERMINATE]					= NULL, // None
+		[KILL]							= NULL, // None
+		[PRIORITY]					= menu_priority,
+		[COPY_COMMAND_LINE]	= NULL, // None
+	};
+	/* The callback function to execute on menu item click */
+	const GCallback CALLBACK[] =
+	{
+		[STOP]							= G_CALLBACK (cb_send_signal),
+		[CONTINUE]					= G_CALLBACK (cb_send_signal),
+		[TERMINATE]					= G_CALLBACK (cb_send_signal),
+		[KILL]							= G_CALLBACK (cb_send_signal),
+		[PRIORITY]					= NULL, // None
+		[COPY_COMMAND_LINE]	= G_CALLBACK (cb_copy_command_line),
+	};
+	/* Data to pass to the callback function */
+	const gpointer CALLBACK_USER_DATA[] =
+	{
+		[STOP]							= GINT_TO_POINTER (XTM_SIGNAL_STOP),
+		[CONTINUE]					= GINT_TO_POINTER (XTM_SIGNAL_CONTINUE),
+		[TERMINATE]					= GINT_TO_POINTER (XTM_SIGNAL_TERMINATE),
+		[KILL]							= GINT_TO_POINTER (XTM_SIGNAL_KILL),
+		[PRIORITY]					= NULL, // None
+		[COPY_COMMAND_LINE]	= treeview,
+	};
+
+	GtkAccelGroup *accel_group = NULL;
+
+	for (guint8 i = 0; i != sizeof CAPTIONS / sizeof CAPTIONS[0]; ++i)
+	{
+		if (!VISIBLE[i])
+			continue;
+
+		box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
+		icon = gtk_image_new_from_icon_name (ICONS[i], GTK_ICON_SIZE_MENU);
+		gtk_box_pack_start (GTK_BOX (box), icon, FALSE, FALSE, 0);
+		mi = gtk_menu_item_new ();
+
+		if (ACCEL_KEY[i] != 0)
+		{
+			label = gtk_accel_label_new (_(CAPTIONS[i]));
+
+			if (!accel_group)
+				accel_group = gtk_accel_group_new ();
+
+			gtk_widget_add_accelerator (mi, "activate", accel_group, ACCEL_KEY[i], ACCEL_MODIFIER_KEYS[i], GTK_ACCEL_VISIBLE);
+			gtk_accel_label_set_accel_widget (GTK_ACCEL_LABEL (label), mi);
+
+			/* This ensures, there is some space between the label text and the accelerator keys shown */
+			gtk_label_set_width_chars (GTK_LABEL (label), g_utf8_strlen (gtk_label_get_label (GTK_LABEL (label)), -1) + 1);
+		}
+		else
+		{
+			label = gtk_label_new (_(CAPTIONS[i]));
+		}
+
+		if (SUBMENU[i])
+			gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), menu_priority);
+
+		if (CALLBACK[i])
+			g_signal_connect (mi, "activate", CALLBACK[i], CALLBACK_USER_DATA[i]);
+
+		if (CALLBACK_USER_DATA[i] != NULL)
+			g_object_set_data (G_OBJECT (mi), "pid", GINT_TO_POINTER (pid));
+
+		gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+		gtk_box_pack_end (GTK_BOX (box), label, TRUE, TRUE, 0);
+
+		gtk_container_add (GTK_CONTAINER (mi), box);
+		gtk_container_add (GTK_CONTAINER (menu), mi);
+	}
 
 	gtk_widget_show_all (menu);
 
