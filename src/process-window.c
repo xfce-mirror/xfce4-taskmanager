@@ -385,6 +385,44 @@ xtm_process_window_init (XtmProcessWindow *window)
 	g_signal_connect (G_OBJECT(window->filter_entry), "changed", G_CALLBACK(filter_entry_keyrelease_handler), window->treeview);
 	gtk_widget_set_tooltip_text (window->filter_entry, _("Filter on process name"));
 	gtk_widget_grab_focus (window->filter_entry);
+
+
+
+	const gchar *const CAPTIONS[] = {"Start", "Change", "Termination"};
+	const gchar STYLES[] =
+		".a,.b,.c{border-radius:30%}"
+		".a{background-color:#aed581}"
+		".b{background-color:#fff176}"
+		".c{background-color:#e57373}";
+	const gchar *const CLASS[] = {"a", "b", "c"};
+
+	GtkWidget *label;
+	GtkWidget *hbox_legend;
+	GdkDisplay* display;
+	GdkScreen* screen;
+	GtkCssProvider *provider;
+	provider = gtk_css_provider_new ();
+	hbox_legend = GTK_WIDGET (gtk_builder_get_object (window->builder, "legend"));
+	display = gdk_display_get_default ();
+	screen = gdk_display_get_default_screen (display);
+	gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	gtk_css_provider_load_from_data (provider, STYLES, sizeof STYLES - 1, NULL);
+
+	for (guint8 i = 0; i != sizeof CAPTIONS / sizeof CAPTIONS[0]; ++i)
+	{
+		label = gtk_label_new (NULL);
+		gtk_widget_set_margin_start (GTK_WIDGET (label), 30);
+		gtk_widget_set_margin_end (GTK_WIDGET (label), 6);
+		gtk_widget_set_size_request (label, 16, 16);
+		gtk_style_context_add_class (gtk_widget_get_style_context (label), CLASS[i]);
+		gtk_box_pack_start (GTK_BOX (hbox_legend), label, FALSE, FALSE, 0);
+
+		label = gtk_label_new (_(CAPTIONS[i]));
+		gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+		gtk_box_pack_start (GTK_BOX (hbox_legend), label, FALSE, FALSE, 0);
+	}
+
+	gtk_widget_show_all (hbox_legend);
 }
 
 static void
