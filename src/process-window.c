@@ -397,7 +397,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	const gchar *const CLASS[] = {"a", "b", "c"};
 
 	GtkWidget *label;
-	GtkWidget *hbox_legend;
+	GtkWidget *hbox, *hbox_legend;
 	GdkDisplay* display;
 	GdkScreen* screen;
 	GtkCssProvider *provider;
@@ -410,16 +410,18 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	for (guint8 i = 0; i != sizeof CAPTIONS / sizeof CAPTIONS[0]; ++i)
 	{
+		hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
+
 		label = gtk_label_new (NULL);
-		gtk_widget_set_margin_start (GTK_WIDGET (label), 30);
-		gtk_widget_set_margin_end (GTK_WIDGET (label), 6);
 		gtk_widget_set_size_request (label, 16, 16);
 		gtk_style_context_add_class (gtk_widget_get_style_context (label), CLASS[i]);
-		gtk_box_pack_start (GTK_BOX (hbox_legend), label, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 		label = gtk_label_new (CAPTIONS[i]);
 		gtk_label_set_xalign (GTK_LABEL (label), 0.0);
-		gtk_box_pack_start (GTK_BOX (hbox_legend), label, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+		gtk_box_pack_start (GTK_BOX (hbox_legend), hbox, FALSE, FALSE, 0);
 	}
 
 	gtk_widget_show_all (hbox_legend);
