@@ -407,7 +407,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	gtk_css_provider_load_from_data (provider, STYLES, sizeof STYLES - 1, NULL);
 	g_object_unref (provider);
 
-	for (guint8 i = 0; i != sizeof CAPTIONS / sizeof CAPTIONS[0]; ++i)
+	for (guint i = 0; i < G_N_ELEMENTS (CAPTIONS); ++i)
 	{
 		hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
 
