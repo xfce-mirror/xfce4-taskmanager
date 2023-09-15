@@ -390,7 +390,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	const gchar *const CAPTIONS[] = { _("Starting task"), _("Changing task"), _("Terminating task") };
 	const gchar STYLES[] =
-		".a,.b,.c{border-radius:30%}"
+		".a,.b,.c{border-radius:50%}"
 		".a{background-color:#aed581}"
 		".b{background-color:#fff176}"
 		".c{background-color:#e57373}";
