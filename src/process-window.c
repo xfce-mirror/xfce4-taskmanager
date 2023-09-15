@@ -388,7 +388,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 
 
-	const gchar *const CAPTIONS[] = {"Start", "Change", "Termination"};
+	const gchar *const CAPTIONS[] = { _("Starting task"), _("Changing task"), _("Terminating task") };
 	const gchar STYLES[] =
 		".a,.b,.c{border-radius:30%}"
 		".a{background-color:#aed581}"
@@ -417,7 +417,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_style_context_add_class (gtk_widget_get_style_context (label), CLASS[i]);
 		gtk_box_pack_start (GTK_BOX (hbox_legend), label, FALSE, FALSE, 0);
 
-		label = gtk_label_new (_(CAPTIONS[i]));
+		label = gtk_label_new (CAPTIONS[i]);
 		gtk_label_set_xalign (GTK_LABEL (label), 0.0);
 		gtk_box_pack_start (GTK_BOX (hbox_legend), label, FALSE, FALSE, 0);
 	}
