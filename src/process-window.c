@@ -398,14 +398,12 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	GtkWidget *label;
 	GtkWidget *hbox, *hbox_legend;
-	GdkDisplay* display;
-	GdkScreen* screen;
 	GtkCssProvider *provider;
 	provider = gtk_css_provider_new ();
 	hbox_legend = GTK_WIDGET (gtk_builder_get_object (window->builder, "legend"));
-	display = gdk_display_get_default ();
-	screen = gdk_display_get_default_screen (display);
-	gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
+		GTK_STYLE_PROVIDER (provider),
+		GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 	gtk_css_provider_load_from_data (provider, STYLES, sizeof STYLES - 1, NULL);
 
 	for (guint8 i = 0; i != sizeof CAPTIONS / sizeof CAPTIONS[0]; ++i)
