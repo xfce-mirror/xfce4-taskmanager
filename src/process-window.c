@@ -405,6 +405,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 		GTK_STYLE_PROVIDER (provider),
 		GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 	gtk_css_provider_load_from_data (provider, STYLES, sizeof STYLES - 1, NULL);
+	g_object_unref (provider);
 
 	for (guint8 i = 0; i != sizeof CAPTIONS / sizeof CAPTIONS[0]; ++i)
 	{
