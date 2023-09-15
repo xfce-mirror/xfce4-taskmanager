@@ -395,12 +395,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 		".b{background-color:#fff176}"
 		".c{background-color:#e57373}";
 	const gchar *const CLASS[] = {"a", "b", "c"};
+	GtkWidget *hbox_legend = GTK_WIDGET (gtk_builder_get_object (window->builder, "legend"));
+	GtkCssProvider *provider = gtk_css_provider_new ();
 
-	GtkWidget *label;
-	GtkWidget *hbox, *hbox_legend;
-	GtkCssProvider *provider;
-	provider = gtk_css_provider_new ();
-	hbox_legend = GTK_WIDGET (gtk_builder_get_object (window->builder, "legend"));
 	gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
 		GTK_STYLE_PROVIDER (provider),
 		GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -409,9 +406,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	for (guint i = 0; i < G_N_ELEMENTS (CAPTIONS); ++i)
 	{
-		hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
+		GtkWidget *hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
 
-		label = gtk_label_new (NULL);
+		GtkWidget *label = gtk_label_new (NULL);
 		gtk_widget_set_size_request (label, 16, 16);
 		gtk_style_context_add_class (gtk_widget_get_style_context (label), CLASS[i]);
 		gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
