@@ -18,6 +18,14 @@
 #include <gtk/gtk.h>
 
 /**
+ * Legend colors
+ */
+#define XTM_LEGEND_COLOR_NONE "#000000"
+#define XTM_LEGEND_COLOR_STARTING "#aed581"
+#define XTM_LEGEND_COLOR_CHANGING "#fff176"
+#define XTM_LEGEND_COLOR_TERMINATING "#e57373"
+
+/**
  * Task struct used as elements of a task list GArray.
  */
 

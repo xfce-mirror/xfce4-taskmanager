@@ -220,8 +220,8 @@ model_mark_tree_iter_as_removed (GtkTreeModel *model, GtkTreeIter *iter, glong t
 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
 		XTM_PTV_COLUMN_CPU, 0.0,
 		XTM_PTV_COLUMN_CPU_STR, "-",
-		XTM_PTV_COLUMN_BACKGROUND, "#e57373",
-		XTM_PTV_COLUMN_FOREGROUND, "#000000",
+		XTM_PTV_COLUMN_BACKGROUND, XTM_LEGEND_COLOR_TERMINATING,
+		XTM_PTV_COLUMN_FOREGROUND, XTM_LEGEND_COLOR_NONE,
 		XTM_PTV_COLUMN_TIMESTAMP, timestamp,
 		-1);
 }
@@ -287,16 +287,16 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 		/* Set yellow color for changing state */
 		g_free (background);
 		g_free (foreground);
-		background = g_strdup ("#fff176");
-		foreground = g_strdup ("#000000");
+		background = g_strdup (XTM_LEGEND_COLOR_CHANGING);
+		foreground = g_strdup (XTM_LEGEND_COLOR_NONE);
 		old_timestamp = timestamp - TIMESTAMP_DELTA + 3;
 	}
 
 	if (timestamp != 0 && (timestamp - old_timestamp) <= TIMESTAMP_DELTA)
 	{
 		/* Set green color for started task */
-		background = (background == NULL) ? g_strdup ("#aed581") : background;
-		foreground = (foreground == NULL) ? g_strdup ("#000000") : foreground;
+		background = (background == NULL) ? g_strdup (XTM_LEGEND_COLOR_STARTING) : background;
+		foreground = (foreground == NULL) ? g_strdup (XTM_LEGEND_COLOR_NONE) : foreground;
 	}
 	else
 	{
