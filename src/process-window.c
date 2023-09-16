@@ -390,9 +390,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 		const gchar *const captions[] = { _("Starting task"), _("Changing task"), _("Terminating task") };
 		const gchar *styles =
 			".a,.b,.c{border-radius:50%}"
-			".a{background-color:#aed581}"
-			".b{background-color:#fff176}"
-			".c{background-color:#e57373}";
+			".a{background-color:" XTM_LEGEND_COLOR_STARTING "}"
+			".b{background-color:" XTM_LEGEND_COLOR_CHANGING "}"
+			".c{background-color:" XTM_LEGEND_COLOR_TERMINATING "}";
 		const gchar *const classes[] = { "a", "b", "c" };
 		GtkWidget *hbox_legend = GTK_WIDGET (gtk_builder_get_object (window->builder, "legend"));
 		GtkCssProvider *provider = gtk_css_provider_new ();
