@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-20 00:48+0200\n"
+"POT-Creation-Date: 2023-09-17 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2015,2017,2019-2022\n"
 "Language-Team: Kazakh (http://app.transifex.com/xfce/xfce-apps/language/kk/)\n"
@@ -18,10 +18,10 @@ msgstr ""
 "Language: kk\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:220
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:143
+#: ../src/settings-dialog.c:146
 msgid "Task Manager"
 msgstr "Үрдістерді басқарушысы"
 
@@ -33,7 +33,7 @@ msgstr "Жүйелік ресурстарды бақылауға арналға�
 msgid "Quit"
 msgstr "Шығу"
 
-#: ../src/main.c:159
+#: ../src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -42,30 +42,30 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Үрдістер:</b> %u\n<b>Процессор:</b> %.0f%%\n<b>Жады:</b> %s\n<b>Своп:</b> %s"
 
-#: ../src/main.c:238
+#: ../src/main.c:253
 msgid "Xfce Notify Daemon"
 msgstr "Xfce хабарламалар қызметі"
 
-#: ../src/main.c:240
+#: ../src/main.c:255
 msgid "Settings daemon is unavailable"
 msgstr "Баптаулар қызметі қолжетерсіз"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:505
+#: ../src/process-statusbar.c:155 ../src/process-window.c:551
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:509
+#: ../src/process-statusbar.c:163 ../src/process-window.c:555
 #, c-format
 msgid "Memory: %s"
 msgstr "Жады: %s"
 
-#: ../src/process-statusbar.c:159
+#: ../src/process-statusbar.c:171
 #, c-format
 msgid "Swap: %s"
 msgstr "Своп: %s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:186
 #, c-format
 msgid "Processes: %d"
 msgstr "Үрдістер: %d"
@@ -196,35 +196,47 @@ msgstr "Приоритеті"
 msgid "Copy command line"
 msgstr "Командалық жолды көшіріп алу"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 msgid "Bad Window"
 msgstr "Жаман терезе"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Терезе id 0x%lx жоқ болып тұр!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty сәтсіз аяқталды"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty сәтсіз аяқталды!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 msgid "No PID found"
 msgstr "PID табылмады"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "0x%lx терезесі үшін PID табылмады."
 
-#: ../src/process-window.c:377
+#: ../src/process-window.c:386
 msgid "Filter on process name"
 msgstr "Үрдіс атымен сүзу"
+
+#: ../src/process-window.c:390
+msgid "Starting task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Changing task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Terminating task"
+msgstr ""
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
@@ -238,26 +250,11 @@ msgstr "Ашық терезені оған шерту арқылы анықта�
 msgid "You are using the root account, you may harm your system."
 msgstr "Сіз root тіркелгісін қолданудасыз, жүйеңізге зақым келтіруге болады."
 
-#: ../src/process-window.ui.h:5
-msgid ""
-"<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> Процесті жөнелтуде"
-
-#: ../src/process-window.ui.h:6
-msgid ""
-"<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr "<span foreground='#000000' background='#fff176'>    </span> Процесті өзгертуде"
-
-#: ../src/process-window.ui.h:7
-msgid ""
-"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#e57373'>    </span> Процесті аяқтауда"
-
-#: ../src/settings-dialog.c:147
+#: ../src/settings-dialog.c:150
 msgid "Easy to use task manager"
 msgstr "Жүйе үрдістерін ыңғайлы басқару"
 
-#: ../src/settings-dialog.c:150
+#: ../src/settings-dialog.c:153
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com> 2010"
 
@@ -337,7 +334,7 @@ msgstr "Резиденттік байттар"
 msgid "Columns"
 msgstr "Бағандар"
 
-#: ../src/task-manager.c:254
+#: ../src/task-manager.c:253
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
