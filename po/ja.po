@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-20 00:48+0200\n"
+"POT-Creation-Date: 2023-09-17 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2020,2022\n"
 "Language-Team: Japanese (http://app.transifex.com/xfce/xfce-apps/language/ja/)\n"
@@ -20,10 +20,10 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:220
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:143
+#: ../src/settings-dialog.c:146
 msgid "Task Manager"
 msgstr "タスクマネージャー"
 
@@ -35,7 +35,7 @@ msgstr "システムリソースを監視するための使いやすいアプリ
 msgid "Quit"
 msgstr "終了"
 
-#: ../src/main.c:159
+#: ../src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -44,30 +44,30 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>プロセス数:</b> %u\n<b>CPU:</b> %.0f%%\n<b>メモリ:</b> %s\n<b>スワップ:</b> %s"
 
-#: ../src/main.c:238
+#: ../src/main.c:253
 msgid "Xfce Notify Daemon"
 msgstr "Xfce 通知デーモン"
 
-#: ../src/main.c:240
+#: ../src/main.c:255
 msgid "Settings daemon is unavailable"
 msgstr "設定デーモンは使用できません"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:505
+#: ../src/process-statusbar.c:155 ../src/process-window.c:551
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:509
+#: ../src/process-statusbar.c:163 ../src/process-window.c:555
 #, c-format
 msgid "Memory: %s"
 msgstr "メモリ: %s"
 
-#: ../src/process-statusbar.c:159
+#: ../src/process-statusbar.c:171
 #, c-format
 msgid "Swap: %s"
 msgstr "スワップ: %s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:186
 #, c-format
 msgid "Processes: %d"
 msgstr "プロセス: %d"
@@ -198,35 +198,47 @@ msgstr "優先度"
 msgid "Copy command line"
 msgstr "コマンドラインをコピー"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 msgid "Bad Window"
 msgstr "不正なウィンドウ"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "ウィンドウ ID 0x%lx が存在しません!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty 失敗"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty が失敗しました！"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 msgid "No PID found"
 msgstr "PID が見つかりません"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "ウィンドウ 0x%lx の PID が見つかりません"
 
-#: ../src/process-window.c:377
+#: ../src/process-window.c:386
 msgid "Filter on process name"
 msgstr "プロセス名でフィルターをかけます"
+
+#: ../src/process-window.c:390
+msgid "Starting task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Changing task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Terminating task"
+msgstr ""
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
@@ -240,26 +252,11 @@ msgstr "開いているウィンドウをクリックして特定します。"
 msgid "You are using the root account, you may harm your system."
 msgstr "あなたは root アカウントを使用しており、システムに悪影響を与えるかもしれません。"
 
-#: ../src/process-window.ui.h:5
-msgid ""
-"<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> 起動中のタスク"
-
-#: ../src/process-window.ui.h:6
-msgid ""
-"<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr "<span foreground='#000000' background='#fff176'>    </span> 切り替え中のタスク"
-
-#: ../src/process-window.ui.h:7
-msgid ""
-"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#e57373'>    </span> 終了中のタスク"
-
-#: ../src/settings-dialog.c:147
+#: ../src/settings-dialog.c:150
 msgid "Easy to use task manager"
 msgstr "使いやすいタスクマネージャーです"
 
-#: ../src/settings-dialog.c:150
+#: ../src/settings-dialog.c:153
 msgid "translator-credits"
 msgstr "Daichi Kawahata\nNobuhiro Iwamatsu\nMasato Hashimoto"
 
@@ -339,7 +336,7 @@ msgstr "常駐バイト"
 msgid "Columns"
 msgstr "カラム"
 
-#: ../src/task-manager.c:254
+#: ../src/task-manager.c:253
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
