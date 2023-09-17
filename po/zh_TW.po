@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-20 00:48+0200\n"
+"POT-Creation-Date: 2023-09-17 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2020-2022\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/xfce/xfce-apps/language/zh_TW/)\n"
@@ -20,10 +20,10 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:220
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:143
+#: ../src/settings-dialog.c:146
 msgid "Task Manager"
 msgstr "工作管理員"
 
@@ -35,7 +35,7 @@ msgstr "易於使用的系統資源監視程式"
 msgid "Quit"
 msgstr "結束"
 
-#: ../src/main.c:159
+#: ../src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -44,30 +44,30 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>程序：</b> %u\n<b>CPU：</b> %.0f%%\n<b>記憶體：</b> %s\n<b>置換空間：</b> %s"
 
-#: ../src/main.c:238
+#: ../src/main.c:253
 msgid "Xfce Notify Daemon"
 msgstr "Xfce 通知幕後程式"
 
-#: ../src/main.c:240
+#: ../src/main.c:255
 msgid "Settings daemon is unavailable"
 msgstr "設定值幕後程式無法使用"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:505
+#: ../src/process-statusbar.c:155 ../src/process-window.c:551
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU：%s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:509
+#: ../src/process-statusbar.c:163 ../src/process-window.c:555
 #, c-format
 msgid "Memory: %s"
 msgstr "記憶體：%s"
 
-#: ../src/process-statusbar.c:159
+#: ../src/process-statusbar.c:171
 #, c-format
 msgid "Swap: %s"
 msgstr "置換空間：%s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:186
 #, c-format
 msgid "Processes: %d"
 msgstr "程序：%d"
@@ -198,35 +198,47 @@ msgstr "優先權"
 msgid "Copy command line"
 msgstr "複製命令列"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 msgid "Bad Window"
 msgstr "無效的視窗"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "視窗 id 0x%lx 不存在！"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty 失敗"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty 失敗！"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 msgid "No PID found"
 msgstr "找不到 PID"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "找不到視窗 0x%lx 的 PID。"
 
-#: ../src/process-window.c:377
+#: ../src/process-window.c:386
 msgid "Filter on process name"
 msgstr "行程名稱的過濾器"
+
+#: ../src/process-window.c:390
+msgid "Starting task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Changing task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Terminating task"
+msgstr ""
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
@@ -240,26 +252,11 @@ msgstr "在開啟的視窗上點擊以識別它。"
 msgid "You are using the root account, you may harm your system."
 msgstr "您正使用 root 帳號，您有可能因此損害到您的系統。"
 
-#: ../src/process-window.ui.h:5
-msgid ""
-"<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> 開始任務"
-
-#: ../src/process-window.ui.h:6
-msgid ""
-"<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr "<span foreground='#000000' background='#fff176'>    </span> 變更任務"
-
-#: ../src/process-window.ui.h:7
-msgid ""
-"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#e57373'>    </span> 結束任務"
-
-#: ../src/settings-dialog.c:147
+#: ../src/settings-dialog.c:150
 msgid "Easy to use task manager"
 msgstr "易於使用的工作管理員"
 
-#: ../src/settings-dialog.c:150
+#: ../src/settings-dialog.c:153
 msgid "translator-credits"
 msgstr "Cosmo Chene\nCheng-Chia Tseng <pswo10680@gmail.com>, 2012."
 
@@ -339,7 +336,7 @@ msgstr "常駐位元組"
 msgid "Columns"
 msgstr "欄數"
 
-#: ../src/task-manager.c:254
+#: ../src/task-manager.c:253
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
