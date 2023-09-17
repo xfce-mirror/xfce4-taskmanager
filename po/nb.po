@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-20 00:48+0200\n"
+"POT-Creation-Date: 2023-09-17 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: heskjestad <cato@heskjestad.xyz>, 2022\n"
 "Language-Team: Norwegian Bokmål (http://app.transifex.com/xfce/xfce-apps/language/nb/)\n"
@@ -24,10 +24,10 @@ msgstr ""
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:220
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:143
+#: ../src/settings-dialog.c:146
 msgid "Task Manager"
 msgstr "Oppgavebehandler"
 
@@ -39,7 +39,7 @@ msgstr "Et enkelt å bruke program som overvåker systemressurser"
 msgid "Quit"
 msgstr "Avslutt"
 
-#: ../src/main.c:159
+#: ../src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -48,30 +48,30 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Prosesser:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Minne:</b> %s\n<b>Vekselminne:</b> %s"
 
-#: ../src/main.c:238
+#: ../src/main.c:253
 msgid "Xfce Notify Daemon"
 msgstr "Xfce-varslingsnisse"
 
-#: ../src/main.c:240
+#: ../src/main.c:255
 msgid "Settings daemon is unavailable"
 msgstr "Varslingsprosess er ikke tilgjengelig"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:505
+#: ../src/process-statusbar.c:155 ../src/process-window.c:551
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:509
+#: ../src/process-statusbar.c:163 ../src/process-window.c:555
 #, c-format
 msgid "Memory: %s"
 msgstr "Minne: %s"
 
-#: ../src/process-statusbar.c:159
+#: ../src/process-statusbar.c:171
 #, c-format
 msgid "Swap: %s"
 msgstr "Vekselminne: %s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:186
 #, c-format
 msgid "Processes: %d"
 msgstr "Prosesser: %d"
@@ -202,35 +202,47 @@ msgstr "Prioritet"
 msgid "Copy command line"
 msgstr "Kopier kommandolinje"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 msgid "Bad Window"
 msgstr "Ødelagt vindu"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Vindus-ID 0x%lx finnes ikke!"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty mislyktes"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty mislyktes!"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 msgid "No PID found"
 msgstr "Fant ingen PID"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Ingen PID funnet for vinduet 0x%lx."
 
-#: ../src/process-window.c:377
+#: ../src/process-window.c:386
 msgid "Filter on process name"
 msgstr "Filtrer basert på prosessnavn"
+
+#: ../src/process-window.c:390
+msgid "Starting task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Changing task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Terminating task"
+msgstr ""
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
@@ -244,26 +256,11 @@ msgstr "Identifiser et åpent vindu ved å klikke på det."
 msgid "You are using the root account, you may harm your system."
 msgstr "Du bruker root-kontoen og har dermed tilgang til å ødelegge systemet."
 
-#: ../src/process-window.ui.h:5
-msgid ""
-"<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> Starter oppgave"
-
-#: ../src/process-window.ui.h:6
-msgid ""
-"<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr "<span foreground='#000000' background='#fff176'>    </span> Endrer oppgave"
-
-#: ../src/process-window.ui.h:7
-msgid ""
-"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#e57373'>    </span> Terminerer oppgave"
-
-#: ../src/settings-dialog.c:147
+#: ../src/settings-dialog.c:150
 msgid "Easy to use task manager"
 msgstr "Lett å bruke oppgavebehandler"
 
-#: ../src/settings-dialog.c:150
+#: ../src/settings-dialog.c:153
 msgid "translator-credits"
 msgstr "haarek - Harald <https://www.transifex.com/accounts/profile/haarek/>\nkingu - Allan Nordhøy <https://www.transifex.com/accounts/profile/kingu/>\npapparonny - Ronny K. M. Olufsen <https://www.transifex.com/accounts/profile/papparonny/>\nTerje Uriansrud <terje@uriansrud.net>"
 
@@ -343,7 +340,7 @@ msgstr "Tilstedeværende bytes"
 msgid "Columns"
 msgstr "Kolonner"
 
-#: ../src/task-manager.c:254
+#: ../src/task-manager.c:253
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
