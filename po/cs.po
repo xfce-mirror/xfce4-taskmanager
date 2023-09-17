@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-20 00:48+0200\n"
+"POT-Creation-Date: 2023-09-17 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2006,2014,2017,2019-2021\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce-apps/language/cs/)\n"
@@ -19,10 +19,10 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:208
+#: ../xfce4-taskmanager.desktop.in.h:1 ../src/main.c:220
 #: ../src/process-tree-view.c:375 ../src/process-tree-view.c:390
 #: ../src/process-tree-view.c:420 ../src/process-window.ui.h:1
-#: ../src/settings-dialog.c:143
+#: ../src/settings-dialog.c:146
 msgid "Task Manager"
 msgstr "Správce úloh"
 
@@ -34,7 +34,7 @@ msgstr "Snadno použitelná aplikace k monitorování systémových zdrojů"
 msgid "Quit"
 msgstr "Ukončit"
 
-#: ../src/main.c:159
+#: ../src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -43,30 +43,30 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Procesy:</b> %u\n<b>Procesor CPU:</b> %.0f%%\n<b>Paměť:</b> %s\n<b>Stránkovací soubor:</b> %s"
 
-#: ../src/main.c:238
+#: ../src/main.c:253
 msgid "Xfce Notify Daemon"
 msgstr "Služba oznamování pro prostředí Xfce"
 
-#: ../src/main.c:240
+#: ../src/main.c:255
 msgid "Settings daemon is unavailable"
 msgstr "Služba pro nastavení není dostupná"
 
-#: ../src/process-statusbar.c:139 ../src/process-window.c:505
+#: ../src/process-statusbar.c:155 ../src/process-window.c:551
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:149 ../src/process-window.c:509
+#: ../src/process-statusbar.c:163 ../src/process-window.c:555
 #, c-format
 msgid "Memory: %s"
 msgstr "Paměť: %s"
 
-#: ../src/process-statusbar.c:159
+#: ../src/process-statusbar.c:171
 #, c-format
 msgid "Swap: %s"
 msgstr "Stránkovací soubor: %s"
 
-#: ../src/process-statusbar.c:176
+#: ../src/process-statusbar.c:186
 #, c-format
 msgid "Processes: %d"
 msgstr "Procesy: %d"
@@ -197,35 +197,47 @@ msgstr "Priorita"
 msgid "Copy command line"
 msgstr ""
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 msgid "Bad Window"
 msgstr "Nesprávné okno"
 
-#: ../src/process-window.c:168
+#: ../src/process-window.c:171
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Okno s identifikátorem 0x%lx neexistuje."
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed"
 msgstr "Metoda XGetWindowProperty selhala"
 
-#: ../src/process-window.c:171
+#: ../src/process-window.c:174
 msgid "XGetWindowProperty failed!"
 msgstr "Metoda XGetWindowProperty selhala."
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 msgid "No PID found"
 msgstr "Identifikátor PID nenalezen"
 
-#: ../src/process-window.c:178
+#: ../src/process-window.c:181
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Identifikátor PID pro okno 0x%lx nenalezen."
 
-#: ../src/process-window.c:377
+#: ../src/process-window.c:386
 msgid "Filter on process name"
 msgstr "Filtrovat podle názvu procesu"
+
+#: ../src/process-window.c:390
+msgid "Starting task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Changing task"
+msgstr ""
+
+#: ../src/process-window.c:390
+msgid "Terminating task"
+msgstr ""
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
@@ -239,26 +251,11 @@ msgstr "Identifikujte okno kliknutím na něj."
 msgid "You are using the root account, you may harm your system."
 msgstr "Používáte účet správce systému (root), můžete poškodit systém."
 
-#: ../src/process-window.ui.h:5
-msgid ""
-"<span foreground='#000000' background='#aed581'>    </span> Starting task"
-msgstr "<span foreground='#000000' background='#aed581'>    </span> Spouštění úlohy"
-
-#: ../src/process-window.ui.h:6
-msgid ""
-"<span foreground='#000000' background='#fff176'>    </span> Changing task"
-msgstr "<span foreground='#000000' background='#fff176'>    </span> Změna úlohy"
-
-#: ../src/process-window.ui.h:7
-msgid ""
-"<span foreground='#000000' background='#e57373'>    </span> Terminating task"
-msgstr "<span foreground='#000000' background='#e57373'>    </span> Ukončování úlohy"
-
-#: ../src/settings-dialog.c:147
+#: ../src/settings-dialog.c:150
 msgid "Easy to use task manager"
 msgstr "Snadno použitelný správce úloh"
 
-#: ../src/settings-dialog.c:150
+#: ../src/settings-dialog.c:153
 msgid "translator-credits"
 msgstr "Michal Várady <miko.vaji@gmail.com>"
 
@@ -338,7 +335,7 @@ msgstr ""
 msgid "Columns"
 msgstr "Sloupce"
 
-#: ../src/task-manager.c:254
+#: ../src/task-manager.c:253
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
