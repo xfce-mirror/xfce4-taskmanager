@@ -229,15 +229,15 @@ msgstr "Filter on process name"
 
 #: ../src/process-window.c:390
 msgid "Starting task"
-msgstr ""
+msgstr "Starting task"
 
 #: ../src/process-window.c:390
 msgid "Changing task"
-msgstr ""
+msgstr "Changing task"
 
 #: ../src/process-window.c:390
 msgid "Terminating task"
-msgstr ""
+msgstr "Terminating task"
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
