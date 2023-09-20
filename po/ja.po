@@ -5,14 +5,14 @@
 # Translators:
 # Daichi Kawahata <daichi@xfce.org>, 2006
 # Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008,2017,2019,2021-2022
-# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2020,2022
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2020,2022-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-17 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2020,2022\n"
+"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2020,2022-2023\n"
 "Language-Team: Japanese (http://app.transifex.com/xfce/xfce-apps/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,15 +230,15 @@ msgstr "プロセス名でフィルターをかけます"
 
 #: ../src/process-window.c:390
 msgid "Starting task"
-msgstr ""
+msgstr "タスクを開始"
 
 #: ../src/process-window.c:390
 msgid "Changing task"
-msgstr ""
+msgstr "タスクを変更"
 
 #: ../src/process-window.c:390
 msgid "Terminating task"
-msgstr ""
+msgstr "タスクを終了"
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
