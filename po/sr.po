@@ -230,15 +230,15 @@ msgstr "Преглед по имену процеса"
 
 #: ../src/process-window.c:390
 msgid "Starting task"
-msgstr ""
+msgstr "Покретање задатка"
 
 #: ../src/process-window.c:390
 msgid "Changing task"
-msgstr ""
+msgstr "Промена задатка"
 
 #: ../src/process-window.c:390
 msgid "Terminating task"
-msgstr ""
+msgstr "Окончавање задатка"
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
@@ -310,7 +310,7 @@ msgstr "<b>Сучеље</b>"
 
 #: ../src/settings-dialog.ui.h:13
 msgid "Prompt for terminating tasks"
-msgstr "Питај за обуставу задатака"
+msgstr "Питај за окончавање задатака"
 
 #: ../src/settings-dialog.ui.h:14
 msgid "Keep in the notification area"
