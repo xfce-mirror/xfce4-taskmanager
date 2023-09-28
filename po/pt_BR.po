@@ -14,6 +14,7 @@
 # Pablo Galletti Vieira <pbgozer@gmail.com>, 2007
 # Rafael Fontenelle <rffontenelle@gmail.com>, 2013
 # Rafael Fontenelle <rffontenelle@gmail.com>, 2019
+# The Cat, 2023
 # The Cat, 2021
 # Wellington Almeida <wsalmeida6@gmail.com>, 2020
 msgid ""
@@ -22,7 +23,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-17 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Andre Miranda <andre@andreldm.com>, 2022\n"
+"Last-Translator: The Cat, 2023\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/xfce/xfce-apps/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -240,15 +241,15 @@ msgstr "Filtrar pelo nome do processo"
 
 #: ../src/process-window.c:390
 msgid "Starting task"
-msgstr ""
+msgstr "Iniciando tarefa"
 
 #: ../src/process-window.c:390
 msgid "Changing task"
-msgstr ""
+msgstr "Mudando tarefa"
 
 #: ../src/process-window.c:390
 msgid "Terminating task"
-msgstr ""
+msgstr "Terminando tarefa"
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
