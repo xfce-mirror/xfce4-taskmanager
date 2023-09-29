@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2022
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2023
 # José Vieira <jvieira33@sapo.pt>, 2019-2020
 # Nuno Miguel <nunis@netcabo.pt>, 2007
 # Nuno Miguel <nunomgue@gmail.com>, 2014,2017
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-17 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2022\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2023\n"
 "Language-Team: Portuguese (http://app.transifex.com/xfce/xfce-apps/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,15 +231,15 @@ msgstr "Filtar por nome de processo"
 
 #: ../src/process-window.c:390
 msgid "Starting task"
-msgstr ""
+msgstr "A iniciar tarefa"
 
 #: ../src/process-window.c:390
 msgid "Changing task"
-msgstr ""
+msgstr "A mudar tarefa"
 
 #: ../src/process-window.c:390
 msgid "Terminating task"
-msgstr ""
+msgstr "A terminar tarefa"
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
