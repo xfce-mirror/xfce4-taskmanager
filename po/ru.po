@@ -235,15 +235,15 @@ msgstr "Фильтровать по имени процесса"
 
 #: ../src/process-window.c:390
 msgid "Starting task"
-msgstr ""
+msgstr "Запускается задача"
 
 #: ../src/process-window.c:390
 msgid "Changing task"
-msgstr ""
+msgstr "Сменяется задача"
 
 #: ../src/process-window.c:390
 msgid "Terminating task"
-msgstr ""
+msgstr "Завершается задача"
 
 #: ../src/process-window.ui.h:2
 msgid "Settings"
