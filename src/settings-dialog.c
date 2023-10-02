@@ -145,7 +145,7 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 	gtk_show_about_dialog (GTK_WINDOW (dialog),
 		"program-name", _("Task Manager"),
 		"version", PACKAGE_VERSION,
-		"copyright", "Copyright \302\251 2005-2021 The Xfce development team",
+		"copyright", "Copyright \302\251 2005-2023 The Xfce development team",
 		"logo-icon-name", "org.xfce.taskmanager",
 		"comments", _("Easy to use task manager"),
 		"license", license,
