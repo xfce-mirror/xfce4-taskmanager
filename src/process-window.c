@@ -376,10 +376,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 		g_signal_connect (window->treeview, "cursor-changed", G_CALLBACK (xtm_process_window_unstick_view_cursor), window);
 	}
 
-	g_object_bind_property(window->settings, "show-legend",
-			gtk_builder_get_object(window->builder, "legend"), "visible",
-			G_BINDING_SYNC_CREATE);
-
 	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
 	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
 	g_signal_connect (G_OBJECT(window->filter_entry), "changed", G_CALLBACK(filter_entry_keyrelease_handler), window->treeview);
@@ -420,6 +416,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 		}
 
 		gtk_widget_show_all (hbox_legend);
+		g_object_bind_property (window->settings, "show-legend", hbox_legend, "visible", G_BINDING_SYNC_CREATE);
 	}
 }
 
