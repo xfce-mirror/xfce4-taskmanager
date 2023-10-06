@@ -33,7 +33,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Identify an open window by clicking on it.</property>
-                <property name="icon_name">xc_crosshair</property>
+                <property name="icon_name">xc_crosshair-symbolic</property>
               </object>
             </child>
             <child>
