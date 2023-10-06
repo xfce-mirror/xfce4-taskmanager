@@ -47,6 +47,7 @@ static App *	apps_lookup_pid					(GArray *apps, GPid pid);
 static App *	apps_lookup_app					(GArray *apps, WnckApplication *application);
 static void	application_opened				(WnckScreen *screen, WnckApplication *application, XtmAppManager *manager);
 static void	application_closed				(WnckScreen *screen, WnckApplication *application, XtmAppManager *manager);
+static void	scale_factor_changed			(GdkMonitor *monitor);
 
 
 
@@ -63,11 +64,20 @@ xtm_app_manager_init (XtmAppManager *manager)
 {
 	WnckApplication *application;
 	WnckScreen *screen = wnck_screen_get_default ();
+	GdkMonitor *monitor = gdk_display_get_monitor (gdk_display_get_default (), 0);
 	GList *windows, *l;
 
 	/* Retrieve initial applications */
 	while (gtk_events_pending ())
 		gtk_main_iteration ();
+
+	/* Adapt wnck default icon size when UI scale changes (this is X11 only so
+	 * the scale factor is the same for all monitors) */
+	if (monitor != NULL)
+	{
+		scale_factor_changed (monitor);
+		g_signal_connect (monitor, "notify::scale-factor", G_CALLBACK (scale_factor_changed), NULL);
+	}
 
 	manager->apps = g_array_new (FALSE, FALSE, sizeof (App));
 	windows = wnck_screen_get_windows (screen);
@@ -123,6 +133,9 @@ static void
 apps_add_application (GArray *apps, WnckApplication *application, GPid pid)
 {
 	App app;
+	GdkMonitor *monitor;
+	GdkPixbuf *pixbuf;
+	gint scale_factor = 1;
 
 	if (apps_lookup_pid (apps, pid))
 		return;
@@ -130,8 +143,12 @@ apps_add_application (GArray *apps, WnckApplication *application, GPid pid)
 	app.application = application;
 	app.pid = pid;
 	g_snprintf (app.name, sizeof(app.name), "%s", wnck_application_get_name (application));
-	app.icon = wnck_application_get_mini_icon (application);
-	g_object_ref (app.icon);
+
+	monitor = gdk_display_get_monitor (gdk_display_get_default (), 0);
+	if (monitor != NULL)
+		scale_factor = gdk_monitor_get_scale_factor (monitor);
+	pixbuf = wnck_application_get_mini_icon (application);
+	app.surface = gdk_cairo_surface_create_from_pixbuf (pixbuf, scale_factor, NULL);
 
 	g_array_append_val (apps, app);
 	g_array_sort (apps, app_pid_compare_fn);
@@ -146,7 +163,7 @@ apps_remove_application (GArray *apps, WnckApplication *application)
 		app = apps_lookup_app(apps, application);
 	if (app == NULL)
 		return;
-	g_object_unref (app->icon);
+	cairo_surface_destroy (app->surface);
 	g_array_remove_index (apps, (guint)(((size_t)app - (size_t)apps->data) / sizeof(App)));
 }
 
@@ -188,6 +205,12 @@ application_closed (WnckScreen *screen __unused, WnckApplication *application, X
 {
 	G_DEBUG_FMT ("Application closed %p", (void*)application);
 	apps_remove_application (manager->apps, application);
+}
+
+static void
+scale_factor_changed (GdkMonitor *monitor)
+{
+	wnck_set_default_mini_icon_size (WNCK_DEFAULT_MINI_ICON_SIZE * gdk_monitor_get_scale_factor (monitor));
 }
 
 

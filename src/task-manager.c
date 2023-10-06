@@ -243,7 +243,7 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 	gchar *background, *foreground;
 #ifdef HAVE_WNCK
 	App *app = manager->app_manager != NULL ? xtm_app_manager_get_app_from_pid (manager->app_manager, task->pid) : NULL;
-	GdkPixbuf *icon = NULL;
+	cairo_surface_t *surface = NULL;
 #endif
 
 	vsz = g_format_size_full (task->vsz, G_FORMAT_SIZE_IEC_UNITS);
@@ -256,15 +256,15 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 	gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_STATE, &old_state,
 			XTM_PTV_COLUMN_BACKGROUND, &background, XTM_PTV_COLUMN_FOREGROUND, &foreground,
 #ifdef HAVE_WNCK
-			XTM_PTV_COLUMN_ICON, &icon,
+			XTM_PTV_COLUMN_ICON, &surface,
 #endif
 			-1);
 
 #ifdef HAVE_WNCK
-	if (icon != NULL)
-		g_object_unref (icon);
+	if (surface != NULL)
+		cairo_surface_destroy (surface);
 	else if (app != NULL)
-		gtk_list_store_set (GTK_LIST_STORE (model), iter, XTM_PTV_COLUMN_ICON, app->icon, -1);
+		gtk_list_store_set (GTK_LIST_STORE (model), iter, XTM_PTV_COLUMN_ICON, app->surface, -1);
 
 	if (app != NULL && full_cmdline == FALSE)
 	{

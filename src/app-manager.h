@@ -25,7 +25,7 @@ struct _App
 	WnckApplication *	application;
 	GPid			pid;
 	gchar			name[1024];
-	GdkPixbuf *		icon;
+	cairo_surface_t *	surface;
 };
 
 #define XTM_TYPE_APP_MANAGER			(xtm_app_manager_get_type ())

@@ -15,6 +15,7 @@
 #include <glib-object.h>
 #include <glib/gi18n.h>
 #include <glib/gprintf.h>
+#include <cairo-gobject.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include "process-tree-model.h"
@@ -98,7 +99,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 
 	/* Create tree view model */
 #ifdef HAVE_WNCK
-	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, GDK_TYPE_PIXBUF,
+	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, CAIRO_GOBJECT_TYPE_SURFACE,
 #else
 	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS,
 #endif
@@ -277,7 +278,7 @@ column_task_pack_cells (XtmProcessTreeView *treeview, GtkTreeViewColumn *column)
 #ifdef HAVE_WNCK
 		GtkCellRenderer *cell_icon = gtk_cell_renderer_pixbuf_new ();
 		gtk_tree_view_column_pack_start (GTK_TREE_VIEW_COLUMN (column), cell_icon, FALSE);
-		gtk_tree_view_column_set_attributes (GTK_TREE_VIEW_COLUMN (column), cell_icon, "pixbuf", XTM_PTV_COLUMN_ICON, "cell-background", XTM_PTV_COLUMN_BACKGROUND, NULL);
+		gtk_tree_view_column_set_attributes (GTK_TREE_VIEW_COLUMN (column), cell_icon, "surface", XTM_PTV_COLUMN_ICON, "cell-background", XTM_PTV_COLUMN_BACKGROUND, NULL);
 #endif
 	}
 
