@@ -29,9 +29,11 @@ static GtkStatusIcon *status_icon_or_null = NULL;
 static XtmTaskManager *task_manager;
 static guint timer_id;
 static gboolean start_hidden = FALSE;
+static gboolean multiple_instances = FALSE;
 
 static GOptionEntry main_entries[] = {
 	{ "start-hidden", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &start_hidden, "Don't open a task manager window", NULL },
+	{ "multiple-instances", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &multiple_instances, "Allow multiple instances", NULL },
 	{ NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
@@ -240,7 +242,7 @@ int main (int argc, char *argv[])
 		error = NULL;
 	}
 
-	if (g_application_get_is_remote (G_APPLICATION (app)))
+	if (multiple_instances == FALSE && g_application_get_is_remote (G_APPLICATION (app)))
 	{
 		if (!start_hidden)
 			g_application_activate (G_APPLICATION (app));
