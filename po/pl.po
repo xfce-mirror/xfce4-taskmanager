@@ -202,7 +202,7 @@ msgstr "Priorytet"
 #. Same trick as above
 #: ../src/process-tree-view.c:536 ../src/process-tree-view.c:635
 msgid "Copy command line"
-msgstr "Skopiuj ścieżkę poleceń"
+msgstr "Skopiuj ścieżkę polecenia"
 
 #: ../src/process-window.c:171
 msgid "Bad Window"
