@@ -142,8 +142,43 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 	return FALSE;
 }
 
+static gboolean
+xtm_process_monitos_is_dark_mode (XtmProcessMonitor *monitor)
+{
+	GtkStyleContext *context;
+	GdkRGBA *color;
+	double luminosity;
+	gboolean dark_mode;
+
+	context = gtk_widget_get_style_context (gtk_widget_get_toplevel (GTK_WIDGET (monitor)));
+	gtk_style_context_get (context, GTK_STATE_FLAG_NORMAL, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, &color, NULL);
+	luminosity = (0.2126 * color->red + 0.7152 * color->green + 0.0722 * color->blue);
+	gdk_rgba_free (color);
+	dark_mode = (luminosity < 0.5);
+
+	return dark_mode;
+}
+
+static void
+xtm_process_monitor_cairo_set_source_rgba (cairo_t *cr, double red, double green, double blue, double alpha, gboolean invert)
+{
+	if (invert)
+		cairo_set_source_rgba (cr, 1.0 - red, 1.0 - green, 1.0 - blue, alpha);
+	else
+		cairo_set_source_rgba (cr, red, green, blue, alpha);
+}
+
+static void
+xtm_process_monitor_cairo_set_source_rgb (cairo_t *cr, double red, double green, double blue, gboolean invert)
+{
+	if (invert)
+		cairo_set_source_rgb (cr, 1.0 - red, 1.0 - green, 1.0 - blue);
+	else
+		cairo_set_source_rgb (cr, red, green, blue);
+}
+
 static cairo_surface_t *
-xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width, gint height)
+xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width, gint height, gboolean dark_mode)
 {
 	cairo_t *cr;
 	cairo_surface_t *graph_surface;
@@ -181,16 +216,16 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	}
 
 	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3, dark_mode);
 	else
-		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3, dark_mode);
 	cairo_line_to (cr, width, height);
 	cairo_fill_preserve (cr);
 
 	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0, dark_mode);
 	else
-		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0, dark_mode);
 	cairo_stroke (cr);
 
 	/* Draw Swap graph */
@@ -208,10 +243,10 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 			cairo_translate (cr, -step_size, 0);
 			cairo_line_to (cr, width, (1.0 - peak) * height);
 		}
-		cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 0.3);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 0.3, dark_mode);
 		cairo_line_to (cr, width, height);
 		cairo_fill_preserve (cr);
-		cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 1.0);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 1.0, dark_mode);
 		cairo_stroke (cr);
 	}
 
@@ -223,6 +258,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 static void
 xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 {
+	gboolean dark_mode;
 	cairo_surface_t *graph_surface;
 	gint width, height;
 	static const double dashed[] = {1.5};
@@ -234,16 +270,18 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 	if (height < 3)
 		return;
 
+	dark_mode = xtm_process_monitos_is_dark_mode (monitor);
+
 	/* Paint the graph's background box */
 	cairo_rectangle (cr, 0.0, 0.0, width, height);
-	cairo_set_source_rgb (cr, 0.96, 0.96, 0.96);
+	xtm_process_monitor_cairo_set_source_rgb (cr, 0.96, 0.96, 0.96, dark_mode);
 	cairo_fill_preserve (cr);
-	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+	xtm_process_monitor_cairo_set_source_rgb (cr, 0.0, 0.0, 0.0, dark_mode);
 	cairo_set_line_width (cr, 0.75);
 	cairo_stroke (cr);
 
 	/* Paint dashed lines at 25%, 50% and 75% */
-	cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3);
+	xtm_process_monitor_cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3, dark_mode);
 	cairo_set_line_width (cr, 1.0);
 	cairo_set_dash(cr, dashed, 1.0, 0);
 	for (i = 25; i <= 75; i += 25)
@@ -254,7 +292,7 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 	}
 
 	/* Paint the graph on a slightly smaller surface not to overlap with the background box */
-	graph_surface = xtm_process_monitor_graph_surface_create (monitor, width - 1, height - 1);
+	graph_surface = xtm_process_monitor_graph_surface_create (monitor, width - 1, height - 1, dark_mode);
 	if (graph_surface != NULL)
 	{
 		cairo_set_source_surface (cr, graph_surface, 0.0, 0.0);
