@@ -37,6 +37,7 @@ struct _XtmProcessMonitor
 	gint			type;
 	GArray *		history;
 	GArray *		history_swap;
+	gboolean		dark_mode;
 };
 G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
@@ -46,6 +47,7 @@ static void	xtm_process_monitor_set_property	(GObject *object, guint property_id
 static gboolean	xtm_process_monitor_draw		(GtkWidget *widget, cairo_t *cr);
 static void	xtm_process_monitor_paint			(XtmProcessMonitor *monitor, cairo_t *cr);
 
+static gboolean xtm_process_monitor_is_dark_mode	(XtmProcessMonitor *monitor);
 
 
 static void
@@ -66,10 +68,21 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 }
 
 static void
+xtm_process_monitor_on_notify_theme_name (GtkSettings *settings, GParamSpec* pSpec, XtmProcessMonitor* monitor)
+{
+    monitor->dark_mode = xtm_process_monitor_is_dark_mode (monitor);
+}
+
+static void
 xtm_process_monitor_init (XtmProcessMonitor *monitor)
 {
+    GtkSettings *settings = gtk_settings_get_default();
+
 	monitor->history = g_array_new (FALSE, TRUE, sizeof (gfloat));
 	monitor->history_swap = g_array_new (FALSE, TRUE, sizeof (gfloat));
+	monitor->dark_mode = xtm_process_monitor_is_dark_mode (monitor);
+
+    g_signal_connect (settings, "notify::gtk-theme-name", G_CALLBACK (xtm_process_monitor_on_notify_theme_name), monitor);
 }
 
 static void
@@ -142,6 +155,41 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 	return FALSE;
 }
 
+static gboolean
+xtm_process_monitor_is_dark_mode (XtmProcessMonitor *monitor)
+{
+	GtkStyleContext *context;
+	GdkRGBA *color;
+	double luminosity;
+	gboolean dark_mode;
+
+	context = gtk_widget_get_style_context (gtk_widget_get_toplevel (GTK_WIDGET (monitor)));
+	gtk_style_context_get (context, GTK_STATE_FLAG_NORMAL, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, &color, NULL);
+	luminosity = (0.2126 * color->red + 0.7152 * color->green + 0.0722 * color->blue);
+	gdk_rgba_free (color);
+	dark_mode = (luminosity < 0.5);
+
+	return dark_mode;
+}
+
+static void
+xtm_process_monitor_cairo_set_source_rgba (cairo_t *cr, double red, double green, double blue, double alpha, gboolean invert)
+{
+	if (invert)
+		cairo_set_source_rgba (cr, 1.0 - red, 1.0 - green, 1.0 - blue, alpha);
+	else
+		cairo_set_source_rgba (cr, red, green, blue, alpha);
+}
+
+static void
+xtm_process_monitor_cairo_set_source_rgb (cairo_t *cr, double red, double green, double blue, gboolean invert)
+{
+	if (invert)
+		cairo_set_source_rgb (cr, 1.0 - red, 1.0 - green, 1.0 - blue);
+	else
+		cairo_set_source_rgb (cr, red, green, blue);
+}
+
 static cairo_surface_t *
 xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width, gint height)
 {
@@ -181,16 +229,16 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	}
 
 	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 0.3, monitor->dark_mode);
 	else
-		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 0.3, monitor->dark_mode);
 	cairo_line_to (cr, width, height);
 	cairo_fill_preserve (cr);
 
 	if (monitor->type == 0)
-		cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, 1.0, monitor->dark_mode);
 	else
-		cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, 1.0, monitor->dark_mode);
 	cairo_stroke (cr);
 
 	/* Draw Swap graph */
@@ -208,10 +256,10 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 			cairo_translate (cr, -step_size, 0);
 			cairo_line_to (cr, width, (1.0 - peak) * height);
 		}
-		cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 0.3);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 0.3, monitor->dark_mode);
 		cairo_line_to (cr, width, height);
 		cairo_fill_preserve (cr);
-		cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 1.0);
+		xtm_process_monitor_cairo_set_source_rgba (cr, 0.33, 0.04, 0.16, 1.0, monitor->dark_mode);
 		cairo_stroke (cr);
 	}
 
@@ -236,14 +284,14 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 
 	/* Paint the graph's background box */
 	cairo_rectangle (cr, 0.0, 0.0, width, height);
-	cairo_set_source_rgb (cr, 0.96, 0.96, 0.96);
+	xtm_process_monitor_cairo_set_source_rgb (cr, 0.96, 0.96, 0.96, monitor->dark_mode);
 	cairo_fill_preserve (cr);
-	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+	xtm_process_monitor_cairo_set_source_rgb (cr, 0.0, 0.0, 0.0, monitor->dark_mode);
 	cairo_set_line_width (cr, 0.75);
 	cairo_stroke (cr);
 
 	/* Paint dashed lines at 25%, 50% and 75% */
-	cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3);
+	xtm_process_monitor_cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3, monitor->dark_mode);
 	cairo_set_line_width (cr, 1.0);
 	cairo_set_dash(cr, dashed, 1.0, 0);
 	for (i = 25; i <= 75; i += 25)
