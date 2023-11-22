@@ -29,9 +29,11 @@ static GtkStatusIcon *status_icon_or_null = NULL;
 static XtmTaskManager *task_manager;
 static guint timer_id;
 static gboolean start_hidden = FALSE;
+static gboolean standalone = FALSE;
 
 static GOptionEntry main_entries[] = {
 	{ "start-hidden", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &start_hidden, "Don't open a task manager window", NULL },
+	{ "standalone", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &standalone, "Launch standalone", NULL },
 	{ NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
@@ -231,7 +233,7 @@ int main (int argc, char *argv[])
 	}
 	g_option_context_free (opt_context);
 
-	app = g_application_new ("xfce.taskmanager", 0);
+	app = g_application_new ("xfce.taskmanager", standalone ? G_APPLICATION_NON_UNIQUE : G_APPLICATION_FLAGS_NONE);
 	g_application_register (G_APPLICATION (app), NULL, &error);
 	if (error != NULL)
 	{
