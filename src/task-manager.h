@@ -115,5 +115,6 @@ gboolean	set_priority_to_pid	(GPid pid, gint priority);
 #	define G_DEBUG_FMT(fmt, args...)
 #endif
 
+gboolean	xtm_gtk_widget_is_dark_mode (GtkWidget *widget);
 
 #endif /* !TASK_MANAGER_H */
