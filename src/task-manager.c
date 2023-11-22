@@ -594,3 +594,21 @@ task_pid_compare_fn(gconstpointer a, gconstpointer b)
 {
 	return (((const Task*)a)->pid - ((const Task*)b)->pid);
 }
+
+/* About the constants used below, see for example: https://stackoverflow.com/a/596243 */
+gboolean
+xtm_gtk_widget_is_dark_mode (GtkWidget *widget)
+{
+	GtkStyleContext *context;
+	GdkRGBA *color;
+	double luminosity;
+	gboolean dark_mode;
+
+	context = gtk_widget_get_style_context (gtk_widget_get_toplevel (widget));
+	gtk_style_context_get (context, GTK_STATE_FLAG_NORMAL, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, &color, NULL);
+	luminosity = (0.2126 * color->red + 0.7152 * color->green + 0.0722 * color->blue);
+	gdk_rgba_free (color);
+	dark_mode = (luminosity < 0.5);
+
+	return dark_mode;
+}
