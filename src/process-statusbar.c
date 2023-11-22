@@ -17,6 +17,7 @@
 
 #include "process-statusbar.h"
 #include "settings.h"
+#include "task-manager.h"
 
 
 
@@ -48,6 +49,8 @@ struct _XtmProcessStatusbar
 	gchar			memory[64];
 	gchar			swap[64];
 	guint			num_processes;
+
+	gboolean		dark_mode;
 };
 G_DEFINE_TYPE (XtmProcessStatusbar, xtm_process_statusbar, GTK_TYPE_BOX)
 
@@ -76,12 +79,41 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 }
 
 static void
+xtm_process_statusbar_set_label_style (XtmProcessStatusbar *statusbar, GtkWidget *label)
+{
+	GtkStyleContext *context;
+	gboolean has_dark_mode;
+
+	context = gtk_widget_get_style_context (label);
+	has_dark_mode = gtk_style_context_has_class (context, "dark");
+	if (has_dark_mode && !statusbar->dark_mode)
+		gtk_style_context_remove_class (context, "dark");
+	if (!has_dark_mode && statusbar->dark_mode)
+		gtk_style_context_add_class (context, "dark");
+}
+
+static void
+xtm_process_statusbar_on_notify_theme_name (GtkSettings *settings, GParamSpec *pSpec, XtmProcessStatusbar *statusbar)
+{
+	statusbar->dark_mode = gtk_widget_is_dark_mode (GTK_WIDGET (statusbar));
+
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_cpu);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_num_processes);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_memory);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_swap);
+}
+
+static void
 xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 {
+	GtkSettings *settings = gtk_settings_get_default();
 	GtkWidget *hbox, *hbox_cpu, *hbox_mem;
 	GtkStyleContext *context;
 	GtkCssProvider *provider;
 	statusbar->settings = xtm_settings_get_default ();
+	statusbar->dark_mode = gtk_widget_is_dark_mode (GTK_WIDGET (statusbar));
+
+	g_signal_connect (settings, "notify::gtk-theme-name", G_CALLBACK (xtm_process_statusbar_on_notify_theme_name), statusbar);
 
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 	hbox_cpu = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
@@ -91,7 +123,7 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	gtk_box_pack_start (GTK_BOX (hbox_cpu), statusbar->label_cpu, TRUE, FALSE, 0);
 	context  = gtk_widget_get_style_context (statusbar->label_cpu);
 	provider = gtk_css_provider_new ();
-	gtk_css_provider_load_from_data (provider, "* { color: #ff6e00; }", -1, NULL);
+	gtk_css_provider_load_from_data (provider, "* { color: #ff6e00; } .dark { color: #0091ff; }", -1, NULL);
 	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 	g_object_unref (provider);
 
@@ -103,7 +135,7 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	gtk_box_pack_start (GTK_BOX (hbox_mem), statusbar->label_memory, TRUE, FALSE, 0);
 	context  = gtk_widget_get_style_context (statusbar->label_memory);
 	provider = gtk_css_provider_new ();
-	gtk_css_provider_load_from_data (provider, "* { color: #cb386c; }", -1, NULL);
+	gtk_css_provider_load_from_data (provider, "* { color: #cb386c; } .dark { color: #34c793; }", -1, NULL);
 	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 	g_object_unref (provider);
 
@@ -112,7 +144,7 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	gtk_box_pack_start (GTK_BOX (hbox_mem), statusbar->label_swap, TRUE, FALSE, 0);
 	context  = gtk_widget_get_style_context (statusbar->label_swap);
 	provider = gtk_css_provider_new ();
-	gtk_css_provider_load_from_data (provider, "* { color: #75324d; }", -1, NULL);
+	gtk_css_provider_load_from_data (provider, "* { color: #75324d; } .dark { color: #8acdb2; }", -1, NULL);
 	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 	g_object_unref (provider);
 
@@ -121,6 +153,11 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	gtk_box_set_homogeneous (GTK_BOX (hbox), TRUE);
 
 	gtk_box_pack_start (GTK_BOX (statusbar), hbox, TRUE, TRUE, 0);
+
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_cpu);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_num_processes);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_memory);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_swap);
 
 	gtk_widget_show_all (hbox);
 }
