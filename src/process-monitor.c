@@ -47,7 +47,6 @@ static void	xtm_process_monitor_set_property	(GObject *object, guint property_id
 static gboolean	xtm_process_monitor_draw		(GtkWidget *widget, cairo_t *cr);
 static void	xtm_process_monitor_paint			(XtmProcessMonitor *monitor, cairo_t *cr);
 
-static gboolean xtm_process_monitor_is_dark_mode	(XtmProcessMonitor *monitor);
 
 
 static void
@@ -68,21 +67,22 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 }
 
 static void
-xtm_process_monitor_on_notify_theme_name (GtkSettings *settings, GParamSpec* pSpec, XtmProcessMonitor* monitor)
+xtm_process_monitor_on_notify_theme_name (XtmProcessMonitor *monitor)
 {
-    monitor->dark_mode = xtm_process_monitor_is_dark_mode (monitor);
+	monitor->dark_mode = xtm_gtk_widget_is_dark_mode (GTK_WIDGET (monitor));
 }
 
 static void
 xtm_process_monitor_init (XtmProcessMonitor *monitor)
 {
-    GtkSettings *settings = gtk_settings_get_default();
+	GtkSettings *settings = gtk_settings_get_default ();
 
 	monitor->history = g_array_new (FALSE, TRUE, sizeof (gfloat));
 	monitor->history_swap = g_array_new (FALSE, TRUE, sizeof (gfloat));
-	monitor->dark_mode = xtm_process_monitor_is_dark_mode (monitor);
+	monitor->dark_mode = xtm_gtk_widget_is_dark_mode (GTK_WIDGET (monitor));
 
-    g_signal_connect (settings, "notify::gtk-theme-name", G_CALLBACK (xtm_process_monitor_on_notify_theme_name), monitor);
+	g_signal_connect_swapped (settings, "notify::gtk-theme-name", G_CALLBACK (xtm_process_monitor_on_notify_theme_name), monitor);
+	g_signal_connect (monitor, "realize", G_CALLBACK (xtm_process_monitor_on_notify_theme_name), NULL);
 }
 
 static void
@@ -153,23 +153,6 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 
 	xtm_process_monitor_paint (monitor, cr);
 	return FALSE;
-}
-
-static gboolean
-xtm_process_monitor_is_dark_mode (XtmProcessMonitor *monitor)
-{
-	GtkStyleContext *context;
-	GdkRGBA *color;
-	double luminosity;
-	gboolean dark_mode;
-
-	context = gtk_widget_get_style_context (gtk_widget_get_toplevel (GTK_WIDGET (monitor)));
-	gtk_style_context_get (context, GTK_STATE_FLAG_NORMAL, GTK_STYLE_PROPERTY_BACKGROUND_COLOR, &color, NULL);
-	luminosity = (0.2126 * color->red + 0.7152 * color->green + 0.0722 * color->blue);
-	gdk_rgba_free (color);
-	dark_mode = (luminosity < 0.5);
-
-	return dark_mode;
 }
 
 static void
