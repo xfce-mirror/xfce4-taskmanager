@@ -104,6 +104,7 @@ builder_bind_combobox (GtkBuilder *builder, XtmSettings *settings)
 	gtk_tree_model_foreach (model, combobox_foreach, refresh_rate);
 	g_object_set_data (G_OBJECT (refresh_rate->combobox), "setting-name", "refresh-rate");
 	g_signal_connect (refresh_rate->combobox, "changed", G_CALLBACK (combobox_changed), settings);
+	g_free (refresh_rate);
 }
 
 static void
