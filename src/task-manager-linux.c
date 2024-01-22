@@ -153,7 +153,7 @@ get_task_cmdline (Task *task)
 	for (i = 0; (c = fgetc (file)) != EOF && i < (gint)sizeof (task->cmdline) - 1; i++)
 		task->cmdline[i] = (c == '\0') ? ' ' : (gchar)c;
 	task->cmdline[i] = '\0';
-	if (task->cmdline[i-1] == ' ')
+	if (i > 0 && task->cmdline[i-1] == ' ')
 		task->cmdline[i-1] = '\0';
 	fclose (file);
 
