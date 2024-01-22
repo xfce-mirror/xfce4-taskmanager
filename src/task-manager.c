@@ -333,9 +333,12 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 static gboolean
 task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx)
 {
-	Task *task_tmp, tkey;
-	tkey.pid = pid;
-	task_tmp = bsearch(&tkey, task_list->data, task_list->len, sizeof(Task), task_pid_compare_fn);
+	Task *task_tmp = NULL, tkey;
+
+	if (task_list->len > 0) {
+		tkey.pid = pid;
+		task_tmp = bsearch(&tkey, task_list->data, task_list->len, sizeof(Task), task_pid_compare_fn);
+	}
 
 	if (NULL != task)
 	{
