@@ -174,6 +174,9 @@ apps_lookup_pid (GArray *apps, GPid pid)
 
 	tapp.pid = pid;
 
+	if (apps->len == 0)
+		return (NULL);
+
 	return (bsearch(&tapp, apps->data, apps->len, sizeof(App), app_pid_compare_fn));
 }
 
