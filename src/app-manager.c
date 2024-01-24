@@ -172,10 +172,10 @@ apps_lookup_pid (GArray *apps, GPid pid)
 {
 	App tapp;
 
-	tapp.pid = pid;
-
-	if (apps->len == 0)
+	if (apps->data == NULL)
 		return (NULL);
+
+	tapp.pid = pid;
 
 	return (bsearch(&tapp, apps->data, apps->len, sizeof(App), app_pid_compare_fn));
 }

@@ -335,7 +335,7 @@ task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx)
 {
 	Task *task_tmp = NULL, tkey;
 
-	if (task_list->len > 0) {
+	if (task_list->data != NULL) {
 		tkey.pid = pid;
 		task_tmp = bsearch(&tkey, task_list->data, task_list->len, sizeof(Task), task_pid_compare_fn);
 	}
