@@ -197,7 +197,7 @@ get_task_details (GPid pid, Task *task)
 	snprintf (task->state, sizeof(task->state), "%c", process.pr_lwp.pr_sname);
 	task->vsz = (guint64)process.pr_size * 1024;
 	task->rss = (guint64)process.pr_rssize * 1024;
-	task->prio = (gushort)process.pr_lwp.pr_pri;
+	task->prio = process.pr_lwp.pr_pri;
 	task->uid = (guint)process.pr_uid;
 	get_cpu_percent (task->pid, (process.pr_time.tv_sec * 1000 + process.pr_time.tv_nsec / 100000), &task->cpu_user, 0, &task->cpu_system);
 

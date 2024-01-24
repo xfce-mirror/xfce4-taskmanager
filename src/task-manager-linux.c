@@ -268,7 +268,7 @@ get_task_details (GPid pid, Task *task)
 			 &idummy,	// cutime " waited for children in user mode
 			 &idummy,	// cstime " system mode
 			 &idummy,	// priority (nice value + fifteen)
-			(gint*)&task->prio, // nice range from 19 to -19
+			 &task->prio, // nice range from 19 to -19
 			 &idummy,	// hardcoded 0
 
 			 &idummy,	// itrealvalue time in jiffies to next SIGALRM send to this process

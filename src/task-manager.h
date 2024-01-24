@@ -42,7 +42,7 @@ struct _Task
 	gfloat		cpu_system;
 	guint64		vsz;
 	guint64		rss;
-	gshort		prio;
+	gint		prio;
 };
 
 /**

@@ -148,7 +148,7 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	task->vsz = kp->ki_size;
 	task->rss = ((guint64)kp->ki_rssize * (guint64)getpagesize ());
 	task->uid = kp->ki_uid;
-	task->prio = (gshort)kp->ki_nice;
+	task->prio = kp->ki_nice;
 	g_strlcpy (task->name, kp->ki_comm, sizeof(task->name));
 
 	oid[0] = CTL_KERN;
