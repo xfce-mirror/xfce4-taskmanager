@@ -1,3 +1,19 @@
+1.5.7 (2024-02-29)
+=====
+- Update copyright year
+- build: Fix -Wcast-align warning from clang
+- Fix UBSan errors
+- settings-dialog: Fix XtmRefreshRate memory leak
+- Dark mode for process-statusbar
+- Dark mode for process-monitor
+- Allow multiple instances via command line option.
+- Fix blurry app icons when UI scale > 1
+- Use symbolic window picker icon in toolbar
+- Fix broken "show-legend" setting sync
+- Translation Updates:
+  Catalan, Croatian, Estonian, Greek, Hebrew, Italian, Occitan (post
+  1500), Polish, Spanish, Swedish, Turkish
+
 1.5.6 (2023-10-02)
 =====
 - Update copyright year
