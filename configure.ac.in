@@ -22,7 +22,7 @@ m4_define([taskmanager_version], [taskmanager_version_major().taskmanager_versio
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2005-2023
+AC_COPYRIGHT([Copyright (c) 2005-2024
         The Xfce development team. All rights reserved.])
 AC_INIT([Xfce4 Taskmanager], [taskmanager_version], [https://gitlab.xfce.org/apps/xfce4-taskmanager/], [xfce4-taskmanager],
         [https://docs.xfce.org/apps/xfce4-taskmanager/start])
