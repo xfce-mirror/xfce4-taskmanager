@@ -50,8 +50,11 @@ enum
 	PROP_COLUMN_PPID,
 	PROP_COLUMN_STATE,
 	PROP_COLUMN_VSZ,
+	PROP_COLUMN_GROUP_VSZ,
 	PROP_COLUMN_RSS,
+	PROP_COLUMN_GROUP_RSS,
 	PROP_COLUMN_CPU,
+	PROP_COLUMN_GROUP_CPU,
 	PROP_COLUMN_PRIORITY,
 	PROP_SORT_COLUMN_ID,
 	PROP_SORT_TYPE,
@@ -112,10 +115,16 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_boolean ("column-state", "ColumnState", "Show column state", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_VSZ,
 		g_param_spec_boolean ("column-vsz", "ColumnVSZ", "Show column VSZ", FALSE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_COLUMN_GROUP_VSZ,
+		g_param_spec_boolean ("column-group_vsz", "ColumnGVSZ", "Show column Group VSZ", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_RSS,
 		g_param_spec_boolean ("column-rss", "ColumnRSS", "Show column RSS", TRUE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_COLUMN_GROUP_RSS,
+		g_param_spec_boolean ("column-group_rss", "ColumnFRSS", "Show column Group RSS", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_CPU,
 		g_param_spec_boolean ("column-cpu", "ColumnCPU", "Show column CPU", TRUE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_COLUMN_GROUP_CPU,
+		g_param_spec_boolean ("column-group_cpu", "ColumnCPU", "Show column Group CPU", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_PRIORITY,
 		g_param_spec_boolean ("column-priority", "ColumnPriority", "Show column priority", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SORT_COLUMN_ID,
@@ -208,12 +217,18 @@ xtm_settings_bind_xfconf (XtmSettings *settings, XfconfChannel *channel)
 		G_OBJECT (settings), "column-state");
 	xfconf_g_property_bind (channel, SETTING_COLUMN_VSZ, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "column-vsz");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_GROUP_VSZ, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-group_vsz");
 	xfconf_g_property_bind (channel, SETTING_COLUMN_RSS, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "column-rss");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_GROUP_RSS, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-group_rss");
 	xfconf_g_property_bind (channel, SETTING_COLUMN_UID, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "column-uid");
 	xfconf_g_property_bind (channel, SETTING_COLUMN_CPU, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "column-cpu");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_GROUP_CPU, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-group_cpu");
 	xfconf_g_property_bind (channel, SETTING_COLUMN_PRIORITY, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "column-priority");
 
