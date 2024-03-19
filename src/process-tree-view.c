@@ -33,9 +33,12 @@ enum
 	COLUMN_PPID,
 	COLUMN_STATE,
 	COLUMN_VSZ,
+	COLUMN_GROUP_VSZ,
 	COLUMN_RSS,
+	COLUMN_GROUP_RSS,
 	COLUMN_UID,
 	COLUMN_CPU,
+	COLUMN_GROUP_CPU,
 	COLUMN_PRIORITY,
 	N_COLUMNS,
 };
@@ -98,14 +101,34 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_object_get (treeview->settings, "show-all-processes", &treeview->show_all_processes_cached, "process-tree", &tree, NULL);
 
 	/* Create tree view model */
-#ifdef HAVE_WNCK
-	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS, CAIRO_GOBJECT_TYPE_SURFACE,
-#else
 	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS,
+#ifdef HAVE_WNCK
+		CAIRO_GOBJECT_TYPE_SURFACE, /* XTM_PTV_COLUMN_ICON */
 #endif
-		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
-		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT,
-		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_LONG);
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_COMMAND */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_COMMAND_RAW */
+		G_TYPE_UINT, /* XTM_PTV_COLUMN_PID */
+		G_TYPE_UINT, /* XTM_PTV_COLUMN_PPID */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_STATE */
+		G_TYPE_UINT64, /* XTM_PTV_COLUMN_VSZ */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_VSZ_STR */
+		G_TYPE_UINT64, /* XTM_PTV_COLUMN_GROUP_VSZ */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_GROUP_VSZ_STR */
+		G_TYPE_UINT64, /* XTM_PTV_COLUMN_RSS */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_RSS_STR */
+		G_TYPE_UINT64, /* XTM_PTV_COLUMN_GROUP_RSS */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_GROUP_RSS_STR */
+		G_TYPE_UINT, /* XTM_PTV_COLUMN_UID */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_UID_STR */
+		G_TYPE_FLOAT, /* XTM_PTV_COLUMN_CPU */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_CPU_STR */
+		G_TYPE_FLOAT, /* XTM_PTV_COLUMN_GROUP_CPU */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_GROUP_CPU_STR */
+		G_TYPE_INT, /* XTM_PTV_COLUMN_PRIORITY */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_BACKGROUND */
+		G_TYPE_STRING, /* XTM_PTV_COLUMN_FOREGROUND */
+		G_TYPE_LONG /* XTM_PTV_COLUMN_TIMESTAMP */
+		);
 
 	treeview->model_filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (treeview->model), NULL);
 	gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (treeview->model_filter), (GtkTreeModelFilterVisibleFunc)visible_func, treeview, NULL);
@@ -176,6 +199,14 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_VSZ]);
 
+	g_object_get (treeview->settings, "column-group-vsz", &visible, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("Group VSZ"), cell_right_aligned, "text", XTM_PTV_COLUMN_GROUP_VSZ_STR, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_GROUP_VSZ));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_GROUP_VSZ));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
+	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_GROUP_VSZ]);
+
 	g_object_get (treeview->settings, "column-rss", &visible, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("RSS"), cell_right_aligned, "text", XTM_PTV_COLUMN_RSS_STR, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
 	g_object_set (column, COLUMN_PROPERTIES, NULL);
@@ -183,6 +214,14 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_RSS));
 	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_RSS]);
+
+	g_object_get (treeview->settings, "column-group-rss", &visible, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("Group RSS"), cell_right_aligned, "text", XTM_PTV_COLUMN_GROUP_RSS_STR, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_GROUP_RSS));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_GROUP_RSS));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
+	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_GROUP_RSS]);
 
 	g_object_get (treeview->settings, "column-uid", &visible, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("UID"), cell_text, "text", XTM_PTV_COLUMN_UID_STR, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
@@ -199,6 +238,14 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_CPU));
 	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_CPU]);
+
+	g_object_get (treeview->settings, "column-group-cpu", &visible, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("Group CPU"), cell_right_aligned, "text", XTM_PTV_COLUMN_GROUP_CPU_STR, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_GROUP_CPU));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_GROUP_CPU));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
+	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_GROUP_CPU]);
 
 	g_object_get (treeview->settings, "column-priority", &visible, NULL);
 	/* TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header. */
@@ -757,10 +804,16 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 			column_id = COLUMN_STATE;
 		else if (!g_strcmp0 (pspec->name, "column-vsz"))
 			column_id = COLUMN_VSZ;
+		else if (!g_strcmp0 (pspec->name, "column-group-vsz"))
+			column_id = COLUMN_GROUP_VSZ;
 		else if (!g_strcmp0 (pspec->name, "column-rss"))
 			column_id = COLUMN_RSS;
+		else if (!g_strcmp0 (pspec->name, "column-group-rss"))
+			column_id = COLUMN_GROUP_RSS;
 		else if (!g_strcmp0 (pspec->name, "column-cpu"))
 			column_id = COLUMN_CPU;
+		else if (!g_strcmp0 (pspec->name, "column-group-cpu"))
+			column_id = COLUMN_GROUP_CPU;
 		else if (!g_strcmp0 (pspec->name, "column-priority"))
 			column_id = COLUMN_PRIORITY;
 
