@@ -237,10 +237,12 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 {
 	GtkTreeModel *model = manager->model;
 	gchar *vsz, *rss, cpu[16];
+	gchar *group_vsz, *group_rss, group_cpu[16];
 	gchar value[14];
 	glong old_timestamp;
-	gchar *old_state;
-	gchar *background, *foreground;
+	gchar *old_state = NULL;
+	gchar *background = NULL;
+	gchar *foreground = NULL;
 #ifdef HAVE_WNCK
 	App *app = manager->app_manager != NULL ? xtm_app_manager_get_app_from_pid (manager->app_manager, task->pid) : NULL;
 	cairo_surface_t *surface = NULL;
@@ -248,13 +250,21 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 
 	vsz = g_format_size_full (task->vsz, G_FORMAT_SIZE_IEC_UNITS);
 	rss = g_format_size_full (task->rss, G_FORMAT_SIZE_IEC_UNITS);
+	group_vsz = g_format_size_full (task->group_vsz, G_FORMAT_SIZE_IEC_UNITS);
+	group_rss = g_format_size_full (task->group_rss, G_FORMAT_SIZE_IEC_UNITS);
 
 	g_snprintf (value, sizeof(value), (more_precision) ? "%.2f" : "%.0f", (task->cpu_user + task->cpu_system));
 	g_snprintf (cpu, sizeof(cpu), _("%s%%"), value);
 
+	g_snprintf (value, sizeof(value), (more_precision) ? "%.2f" : "%.0f", (task->group_cpu_user + task->group_cpu_system));
+	g_snprintf (group_cpu, sizeof(group_cpu), _("%s%%"), value);
+
 	/* Retrieve values for tweaking background/foreground color and updating content as needed */
-	gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp, XTM_PTV_COLUMN_STATE, &old_state,
-			XTM_PTV_COLUMN_BACKGROUND, &background, XTM_PTV_COLUMN_FOREGROUND, &foreground,
+	gtk_tree_model_get (model, iter,
+			XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp,
+			XTM_PTV_COLUMN_STATE, &old_state,
+			XTM_PTV_COLUMN_BACKGROUND, &background,
+			XTM_PTV_COLUMN_FOREGROUND, &foreground,
 #ifdef HAVE_WNCK
 			XTM_PTV_COLUMN_ICON, &surface,
 #endif
@@ -313,10 +323,16 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 		XTM_PTV_COLUMN_STATE, task->state,
 		XTM_PTV_COLUMN_VSZ, task->vsz,
 		XTM_PTV_COLUMN_VSZ_STR, vsz,
+		XTM_PTV_COLUMN_GROUP_VSZ, task->group_vsz,
+		XTM_PTV_COLUMN_GROUP_VSZ_STR, group_vsz,
 		XTM_PTV_COLUMN_RSS, task->rss,
 		XTM_PTV_COLUMN_RSS_STR, rss,
+		XTM_PTV_COLUMN_GROUP_RSS, task->group_rss,
+		XTM_PTV_COLUMN_GROUP_RSS_STR, group_rss,
 		XTM_PTV_COLUMN_CPU, (task->cpu_user + task->cpu_system),
 		XTM_PTV_COLUMN_CPU_STR, cpu,
+		XTM_PTV_COLUMN_GROUP_CPU, (task->group_cpu_user + task->group_cpu_system),
+		XTM_PTV_COLUMN_GROUP_CPU_STR, group_cpu,
 		XTM_PTV_COLUMN_PRIORITY, task->prio,
 		XTM_PTV_COLUMN_BACKGROUND, background,
 		XTM_PTV_COLUMN_FOREGROUND, foreground,
@@ -328,6 +344,8 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 	g_free (old_state);
 	g_free (vsz);
 	g_free (rss);
+	g_free (group_vsz);
+	g_free (group_rss);
 }
 
 static gboolean
@@ -414,6 +432,48 @@ xtm_task_manager_get_task_list (XtmTaskManager *manager)
 	return manager->tasks;
 }
 
+static void
+xtm_task_manager_task_aggregate_children (Task *task, GArray *task_list)
+{
+	if (task->group_cpu_system != -1)
+		return;
+
+	task->group_cpu_system = task->cpu_system;
+	task->group_cpu_user = task->cpu_user;
+	task->group_vsz = task->vsz;
+	task->group_rss = task->rss;
+
+	for (guint i = 0; i < task_list->len; ++i) {
+		Task *child_task = &g_array_index(task_list, Task, i);
+		if (child_task->ppid != task->pid)
+			continue;
+
+		xtm_task_manager_task_aggregate_children(child_task, task_list);
+
+		task->group_cpu_system += child_task->group_cpu_system;
+		task->group_cpu_user += child_task->group_cpu_user;
+		task->group_vsz += child_task->group_vsz;
+		task->group_rss += child_task->group_rss;
+	}
+}
+
+static void
+xtm_task_manager_aggregate_children (GArray *task_list)
+{
+	for (guint i = 0; i < task_list->len; ++i) {
+		Task *task = &g_array_index(task_list, Task, i);
+		task->group_cpu_system = -1;
+		task->group_cpu_user = -1;
+		task->group_vsz = -1;
+		task->group_rss = -1;
+	}
+
+	for (guint i = 0; i < task_list->len; ++i) {
+		Task *task = &g_array_index(task_list, Task, i);
+		xtm_task_manager_task_aggregate_children (task, task_list);
+	}
+}
+
 void
 xtm_task_manager_update_model (XtmTaskManager *manager)
 {
@@ -431,6 +491,7 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 	/* Retrieve new task list */
 	array = g_array_new (FALSE, FALSE, sizeof (Task));
 	get_task_list (array);
+	xtm_task_manager_aggregate_children (array);
 
 	/* Remove terminated tasks, mark to remove, update existing. */
 	valid = gtk_tree_model_get_iter_first (manager->model, &iter);
