@@ -212,9 +212,12 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	builder_bind_toggle_button (builder, "ppid", settings, "column-ppid");
 	builder_bind_toggle_button (builder, "state", settings, "column-state");
 	builder_bind_toggle_button (builder, "vbytes", settings, "column-vsz");
+	builder_bind_toggle_button (builder, "gvbytes", settings, "column-group_vsz");
 	builder_bind_toggle_button (builder, "rbytes", settings, "column-rss");
+	builder_bind_toggle_button (builder, "grbytes", settings, "column-group_rss");
 	builder_bind_toggle_button (builder, "uid", settings, "column-uid");
 	builder_bind_toggle_button (builder, "cpu", settings, "column-cpu");
+	builder_bind_toggle_button (builder, "gcpu", settings, "column-group_cpu");
 	builder_bind_toggle_button (builder, "priority", settings, "column-priority");
 
 

@@ -43,6 +43,12 @@ struct _Task
 	guint64		vsz;
 	guint64		rss;
 	gint		prio;
+
+	// Aggregated values
+	gfloat		group_cpu_user;
+	gfloat		group_cpu_system;
+	guint64		group_vsz;
+	guint64		group_rss;
 };
 
 /**
