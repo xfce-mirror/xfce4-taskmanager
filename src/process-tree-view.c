@@ -259,6 +259,9 @@ xtm_process_tree_view_finalize (GObject *object)
 		g_object_unref (treeview->settings);
 	}
 
+	g_free (treeview->cmd_filter);
+	treeview->cmd_filter = NULL;
+
 	G_OBJECT_CLASS (xtm_process_tree_view_parent_class)->finalize (object);
 }
 

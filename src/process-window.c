@@ -190,11 +190,12 @@ static void
 filter_entry_keyrelease_handler(GtkEntry *entry,
                                 XtmProcessTreeView *treeview)
 {
-	const gchar *text;
+	gchar *text;
 	gboolean has_text;
 
 	text = gtk_editable_get_chars (GTK_EDITABLE(entry), 0, -1);
 	xtm_process_tree_view_set_filter(treeview, text);
+	g_free (text);
 
 	has_text = gtk_entry_get_text_length (GTK_ENTRY(entry)) > 0;
 	gtk_entry_set_icon_sensitive (GTK_ENTRY(entry),
