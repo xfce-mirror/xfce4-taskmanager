@@ -31,3 +31,5 @@ autom4te.cache
 INSTALL
 src/*_ui.h
 src/xfce4-taskmanager
+
+build/*
