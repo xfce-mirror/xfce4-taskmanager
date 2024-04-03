@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Alex . <sanet13@mail.ru>, 2021
-# Andrei Stepanov, 2022-2023
+# Andrei Stepanov, 2022-2024
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
 # Igor <f2404@yandex.ru>, 2017,2019-2020
 # Kyrill Detinov <lazy.kent@opensuse.org>, 2015
@@ -17,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-17 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Andrei Stepanov, 2022-2023\n"
+"Last-Translator: Andrei Stepanov, 2022-2024\n"
 "Language-Team: Russian (http://app.transifex.com/xfce/xfce-apps/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -263,7 +263,7 @@ msgstr "Простой диспетчер задач"
 
 #: ../src/settings-dialog.c:153
 msgid "translator-credits"
-msgstr "Andrey Fedoseev\nVlad Vasilev\nSergey Alyoshin"
+msgstr "Andrey Fedoseev\nVlad Vasilev\nSergey Alyoshin\nAndrei Stepanov"
 
 #: ../src/settings-dialog.ui.h:1
 msgid "Task Manager Settings"
@@ -279,7 +279,7 @@ msgstr "О программе"
 
 #: ../src/settings-dialog.ui.h:4
 msgid "_Close"
-msgstr "Закрыть"
+msgstr "_Закрыть"
 
 #: ../src/settings-dialog.ui.h:5
 msgid "Show all processes"
