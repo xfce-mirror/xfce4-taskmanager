@@ -12,24 +12,19 @@ dnl 2005-2008 Johannes Zellner <webmaster@nebulon.de>
 dnl ***************************
 dnl *** Version information ***
 dnl ***************************
-m4_define([taskmanager_version_major], [1])
-m4_define([taskmanager_version_minor], [5])
-m4_define([taskmanager_version_micro], [7])
-m4_define([taskmanager_version_build], [@REVISION@])
-m4_define([taskmanager_version_tag], [git])
-m4_define([taskmanager_version], [taskmanager_version_major().taskmanager_version_minor().taskmanager_version_micro()ifelse(taskmanager_version_tag(), [git], [taskmanager_version_tag()-taskmanager_version_build()], [taskmanager_version_tag()])])
+XDT_VERSION_INIT([1.5.7], [git])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2005-2024
         The Xfce development team. All rights reserved.])
-AC_INIT([Xfce4 Taskmanager], [taskmanager_version], [https://gitlab.xfce.org/apps/xfce4-taskmanager/], [xfce4-taskmanager],
+AC_INIT([Xfce4 Taskmanager], [xdt_version], [https://gitlab.xfce.org/apps/xfce4-taskmanager/], [xfce4-taskmanager],
         [https://docs.xfce.org/apps/xfce4-taskmanager/start])
-AC_PREREQ([2.60])
+AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_CANONICAL_TARGET()
-AC_REVISION([taskmanager_version_build])
+AC_REVISION([xdt_version_build])
 
 dnl ***************************
 dnl *** Initialize automake ***
@@ -49,7 +44,6 @@ AC_PROG_CC()
 AM_PROG_CC_C_O()
 LT_PATH_LD([])
 AC_PROG_INSTALL()
-IT_PROG_INTLTOOL()
 
 dnl ************************************
 dnl *** Checks for library functions ***
@@ -64,7 +58,12 @@ AC_CHECK_HEADERS([stdlib.h string.h])
 dnl ******************************
 dnl *** Check for i18n support ***
 dnl ******************************
-XDT_I18N([@LINGUAS@])
+GETTEXT_PACKAGE="$PACKAGE"
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Name of default gettext domain])
+AC_SUBST([GETTEXT_PACKAGE])
+
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
 
 dnl ***********************************
 dnl *** Check for required packages ***
@@ -137,7 +136,7 @@ AM_CONDITIONAL([OS_SKEL], [test x"$ac_os_implementation" = x"skel"])
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
-XDT_FEATURE_DEBUG()
+XDT_FEATURE_DEBUG([xdt_debug_default])
 
 dnl ***************
 dnl *** Outputs ***

@@ -1,7 +1,7 @@
 [Desktop Entry]
-_Name=Task Manager
-_Comment=Easy to use application to monitor system resources
-_GenericName=Task Manager
+Name=Task Manager
+Comment=Easy to use application to monitor system resources
+GenericName=Task Manager
 Exec=xfce4-taskmanager
 Icon=org.xfce.taskmanager
 Terminal=false
