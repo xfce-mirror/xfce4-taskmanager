@@ -18,7 +18,6 @@ stamp*
 *,orig
 configure
 config.*
-configure.ac
 mkinstalldirs
 missing
 compile
