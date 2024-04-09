@@ -261,7 +261,7 @@ int main (int argc, char *argv[])
 		exit (EXIT_FAILURE);
 	}
 
-	channel = xfconf_channel_new (CHANNEL);
+	channel = xfconf_channel_get (CHANNEL);
 	settings = xtm_settings_get_default ();
 	xtm_settings_bind_xfconf (settings, channel);
 	show_hide_status_icon ();

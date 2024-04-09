@@ -289,7 +289,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	GtkWidget *button;
 
 	window->settings = xtm_settings_get_default ();
-	window->channel = xfconf_channel_new (CHANNEL);
+	window->channel = xfconf_channel_get (CHANNEL);
 
 	window->builder = gtk_builder_new ();
 	gtk_builder_add_from_string (window->builder, process_window_ui, process_window_ui_length, NULL);
