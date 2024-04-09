@@ -320,24 +320,46 @@ columns_changed (XtmProcessTreeView *treeview)
 static void
 read_columns_positions (XtmProcessTreeView *treeview)
 {
-	gushort i;
 	gchar *columns_positions;
-	gchar **columns_positions_split;
+	gboolean valid_setting;
 
 	g_object_get (treeview->settings, "columns-positions", &columns_positions, NULL);
+	valid_setting = columns_positions != NULL;
 
-	if (columns_positions == NULL)
+	if (valid_setting)
 	{
-		for (i = 0; i < N_COLUMNS; i++)
-			treeview->columns_positions[i] = i;
-	}
-	else
-	{
-		columns_positions_split = g_strsplit (columns_positions, ";", N_COLUMNS + 1);
-		for (i = 0; i < N_COLUMNS && columns_positions_split[i] != NULL; i++)
-			treeview->columns_positions[i] = (gushort)g_ascii_strtoll (columns_positions_split[i], NULL, 10);
+		gchar **columns_positions_split = g_strsplit (columns_positions, ";", -1);
+		valid_setting = g_strv_length (columns_positions_split) == N_COLUMNS + 1;
+		if (valid_setting)
+		{
+			for (gint i = 0; i < N_COLUMNS; i++)
+			{
+				gchar *end;
+				gushort position = g_ascii_strtoull (columns_positions_split[i], &end, 10);
+				if (*end != '\0' || position >= N_COLUMNS)
+				{
+					valid_setting = FALSE;
+					break;
+				}
+
+				treeview->columns_positions[i] = position;
+			}
+		}
 		g_strfreev (columns_positions_split);
 		g_free (columns_positions);
+
+		if (!valid_setting)
+		{
+			XfconfChannel *channel = xfconf_channel_get (CHANNEL);
+			g_warning ("Invalid list of column positions, reset Xfconf property /columns/positions");
+			xfconf_channel_reset_property (channel, "/columns/positions", TRUE);
+		}
+	}
+
+	if (!valid_setting)
+	{
+		for (gint i = 0; i < N_COLUMNS; i++)
+			treeview->columns_positions[i] = i;
 	}
 }
 
