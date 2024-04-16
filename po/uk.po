@@ -5,16 +5,16 @@
 # Translators:
 # f977cb811fcf66493f48eac227fd7473_b98aa5d <2419f1d8d12d92441152e78ae3e3bde0_722180>, 2022
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2008
-# Gordon Freeman, 2023
+# Gordon Freeman, 2023-2024
 # Vasyl Khrystiuk <h6.msangel@gmail.com>, 2021
 # Yarema aka Knedlyk <yupadmin@gmail.com>, 2014,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 12:50+0200\n"
+"POT-Creation-Date: 2024-04-10 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Gordon Freeman, 2023\n"
+"Last-Translator: Gordon Freeman, 2023-2024\n"
 "Language-Team: Ukrainian (http://app.transifex.com/xfce/xfce-apps/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,8 +23,8 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:222 src/process-tree-view.c:379 src/process-tree-view.c:394
-#: src/process-tree-view.c:424 src/process-window.ui:7
+#: src/main.c:222 src/process-tree-view.c:448 src/process-tree-view.c:463
+#: src/process-tree-view.c:493 src/process-window.ui:7
 #: src/settings-dialog.c:147
 msgid "Task Manager"
 msgstr "Диспетчер задач"
@@ -74,129 +74,141 @@ msgstr "Обмін: %s"
 msgid "Processes: %d"
 msgstr "Процеси: %d"
 
-#: src/process-tree-view.c:136
+#: src/process-tree-view.c:159
 msgid "Task"
 msgstr "Задача"
 
-#: src/process-tree-view.c:147 src/settings-dialog.ui:359
+#: src/process-tree-view.c:170 src/settings-dialog.ui:359
 msgid "PID"
 msgstr "Ідентифікатор PID"
 
-#: src/process-tree-view.c:155 src/settings-dialog.ui:373
+#: src/process-tree-view.c:178 src/settings-dialog.ui:373
 msgid "PPID"
 msgstr "Пріоритет PPID"
 
-#: src/process-tree-view.c:163 src/settings-dialog.ui:387
+#: src/process-tree-view.c:186 src/settings-dialog.ui:387
 msgid "State"
 msgstr "Стан"
 
-#: src/process-tree-view.c:172
+#: src/process-tree-view.c:195
 msgid "VSZ"
 msgstr "VSZ"
 
-#: src/process-tree-view.c:180
+#: src/process-tree-view.c:203
+msgid "Group VSZ"
+msgstr "Група VSZ"
+
+#: src/process-tree-view.c:211
 msgid "RSS"
 msgstr "Стрічка RSS"
 
-#: src/process-tree-view.c:188 src/settings-dialog.ui:429
+#: src/process-tree-view.c:219
+msgid "Group RSS"
+msgstr "Група RSS"
+
+#: src/process-tree-view.c:227 src/settings-dialog.ui:457
 msgid "UID"
 msgstr "UID"
 
-#: src/process-tree-view.c:196 src/settings-dialog.ui:443
+#: src/process-tree-view.c:235 src/settings-dialog.ui:471
 msgid "CPU"
 msgstr "Проц"
 
+#: src/process-tree-view.c:243 src/settings-dialog.ui:485
+msgid "Group CPU"
+msgstr "Група CPU"
+
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:205
+#: src/process-tree-view.c:252
 msgid "Prio."
 msgstr "Пріоритет"
 
-#: src/process-tree-view.c:375
+#: src/process-tree-view.c:444
 msgid "Terminate task"
 msgstr "Завершити задачу"
 
-#: src/process-tree-view.c:375
+#: src/process-tree-view.c:444
 msgid "Kill task"
 msgstr "Знищити задачу"
 
-#: src/process-tree-view.c:377
+#: src/process-tree-view.c:446
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Ви впевнені, що бажаєте надіслати сигнал %s для PID %d?"
 
-#: src/process-tree-view.c:378
+#: src/process-tree-view.c:447
 msgid "terminate"
 msgstr "завершити"
 
-#: src/process-tree-view.c:378
+#: src/process-tree-view.c:447
 msgid "kill"
 msgstr "вбити"
 
-#: src/process-tree-view.c:390
+#: src/process-tree-view.c:459
 msgid "Error sending signal"
 msgstr "Помилка при відсилці сигналу"
 
-#: src/process-tree-view.c:392
+#: src/process-tree-view.c:461
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Помилку було отримано при відсиланні сигналу для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
 
-#: src/process-tree-view.c:421
+#: src/process-tree-view.c:490
 msgid "Error setting priority"
 msgstr "Помилка у налаштуванні пріоритету"
 
-#: src/process-tree-view.c:422
+#: src/process-tree-view.c:491
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Помилку було отримано при встановленні пріорітету для PID %d. Таке трапляється, коли Ви не маєте потрібних прав доступу."
 
-#: src/process-tree-view.c:485 src/process-tree-view.c:628
+#: src/process-tree-view.c:554 src/process-tree-view.c:697
 msgid "Stop"
 msgstr "Зупинити"
 
-#: src/process-tree-view.c:492
+#: src/process-tree-view.c:561
 msgid "Continue"
 msgstr "Продовжити"
 
-#: src/process-tree-view.c:498
+#: src/process-tree-view.c:567
 msgid "Terminate"
 msgstr "Завершити"
 
-#: src/process-tree-view.c:504
+#: src/process-tree-view.c:573
 msgid "Kill"
 msgstr "Знищити"
 
-#: src/process-tree-view.c:511
+#: src/process-tree-view.c:580
 msgid "Very low"
 msgstr "Дуже низько"
 
-#: src/process-tree-view.c:516
+#: src/process-tree-view.c:585
 msgid "Low"
 msgstr "Низько"
 
-#: src/process-tree-view.c:521
+#: src/process-tree-view.c:590
 msgid "Normal"
 msgstr "Нормально"
 
-#: src/process-tree-view.c:526
+#: src/process-tree-view.c:595
 msgid "High"
 msgstr "Високо"
 
-#: src/process-tree-view.c:531
+#: src/process-tree-view.c:600
 msgid "Very high"
 msgstr "Дуже високо"
 
-#: src/process-tree-view.c:536 src/settings-dialog.ui:457
+#: src/process-tree-view.c:605 src/settings-dialog.ui:499
 msgid "Priority"
 msgstr "Пріоритет"
 
 #. Same trick as above
-#: src/process-tree-view.c:540 src/process-tree-view.c:639
+#: src/process-tree-view.c:609 src/process-tree-view.c:708
 msgid "Copy command line"
 msgstr "Копіювати командний рядок"
 
@@ -331,14 +343,22 @@ msgid "Virtual Bytes"
 msgstr "Віртуальні байти"
 
 #: src/settings-dialog.ui:415
+msgid "Group Virtual Bytes"
+msgstr "Група віртуальних байтів"
+
+#: src/settings-dialog.ui:429
 msgid "Resident Bytes"
 msgstr "Постійні байти"
 
-#: src/settings-dialog.ui:478
+#: src/settings-dialog.ui:443
+msgid "Group Resident Bytes"
+msgstr "Група постійних байтів"
+
+#: src/settings-dialog.ui:520
 msgid "Columns"
 msgstr "Колонки"
 
-#: src/task-manager.c:253
+#: src/task-manager.c:257 src/task-manager.c:260
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
