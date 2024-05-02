@@ -56,6 +56,9 @@ enum
 	PROP_COLUMN_CPU,
 	PROP_COLUMN_GROUP_CPU,
 	PROP_COLUMN_PRIORITY,
+	PROP_COLUMN_PACKET_IN,
+	PROP_COLUMN_PACKET_OUT,
+	PROP_COLUMN_ACTIVE_SOCKET,
 	PROP_SORT_COLUMN_ID,
 	PROP_SORT_TYPE,
 	PROP_HANDLE_POSITION,
@@ -125,6 +128,14 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 		g_param_spec_boolean ("column-cpu", "ColumnCPU", "Show column CPU", TRUE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_COLUMN_GROUP_CPU,
 		g_param_spec_boolean ("column-group-cpu", "ColumnGroupCPU", "Show column Group CPU", TRUE, G_PARAM_READWRITE));
+
+	g_object_class_install_property (class, PROP_COLUMN_PACKET_IN,
+		g_param_spec_boolean ("column-packet-in", "ColumnPacketIn", "Show column packet in", TRUE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_COLUMN_PACKET_OUT,
+		g_param_spec_boolean ("column-packet-out", "ColumnPacketOut", "Show column packet out", TRUE, G_PARAM_READWRITE));
+	g_object_class_install_property (class, PROP_COLUMN_PACKET_OUT,
+		g_param_spec_boolean ("column-active-socket", "ColumnActiveSocket", "Show number of used socket descriptor", TRUE, G_PARAM_READWRITE));
+
 	g_object_class_install_property (class, PROP_COLUMN_PRIORITY,
 		g_param_spec_boolean ("column-priority", "ColumnPriority", "Show column priority", FALSE, G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_SORT_COLUMN_ID,
@@ -229,6 +240,15 @@ xtm_settings_bind_xfconf (XtmSettings *settings, XfconfChannel *channel)
 		G_OBJECT (settings), "column-cpu");
 	xfconf_g_property_bind (channel, SETTING_COLUMN_GROUP_CPU, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "column-group-cpu");
+
+
+	xfconf_g_property_bind (channel, SETTING_COLUMN_PACKET_IN, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-packet-in");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_PACKET_OUT, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-packet-out");
+	xfconf_g_property_bind (channel, SETTING_COLUMN_ACTIVE_SOCKET, G_TYPE_BOOLEAN,
+		G_OBJECT (settings), "column-active-socket");
+
 	xfconf_g_property_bind (channel, SETTING_COLUMN_PRIORITY, G_TYPE_BOOLEAN,
 		G_OBJECT (settings), "column-priority");
 

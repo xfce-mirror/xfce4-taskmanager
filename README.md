@@ -4,6 +4,35 @@
 
 The xfce4-taskmanager component is an easy to use graphical task manager.
 
+## New Features
+
+I have reworked the app to add the following new features:
+
+### Network Graph
+The app now includes a network graph that allows you to visualize the global system traffic (rx, tx and error) in real-time.
+
+### PCAP Sniffing
+I have added PCAP functionality to sniff the network traffic for each port. This is done via inode mapping, which also adds 3 new columns to the displayed process list:
+- Number of incoming packets
+- Number of outgoing packets 
+- Number of used sockets by the application
+
+### Screenshot
+Here is a screenshot of the updated app:
+
+Screenshot
+![Screenshot](screenshot.png)
+
+## Required Capabilities
+
+In order for the PCAP sniffing functionality to work, you need to set the following capabilities on the `xfce4-taskmanager` binary:
+
+```
+sudo setcap "cap_net_admin,cap_net_raw,cap_dac_read_search,cap_sys_ptrace+pe" ./src/xfce4-taskmanager
+```
+
+This grants the necessary permissions for the application to access network interfaces and system resources.
+
 ----
 
 ### Homepage
@@ -43,5 +72,4 @@ From release tarball:
 
 ### Reporting Bugs
 
-Visit the [reporting bugs](https://docs.xfce.org/apps/xfce4-taskmanager/bugs) page to view currently open bug reports and instructions on reporting new bugs or submitting bugfixes.
-
+Visit the [reporting bugs](https://docs.xfce.org/apps/xfce4-taskmanager/bugs) page to view currently open bug reports and instructions on reporting new bugs or submitting bugfixes
