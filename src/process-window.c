@@ -60,6 +60,7 @@ struct _XtmProcessWindow
 	GtkWidget *		filter_searchbar;
 	GtkWidget *		cpu_monitor;
 	GtkWidget *		mem_monitor;
+	GtkWidget *		net_monitor;
 	GtkWidget *		vpaned;
 	GtkWidget *		treeview;
 	GtkWidget *		statusbar;
@@ -348,6 +349,13 @@ xtm_process_window_init (XtmProcessWindow *window)
 		gtk_widget_show (window->mem_monitor);
 		gtk_container_add (GTK_CONTAINER (toolitem), window->mem_monitor);
 
+		toolitem = GTK_WIDGET (gtk_builder_get_object (window->builder, "graph-net"));
+		window->net_monitor = xtm_process_monitor_new ();
+		xtm_process_monitor_set_step_size (XTM_PROCESS_MONITOR (window->net_monitor), refresh_rate / 1000.0f);
+		xtm_process_monitor_set_type (XTM_PROCESS_MONITOR (window->net_monitor), 2);
+		gtk_widget_show (window->net_monitor);
+		gtk_container_add (GTK_CONTAINER (toolitem), window->net_monitor);
+
 		g_signal_connect_swapped (window->settings, "notify::refresh-rate", G_CALLBACK (monitor_update_step_size), window);
 	}
 
@@ -490,6 +498,7 @@ monitor_update_step_size (XtmProcessWindow *window)
 	g_object_get (window->settings, "refresh-rate", &refresh_rate, NULL);
 	g_object_set (window->cpu_monitor, "step-size", refresh_rate / 1000.0, NULL);
 	g_object_set (window->mem_monitor, "step-size", refresh_rate / 1000.0, NULL);
+	g_object_set (window->net_monitor, "step-size", refresh_rate / 1000.0, NULL);
 }
 
 /**
@@ -534,24 +543,41 @@ xtm_process_window_get_model (XtmProcessWindow *window)
 }
 
 void
-xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar* memory_str, gfloat swap, gchar* swap_str)
+xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar* memory_str, gfloat swap, gchar* swap_str, guint64 tcp_rx, guint64 tcp_tx, guint64 tcp_error)
 {
-	gchar text[100];
+	gchar text[200];
 	gchar value[4];
 
 	g_return_if_fail (XTM_IS_PROCESS_WINDOW (window));
 	g_return_if_fail (GTK_IS_BOX (window->statusbar));
 
-	g_object_set (window->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory_str, "swap", swap_str, NULL);
+	g_object_set (
+		window->statusbar,
+		"num-processes", num_processes,
+		"cpu", cpu,
+		"memory", memory_str,
+		"swap", swap_str,
+		"network-rx", tcp_rx*1e-5,
+		"network-tx", tcp_tx*1e-5,
+		"network-error", tcp_error,
+		NULL
+	);
 
-	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->cpu_monitor), cpu / 100.0f, -1.0);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->cpu_monitor), cpu / 100.0f, 0);
 	g_snprintf (value, sizeof(value), "%.0f", cpu);
 	g_snprintf (text, sizeof(text), _("CPU: %s%%"), value);
 	gtk_widget_set_tooltip_text (window->cpu_monitor, text);
 
-	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->mem_monitor), memory / 100.0f, swap / 100.0f);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->mem_monitor), memory / 100.0f, 0);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->mem_monitor), swap / 100.0f, 1);
 	g_snprintf (text, sizeof(text), _("Memory: %s"), memory_str);
 	gtk_widget_set_tooltip_text (window->mem_monitor, text);
+
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_rx*1e-5, 0);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_tx*1e-5, 1);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_error, 2);
+	g_snprintf (text, sizeof(text), _("Network rx=%0.2f MB/s\nNetwork tx=%0.2f MB/s \nNetwork error=%lu error/s"), tcp_rx*1e-5, tcp_tx*1e-5, tcp_error);
+	gtk_widget_set_tooltip_text (window->net_monitor, text);
 }
 
 void
