@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2024 Jehan-Antoine Vayssade, <javayss@sleek-think.ovh>
  * Copyright (c) 2008-2010  Mike Massonnet <mmassonnet@xfce.org>
  * Copyright (c) 2006  Johannes Zellner <webmaster@nebulon.de>
  *

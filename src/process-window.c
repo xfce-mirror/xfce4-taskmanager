@@ -573,7 +573,6 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 	g_snprintf (text, sizeof(text), _("Memory: %s"), memory_str);
 	gtk_widget_set_tooltip_text (window->mem_monitor, text);
 
-
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_rx*1e-5, 0);
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_tx*1e-5, 1);
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_error, 2);
