@@ -558,7 +558,7 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 		"memory", memory_str,
 		"swap", swap_str,
 		"network-rx", tcp_rx*1e-5,
-		"network-tx", tcp_rx*1e-5,
+		"network-tx", tcp_tx*1e-5,
 		"network-error", tcp_error,
 		NULL
 	);
