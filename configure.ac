@@ -1,6 +1,7 @@
 dnl
 dnl xfce4-taskmanager - A small taskmanager based on the Xfce 4 libraries.
 dnl
+dnl 2024-2024 Jehan-Antoine Vayssade
 dnl 2014-2021 Simon Steinbess
 dnl 2018-2019 Rozhuk Ivan
 dnl 2014 Landry Breuil
@@ -68,6 +69,7 @@ AM_GNU_GETTEXT_VERSION([0.19.8])
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
+XDT_CHECK_PACKAGE([LIBPCAP], [libpcap], [0.0.0])
 XDT_CHECK_PACKAGE([LIBXMU], [xmu], [1.1.2])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.22.0])
