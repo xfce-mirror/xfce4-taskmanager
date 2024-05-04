@@ -14,8 +14,8 @@
 #include <arpa/inet.h>
 
 #include "network-analyzer.h"
+#include "task-manager.h"
 
-void packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet);
 void* network_analyzer_thread(void *ptr);
 void increament_packet_count(char*, char*, GHashTable* hash_table, long int port);
 int mac_get_binary_from_file(const char *filename, uint8_t mac[6]);
@@ -27,61 +27,6 @@ void increament_packet_count(char *mac, char *direction, GHashTable* hash_table,
     gpointer value = g_hash_table_lookup(hash_table, key);
     g_hash_table_replace(hash_table, key, (gpointer)(((long int)value)+1));
     printf("%s -> %s %ld: %ld\n", mac, direction, port, ((long int)value)+1);
-}
-
-void packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
-{
-    XtmNetworkAnalyzer *analyzer = (XtmNetworkAnalyzer*)args;
-
-    // Extract source and destination IP addresses and ports from the packet
-    struct ether_header *eth_header = (struct ether_header*)packet;
-    struct ip *ip_header = (struct ip*)(packet + sizeof(struct ether_header));
-    struct tcphdr *tcp_header = (struct tcphdr*)(packet + sizeof(struct ether_header) + sizeof(struct ip));
-
-    // Dropped non-ip packet
-	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
-        return;
-
-    long int src_port = ntohs(tcp_header->source);
-    long int dst_port = ntohs(tcp_header->dest);
-
-    // directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
-
-    char local_mac[18];
-    char src_mac[18];
-    char dst_mac[18];
-
-    sprintf(local_mac,
-        "%02X:%02X:%02X:%02X:%02X:%02X",
-        analyzer->mac[0], analyzer->mac[1],
-        analyzer->mac[2], analyzer->mac[3],
-        analyzer->mac[4], analyzer->mac[5]
-    );
-
-    sprintf(src_mac,
-        "%02X:%02X:%02X:%02X:%02X:%02X",
-        eth_header->ether_shost[0], eth_header->ether_shost[1],
-        eth_header->ether_shost[2], eth_header->ether_shost[3],
-        eth_header->ether_shost[4], eth_header->ether_shost[5]
-    );
-
-    sprintf(dst_mac,
-        "%02X:%02X:%02X:%02X:%02X:%02X",
-        eth_header->ether_dhost[0], eth_header->ether_dhost[1],
-        eth_header->ether_dhost[2], eth_header->ether_dhost[3],
-        eth_header->ether_dhost[4], eth_header->ether_dhost[5]
-    );
-
-    // Debug
-    //pthread_mutex_lock(&analyzer->lock);
-
-    if(strcmp(local_mac, src_mac) == 0)
-        increament_packet_count(local_mac, "in ", analyzer->packetin, src_port);
-    
-    if(strcmp(local_mac, dst_mac) == 0)
-        increament_packet_count(local_mac, "out", analyzer->packetout, dst_port);
-
-    //pthread_mutex_unlock(&analyzer->lock);
 }
 
 void *network_analyzer_thread( void *ptr )
