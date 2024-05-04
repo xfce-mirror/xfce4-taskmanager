@@ -27,9 +27,16 @@
 #include <sys/vmmeter.h>
 #endif
 
+#include <net/ethernet.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <arpa/inet.h>
+
 #include <glib.h>
 
 #include "task-manager.h"
+#include "network-analyzer.h"
 
 static const gchar ki_stat2state[] = {
 	' ', /* - */
@@ -41,6 +48,128 @@ static const gchar ki_stat2state[] = {
 	'W', /* SWAIT */
 	'L' /* SLOCK */
 };
+
+
+
+void
+packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
+{
+    XtmNetworkAnalyzer *analyzer = (XtmNetworkAnalyzer*)args;
+
+    // Extract source and destination IP addresses and ports from the packet
+    struct ether_header *eth_header = (struct ether_header*)packet;
+    struct ip *ip_header = (struct ip*)(packet + sizeof(struct ether_header));
+    struct tcphdr *tcp_header = (struct tcphdr*)(packet + sizeof(struct ether_header) + sizeof(struct ip));
+
+    // Dropped non-ip packet
+	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
+        return;
+
+    long int src_port = ntohs(tcp_header->th_sport);
+    long int dst_port = ntohs(tcp_header->th_dport);
+
+    // directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
+
+    char local_mac[18];
+    char src_mac[18];
+    char dst_mac[18];
+
+    sprintf(local_mac,
+        "%02X:%02X:%02X:%02X:%02X:%02X",
+        analyzer->mac[0], analyzer->mac[1],
+        analyzer->mac[2], analyzer->mac[3],
+        analyzer->mac[4], analyzer->mac[5]
+    );
+
+    sprintf(src_mac,
+        "%02X:%02X:%02X:%02X:%02X:%02X",
+        eth_header->ether_shost[0], eth_header->ether_shost[1],
+        eth_header->ether_shost[2], eth_header->ether_shost[3],
+        eth_header->ether_shost[4], eth_header->ether_shost[5]
+    );
+
+    sprintf(dst_mac,
+        "%02X:%02X:%02X:%02X:%02X:%02X",
+        eth_header->ether_dhost[0], eth_header->ether_dhost[1],
+        eth_header->ether_dhost[2], eth_header->ether_dhost[3],
+        eth_header->ether_dhost[4], eth_header->ether_dhost[5]
+    );
+
+    printf("%s\n", local_mac);
+
+    // Debug
+    //pthread_mutex_lock(&analyzer->lock);
+
+    if(strcmp(local_mac, src_mac) == 0)
+        increament_packet_count(local_mac, "in ", analyzer->packetin, src_port);
+    
+    if(strcmp(local_mac, dst_mac) == 0)
+        increament_packet_count(local_mac, "out", analyzer->packetout, dst_port);
+
+    //pthread_mutex_unlock(&analyzer->lock);
+}
+
+
+gboolean
+get_network_usage_filename(gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	FILE *file;
+	gchar buffer[256];
+    char *out;
+
+	*tcp_rx = 0;
+	*tcp_tx = 0;
+	*tcp_error = 0;
+
+	if ((file = fopen (filename, "r")) == NULL)
+		return FALSE;
+
+    out = fgets(buffer, sizeof(buffer), file);
+    if(!out)
+       return FALSE;
+
+    out = fgets(buffer, sizeof(buffer), file);
+
+    if(!out)
+       return FALSE;
+
+    while (fgets(buffer, sizeof(buffer), file)) {
+    	unsigned long int dummy = 0;
+    	unsigned long int r_bytes = 0;
+		unsigned long int t_bytes = 0;
+		unsigned long int r_packets = 0;
+		unsigned long int t_packets = 0;
+		unsigned long int error = 0;
+		gchar ifname[256];
+
+        int count = sscanf(
+			buffer, "%[^:]: %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu",
+            ifname, &r_bytes, &r_packets, &error,
+			&dummy, &dummy, &dummy, &dummy, &dummy,
+			&t_bytes, &t_packets
+		);
+
+        if(count != 11)
+        {
+            printf("Something went wrong while reading %s -> expected %d\n", filename, count);
+            break;
+        }
+
+		*tcp_rx += r_bytes;
+		*tcp_tx += t_bytes;
+		*tcp_error += error;
+    }
+
+	fclose (file);
+		
+	return TRUE;
+}
+
+gboolean
+get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	return get_network_usage_filename("/proc/net/dev", tcp_rx, tcp_tx, tcp_error);
+}
 
 
 static guint64
