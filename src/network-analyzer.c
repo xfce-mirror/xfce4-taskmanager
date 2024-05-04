@@ -8,9 +8,14 @@
  */
 
 #include <net/ethernet.h>
+#include <net/if.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
+#include <netpacket/packet.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <ifaddrs.h>
 #include <arpa/inet.h>
 
 #include "network-analyzer.h"
@@ -18,9 +23,10 @@
 
 void* network_analyzer_thread(void *ptr);
 void increament_packet_count(char*, char*, GHashTable* hash_table, long int port);
-int mac_get_binary_from_file(const char *filename, uint8_t mac[6]);
+int get_mac_address(const char *device, uint8_t mac[6]);
 
-void increament_packet_count(char *mac, char *direction, GHashTable* hash_table, long int port)
+void
+increament_packet_count(char *mac, char *direction, GHashTable* hash_table, long int port)
 {
     int *key = g_new0(gint, 1);
     *key = port;
@@ -29,42 +35,50 @@ void increament_packet_count(char *mac, char *direction, GHashTable* hash_table,
     printf("%s -> %s %ld: %ld\n", mac, direction, port, ((long int)value)+1);
 }
 
-void *network_analyzer_thread( void *ptr )
+void*
+network_analyzer_thread( void *ptr )
 {
     XtmNetworkAnalyzer *analyzer = (XtmNetworkAnalyzer*)ptr;
     pcap_loop(analyzer->handle, -1, packet_callback, (void*)analyzer);
     return NULL;
 }
 
-int mac_get_binary_from_file(const char *filename, uint8_t mac[6])
+int
+get_mac_address(const char *device, uint8_t mac[6])
 {
-    int status = 1;
-    char buf[256];
-    FILE *fp = fopen(filename, "rt");
-    memset(buf, 0, 256);
+    struct ifaddrs *ifaddr, *ifa;
 
-    if (!fp)
-        return 1;
+    if (getifaddrs(&ifaddr) == -1)
+        return -1;
 
-    if (fgets(buf, sizeof buf, fp) != NULL)
+    for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
     {
-        sscanf(
-            buf, "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx",
-            &mac[0], &mac[1],
-            &mac[2], &mac[3],
-            &mac[4], &mac[5]
-        );
-        status = 0;
+        if (ifa->ifa_addr == NULL)
+            continue;
+
+        int family = ifa->ifa_addr->sa_family;
+
+        // Check if the interface is a network interface (AF_PACKET for Linux)
+        if (family == AF_PACKET && strcmp(device, ifa->ifa_name) == 0)
+        {
+            // Check if the interface has a hardware address (MAC address)
+            if (ifa->ifa_data != NULL)
+            {
+                struct sockaddr_ll *sll = (struct sockaddr_ll *)ifa->ifa_addr;
+                memcpy(mac, sll->sll_addr, sizeof(uint8_t) * 6);
+                freeifaddrs(ifaddr);
+                return 0;
+            }
+        }
     }
 
-    fclose(fp);
-    return status;
+    freeifaddrs(ifaddr);
+    return -1;
 }
 
 XtmNetworkAnalyzer*
 xtm_create_network_analyzer(void)
 {
-    char device_path[2048];
     char errbuf[PCAP_ERRBUF_SIZE];
     pcap_if_t *it = NULL;
 
@@ -81,10 +95,9 @@ xtm_create_network_analyzer(void)
     {
         guint8 mac[6];
         char *device = it->name;
-        sprintf(device_path, "/sys/class/net/%s/address", device);
 
         //! todo check pcap lib ?
-        if (mac_get_binary_from_file(device_path, mac) == 0)
+        if (get_mac_address(device, mac) == 0)
         {
             printf(
                 "%s, MAC address: %02X:%02X:%02X:%02X:%02X:%02X\n",
@@ -124,12 +137,7 @@ xtm_create_network_analyzer(void)
         current->packetin = g_hash_table_new_full (g_int_hash, g_int_equal, g_free, NULL);
         current->packetout = g_hash_table_new_full (g_int_hash, g_int_equal, g_free, NULL);
 
-        current->mac[0] = mac[0];
-        current->mac[1] = mac[1];
-        current->mac[2] = mac[2];
-        current->mac[3] = mac[3];
-        current->mac[4] = mac[4];
-        current->mac[5] = mac[5];
+        memcpy(current->mac, mac, sizeof(uint8_t) * 6);
 
         pthread_mutex_init(&current->lock, NULL);
         pthread_create(&current->thread, NULL, network_analyzer_thread, (void*)current);
