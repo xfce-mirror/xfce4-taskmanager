@@ -66,10 +66,12 @@ struct _Task
 
 void packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet);
 gboolean get_network_usage_filename(gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
-gboolean    get_network_usage   (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
+gboolean get_network_usage   (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
+int get_mac_address(const char *device, uint8_t mac[6]);
+
 gboolean	get_memory_usage	(guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);
 gboolean	get_cpu_usage		(gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system);
-gboolean	get_task_list		(GArray *task_list);
+gboolean	get_task_list		        (GArray *task_list);
 gboolean	pid_is_sleeping		(GPid pid);
 
 /**

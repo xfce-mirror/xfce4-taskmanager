@@ -19,11 +19,13 @@
 #include <unistd.h>
 #include <string.h>
 
+#include <netpacket/packet.h>
 #include <net/ethernet.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include <ifaddrs.h>
 
 #include <glib.h>
 
@@ -34,6 +36,8 @@
 static XtmInodeToSock *inode_to_sock = NULL;
 static gushort _cpu_count = 0;
 static gulong jiffies_total_delta = 0;
+
+void increament_packet_count(char*, char*, GHashTable* hash_table, long int port);
 
 void
 packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
@@ -144,6 +148,39 @@ get_network_usage_filename(gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, gu
 	fclose (file);
 		
 	return TRUE;
+}
+
+int
+get_mac_address(const char *device, uint8_t mac[6])
+{
+    struct ifaddrs *ifaddr, *ifa;
+
+    if (getifaddrs(&ifaddr) == -1)
+        return -1;
+
+    for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+    {
+        if (ifa->ifa_addr == NULL)
+            continue;
+
+        int family = ifa->ifa_addr->sa_family;
+
+        // Check if the interface is a network interface (AF_PACKET for Linux)
+        if (family == AF_PACKET && strcmp(device, ifa->ifa_name) == 0)
+        {
+            // Check if the interface has a hardware address (MAC address)
+            if (ifa->ifa_data != NULL)
+            {
+                struct sockaddr_ll *sll = (struct sockaddr_ll *)ifa->ifa_addr;
+                memcpy(mac, sll->sll_addr, sizeof(uint8_t) * 6);
+                freeifaddrs(ifaddr);
+                return 0;
+            }
+        }
+    }
+
+    freeifaddrs(ifaddr);
+    return -1;
 }
 
 gboolean

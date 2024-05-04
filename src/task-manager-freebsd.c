@@ -27,11 +27,17 @@
 #include <sys/vmmeter.h>
 #endif
 
+
+#include <net/if.h>
+#include <net/if_dl.h>
+#include <net/if_mib.h>
 #include <net/ethernet.h>
+
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include <ifaddrs.h>
 
 #include <glib.h>
 
@@ -50,6 +56,9 @@ static const gchar ki_stat2state[] = {
 };
 
 
+void increament_packet_count(char*, char*, GHashTable* hash_table, long int port);
+gboolean get_if_count(int *data);
+gboolean get_network_usage_if(int interface, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
 
 void
 packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
@@ -95,8 +104,6 @@ packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
         eth_header->ether_dhost[4], eth_header->ether_dhost[5]
     );
 
-    printf("%s\n", local_mac);
-
     // Debug
     //pthread_mutex_lock(&analyzer->lock);
 
@@ -109,68 +116,90 @@ packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
     //pthread_mutex_unlock(&analyzer->lock);
 }
 
+gboolean
+get_if_count(int *data)
+{
+        size_t len = sizeof(*data);
+
+        static int32_t name[] = { CTL_NET, PF_LINK, NETLINK_GENERIC, IFMIB_SYSTEM, IFMIB_IFCOUNT };
+	name[0] = CTL_NET;
+	name[1] = PF_LINK;
+	name[2] = NETLINK_GENERIC;
+	name[3] = IFMIB_SYSTEM;
+	name[4] = IFMIB_IFCOUNT;
+
+	return sysctl(name, 5, data, &len, 0, 0) < 0;
+}
 
 gboolean
-get_network_usage_filename(gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+get_network_usage_if(int interface, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 {
-	FILE *file;
-	gchar buffer[256];
-    char *out;
+        struct ifmibdata data;
+        size_t len = sizeof(data);
 
-	*tcp_rx = 0;
-	*tcp_tx = 0;
-	*tcp_error = 0;
+        static int32_t name[] = { CTL_NET, PF_LINK, NETLINK_GENERIC, IFMIB_IFDATA, 0, IFDATA_GENERAL };
+	name[4] = interface;
+        
+       if (sysctl(name, 6, &data, &len, 0, 0) < 0)
+            return 1;
 
-	if ((file = fopen (filename, "r")) == NULL)
-		return FALSE;
+       //*tcp_error = data.ifmd_data.ifi_oerrors + data.ifmd_data.ifi_ierrors;
+       *tcp_rx += data.ifmd_data.ifi_ibytes;
+       *tcp_tx += data.ifmd_data.ifi_obytes;
 
-    out = fgets(buffer, sizeof(buffer), file);
-    if(!out)
-       return FALSE;
-
-    out = fgets(buffer, sizeof(buffer), file);
-
-    if(!out)
-       return FALSE;
-
-    while (fgets(buffer, sizeof(buffer), file)) {
-    	unsigned long int dummy = 0;
-    	unsigned long int r_bytes = 0;
-		unsigned long int t_bytes = 0;
-		unsigned long int r_packets = 0;
-		unsigned long int t_packets = 0;
-		unsigned long int error = 0;
-		gchar ifname[256];
-
-        int count = sscanf(
-			buffer, "%[^:]: %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu",
-            ifname, &r_bytes, &r_packets, &error,
-			&dummy, &dummy, &dummy, &dummy, &dummy,
-			&t_bytes, &t_packets
-		);
-
-        if(count != 11)
-        {
-            printf("Something went wrong while reading %s -> expected %d\n", filename, count);
-            break;
-        }
-
-		*tcp_rx += r_bytes;
-		*tcp_tx += t_bytes;
-		*tcp_error += error;
-    }
-
-	fclose (file);
-		
-	return TRUE;
+       return 0;
 }
 
 gboolean
 get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 {
-	return get_network_usage_filename("/proc/net/dev", tcp_rx, tcp_tx, tcp_error);
+	int ifcount = 0;
+
+	if (get_if_count(&ifcount))
+		return 1;
+
+       *tcp_error = 0;
+       *tcp_rx = 0;
+       *tcp_tx = 0;
+
+	for (int i =0; i<ifcount; ++i)
+		get_network_usage_if(i, tcp_rx, tcp_tx, tcp_error);
+
+        return 0;
 }
 
+int
+get_mac_address(const char *device, uint8_t mac[6])
+{
+    struct ifaddrs *ifaddr, *ifa;
+
+    if (getifaddrs(&ifaddr) == -1)
+        return -1;
+
+    for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+    {
+        if (ifa->ifa_addr == NULL)
+            continue;
+
+        int family = ifa->ifa_addr->sa_family;
+
+        // Check if the interface is a network interface (AF_PACKET for Linux)
+        if (family == AF_LINK && strcmp(device, ifa->ifa_name) == 0)
+        {
+            // Check if the interface has a hardware address (MAC address)
+            if (ifa->ifa_data != NULL)
+            {
+                struct sockaddr_dl *sdl = (struct sockaddr_dl *)ifa->ifa_addr;
+                memcpy(mac, sdl->sdl_data + sdl->sdl_nlen, sizeof(uint8_t) * 6);
+                freeifaddrs(ifaddr);
+                return 0;
+            }
+        }
+    }
+
+    freeifaddrs(ifaddr);
+    return -1;
+}
 
 static guint64
 get_mem_by_bytes (const gchar *name)
