@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2024 Jehan-Antoine Vayssade, <javayss@sleek-think.ovh>
  * Copyright (c) 2010 Mike Massonnet, <mmassonnet@xfce.org>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -27,7 +28,7 @@ typedef struct _XtmProcessMonitor XtmProcessMonitor;
 
 GType		xtm_process_monitor_get_type			(void);
 GtkWidget *	xtm_process_monitor_new				(void);
-void		xtm_process_monitor_add_peak			(XtmProcessMonitor *monitor, gfloat peak, gfloat peak_swap);
+void		xtm_process_monitor_add_peak			(XtmProcessMonitor *monitor, gfloat peak, gint index);
 void		xtm_process_monitor_set_step_size		(XtmProcessMonitor *monitor, gfloat step_size);
 void		xtm_process_monitor_set_type			(XtmProcessMonitor *monitor, gint type);
 void		xtm_process_monitor_clear			(XtmProcessMonitor *monitor);
