@@ -40,6 +40,25 @@
 /* for struct vmtotal */
 #include <sys/vmmeter.h>
 
+#include <net/if.h>
+#include <net/if_dl.h>
+#include <net/route.h>
+
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <netinet/if_ether.h>
+#include <netinet/in_pcb.h>
+
+#include <arpa/inet.h>
+#include <ifaddrs.h>
+#include <sys/file.h>
+#include <kvm.h>
+
+#include "inode-to-sock.h"
+#include "task-manager.h"
+#include "network-analyzer.h"
+
 #include <errno.h>
 extern int errno;
 
@@ -47,8 +66,241 @@ char *state_abbrev[] = {
 	"", "start", "run", "sleep", "stop", "zomb", "dead", "onproc"
 };
 
+static XtmInodeToSock *inode_to_sock = NULL;
+static XtmNetworkAnalyzer *analyzer = NULL;
+static kvm_t *kvmd = NULL;
+
+void increament_packet_count(char*, char*, GHashTable* hash_table, long int port);
+gboolean get_if_count(int *data);
+gboolean get_network_usage_if(int interface, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
+
+void
+packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
+{
+	// Extract source and destination IP addresses and ports from the packet
+	struct ether_header *eth_header = (struct ether_header*)packet;
+	struct ip *ip_header = (struct ip*)(packet + sizeof(struct ether_header));
+	struct tcphdr *tcp_header = (struct tcphdr*)(packet + sizeof(struct ether_header) + sizeof(struct ip));
+
+	// printf("%d, %d \n", eth_header->ether_type , ip_header->ip_p);
+
+	// Dropped non-ip packet
+	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
+		return;
+
+	long int src_port = ntohs(tcp_header->th_sport);
+	long int dst_port = ntohs(tcp_header->th_dport);
+
+	// directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
+
+	char local_mac[18];
+	char src_mac[18];
+	char dst_mac[18];
+
+	sprintf(local_mac,
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		analyzer->mac[0], analyzer->mac[1],
+		analyzer->mac[2], analyzer->mac[3],
+		analyzer->mac[4], analyzer->mac[5]
+	);
+
+	sprintf(src_mac,
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header->ether_shost[0], eth_header->ether_shost[1],
+		eth_header->ether_shost[2], eth_header->ether_shost[3],
+		eth_header->ether_shost[4], eth_header->ether_shost[5]
+	);
+
+	sprintf(dst_mac,
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header->ether_dhost[0], eth_header->ether_dhost[1],
+		eth_header->ether_dhost[2], eth_header->ether_dhost[3],
+		eth_header->ether_dhost[4], eth_header->ether_dhost[5]
+	);
+
+	// Debug
+	//pthread_mutex_lock(&analyzer->lock);
+
+	if(strcmp(local_mac, src_mac) == 0)
+		increament_packet_count(local_mac, "in ", analyzer->packetin, src_port);
+
+	if(strcmp(local_mac, dst_mac) == 0)
+		increament_packet_count(local_mac, "out", analyzer->packetout, dst_port);
+
+	//pthread_mutex_unlock(&analyzer->lock);
+}
+
 gboolean
-get_task_list (GArray *task_list)
+get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	// can also be get trough tcpstat struct
+	// int mib[] = { CTL_NET, PF_INET, IPPROTO_TCP, TCPCTL_STATS }
+	// sysctl(mib, sizeof(mib) / sizeof(mib[0]), %tcpstat, &len, NULL, 0)
+	// repeat for IPPROTO_UDP or use IPPROTO_ETHERIP
+
+       *tcp_error = 0;
+       *tcp_rx = 0;
+       *tcp_tx = 0;
+
+	struct ifaddrs *ifaddr, *ifa;
+
+	if (getifaddrs(&ifaddr) == -1)
+		return -1;
+
+	for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+	{
+		if (ifa->ifa_addr == NULL)
+			continue;
+
+		int family = ifa->ifa_addr->sa_family;
+
+		// Check if the interface is a network interface (AF_PACKET for Linux)
+		if (family == AF_LINK)
+		{
+			struct if_data *ifdata = (struct if_data*)ifa->ifa_data;
+			// Check if the interface has a hardware address (MAC address)
+			if (ifdata != NULL)
+			{
+				*tcp_error += ifdata->ifi_oerrors + ifdata->ifi_ierrors;;
+				*tcp_rx += ifdata->ifi_ibytes;
+				*tcp_tx += ifdata->ifi_obytes;
+			}
+			//printf("%d, %d \n", *tcp_rx, *tcp_tx);
+		}
+	}
+
+	freeifaddrs(ifaddr);
+	return -1;
+
+        return 0;
+}
+
+int
+get_mac_address(const char *device, uint8_t mac[6])
+{
+	struct ifaddrs *ifaddr, *ifa;
+
+	if (getifaddrs(&ifaddr) == -1)
+		return -1;
+
+	for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+	{
+		if (ifa->ifa_addr == NULL)
+			continue;
+
+		int family = ifa->ifa_addr->sa_family;
+
+		// Check if the interface is a network interface (AF_PACKET for Linux)
+		if (family == AF_LINK && strcmp(device, ifa->ifa_name) == 0)
+		{
+			// Check if the interface has a hardware address (MAC address)
+			if (ifa->ifa_data != NULL)
+			{
+				struct sockaddr_dl *sdl = (struct sockaddr_dl *)ifa->ifa_addr;
+				memcpy(mac, sdl->sdl_data + sdl->sdl_nlen, sizeof(uint8_t) * 6);
+				freeifaddrs(ifaddr);
+				return 0;
+			}
+		}
+	}
+
+	freeifaddrs(ifaddr);
+	return -1;
+}
+
+struct kinfo_file*
+get_process_fds(int *nfiles, int kern, int arg)
+{
+	// inspired by NetBSD pstat.c
+	int mib[6];
+	size_t len;
+	struct kinfo_file *kf;
+
+	// Set the MIB (Management Information Base) for the sysctl call
+	mib[0] = CTL_KERN;
+
+#ifdef __OpenBSD__
+	mib[1] = KERN_FILE;
+#else
+	mib[1] = KERN_FILE2;
+#endif
+
+	mib[2] = kern;
+	mib[3] = arg;
+	mib[4] = sizeof(struct kinfo_file);
+	mib[5] = 0;
+
+	// Get the number of open files
+	if (sysctl(mib, 6, NULL, &len, NULL, 0) < 0)
+	{
+		printf("sysctl Get the number of opened fd");
+		return NULL;
+	}
+
+	*nfiles = len / sizeof(struct kinfo_file);
+
+	// Allocate memory for the kinfo_file structures
+	kf = malloc(len);
+	if (kf == NULL)
+	{
+		printf("malloc");
+		return NULL;
+	}
+
+	mib[5] = len / sizeof(struct kinfo_file);
+
+	// Get the list of open files
+	if (sysctl(mib, 6, kf, &len, NULL, 0) < 0)
+	{
+		printf("sysctl, enable to get kinfo_file *");
+		free(kf);
+		return NULL;
+	}
+
+	return kf;
+}
+
+void
+xtm_refresh_inode_to_sock(XtmInodeToSock *its)
+{
+	// unneeded
+}
+
+void
+list_process_fds(Task *task)
+{
+	// inspired by openbsd netstat/inet.c
+	// inspired by openbsd fstat/fstat.c
+
+	int nfiles;
+	struct kinfo_file *kf  = get_process_fds(&nfiles, KERN_FILE_BYPID, task->pid);
+
+	if(kf == NULL)
+		return;
+
+	// Parse the kinfo_file structures
+	for (int i = 0; i < nfiles; i++)
+	{
+		if (kf[i].f_type == DTYPE_SOCKET)
+		{
+			task->active_socket += 1;
+
+			//interesting properties
+			//task->packet_in +=  kf[i].f_rxfer;
+			//task->packet_in +=  kf[i].f_rbytes;
+			//task->packet_out +=  kf[i].f_rwfer;
+			//task->packet_out +=  kf[i].f_wbytes;netstat
+
+			int port = ntohs(kf[i].inp_lport);
+			task->packet_in += (guint64)g_hash_table_lookup(analyzer->packetin, &port);
+			task->packet_out += (guint64)g_hash_table_lookup(analyzer->packetout, &port);
+		}
+	}
+
+	free(kf);
+}
+
+gboolean get_task_list (GArray *task_list)
 {
 	int mib[6];
 	size_t size;
@@ -61,6 +313,14 @@ get_task_list (GArray *task_list)
 	char **args;
 	gchar *buf;
 	int nproc, i;
+
+	analyzer = xtm_network_analyzer_get_default();
+	inode_to_sock = xtm_inode_to_sock_get_default();
+	xtm_refresh_inode_to_sock(inode_to_sock);
+
+	if (kvmd == NULL)
+		kvmd = kvm_open(NULL, NULL, NULL, O_RDONLY, NULL);
+	//kvm_close(kvmd);
 
 	mib[0] = CTL_KERN;
 #ifdef __OpenBSD__
@@ -150,7 +410,9 @@ get_task_list (GArray *task_list)
 
 		t.cpu_user = (100.0f * ((gfloat)p.p_pctcpu / FSCALE));
 		t.cpu_system = 0.0f; /* TODO ? */
-		g_array_append_val (task_list, t);
+		list_process_fds(&t);
+
+		g_array_append_val(task_list, t);
 	}
 	free (kp);
 
