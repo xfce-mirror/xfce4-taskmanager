@@ -17,11 +17,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <stdlib.h>
+#include "task-manager.h"
+
 #include <err.h>
+#include <stdlib.h>
 #include <sys/types.h>
 /* for sysctl() */
 #include <sys/param.h>
@@ -37,7 +39,6 @@
 #include <sys/proc.h>
 /* for struct vmtotal */
 #include <sys/vmmeter.h>
-#include "task-manager.h"
 
 #include <errno.h>
 extern int errno;
@@ -282,4 +283,3 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 	free(swdev);
 	return TRUE;
 }
-

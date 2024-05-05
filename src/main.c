@@ -9,19 +9,17 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <stdlib.h>
-#include <gtk/gtk.h>
-#include <gio/gio.h>
-
-#include <xfconf/xfconf.h>
-#include <libxfce4ui/libxfce4ui.h>
-
-#include "settings.h"
 #include "process-window.h"
+#include "settings.h"
 #include "task-manager.h"
+
+#include <gio/gio.h>
+#include <gtk/gtk.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <xfconf/xfconf.h>
 
 static XtmSettings *settings;
 static GtkWidget *window;

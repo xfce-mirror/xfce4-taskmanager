@@ -8,14 +8,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <gtk/gtk.h>
-#include <cairo.h>
-
-#include "task-manager.h"
 #include "process-monitor.h"
+#include "task-manager.h"
+
+#include <cairo.h>
 
 
 

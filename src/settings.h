@@ -10,12 +10,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <glib-object.h>
-
 #include <xfconf/xfconf.h>
 
 #define DEFAULT_WINDOW_HEIGHT	600

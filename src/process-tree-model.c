@@ -8,17 +8,15 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <glib-object.h>
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
-
-#include "task-manager.h"
-#include "process-tree-view.h"
 #include "process-tree-model.h"
+#include "process-tree-view.h"
+#include "task-manager.h"
+
+#include <gdk/gdkkeysyms.h>
+#include <glib/gi18n.h>
 
 
 
@@ -950,4 +948,3 @@ xtm_process_tree_model_new (GtkTreeModel * model)
 
 	return g_object_new (XTM_TYPE_PROCESS_TREE_MODEL, "model", model, NULL);
 }
-

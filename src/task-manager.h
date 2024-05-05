@@ -10,10 +10,6 @@
 #ifndef TASK_MANAGER_H
 #define TASK_MANAGER_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <glib-object.h>
 #include <gtk/gtk.h>
 

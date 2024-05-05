@@ -10,26 +10,25 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <kvm.h>
-#include <sys/types.h>
-#include <sys/param.h>
-#include <sys/sysctl.h>
-#include <sys/user.h>
-#include <sys/proc.h>
+#include "task-manager.h"
+
 #include <fcntl.h>
+#include <kvm.h>
 #include <paths.h>
-#include <unistd.h>
 #include <string.h>
+#include <sys/param.h>
+#include <sys/proc.h>
+#include <sys/sysctl.h>
+#include <sys/types.h>
+#include <sys/user.h>
+#include <unistd.h>
+
 #if defined(__FreeBSD_version) && __FreeBSD_version >= 900044
 #include <sys/vmmeter.h>
 #endif
-
-#include <glib.h>
-
-#include "task-manager.h"
 
 static const gchar ki_stat2state[] = {
 	' ', /* - */

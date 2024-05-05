@@ -10,11 +10,8 @@
 #ifndef PROCESS_MONITOR_H
 #define PROCESS_MONITOR_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <glib-object.h>
+#include <gtk/gtk.h>
 
 #define XTM_TYPE_PROCESS_MONITOR		(xtm_process_monitor_get_type ())
 #define XTM_PROCESS_MONITOR(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), XTM_TYPE_PROCESS_MONITOR, XtmProcessMonitor))

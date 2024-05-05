@@ -9,28 +9,21 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <signal.h>
-#include <sys/resource.h>
-
-#include <glib-object.h>
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
-#include <gmodule.h>
-
-#include "task-manager.h"
-#ifdef HAVE_WNCK
-#include <gdk/gdkx.h>
-#include "app-manager.h"
-#endif
 #include "process-tree-view.h" /* for the columns of the model */
 #include "settings.h"
+#include "task-manager.h"
+
+#ifdef HAVE_WNCK
+#include "app-manager.h"
+#include <gdk/gdkx.h>
+#endif
+
+#include <glib/gi18n.h>
+#include <pwd.h>
+#include <sys/resource.h>
 
 #define TIMESTAMP_DELTA 4
 

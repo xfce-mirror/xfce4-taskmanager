@@ -10,10 +10,6 @@
 #ifndef PROCESS_STATUSBAR_H
 #define PROCESS_STATUSBAR_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
