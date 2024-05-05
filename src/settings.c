@@ -11,26 +11,17 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#include <glib-object.h>
-#include <glib.h>
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
-#ifdef GDK_WINDOWING_X11
-#include <gdk/gdkx.h>
+#include "config.h"
 #endif
 
 #include "settings.h"
+
+#include <glib/gi18n.h>
+#include <gtk/gtk.h>
+
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#endif
 
 
 
@@ -65,19 +56,19 @@ enum
 typedef struct _XtmSettingsClass XtmSettingsClass;
 struct _XtmSettingsClass
 {
-	GObjectClass		parent_class;
+	GObjectClass parent_class;
 };
 struct _XtmSettings
 {
-	GObject			parent;
+	GObject parent;
 	/*<private>*/
-	GValue			values[N_PROPS];
+	GValue values[N_PROPS];
 };
 G_DEFINE_TYPE (XtmSettings, xtm_settings, G_TYPE_OBJECT)
 
-static void	xtm_settings_get_property			(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
-static void	xtm_settings_set_property			(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
-static void	xtm_settings_finalize			(GObject *object);
+static void xtm_settings_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
+static void xtm_settings_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
+static void xtm_settings_finalize (GObject *object);
 
 static void
 xtm_settings_class_init (XtmSettingsClass *klass)
@@ -138,7 +129,6 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 static void
 xtm_settings_init (XtmSettings *settings)
 {
-
 }
 
 static void

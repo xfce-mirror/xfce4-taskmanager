@@ -9,16 +9,8 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <string.h>
-
-#include <glib.h>
 
 #include "task-manager.h"
 
@@ -30,19 +22,13 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 {
 	FILE *file;
 	gchar *filename = "/proc/meminfo";
-	guint64 mem_total = 0,
-	       mem_free = 0,
-	       mem_avail = 0,
-	       mem_cached = 0,
-	       mem_buffers = 0,
-	       swp_total = 0,
-	       swp_free = 0;
+	guint64 mem_total = 0, mem_free = 0, mem_avail = 0, mem_cached = 0, mem_buffers = 0, swp_total = 0, swp_free = 0;
 
 	if ((file = fopen (filename, "r")) != NULL)
 	{
 		gint found = 0;
 		gchar buffer[256];
-		while (found < 7 && fgets (buffer, sizeof(buffer), file) != NULL)
+		while (found < 7 && fgets (buffer, sizeof (buffer), file) != NULL)
 		{
 			found += !mem_total ? sscanf (buffer, "MemTotal:\t%lu kB", &mem_total) : 0;
 			found += !mem_free ? sscanf (buffer, "MemFree:\t%lu kB", &mem_free) : 0;
@@ -83,7 +69,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
-	if (fgets (buffer, sizeof(buffer), file) == NULL)
+	if (fgets (buffer, sizeof (buffer), file) == NULL)
 	{
 		fclose (file);
 		return FALSE;
@@ -93,7 +79,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 
 	if (_cpu_count == 0)
 	{
-		while (fgets (buffer, sizeof(buffer), file) != NULL)
+		while (fgets (buffer, sizeof (buffer), file) != NULL)
 		{
 			if (buffer[0] != 'c' && buffer[1] != 'p' && buffer[2] != 'u')
 				break;
@@ -125,7 +111,8 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	return TRUE;
 }
 
-static inline int get_pagesize (void)
+static inline int
+get_pagesize (void)
 {
 	static int pagesize = 0;
 	if (pagesize == 0)
@@ -145,7 +132,7 @@ get_task_cmdline (Task *task)
 	gint i;
 	gint c;
 
-	snprintf (filename, sizeof(filename), "/proc/%i/cmdline", task->pid);
+	snprintf (filename, sizeof (filename), "/proc/%i/cmdline", task->pid);
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
 
@@ -153,8 +140,8 @@ get_task_cmdline (Task *task)
 	for (i = 0; (c = fgetc (file)) != EOF && i < (gint)sizeof (task->cmdline) - 1; i++)
 		task->cmdline[i] = (c == '\0') ? ' ' : (gchar)c;
 	task->cmdline[i] = '\0';
-	if (i > 0 && task->cmdline[i-1] == ' ')
-		task->cmdline[i-1] = '\0';
+	if (i > 0 && task->cmdline[i - 1] == ' ')
+		task->cmdline[i - 1] = '\0';
 	fclose (file);
 
 	/* Kernel processes don't have a cmdline nor an exec path */
@@ -163,8 +150,8 @@ get_task_cmdline (Task *task)
 		size_t len = strlen (task->name);
 		g_strlcpy (&task->cmdline[1], task->name, len + 1);
 		task->cmdline[0] = '[';
-		task->cmdline[len+1] = ']';
-		task->cmdline[len+2] = '\0';
+		task->cmdline[len + 1] = ']';
+		task->cmdline[len + 2] = '\0';
 	}
 
 	return TRUE;
@@ -209,17 +196,17 @@ get_task_details (GPid pid, Task *task)
 	gchar filename[96];
 	gchar buffer[1024];
 
-	snprintf (filename, sizeof(filename), "/proc/%d/stat", pid);
+	snprintf (filename, sizeof (filename), "/proc/%d/stat", pid);
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
-	if (fgets (buffer, sizeof(buffer), file) == NULL)
+	if (fgets (buffer, sizeof (buffer), file) == NULL)
 	{
 		fclose (file);
 		return FALSE;
 	}
 	fclose (file);
 
-	memset(task, 0, sizeof(Task));
+	memset (task, 0, sizeof (Task));
 
 	/* Scanning the short process name is unreliable with scanf when it contains
 	 * spaces, retrieve it manually and fill the buffer */
@@ -246,57 +233,56 @@ get_task_details (GPid pid, Task *task)
 		gint idummy;
 		gulong jiffies_user = 0, jiffies_system = 0;
 
-		sscanf(buffer, "%i %255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %lu %lu %i %i %i %d %i %i %i %llu %llu %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
-			&task->pid,	// processid
-			 dummy,		// processname
-			task->state,	// processstate
-			&task->ppid,	// parentid
-			 &idummy,	// processs groupid
+		sscanf (buffer, "%i %255s %1s %i %i %i %i %i %255s %255s %255s %255s %255s %lu %lu %i %i %i %d %i %i %i %llu %llu %255s %255s %255s %i %255s %255s %255s %255s %255s %255s %255s %255s %255s %255s %i %255s %255s",
+			&task->pid, // processid
+			dummy, // processname
+			task->state, // processstate
+			&task->ppid, // parentid
+			&idummy, // processs groupid
 
-			 &idummy,	// session id
-			 &idummy,	// tty id
-			 &idummy,	// tpgid the process group ID of the process running on tty of the process
-			 dummy,		// flags
-			 dummy,		// minflt minor faults the process has maid
+			&idummy, // session id
+			&idummy, // tty id
+			&idummy, // tpgid the process group ID of the process running on tty of the process
+			dummy, // flags
+			dummy, // minflt minor faults the process has maid
 
-			 dummy,		// cminflt
-			 dummy,		// majflt
-			 dummy,		// cmajflt
-			&jiffies_user,	// utime the number of jiffies that this process has scheduled in user mode
-			&jiffies_system,// stime " system mode
+			dummy, // cminflt
+			dummy, // majflt
+			dummy, // cmajflt
+			&jiffies_user, // utime the number of jiffies that this process has scheduled in user mode
+			&jiffies_system, // stime " system mode
 
-			 &idummy,	// cutime " waited for children in user mode
-			 &idummy,	// cstime " system mode
-			 &idummy,	// priority (nice value + fifteen)
-			 &task->prio, // nice range from 19 to -19
-			 &idummy,	// hardcoded 0
+			&idummy, // cutime " waited for children in user mode
+			&idummy, // cstime " system mode
+			&idummy, // priority (nice value + fifteen)
+			&task->prio, // nice range from 19 to -19
+			&idummy, // hardcoded 0
 
-			 &idummy,	// itrealvalue time in jiffies to next SIGALRM send to this process
-			 &idummy,	// starttime jiffies the process startet after system boot
-			(unsigned long long*)&task->vsz, // vsize in bytes
-			(unsigned long long*)&task->rss, // rss (number of pages in real memory)
-			 dummy,		// rlim limit in bytes for rss
+			&idummy, // itrealvalue time in jiffies to next SIGALRM send to this process
+			&idummy, // starttime jiffies the process startet after system boot
+			(unsigned long long *)&task->vsz, // vsize in bytes
+			(unsigned long long *)&task->rss, // rss (number of pages in real memory)
+			dummy, // rlim limit in bytes for rss
 
-			 dummy,		// startcode
-			 dummy,		// endcode
-			 &idummy,	// startstack
-			 dummy,		// kstkesp value of esp (stack pointer)
-			 dummy,		// kstkeip value of EIP (instruction pointer)
+			dummy, // startcode
+			dummy, // endcode
+			&idummy, // startstack
+			dummy, // kstkesp value of esp (stack pointer)
+			dummy, // kstkeip value of EIP (instruction pointer)
 
-			 dummy,		// signal. bitmap of pending signals
-			 dummy,		// blocked: bitmap of blocked signals
-			 dummy,		// sigignore: bitmap of ignored signals
-			 dummy,		// sigcatch: bitmap of catched signals
-			 dummy,		// wchan
+			dummy, // signal. bitmap of pending signals
+			dummy, // blocked: bitmap of blocked signals
+			dummy, // sigignore: bitmap of ignored signals
+			dummy, // sigcatch: bitmap of catched signals
+			dummy, // wchan
 
-			 dummy,		// nswap
-			 dummy,		// cnswap
-			 dummy,		// exit_signal
-			 &idummy,	// CPU number last executed on
-			 dummy,
+			dummy, // nswap
+			dummy, // cnswap
+			dummy, // exit_signal
+			&idummy, // CPU number last executed on
+			dummy,
 
-			 dummy
-		);
+			dummy);
 
 		task->rss *= get_pagesize ();
 		get_cpu_percent (task->pid, jiffies_user, &task->cpu_user, jiffies_system, &task->cpu_system);
@@ -306,11 +292,11 @@ get_task_details (GPid pid, Task *task)
 	{
 		guint dummy;
 
-		snprintf(filename, sizeof (filename), "/proc/%d/status", pid);
+		snprintf (filename, sizeof (filename), "/proc/%d/status", pid);
 		if ((file = fopen (filename, "r")) == NULL)
 			return FALSE;
 
-		while (fgets (buffer, sizeof(buffer), file) != NULL)
+		while (fgets (buffer, sizeof (buffer), file) != NULL)
 		{
 			if (sscanf (buffer, "Uid:\t%u\t%u\t%u\t%u", &dummy, &task->uid, &dummy, &dummy) == 1) // UIDs in order: real, effective, saved set, and filesystem
 				break;
@@ -336,7 +322,7 @@ get_task_list (GArray *task_list)
 	if ((dir = g_dir_open ("/proc", 0, NULL)) == NULL)
 		return FALSE;
 
-	while ((name = g_dir_read_name(dir)) != NULL)
+	while ((name = g_dir_read_name (dir)) != NULL)
 	{
 		if ((pid = (GPid)g_ascii_strtoull (name, NULL, 0)) > 0)
 		{
@@ -362,11 +348,11 @@ pid_is_sleeping (GPid pid)
 	gchar buffer[1024];
 	gchar state[2];
 
-	snprintf (filename, sizeof(filename), "/proc/%i/status", pid);
+	snprintf (filename, sizeof (filename), "/proc/%i/status", pid);
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
 
-	while (fgets (buffer, sizeof(buffer), file) != NULL)
+	while (fgets (buffer, sizeof (buffer), file) != NULL)
 	{
 		if (sscanf (buffer, "State:\t%1s", state) > 0)
 			break;

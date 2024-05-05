@@ -8,20 +8,18 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <unistd.h>
-#include <glib-object.h>
-#include <glib/gi18n.h>
-#include <glib/gprintf.h>
-#include <cairo-gobject.h>
-#include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
 #include "process-tree-model.h"
 #include "process-tree-view.h"
-#include "task-manager.h"
 #include "settings.h"
+#include "task-manager.h"
+
+#include <cairo-gobject.h>
+#include <gdk/gdkkeysyms.h>
+#include <glib/gi18n.h>
+#include <glib/gprintf.h>
 
 
 
@@ -46,38 +44,38 @@ enum
 typedef struct _XtmProcessTreeViewClass XtmProcessTreeViewClass;
 struct _XtmProcessTreeViewClass
 {
-	GtkTreeViewClass	parent_class;
+	GtkTreeViewClass parent_class;
 };
 struct _XtmProcessTreeView
 {
-	GtkTreeView		parent;
+	GtkTreeView parent;
 	/*<private>*/
-	GtkListStore *		model;
-	GtkTreeModel *		model_filter;
-	gchar *			cmd_filter;
-	GtkTreeModel *		model_tree;
-	GtkTreeViewColumn *	sort_column;
-	gushort			columns_positions[N_COLUMNS];
-	XtmSettings *		settings;
-	guint			owner_uid;
-	gboolean		show_all_processes_cached;
+	GtkListStore *model;
+	GtkTreeModel *model_filter;
+	gchar *cmd_filter;
+	GtkTreeModel *model_tree;
+	GtkTreeViewColumn *sort_column;
+	gushort columns_positions[N_COLUMNS];
+	XtmSettings *settings;
+	guint owner_uid;
+	gboolean show_all_processes_cached;
 };
 G_DEFINE_TYPE (XtmProcessTreeView, xtm_process_tree_view, GTK_TYPE_TREE_VIEW)
 
-static void		xtm_process_tree_view_finalize			(GObject *object);
+static void xtm_process_tree_view_finalize (GObject *object);
 
-static gboolean		treeview_clicked				(XtmProcessTreeView *treeview, GdkEventButton *event);
-static gboolean		treeview_key_pressed				(XtmProcessTreeView *treeview, GdkEventKey *event);
-static void		column_task_pack_cells				(XtmProcessTreeView *treeview, GtkTreeViewColumn *column);
-static void		columns_changed					(XtmProcessTreeView *treeview);
-static void		read_columns_positions				(XtmProcessTreeView *treeview);
-static void		save_columns_positions				(XtmProcessTreeView *treeview);
-static void		column_clicked					(GtkTreeViewColumn *column, XtmProcessTreeView *treeview);
-static gboolean		visible_func					(GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treeview);
-static gboolean		search_func					(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data);
-static void		settings_changed				(GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
-static void		expand_row					(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, XtmProcessTreeView *treeview);
-static gboolean		treeview_query_tooltip		(GtkWidget *widget, gint x, gint y, gboolean keyboard_tip, GtkTooltip *tooltip, gpointer data);
+static gboolean treeview_clicked (XtmProcessTreeView *treeview, GdkEventButton *event);
+static gboolean treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event);
+static void column_task_pack_cells (XtmProcessTreeView *treeview, GtkTreeViewColumn *column);
+static void columns_changed (XtmProcessTreeView *treeview);
+static void read_columns_positions (XtmProcessTreeView *treeview);
+static void save_columns_positions (XtmProcessTreeView *treeview);
+static void column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview);
+static gboolean visible_func (GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treeview);
+static gboolean search_func (GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer user_data);
+static void settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treeview);
+static void expand_row (GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, XtmProcessTreeView *treeview);
+static gboolean treeview_query_tooltip (GtkWidget *widget, gint x, gint y, gboolean keyboard_tip, GtkTooltip *tooltip, gpointer data);
 
 static void
 xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
@@ -128,7 +126,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 		G_TYPE_STRING, /* XTM_PTV_COLUMN_BACKGROUND */
 		G_TYPE_STRING, /* XTM_PTV_COLUMN_FOREGROUND */
 		G_TYPE_LONG /* XTM_PTV_COLUMN_TIMESTAMP */
-		);
+	);
 
 	treeview->model_filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (treeview->model), NULL);
 	gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (treeview->model_filter), (GtkTreeModelFilterVisibleFunc)visible_func, treeview, NULL);
@@ -145,7 +143,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	treeview->cmd_filter = NULL;
 
 	/* Create cell renderer for tree view columns */
-	cell_text = gtk_cell_renderer_text_new();
+	cell_text = gtk_cell_renderer_text_new ();
 
 	cell_right_aligned = gtk_cell_renderer_text_new ();
 	g_object_set (cell_right_aligned, "xalign", 1.0, NULL);
@@ -419,7 +417,7 @@ save_columns_positions (XtmProcessTreeView *treeview)
 	gchar columns_positions[COLUMNS_POSITIONS_STRLEN] = { 0 };
 
 	for (i = 0; i < N_COLUMNS; i++)
-		offset += (gulong)g_snprintf (&columns_positions[offset], (sizeof(columns_positions) - offset), "%d;", treeview->columns_positions[i]);
+		offset += (gulong)g_snprintf (&columns_positions[offset], (sizeof (columns_positions) - offset), "%d;", treeview->columns_positions[i]);
 
 	g_object_set (treeview->settings, "columns-positions", columns_positions, NULL);
 }
@@ -459,7 +457,8 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 			_("Error sending signal"));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 			_("An error was encountered by sending a signal to the PID %d. "
-			"It is likely you don't have the required privileges."), pid);
+				"It is likely you don't have the required privileges."),
+			pid);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
 		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 		gtk_dialog_run (GTK_DIALOG (dialog));
@@ -488,8 +487,10 @@ cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 	{
 		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
 			_("Error setting priority"));
-		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), _("An error was encountered by setting a priority to the PID %d. "
-			"It is likely you don't have the required privileges."), pid);
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+			_("An error was encountered by setting a priority to the PID %d. "
+				"It is likely you don't have the required privileges."),
+			pid);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager"));
 		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 		gtk_dialog_run (GTK_DIALOG (dialog));
@@ -612,7 +613,7 @@ build_context_menu (XtmProcessTreeView *treeview, GPid pid)
 	g_signal_connect (mi, "activate", G_CALLBACK (cb_copy_command_line), treeview);
 	/* Refer to treeview_key_pressed to see how the Ctrl-c press is handled */
 	accel_label = gtk_bin_get_child (GTK_BIN (mi));
-	gtk_accel_label_set_accel(GTK_ACCEL_LABEL (accel_label), GDK_KEY_c, GDK_CONTROL_MASK);
+	gtk_accel_label_set_accel (GTK_ACCEL_LABEL (accel_label), GDK_KEY_c, GDK_CONTROL_MASK);
 
 	gtk_widget_show_all (menu);
 
@@ -687,7 +688,7 @@ treeview_key_pressed (XtmProcessTreeView *treeview, GdkEventKey *event)
 		GdkWindow *window = gtk_tree_view_get_bin_window (GTK_TREE_VIEW (treeview));
 
 		gtk_menu_popup_at_rect (GTK_MENU (create_popup_menu (treeview, pid, event->time)),
-								window, &rect, GDK_GRAVITY_NORTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
+			window, &rect, GDK_GRAVITY_NORTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
 		return TRUE;
 	}
 	else if (event->keyval == GDK_KEY_Delete)
@@ -742,17 +743,17 @@ column_clicked (GtkTreeViewColumn *column, XtmProcessTreeView *treeview)
 
 	treeview->sort_column = column;
 
-	g_object_set(treeview->settings,
-	    "sort-column-id", GPOINTER_TO_INT(g_object_get_data(G_OBJECT(treeview->sort_column), "column-id")),
-	    "sort-type", sort_type,
-	    NULL);
+	g_object_set (treeview->settings,
+		"sort-column-id", GPOINTER_TO_INT (g_object_get_data (G_OBJECT (treeview->sort_column), "column-id")),
+		"sort-type", sort_type,
+		NULL);
 }
 
 void
-xtm_process_tree_view_set_filter(XtmProcessTreeView *treeview, const gchar *cmd_filter)
+xtm_process_tree_view_set_filter (XtmProcessTreeView *treeview, const gchar *cmd_filter)
 {
-	g_free(treeview->cmd_filter);
-	treeview->cmd_filter = g_strdup(cmd_filter);
+	g_free (treeview->cmd_filter);
+	treeview->cmd_filter = g_strdup (cmd_filter);
 
 	gtk_tree_model_filter_refilter (GTK_TREE_MODEL_FILTER (treeview->model_filter));
 }
@@ -761,12 +762,14 @@ static gboolean
 visible_func (GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treeview)
 {
 	gchar *cmdline, *cmdline_lower, *key_lower, *p = NULL;
-	gboolean  mach_filter = TRUE, match_uid = TRUE;
+	gboolean mach_filter = TRUE, match_uid = TRUE;
 	guint uid;
 
-	if(treeview->cmd_filter) {
+	if (treeview->cmd_filter)
+	{
 		gtk_tree_model_get (GTK_TREE_MODEL (model), iter, XTM_PTV_COLUMN_COMMAND, &cmdline, -1);
-		if(cmdline) {
+		if (cmdline)
+		{
 			cmdline_lower = g_ascii_strdown (cmdline, -1);
 			key_lower = g_ascii_strdown (treeview->cmd_filter, -1);
 
@@ -777,10 +780,11 @@ visible_func (GtkTreeModel *model, GtkTreeIter *iter, XtmProcessTreeView *treevi
 			g_free (cmdline);
 		}
 
-		if(!p)
+		if (!p)
 			mach_filter = FALSE;
 	}
-	if (!treeview->show_all_processes_cached) {
+	if (!treeview->show_all_processes_cached)
+	{
 		gtk_tree_model_get (GTK_TREE_MODEL (treeview->model), iter, XTM_PTV_COLUMN_UID, &uid, -1);
 		if (treeview->owner_uid != uid)
 			match_uid = FALSE;
@@ -893,14 +897,15 @@ xtm_process_tree_view_get_model (XtmProcessTreeView *treeview)
 }
 
 void
-xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid) {
-	GtkTreeModel	*model;
-	GtkTreePath		*path;
-	GtkTreeIter 	 iter;
-	gboolean     	 valid;
-	gboolean			 tree;
-	GPid		pid_iter;
-	GtkTreeIter	child_iter;
+xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid)
+{
+	GtkTreeModel *model;
+	GtkTreePath *path;
+	GtkTreeIter iter;
+	gboolean valid;
+	gboolean tree;
+	GPid pid_iter;
+	GtkTreeIter child_iter;
 	gboolean validParent;
 
 	g_object_get (treeview->settings, "process-tree", &tree, NULL);
@@ -928,7 +933,7 @@ xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid) {
 
 		if (gtk_tree_model_iter_has_child (model, &iter))
 		{
-			GtkTreeIter	parent_iter = iter;
+			GtkTreeIter parent_iter = iter;
 
 			valid = gtk_tree_model_iter_children (model, &iter, &parent_iter);
 		}
@@ -938,8 +943,9 @@ xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid) {
 			valid = gtk_tree_model_iter_next (model, &iter);
 			if (tree && !valid)
 			{
-				//finding my way up again
-				do {
+				// finding my way up again
+				do
+				{
 					validParent = gtk_tree_model_iter_parent (model, &iter, &child_iter);
 					child_iter = iter;
 					valid = gtk_tree_model_iter_next (model, &iter);

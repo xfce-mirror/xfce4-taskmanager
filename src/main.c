@@ -9,19 +9,17 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <stdlib.h>
-#include <gtk/gtk.h>
-#include <gio/gio.h>
-
-#include <xfconf/xfconf.h>
-#include <libxfce4ui/libxfce4ui.h>
-
-#include "settings.h"
 #include "process-window.h"
+#include "settings.h"
 #include "task-manager.h"
+
+#include <gio/gio.h>
+#include <gtk/gtk.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <xfconf/xfconf.h>
 
 static XtmSettings *settings;
 static GtkWidget *window;
@@ -37,7 +35,7 @@ static GOptionEntry main_entries[] = {
 	{ NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
-static void	destroy_window (void);
+static void destroy_window (void);
 
 
 static void
@@ -64,9 +62,9 @@ status_icon_popup_menu (GtkStatusIcon *_status_icon, guint button, guint activat
 		gtk_widget_show_all (menu);
 	}
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, gtk_status_icon_position_menu, _status_icon, button, activate_time);
-G_GNUC_END_IGNORE_DEPRECATIONS
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void
@@ -74,9 +72,9 @@ create_status_icon (void)
 {
 	if (!status_icon_or_null)
 	{
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 		GtkStatusIcon *status_icon = gtk_status_icon_new_from_icon_name ("org.xfce.taskmanager");
-G_GNUC_END_IGNORE_DEPRECATIONS
+		G_GNUC_END_IGNORE_DEPRECATIONS
 		g_signal_connect (status_icon, "activate", G_CALLBACK (status_icon_activated), NULL);
 		g_signal_connect (status_icon, "popup-menu", G_CALLBACK (status_icon_popup_menu), NULL);
 		status_icon_or_null = status_icon;
@@ -86,9 +84,9 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 static gboolean
 status_icon_get_visible (void)
 {
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	return status_icon_or_null && gtk_status_icon_get_visible (status_icon_or_null);
-G_GNUC_END_IGNORE_DEPRECATIONS
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void
@@ -99,22 +97,23 @@ show_hide_status_icon (void)
 	if (show_status_icon)
 	{
 		create_status_icon ();
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 		gtk_status_icon_set_visible (status_icon_or_null, TRUE);
-G_GNUC_END_IGNORE_DEPRECATIONS
+		G_GNUC_END_IGNORE_DEPRECATIONS
 	}
 	else if (status_icon_get_visible ())
 	{
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 		gtk_status_icon_set_visible (status_icon_or_null, FALSE);
-G_GNUC_END_IGNORE_DEPRECATIONS
+		G_GNUC_END_IGNORE_DEPRECATIONS
 	}
 }
 
 static void
 destroy_window (void)
 {
-	if (gtk_main_level () > 0) {
+	if (gtk_main_level () > 0)
+	{
 		if (timer_id > 0)
 			g_source_remove (timer_id);
 		gtk_main_quit ();
@@ -148,17 +147,17 @@ collect_data (void)
 	memory_percent = (memory_total != 0) ? ((memory_used * 100.0f) / (float)memory_total) : 0.0f;
 	swap_percent = (swap_total != 0) ? ((swap_used * 100.0f) / (float)swap_total) : 0.0f;
 
-	used = g_format_size_full(memory_used, G_FORMAT_SIZE_IEC_UNITS);
-	total = g_format_size_full(memory_total, G_FORMAT_SIZE_IEC_UNITS);
-	g_snprintf (memory_info, sizeof(memory_info), "%.0f%% (%s / %s)", memory_percent, used, total);
-	g_free(used);
-	g_free(total);
+	used = g_format_size_full (memory_used, G_FORMAT_SIZE_IEC_UNITS);
+	total = g_format_size_full (memory_total, G_FORMAT_SIZE_IEC_UNITS);
+	g_snprintf (memory_info, sizeof (memory_info), "%.0f%% (%s / %s)", memory_percent, used, total);
+	g_free (used);
+	g_free (total);
 
-	used = g_format_size_full(swap_used, G_FORMAT_SIZE_IEC_UNITS);
-	total = g_format_size_full(swap_total, G_FORMAT_SIZE_IEC_UNITS);
-	g_snprintf (swap_info, sizeof(swap_info), "%.0f%% (%s / %s)", swap_percent, used, total);
-	g_free(used);
-	g_free(total);
+	used = g_format_size_full (swap_used, G_FORMAT_SIZE_IEC_UNITS);
+	total = g_format_size_full (swap_total, G_FORMAT_SIZE_IEC_UNITS);
+	g_snprintf (swap_info, sizeof (swap_info), "%.0f%% (%s / %s)", swap_percent, used, total);
+	g_free (used);
+	g_free (total);
 
 	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory_percent, memory_info, swap_percent, swap_info);
 
@@ -167,15 +166,15 @@ collect_data (void)
 
 	if (status_icon_get_visible ())
 	{
-		g_snprintf (tooltip, sizeof(tooltip),
-				_("<b>Processes:</b> %u\n"
+		g_snprintf (tooltip, sizeof (tooltip),
+			_("<b>Processes:</b> %u\n"
 				"<b>CPU:</b> %.0f%%\n"
 				"<b>Memory:</b> %s\n"
 				"<b>Swap:</b> %s"),
-				num_processes, cpu, memory_info, swap_info);
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+			num_processes, cpu, memory_info, swap_info);
+		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon_or_null), tooltip);
-G_GNUC_END_IGNORE_DEPRECATIONS
+		G_GNUC_END_IGNORE_DEPRECATIONS
 	}
 
 	xtm_task_manager_update_model (task_manager);
@@ -209,7 +208,8 @@ refresh_rate_changed (void)
 	init_timeout ();
 }
 
-int main (int argc, char *argv[])
+int
+main (int argc, char *argv[])
 {
 	XfconfChannel *channel;
 	GApplication *app;
@@ -295,7 +295,7 @@ int main (int argc, char *argv[])
 	g_object_unref (settings);
 	if (status_icon_or_null != NULL)
 		g_object_unref (status_icon_or_null);
-	xfconf_shutdown();
+	xfconf_shutdown ();
 
 	return 0;
 }

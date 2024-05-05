@@ -10,26 +10,25 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <kvm.h>
-#include <sys/types.h>
-#include <sys/param.h>
-#include <sys/sysctl.h>
-#include <sys/user.h>
-#include <sys/proc.h>
+#include "task-manager.h"
+
 #include <fcntl.h>
+#include <kvm.h>
 #include <paths.h>
-#include <unistd.h>
 #include <string.h>
+#include <sys/param.h>
+#include <sys/proc.h>
+#include <sys/sysctl.h>
+#include <sys/types.h>
+#include <sys/user.h>
+#include <unistd.h>
+
 #if defined(__FreeBSD_version) && __FreeBSD_version >= 900044
 #include <sys/vmmeter.h>
 #endif
-
-#include <glib.h>
-
-#include "task-manager.h"
 
 static const gchar ki_stat2state[] = {
 	' ', /* - */
@@ -72,7 +71,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 {
 	/* Get memory usage */
 	{
-		*memory_total = get_mem_by_bytes ("hw.physmem");;
+		*memory_total = get_mem_by_bytes ("hw.physmem");
 		*memory_free = get_mem_by_pages ("vm.stats.vm.v_free_count");
 		*memory_cache = get_mem_by_pages ("vm.stats.vm.v_inactive_count");
 		*memory_buffers = get_mem_by_bytes ("vfs.bufspace");
@@ -140,7 +139,7 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	size_t bufsz;
 	int i, oid[4];
 
-	memset(task, 0, sizeof(Task));
+	memset (task, 0, sizeof (Task));
 	task->pid = kp->ki_pid;
 	task->ppid = kp->ki_ppid;
 	task->cpu_user = 100.0f * ((float)kp->ki_pctcpu / FSCALE);
@@ -149,39 +148,45 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	task->rss = ((guint64)kp->ki_rssize * (guint64)getpagesize ());
 	task->uid = kp->ki_uid;
 	task->prio = kp->ki_nice;
-	g_strlcpy (task->name, kp->ki_comm, sizeof(task->name));
+	g_strlcpy (task->name, kp->ki_comm, sizeof (task->name));
 
 	oid[0] = CTL_KERN;
 	oid[1] = KERN_PROC;
 	oid[2] = KERN_PROC_ARGS;
 	oid[3] = kp->ki_pid;
-	bufsz = sizeof(buf);
-	memset(buf, 0, sizeof(buf));
-	if (sysctl(oid, 4, buf, &bufsz, 0, 0) == -1) {
+	bufsz = sizeof (buf);
+	memset (buf, 0, sizeof (buf));
+	if (sysctl (oid, 4, buf, &bufsz, 0, 0) == -1)
+	{
 		/*
 		 * If the supplied buf is too short to hold the requested
 		 * value the sysctl returns with ENOMEM. The buf is filled
 		 * with the truncated value and the returned bufsz is equal
 		 * to the requested len.
 		 */
-		if (errno != ENOMEM || bufsz != sizeof(buf)) {
+		if (errno != ENOMEM || bufsz != sizeof (buf))
+		{
 			bufsz = 0;
-		} else {
+		}
+		else
+		{
 			buf[(bufsz - 1)] = 0;
 		}
 	}
 
-	if (0 != bufsz) {
+	if (0 != bufsz)
+	{
 		p = buf;
-		do {
-			g_strlcat (task->cmdline, p, sizeof(task->cmdline));
-			g_strlcat (task->cmdline, " ", sizeof(task->cmdline));
-			p += (strlen(p) + 1);
+		do
+		{
+			g_strlcat (task->cmdline, p, sizeof (task->cmdline));
+			g_strlcat (task->cmdline, " ", sizeof (task->cmdline));
+			p += (strlen (p) + 1);
 		} while (p < buf + bufsz);
 	}
 	else
 	{
-		g_strlcpy (task->cmdline, kp->ki_comm, sizeof(task->cmdline));
+		g_strlcpy (task->cmdline, kp->ki_comm, sizeof (task->cmdline));
 	}
 
 	i = 0;
