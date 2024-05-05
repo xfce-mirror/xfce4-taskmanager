@@ -44,15 +44,15 @@ addtoconninode(XtmInodeToSock *its, char *buffer)
 {
 	char rem_addr[128], local_addr[128];
 	int local_port, rem_port;
-    int *inode = g_new0(gint, 1);
+	int *inode = g_new0(gint, 1);
 
 	sscanf(
-        buffer,
-        "%*d: %64[0-9A-Fa-f]:%X %64[0-9A-Fa-f]:%X %*X %*lX:%*lX %*X:%*lX %*lX %*d %*d %ld %*512s\n",
+		buffer,
+		"%*d: %64[0-9A-Fa-f]:%X %64[0-9A-Fa-f]:%X %*X %*lX:%*lX %*X:%*lX %*lX %*d %*d %ld %*512s\n",
 		local_addr, &local_port, rem_addr, &rem_port, inode
-    );
+	);
 
-    g_hash_table_replace(its->hash, inode, (gpointer)local_port);
+	g_hash_table_replace(its->hash, inode, (gpointer)local_port);
 }
 
 void
@@ -68,20 +68,20 @@ xtm_refresh_inode_to_sock(XtmInodeToSock *its)
 			if (fgets(buffer, sizeof(buffer), procinfo))
 				addtoconninode(its, buffer); 
 		}
-        while (!feof(procinfo));
+		while (!feof(procinfo));
 		fclose(procinfo);
 	}
 
 	procinfo = fopen ("/proc/net/tcp6", "r");
 	if (procinfo != NULL)
-    {
+	{
 		fgets(buffer, sizeof(buffer), procinfo);
 		do
-        {
+		{
 			if (fgets(buffer, sizeof(buffer), procinfo))
 				addtoconninode(its, buffer);
 		}
-        while (!feof(procinfo));
+		while (!feof(procinfo));
 		fclose (procinfo);
 	}
 }
@@ -89,151 +89,147 @@ xtm_refresh_inode_to_sock(XtmInodeToSock *its)
 void
 packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
-    XtmNetworkAnalyzer *analyzer = (XtmNetworkAnalyzer*)args;
+	XtmNetworkAnalyzer *analyzer = (XtmNetworkAnalyzer*)args;
 
-    // Extract source and destination IP addresses and ports from the packet
-    struct ether_header *eth_header = (struct ether_header*)packet;
-    struct ip *ip_header = (struct ip*)(packet + sizeof(struct ether_header));
-    struct tcphdr *tcp_header = (struct tcphdr*)(packet + sizeof(struct ether_header) + sizeof(struct ip));
+	// Extract source and destination IP addresses and ports from the packet
+	struct ether_header *eth_header = (struct ether_header*)packet;
+	struct ip *ip_header = (struct ip*)(packet + sizeof(struct ether_header));
+	struct tcphdr *tcp_header = (struct tcphdr*)(packet + sizeof(struct ether_header) + sizeof(struct ip));
 
-    // Dropped non-ip packet
+	// Dropped non-ip packet
 	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
-        return;
+	return;
 
-    long int src_port = ntohs(tcp_header->source);
-    long int dst_port = ntohs(tcp_header->dest);
+	long int src_port = ntohs(tcp_header->source);
+	long int dst_port = ntohs(tcp_header->dest);
 
-    // directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
+	// directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
 
-    char local_mac[18];
-    char src_mac[18];
-    char dst_mac[18];
+	char local_mac[18];
+	char src_mac[18];
+	char dst_mac[18];
 
-    sprintf(local_mac,
-        "%02X:%02X:%02X:%02X:%02X:%02X",
-        analyzer->mac[0], analyzer->mac[1],
-        analyzer->mac[2], analyzer->mac[3],
-        analyzer->mac[4], analyzer->mac[5]
-    );
+	sprintf(local_mac,
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		analyzer->mac[0], analyzer->mac[1],
+		analyzer->mac[2], analyzer->mac[3],
+		analyzer->mac[4], analyzer->mac[5]
+	);
 
-    sprintf(src_mac,
-        "%02X:%02X:%02X:%02X:%02X:%02X",
-        eth_header->ether_shost[0], eth_header->ether_shost[1],
-        eth_header->ether_shost[2], eth_header->ether_shost[3],
-        eth_header->ether_shost[4], eth_header->ether_shost[5]
-    );
+	sprintf(src_mac,
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header->ether_shost[0], eth_header->ether_shost[1],
+		eth_header->ether_shost[2], eth_header->ether_shost[3],
+		eth_header->ether_shost[4], eth_header->ether_shost[5]
+	);
 
-    sprintf(dst_mac,
-        "%02X:%02X:%02X:%02X:%02X:%02X",
-        eth_header->ether_dhost[0], eth_header->ether_dhost[1],
-        eth_header->ether_dhost[2], eth_header->ether_dhost[3],
-        eth_header->ether_dhost[4], eth_header->ether_dhost[5]
-    );
+	sprintf(dst_mac,
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header->ether_dhost[0], eth_header->ether_dhost[1],
+		eth_header->ether_dhost[2], eth_header->ether_dhost[3],
+		eth_header->ether_dhost[4], eth_header->ether_dhost[5]
+	);
 
-    // Debug
-    //pthread_mutex_lock(&analyzer->lock);
+	// Debug
+	//pthread_mutex_lock(&analyzer->lock);
 
-    if(strcmp(local_mac, src_mac) == 0)
-        increament_packet_count(local_mac, "in ", analyzer->packetin, src_port);
-    
-    if(strcmp(local_mac, dst_mac) == 0)
-        increament_packet_count(local_mac, "out", analyzer->packetout, dst_port);
+	if(strcmp(local_mac, src_mac) == 0)
+		increament_packet_count(local_mac, "in ", analyzer->packetin, src_port);
 
-    //pthread_mutex_unlock(&analyzer->lock);
+	if(strcmp(local_mac, dst_mac) == 0)
+		increament_packet_count(local_mac, "out", analyzer->packetout, dst_port);
+
+	//pthread_mutex_unlock(&analyzer->lock);
+}
+
+int
+get_mac_address(const char *device, uint8_t mac[6])
+{
+	struct ifaddrs *ifaddr, *ifa;
+
+	if (getifaddrs(&ifaddr) == -1)
+	return -1;
+
+	for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+	{
+		if (ifa->ifa_addr == NULL)
+			continue;
+
+		int family = ifa->ifa_addr->sa_family;
+
+		// Check if the interface is a network interface (AF_PACKET for Linux)
+		if (family == AF_PACKET && strcmp(device, ifa->ifa_name) == 0)
+		{
+			// Check if the interface has a hardware address (MAC address)
+			if (ifa->ifa_data != NULL)
+			{
+				struct sockaddr_ll *sll = (struct sockaddr_ll *)ifa->ifa_addr;
+				memcpy(mac, sll->sll_addr, sizeof(uint8_t) * 6);
+				freeifaddrs(ifaddr);
+				return 0;
+			}
+		}
+	}
+
+	freeifaddrs(ifaddr);
+	return -1;
 }
 
 gboolean
-get_network_usage_filename(gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 {
 	FILE *file;
 	gchar buffer[256];
-    char *out;
+	char *out;
 
 	*tcp_rx = 0;
 	*tcp_tx = 0;
 	*tcp_error = 0;
 
-	if ((file = fopen (filename, "r")) == NULL)
+	if ((file = fopen ("/proc/net/dev", "r")) == NULL)
 		return FALSE;
 
-    out = fgets(buffer, sizeof(buffer), file);
-    if(!out)
-       return FALSE;
+	out = fgets(buffer, sizeof(buffer), file);
 
-    out = fgets(buffer, sizeof(buffer), file);
+	if(!out)
+		return FALSE;
 
-    if(!out)
-       return FALSE;
+	out = fgets(buffer, sizeof(buffer), file);
 
-    while (fgets(buffer, sizeof(buffer), file)) {
-    	unsigned long int dummy = 0;
-    	unsigned long int r_bytes = 0;
+	if(!out)
+		return FALSE;
+
+	while (fgets(buffer, sizeof(buffer), file))
+	{
+		unsigned long int dummy = 0;
+		unsigned long int r_bytes = 0;
 		unsigned long int t_bytes = 0;
 		unsigned long int r_packets = 0;
 		unsigned long int t_packets = 0;
 		unsigned long int error = 0;
 		gchar ifname[256];
 
-        int count = sscanf(
+		int count = sscanf(
 			buffer, "%[^:]: %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu",
-            ifname, &r_bytes, &r_packets, &error,
+			ifname, &r_bytes, &r_packets, &error,
 			&dummy, &dummy, &dummy, &dummy, &dummy,
 			&t_bytes, &t_packets
 		);
 
-        if(count != 11)
-        {
-            printf("Something went wrong while reading %s -> expected %d\n", filename, count);
-            break;
-        }
+		if(count != 11)
+		{
+			printf("Something went wrong while reading %s -> expected %d\n", filename, count);
+			break;
+		}
 
 		*tcp_rx += r_bytes;
 		*tcp_tx += t_bytes;
 		*tcp_error += error;
-    }
+	}
 
 	fclose (file);
-		
+
 	return TRUE;
-}
-
-int
-get_mac_address(const char *device, uint8_t mac[6])
-{
-    struct ifaddrs *ifaddr, *ifa;
-
-    if (getifaddrs(&ifaddr) == -1)
-        return -1;
-
-    for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
-    {
-        if (ifa->ifa_addr == NULL)
-            continue;
-
-        int family = ifa->ifa_addr->sa_family;
-
-        // Check if the interface is a network interface (AF_PACKET for Linux)
-        if (family == AF_PACKET && strcmp(device, ifa->ifa_name) == 0)
-        {
-            // Check if the interface has a hardware address (MAC address)
-            if (ifa->ifa_data != NULL)
-            {
-                struct sockaddr_ll *sll = (struct sockaddr_ll *)ifa->ifa_addr;
-                memcpy(mac, sll->sll_addr, sizeof(uint8_t) * 6);
-                freeifaddrs(ifaddr);
-                return 0;
-            }
-        }
-    }
-
-    freeifaddrs(ifaddr);
-    return -1;
-}
-
-gboolean
-get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
-{
-	return get_network_usage_filename("/proc/net/dev", tcp_rx, tcp_tx, tcp_error);
 }
 
 gboolean
