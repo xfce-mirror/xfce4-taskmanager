@@ -9,28 +9,21 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <signal.h>
-#include <sys/resource.h>
-
-#include <glib-object.h>
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
-#include <gmodule.h>
-
-#include "task-manager.h"
-#ifdef HAVE_WNCK
-#include <gdk/gdkx.h>
-#include "app-manager.h"
-#endif
 #include "process-tree-view.h" /* for the columns of the model */
 #include "settings.h"
+#include "task-manager.h"
+
+#ifdef HAVE_WNCK
+#include "app-manager.h"
+#include <gdk/gdkx.h>
+#endif
+
+#include <glib/gi18n.h>
+#include <pwd.h>
+#include <sys/resource.h>
 
 #define TIMESTAMP_DELTA 4
 
@@ -46,39 +39,39 @@ static gboolean full_cmdline;
 typedef struct _XtmTaskManagerClass XtmTaskManagerClass;
 struct _XtmTaskManagerClass
 {
-	GObjectClass		parent_class;
+	GObjectClass parent_class;
 };
 struct _XtmTaskManager
 {
-	GObject			parent;
+	GObject parent;
 	/*<private>*/
 #ifdef HAVE_WNCK
-	XtmAppManager *		app_manager;
+	XtmAppManager *app_manager;
 #endif
-	GtkTreeModel *		model;
-	GArray *		tasks;
-	gushort			cpu_count;
-	gfloat			cpu_user;
-	gfloat			cpu_system;
-	guint64			memory_total;
-	guint64			memory_available; /* free + cache + buffers + an-OS-specific-value */
-	guint64			memory_free;
-	guint64			memory_cache;
-	guint64			memory_buffers;
-	guint64			swap_total;
-	guint64			swap_free;
+	GtkTreeModel *model;
+	GArray *tasks;
+	gushort cpu_count;
+	gfloat cpu_user;
+	gfloat cpu_system;
+	guint64 memory_total;
+	guint64 memory_available; /* free + cache + buffers + an-OS-specific-value */
+	guint64 memory_free;
+	guint64 memory_cache;
+	guint64 memory_buffers;
+	guint64 swap_total;
+	guint64 swap_free;
 };
 G_DEFINE_TYPE (XtmTaskManager, xtm_task_manager, G_TYPE_OBJECT)
 
-static void	xtm_task_manager_finalize			(GObject *object);
+static void xtm_task_manager_finalize (GObject *object);
 
-static void	setting_changed					(GObject *object, GParamSpec *pspec, XtmTaskManager *manager);
-static void	model_add_task					(XtmTaskManager *manager, Task *task, glong timestamp);
-static void	model_update_tree_iter				(XtmTaskManager *manager, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task);
-static void	model_mark_tree_iter_as_removed			(GtkTreeModel *model, GtkTreeIter *iter, glong timestamp);
-static void	model_remove_tree_iter				(GtkTreeModel *model, GtkTreeIter *iter);
-static gboolean	task_list_find_for_pid				(GArray *task_list, GPid pid, Task **task, guint *idx);
-static glong	__current_timestamp				(void);
+static void setting_changed (GObject *object, GParamSpec *pspec, XtmTaskManager *manager);
+static void model_add_task (XtmTaskManager *manager, Task *task, glong timestamp);
+static void model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timestamp, gboolean update_cmd_line, Task *task);
+static void model_mark_tree_iter_as_removed (GtkTreeModel *model, GtkTreeIter *iter, glong timestamp);
+static void model_remove_tree_iter (GtkTreeModel *model, GtkTreeIter *iter);
+static gboolean task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx);
+static glong __current_timestamp (void);
 
 
 
@@ -94,7 +87,8 @@ static void
 xtm_task_manager_init (XtmTaskManager *manager)
 {
 #ifdef HAVE_WNCK
-	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ())) {
+	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+	{
 		manager->app_manager = xtm_app_manager_new ();
 	}
 #endif
@@ -114,7 +108,8 @@ xtm_task_manager_finalize (GObject *object)
 	XtmTaskManager *manager = XTM_TASK_MANAGER (object);
 	g_array_free (manager->tasks, TRUE);
 #ifdef HAVE_WNCK
-	if (manager->app_manager != NULL) {
+	if (manager->app_manager != NULL)
+	{
 		g_object_unref (manager->app_manager);
 	}
 #endif
@@ -139,38 +134,43 @@ pretty_cmdline (gchar *cmdline, gchar *comm)
 	gsize csize, text_size = (gsize)strlen (text);
 
 	/* UTF-8 normalize. */
-	do {
+	do
+	{
 		for (ch = text, text_max = (text + text_size);
-		     text_max > ch;
-		     text_max = (text + text_size), ch = g_utf8_next_char(ch)) {
-			c = g_utf8_get_char_validated(ch, -1); /* If use (text_max - ch) - result is worse. */
-			if ((gunichar)-2 == c) {
+				 text_max > ch;
+				 text_max = (text + text_size), ch = g_utf8_next_char (ch))
+		{
+			c = g_utf8_get_char_validated (ch, -1); /* If use (text_max - ch) - result is worse. */
+			if ((gunichar)-2 == c)
+			{
 				text_size = (gsize)(ch - text);
 				(*ch) = 0;
 				break;
 			}
-			if ((gunichar)-1 == c) {
+			if ((gunichar)-1 == c)
+			{
 				(*ch) = ' ';
 				continue;
 			}
-			csize = (gsize)g_unichar_to_utf8(c, NULL);
+			csize = (gsize)g_unichar_to_utf8 (c, NULL);
 
-			if (!g_unichar_isdefined(c) ||
-			    !g_unichar_isprint(c) ||
-			    (g_unichar_isspace(c) && (1 != csize || (' ' != (*ch) && '	' != (*ch)))) ||
-			    g_unichar_ismark(c) ||
-			    g_unichar_istitle(c) ||
-			    g_unichar_iswide(c) ||
-			    g_unichar_iszerowidth(c) ||
-			    g_unichar_iscntrl(c)) {
+			if (!g_unichar_isdefined (c) ||
+					!g_unichar_isprint (c) ||
+					(g_unichar_isspace (c) && (1 != csize || (' ' != (*ch) && '	' != (*ch)))) ||
+					g_unichar_ismark (c) ||
+					g_unichar_istitle (c) ||
+					g_unichar_iswide (c) ||
+					g_unichar_iszerowidth (c) ||
+					g_unichar_iscntrl (c))
+			{
 				if (text_max < (ch + csize))
 					break;
-				memmove(ch, (ch + csize), (gsize)(text_max - (ch + csize)));
+				memmove (ch, (ch + csize), (gsize)(text_max - (ch + csize)));
 				text_size -= csize;
 			}
 		}
 		text[text_size] = 0;
-	} while (!g_utf8_validate(text, (gssize)text_size, NULL));
+	} while (!g_utf8_validate (text, (gssize)text_size, NULL));
 
 	if (!full_cmdline && text_size > 3)
 	{
@@ -210,7 +210,7 @@ model_add_task (XtmTaskManager *manager, Task *task, glong timestamp)
 		XTM_PTV_COLUMN_UID_STR, uid_name,
 		XTM_PTV_COLUMN_TIMESTAMP, timestamp,
 		-1);
-	g_free(uid_name);
+	g_free (uid_name);
 	model_update_tree_iter (manager, &iter, timestamp, TRUE, task);
 }
 
@@ -253,22 +253,22 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 	group_vsz = g_format_size_full (task->group_vsz, G_FORMAT_SIZE_IEC_UNITS);
 	group_rss = g_format_size_full (task->group_rss, G_FORMAT_SIZE_IEC_UNITS);
 
-	g_snprintf (value, sizeof(value), (more_precision) ? "%.2f" : "%.0f", (task->cpu_user + task->cpu_system));
-	g_snprintf (cpu, sizeof(cpu), _("%s%%"), value);
+	g_snprintf (value, sizeof (value), (more_precision) ? "%.2f" : "%.0f", (task->cpu_user + task->cpu_system));
+	g_snprintf (cpu, sizeof (cpu), _("%s%%"), value);
 
-	g_snprintf (value, sizeof(value), (more_precision) ? "%.2f" : "%.0f", (task->group_cpu_user + task->group_cpu_system));
-	g_snprintf (group_cpu, sizeof(group_cpu), _("%s%%"), value);
+	g_snprintf (value, sizeof (value), (more_precision) ? "%.2f" : "%.0f", (task->group_cpu_user + task->group_cpu_system));
+	g_snprintf (group_cpu, sizeof (group_cpu), _("%s%%"), value);
 
 	/* Retrieve values for tweaking background/foreground color and updating content as needed */
 	gtk_tree_model_get (model, iter,
-			XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp,
-			XTM_PTV_COLUMN_STATE, &old_state,
-			XTM_PTV_COLUMN_BACKGROUND, &background,
-			XTM_PTV_COLUMN_FOREGROUND, &foreground,
+		XTM_PTV_COLUMN_TIMESTAMP, &old_timestamp,
+		XTM_PTV_COLUMN_STATE, &old_state,
+		XTM_PTV_COLUMN_BACKGROUND, &background,
+		XTM_PTV_COLUMN_FOREGROUND, &foreground,
 #ifdef HAVE_WNCK
-			XTM_PTV_COLUMN_ICON, &surface,
+		XTM_PTV_COLUMN_ICON, &surface,
 #endif
-			-1);
+		-1);
 
 #ifdef HAVE_WNCK
 	if (surface != NULL)
@@ -353,9 +353,10 @@ task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx)
 {
 	Task *task_tmp = NULL, tkey;
 
-	if (task_list->data != NULL) {
+	if (task_list->data != NULL)
+	{
 		tkey.pid = pid;
-		task_tmp = bsearch(&tkey, task_list->data, task_list->len, sizeof(Task), task_pid_compare_fn);
+		task_tmp = bsearch (&tkey, task_list->data, task_list->len, sizeof (Task), task_pid_compare_fn);
 	}
 
 	if (NULL != task)
@@ -366,7 +367,7 @@ task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx)
 	{
 		if (NULL != task_tmp)
 		{
-			(*idx) = (guint)(((size_t)task_tmp - (size_t)task_list->data) / sizeof(Task));
+			(*idx) = (guint)(((size_t)task_tmp - (size_t)task_list->data) / sizeof (Task));
 		}
 		else
 		{
@@ -393,8 +394,8 @@ xtm_task_manager_new (GtkTreeModel *model)
 
 void
 xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gfloat *cpu,
-				  guint64 *memory_used, guint64 *memory_total,
-				  guint64 *swap_used, guint64 *swap_total)
+	guint64 *memory_used, guint64 *memory_total,
+	guint64 *swap_used, guint64 *swap_total)
 
 {
 	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
@@ -404,7 +405,7 @@ xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes,
 
 	/* Set memory and swap usage */
 	get_memory_usage (&manager->memory_total, &manager->memory_available, &manager->memory_free, &manager->memory_cache, &manager->memory_buffers,
-			&manager->swap_total, &manager->swap_free);
+		&manager->swap_total, &manager->swap_free);
 
 	*memory_used = manager->memory_total - manager->memory_available;
 	*memory_total = manager->memory_total;
@@ -445,11 +446,11 @@ xtm_task_manager_task_aggregate_children (Task *task, GArray *task_list)
 
 	for (guint i = 0; i < task_list->len; ++i)
 	{
-		Task *child_task = &g_array_index(task_list, Task, i);
+		Task *child_task = &g_array_index (task_list, Task, i);
 		if (child_task->ppid != task->pid)
 			continue;
 
-		xtm_task_manager_task_aggregate_children(child_task, task_list);
+		xtm_task_manager_task_aggregate_children (child_task, task_list);
 
 		task->group_cpu_system += child_task->group_cpu_system;
 		task->group_cpu_user += child_task->group_cpu_user;
@@ -463,7 +464,7 @@ xtm_task_manager_aggregate_children (GArray *task_list)
 {
 	for (guint i = 0; i < task_list->len; ++i)
 	{
-		Task *task = &g_array_index(task_list, Task, i);
+		Task *task = &g_array_index (task_list, Task, i);
 		task->group_cpu_system = -1;
 		task->group_cpu_user = -1;
 		task->group_vsz = -1;
@@ -472,7 +473,7 @@ xtm_task_manager_aggregate_children (GArray *task_list)
 
 	for (guint i = 0; i < task_list->len; ++i)
 	{
-		Task *task = &g_array_index(task_list, Task, i);
+		Task *task = &g_array_index (task_list, Task, i);
 		xtm_task_manager_task_aggregate_children (task, task_list);
 	}
 }
@@ -513,7 +514,8 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		g_free (cpu_str);
 		if (found)
 		{
-			if ((timestamp - old_timestamp) > TIMESTAMP_DELTA) {
+			if ((timestamp - old_timestamp) > TIMESTAMP_DELTA)
+			{
 				G_DEBUG_FMT ("Remove old task %d", pid);
 				model_remove_tree_iter (manager->model, &cur_iter);
 			}
@@ -541,12 +543,12 @@ xtm_task_manager_update_model (XtmTaskManager *manager)
 		update_cmd_line = FALSE;
 
 		/* Update the model (with the rest) only if needed, this keeps the CPU cool */
-		if (model_update_forced || 0 != memcmp(task, task_new, sizeof(Task)))
+		if (model_update_forced || 0 != memcmp (task, task_new, sizeof (Task)))
 		{
 			need_update = TRUE;
 			/* Update command name if needed (can happen) */
 			update_cmd_line = (model_update_forced || g_strcmp0 (task->cmdline, task_new->cmdline));
-			memcpy(task, task_new, sizeof(Task));
+			memcpy (task, task_new, sizeof (Task));
 		}
 		else /* Update color if needed */
 		{
@@ -595,8 +597,8 @@ get_uid_name (guint uid)
 	struct passwd *pw = NULL, pwd_buf;
 	char buf[4096];
 
-	memset(buf, 0, sizeof(buf));
-	error = getpwuid_r(uid, &pwd_buf, buf, sizeof(buf), &pw);
+	memset (buf, 0, sizeof (buf));
+	error = getpwuid_r (uid, &pwd_buf, buf, sizeof (buf), &pw);
 
 	return (g_strdup ((0 == error && pw != NULL) ? pw->pw_name : "nobody"));
 }
@@ -657,9 +659,9 @@ set_priority_to_pid (GPid pid, gint priority)
 }
 
 gint
-task_pid_compare_fn(gconstpointer a, gconstpointer b)
+task_pid_compare_fn (gconstpointer a, gconstpointer b)
 {
-	return (((const Task*)a)->pid - ((const Task*)b)->pid);
+	return ((const Task *)a)->pid - ((const Task *)b)->pid;
 }
 
 /* About the constants used below, see for example: https://stackoverflow.com/a/596243 */

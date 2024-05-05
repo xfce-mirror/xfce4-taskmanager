@@ -11,15 +11,13 @@
 /* Add includes for system functions needed */
 /* Example:
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <glib.h>
 
 #include "task-manager.h"
 
@@ -54,9 +52,9 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 static gboolean
 get_task_details (GPid pid, Task *task)
 {
-	memset(task, 0, sizeof(Task));
-	g_snprintf (task->name, sizeof(task->name), "foo");
-	g_snprintf (task->cmdline, sizeof(task->cmdline), "foo -bar");
+	memset (task, 0, sizeof (Task));
+	g_snprintf (task->name, sizeof (task->name), "foo");
+	g_snprintf (task->cmdline, sizeof (task->cmdline), "foo -bar");
 	task->uid = 1000;
 
 	return TRUE;
@@ -68,15 +66,9 @@ get_task_list (GArray *task_list)
 	GPid pid = 0;
 	Task task;
 
-	//while (/* read all PIDs */)
+	if (get_task_details (pid, &task))
 	{
-		// if (/* pid is valid */)
-		{
-			if (get_task_details (pid, &task))
-			{
-				g_array_append_val (task_list, task);
-			}
-		}
+		g_array_append_val (task_list, task);
 	}
 
 	g_array_sort (task_list, task_pid_compare_fn);
@@ -91,4 +83,3 @@ pid_is_sleeping (GPid pid)
 
 	return FALSE; /* (state == sleeping) ? TRUE : FALSE;*/
 }
-

@@ -8,29 +8,27 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <glib-object.h>
-#include <gtk/gtk.h>
+#include "settings-dialog.h"
+#include "settings-dialog_ui.h"
+#include "settings.h"
+
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
 
 #include <libxfce4ui/libxfce4ui.h>
 
-#include "settings.h"
-#include "settings-dialog.h"
-#include "settings-dialog_ui.h"
-
-static void	show_about_dialog				(GtkWidget *widget, gpointer user_data);
+static void show_about_dialog (GtkWidget *widget, gpointer user_data);
 static GtkWidget *xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window);
 
 
 typedef struct
 {
-	GtkWidget		*combobox;
-	guint		rate;
+	GtkWidget *combobox;
+	guint rate;
 } XtmRefreshRate;
 
 static void
@@ -60,7 +58,7 @@ combobox_changed (GtkComboBox *combobox, XtmSettings *settings)
 {
 	GtkTreeModel *model;
 	GtkTreeIter iter;
-	GValue prop = { 0, };
+	GValue prop = G_VALUE_INIT;
 	gint rate;
 
 	gtk_combo_box_get_active_iter (combobox, &iter);
@@ -71,17 +69,14 @@ combobox_changed (GtkComboBox *combobox, XtmSettings *settings)
 }
 
 static gboolean
-combobox_foreach (GtkTreeModel *model,
-                                      GtkTreePath  *path,
-                                      GtkTreeIter  *iter,
-                                      gpointer      user_data)
+combobox_foreach (GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, gpointer user_data)
 {
 	XtmRefreshRate *refresh_rate = user_data;
-	GValue prop = { 0, };
+	GValue prop = G_VALUE_INIT;
 
 	gtk_tree_model_get_value (model, iter, 0, &prop);
 
-	if ((guint) g_value_get_int (&prop) == refresh_rate->rate)
+	if ((guint)g_value_get_int (&prop) == refresh_rate->rate)
 	{
 		gtk_combo_box_set_active_iter (GTK_COMBO_BOX (refresh_rate->combobox), iter);
 		return TRUE;
@@ -136,7 +131,8 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 		"OpenSolaris",
 		"  \342\200\242 Mike Massonnet",
 		"  \342\200\242 Peter Tribble",
-		NULL };
+		NULL
+	};
 	const gchar *license =
 		"This program is free software; you can redistribute it and/or modify\n"
 		"it under the terms of the GNU General Public License as published by\n"
