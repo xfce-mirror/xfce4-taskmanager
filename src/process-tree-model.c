@@ -20,64 +20,65 @@
 
 
 
-enum {
+enum
+{
 	PROP_0,
 	PROP_MODEL
 };
 
-typedef struct {
-	GtkTreeIter	iter;
-	GtkTreePath *	path;
-	GSequenceIter *	list;
-	GNode *		tree;
+typedef struct
+{
+	GtkTreeIter iter;
+	GtkTreePath *path;
+	GSequenceIter *list;
+	GNode *tree;
 } XtmCrossLink;
 
 typedef struct _XtmProcessTreeModelClass XtmProcessTreeModelClass;
 struct _XtmProcessTreeModelClass
 {
-	GObjectClass	parent_class;
+	GObjectClass parent_class;
 };
 struct _XtmProcessTreeModel
 {
-	GObject		parent;
+	GObject parent;
 	/*<private>*/
-	GtkTreeModel *	model;
-	GNode *		tree;
-	GSequence *	list;
-	gint		c_column;
-	gint		p_column;
-	gint		stamp;
+	GtkTreeModel *model;
+	GNode *tree;
+	GSequence *list;
+	gint c_column;
+	gint p_column;
+	gint stamp;
 };
 
-static void		xtm_process_tree_model_iface_init		(GtkTreeModelIface *iface);
+static void xtm_process_tree_model_iface_init (GtkTreeModelIface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (XtmProcessTreeModel, xtm_process_tree_model, G_TYPE_OBJECT,
 	G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL, xtm_process_tree_model_iface_init))
 
-static void			xtm_process_tree_model_finalize		(GObject *object);
-static void			xtm_process_tree_model_set_property	(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
-static void			xtm_process_tree_model_get_property	(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
+static void xtm_process_tree_model_finalize (GObject *object);
+static void xtm_process_tree_model_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
+static void xtm_process_tree_model_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 
-static GtkTreeModelFlags	xtm_process_tree_model_get_flags	(GtkTreeModel *model);
-static gint			xtm_process_tree_model_get_n_columns	(GtkTreeModel *model);
-static GType			xtm_process_tree_model_get_column_type	(GtkTreeModel *model, gint idx);
-static gboolean			xtm_process_tree_model_get_iter		(GtkTreeModel *model, GtkTreeIter *iter, GtkTreePath *path);
-static GtkTreePath *		xtm_process_tree_model_get_path		(GtkTreeModel *model, GtkTreeIter *iter);
-static void			xtm_process_tree_model_get_value	(GtkTreeModel *model, GtkTreeIter *iter, gint column, GValue *value);
-static gboolean			xtm_process_tree_model_iter_next	(GtkTreeModel *model, GtkTreeIter *iter);
-static gboolean			xtm_process_tree_model_iter_children	(GtkTreeModel *model, GtkTreeIter *iter, GtkTreeIter *parent);
-static gboolean			xtm_process_tree_model_iter_has_child	(GtkTreeModel *model, GtkTreeIter *iter);
-static gint			xtm_process_tree_model_iter_n_children	(GtkTreeModel *model, GtkTreeIter *iter);
-static gboolean			xtm_process_tree_model_iter_nth_child	(GtkTreeModel *model, GtkTreeIter *iter, GtkTreeIter *parent, gint n);
-static gboolean			xtm_process_tree_model_iter_parent	(GtkTreeModel *model, GtkTreeIter *iter, GtkTreeIter *child);
+static GtkTreeModelFlags xtm_process_tree_model_get_flags (GtkTreeModel *model);
+static gint xtm_process_tree_model_get_n_columns (GtkTreeModel *model);
+static GType xtm_process_tree_model_get_column_type (GtkTreeModel *model, gint idx);
+static gboolean xtm_process_tree_model_get_iter (GtkTreeModel *model, GtkTreeIter *iter, GtkTreePath *path);
+static GtkTreePath *xtm_process_tree_model_get_path (GtkTreeModel *model, GtkTreeIter *iter);
+static void xtm_process_tree_model_get_value (GtkTreeModel *model, GtkTreeIter *iter, gint column, GValue *value);
+static gboolean xtm_process_tree_model_iter_next (GtkTreeModel *model, GtkTreeIter *iter);
+static gboolean xtm_process_tree_model_iter_children (GtkTreeModel *model, GtkTreeIter *iter, GtkTreeIter *parent);
+static gboolean xtm_process_tree_model_iter_has_child (GtkTreeModel *model, GtkTreeIter *iter);
+static gint xtm_process_tree_model_iter_n_children (GtkTreeModel *model, GtkTreeIter *iter);
+static gboolean xtm_process_tree_model_iter_nth_child (GtkTreeModel *model, GtkTreeIter *iter, GtkTreeIter *parent, gint n);
+static gboolean xtm_process_tree_model_iter_parent (GtkTreeModel *model, GtkTreeIter *iter, GtkTreeIter *child);
 
-static void			xtm_process_tree_model_row_changed	(XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeIter *iter, GtkTreeModel *model);
-static void			xtm_process_tree_model_row_inserted	(XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeIter *iter, GtkTreeModel *model);
-//static void			xtm_process_tree_model_row_has_child_toggled	(XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeIter *iter, GtkTreeModel *model);
-static void			xtm_process_tree_model_row_deleted	(XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeModel *model);
-static void			xtm_process_tree_model_rows_reordered	(XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeIter *iter, gint *new_order, GtkTreeModel *model);
+static void xtm_process_tree_model_row_changed (XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeIter *iter, GtkTreeModel *model);
+static void xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeIter *iter, GtkTreeModel *model);
+static void xtm_process_tree_model_row_deleted (XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeModel *model);
+static void xtm_process_tree_model_rows_reordered (XtmProcessTreeModel *treemodel, GtkTreePath *path, GtkTreeIter *iter, gint *new_order, GtkTreeModel *model);
 
-static void			xtm_process_tree_model_set_model	(XtmProcessTreeModel *treemodel, GtkTreeModel *model);
+static void xtm_process_tree_model_set_model (XtmProcessTreeModel *treemodel, GtkTreeModel *model);
 
 
 
@@ -112,7 +113,7 @@ xtm_process_tree_model_class_init (XtmProcessTreeModelClass *klass)
 	class->get_property = xtm_process_tree_model_get_property;
 
 	g_object_class_install_property (class, PROP_MODEL,
-		g_param_spec_object ("model", NULL, NULL, GTK_TYPE_TREE_MODEL, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY));
+		g_param_spec_object ("model", NULL, NULL, GTK_TYPE_TREE_MODEL, G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
 }
 
 static void
@@ -369,9 +370,9 @@ xtm_process_tree_model_iter_parent (GtkTreeModel *model, GtkTreeIter *iter, GtkT
 
 struct find_node_struct
 {
-	GValue			p_value;
-	XtmProcessTreeModel *	treemodel;
-	GNode *			parent;
+	GValue p_value;
+	XtmProcessTreeModel *treemodel;
+	GNode *parent;
 };
 
 static gboolean
@@ -380,7 +381,7 @@ find_node (GNode *node, gpointer data)
 	XtmCrossLink *lnk = node->data;
 	struct find_node_struct *found = data;
 	gboolean same = FALSE;
-	GValue c_value = {0};
+	GValue c_value = { 0 };
 	if (lnk == NULL)
 		return FALSE;
 	/* Use path for non-persistent models */
@@ -438,7 +439,7 @@ find_sibling (GNode *parent, GSequenceIter *child)
 	GSequenceIter *prev;
 	/* Go backward in the list until a node is found with the same parent */
 	for (prev = g_sequence_iter_prev (child); prev != child; prev = g_sequence_iter_prev (child))
-    	{
+	{
 		XtmCrossLink *lnk;
 		child = prev;
 		lnk = g_sequence_get (child);
@@ -446,7 +447,7 @@ find_sibling (GNode *parent, GSequenceIter *child)
 		{
 			return lnk->tree;
 		}
-    	}
+	}
 	return NULL;
 }
 
@@ -458,8 +459,8 @@ xtm_process_tree_model_row_changed (XtmProcessTreeModel *treemodel, GtkTreePath 
 	XtmCrossLink *lnk, *c_link;
 	GNode *node, *next_node, *old_parent;
 	struct find_node_struct found;
-	GValue c_value = {0};
-	GValue p_value = {0};
+	GValue c_value = { 0 };
+	GValue p_value = { 0 };
 	gboolean same = TRUE;
 	gboolean signal_parent;
 
@@ -476,7 +477,7 @@ xtm_process_tree_model_row_changed (XtmProcessTreeModel *treemodel, GtkTreePath 
 	s_iter.user_data3 = NULL;
 
 	/* Use the root entry as fall-back if no parent could be found */
-	memset(&found, 0, sizeof(found));
+	memset (&found, 0, sizeof (found));
 	found.parent = treemodel->tree;
 	found.treemodel = treemodel;
 	gtk_tree_model_get_value (model, iter, treemodel->p_column, &found.p_value);
@@ -608,7 +609,7 @@ static void
 do_path (gpointer data, gpointer user_data)
 {
 	XtmCrossLink *lnk = data;
-	void (*func) (GtkTreePath*) = (void (*) (GtkTreePath*))user_data;
+	void (*func) (GtkTreePath *) = (void (*) (GtkTreePath *))user_data;
 	/* Use path for non-persistent models */
 	g_return_if_fail (lnk->path);
 	func (lnk->path);
@@ -622,8 +623,8 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 	XtmCrossLink *lnk, *c_link;
 	GNode *node, *next_node;
 	struct find_node_struct found;
-	GValue c_value = {0};
-	GValue p_value = {0};
+	GValue c_value = { 0 };
+	GValue p_value = { 0 };
 	gboolean same;
 	gboolean not_persist = TRUE;
 	gboolean signal_parent;
@@ -631,9 +632,9 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 	g_return_if_fail (gtk_tree_path_get_depth (path) == 1);
 
 	/* Take a reference on this node, to want to stay informed about any changes in this row */
-	gtk_tree_model_ref_node(model, iter);
+	gtk_tree_model_ref_node (model, iter);
 
-	not_persist = ! (gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_ITERS_PERSIST);
+	not_persist = !(gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_ITERS_PERSIST);
 
 	s_iter.stamp = treemodel->stamp;
 	s_iter.user_data2 = NULL;
@@ -654,7 +655,7 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 		g_sequence_foreach_range (g_sequence_iter_next (lnk->list), g_sequence_get_end_iter (treemodel->list),
 			do_path, (gpointer)gtk_tree_path_next);
 
-	memset(&found, 0, sizeof(found));
+	memset (&found, 0, sizeof (found));
 	found.parent = treemodel->tree;
 	found.treemodel = treemodel;
 	gtk_tree_model_get_value (model, iter, treemodel->p_column, &found.p_value);
@@ -750,7 +751,7 @@ xtm_process_tree_model_row_deleted (XtmProcessTreeModel *treemodel, GtkTreePath 
 
 	g_return_if_fail (gtk_tree_path_get_depth (path) == 1);
 
-	not_persist = ! (gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_ITERS_PERSIST);
+	not_persist = !(gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_ITERS_PERSIST);
 
 	s_iter.stamp = treemodel->stamp;
 	s_iter.user_data2 = NULL;
@@ -852,7 +853,7 @@ reorder_children (GNode *parent, gpointer data)
 			if (c_pos > 0)
 			{
 				/* move the items in between to keep order list in sync with the current tree */
-				memmove ((new_order + i + 1), (new_order + i), ((guint)c_pos * sizeof(gint)));
+				memmove (new_order + i + 1, new_order + i, (guint)c_pos * sizeof (gint));
 				moved = TRUE;
 			}
 			/* Store the old position at the new location */
@@ -891,7 +892,7 @@ xtm_process_tree_model_rows_reordered (XtmProcessTreeModel *treemodel, GtkTreePa
 	if (G_UNLIKELY (size == 0))
 		return;
 
-	not_persist = ! (gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_ITERS_PERSIST);
+	not_persist = !(gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_ITERS_PERSIST);
 
 	/* New list to hold the new order */
 	s_list = g_sequence_new (xtm_cross_link_free);
@@ -933,7 +934,6 @@ xtm_process_tree_model_set_model (XtmProcessTreeModel *treemodel, GtkTreeModel *
 
 	g_signal_connect_object (model, "row-changed", G_CALLBACK (xtm_process_tree_model_row_changed), treemodel, G_CONNECT_SWAPPED);
 	g_signal_connect_object (model, "row-inserted", G_CALLBACK (xtm_process_tree_model_row_inserted), treemodel, G_CONNECT_SWAPPED);
-	//g_signal_connect_object (model, "row-has-child-toggled", G_CALLBACK (xtm_process_tree_model_row_has_child_toggled), treemodel, G_CONNECT_SWAPPED);
 	g_signal_connect_object (model, "row-deleted", G_CALLBACK (xtm_process_tree_model_row_deleted), treemodel, G_CONNECT_SWAPPED);
 	g_signal_connect_object (model, "rows-reordered", G_CALLBACK (xtm_process_tree_model_rows_reordered), treemodel, G_CONNECT_SWAPPED);
 }
@@ -941,7 +941,7 @@ xtm_process_tree_model_set_model (XtmProcessTreeModel *treemodel, GtkTreeModel *
 
 
 GtkTreeModel *
-xtm_process_tree_model_new (GtkTreeModel * model)
+xtm_process_tree_model_new (GtkTreeModel *model)
 {
 	/* Only support flat models to build a tree */
 	g_return_val_if_fail (gtk_tree_model_get_flags (model) & GTK_TREE_MODEL_LIST_ONLY, NULL);

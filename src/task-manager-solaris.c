@@ -43,7 +43,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 	gint n;
 
 	if (!kc)
-		init_stats();
+		init_stats ();
 
 	if (!(ksp = kstat_lookup (kc, "unix", 0, "system_pages")))
 		return FALSE;
@@ -167,7 +167,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	get_cpu_percent (0, ticks_user, cpu_user, ticks_system, cpu_system);
 	*cpu_count = _cpu_count;
 
-        return TRUE;
+	return TRUE;
 }
 
 static gboolean
@@ -177,7 +177,7 @@ get_task_details (GPid pid, Task *task)
 	gchar filename[96];
 	psinfo_t process;
 
-	snprintf (filename, sizeof(filename), "/proc/%d/psinfo", pid);
+	snprintf (filename, sizeof (filename), "/proc/%d/psinfo", pid);
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
 
@@ -187,12 +187,12 @@ get_task_details (GPid pid, Task *task)
 		return FALSE;
 	}
 
-	memset(task, 0, sizeof(Task));
+	memset (task, 0, sizeof (Task));
 	task->pid = process.pr_pid;
 	task->ppid = process.pr_ppid;
-	g_strlcpy (task->name, process.pr_fname, sizeof(task->name));
-	snprintf (task->cmdline, sizeof(task->cmdline), "%s", process.pr_psargs);
-	snprintf (task->state, sizeof(task->state), "%c", process.pr_lwp.pr_sname);
+	g_strlcpy (task->name, process.pr_fname, sizeof (task->name));
+	snprintf (task->cmdline, sizeof (task->cmdline), "%s", process.pr_psargs);
+	snprintf (task->state, sizeof (task->state), "%c", process.pr_lwp.pr_sname);
 	task->vsz = (guint64)process.pr_size * 1024;
 	task->rss = (guint64)process.pr_rssize * 1024;
 	task->prio = process.pr_lwp.pr_pri;
@@ -215,12 +215,12 @@ get_task_list (GArray *task_list)
 	if ((dir = g_dir_open ("/proc", 0, NULL)) == NULL)
 		return FALSE;
 
-	while ((name = g_dir_read_name(dir)) != NULL)
+	while ((name = g_dir_read_name (dir)) != NULL)
 	{
 		if ((pid = (GPid)g_ascii_strtoull (name, NULL, 0)) > 0)
 		{
 			if (get_task_details (pid, &task))
-				g_array_append_val(task_list, task);
+				g_array_append_val (task_list, task);
 		}
 	}
 
@@ -239,7 +239,7 @@ pid_is_sleeping (GPid pid)
 	gchar state[2];
 	psinfo_t process;
 
-	snprintf (filename, sizeof(filename), "/proc/%d/psinfo", pid);
+	snprintf (filename, sizeof (filename), "/proc/%d/psinfo", pid);
 	if ((file = fopen (filename, "r")) == NULL)
 		return FALSE;
 
@@ -249,7 +249,7 @@ pid_is_sleeping (GPid pid)
 		return FALSE;
 	}
 
-	snprintf (state, sizeof(state), "%c", process.pr_lwp.pr_sname);
+	snprintf (state, sizeof (state), "%c", process.pr_lwp.pr_sname);
 	fclose (file);
 
 	return (state[0] == 'T') ? TRUE : FALSE;

@@ -56,19 +56,19 @@ enum
 typedef struct _XtmSettingsClass XtmSettingsClass;
 struct _XtmSettingsClass
 {
-	GObjectClass		parent_class;
+	GObjectClass parent_class;
 };
 struct _XtmSettings
 {
-	GObject			parent;
+	GObject parent;
 	/*<private>*/
-	GValue			values[N_PROPS];
+	GValue values[N_PROPS];
 };
 G_DEFINE_TYPE (XtmSettings, xtm_settings, G_TYPE_OBJECT)
 
-static void	xtm_settings_get_property			(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
-static void	xtm_settings_set_property			(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
-static void	xtm_settings_finalize			(GObject *object);
+static void xtm_settings_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
+static void xtm_settings_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
+static void xtm_settings_finalize (GObject *object);
 
 static void
 xtm_settings_class_init (XtmSettingsClass *klass)
@@ -129,7 +129,6 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 static void
 xtm_settings_init (XtmSettings *settings)
 {
-
 }
 
 static void

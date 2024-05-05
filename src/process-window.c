@@ -39,49 +39,47 @@
 typedef struct _XtmProcessWindowClass XtmProcessWindowClass;
 struct _XtmProcessWindowClass
 {
-	GtkWidgetClass		parent_class;
+	GtkWidgetClass parent_class;
 };
 
 struct _XtmProcessWindow
 {
-	GtkWidget		parent;
+	GtkWidget parent;
 	/*<private>*/
-	GtkBuilder *		builder;
-	GtkWidget *		window;
-	GtkWidget *		filter_entry;
-	GtkWidget *		filter_searchbar;
-	GtkWidget *		cpu_monitor;
-	GtkWidget *		mem_monitor;
-	GtkWidget *		vpaned;
-	GtkWidget *		treeview;
-	GtkWidget *		statusbar;
-	GtkWidget *		settings_button;
-	XtmSettings *		settings;
-	XfconfChannel *		channel;
-	gint			width;
-	gint			height;
-	gulong			handler;
-	gboolean		view_stuck;
+	GtkBuilder *builder;
+	GtkWidget *window;
+	GtkWidget *filter_entry;
+	GtkWidget *filter_searchbar;
+	GtkWidget *cpu_monitor;
+	GtkWidget *mem_monitor;
+	GtkWidget *vpaned;
+	GtkWidget *treeview;
+	GtkWidget *statusbar;
+	GtkWidget *settings_button;
+	XtmSettings *settings;
+	XfconfChannel *channel;
+	gint width;
+	gint height;
+	gulong handler;
+	gboolean view_stuck;
 };
 G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 
-static void	xtm_process_window_finalize			(GObject *object);
-static void	xtm_process_window_hide				(GtkWidget *widget);
+static void xtm_process_window_finalize (GObject *object);
+static void xtm_process_window_hide (GtkWidget *widget);
 
-static void	emit_destroy_signal				(XtmProcessWindow *window);
-static gboolean xtm_process_window_key_pressed	(XtmProcessWindow *window, GdkEventKey *event);
-static void	monitor_update_step_size			(XtmProcessWindow *window);
+static void emit_destroy_signal (XtmProcessWindow *window);
+static gboolean xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event);
+static void monitor_update_step_size (XtmProcessWindow *window);
 
 
 static void
-filter_entry_icon_pressed_cb (GtkEntry *entry,
-                              gint position,
-                              GdkEventButton *event __unused,
-                              gpointer data __unused)
+filter_entry_icon_pressed_cb (GtkEntry *entry, gint position, GdkEventButton *event __unused, gpointer data __unused)
 {
-	if (position == GTK_ENTRY_ICON_SECONDARY) {
+	if (position == GTK_ENTRY_ICON_SECONDARY)
+	{
 		gtk_entry_set_text (entry, "");
-		gtk_widget_grab_focus (GTK_WIDGET(entry));
+		gtk_widget_grab_focus (GTK_WIDGET (entry));
 	}
 }
 
@@ -92,49 +90,55 @@ Select_Window (Display *dpy, int screen)
 	int status;
 	Cursor cursor;
 	XEvent event;
-	Window target_win = None, root = RootWindow(dpy,screen);
+	Window target_win = None, root = RootWindow (dpy, screen);
 	int buttons = 0;
 
 	/* Make the target cursor */
-	cursor = XCreateFontCursor(dpy, XC_crosshair);
+	cursor = XCreateFontCursor (dpy, XC_crosshair);
 
 	/* Grab the pointer using target cursor, letting it roam all over */
-	status = XGrabPointer(dpy, root, False,
-	        ButtonPressMask|ButtonReleaseMask, GrabModeSync,
-	        GrabModeAsync, root, cursor, CurrentTime);
-	if (status != GrabSuccess) {
-	    fprintf (stderr, "Can't grab the mouse.\n");
-	    return None;
+	status = XGrabPointer (dpy, root, False,
+		ButtonPressMask | ButtonReleaseMask, GrabModeSync,
+		GrabModeAsync, root, cursor, CurrentTime);
+	if (status != GrabSuccess)
+	{
+		fprintf (stderr, "Can't grab the mouse.\n");
+		return None;
 	}
 
 	/* Let the user select a window... */
-	while ((target_win == None) || (buttons != 0)) {
-	    /* allow one more event */
-	    XAllowEvents(dpy, SyncPointer, CurrentTime);
-	    XWindowEvent(dpy, root, ButtonPressMask|ButtonReleaseMask, &event);
-	    switch (event.type) {
-	        case ButtonPress:
-	            if (target_win == None) {
-	                target_win = event.xbutton.subwindow; /* window selected */
-	                if (target_win == None) target_win = root;
-	            }
-	            buttons++;
-	            break;
-	        case ButtonRelease:
-	            if (buttons > 0) /* there may have been some down before we started */
-	                buttons--;
-	            break;
-	    }
+	while ((target_win == None) || (buttons != 0))
+	{
+		/* allow one more event */
+		XAllowEvents (dpy, SyncPointer, CurrentTime);
+		XWindowEvent (dpy, root, ButtonPressMask | ButtonReleaseMask, &event);
+		switch (event.type)
+		{
+			case ButtonPress:
+				if (target_win == None)
+				{
+					target_win = event.xbutton.subwindow; /* window selected */
+					if (target_win == None)
+						target_win = root;
+				}
+				buttons++;
+				break;
+			case ButtonRelease:
+				if (buttons > 0) /* there may have been some down before we started */
+					buttons--;
+				break;
+		}
 	}
 
-	XUngrabPointer(dpy, CurrentTime);      /* Done with pointer */
+	XUngrabPointer (dpy, CurrentTime); /* Done with pointer */
 
 	return target_win;
 }
 
 static void
-xwininfo_clicked_cb (GtkButton *button __unused, gpointer user_data) {
-	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
+xwininfo_clicked_cb (GtkButton *button __unused, gpointer user_data)
+{
+	XtmProcessWindow *window = (XtmProcessWindow *)user_data;
 	Window selected_window;
 	Display *dpy;
 	Atom atom_NET_WM_PID;
@@ -148,51 +152,56 @@ xwininfo_clicked_cb (GtkButton *button __unused, gpointer user_data) {
 
 	dpy = XOpenDisplay (NULL);
 	selected_window = Select_Window (dpy, 0);
-	if (selected_window) {
+	if (selected_window)
+	{
 		selected_window = XmuClientWindow (dpy, selected_window);
 	}
 
-	atom_NET_WM_PID = XInternAtom(dpy, "_NET_WM_PID", False);
+	atom_NET_WM_PID = XInternAtom (dpy, "_NET_WM_PID", False);
 
-	status = XGetWindowProperty(dpy, selected_window, atom_NET_WM_PID, 0, (~0L),
-	                            False, AnyPropertyType, &actual_type,
-	                            &actual_format, &_nitems, &bytes_after,
-	                            &prop);
-	if (status == BadWindow) {
-		XTM_SHOW_MESSAGE(GTK_MESSAGE_INFO,
-                                    _("Bad Window"), _("Window id 0x%lx does not exist!"), selected_window);
-	} if (status != Success) {
-		XTM_SHOW_MESSAGE(GTK_MESSAGE_ERROR,
-                                    _("XGetWindowProperty failed"), _("XGetWindowProperty failed!"));
-	} else {
-		if (_nitems > 0) {
-			memcpy(&pid, prop, sizeof(pid));
-			xtm_process_tree_view_highlight_pid(XTM_PROCESS_TREE_VIEW (window->treeview), pid);
-		} else {
-			XTM_SHOW_MESSAGE(GTK_MESSAGE_INFO,
-                                            _("No PID found"), _("No PID found for window 0x%lx."), selected_window);
-		}
-		g_free(prop);
+	status = XGetWindowProperty (dpy, selected_window, atom_NET_WM_PID, 0, ~0L,
+		False, AnyPropertyType, &actual_type,
+		&actual_format, &_nitems, &bytes_after,
+		&prop);
+	if (status == BadWindow)
+	{
+		XTM_SHOW_MESSAGE (GTK_MESSAGE_INFO,
+			_("Bad Window"), _("Window id 0x%lx does not exist!"), selected_window);
 	}
-
+	if (status != Success)
+	{
+		XTM_SHOW_MESSAGE (GTK_MESSAGE_ERROR,
+			_("XGetWindowProperty failed"), _("XGetWindowProperty failed!"));
+	}
+	else
+	{
+		if (_nitems > 0)
+		{
+			memcpy (&pid, prop, sizeof (pid));
+			xtm_process_tree_view_highlight_pid (XTM_PROCESS_TREE_VIEW (window->treeview), pid);
+		}
+		else
+		{
+			XTM_SHOW_MESSAGE (GTK_MESSAGE_INFO,
+				_("No PID found"), _("No PID found for window 0x%lx."), selected_window);
+		}
+		g_free (prop);
+	}
 }
 #endif
 
 static void
-filter_entry_keyrelease_handler(GtkEntry *entry,
-                                XtmProcessTreeView *treeview)
+filter_entry_keyrelease_handler (GtkEntry *entry, XtmProcessTreeView *treeview)
 {
 	gchar *text;
 	gboolean has_text;
 
-	text = gtk_editable_get_chars (GTK_EDITABLE(entry), 0, -1);
-	xtm_process_tree_view_set_filter(treeview, text);
+	text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
+	xtm_process_tree_view_set_filter (treeview, text);
 	g_free (text);
 
-	has_text = gtk_entry_get_text_length (GTK_ENTRY(entry)) > 0;
-	gtk_entry_set_icon_sensitive (GTK_ENTRY(entry),
-	                              GTK_ENTRY_ICON_SECONDARY,
-	                              has_text);
+	has_text = gtk_entry_get_text_length (GTK_ENTRY (entry)) > 0;
+	gtk_entry_set_icon_sensitive (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY, has_text);
 }
 
 static void
@@ -212,7 +221,7 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 static void
 xtm_process_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation, gpointer user_data)
 {
-	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
+	XtmProcessWindow *window = (XtmProcessWindow *)user_data;
 
 	g_return_if_fail (gtk_widget_is_toplevel (widget));
 
@@ -222,7 +231,7 @@ xtm_process_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation, 
 static void
 show_settings_dialog (GtkButton *button, gpointer user_data)
 {
-	XtmProcessWindow *window = (XtmProcessWindow *) user_data;
+	XtmProcessWindow *window = (XtmProcessWindow *)user_data;
 
 	g_signal_handler_block (G_OBJECT (window->window), window->handler);
 	xtm_settings_dialog_run (window->window);
@@ -244,13 +253,12 @@ xtm_process_window_unstick_view_event (GtkWidget *widget, GdkEvent *event, XtmPr
 	GdkScrollDirection dir;
 	gdouble y;
 
-	if (! window->view_stuck)
+	if (!window->view_stuck)
 		return FALSE;
 
-	if (event->type == GDK_SCROLL && (
-				(gdk_event_get_scroll_direction (event, &dir) && dir == GDK_SCROLL_UP)
-				|| (gdk_event_get_scroll_deltas (event, NULL, &y) && y <= 0)
-			))
+	if (event->type == GDK_SCROLL &&
+			((gdk_event_get_scroll_direction (event, &dir) && dir == GDK_SCROLL_UP) ||
+				(gdk_event_get_scroll_deltas (event, NULL, &y) && y <= 0)))
 		return FALSE;
 
 	window->view_stuck = FALSE;
@@ -263,10 +271,11 @@ xtm_process_window_unstick_view_cursor (GtkTreeView *tree_view, XtmProcessWindow
 {
 	GtkTreePath *cursor, *end;
 
-	if (! window->view_stuck)
+	if (!window->view_stuck)
 		return;
 
-	if (gtk_tree_view_get_visible_range (tree_view, NULL, &end)) {
+	if (gtk_tree_view_get_visible_range (tree_view, NULL, &end))
+	{
 		gtk_tree_view_get_cursor (tree_view, &cursor, NULL);
 		if (cursor != NULL && gtk_tree_path_compare (cursor, end) >= 0)
 			window->view_stuck = FALSE;
@@ -298,17 +307,15 @@ xtm_process_window_init (XtmProcessWindow *window)
 
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
 	window->handler = g_signal_connect (window->window, "size-allocate", G_CALLBACK (xtm_process_window_size_allocate), window);
-	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK(xtm_process_window_key_pressed), window);
+	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK (xtm_process_window_key_pressed), window);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-settings"));
-	g_signal_connect (G_OBJECT (button), "clicked",
-										G_CALLBACK (show_settings_dialog), window);
+	g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (show_settings_dialog), window);
 
 	button = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-identify"));
 #ifdef HAVE_LIBX11
 	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
-		g_signal_connect (G_OBJECT (button), "clicked",
-						  G_CALLBACK (xwininfo_clicked_cb), window);
+		g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (xwininfo_clicked_cb), window);
 	else
 #endif
 		gtk_widget_hide (button);
@@ -319,8 +326,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 		guint refresh_rate;
 
 		g_object_get (window->settings,
-					  "refresh-rate", &refresh_rate,
-					  NULL);
+			"refresh-rate", &refresh_rate,
+			NULL);
 
 		window->vpaned = GTK_WIDGET (gtk_builder_get_object (window->builder, "mainview-vpaned"));
 		xfconf_g_property_bind (window->channel, SETTING_HANDLE_POSITION, G_TYPE_INT,
@@ -369,9 +376,9 @@ xtm_process_window_init (XtmProcessWindow *window)
 		g_signal_connect (window->treeview, "cursor-changed", G_CALLBACK (xtm_process_window_unstick_view_cursor), window);
 	}
 
-	window->filter_entry = GTK_WIDGET(gtk_builder_get_object (window->builder, "filter-entry"));
-	g_signal_connect (G_OBJECT(window->filter_entry), "icon-press", G_CALLBACK(filter_entry_icon_pressed_cb), NULL);
-	g_signal_connect (G_OBJECT(window->filter_entry), "changed", G_CALLBACK(filter_entry_keyrelease_handler), window->treeview);
+	window->filter_entry = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-entry"));
+	g_signal_connect (G_OBJECT (window->filter_entry), "icon-press", G_CALLBACK (filter_entry_icon_pressed_cb), NULL);
+	g_signal_connect (G_OBJECT (window->filter_entry), "changed", G_CALLBACK (filter_entry_keyrelease_handler), window->treeview);
 	gtk_widget_set_tooltip_text (window->filter_entry, _("Filter on process name"));
 	gtk_widget_grab_focus (window->filter_entry);
 
@@ -452,22 +459,22 @@ xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event)
 	gboolean ret = FALSE;
 
 	if (event->keyval == GDK_KEY_Escape &&
-			gtk_widget_is_focus(GTK_WIDGET (window->filter_entry)))
+			gtk_widget_is_focus (GTK_WIDGET (window->filter_entry)))
 	{
 		if (xfconf_channel_get_bool (window->channel, SETTING_SHOW_FILTER, FALSE))
-			gtk_entry_set_text (GTK_ENTRY(window->filter_entry), "");
+			gtk_entry_set_text (GTK_ENTRY (window->filter_entry), "");
 		else
 			g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
 	}
 	else if (event->keyval == GDK_KEY_Escape ||
-		(event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK)))
+					 (event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK)))
 	{
 		g_signal_emit_by_name (window, "delete-event", event, &ret, G_TYPE_BOOLEAN);
 		ret = TRUE;
 	}
 	else if (event->keyval == GDK_KEY_f && (event->state & GDK_CONTROL_MASK))
 	{
-		gtk_widget_grab_focus (GTK_WIDGET(window->filter_entry));
+		gtk_widget_grab_focus (GTK_WIDGET (window->filter_entry));
 		xfconf_channel_set_bool (window->channel, SETTING_SHOW_FILTER, TRUE);
 		ret = TRUE;
 	}
@@ -501,7 +508,7 @@ xtm_process_window_show (GtkWidget *widget)
 	g_return_if_fail (GTK_IS_WIDGET (XTM_PROCESS_WINDOW (widget)->window));
 	gtk_widget_show (XTM_PROCESS_WINDOW (widget)->window);
 	gtk_window_present (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window));
-	GTK_WIDGET_CLASS (xtm_process_window_parent_class)->show(widget);
+	GTK_WIDGET_CLASS (xtm_process_window_parent_class)->show (widget);
 }
 
 static void
@@ -514,7 +521,7 @@ xtm_process_window_hide (GtkWidget *widget)
 	gtk_window_get_position (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), &winx, &winy);
 	gtk_widget_hide (XTM_PROCESS_WINDOW (widget)->window);
 	gtk_window_move (GTK_WINDOW (XTM_PROCESS_WINDOW (widget)->window), winx, winy);
-	GTK_WIDGET_CLASS (xtm_process_window_parent_class)->hide(widget);
+	GTK_WIDGET_CLASS (xtm_process_window_parent_class)->hide (widget);
 }
 
 GtkTreeModel *
@@ -526,7 +533,7 @@ xtm_process_window_get_model (XtmProcessWindow *window)
 }
 
 void
-xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar* memory_str, gfloat swap, gchar* swap_str)
+xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar *memory_str, gfloat swap, gchar *swap_str)
 {
 	gchar text[100];
 	gchar value[4];
@@ -537,12 +544,12 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 	g_object_set (window->statusbar, "num-processes", num_processes, "cpu", cpu, "memory", memory_str, "swap", swap_str, NULL);
 
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->cpu_monitor), cpu / 100.0f, -1.0);
-	g_snprintf (value, sizeof(value), "%.0f", cpu);
-	g_snprintf (text, sizeof(text), _("CPU: %s%%"), value);
+	g_snprintf (value, sizeof (value), "%.0f", cpu);
+	g_snprintf (text, sizeof (text), _("CPU: %s%%"), value);
 	gtk_widget_set_tooltip_text (window->cpu_monitor, text);
 
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->mem_monitor), memory / 100.0f, swap / 100.0f);
-	g_snprintf (text, sizeof(text), _("Memory: %s"), memory_str);
+	g_snprintf (text, sizeof (text), _("Memory: %s"), memory_str);
 	gtk_widget_set_tooltip_text (window->mem_monitor, text);
 }
 

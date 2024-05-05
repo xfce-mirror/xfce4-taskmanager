@@ -26,25 +26,25 @@ enum
 typedef struct _XtmProcessMonitorClass XtmProcessMonitorClass;
 struct _XtmProcessMonitorClass
 {
-	GtkDrawingAreaClass	parent_class;
+	GtkDrawingAreaClass parent_class;
 };
 struct _XtmProcessMonitor
 {
-	GtkDrawingArea		parent;
+	GtkDrawingArea parent;
 	/*<private>*/
-	gfloat			step_size;
-	gint			type;
-	GArray *		history;
-	GArray *		history_swap;
-	gboolean		dark_mode;
+	gfloat step_size;
+	gint type;
+	GArray *history;
+	GArray *history_swap;
+	gboolean dark_mode;
 };
 G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
-static void	xtm_process_monitor_finalize		(GObject *object);
-static void	xtm_process_monitor_get_property	(GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
-static void	xtm_process_monitor_set_property	(GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
-static gboolean	xtm_process_monitor_draw		(GtkWidget *widget, cairo_t *cr);
-static void	xtm_process_monitor_paint			(XtmProcessMonitor *monitor, cairo_t *cr);
+static void xtm_process_monitor_finalize (GObject *object);
+static void xtm_process_monitor_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
+static void xtm_process_monitor_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
+static gboolean xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr);
+static void xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr);
 
 
 
@@ -60,7 +60,7 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	widget_class->draw = xtm_process_monitor_draw;
 
 	g_object_class_install_property (class, PROP_STEP_SIZE,
-		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1f, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
+		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1f, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT | G_PARAM_READWRITE));
 	g_object_class_install_property (class, PROP_TYPE,
 		g_param_spec_int ("type", "Type", "Type of graph to render", 0, G_MAXINT, 0, G_PARAM_READWRITE));
 }
@@ -102,16 +102,16 @@ xtm_process_monitor_get_property (GObject *object, guint property_id, GValue *va
 	switch (property_id)
 	{
 		case PROP_STEP_SIZE:
-		g_value_set_float (value, monitor->step_size);
-		break;
+			g_value_set_float (value, monitor->step_size);
+			break;
 
 		case PROP_TYPE:
-		g_value_set_int (value, monitor->type);
-		break;
+			g_value_set_int (value, monitor->type);
+			break;
 
 		default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-		break;
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
 	}
 }
 
@@ -122,16 +122,16 @@ xtm_process_monitor_set_property (GObject *object, guint property_id, const GVal
 	switch (property_id)
 	{
 		case PROP_STEP_SIZE:
-		monitor->step_size = g_value_get_float (value);
-		break;
+			monitor->step_size = g_value_get_float (value);
+			break;
 
 		case PROP_TYPE:
-		monitor->type = g_value_get_int (value);
-		break;
+			monitor->type = g_value_get_int (value);
+			break;
 
 		default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-		break;
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
 	}
 }
 
@@ -141,7 +141,7 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (widget);
 	guint minimum_history_length;
 
-	minimum_history_length = (guint)(gtk_widget_get_allocated_width(widget) / monitor->step_size);
+	minimum_history_length = (guint)(gtk_widget_get_allocated_width (widget) / monitor->step_size);
 	if (monitor->history->len < minimum_history_length)
 	{
 		g_array_set_size (monitor->history, minimum_history_length + 1);
@@ -255,10 +255,10 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 {
 	cairo_surface_t *graph_surface;
 	gint width, height;
-	static const double dashed[] = {1.5};
+	static const double dashed[] = { 1.5 };
 	gint i;
-	width = gtk_widget_get_allocated_width(GTK_WIDGET(monitor));
-	height = gtk_widget_get_allocated_height(GTK_WIDGET(monitor));
+	width = gtk_widget_get_allocated_width (GTK_WIDGET (monitor));
+	height = gtk_widget_get_allocated_height (GTK_WIDGET (monitor));
 
 	/* Don't draw anything if the graph is too small */
 	if (height < 3)
@@ -275,7 +275,7 @@ xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr)
 	/* Paint dashed lines at 25%, 50% and 75% */
 	xtm_process_monitor_cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 0.3, monitor->dark_mode);
 	cairo_set_line_width (cr, 1.0);
-	cairo_set_dash(cr, dashed, 1.0, 0);
+	cairo_set_dash (cr, dashed, 1.0, 0);
 	for (i = 25; i <= 75; i += 25)
 	{
 		cairo_move_to (cr, 1.5, i * height / 100 + 0.5);
@@ -316,8 +316,8 @@ xtm_process_monitor_add_peak (XtmProcessMonitor *monitor, gfloat peak, gfloat pe
 			g_array_remove_index (monitor->history_swap, monitor->history_swap->len - 1);
 	}
 
-	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
-		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
+	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET (monitor))))
+		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET (monitor)), NULL, FALSE);
 }
 
 void
@@ -325,8 +325,8 @@ xtm_process_monitor_set_step_size (XtmProcessMonitor *monitor, gfloat step_size)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_object_set (monitor, "step_size", step_size, NULL);
-	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
-		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
+	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET (monitor))))
+		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET (monitor)), NULL, FALSE);
 }
 
 void
@@ -342,6 +342,6 @@ xtm_process_monitor_clear (XtmProcessMonitor *monitor)
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
 	g_array_set_size (monitor->history, 0);
 	g_array_set_size (monitor->history_swap, 0);
-	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
-		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
+	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET (monitor))))
+		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET (monitor)), NULL, FALSE);
 }
