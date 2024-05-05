@@ -10,12 +10,9 @@
 #ifndef PROCESS_WINDOW_H
 #define PROCESS_WINDOW_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <glib-object.h>
 #include <gtk/gtk.h>
+#include <xfconf/xfconf.h>
 
 #define XTM_TYPE_PROCESS_WINDOW			(xtm_process_window_get_type ())
 #define XTM_PROCESS_WINDOW(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), XTM_TYPE_PROCESS_WINDOW, XtmProcessWindow))

@@ -16,10 +16,8 @@
 */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <glib.h>
 
 #include "task-manager.h"
 
@@ -91,4 +89,3 @@ pid_is_sleeping (GPid pid)
 
 	return FALSE; /* (state == sleeping) ? TRUE : FALSE;*/
 }
-

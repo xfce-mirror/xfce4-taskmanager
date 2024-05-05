@@ -8,16 +8,14 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <glib-object.h>
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
 
 #include "process-statusbar.h"
 #include "settings.h"
 #include "task-manager.h"
+
+#include <glib/gi18n.h>
 
 
 

@@ -8,20 +8,18 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <glib-object.h>
-#include <gtk/gtk.h>
+#include "settings-dialog.h"
+#include "settings-dialog_ui.h"
+#include "settings.h"
+
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
 
 #include <libxfce4ui/libxfce4ui.h>
-
-#include "settings.h"
-#include "settings-dialog.h"
-#include "settings-dialog_ui.h"
 
 static void	show_about_dialog				(GtkWidget *widget, gpointer user_data);
 static GtkWidget *xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window);

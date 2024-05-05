@@ -10,11 +10,8 @@
 #ifndef PROCESS_TREE_VIEW_H
 #define PROCESS_TREE_VIEW_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <glib-object.h>
+#include <gtk/gtk.h>
 
 enum
 {

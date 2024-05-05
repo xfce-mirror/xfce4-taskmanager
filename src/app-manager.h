@@ -10,12 +10,7 @@
 #ifndef APP_MANAGER_H
 #define APP_MANAGER_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <glib-object.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
 #define WNCK_I_KNOW_THIS_IS_UNSTABLE
 #include <libwnck/libwnck.h>
 

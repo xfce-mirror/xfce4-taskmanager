@@ -9,17 +9,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <stdlib.h>
-#include <glib-object.h>
-#include <gtk/gtk.h>
-#define WNCK_I_KNOW_THIS_IS_UNSTABLE
-#include <libwnck/libwnck.h>
 
 #include "app-manager.h"
 #include "task-manager.h"
+
+#include <gtk/gtk.h>
 
 
 

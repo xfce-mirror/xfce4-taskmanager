@@ -8,20 +8,18 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <unistd.h>
-#include <glib-object.h>
-#include <glib/gi18n.h>
-#include <glib/gprintf.h>
-#include <cairo-gobject.h>
-#include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
 #include "process-tree-model.h"
 #include "process-tree-view.h"
-#include "task-manager.h"
 #include "settings.h"
+#include "task-manager.h"
+
+#include <cairo-gobject.h>
+#include <gdk/gdkkeysyms.h>
+#include <glib/gi18n.h>
+#include <glib/gprintf.h>
 
 
 

@@ -9,23 +9,21 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <kstat.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <fcntl.h>
-#include <procfs.h>
-#include <sys/procfs.h>
-#include <sys/swap.h>
-
-#include <glib.h>
-
 #include "task-manager.h"
+
+#include <fcntl.h>
+#include <kstat.h>
+#include <procfs.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/procfs.h>
+#include <sys/stat.h>
+#include <sys/swap.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 static kstat_ctl_t *kc;
 static gushort _cpu_count = 0;
@@ -256,4 +254,3 @@ pid_is_sleeping (GPid pid)
 
 	return (state[0] == 'T') ? TRUE : FALSE;
 }
-

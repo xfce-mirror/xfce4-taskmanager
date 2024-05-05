@@ -8,39 +8,31 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+#include "process-monitor.h"
+#include "process-statusbar.h"
+#include "process-tree-view.h"
+#include "process-window.h"
+#include "process-window_ui.h"
+#include "settings-dialog.h"
+#include "settings.h"
+#include "task-manager.h"
 
 #ifdef HAVE_LIBX11
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
 #include <X11/Xatom.h>
-#include <X11/Xos.h>
+#include <X11/Xlib.h>
 #include <X11/Xmu/WinUtil.h>
-#include <X11/cursorfont.h>
+#include <X11/Xos.h>
 #include <X11/Xproto.h>
+#include <X11/Xutil.h>
+#include <X11/cursorfont.h>
 #include <gdk/gdkx.h>
 #endif
 
-#include <glib-object.h>
-#include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-
-#include <xfconf/xfconf.h>
 #include <libxfce4ui/libxfce4ui.h>
-
-#include "settings.h"
-#include "task-manager.h"
-#include "process-window.h"
-#include "process-window_ui.h"
-#include "process-monitor.h"
-#include "process-tree-view.h"
-#include "process-statusbar.h"
-#include "settings-dialog.h"
 
 
 
