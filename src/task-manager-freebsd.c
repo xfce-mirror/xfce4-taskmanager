@@ -19,12 +19,6 @@
 #include <kvm.h>
 #include <paths.h>
 #include <string.h>
-#include <sys/param.h>
-#include <sys/proc.h>
-#include <sys/sysctl.h>
-#include <sys/types.h>
-#include <sys/user.h>
-#include <unistd.h>
 
 #if defined(__FreeBSD_version) && __FreeBSD_version >= 900044
 #include <sys/vmmeter.h>
@@ -38,6 +32,7 @@
 
 #include <glib.h>
 
+#include "inode-to-sock.h"
 #include "task-manager.h"
 #include "network-analyzer.h"
 
@@ -52,13 +47,13 @@ static const gchar ki_stat2state[] = {
 	'L' /* SLOCK */
 };
 
+static XtmInodeToSock *inode_to_sock = NULL;
+static XtmNetworkAnalyzer *analyzer = NULL;
 
 
 void
 packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
-    XtmNetworkAnalyzer *analyzer = (XtmNetworkAnalyzer*)args;
-
     // Extract source and destination IP addresses and ports from the packet
     struct ether_header *eth_header = (struct ether_header*)packet;
     struct ip *ip_header = (struct ip*)(packet + sizeof(struct ether_header));
@@ -265,6 +260,98 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	return TRUE;
 }
 
+void
+xtm_refresh_inode_to_sock(XtmInodeToSock *its)
+{
+    FILE *fp;
+    char line[2048];
+    char *token;
+    char *delim = " ";
+
+    // Execute the sockstat command and get the output
+    fp = popen("sockstat -L -P tcp,udp", "r");
+    if (fp == NULL)
+        return;
+
+    g_hash_table_remove_all(its->hash);
+    g_hash_table_remove_all(its->pid);
+
+    // Skip the header line
+    fgets(line, 2048, fp);
+
+    // Parse the output line by line
+    while (fgets(line, 2048, fp) != NULL) 
+   {
+        // Remove the newline character
+        line[strcspn(line, "\n")] = '\0';
+
+        // Split the line into tokens
+        token = strtok(line, delim);
+
+        // Parse the columns
+        char user[50];
+        char command[50];
+        char pid[10];
+        char fd[10];
+        char proto[10];
+        char local_address[50];
+        char foreign_address[50];
+
+        strcpy(user, token);
+        token = strtok(NULL, delim);
+        strcpy(command, token);
+        token = strtok(NULL, delim);
+        strcpy(pid, token);
+        token = strtok(NULL, delim);
+        strcpy(fd, token);
+        token = strtok(NULL, delim);
+        strcpy(proto, token);
+        token = strtok(NULL, delim);
+        strcpy(local_address, token);
+        token = strtok(NULL, delim);
+        strcpy(foreign_address, token);
+
+	int local_port, assos;
+        int *inode1 = g_new0(gint, 1);
+        int *inode2 = g_new0(gint, 1);
+
+	*inode1 = atoi(fd);
+	*inode2 = atoi(fd);
+	assos = atoi(pid);
+
+	sscanf(local_address, "%*[^:]:%d", &local_port);
+        g_hash_table_replace(its->hash, inode1, (gpointer)local_port);
+        g_hash_table_replace(its->pid, inode2, (gpointer)assos);
+
+        // Print the parsed values
+        //printf("%d -> %d\n", *inode, local_port);
+    }
+
+    // Close the pipe
+    pclose(fp);
+}
+
+void list_process_fds(Task *task)
+{
+    GHashTableIter iter;
+    gpointer key, value;
+
+    g_hash_table_iter_init(&iter, inode_to_sock->pid);
+    while (g_hash_table_iter_next(&iter, &key, &value))
+   {
+        gint key_int = *(int*)(key);
+        gint value_int = GPOINTER_TO_INT(value);
+	if (task->pid == value_int)
+       {
+		gpointer value = g_hash_table_lookup(inode_to_sock->hash, &key_int);
+		long int port = (long int)value;
+		task->active_socket += 1;
+		task->packet_in += (guint64)g_hash_table_lookup(analyzer->packetin, &port);
+		task->packet_out += (guint64)g_hash_table_lookup(analyzer->packetout, &port);
+	}
+    }
+}
+
 static gboolean
 get_task_details (struct kinfo_proc *kp, Task *task)
 {
@@ -366,16 +453,23 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	if (kp->ki_flag & P_JAILED)
 		task->state[i++] = 'J';
 
+	list_process_fds(task);
+
 	return TRUE;
 }
 
 gboolean
 get_task_list (GArray *task_list)
 {
+	analyzer = xtm_network_analyzer_get_default();
+
 	kvm_t *kd;
 	struct kinfo_proc *kp;
 	int cnt = 0, i;
 	Task task;
+
+	inode_to_sock = xtm_inode_to_sock_get_default();
+	xtm_refresh_inode_to_sock(inode_to_sock);
 
 	if ((kd = kvm_openfiles (_PATH_DEVNULL, _PATH_DEVNULL, NULL, O_RDONLY, NULL)) == NULL)
 		return FALSE;

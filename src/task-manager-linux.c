@@ -36,6 +36,53 @@ static gushort _cpu_count = 0;
 static gulong jiffies_total_delta = 0;
 
 void
+addtoconninode(XtmInodeToSock *its, char *buffer)
+{
+	char rem_addr[128], local_addr[128];
+	int local_port, rem_port;
+    int *inode = g_new0(gint, 1);
+
+	sscanf(
+        buffer,
+        "%*d: %64[0-9A-Fa-f]:%X %64[0-9A-Fa-f]:%X %*X %*lX:%*lX %*X:%*lX %*lX %*d %*d %ld %*512s\n",
+		local_addr, &local_port, rem_addr, &rem_port, inode
+    );
+
+    g_hash_table_replace(its->hash, inode, (gpointer)local_port);
+}
+
+void
+xtm_refresh_inode_to_sock(XtmInodeToSock *its)
+{
+	char buffer[8192];
+	FILE * procinfo = fopen ("/proc/net/tcp", "r");
+	if (procinfo)
+	{
+		fgets(buffer, sizeof(buffer), procinfo);
+		do
+		{
+			if (fgets(buffer, sizeof(buffer), procinfo))
+				addtoconninode(its, buffer); 
+		}
+        while (!feof(procinfo));
+		fclose(procinfo);
+	}
+
+	procinfo = fopen ("/proc/net/tcp6", "r");
+	if (procinfo != NULL)
+    {
+		fgets(buffer, sizeof(buffer), procinfo);
+		do
+        {
+			if (fgets(buffer, sizeof(buffer), procinfo))
+				addtoconninode(its, buffer);
+		}
+        while (!feof(procinfo));
+		fclose (procinfo);
+	}
+}
+
+void
 packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
     XtmNetworkAnalyzer *analyzer = (XtmNetworkAnalyzer*)args;
