@@ -52,15 +52,35 @@
 
 #include <arpa/inet.h>
 #include <ifaddrs.h>
+
+// struct file in NetBSD
+#define	_KERNEL
+// ugly ! where is defined this ?
+// plateform dependent
+typedef int register_t;
+typedef unsigned long paddr_t;
+#include <machine/types.h>
+#include <sys/types.h>
 #include <sys/file.h>
-#include <kvm.h>
+#undef _KERNEL
 
 #include "inode-to-sock.h"
 #include "task-manager.h"
 #include "network-analyzer.h"
 
 #include <errno.h>
+
+#ifdef __OpenBSD__
 extern int errno;
+#else
+#include <machine/types.h>
+#include <sys/protosw.h>
+#include <sys/unpcb.h>
+#include <sys/socketvar.h>
+#include <sys/filedesc.h>
+#include <sys/domain.h>
+#include <kvm.h>
+#endif
 
 char *state_abbrev[] = {
 	"", "start", "run", "sleep", "stop", "zomb", "dead", "onproc"
@@ -68,11 +88,18 @@ char *state_abbrev[] = {
 
 static XtmInodeToSock *inode_to_sock = NULL;
 static XtmNetworkAnalyzer *analyzer = NULL;
-static kvm_t *kvmd = NULL;
 
 void increament_packet_count(char*, char*, GHashTable* hash_table, long int port);
 gboolean get_if_count(int *data);
 gboolean get_network_usage_if(int interface, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
+struct kinfo_file* get_process_fds(int *nfiles, int kern, int arg);
+
+
+#ifdef __OpenBSD__
+void list_process_fds(Task *task, struct kinfo_proc *kp);
+#else
+void list_process_fds(Task *task, struct kinfo_proc2 *kp);
+#endif
 
 void
 packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
@@ -82,20 +109,23 @@ packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 	struct ip *ip_header = (struct ip*)(packet + sizeof(struct ether_header));
 	struct tcphdr *tcp_header = (struct tcphdr*)(packet + sizeof(struct ether_header) + sizeof(struct ip));
 
+	// -Wdeclaration-after-statement
+
+	long int src_port, dst_port;
+	char local_mac[18];
+	char src_mac[18];
+	char dst_mac[18];
+
 	// printf("%d, %d \n", eth_header->ether_type , ip_header->ip_p);
 
 	// Dropped non-ip packet
 	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
 		return;
 
-	long int src_port = ntohs(tcp_header->th_sport);
-	long int dst_port = ntohs(tcp_header->th_dport);
+	src_port = ntohs(tcp_header->th_sport);
+	dst_port = ntohs(tcp_header->th_dport);
 
 	// directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
-
-	char local_mac[18];
-	char src_mac[18];
-	char dst_mac[18];
 
 	sprintf(local_mac,
 		"%02X:%02X:%02X:%02X:%02X:%02X",
@@ -137,12 +167,12 @@ get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 	// int mib[] = { CTL_NET, PF_INET, IPPROTO_TCP, TCPCTL_STATS }
 	// sysctl(mib, sizeof(mib) / sizeof(mib[0]), %tcpstat, &len, NULL, 0)
 	// repeat for IPPROTO_UDP or use IPPROTO_ETHERIP
+	struct ifaddrs *ifaddr, *ifa;
 
        *tcp_error = 0;
        *tcp_rx = 0;
        *tcp_tx = 0;
 
-	struct ifaddrs *ifaddr, *ifa;
 
 	if (getifaddrs(&ifaddr) == -1)
 		return -1;
@@ -152,10 +182,8 @@ get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 		if (ifa->ifa_addr == NULL)
 			continue;
 
-		int family = ifa->ifa_addr->sa_family;
-
 		// Check if the interface is a network interface (AF_PACKET for Linux)
-		if (family == AF_LINK)
+		if (ifa->ifa_addr->sa_family == AF_LINK)
 		{
 			struct if_data *ifdata = (struct if_data*)ifa->ifa_data;
 			// Check if the interface has a hardware address (MAC address)
@@ -170,7 +198,6 @@ get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 	}
 
 	freeifaddrs(ifaddr);
-	return -1;
 
         return 0;
 }
@@ -188,10 +215,8 @@ get_mac_address(const char *device, uint8_t mac[6])
 		if (ifa->ifa_addr == NULL)
 			continue;
 
-		int family = ifa->ifa_addr->sa_family;
-
 		// Check if the interface is a network interface (AF_PACKET for Linux)
-		if (family == AF_LINK && strcmp(device, ifa->ifa_name) == 0)
+		if (ifa->ifa_addr->sa_family == AF_LINK && strcmp(device, ifa->ifa_name) == 0)
 		{
 			// Check if the interface has a hardware address (MAC address)
 			if (ifa->ifa_data != NULL)
@@ -263,12 +288,20 @@ get_process_fds(int *nfiles, int kern, int arg)
 void
 xtm_refresh_inode_to_sock(XtmInodeToSock *its)
 {
+#ifdef __OpenBSD__
 	// unneeded
+#else
+#endif
 }
 
 void
-list_process_fds(Task *task)
+#ifdef __OpenBSD__
+list_process_fds(Task *task, struct kinfo_proc *kp)
+#else
+list_process_fds(Task *task, struct kinfo_proc2 *kp)
+#endif
 {
+#ifdef __OpenBSD__
 	// inspired by openbsd netstat/inet.c
 	// inspired by openbsd fstat/fstat.c
 
@@ -283,8 +316,6 @@ list_process_fds(Task *task)
 	{
 		if (kf[i].f_type == DTYPE_SOCKET)
 		{
-			task->active_socket += 1;
-
 			//interesting properties
 			//task->packet_in +=  kf[i].f_rxfer;
 			//task->packet_in +=  kf[i].f_rbytes;
@@ -294,10 +325,104 @@ list_process_fds(Task *task)
 			int port = ntohs(kf[i].inp_lport);
 			task->packet_in += (guint64)g_hash_table_lookup(analyzer->packetin, &port);
 			task->packet_out += (guint64)g_hash_table_lookup(analyzer->packetout, &port);
+			task->active_socket += 1;
 		}
 	}
 
 	free(kf);
+#else
+	// inspired by netbsd fstat/fstat.c
+	char *memf, *nlistf;
+	char buf[_POSIX2_LINE_MAX];
+	kvm_t *kd;
+	struct filedesc filed;
+	struct fdtab dt;
+	size_t len;
+
+	fdfile_t **ofiles;
+	fdfile_t *fp;
+	struct socket *sock;
+	struct socket	so;
+	struct file file;
+	fdfile_t fdfile;
+	struct protosw proto;
+	struct domain dom;
+	struct in4pcb	in4pcb;
+	struct in6pcb	in6pcb;
+	int port;
+
+	nlistf = memf = NULL;
+	kd = kvm_openfiles(nlistf, memf, NULL, O_RDONLY, buf);
+
+	kvm_read(kd, kp->p_fd, &filed, sizeof (filed));
+	kvm_read(kd, (u_long)filed.fd_dt, &dt, sizeof(dt));
+
+	len = (filed.fd_lastfile+1) * sizeof(fdfile_t *);
+	ofiles = malloc(len);
+	kvm_read(kd, (u_long)&filed.fd_dt->dt_ff, ofiles, (filed.fd_lastfile+1) * (sizeof (fdfile_t *)));
+	
+	for (int i = 0; i <= filed.fd_lastfile; i++)
+	{
+		if (ofiles[i] == NULL)
+			continue;
+
+		fp = ofiles[i];
+
+		kvm_read(kd, (u_long)fp, &fdfile, sizeof(fdfile));
+
+		if (fdfile.ff_file == NULL)
+			continue;
+
+		kvm_read(kd, (u_long)fdfile.ff_file, &file, sizeof(file));
+
+		if (file.f_type != DTYPE_SOCKET)
+			continue;
+
+		sock = (struct socket *)file.f_data;
+		kvm_read(kd, (u_long)sock, &so, sizeof(struct socket));
+		kvm_read(kd, (u_long)so.so_proto, &proto, sizeof(struct protosw));
+		kvm_read(kd,  (u_long)proto.pr_domain, &dom, sizeof(struct domain));
+
+		port = 0;
+
+		if (dom.dom_family == AF_INET)
+		{
+			if (proto.pr_protocol == IPPROTO_TCP)
+			{
+				if (so.so_pcb == NULL)
+					continue;
+
+				kvm_read(kd, (u_long)so.so_pcb, (char *)&in4pcb, sizeof(in4pcb));
+				struct inpcb *inp = (struct inpcb *)&in4pcb;
+				port = ntohs(inp->inp_lport);
+			}
+		}
+
+		if (dom.dom_family == AF_INET6)
+		{
+			if (proto.pr_protocol == IPPROTO_TCP)
+			{
+				if (so.so_pcb == NULL)
+					continue;
+
+				kvm_read(kd, (u_long)so.so_pcb, (char *)&in6pcb, sizeof(in6pcb));
+				struct inpcb *inp = (struct inpcb *)&in6pcb;
+				port = ntohs(inp->inp_lport);
+			}
+		}
+
+		if (port == 0)
+			continue;
+
+		task->active_socket += 1;
+		task->packet_in += (guint64)g_hash_table_lookup(analyzer->packetin, &port);
+		task->packet_out += (guint64)g_hash_table_lookup(analyzer->packetout, &port);
+	}
+
+	kvm_close(kd);
+	free(ofiles);
+
+#endif
 }
 
 gboolean get_task_list (GArray *task_list)
@@ -317,10 +442,6 @@ gboolean get_task_list (GArray *task_list)
 	analyzer = xtm_network_analyzer_get_default();
 	inode_to_sock = xtm_inode_to_sock_get_default();
 	xtm_refresh_inode_to_sock(inode_to_sock);
-
-	if (kvmd == NULL)
-		kvmd = kvm_open(NULL, NULL, NULL, O_RDONLY, NULL);
-	//kvm_close(kvmd);
 
 	mib[0] = CTL_KERN;
 #ifdef __OpenBSD__
@@ -401,16 +522,21 @@ gboolean get_task_list (GArray *task_list)
 					break;
 				}
 			}
-			buf = g_strjoinv (" ", args);
-			g_assert (g_utf8_validate (buf, -1, NULL));
-			g_strlcpy (t.cmdline, buf, sizeof t.cmdline);
-			g_free (buf);
-			free (args);
+
+#ifdef __OpenBSD__
+			buf = g_strjoinv(" ", args);
+			g_assert(g_utf8_validate(buf, -1, NULL));
+			g_strlcpy(t.cmdline, buf, sizeof t.cmdline);
+			g_free(buf);
+#else
+			// g_strjoinv crash under NetBSD 10.0
+#endif
+			free(args);
 		}
 
 		t.cpu_user = (100.0f * ((gfloat)p.p_pctcpu / FSCALE));
 		t.cpu_system = 0.0f; /* TODO ? */
-		list_process_fds(&t);
+		list_process_fds(&t, &p);
 
 		g_array_append_val(task_list, t);
 	}
@@ -462,11 +588,19 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	static gulong cur_user = 0, cur_system = 0, cur_total = 0;
 	static gulong old_user = 0, old_system = 0, old_total = 0;
 
-	int mib[] = { CTL_KERN, KERN_CPTIME };
-	glong cp_time[CPUSTATES];
-	gsize size = sizeof (cp_time);
+#ifdef KERN_CPTIME
+	int mib[] = {CTL_KERN, KERN_CPTIME};
+#elseif KERN_CPTIME2
+	int mib[] = {CTL_KERN, KERN_CPTIME2};
+#else
+	// NetBSD 10.0
+	int mib[] = {CTL_KERN, KERN_CP_TIME};
+#endif
+
+ 	glong cp_time[CPUSTATES];
+ 	gsize size = sizeof (cp_time);
 	if (sysctl (mib, 2, &cp_time, &size, NULL, 0) < 0)
-		errx (1, "failed to get kern.cptime");
+		errx (1,"failed to get kern.cptime");
 
 	old_user = cur_user;
 	old_system = cur_system;
