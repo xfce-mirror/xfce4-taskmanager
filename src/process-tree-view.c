@@ -18,12 +18,12 @@
 #include <cairo-gobject.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+
 #include "process-tree-model.h"
 #include "process-tree-view.h"
 #include "task-manager.h"
 #include "settings.h"
-
-
+#include "network-analyzer.h"
 
 /* Tree view columns */
 enum
@@ -93,6 +93,7 @@ xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
 static void
 xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 {
+	XtmNetworkAnalyzer *network;
 	GtkCellRenderer *cell_text, *cell_right_aligned;
 	GtkTreeViewColumn *column;
 	gboolean visible;
@@ -278,6 +279,15 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_ACTIVE_SOCKET));
 	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_ACTIVE_SOCKET]);
+
+	// insufficient permission
+	network = xtm_create_network_analyzer();
+	if(network == NULL)
+	{
+		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_PACKET_IN]), FALSE);
+		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_PACKET_OUT]), FALSE);
+		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_ACTIVE_SOCKET]), FALSE);
+	}
 
 	/*******************/
 

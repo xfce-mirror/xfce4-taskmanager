@@ -148,7 +148,7 @@ get_mac_address(const char *device, uint8_t mac[6])
 	struct ifaddrs *ifaddr, *ifa;
 
 	if (getifaddrs(&ifaddr) == -1)
-	return -1;
+		return -1;
 
 	for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
 	{
@@ -218,7 +218,7 @@ get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 
 		if(count != 11)
 		{
-			printf("Something went wrong while reading %s -> expected %d\n", filename, count);
+			printf("Something went wrong while reading /proc/net/dev -> expected %d\n", count);
 			break;
 		}
 

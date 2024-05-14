@@ -28,7 +28,7 @@ increament_packet_count(char *mac, char *direction, GHashTable* hash_table, long
 	*key = port;
 	gpointer value = g_hash_table_lookup(hash_table, key);
 	g_hash_table_replace(hash_table, key, (gpointer)(((long int)value)+1));
-	//printf("%s -> %s %ld: %ld\n", mac, direction, port, ((long int)value)+1);
+	printf("%s -> %s %ld: %ld\n", mac, direction, port, ((long int)value)+1);
 }
 
 void*
@@ -120,9 +120,15 @@ xtm_create_network_analyzer(void)
 XtmNetworkAnalyzer *
 xtm_network_analyzer_get_default (void)
 {
+	static int initialized = FALSE;
 	static XtmNetworkAnalyzer *analyzer = NULL;
-	if (analyzer == NULL)
+
+	if (initialized == FALSE)
+	{
+		initialized = TRUE;
 		analyzer = xtm_create_network_analyzer();
+	}
+
 	return analyzer;
 }
 

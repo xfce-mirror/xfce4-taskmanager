@@ -171,12 +171,19 @@ collect_data (void)
 
 	if (status_icon_get_visible ())
 	{
-		g_snprintf (tooltip, sizeof(tooltip),
-				_("<b>Processes:</b> %u\n"
+		g_snprintf (
+			tooltip, sizeof(tooltip),
+			_(
+				"<b>Processes:</b> %u\n"
 				"<b>CPU:</b> %.0f%%\n"
 				"<b>Memory:</b> %s\n"
-				"<b>Swap:</b> %s"),
-				num_processes, cpu, memory_info, swap_info);
+				"<b>Swap:</b> %s\n"
+				"<b>Network:</b> %.2f / %.2f MB/s"
+			),
+			num_processes, cpu, memory_info, swap_info,
+			tcp_rx*1e-5, tcp_tx*1e-5
+		);
+
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon_or_null), tooltip);
 G_GNUC_END_IGNORE_DEPRECATIONS
