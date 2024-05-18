@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Elishai Eliyahu <elishai@mailfence.com>, 2017,2019-2020
-# Elishai Eliyahu <elishai@mailfence.com>, 2021-2023
+# Elishai Eliyahu <elishai@mailfence.com>, 2021-2024
 # gk <genghiskhan@gmx.ca>, 2014-2015
 # 63f334ffc0709ba0fc2361b80bf3c0f0_00ffd1e <ab96c93ca0ac55ba7fa06385427e60dd_878890>, 2021-2022
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2013
@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 12:50+0200\n"
+"POT-Creation-Date: 2024-04-10 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2021-2023\n"
+"Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2021-2024\n"
 "Language-Team: Hebrew (http://app.transifex.com/xfce/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,8 +23,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
 #: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:222 src/process-tree-view.c:379 src/process-tree-view.c:394
-#: src/process-tree-view.c:424 src/process-window.ui:7
+#: src/main.c:222 src/process-tree-view.c:448 src/process-tree-view.c:463
+#: src/process-tree-view.c:493 src/process-window.ui:7
 #: src/settings-dialog.c:147
 msgid "Task Manager"
 msgstr "מנהל משימות"
@@ -74,129 +74,141 @@ msgstr "הֶחְלֵף: %s"
 msgid "Processes: %d"
 msgstr "תהליכים: %d"
 
-#: src/process-tree-view.c:136
+#: src/process-tree-view.c:159
 msgid "Task"
 msgstr "משימה"
 
-#: src/process-tree-view.c:147 src/settings-dialog.ui:359
+#: src/process-tree-view.c:170 src/settings-dialog.ui:359
 msgid "PID"
 msgstr "PID"
 
-#: src/process-tree-view.c:155 src/settings-dialog.ui:373
+#: src/process-tree-view.c:178 src/settings-dialog.ui:373
 msgid "PPID"
 msgstr "PPID"
 
-#: src/process-tree-view.c:163 src/settings-dialog.ui:387
+#: src/process-tree-view.c:186 src/settings-dialog.ui:387
 msgid "State"
 msgstr "מצב"
 
-#: src/process-tree-view.c:172
+#: src/process-tree-view.c:195
 msgid "VSZ"
 msgstr "VSZ"
 
-#: src/process-tree-view.c:180
+#: src/process-tree-view.c:203
+msgid "Group VSZ"
+msgstr "קבץ VSZ"
+
+#: src/process-tree-view.c:211
 msgid "RSS"
 msgstr "RSS"
 
-#: src/process-tree-view.c:188 src/settings-dialog.ui:429
+#: src/process-tree-view.c:219
+msgid "Group RSS"
+msgstr "קבץ RSS"
+
+#: src/process-tree-view.c:227 src/settings-dialog.ui:457
 msgid "UID"
 msgstr "UID"
 
-#: src/process-tree-view.c:196 src/settings-dialog.ui:443
+#: src/process-tree-view.c:235 src/settings-dialog.ui:471
 msgid "CPU"
 msgstr "CPU"
 
+#: src/process-tree-view.c:243 src/settings-dialog.ui:485
+msgid "Group CPU"
+msgstr "קבץ CPU"
+
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:205
+#: src/process-tree-view.c:252
 msgid "Prio."
 msgstr "עדיפות"
 
-#: src/process-tree-view.c:375
+#: src/process-tree-view.c:444
 msgid "Terminate task"
 msgstr "סיים משימה"
 
-#: src/process-tree-view.c:375
+#: src/process-tree-view.c:444
 msgid "Kill task"
 msgstr "הרוג משימה"
 
-#: src/process-tree-view.c:377
+#: src/process-tree-view.c:446
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "האם אתה בטוח שברצונך לשלוח את האות %s למזהה תהליך %d?"
 
-#: src/process-tree-view.c:378
+#: src/process-tree-view.c:447
 msgid "terminate"
 msgstr "הפסק"
 
-#: src/process-tree-view.c:378
+#: src/process-tree-view.c:447
 msgid "kill"
 msgstr "חסל"
 
-#: src/process-tree-view.c:390
+#: src/process-tree-view.c:459
 msgid "Error sending signal"
 msgstr "שגיאה בשליחת אות"
 
-#: src/process-tree-view.c:392
+#: src/process-tree-view.c:461
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "אירעה שגיאה בעת שליחת אות למזהה תהליך %d. אפשרי כי אין לך את ההרשאות הנדרשות."
 
-#: src/process-tree-view.c:421
+#: src/process-tree-view.c:490
 msgid "Error setting priority"
 msgstr "שגיאה בקביעת עדיפות"
 
-#: src/process-tree-view.c:422
+#: src/process-tree-view.c:491
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "אירעה שגיאה בעת קביעת עדיפות למזהה תהליך %d. אפשרי כי אין לך את ההרשאות הנדרשות."
 
-#: src/process-tree-view.c:485 src/process-tree-view.c:628
+#: src/process-tree-view.c:554 src/process-tree-view.c:697
 msgid "Stop"
 msgstr "עצור"
 
-#: src/process-tree-view.c:492
+#: src/process-tree-view.c:561
 msgid "Continue"
 msgstr "המשך"
 
-#: src/process-tree-view.c:498
+#: src/process-tree-view.c:567
 msgid "Terminate"
 msgstr "סיים"
 
-#: src/process-tree-view.c:504
+#: src/process-tree-view.c:573
 msgid "Kill"
 msgstr "הרוג"
 
-#: src/process-tree-view.c:511
+#: src/process-tree-view.c:580
 msgid "Very low"
 msgstr "נמוכה מאוד"
 
-#: src/process-tree-view.c:516
+#: src/process-tree-view.c:585
 msgid "Low"
 msgstr "נמוכה"
 
-#: src/process-tree-view.c:521
+#: src/process-tree-view.c:590
 msgid "Normal"
 msgstr "רגילה"
 
-#: src/process-tree-view.c:526
+#: src/process-tree-view.c:595
 msgid "High"
 msgstr "גבוהה"
 
-#: src/process-tree-view.c:531
+#: src/process-tree-view.c:600
 msgid "Very high"
 msgstr "גבוהה מאוד"
 
-#: src/process-tree-view.c:536 src/settings-dialog.ui:457
+#: src/process-tree-view.c:605 src/settings-dialog.ui:499
 msgid "Priority"
 msgstr "עדיפות"
 
 #. Same trick as above
-#: src/process-tree-view.c:540 src/process-tree-view.c:639
+#: src/process-tree-view.c:609 src/process-tree-view.c:708
 msgid "Copy command line"
 msgstr "העתק משורת הפקודה"
 
@@ -331,14 +343,22 @@ msgid "Virtual Bytes"
 msgstr "בתים וירטואליים"
 
 #: src/settings-dialog.ui:415
+msgid "Group Virtual Bytes"
+msgstr "קבץ בייטים וירטואלים"
+
+#: src/settings-dialog.ui:429
 msgid "Resident Bytes"
 msgstr "Resident Bytes"
 
-#: src/settings-dialog.ui:478
+#: src/settings-dialog.ui:443
+msgid "Group Resident Bytes"
+msgstr "קבץ בייטים מקומיים"
+
+#: src/settings-dialog.ui:520
 msgid "Columns"
 msgstr "עמודות"
 
-#: src/task-manager.c:253
+#: src/task-manager.c:257 src/task-manager.c:260
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
