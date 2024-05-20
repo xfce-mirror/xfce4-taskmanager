@@ -69,7 +69,6 @@ AM_GNU_GETTEXT_VERSION([0.19.8])
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
-XDT_CHECK_PACKAGE([LIBPCAP], [libpcap], [0.0.0])
 XDT_CHECK_PACKAGE([LIBXMU], [xmu], [1.1.2])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.22.0])
@@ -82,6 +81,9 @@ dnl *** Check for optional packages ***
 dnl ***********************************
 XDT_CHECK_OPTIONAL_PACKAGE([LIBX11], [x11], [1.6.7], [libx11], [Libx11 support])
 XDT_CHECK_OPTIONAL_PACKAGE([WNCK], [libwnck-3.0], [3.2], [wnck3], [building with libwnck3 for window icons/names], [yes])
+
+AC_CHECK_LIB(pcap, [pcap_open_live])
+AC_CHECK_HEADERS([pcap.h])
 
 dnl ***********************************
 dnl ********** Check for skel *********

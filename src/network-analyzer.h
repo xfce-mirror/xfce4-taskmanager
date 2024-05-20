@@ -10,21 +10,31 @@
 #ifndef NETWORK_ANALYZER_H
 #define NETWORK_ANALYZER_H
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <glib.h>
+
+#ifdef HAVE_LIBPCAP
 #include <pcap.h>
 #include <pthread.h>
+#endif
 
 typedef struct _XtmNetworkAnalyzer XtmNetworkAnalyzer;
 struct _XtmNetworkAnalyzer
 {
+	guint8 mac[6];
+
+#ifdef HAVE_LIBPCAP
 	// interface mac adress
 	pcap_if_t *iface;
-	guint8 mac[6];
 
 	pthread_t thread;
 	pthread_mutex_t lock;
 
 	pcap_t *handle;
+#endif
 
 	// map port and number of packets
 	GHashTable *packetin;
@@ -35,6 +45,7 @@ struct _XtmNetworkAnalyzer
 };
 
 XtmNetworkAnalyzer *xtm_create_network_analyzer (void);
+void increament_packet_count(char *mac, char *direction, GHashTable* hash_table, long int port);
 void xtm_destroy_network_analyzer (XtmNetworkAnalyzer *analyzer);
 XtmNetworkAnalyzer *xtm_network_analyzer_get_default (void);
 

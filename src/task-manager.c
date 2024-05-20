@@ -23,6 +23,10 @@
 #include <gdk/gdkx.h>
 #endif
 
+#ifdef HAVE_LIBPCAP
+#include <pcap.h>
+#endif
+
 #include <glib/gi18n.h>
 #include <pwd.h>
 #include <sys/resource.h>

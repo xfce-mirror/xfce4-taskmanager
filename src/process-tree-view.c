@@ -288,7 +288,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_ACTIVE_SOCKET]);
 
 	// insufficient permission
-	network = xtm_create_network_analyzer();
+	network = xtm_network_analyzer_get_default();
 	if(network == NULL)
 	{
 		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_PACKET_IN]), FALSE);

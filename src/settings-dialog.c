@@ -223,7 +223,7 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	builder_bind_toggle_button (builder, "priority", settings, "column-priority");
 
 	// insufficient permission
-	network = xtm_create_network_analyzer();
+	network = xtm_network_analyzer_get_default();
 
 	if(network == NULL)
 	{

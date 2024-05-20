@@ -10,9 +10,16 @@
 #ifndef TASK_MANAGER_H
 #define TASK_MANAGER_H
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <glib-object.h>
 #include <gtk/gtk.h>
+
+#ifdef HAVE_LIBPCAP
 #include <pcap.h>
+#endif
 
 /**
  * Legend colors
@@ -58,9 +65,11 @@ struct _Task
  * memory_available = free + cache + buffers + an-OS-specific-value
  */
 
-
-
+#ifdef HAVE_LIBPCAP
 void packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *packet);
+#endif
+
+int get_mac_address(const char *device, uint8_t mac[6]);
 gboolean get_network_usage_filename (gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
 gboolean get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
 gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);

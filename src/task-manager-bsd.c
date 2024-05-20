@@ -101,6 +101,7 @@ void list_process_fds(Task *task, struct kinfo_proc *kp);
 void list_process_fds(Task *task, struct kinfo_proc2 *kp);
 #endif
 
+#ifdef HAVE_LIBPCAP
 void
 packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
@@ -159,6 +160,7 @@ packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 
 	//pthread_mutex_unlock(&analyzer->lock);
 }
+#endif
 
 gboolean
 get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)

@@ -84,6 +84,7 @@ xtm_refresh_inode_to_sock(XtmInodeToSock *its)
 	}
 }
 
+#ifdef HAVE_LIBPCAP
 void
 packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
@@ -139,6 +140,7 @@ packet_callback(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 
 	//pthread_mutex_unlock(&analyzer->lock);
 }
+#endif
 
 int
 get_mac_address(const char *device, uint8_t mac[6])

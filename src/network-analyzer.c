@@ -20,8 +20,6 @@
 #include "task-manager.h"
 
 void* network_analyzer_thread(void *ptr);
-void increament_packet_count(char*, char*, GHashTable* hash_table, long int port);
-int get_mac_address(const char *device, uint8_t mac[6]);
 
 void
 increament_packet_count(char *mac, char *direction, GHashTable* hash_table, long int port)
@@ -36,14 +34,20 @@ increament_packet_count(char *mac, char *direction, GHashTable* hash_table, long
 void*
 network_analyzer_thread( void *ptr )
 {
+#ifdef HAVE_LIBPCAP
 	XtmNetworkAnalyzer *analyzer = (XtmNetworkAnalyzer*)ptr;
 	pcap_loop(analyzer->handle, -1, packet_callback, (void*)analyzer);
+#endif
 	return NULL;
 }
 
 XtmNetworkAnalyzer*
 xtm_create_network_analyzer(void)
 {
+	XtmNetworkAnalyzer *analyzer = NULL;
+	
+#ifdef HAVE_LIBPCAP
+	XtmNetworkAnalyzer *current = NULL;
 	char errbuf[PCAP_ERRBUF_SIZE];
 	pcap_if_t *it = NULL;
 
@@ -53,8 +57,6 @@ xtm_create_network_analyzer(void)
 		return NULL;
 	}
 
-	XtmNetworkAnalyzer *analyzer = NULL;
-	XtmNetworkAnalyzer *current = NULL;
 
 	while (it)
 	{
@@ -81,7 +83,7 @@ xtm_create_network_analyzer(void)
 
 		if(handle == NULL)
 		{
-			fprintf(stderr, "Could not open any device %s: %s\n", device, errbuf);
+			fprintf(stderr, "Could not open device %s: %s\n", device, errbuf);
 			it = it->next;
 			continue;
 		}
@@ -115,6 +117,7 @@ xtm_create_network_analyzer(void)
 		fprintf(stderr, "Could not open any device %s\n", errbuf);
 		pcap_freealldevs(it);
 	}
+#endif
 
 	return analyzer;
 }
@@ -128,6 +131,7 @@ xtm_network_analyzer_get_default (void)
 	if (initialized == FALSE)
 	{
 		initialized = TRUE;
+		// analyzer may be NULL if no device can be opened
 		analyzer = xtm_create_network_analyzer();
 	}
 
@@ -136,6 +140,7 @@ xtm_network_analyzer_get_default (void)
 
 void xtm_destroy_network_analyzer(XtmNetworkAnalyzer *analyzer)
 {
+#ifdef HAVE_LIBPCAP
 	if(analyzer == NULL)
 		return;
 
@@ -155,4 +160,5 @@ void xtm_destroy_network_analyzer(XtmNetworkAnalyzer *analyzer)
 	}
 
 	pcap_freealldevs(it);
+#endif
 }
