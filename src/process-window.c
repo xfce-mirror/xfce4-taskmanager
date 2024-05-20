@@ -542,7 +542,7 @@ xtm_process_window_get_model (XtmProcessWindow *window)
 }
 
 void
-xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar* memory_str, gfloat swap, gchar* swap_str, guint64 tcp_rx, guint64 tcp_tx, guint64 tcp_error)
+xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar *memory_str, gfloat swap, gchar *swap_str, guint64 tcp_rx, guint64 tcp_tx, guint64 tcp_error)
 {
 	gchar text[200];
 	gchar value[4];
@@ -556,26 +556,25 @@ xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processe
 		"cpu", cpu,
 		"memory", memory_str,
 		"swap", swap_str,
-		"network-rx", tcp_rx*1e-5,
-		"network-tx", tcp_tx*1e-5,
+		"network-rx", tcp_rx * 1e-5,
+		"network-tx", tcp_tx * 1e-5,
 		"network-error", tcp_error,
-		NULL
-	);
+		NULL);
 
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->cpu_monitor), cpu / 100.0f, 0);
-	g_snprintf (value, sizeof(value), "%.0f", cpu);
-	g_snprintf (text, sizeof(text), _("CPU: %s%%"), value);
+	g_snprintf (value, sizeof (value), "%.0f", cpu);
+	g_snprintf (text, sizeof (text), _("CPU: %s%%"), value);
 	gtk_widget_set_tooltip_text (window->cpu_monitor, text);
 
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->mem_monitor), memory / 100.0f, 0);
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->mem_monitor), swap / 100.0f, 1);
-	g_snprintf (text, sizeof(text), _("Memory: %s"), memory_str);
+	g_snprintf (text, sizeof (text), _("Memory: %s"), memory_str);
 	gtk_widget_set_tooltip_text (window->mem_monitor, text);
 
-	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_rx*1e-5, 0);
-	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_tx*1e-5, 1);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_rx * 1e-5, 0);
+	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_tx * 1e-5, 1);
 	xtm_process_monitor_add_peak (XTM_PROCESS_MONITOR (window->net_monitor), tcp_error, 2);
-	g_snprintf (text, sizeof(text), _("Network rx=%0.2f MB/s\nNetwork tx=%0.2f MB/s \nNetwork error=%lu error/s"), tcp_rx*1e-5, tcp_tx*1e-5, tcp_error);
+	g_snprintf (text, sizeof (text), _("Network rx=%0.2f MB/s\nNetwork tx=%0.2f MB/s \nNetwork error=%lu error/s"), tcp_rx * 1e-5, tcp_tx * 1e-5, tcp_error);
 	gtk_widget_set_tooltip_text (window->net_monitor, text);
 }
 

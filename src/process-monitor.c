@@ -77,7 +77,7 @@ xtm_process_monitor_init (XtmProcessMonitor *monitor)
 {
 	GtkSettings *settings = gtk_settings_get_default ();
 
-	for(int graph=0; graph<MAX_GRAPH; ++graph)
+	for (int graph = 0; graph < MAX_GRAPH; ++graph)
 	{
 		monitor->history[graph] = g_array_new (FALSE, TRUE, sizeof (gfloat));
 		monitor->max[graph] = 1.0;
@@ -94,7 +94,7 @@ xtm_process_monitor_finalize (GObject *object)
 {
 	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (object);
 
-	for(int graph=0; graph<MAX_GRAPH; ++graph)
+	for (int graph = 0; graph < MAX_GRAPH; ++graph)
 		g_array_free (monitor->history[graph], TRUE);
 
 	G_OBJECT_CLASS (xtm_process_monitor_parent_class)->finalize (object);
@@ -146,9 +146,9 @@ xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr)
 	XtmProcessMonitor *monitor = XTM_PROCESS_MONITOR (widget);
 	guint minimum_history_length;
 
-	minimum_history_length = (guint)(gtk_widget_get_allocated_width(widget) / monitor->step_size);
+	minimum_history_length = (guint)(gtk_widget_get_allocated_width (widget) / monitor->step_size);
 
-	for(int graph=0; graph<MAX_GRAPH; ++graph)
+	for (int graph = 0; graph < MAX_GRAPH; ++graph)
 		if (monitor->history[graph]->len < minimum_history_length)
 			g_array_set_size (monitor->history[graph], minimum_history_length + 1);
 
@@ -175,26 +175,27 @@ xtm_process_monitor_cairo_set_source_rgb (cairo_t *cr, double red, double green,
 }
 
 static void
-xtm_process_monitor_cairo_set_color(XtmProcessMonitor *monitor, cairo_t *cr, gfloat alpha, guint variant) {
+xtm_process_monitor_cairo_set_color (XtmProcessMonitor *monitor, cairo_t *cr, gfloat alpha, guint variant)
+{
 	if (monitor->type == 0)
 		xtm_process_monitor_cairo_set_source_rgba (cr, 1.0, 0.43, 0.0, alpha, monitor->dark_mode);
 	else if (monitor->type == 1)
-    {
-		//xtm_process_monitor_cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, alpha, monitor->dark_mode);
-        if(variant == 0)
-		    xtm_process_monitor_cairo_set_source_rgba (cr, 0.80, 0.22, 0.42, alpha, monitor->dark_mode);
-        else
-		    xtm_process_monitor_cairo_set_source_rgba (cr, 0.50, 0.50, 0.50, alpha, monitor->dark_mode);
-    }
+	{
+		// xtm_process_monitor_cairo_set_source_rgba (cr, 0.67, 0.09, 0.32, alpha, monitor->dark_mode);
+		if (variant == 0)
+			xtm_process_monitor_cairo_set_source_rgba (cr, 0.80, 0.22, 0.42, alpha, monitor->dark_mode);
+		else
+			xtm_process_monitor_cairo_set_source_rgba (cr, 0.50, 0.50, 0.50, alpha, monitor->dark_mode);
+	}
 	else
-    {
-        if(variant == 0)
-		    xtm_process_monitor_cairo_set_source_rgba (cr, 0.00, 0.42, 0.64, alpha, monitor->dark_mode);
-        else if(variant == 1)
-		    xtm_process_monitor_cairo_set_source_rgba (cr, 0.02, 0.71, 0.81, alpha, monitor->dark_mode);
-        else
-		    xtm_process_monitor_cairo_set_source_rgba (cr, 0.00, 1.00, 1.00, alpha, monitor->dark_mode);
-    }
+	{
+		if (variant == 0)
+			xtm_process_monitor_cairo_set_source_rgba (cr, 0.00, 0.42, 0.64, alpha, monitor->dark_mode);
+		else if (variant == 1)
+			xtm_process_monitor_cairo_set_source_rgba (cr, 0.02, 0.71, 0.81, alpha, monitor->dark_mode);
+		else
+			xtm_process_monitor_cairo_set_source_rgba (cr, 0.00, 1.00, 1.00, alpha, monitor->dark_mode);
+	}
 }
 
 static cairo_surface_t *
@@ -216,14 +217,14 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 	cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
 	cairo_set_antialias (cr, CAIRO_ANTIALIAS_DEFAULT);
 
-	for(int graph=0; graph<MAX_GRAPH; ++graph)
+	for (int graph = 0; graph < MAX_GRAPH; ++graph)
 	{
-    	if (monitor->history[graph]->len <= 1)
-           continue;
+		if (monitor->history[graph]->len <= 1)
+			continue;
 
 		cairo_move_to (cr, width, height);
-	    cairo_translate (cr, step_size, 0);
-		xtm_process_monitor_cairo_set_color(monitor, cr, 0.3, graph);
+		cairo_translate (cr, step_size, 0);
+		xtm_process_monitor_cairo_set_color (monitor, cr, 0.3, graph);
 
 		for (i = 0; (step_size * (i - 1)) <= width; i++)
 		{
@@ -234,7 +235,7 @@ xtm_process_monitor_graph_surface_create (XtmProcessMonitor *monitor, gint width
 
 		cairo_line_to (cr, width, height);
 		cairo_fill_preserve (cr);
-		xtm_process_monitor_cairo_set_color(monitor, cr, 1.0, graph);
+		xtm_process_monitor_cairo_set_color (monitor, cr, 1.0, graph);
 		cairo_stroke (cr);
 
 		cairo_translate (cr, width, 0);
@@ -298,7 +299,7 @@ void
 xtm_process_monitor_add_peak (XtmProcessMonitor *monitor, gfloat peak, gint index)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
-	//g_return_if_fail (peak >= 0.0f && peak <= 1.0f);
+	// g_return_if_fail (peak >= 0.0f && peak <= 1.0f);
 
 	if (peak > monitor->max[index])
 		monitor->max[index] = peak;
@@ -331,8 +332,8 @@ void
 xtm_process_monitor_clear (XtmProcessMonitor *monitor)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
-	for(int graph=0; graph<MAX_GRAPH; ++graph)
+	for (int graph = 0; graph < MAX_GRAPH; ++graph)
 		g_array_set_size (monitor->history[graph], 0);
-	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET(monitor))))
-		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET(monitor)), NULL, FALSE);
+	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET (monitor))))
+		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET (monitor)), NULL, FALSE);
 }

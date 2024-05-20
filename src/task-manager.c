@@ -13,8 +13,8 @@
 #include "config.h"
 #endif
 
-#include "process-tree-view.h" /* for the columns of the model */
 #include "network-analyzer.h"
+#include "process-tree-view.h" /* for the columns of the model */
 #include "settings.h"
 #include "task-manager.h"
 
@@ -123,7 +123,7 @@ xtm_task_manager_finalize (GObject *object)
 {
 	XtmTaskManager *manager = XTM_TASK_MANAGER (object);
 	g_array_free (manager->tasks, TRUE);
-	
+
 #ifdef HAVE_WNCK
 	if (manager->app_manager != NULL)
 	{
@@ -357,7 +357,7 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 		XTM_PTV_COLUMN_BACKGROUND, background,
 		XTM_PTV_COLUMN_FOREGROUND, foreground,
 		XTM_PTV_COLUMN_TIMESTAMP, old_timestamp,
-	-1);
+		-1);
 
 	g_free (background);
 	g_free (foreground);
@@ -413,12 +413,12 @@ xtm_task_manager_new (GtkTreeModel *model)
 }
 
 void
-xtm_task_manager_get_network_info(XtmTaskManager *manager, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+xtm_task_manager_get_network_info (XtmTaskManager *manager, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 {
 	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
 	get_network_usage (&manager->tcp_rx, &manager->tcp_tx, &manager->tcp_error);
 
-	if(manager->old_tcp_rx == 0 && manager->old_tcp_tx == 0 && manager->old_tcp_error == 0)
+	if (manager->old_tcp_rx == 0 && manager->old_tcp_tx == 0 && manager->old_tcp_error == 0)
 	{
 		*tcp_rx = 0;
 		*tcp_tx = 0;
@@ -426,9 +426,9 @@ xtm_task_manager_get_network_info(XtmTaskManager *manager, guint64 *tcp_rx, guin
 	}
 	else
 	{
-	    gint ms;
-	    g_object_get (settings, "refresh-rate", &ms, NULL);
-        // ugly approximation in guint64
+		gint ms;
+		g_object_get (settings, "refresh-rate", &ms, NULL);
+		// ugly approximation in guint64
 		*tcp_rx = (manager->tcp_rx - manager->old_tcp_rx) / ms * 1000;
 		*tcp_tx = (manager->tcp_tx - manager->old_tcp_tx) / ms * 1000;
 		*tcp_error = (manager->tcp_error - manager->old_tcp_error) / ms * 1000;

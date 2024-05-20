@@ -13,16 +13,16 @@
 
 #include <libxfce4ui/libxfce4ui.h>
 
-#include "settings.h"
+#include "network-analyzer.h"
 #include "settings-dialog.h"
 #include "settings-dialog_ui.h"
-#include "network-analyzer.h"
+#include "settings.h"
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
 
-static void	show_about_dialog (GtkWidget *widget, gpointer user_data);
+static void show_about_dialog (GtkWidget *widget, gpointer user_data);
 static GtkWidget *xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window);
 
 
@@ -223,13 +223,13 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	builder_bind_toggle_button (builder, "priority", settings, "column-priority");
 
 	// insufficient permission
-	network = xtm_network_analyzer_get_default();
+	network = xtm_network_analyzer_get_default ();
 
-	if(network == NULL)
+	if (network == NULL)
 	{
-		gtk_widget_hide(GTK_WIDGET (gtk_builder_get_object (builder, "packet-in")));
-		gtk_widget_hide(GTK_WIDGET (gtk_builder_get_object (builder, "packet-out")));
-		gtk_widget_hide(GTK_WIDGET (gtk_builder_get_object (builder, "active-socket")));
+		gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "packet-in")));
+		gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "packet-out")));
+		gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "active-socket")));
 	}
 
 	button = GTK_WIDGET (gtk_builder_get_object (builder, "button-about"));

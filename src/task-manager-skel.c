@@ -26,7 +26,7 @@
 static gushort _cpu_count = 0;
 */
 gboolean
-get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 {
 	*tcp_rx = 0;
 	*tcp_tx = 0;

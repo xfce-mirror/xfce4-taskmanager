@@ -12,9 +12,9 @@
 #include "config.h"
 #endif
 
+#include "network-analyzer.h"
 #include "process-window.h"
 #include "settings.h"
-#include "network-analyzer.h"
 #include "task-manager.h"
 
 #include <gio/gio.h>
@@ -145,7 +145,7 @@ collect_data (void)
 	guint64 tcp_rx, tcp_tx, tcp_error;
 	gchar *used, *total, tooltip[1024], memory_info[64], swap_info[64];
 
-	xtm_task_manager_get_network_info(task_manager, &tcp_rx, &tcp_tx, &tcp_error);
+	xtm_task_manager_get_network_info (task_manager, &tcp_rx, &tcp_tx, &tcp_error);
 	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory_used, &memory_total, &swap_used, &swap_total);
 
 	memory_percent = (memory_total != 0) ? ((memory_used * 100.0f) / (float)memory_total) : 0.0f;
@@ -171,14 +171,14 @@ collect_data (void)
 	if (status_icon_get_visible ())
 	{
 		g_snprintf (
-			tooltip, sizeof(tooltip),
+			tooltip, sizeof (tooltip),
 			_("<b>Processes:</b> %u\n"
 				"<b>CPU:</b> %.0f%%\n"
 				"<b>Memory:</b> %s\n"
 				"<b>Swap:</b> %s\n"
 				"<b>Network:</b> %.2f / %.2f MB/s"),
 			num_processes, cpu, memory_info, swap_info,
-			tcp_rx*1e-5, tcp_tx*1e-5);
+			tcp_rx * 1e-5, tcp_tx * 1e-5);
 
 		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon_or_null), tooltip);
@@ -261,8 +261,7 @@ main (int argc, char *argv[])
 	if (!xfconf_init (&error))
 	{
 		xfce_message_dialog (NULL, _("Xfce Notify Daemon"),
-			"dialog-error",
-			_("Settings daemon is unavailable"),
+			"dialog-error", _("Settings daemon is unavailable"),
 			error->message,
 			"application-exit", GTK_RESPONSE_ACCEPT,
 			NULL);
@@ -282,7 +281,7 @@ main (int argc, char *argv[])
 	g_signal_connect_swapped (app, "activate", G_CALLBACK (xtm_process_window_show), window);
 
 	//! create net
-	analyzer = xtm_network_analyzer_get_default();
+	analyzer = xtm_network_analyzer_get_default ();
 	task_manager = xtm_task_manager_new (xtm_process_window_get_model (XTM_PROCESS_WINDOW (window)));
 
 	collect_data ();
@@ -307,7 +306,7 @@ main (int argc, char *argv[])
 		g_object_unref (status_icon_or_null);
 	xfconf_shutdown ();
 
-	xtm_destroy_network_analyzer(analyzer);
+	xtm_destroy_network_analyzer (analyzer);
 
 	return 0;
 }
