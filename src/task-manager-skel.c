@@ -25,6 +25,14 @@
 /* Example:
 static gushort _cpu_count = 0;
 */
+gboolean
+get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	*tcp_rx = 0;
+	*tcp_tx = 0;
+	*tcp_error = 0;
+	return TRUE;
+}
 
 gboolean
 get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
