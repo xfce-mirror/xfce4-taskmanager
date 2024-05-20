@@ -8,6 +8,7 @@ bin_PROGRAMS =								\
 
 xfce4_taskmanager_CFLAGS =						\
 	$(CAIRO_CFLAGS)							\
+	$(LIBPCAP_CFLAGS)						\
 	$(LIBX11_CFLAGS)						\
 	$(LIBXMU_CFLAGS)						\
 	$(GTK3_CFLAGS)							\
@@ -18,6 +19,7 @@ xfce4_taskmanager_CFLAGS =						\
 
 xfce4_taskmanager_LDADD = 						\
 	$(CAIRO_LIBS)							\
+	$(LIBPCAP_LIBS)						\
 	$(LIBX11_LIBS)						\
 	$(LIBXMU_LIBS)						\
 	$(GTK3_LIBS) 						\
@@ -30,6 +32,8 @@ xfce4_taskmanager_SOURCES =						\
 	main.c								\
 	process-window_ui.h					\
 	process-window.c		process-window.h		\
+	inode-to-sock.c		inode-to-sock.h		\
+	network-analyzer.c		network-analyzer.h		\
 	process-monitor.c		process-monitor.h		\
 	process-tree-model.c		process-tree-model.h		\
 	process-tree-view.c		process-tree-view.h		\

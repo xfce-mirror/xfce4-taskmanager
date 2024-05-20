@@ -19,16 +19,33 @@
 #include <kvm.h>
 #include <paths.h>
 #include <string.h>
+
 #include <sys/param.h>
 #include <sys/proc.h>
 #include <sys/sysctl.h>
 #include <sys/types.h>
 #include <sys/user.h>
-#include <unistd.h>
+#include	<sys/socket.h>
 
 #if defined(__FreeBSD_version) && __FreeBSD_version >= 900044
 #include <sys/vmmeter.h>
 #endif
+
+#include <arpa/inet.h>
+#include <net/ethernet.h>
+#include	<net/if.h>
+#include <net/if_dl.h>
+#include	<net/if_mib.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <ifaddrs.h>
+
+#include <glib.h>
+
+#include "inode-to-sock.h"
+#include "network-analyzer.h"
+#include "task-manager.h"
 
 static const gchar ki_stat2state[] = {
 	' ', /* - */
@@ -41,6 +58,147 @@ static const gchar ki_stat2state[] = {
 	'L' /* SLOCK */
 };
 
+static XtmInodeToSock *inode_to_sock = NULL;
+static XtmNetworkAnalyzer *analyzer = NULL;
+
+#ifdef HAVE_LIBPCAP
+void
+packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
+{
+	// Extract source and destination IP addresses and ports from the packet
+	struct ether_header *eth_header = (struct ether_header *)packet;
+	struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
+	struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
+
+	// Dropped non-ip packet
+	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
+		return;
+
+	long int src_port = ntohs (tcp_header->th_sport);
+	long int dst_port = ntohs (tcp_header->th_dport);
+
+	// directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
+
+	char local_mac[18];
+	char src_mac[18];
+	char dst_mac[18];
+
+	sprintf (local_mac,
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		analyzer->mac[0], analyzer->mac[1],
+		analyzer->mac[2], analyzer->mac[3],
+		analyzer->mac[4], analyzer->mac[5]);
+
+	sprintf (src_mac,
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header->ether_shost[0], eth_header->ether_shost[1],
+		eth_header->ether_shost[2], eth_header->ether_shost[3],
+		eth_header->ether_shost[4], eth_header->ether_shost[5]);
+
+	sprintf (dst_mac,
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header->ether_dhost[0], eth_header->ether_dhost[1],
+		eth_header->ether_dhost[2], eth_header->ether_dhost[3],
+		eth_header->ether_dhost[4], eth_header->ether_dhost[5]);
+
+	// Debug
+	// pthread_mutex_lock(&analyzer->lock);
+
+	if (strcmp (local_mac, src_mac) == 0)
+		increament_packet_count (local_mac, "in ", analyzer->packetin, src_port);
+
+	if (strcmp (local_mac, dst_mac) == 0)
+		increament_packet_count (local_mac, "out", analyzer->packetout, dst_port);
+
+	// pthread_mutex_unlock(&analyzer->lock);
+}
+#endif
+
+
+gboolean
+get_if_count(int *data)
+{
+        size_t len = sizeof(*data);
+
+        static int32_t name[] = { CTL_NET, PF_LINK, NETLINK_GENERIC, IFMIB_SYSTEM, IFMIB_IFCOUNT };
+	name[0] = CTL_NET;
+	name[1] = PF_LINK;
+	name[2] = NETLINK_GENERIC;
+	name[3] = IFMIB_SYSTEM;
+	name[4] = IFMIB_IFCOUNT;
+
+	return sysctl(name, 5, data, &len, 0, 0) < 0;
+}
+
+gboolean
+get_network_usage_if(int interface, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	struct ifmibdata data;
+	size_t len = sizeof(data);
+
+	static int32_t name[] = { CTL_NET, PF_LINK, NETLINK_GENERIC, IFMIB_IFDATA, 0, IFDATA_GENERAL };
+	name[4] = interface;
+
+	if (sysctl(name, 6, &data, &len, 0, 0) < 0)
+		return 1;
+
+	//*tcp_error = data.ifmd_data.ifi_oerrors + data.ifmd_data.ifi_ierrors;
+	*tcp_rx += data.ifmd_data.ifi_ibytes;
+	*tcp_tx += data.ifmd_data.ifi_obytes;
+
+	return 0;
+}
+
+gboolean
+get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	int ifcount = 0;
+
+	if (get_if_count(&ifcount))
+		return 1;
+
+       *tcp_error = 0;
+       *tcp_rx = 0;
+       *tcp_tx = 0;
+
+	for (int i =0; i<ifcount; ++i)
+		get_network_usage_if(i, tcp_rx, tcp_tx, tcp_error);
+
+        return 0;
+}
+
+int
+get_mac_address(const char *device, uint8_t mac[6])
+{
+	struct ifaddrs *ifaddr, *ifa;
+
+	if (getifaddrs(&ifaddr) == -1)
+		return -1;
+
+	for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+	{
+		if (ifa->ifa_addr == NULL)
+			continue;
+
+		int family = ifa->ifa_addr->sa_family;
+
+		// Check if the interface is a network interface (AF_PACKET for Linux)
+		if (family == AF_LINK && strcmp(device, ifa->ifa_name) == 0)
+		{
+			// Check if the interface has a hardware address (MAC address)
+			if (ifa->ifa_data != NULL)
+			{
+				struct sockaddr_dl *sdl = (struct sockaddr_dl *)ifa->ifa_addr;
+				memcpy(mac, sdl->sdl_data + sdl->sdl_nlen, sizeof(uint8_t) * 6);
+				freeifaddrs(ifaddr);
+				return 0;
+			}
+		}
+	}
+
+	freeifaddrs(ifaddr);
+	return -1;
+}
 
 static guint64
 get_mem_by_bytes (const gchar *name)
@@ -130,6 +288,105 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	}
 
 	return TRUE;
+}
+
+// TODO check the OpenBSD version here
+// (struct sockaddr_in*)kinfo_file.kf_sa_local
+
+void
+xtm_refresh_inode_to_sock (XtmInodeToSock *its)
+{
+	FILE *fp;
+	char line[2048];
+	char *token;
+	char *delim = " ";
+
+	// Execute the sockstat command and get the output
+	fp = popen ("sockstat -L -P tcp,udp", "r");
+	if (fp == NULL)
+		return;
+
+	g_hash_table_remove_all (its->hash);
+	g_hash_table_remove_all (its->pid);
+
+	// Skip the header line
+	fgets (line, 2048, fp);
+
+	// Parse the output line by line
+	while (fgets (line, 2048, fp) != NULL)
+	{
+		// Remove the newline character
+		line[strcspn (line, "\n")] = '\0';
+
+		// Split the line into tokens
+		token = strtok (line, delim);
+
+		// Parse the columns
+		char user[50];
+		char command[50];
+		char pid[10];
+		char fd[10];
+		char proto[10];
+		char local_address[50];
+		char foreign_address[50];
+
+		strcpy (user, token);
+		token = strtok (NULL, delim);
+		strcpy (command, token);
+		token = strtok (NULL, delim);
+		strcpy (pid, token);
+		token = strtok (NULL, delim);
+		strcpy (fd, token);
+		token = strtok (NULL, delim);
+		strcpy (proto, token);
+		token = strtok (NULL, delim);
+		strcpy (local_address, token);
+		token = strtok (NULL, delim);
+		strcpy (foreign_address, token);
+
+		int local_port, assos;
+		int *inode1 = g_new0 (gint, 1);
+		int *inode2 = g_new0 (gint, 1);
+
+		*inode1 = atoi (fd);
+		*inode2 = atoi (fd);
+		assos = atoi (pid);
+
+		sscanf (local_address, "%*[^:]:%d", &local_port);
+		g_hash_table_replace (its->hash, inode1, (gpointer)local_port);
+		g_hash_table_replace (its->pid, inode2, (gpointer)assos);
+
+		// Print the parsed values
+		// printf("%d -> %d\n", *inode, local_port);
+	}
+
+	// Close the pipe
+	pclose (fp);
+}
+
+void
+list_process_fds (Task *task)
+{
+	GHashTableIter iter;
+	gpointer key, value;
+
+	if (analyzer == NULL || inode_to_sock == NULL)
+		return 1;
+
+	g_hash_table_iter_init (&iter, inode_to_sock->pid);
+	while (g_hash_table_iter_next (&iter, &key, &value))
+	{
+		gint key_int = *(int *)(key);
+		gint value_int = GPOINTER_TO_INT (value);
+		if (task->pid == value_int)
+		{
+			gpointer value = g_hash_table_lookup (inode_to_sock->hash, &key_int);
+			long int port = (long int)value;
+			task->active_socket += 1;
+			task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
+			task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
+		}
+	}
 }
 
 static gboolean
@@ -233,16 +490,23 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	if (kp->ki_flag & P_JAILED)
 		task->state[i++] = 'J';
 
+	list_process_fds (task);
+
 	return TRUE;
 }
 
 gboolean
 get_task_list (GArray *task_list)
 {
+	analyzer = xtm_network_analyzer_get_default ();
+
 	kvm_t *kd;
 	struct kinfo_proc *kp;
 	int cnt = 0, i;
 	Task task;
+
+	inode_to_sock = xtm_inode_to_sock_get_default ();
+	xtm_refresh_inode_to_sock (inode_to_sock);
 
 	if ((kd = kvm_openfiles (_PATH_DEVNULL, _PATH_DEVNULL, NULL, O_RDONLY, NULL)) == NULL)
 		return FALSE;
