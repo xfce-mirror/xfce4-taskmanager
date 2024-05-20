@@ -26,7 +26,11 @@ enum
 	PROP_SWAP,
 	PROP_SHOW_SWAP,
 	PROP_NUM_PROCESSES,
+	PROP_NETWORK_RX,
+	PROP_NETWORK_TX,
+	PROP_NETWORK_ERROR,
 };
+
 typedef struct _XtmProcessStatusbarClass XtmProcessStatusbarClass;
 struct _XtmProcessStatusbarClass
 {
@@ -43,10 +47,18 @@ struct _XtmProcessStatusbar
 	GtkWidget *label_memory;
 	GtkWidget *label_swap;
 
+	GtkWidget *label_net_rx;
+	GtkWidget *label_net_tx;
+	GtkWidget *label_net_error;
+
 	gfloat cpu;
 	gchar memory[64];
 	gchar swap[64];
 	guint num_processes;
+
+	gfloat tcp_rx;
+	gfloat tcp_tx;
+	guint64 tcp_error;
 
 	gboolean dark_mode;
 };
@@ -73,7 +85,13 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 	g_object_class_install_property (class, PROP_SHOW_SWAP,
 		g_param_spec_boolean ("show-swap", "ShowSwap", "Show or hide swap usage", TRUE, G_PARAM_WRITABLE));
 	g_object_class_install_property (class, PROP_NUM_PROCESSES,
-		g_param_spec_uint ("num-processes", "NumProcesses", "Number of processes", 0, G_MAXUINT, 0, G_PARAM_CONSTRUCT | G_PARAM_WRITABLE));
+		g_param_spec_uint ("num-processes", "NumProcesses", "Number of processes", 0, G_MAXUINT, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+	g_object_class_install_property (class, PROP_NETWORK_RX,
+		g_param_spec_float ("network-rx", "RX", "Net rx", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+	g_object_class_install_property (class, PROP_NETWORK_TX,
+		g_param_spec_float ("network-tx", "TX", "Net tx", 0, 100, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
+	g_object_class_install_property (class, PROP_NETWORK_ERROR,
+		g_param_spec_uint64 ("network-error", "NetEror", "Number of error since last update", 0, G_MAXUINT64, 0, G_PARAM_CONSTRUCT|G_PARAM_WRITABLE));
 }
 
 static void
@@ -99,13 +117,16 @@ xtm_process_statusbar_on_notify_theme_name (XtmProcessStatusbar *statusbar)
 	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_num_processes);
 	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_memory);
 	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_swap);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_net_rx);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_net_tx);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_net_error);
 }
 
 static void
 xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 {
 	GtkSettings *settings = gtk_settings_get_default ();
-	GtkWidget *hbox, *hbox_cpu, *hbox_mem;
+	GtkWidget *hbox, *hbox_cpu, *hbox_net, *hbox_mem;
 	GtkStyleContext *context;
 	GtkCssProvider *provider;
 	statusbar->settings = xtm_settings_get_default ();
@@ -116,6 +137,7 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 	hbox_cpu = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
+	hbox_net = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 	hbox_mem = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 16);
 
 	statusbar->label_cpu = gtk_label_new (NULL);
@@ -143,11 +165,39 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	gtk_box_pack_start (GTK_BOX (hbox_mem), statusbar->label_swap, TRUE, FALSE, 0);
 	context = gtk_widget_get_style_context (statusbar->label_swap);
 	provider = gtk_css_provider_new ();
-	gtk_css_provider_load_from_data (provider, "* { color: #75324d; } .dark { color: #8acdb2; }", -1, NULL);
+	gtk_css_provider_load_from_data (provider, "* { color: #808080; } .dark { color: #808080; }", -1, NULL);
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	g_object_unref (provider);
+
+	statusbar->label_net_rx = gtk_label_new (NULL);
+	gtk_label_set_ellipsize (GTK_LABEL (statusbar->label_net_rx), PANGO_ELLIPSIZE_END);
+	gtk_box_pack_start (GTK_BOX (hbox_net), statusbar->label_net_rx, TRUE, FALSE, 0);
+	context  = gtk_widget_get_style_context (statusbar->label_net_rx);
+	provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_data (provider, "* { color: #006ca2; } .dark { color: #ff935d; }", -1, NULL);
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	g_object_unref (provider);
+
+	statusbar->label_net_tx = gtk_label_new (NULL);
+	gtk_label_set_ellipsize (GTK_LABEL (statusbar->label_net_tx), PANGO_ELLIPSIZE_END);
+	gtk_box_pack_start (GTK_BOX (hbox_net), statusbar->label_net_tx, TRUE, FALSE, 0);
+	context  = gtk_widget_get_style_context (statusbar->label_net_tx);
+	provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_data (provider, "* { color: #05b6ce; } .dark { color: #fa4931; }", -1, NULL);
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	g_object_unref (provider);
+
+	statusbar->label_net_error = gtk_label_new (NULL);
+	gtk_label_set_ellipsize (GTK_LABEL (statusbar->label_net_error), PANGO_ELLIPSIZE_END);
+	gtk_box_pack_start (GTK_BOX (hbox_net), statusbar->label_net_error, TRUE, FALSE, 0);
+	context  = gtk_widget_get_style_context (statusbar->label_net_error);
+	provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_data (provider, "* { color: #008080; } .dark { color: #FF0000; }", -1, NULL);
 	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 	g_object_unref (provider);
 
 	gtk_box_pack_start (GTK_BOX (hbox), hbox_cpu, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), hbox_net, TRUE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), hbox_mem, TRUE, TRUE, 0);
 	gtk_box_set_homogeneous (GTK_BOX (hbox), TRUE);
 
@@ -157,6 +207,9 @@ xtm_process_statusbar_init (XtmProcessStatusbar *statusbar)
 	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_num_processes);
 	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_memory);
 	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_swap);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_net_rx);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_net_tx);
+	xtm_process_statusbar_set_label_style (statusbar, statusbar->label_net_error);
 
 	gtk_widget_show_all (hbox);
 }
@@ -221,6 +274,31 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 			statusbar->num_processes = g_value_get_uint (value);
 			text = g_strdup_printf (_("Processes: %d"), statusbar->num_processes);
 			gtk_label_set_text (GTK_LABEL (statusbar->label_num_processes), text);
+			g_free (text);
+			break;
+
+		case PROP_NETWORK_RX:
+			statusbar->tcp_rx = g_value_get_float (value);
+			//statusbar->tcp_rx = interval_to_second(statusbar->tcp_rx, statusbar->settings);
+			float_value = rounded_float_value (statusbar->tcp_rx, statusbar->settings);
+			text = g_strdup_printf (_("RX: %s MB/s"), float_value);
+			gtk_label_set_text (GTK_LABEL (statusbar->label_net_rx), text);
+			g_free (text);
+			break;
+
+		case PROP_NETWORK_TX:
+			statusbar->tcp_tx = g_value_get_float (value);
+			//statusbar->tcp_tx = interval_to_second(statusbar->tcp_tx, statusbar->settings);
+			float_value = rounded_float_value (statusbar->tcp_tx, statusbar->settings);
+			text = g_strdup_printf (_("TX: %s MB/s"), float_value);
+			gtk_label_set_text (GTK_LABEL (statusbar->label_net_tx), text);
+			g_free (text);
+			break;
+
+		case PROP_NETWORK_ERROR:
+			statusbar->tcp_error = g_value_get_uint64 (value);
+			text = g_strdup_printf (_("Error: %lu"), statusbar->tcp_error);
+			gtk_label_set_text (GTK_LABEL (statusbar->label_net_error), text);
 			g_free (text);
 			break;
 
