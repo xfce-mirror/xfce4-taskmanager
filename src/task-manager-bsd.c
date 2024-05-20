@@ -47,8 +47,8 @@
 // clang-fornat off
 #include <netinet/if_ether.h>
 #include <netinet/in.h>
-#include <netinet/in_pcb.h>
 #include <netinet/ip.h>
+#include <netinet/in_pcb.h>
 #include <netinet/tcp.h>
 // clang-fornat on
 
