@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2024 Jehan-Antoine Vayssade, <javayss@sleek-think.ovh>
  * Copyright (c) 2008-2010  Mike Massonnet <mmassonnet@xfce.org>
  * Copyright (c) 2006  Johannes Zellner <webmaster@nebulon.de>
  *
@@ -12,10 +13,88 @@
 #include "config.h"
 #endif
 
-#include "task-manager.h"
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
 
+#include <net/ethernet.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <arpa/inet.h>
+
+#include <glib.h>
+
+#include "task-manager.h"
+#include "inode-to-sock.h"
+#include "network-analyzer.h"
+
+static XtmInodeToSock *inode_to_sock = NULL;
 static gushort _cpu_count = 0;
 static gulong jiffies_total_delta = 0;
+
+gboolean
+get_network_usage_filename(gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	FILE *file;
+	gchar buffer[256];
+    char *out;
+
+	*tcp_rx = 0;
+	*tcp_tx = 0;
+	*tcp_error = 0;
+
+	if ((file = fopen (filename, "r")) == NULL)
+		return FALSE;
+
+    out = fgets(buffer, sizeof(buffer), file);
+    if(!out)
+       return FALSE;
+
+    out = fgets(buffer, sizeof(buffer), file);
+
+    if(!out)
+       return FALSE;
+
+    while (fgets(buffer, sizeof(buffer), file)) {
+    	unsigned long int dummy = 0;
+    	unsigned long int r_bytes = 0;
+		unsigned long int t_bytes = 0;
+		unsigned long int r_packets = 0;
+		unsigned long int t_packets = 0;
+		unsigned long int error = 0;
+		gchar ifname[256];
+
+        int count = sscanf(
+			buffer, "%[^:]: %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu",
+            ifname, &r_bytes, &r_packets, &error,
+			&dummy, &dummy, &dummy, &dummy, &dummy,
+			&t_bytes, &t_packets
+		);
+
+        if(count != 11)
+        {
+            printf("Something went wrong while reading %s -> expected %d\n", filename, count);
+            break;
+        }
+
+		*tcp_rx += r_bytes;
+		*tcp_tx += t_bytes;
+		*tcp_error += error;
+    }
+
+	fclose (file);
+		
+	return TRUE;
+}
+
+gboolean
+get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	return get_network_usage_filename("/proc/net/dev", tcp_rx, tcp_tx, tcp_error);
+}
 
 gboolean
 get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
@@ -304,6 +383,55 @@ get_task_details (GPid pid, Task *task)
 		fclose (file);
 	}
 
+	task->packet_in = 0;
+	task->packet_out = 0;
+
+	char path[1024];
+    snprintf(path, sizeof(path), "/proc/%d/fd", (int)pid);
+	XtmNetworkAnalyzer *analyzer = xtm_network_analyzer_get_default();
+
+	/***************************/
+    DIR* dir = opendir(path);
+    if (dir)
+	{
+        struct dirent* entry;
+        while ((entry = readdir(dir)) != NULL)
+		{
+            if (entry->d_type == DT_LNK)
+			{
+                char link[2048];
+                snprintf(link, sizeof(link), "%s/%s", path, entry->d_name);
+                char target[2048];
+                ssize_t len = readlink(link, target, sizeof(target) - 1);
+                if (len != -1)
+				{
+                    target[len] = '\0';
+                    if (strncmp(target, "socket:", 7) == 0)
+					{
+                        int inode;
+                        if (sscanf(target, "socket:[%d]", &inode) == 1)
+						{
+							task->active_socket += 1;
+
+							gpointer value = g_hash_table_lookup(inode_to_sock->hash, &inode);
+							long int port = (long int)value;
+
+							if(analyzer)
+							{
+								//pthread_mutex_lock(&analyzer->lock);
+								task->packet_in += (guint64)g_hash_table_lookup(analyzer->packetin, &port);
+								task->packet_out += (guint64)g_hash_table_lookup(analyzer->packetout, &port);
+								//pthread_mutex_lock(&analyzer->lock);
+							}
+                        }
+                    }
+                }
+            }
+        }
+        closedir(dir);
+    }
+	/***************************/
+
 	/* Read the full command line */
 	if (!get_task_cmdline (task))
 		return FALSE;
@@ -318,6 +446,9 @@ get_task_list (GArray *task_list)
 	const gchar *name;
 	GPid pid;
 	Task task;
+
+	inode_to_sock = xtm_inode_to_sock_get_default();
+    xtm_refresh_inode_to_sock(inode_to_sock);
 
 	if ((dir = g_dir_open ("/proc", 0, NULL)) == NULL)
 		return FALSE;

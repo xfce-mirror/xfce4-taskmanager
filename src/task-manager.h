@@ -45,6 +45,10 @@ struct _Task
 	gfloat group_cpu_system;
 	guint64 group_vsz;
 	guint64 group_rss;
+
+	guint64 packet_in;
+	guint64 packet_out;
+	guint64 active_socket;
 };
 
 /**
@@ -53,6 +57,10 @@ struct _Task
  * memory_available = free + cache + buffers + an-OS-specific-value
  */
 
+
+
+gboolean get_network_usage_filename(gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
+gboolean get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
 gboolean get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free);
 gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system);
 gboolean get_task_list (GArray *task_list);
@@ -73,6 +81,7 @@ typedef struct _XtmTaskManager XtmTaskManager;
 
 GType xtm_task_manager_get_type (void);
 XtmTaskManager *xtm_task_manager_new (GtkTreeModel *model);
+void xtm_task_manager_get_network_info (XtmTaskManager *manager, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
 void xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gfloat *cpu,
 	guint64 *memory_used, guint64 *memory_total,
 	guint64 *swap_used, guint64 *swap_total);

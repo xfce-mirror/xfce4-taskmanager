@@ -14,6 +14,7 @@
 
 #include "process-window.h"
 #include "settings.h"
+#include "network-analyzer.h"
 #include "task-manager.h"
 
 #include <gio/gio.h>
@@ -28,6 +29,7 @@ static XtmTaskManager *task_manager;
 static guint timer_id;
 static gboolean start_hidden = FALSE;
 static gboolean standalone = FALSE;
+static XtmNetworkAnalyzer *analyzer = NULL;
 
 static GOptionEntry main_entries[] = {
 	{ "start-hidden", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &start_hidden, "Don't open a task manager window", NULL },
@@ -140,8 +142,10 @@ collect_data (void)
 	guint num_processes;
 	gfloat cpu, memory_percent, swap_percent;
 	guint64 swap_used, swap_free, swap_total, memory_used, memory_total;
+	guint64 tcp_rx, tcp_tx, tcp_error;
 	gchar *used, *total, tooltip[1024], memory_info[64], swap_info[64];
 
+	xtm_task_manager_get_network_info(task_manager, &tcp_rx, &tcp_tx, &tcp_error);
 	xtm_task_manager_get_system_info (task_manager, &num_processes, &cpu, &memory_used, &memory_total, &swap_used, &swap_total);
 
 	memory_percent = (memory_total != 0) ? ((memory_used * 100.0f) / (float)memory_total) : 0.0f;
@@ -159,7 +163,7 @@ collect_data (void)
 	g_free (used);
 	g_free (total);
 
-	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory_percent, memory_info, swap_percent, swap_info);
+	xtm_process_window_set_system_info (XTM_PROCESS_WINDOW (window), num_processes, cpu, memory_percent, memory_info, swap_percent, swap_info, tcp_rx, tcp_tx, tcp_error);
 
 	xtm_task_manager_get_swap_usage (task_manager, &swap_free, &swap_total);
 	xtm_process_window_show_swap_usage (XTM_PROCESS_WINDOW (window), (swap_total > 0));
@@ -273,6 +277,8 @@ main (int argc, char *argv[])
 
 	g_signal_connect_swapped (app, "activate", G_CALLBACK (xtm_process_window_show), window);
 
+	//! create net
+	analyzer = xtm_network_analyzer_get_default();
 	task_manager = xtm_task_manager_new (xtm_process_window_get_model (XTM_PROCESS_WINDOW (window)));
 
 	collect_data ();
@@ -296,6 +302,8 @@ main (int argc, char *argv[])
 	if (status_icon_or_null != NULL)
 		g_object_unref (status_icon_or_null);
 	xfconf_shutdown ();
+
+	xtm_destroy_network_analyzer(analyzer);
 
 	return 0;
 }
