@@ -15,15 +15,15 @@
 typedef struct _XtmInodeToSock XtmInodeToSock;
 struct _XtmInodeToSock
 {
-    // inode to port
-    GHashTable* hash;
-    // inode to pid (freebsd)
-    GHashTable* pid;
+	// inode to port
+	GHashTable *hash;
+	// inode to pid (freebsd)
+	GHashTable *pid;
 };
 
-XtmInodeToSock* xtm_create_inode_to_sock(void);
-void xtm_refresh_inode_to_sock(XtmInodeToSock*);
-void xtm_destroy_inode_to_sock(XtmInodeToSock*);
+XtmInodeToSock *xtm_create_inode_to_sock (void);
+void xtm_refresh_inode_to_sock (XtmInodeToSock *);
+void xtm_destroy_inode_to_sock (XtmInodeToSock *);
 XtmInodeToSock *xtm_inode_to_sock_get_default (void);
 
 #endif

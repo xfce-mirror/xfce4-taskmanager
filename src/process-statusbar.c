@@ -278,29 +278,29 @@ xtm_process_statusbar_set_property (GObject *object, guint property_id, const GV
 			break;
 
 		case PROP_NETWORK_RX:
-		statusbar->tcp_rx = g_value_get_float (value);
-		//statusbar->tcp_rx = interval_to_second(statusbar->tcp_rx, statusbar->settings);
-		float_value = rounded_float_value (statusbar->tcp_rx, statusbar->settings);
-		text = g_strdup_printf (_("RX: %s MB/s"), float_value);
-		gtk_label_set_text (GTK_LABEL (statusbar->label_net_rx), text);
-		g_free (text);
-		break;
+			statusbar->tcp_rx = g_value_get_float (value);
+			//statusbar->tcp_rx = interval_to_second(statusbar->tcp_rx, statusbar->settings);
+			float_value = rounded_float_value (statusbar->tcp_rx, statusbar->settings);
+			text = g_strdup_printf (_("RX: %s MB/s"), float_value);
+			gtk_label_set_text (GTK_LABEL (statusbar->label_net_rx), text);
+			g_free (text);
+			break;
 
 		case PROP_NETWORK_TX:
-		statusbar->tcp_tx = g_value_get_float (value);
-		//statusbar->tcp_tx = interval_to_second(statusbar->tcp_tx, statusbar->settings);
-		float_value = rounded_float_value (statusbar->tcp_tx, statusbar->settings);
-		text = g_strdup_printf (_("TX: %s MB/s"), float_value);
-		gtk_label_set_text (GTK_LABEL (statusbar->label_net_tx), text);
-		g_free (text);
-		break;
+			statusbar->tcp_tx = g_value_get_float (value);
+			//statusbar->tcp_tx = interval_to_second(statusbar->tcp_tx, statusbar->settings);
+			float_value = rounded_float_value (statusbar->tcp_tx, statusbar->settings);
+			text = g_strdup_printf (_("TX: %s MB/s"), float_value);
+			gtk_label_set_text (GTK_LABEL (statusbar->label_net_tx), text);
+			g_free (text);
+			break;
 
 		case PROP_NETWORK_ERROR:
-        statusbar->tcp_error = g_value_get_uint64 (value);
-		text = g_strdup_printf (_("Error: %lu"), statusbar->tcp_error);
-		gtk_label_set_text (GTK_LABEL (statusbar->label_net_error), text);
-		g_free (text);
-		break;
+			statusbar->tcp_error = g_value_get_uint64 (value);
+			text = g_strdup_printf (_("Error: %lu"), statusbar->tcp_error);
+			gtk_label_set_text (GTK_LABEL (statusbar->label_net_error), text);
+			g_free (text);
+			break;
 
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

@@ -180,7 +180,7 @@ collect_data (void)
 			num_processes, cpu, memory_info, swap_info,
 			tcp_rx*1e-5, tcp_tx*1e-5);
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 		gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (status_icon_or_null), tooltip);
 		G_GNUC_END_IGNORE_DEPRECATIONS
 	}

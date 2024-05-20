@@ -41,12 +41,13 @@ struct _XtmProcessMonitor
 };
 G_DEFINE_TYPE (XtmProcessMonitor, xtm_process_monitor, GTK_TYPE_DRAWING_AREA)
 
-static void	xtm_process_monitor_finalize (GObject *object);
-static void	xtm_process_monitor_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
-static void xtm_process_monitor_cairo_set_color (XtmProcessMonitor *monitor, cairo_t *cr, gfloat alpha, guint variant);
-static void	xtm_process_monitor_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
-static gboolean	xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr);
-static void	xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr);
+static void xtm_process_monitor_finalize (GObject *object);
+static void xtm_process_monitor_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
+static void xtm_process_monitor_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
+static gboolean xtm_process_monitor_draw (GtkWidget *widget, cairo_t *cr);
+static void xtm_process_monitor_paint (XtmProcessMonitor *monitor, cairo_t *cr);
+
+
 
 static void
 xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
