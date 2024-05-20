@@ -22,7 +22,7 @@ struct _XtmInodeToSock
 };
 
 XtmInodeToSock *xtm_create_inode_to_sock (void);
-void addtoconninode(XtmInodeToSock *its, char *buffer);
+void addtoconninode (XtmInodeToSock *its, char *buffer);
 void xtm_refresh_inode_to_sock (XtmInodeToSock *);
 void xtm_destroy_inode_to_sock (XtmInodeToSock *);
 XtmInodeToSock *xtm_inode_to_sock_get_default (void);

@@ -45,7 +45,7 @@ struct _XtmNetworkAnalyzer
 };
 
 XtmNetworkAnalyzer *xtm_create_network_analyzer (void);
-void increament_packet_count(char *mac, char *direction, GHashTable* hash_table, long int port);
+void increament_packet_count (char *mac, char *direction, GHashTable *hash_table, long int port);
 void xtm_destroy_network_analyzer (XtmNetworkAnalyzer *analyzer);
 XtmNetworkAnalyzer *xtm_network_analyzer_get_default (void);
 
