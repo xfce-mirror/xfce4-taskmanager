@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2024 Jehan-Antoine Vayssade, <javayss@sleek-think.ovh>
  * Copyright (c) 2010 Mike Massonnet, <mmassonnet@xfce.org>
  * Copyright (c) 2018 Rozhuk Ivan <rozhuk.im@gmail.com>
  *
@@ -13,12 +14,17 @@
 #endif
 
 #include "process-tree-view.h" /* for the columns of the model */
+#include "network-analyzer.h"
 #include "settings.h"
 #include "task-manager.h"
 
 #ifdef HAVE_WNCK
 #include "app-manager.h"
 #include <gdk/gdkx.h>
+#endif
+
+#ifdef HAVE_LIBPCAP
+#include <pcap.h>
 #endif
 
 #include <glib/gi18n.h>
@@ -41,6 +47,7 @@ struct _XtmTaskManagerClass
 {
 	GObjectClass parent_class;
 };
+
 struct _XtmTaskManager
 {
 	GObject parent;
@@ -60,6 +67,12 @@ struct _XtmTaskManager
 	guint64 memory_buffers;
 	guint64 swap_total;
 	guint64 swap_free;
+	guint64 tcp_rx;
+	guint64 tcp_tx;
+	guint64 tcp_error;
+	guint64 old_tcp_rx;
+	guint64 old_tcp_tx;
+	guint64 old_tcp_error;
 };
 G_DEFINE_TYPE (XtmTaskManager, xtm_task_manager, G_TYPE_OBJECT)
 
@@ -100,6 +113,9 @@ xtm_task_manager_init (XtmTaskManager *manager)
 	g_object_get (settings, "full-command-line", &full_cmdline, NULL);
 	g_signal_connect (settings, "notify::more-precision", G_CALLBACK (setting_changed), manager);
 	g_signal_connect (settings, "notify::full-command-line", G_CALLBACK (setting_changed), manager);
+	manager->old_tcp_rx = 0;
+	manager->old_tcp_tx = 0;
+	manager->old_tcp_error = 0;
 }
 
 static void
@@ -107,6 +123,7 @@ xtm_task_manager_finalize (GObject *object)
 {
 	XtmTaskManager *manager = XTM_TASK_MANAGER (object);
 	g_array_free (manager->tasks, TRUE);
+	
 #ifdef HAVE_WNCK
 	if (manager->app_manager != NULL)
 	{
@@ -333,11 +350,14 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 		XTM_PTV_COLUMN_CPU_STR, cpu,
 		XTM_PTV_COLUMN_GROUP_CPU, (task->group_cpu_user + task->group_cpu_system),
 		XTM_PTV_COLUMN_GROUP_CPU_STR, group_cpu,
+		XTM_PTV_COLUMN_PACKET_IN, task->packet_in,
+		XTM_PTV_COLUMN_PACKET_OUT, task->packet_out,
+		XTM_PTV_COLUMN_ACTIVE_SOCKET, task->active_socket,
 		XTM_PTV_COLUMN_PRIORITY, task->prio,
 		XTM_PTV_COLUMN_BACKGROUND, background,
 		XTM_PTV_COLUMN_FOREGROUND, foreground,
 		XTM_PTV_COLUMN_TIMESTAMP, old_timestamp,
-		-1);
+	-1);
 
 	g_free (background);
 	g_free (foreground);
@@ -390,6 +410,33 @@ xtm_task_manager_new (GtkTreeModel *model)
 	XtmTaskManager *manager = g_object_new (XTM_TYPE_TASK_MANAGER, NULL);
 	_xtm_task_manager_set_model (manager, model);
 	return manager;
+}
+
+void
+xtm_task_manager_get_network_info(XtmTaskManager *manager, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	g_return_if_fail (XTM_IS_TASK_MANAGER (manager));
+	get_network_usage (&manager->tcp_rx, &manager->tcp_tx, &manager->tcp_error);
+
+	if(manager->old_tcp_rx == 0 && manager->old_tcp_tx == 0 && manager->old_tcp_error == 0)
+	{
+		*tcp_rx = 0;
+		*tcp_tx = 0;
+		*tcp_error = 0;
+	}
+	else
+	{
+	    gint ms;
+	    g_object_get (settings, "refresh-rate", &ms, NULL);
+        // ugly approximation in guint64
+		*tcp_rx = (manager->tcp_rx - manager->old_tcp_rx) / ms * 1000;
+		*tcp_tx = (manager->tcp_tx - manager->old_tcp_tx) / ms * 1000;
+		*tcp_error = (manager->tcp_error - manager->old_tcp_error) / ms * 1000;
+	}
+
+	manager->old_tcp_rx = manager->tcp_rx;
+	manager->old_tcp_tx = manager->tcp_tx;
+	manager->old_tcp_error = manager->tcp_error;
 }
 
 void
