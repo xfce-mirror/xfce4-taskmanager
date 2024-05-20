@@ -44,11 +44,13 @@
 #include <net/if_dl.h>
 #include <net/route.h>
 
+// clang-fornat off
 #include <netinet/if_ether.h>
 #include <netinet/in.h>
 #include <netinet/in_pcb.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
+// clang-fornat on
 
 #include <arpa/inet.h>
 #include <ifaddrs.h>
