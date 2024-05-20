@@ -54,15 +54,8 @@
 #include <ifaddrs.h>
 
 // struct file in NetBSD
-#define	_KERNEL
 // ugly ! where is defined this ?
 // plateform dependent
-typedef int register_t;
-typedef unsigned long paddr_t;
-#include <machine/types.h>
-#include <sys/types.h>
-#include <sys/file.h>
-#undef _KERNEL
 
 #include "inode-to-sock.h"
 #include "task-manager.h"
@@ -70,9 +63,12 @@ typedef unsigned long paddr_t;
 
 #include <errno.h>
 
+#define	_KERNEL
 #ifdef __OpenBSD__
 extern int errno;
 #else
+typedef long register_t;
+typedef unsigned long paddr_t;
 #include <machine/types.h>
 #include <sys/protosw.h>
 #include <sys/unpcb.h>
@@ -81,6 +77,9 @@ extern int errno;
 #include <sys/domain.h>
 #include <kvm.h>
 #endif
+#include <sys/types.h>
+#include <sys/file.h>
+#undef _KERNEL
 
 char *state_abbrev[] = {
 	"", "start", "run", "sleep", "stop", "zomb", "dead", "onproc"
@@ -592,7 +591,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 
 #ifdef KERN_CPTIME
 	int mib[] = {CTL_KERN, KERN_CPTIME};
-#elseif KERN_CPTIME2
+#elif defined KERN_CPTIME2
 	int mib[] = {CTL_KERN, KERN_CPTIME2};
 #else
 	// NetBSD 10.0

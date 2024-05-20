@@ -11,7 +11,6 @@
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
-#include <netpacket/packet.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
