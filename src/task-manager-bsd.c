@@ -63,7 +63,6 @@
 
 #include <errno.h>
 
-#define	_KERNEL
 #ifdef __OpenBSD__
 extern int errno;
 #else
@@ -77,6 +76,8 @@ typedef unsigned long paddr_t;
 #include <sys/domain.h>
 #include <kvm.h>
 #endif
+
+#define	_KERNEL
 #include <sys/types.h>
 #include <sys/file.h>
 #undef _KERNEL

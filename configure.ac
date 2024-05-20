@@ -108,6 +108,7 @@ else
 		;;
 		dragonfly*|netbsd*|openbsd*|darwin*)
 		ac_os_implementation="bsd"
+		AC_CHECK_LIB([kvm], [kvm_openfiles])
 		AC_CHECK_HEADERS([err.h pwd.h stdlib.h string.h sys/param.h sys/sched.h \
 				sys/swap.h sys/sysctl.h sys/types.h unistd.h])
 		;;
