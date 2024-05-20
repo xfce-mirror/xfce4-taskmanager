@@ -1,6 +1,7 @@
 dnl
 dnl xfce4-taskmanager - A small taskmanager based on the Xfce 4 libraries.
 dnl
+dnl 2024-2024 Jehan-Antoine Vayssade
 dnl 2014-2021 Simon Steinbess
 dnl 2018-2019 Rozhuk Ivan
 dnl 2014 Landry Breuil
@@ -81,6 +82,9 @@ dnl ***********************************
 XDT_CHECK_OPTIONAL_PACKAGE([LIBX11], [x11], [1.6.7], [libx11], [Libx11 support])
 XDT_CHECK_OPTIONAL_PACKAGE([WNCK], [libwnck-3.0], [3.2], [wnck3], [building with libwnck3 for window icons/names], [yes])
 
+AC_CHECK_LIB(pcap, [pcap_open_live])
+AC_CHECK_HEADERS([pcap.h])
+
 dnl ***********************************
 dnl ********** Check for skel *********
 dnl ***********************************
@@ -104,6 +108,7 @@ else
 		;;
 		dragonfly*|netbsd*|openbsd*|darwin*)
 		ac_os_implementation="bsd"
+		AC_CHECK_LIB([kvm], [kvm_openfiles])
 		AC_CHECK_HEADERS([err.h pwd.h stdlib.h string.h sys/param.h sys/sched.h \
 				sys/swap.h sys/sysctl.h sys/types.h unistd.h])
 		;;
