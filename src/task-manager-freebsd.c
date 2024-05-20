@@ -20,15 +20,26 @@
 #include <paths.h>
 #include <string.h>
 
+#include <sys/param.h>
+#include <sys/proc.h>
+#include <sys/sysctl.h>
+#include <sys/types.h>
+#include <sys/user.h>
+#include	<sys/socket.h>
+
 #if defined(__FreeBSD_version) && __FreeBSD_version >= 900044
 #include <sys/vmmeter.h>
 #endif
 
 #include <arpa/inet.h>
 #include <net/ethernet.h>
+#include	<net/if.h>
+#include <net/if_dl.h>
+#include	<net/if_mib.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
+#include <ifaddrs.h>
 
 #include <glib.h>
 
@@ -105,15 +116,30 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 
 
 gboolean
-get_network_usage_filename (gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+get_if_count(int *data)
+{
+        size_t len = sizeof(*data);
+
+        static int32_t name[] = { CTL_NET, PF_LINK, NETLINK_GENERIC, IFMIB_SYSTEM, IFMIB_IFCOUNT };
+	name[0] = CTL_NET;
+	name[1] = PF_LINK;
+	name[2] = NETLINK_GENERIC;
+	name[3] = IFMIB_SYSTEM;
+	name[4] = IFMIB_IFCOUNT;
+
+	return sysctl(name, 5, data, &len, 0, 0) < 0;
+}
+
+gboolean
+get_network_usage_if(int interface, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 {
 	struct ifmibdata data;
-	size_t len = sizeof (data);
+	size_t len = sizeof(data);
 
 	static int32_t name[] = { CTL_NET, PF_LINK, NETLINK_GENERIC, IFMIB_IFDATA, 0, IFDATA_GENERAL };
 	name[4] = interface;
 
-	if (sysctl (name, 6, &data, &len, 0, 0) < 0)
+	if (sysctl(name, 6, &data, &len, 0, 0) < 0)
 		return 1;
 
 	//*tcp_error = data.ifmd_data.ifi_oerrors + data.ifmd_data.ifi_ierrors;
@@ -124,17 +150,29 @@ get_network_usage_filename (gchar *filename, guint64 *tcp_rx, guint64 *tcp_tx, g
 }
 
 gboolean
-get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+get_network_usage(guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 {
-	return get_network_usage_filename ("/proc/net/dev", tcp_rx, tcp_tx, tcp_error);
+	int ifcount = 0;
+
+	if (get_if_count(&ifcount))
+		return 1;
+
+       *tcp_error = 0;
+       *tcp_rx = 0;
+       *tcp_tx = 0;
+
+	for (int i =0; i<ifcount; ++i)
+		get_network_usage_if(i, tcp_rx, tcp_tx, tcp_error);
+
+        return 0;
 }
 
 int
-get_mac_address (const char *device, uint8_t mac[6])
+get_mac_address(const char *device, uint8_t mac[6])
 {
 	struct ifaddrs *ifaddr, *ifa;
 
-	if (getifaddrs (&ifaddr) == -1)
+	if (getifaddrs(&ifaddr) == -1)
 		return -1;
 
 	for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
@@ -145,20 +183,20 @@ get_mac_address (const char *device, uint8_t mac[6])
 		int family = ifa->ifa_addr->sa_family;
 
 		// Check if the interface is a network interface (AF_PACKET for Linux)
-		if (family == AF_LINK && strcmp (device, ifa->ifa_name) == 0)
+		if (family == AF_LINK && strcmp(device, ifa->ifa_name) == 0)
 		{
 			// Check if the interface has a hardware address (MAC address)
 			if (ifa->ifa_data != NULL)
 			{
 				struct sockaddr_dl *sdl = (struct sockaddr_dl *)ifa->ifa_addr;
-				memcpy (mac, sdl->sdl_data + sdl->sdl_nlen, sizeof (uint8_t) * 6);
-				freeifaddrs (ifaddr);
+				memcpy(mac, sdl->sdl_data + sdl->sdl_nlen, sizeof(uint8_t) * 6);
+				freeifaddrs(ifaddr);
 				return 0;
 			}
 		}
 	}
 
-	freeifaddrs (ifaddr);
+	freeifaddrs(ifaddr);
 	return -1;
 }
 
@@ -332,7 +370,7 @@ list_process_fds (Task *task)
 	GHashTableIter iter;
 	gpointer key, value;
 
-	if (analyzer == NULL || inode_to_sock)
+	if (analyzer == NULL || inode_to_sock == NULL)
 		return 1;
 
 	g_hash_table_iter_init (&iter, inode_to_sock->pid);
