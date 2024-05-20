@@ -15,7 +15,7 @@
 
 #include "task-manager.h"
 
-// clang-fornat off
+// clang-format off
 #include <fcntl.h>
 #include <kvm.h>
 #include <paths.h>
@@ -41,7 +41,7 @@
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
-// clang-fornat on
+// clang-format on
 
 #include <glib.h>
 
