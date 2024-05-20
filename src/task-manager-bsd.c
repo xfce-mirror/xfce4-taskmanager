@@ -91,7 +91,6 @@ char *state_abbrev[] = {
 static XtmInodeToSock *inode_to_sock = NULL;
 static XtmNetworkAnalyzer *analyzer = NULL;
 
-void increament_packet_count (char *, char *, GHashTable *hash_table, long int port);
 gboolean get_if_count (int *data);
 gboolean get_network_usage_if (int interface, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
 struct kinfo_file *get_process_fds (int *nfiles, int kern, int arg);
@@ -111,6 +110,11 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 	struct ether_header eth_header;
 	struct ip ip_header;
 	struct tcphdr tcp_header;
+	XtmNetworkAnalyzer *iface;
+	long int src_port, dst_port;
+	char local_mac[18];
+	char src_mac[18];
+	char dst_mac[18];
 
 	memcpy (&eth_header, packet, sizeof (struct ether_header));
 	memcpy (&ip_header, packet + sizeof (struct ether_header), sizeof (struct ip));
@@ -120,19 +124,13 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 	// const struct ether_header *eth_header = (const struct ether_header *)packet;
 	// struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
 	// struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
-
-	// -Wdeclaration-after-statement
-
-	long int src_port, dst_port;
-	char local_mac[18];
-	char src_mac[18];
-	char dst_mac[18];
-
 	// printf("%d, %d \n", eth_heade.ether_type , ip_header.ip_p);
 
 	// Dropped non-ip packet
 	if (eth_header.ether_type != 8 || ip_header.ip_p != 6)
 		return;
+
+	iface = (XtmNetworkAnalyzer *)args;
 
 	src_port = ntohs (tcp_header.th_sport);
 	dst_port = ntohs (tcp_header.th_dport);
@@ -141,9 +139,9 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 
 	snprintf (local_mac, sizeof (local_mac),
 		"%02X:%02X:%02X:%02X:%02X:%02X",
-		analyzer->mac[0], analyzer->mac[1],
-		analyzer->mac[2], analyzer->mac[3],
-		analyzer->mac[4], analyzer->mac[5]);
+		iface->mac[0], iface->mac[1],
+		iface->mac[2], iface->mac[3],
+		iface->mac[4], iface->mac[5]);
 
 	snprintf (src_mac, sizeof (local_mac),
 		"%02X:%02X:%02X:%02X:%02X:%02X",
@@ -158,15 +156,15 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 		eth_header.ether_dhost[4], eth_header.ether_dhost[5]);
 
 	// Debug
-	// pthread_mutex_lock(&analyzer->lock);
+	// pthread_mutex_lock(&iface->lock);
 
 	if (strcmp (local_mac, src_mac) == 0)
-		increament_packet_count (local_mac, "in ", analyzer->packetin, src_port);
+		increament_packet_count (local_mac, "in ", iface->packetin, src_port);
 
 	if (strcmp (local_mac, dst_mac) == 0)
-		increament_packet_count (local_mac, "out", analyzer->packetout, dst_port);
+		increament_packet_count (local_mac, "out", iface->packetout, dst_port);
 
-	// pthread_mutex_unlock(&analyzer->lock);
+	// pthread_mutex_unlock(&iface->lock);
 }
 #endif
 
@@ -321,6 +319,7 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 	// inspired by openbsd fstat/fstat.c
 
 	int nfiles, port;
+	XtmNetworkAnalyzer *current;
 	struct kinfo_file *kf = get_process_fds (&nfiles, KERN_FILE_BYPID, task->pid);
 
 	if (kf == NULL)
@@ -337,11 +336,13 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 			// task->packet_out +=  kf[i].f_rwfer;
 			// task->packet_out +=  kf[i].f_wbytes;netstat
 
-			if (analyzer != NULL)
+			current = analyzer;
+			while (current != NULL)
 			{
 				port = ntohs (kf[i].inp_lport);
-				task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
-				task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
+				task->packet_in += (guint64)g_hash_table_lookup (current->packetin, &port);
+				task->packet_out += (guint64)g_hash_table_lookup (current->packetout, &port);
+				current = current->next;
 			}
 
 			task->active_socket += 1;
@@ -351,6 +352,7 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 	free (kf);
 #else
 	// inspired by netbsd fstat/fstat.c
+	XtmNetworkAnalyzer *current;
 	char *memf, *nlistf;
 	char buf[_POSIX2_LINE_MAX];
 	kvm_t *kd;
@@ -368,6 +370,7 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 	struct domain dom;
 	struct in4pcb in4pcb;
 	struct in6pcb in6pcb;
+	struct inpcb *inp;
 	int port;
 
 	nlistf = memf = NULL;
@@ -412,7 +415,7 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 					continue;
 
 				kvm_read (kd, (u_long)so.so_pcb, (char *)&in4pcb, sizeof (in4pcb));
-				struct inpcb *inp = (struct inpcb *)&in4pcb;
+				inp = (struct inpcb *)&in4pcb;
 				port = ntohs (inp->inp_lport);
 			}
 		}
@@ -425,7 +428,7 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 					continue;
 
 				kvm_read (kd, (u_long)so.so_pcb, (char *)&in6pcb, sizeof (in6pcb));
-				struct inpcb *inp = (struct inpcb *)&in6pcb;
+				inp = (struct inpcb *)&in6pcb;
 				port = ntohs (inp->inp_lport);
 			}
 		}
@@ -435,10 +438,12 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 
 		task->active_socket += 1;
 
-		if (analyzer != NULL)
+		current = analyzer;
+		if (current != NULL)
 		{
-			task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
-			task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
+			task->packet_in += (guint64)g_hash_table_lookup (current->packetin, &port);
+			task->packet_out += (guint64)g_hash_table_lookup (current->packetout, &port);
+			current = current->next;
 		}
 	}
 
@@ -457,11 +462,18 @@ get_task_list (GArray *task_list)
 	struct kinfo_proc *kp;
 #else
 	struct kinfo_proc2 *kp;
+        char errbuf[_POSIX2_LINE_MAX];
+        kvm_t *kdp;
 #endif
 	Task t;
 	char **args;
-	gchar *buf;
 	int nproc, i;
+	gchar *buf;
+
+#ifdef __OpenBSD__
+#else
+        kdp = kvm_open(NULL, NULL, NULL, KVM_NO_FILES, errbuf);
+#endif
 
 	analyzer = xtm_network_analyzer_get_default ();
 	inode_to_sock = xtm_inode_to_sock_get_default ();
@@ -520,6 +532,8 @@ get_task_list (GArray *task_list)
 		t.rss = p.p_vm_rssize * getpagesize ();
 		g_snprintf (t.state, sizeof t.state, "%s", state_abbrev[p.p_stat]);
 		g_strlcpy (t.name, p.p_comm, strlen (p.p_comm) + 1);
+
+#ifdef __OpenBSD__
 		/* shamelessly stolen from top/machine.c */
 		if (!P_ZOMBIE (&p))
 		{
@@ -536,27 +550,48 @@ get_task_list (GArray *task_list)
 				mib[1] = KERN_PROC_ARGS;
 				mib[2] = t.pid;
 				mib[3] = KERN_PROC_ARGV;
+
 				if (sysctl (mib, 4, args, &size, NULL, 0) == 0)
 					break;
+
 				if (errno != ENOMEM)
 				{ /* ESRCH: process disappeared */
 					/* printf ("process with pid %d disappeared, errno=%d\n", t.pid, errno); */
-					args[0] = "\0";
+					args[0] = '\0';
 					args[1] = NULL;
 					break;
 				}
 			}
 
-#ifdef __OpenBSD__
+			/* make sure the string ends with nul */
+			args[size-1] = NULL;
+
 			buf = g_strjoinv (" ", args);
 			g_assert (g_utf8_validate (buf, -1, NULL));
 			g_strlcpy (t.cmdline, buf, sizeof t.cmdline);
 			g_free (buf);
-#else
-			// g_strjoinv crash under NetBSD 10.0
-#endif
 			free (args);
 		}
+#else
+		// assuming NetBSD 10.0
+		// https://github.com/NetBSD/src/blob/trunk/lib/libkvm/kvm_proc.c#L1116
+		// https://github.com/NetBSD/pkgsrc/blob/trunk/sysutils/xfce4-taskmanager/files/task-manager-netbsd.c
+		// fixing code used in __OpenBSD__ crash at g_strjoinv due to strlen
+
+		if (!(kp[i].p_stat == SDEAD))
+		{
+			args = kvm_getargv2(kdp, &kp[i], BUFSIZ);
+			if (args != NULL)
+			{
+				buf = g_strjoinv(" ", args);
+				g_strlcpy (t.cmdline, buf, sizeof(t.cmdline));
+				g_free (buf);
+				// Memory seem stable without that
+				// otherwise i get a segfault
+				// free (args);
+			}
+		}
+#endif
 
 		t.cpu_user = (100.0f * ((gfloat)p.p_pctcpu / FSCALE));
 		t.cpu_system = 0.0f; /* TODO ? */
