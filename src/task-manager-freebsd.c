@@ -63,6 +63,10 @@ static const gchar ki_stat2state[] = {
 static XtmInodeToSock *inode_to_sock = NULL;
 static XtmNetworkAnalyzer *analyzer = NULL;
 
+void list_process_fds (Task *task);
+gboolean get_if_count (int *data);
+gboolean get_network_usage_if (int interface, guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error);
+
 #ifdef HAVE_LIBPCAP
 void
 packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
@@ -358,8 +362,9 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 		assos = atoi (pid);
 
 		sscanf (local_address, "%*[^:]:%d", &local_port);
-		g_hash_table_replace (its->hash, inode1, (gpointer)local_port);
-		g_hash_table_replace (its->pid, inode2, (gpointer)assos);
+		// (intptr_t) -> cast to pointer from integer of different size [-Wint-to-pointer-cast]
+		g_hash_table_replace (its->hash, inode1, (gpointer)(intptr_t)local_port);
+		g_hash_table_replace (its->pid, inode2, (gpointer)(intptr_t)assos);
 
 		// Print the parsed values
 		// printf("%d -> %d\n", *inode, local_port);
@@ -374,16 +379,17 @@ list_process_fds (Task *task)
 {
 	GHashTableIter iter;
 	gpointer key, value;
+	gint key_int, value_int;
+	long int port;
 
 	g_hash_table_iter_init (&iter, inode_to_sock->pid);
 	while (g_hash_table_iter_next (&iter, &key, &value))
 	{
-		gint key_int = *(int *)(key);
-		gint value_int = GPOINTER_TO_INT (value);
+		key_int = *(int *)(key);
+		value_int = GPOINTER_TO_INT (value);
 		if (task->pid == value_int)
 		{
-			gpointer value = g_hash_table_lookup (inode_to_sock->hash, &key_int);
-			long int port = (long int)value;
+			port = (long int)g_hash_table_lookup (inode_to_sock->hash, &key_int);
 			task->active_socket += 1;
 			task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
 			task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
