@@ -303,6 +303,9 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 	char *token;
 	char *delim = " ";
 
+	if (analyzer == NULL)
+		return;
+
 	// Execute the sockstat command and get the output
 	fp = popen ("sockstat -L -P tcp,udp", "r");
 	if (fp == NULL)
@@ -371,9 +374,6 @@ list_process_fds (Task *task)
 {
 	GHashTableIter iter;
 	gpointer key, value;
-
-	if (analyzer == NULL || inode_to_sock == NULL)
-		return 1;
 
 	g_hash_table_iter_init (&iter, inode_to_sock->pid);
 	while (g_hash_table_iter_next (&iter, &key, &value))
@@ -492,7 +492,8 @@ get_task_details (struct kinfo_proc *kp, Task *task)
 	if (kp->ki_flag & P_JAILED)
 		task->state[i++] = 'J';
 
-	list_process_fds (task);
+	if (analyzer != NULL)
+		list_process_fds (task);
 
 	return TRUE;
 }

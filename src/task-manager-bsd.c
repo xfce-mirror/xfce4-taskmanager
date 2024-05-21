@@ -108,9 +108,18 @@ void
 packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
 	// Extract source and destination IP addresses and ports from the packet
-	struct ether_header *eth_header = (struct ether_header *)packet;
-	struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
-	struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
+	struct ether_header eth_header;
+	struct ip ip_header;
+	struct tcphdr tcp_header;
+
+	memcpy (&eth_header, packet, sizeof (struct ether_header));
+	memcpy (&ip_header, packet + sizeof (struct ether_header), sizeof (struct ip));
+	memcpy (&tcp_header, packet + sizeof (struct ether_header) + sizeof (struct ip), sizeof (struct ip));
+
+	// cast -> increases required alignment from 1 to 2 [-Wcast-align]
+	// const struct ether_header *eth_header = (const struct ether_header *)packet;
+	// struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
+	// struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
 
 	// -Wdeclaration-after-statement
 
@@ -119,34 +128,34 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 	char src_mac[18];
 	char dst_mac[18];
 
-	// printf("%d, %d \n", eth_header->ether_type , ip_header->ip_p);
+	// printf("%d, %d \n", eth_heade.ether_type , ip_header.ip_p);
 
 	// Dropped non-ip packet
-	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
+	if (eth_header.ether_type != 8 || ip_header.ip_p != 6)
 		return;
 
-	src_port = ntohs (tcp_header->th_sport);
-	dst_port = ntohs (tcp_header->th_dport);
+	src_port = ntohs (tcp_header.th_sport);
+	dst_port = ntohs (tcp_header.th_dport);
 
 	// directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
 
-	sprintf (local_mac,
+	snprintf (local_mac, sizeof (local_mac),
 		"%02X:%02X:%02X:%02X:%02X:%02X",
 		analyzer->mac[0], analyzer->mac[1],
 		analyzer->mac[2], analyzer->mac[3],
 		analyzer->mac[4], analyzer->mac[5]);
 
-	sprintf (src_mac,
+	snprintf (src_mac, sizeof (local_mac),
 		"%02X:%02X:%02X:%02X:%02X:%02X",
-		eth_header->ether_shost[0], eth_header->ether_shost[1],
-		eth_header->ether_shost[2], eth_header->ether_shost[3],
-		eth_header->ether_shost[4], eth_header->ether_shost[5]);
+		eth_header.ether_shost[0], eth_header.ether_shost[1],
+		eth_header.ether_shost[2], eth_header.ether_shost[3],
+		eth_header.ether_shost[4], eth_header.ether_shost[5]);
 
-	sprintf (dst_mac,
+	snprintf (dst_mac, sizeof (local_mac),
 		"%02X:%02X:%02X:%02X:%02X:%02X",
-		eth_header->ether_dhost[0], eth_header->ether_dhost[1],
-		eth_header->ether_dhost[2], eth_header->ether_dhost[3],
-		eth_header->ether_dhost[4], eth_header->ether_dhost[5]);
+		eth_header.ether_dhost[0], eth_header.ether_dhost[1],
+		eth_header.ether_dhost[2], eth_header.ether_dhost[3],
+		eth_header.ether_dhost[4], eth_header.ether_dhost[5]);
 
 	// Debug
 	// pthread_mutex_lock(&analyzer->lock);
@@ -223,8 +232,11 @@ get_mac_address (const char *device, uint8_t mac[6])
 			// Check if the interface has a hardware address (MAC address)
 			if (ifa->ifa_data != NULL)
 			{
-				struct sockaddr_dl *sdl = (struct sockaddr_dl *)ifa->ifa_addr;
-				memcpy (mac, sdl->sdl_data + sdl->sdl_nlen, sizeof (uint8_t) * 6);
+				// warning: cast from 'struct sockaddr *' to 'struct sockaddr_dl *' increases required alignment from 1 to 2
+				// struct sockaddr_dl *sdl = (struct sockaddr_dl *)ifa->ifa_addr;
+				struct sockaddr_dl sdl;
+				memcpy (&sdl, ifa->ifa_addr, sizeof (struct sockaddr_dl));
+				memcpy (mac, sdl.sdl_data + sdl.sdl_nlen, sizeof (uint8_t) * 6);
 				freeifaddrs (ifaddr);
 				return 0;
 			}
@@ -293,6 +305,7 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 #ifdef __OpenBSD__
 	// unneeded
 #else
+	// unneeded
 #endif
 }
 
@@ -307,7 +320,7 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 	// inspired by openbsd netstat/inet.c
 	// inspired by openbsd fstat/fstat.c
 
-	int nfiles;
+	int nfiles, port;
 	struct kinfo_file *kf = get_process_fds (&nfiles, KERN_FILE_BYPID, task->pid);
 
 	if (kf == NULL)
@@ -324,9 +337,13 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 			// task->packet_out +=  kf[i].f_rwfer;
 			// task->packet_out +=  kf[i].f_wbytes;netstat
 
-			int port = ntohs (kf[i].inp_lport);
-			task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
-			task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
+			if (analyzer != NULL)
+			{
+				port = ntohs (kf[i].inp_lport);
+				task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
+				task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
+			}
+
 			task->active_socket += 1;
 		}
 	}
@@ -417,8 +434,12 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 			continue;
 
 		task->active_socket += 1;
-		task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
-		task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
+
+		if (analyzer != NULL)
+		{
+			task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
+			task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
+		}
 	}
 
 	kvm_close (kd);
@@ -520,7 +541,7 @@ get_task_list (GArray *task_list)
 				if (errno != ENOMEM)
 				{ /* ESRCH: process disappeared */
 					/* printf ("process with pid %d disappeared, errno=%d\n", t.pid, errno); */
-					args[0] = '\0';
+					args[0] = "\0";
 					args[1] = NULL;
 					break;
 				}
@@ -539,7 +560,9 @@ get_task_list (GArray *task_list)
 
 		t.cpu_user = (100.0f * ((gfloat)p.p_pctcpu / FSCALE));
 		t.cpu_system = 0.0f; /* TODO ? */
-		list_process_fds (&t, &p);
+
+		if (analyzer != NULL)
+			list_process_fds (&t, &p);
 
 		g_array_append_val (task_list, t);
 	}
