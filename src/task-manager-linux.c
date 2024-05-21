@@ -38,7 +38,7 @@ static XtmInodeToSock *inode_to_sock = NULL;
 static gushort _cpu_count = 0;
 static gulong jiffies_total_delta = 0;
 
-void list_process_fds(Task *task);
+void list_process_fds (Task *task);
 
 void
 addtoconninode (XtmInodeToSock *its, char *buffer)
@@ -63,7 +63,7 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 	FILE *procinfo = fopen ("/proc/net/tcp", "r");
 	if (procinfo)
 	{
-		if(fgets (buffer, sizeof (buffer), procinfo) != 0)
+		if (fgets (buffer, sizeof (buffer), procinfo) != 0)
 		{
 			do
 			{
@@ -78,7 +78,7 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 	procinfo = fopen ("/proc/net/tcp6", "r");
 	if (procinfo != NULL)
 	{
-		if(fgets (buffer, sizeof (buffer), procinfo))
+		if (fgets (buffer, sizeof (buffer), procinfo))
 		{
 			do
 			{
@@ -98,7 +98,7 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 	struct ether_header *eth_header = (struct ether_header *)packet;
 	struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
 	struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
-	XtmNetworkAnalyzer *iface = (XtmNetworkAnalyzer*)args;
+	XtmNetworkAnalyzer *iface = (XtmNetworkAnalyzer *)args;
 
 	// Dropped non-ip packet
 	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
@@ -234,7 +234,7 @@ get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 }
 
 void
-list_process_fds(Task *task)
+list_process_fds (Task *task)
 {
 	XtmNetworkAnalyzer *current;
 	char path[1024];
@@ -252,24 +252,24 @@ list_process_fds(Task *task)
 
 	dir = opendir (path);
 
-	if(dir == 0)
+	if (dir == 0)
 		return;
 
 	while ((entry = readdir (dir)) != NULL)
 	{
 		if (entry->d_type != DT_LNK)
 			continue;
-			
+
 		snprintf (link, sizeof (link), "%s/%s", path, entry->d_name);
 		len = readlink (link, target, sizeof (target) - 1);
 
 		if (len == -1)
 			continue;
-			
+
 		target[len] = '\0';
 		if (strncmp (target, "socket:", 7) != 0)
 			continue;
-			
+
 		int inode;
 		if (sscanf (target, "socket:[%d]", &inode) == 1)
 		{
@@ -577,7 +577,7 @@ get_task_details (GPid pid, Task *task)
 		fclose (file);
 	}
 
-	list_process_fds(task);
+	list_process_fds (task);
 
 	/* Read the full command line */
 	if (!get_task_cmdline (task))
