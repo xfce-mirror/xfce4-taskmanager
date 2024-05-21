@@ -75,6 +75,7 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 	struct ether_header *eth_header = (struct ether_header *)packet;
 	struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
 	struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
+	XtmNetworkAnalyzer *iface = (XtmNetworkAnalyzer*)args;
 
 	// Dropped non-ip packet
 	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
@@ -91,9 +92,9 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 
 	sprintf (local_mac,
 		"%02X:%02X:%02X:%02X:%02X:%02X",
-		analyzer->mac[0], analyzer->mac[1],
-		analyzer->mac[2], analyzer->mac[3],
-		analyzer->mac[4], analyzer->mac[5]);
+		iface->mac[0], iface->mac[1],
+		iface->mac[2], iface->mac[3],
+		iface->mac[4], iface->mac[5]);
 
 	sprintf (src_mac,
 		"%02X:%02X:%02X:%02X:%02X:%02X",
@@ -108,15 +109,15 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 		eth_header->ether_dhost[4], eth_header->ether_dhost[5]);
 
 	// Debug
-	// pthread_mutex_lock(&analyzer->lock);
+	// pthread_mutex_lock(&iface->lock);
 
 	if (strcmp (local_mac, src_mac) == 0)
-		increament_packet_count (local_mac, "in ", analyzer->packetin, src_port);
+		increament_packet_count (local_mac, "in ", iface->packetin, src_port);
 
 	if (strcmp (local_mac, dst_mac) == 0)
-		increament_packet_count (local_mac, "out", analyzer->packetout, dst_port);
+		increament_packet_count (local_mac, "out", iface->packetout, dst_port);
 
-	// pthread_mutex_unlock(&analyzer->lock);
+	// pthread_mutex_unlock(&iface->lock);
 }
 #endif
 
@@ -377,6 +378,7 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 void
 list_process_fds (Task *task)
 {
+	XtmNetworkAnalyzer *current;
 	GHashTableIter iter;
 	gpointer key, value;
 	gint key_int, value_int;
@@ -391,8 +393,14 @@ list_process_fds (Task *task)
 		{
 			port = (long int)g_hash_table_lookup (inode_to_sock->hash, &key_int);
 			task->active_socket += 1;
-			task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
-			task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
+
+			current = analyzer;
+			while(current)
+			{
+				task->packet_in += (guint64)g_hash_table_lookup (current->packetin, &port);
+				task->packet_out += (guint64)g_hash_table_lookup (current->packetout, &port);
+				current = current->next;
+			}
 		}
 	}
 }
