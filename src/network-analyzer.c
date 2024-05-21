@@ -89,12 +89,14 @@ xtm_create_network_analyzer (void)
 		if (analyzer == NULL)
 		{
 			analyzer = (XtmNetworkAnalyzer *)malloc (sizeof (XtmNetworkAnalyzer));
+			analyzer->next = NULL;
 			current = analyzer;
 		}
 		else
 		{
 			current->next = (XtmNetworkAnalyzer *)malloc (sizeof (XtmNetworkAnalyzer));
 			current = current->next;
+			current->next = NULL;
 		}
 
 		current->handle = handle;

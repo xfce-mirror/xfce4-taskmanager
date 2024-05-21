@@ -75,7 +75,7 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 	struct ether_header *eth_header = (struct ether_header *)packet;
 	struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
 	struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
-	XtmNetworkAnalyzer *iface = (XtmNetworkAnalyzer*)args;
+	XtmNetworkAnalyzer *iface = (XtmNetworkAnalyzer *)args;
 
 	// Dropped non-ip packet
 	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
@@ -395,7 +395,7 @@ list_process_fds (Task *task)
 			task->active_socket += 1;
 
 			current = analyzer;
-			while(current)
+			while (current)
 			{
 				task->packet_in += (guint64)g_hash_table_lookup (current->packetin, &port);
 				task->packet_out += (guint64)g_hash_table_lookup (current->packetout, &port);

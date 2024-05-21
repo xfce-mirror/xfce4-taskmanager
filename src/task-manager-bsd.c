@@ -462,8 +462,8 @@ get_task_list (GArray *task_list)
 	struct kinfo_proc *kp;
 #else
 	struct kinfo_proc2 *kp;
-        char errbuf[_POSIX2_LINE_MAX];
-        kvm_t *kdp;
+	char errbuf[_POSIX2_LINE_MAX];
+	kvm_t *kdp;
 #endif
 	Task t;
 	char **args;
@@ -472,7 +472,7 @@ get_task_list (GArray *task_list)
 
 #ifdef __OpenBSD__
 #else
-        kdp = kvm_open(NULL, NULL, NULL, KVM_NO_FILES, errbuf);
+	kdp = kvm_open (NULL, NULL, NULL, KVM_NO_FILES, errbuf);
 #endif
 
 	analyzer = xtm_network_analyzer_get_default ();
@@ -563,9 +563,6 @@ get_task_list (GArray *task_list)
 				}
 			}
 
-			/* make sure the string ends with nul */
-			args[size-1] = NULL;
-
 			buf = g_strjoinv (" ", args);
 			g_assert (g_utf8_validate (buf, -1, NULL));
 			g_strlcpy (t.cmdline, buf, sizeof t.cmdline);
@@ -580,11 +577,11 @@ get_task_list (GArray *task_list)
 
 		if (!(kp[i].p_stat == SDEAD))
 		{
-			args = kvm_getargv2(kdp, &kp[i], BUFSIZ);
+			args = kvm_getargv2 (kdp, &kp[i], BUFSIZ);
 			if (args != NULL)
 			{
-				buf = g_strjoinv(" ", args);
-				g_strlcpy (t.cmdline, buf, sizeof(t.cmdline));
+				buf = g_strjoinv (" ", args);
+				g_strlcpy (t.cmdline, buf, sizeof (t.cmdline));
 				g_free (buf);
 				// Memory seem stable without that
 				// otherwise i get a segfault
