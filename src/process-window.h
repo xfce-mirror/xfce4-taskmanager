@@ -37,7 +37,7 @@ GtkWidget *xtm_process_window_new (void);
 void xtm_process_window_settings_init (XtmProcessWindow *window, XfconfChannel *channel);
 void xtm_process_window_show (GtkWidget *widget);
 GtkTreeModel *xtm_process_window_get_model (XtmProcessWindow *window);
-void xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar *memory_str, gfloat swap, gchar *swap_str);
+void xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar *memory_str, gfloat swap, gchar *swap_str, guint64 tcp_rx, guint64 tcp_tx, guint64 tcp_error);
 void xtm_process_window_show_swap_usage (XtmProcessWindow *window, gboolean show_swap_usage);
 
 #endif /* !PROCESS_WINDOW_H */
