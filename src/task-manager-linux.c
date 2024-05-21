@@ -33,9 +33,12 @@
 #include "network-analyzer.h"
 #include "task-manager.h"
 
+static XtmNetworkAnalyzer *analyzer = NULL;
 static XtmInodeToSock *inode_to_sock = NULL;
 static gushort _cpu_count = 0;
 static gulong jiffies_total_delta = 0;
+
+void list_process_fds(Task *task);
 
 void
 addtoconninode (XtmInodeToSock *its, char *buffer)
@@ -43,13 +46,14 @@ addtoconninode (XtmInodeToSock *its, char *buffer)
 	char rem_addr[128], local_addr[128];
 	int local_port, rem_port;
 	int *inode = g_new0 (gint, 1);
+	char dummy[512];
 
 	sscanf (
 		buffer,
-		"%*d: %64[0-9A-Fa-f]:%X %64[0-9A-Fa-f]:%X %*X %*lX:%*lX %*X:%*lX %*lX %*d %*d %d %*512s\n",
-		local_addr, &local_port, rem_addr, &rem_port, inode);
+		"%*d: %64[0-9A-Fa-f]:%X %64[0-9A-Fa-f]:%X %*X %*X:%*X %*X:%*X %*X %*d %*d %d %512s\n",
+		local_addr, &local_port, rem_addr, &rem_port, inode, dummy);
 
-	g_hash_table_replace (its->hash, inode, (gpointer)local_port);
+	g_hash_table_replace (its->hash, inode, (gpointer)(intptr_t)local_port);
 }
 
 void
@@ -59,24 +63,29 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 	FILE *procinfo = fopen ("/proc/net/tcp", "r");
 	if (procinfo)
 	{
-		fgets (buffer, sizeof (buffer), procinfo);
-		do
+		if(fgets (buffer, sizeof (buffer), procinfo) != 0)
 		{
-			if (fgets (buffer, sizeof (buffer), procinfo))
-				addtoconninode (its, buffer);
-		} while (!feof (procinfo));
+			do
+			{
+				if (fgets (buffer, sizeof (buffer), procinfo))
+					addtoconninode (its, buffer);
+			} while (!feof (procinfo));
+		}
+
 		fclose (procinfo);
 	}
 
 	procinfo = fopen ("/proc/net/tcp6", "r");
 	if (procinfo != NULL)
 	{
-		fgets (buffer, sizeof (buffer), procinfo);
-		do
+		if(fgets (buffer, sizeof (buffer), procinfo))
 		{
-			if (fgets (buffer, sizeof (buffer), procinfo))
-				addtoconninode (its, buffer);
-		} while (!feof (procinfo));
+			do
+			{
+				if (fgets (buffer, sizeof (buffer), procinfo))
+					addtoconninode (its, buffer);
+			} while (!feof (procinfo));
+		}
 		fclose (procinfo);
 	}
 }
@@ -85,12 +94,11 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 void
 packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
-	XtmNetworkAnalyzer *analyzer = (XtmNetworkAnalyzer *)args;
-
 	// Extract source and destination IP addresses and ports from the packet
 	struct ether_header *eth_header = (struct ether_header *)packet;
 	struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
 	struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
+	XtmNetworkAnalyzer *iface = (XtmNetworkAnalyzer*)args;
 
 	// Dropped non-ip packet
 	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
@@ -107,9 +115,9 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 
 	sprintf (local_mac,
 		"%02X:%02X:%02X:%02X:%02X:%02X",
-		analyzer->mac[0], analyzer->mac[1],
-		analyzer->mac[2], analyzer->mac[3],
-		analyzer->mac[4], analyzer->mac[5]);
+		iface->mac[0], iface->mac[1],
+		iface->mac[2], iface->mac[3],
+		iface->mac[4], iface->mac[5]);
 
 	sprintf (src_mac,
 		"%02X:%02X:%02X:%02X:%02X:%02X",
@@ -124,15 +132,15 @@ packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *p
 		eth_header->ether_dhost[4], eth_header->ether_dhost[5]);
 
 	// Debug
-	// pthread_mutex_lock(&analyzer->lock);
+	// pthread_mutex_lock(&iface->lock);
 
 	if (strcmp (local_mac, src_mac) == 0)
-		increament_packet_count (local_mac, "in ", analyzer->packetin, src_port);
+		increament_packet_count (local_mac, "in ", iface->packetin, src_port);
 
 	if (strcmp (local_mac, dst_mac) == 0)
-		increament_packet_count (local_mac, "out", analyzer->packetout, dst_port);
+		increament_packet_count (local_mac, "out", iface->packetout, dst_port);
 
-	// pthread_mutex_unlock(&analyzer->lock);
+	// pthread_mutex_unlock(&iface->lock);
 }
 #endif
 
@@ -223,6 +231,63 @@ get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 	fclose (file);
 
 	return TRUE;
+}
+
+void
+list_process_fds(Task *task)
+{
+	XtmNetworkAnalyzer *current;
+	char path[1024];
+	char link[2048];
+	char target[2048];
+	struct dirent *entry;
+	ssize_t len;
+	long int port;
+	DIR *dir;
+
+	task->packet_in = 0;
+	task->packet_out = 0;
+
+	snprintf (path, sizeof (path), "/proc/%d/fd", (int)task->pid);
+
+	dir = opendir (path);
+
+	if(dir == 0)
+		return;
+
+	while ((entry = readdir (dir)) != NULL)
+	{
+		if (entry->d_type != DT_LNK)
+			continue;
+			
+		snprintf (link, sizeof (link), "%s/%s", path, entry->d_name);
+		len = readlink (link, target, sizeof (target) - 1);
+
+		if (len == -1)
+			continue;
+			
+		target[len] = '\0';
+		if (strncmp (target, "socket:", 7) != 0)
+			continue;
+			
+		int inode;
+		if (sscanf (target, "socket:[%d]", &inode) == 1)
+		{
+			task->active_socket += 1;
+			port = (long int)g_hash_table_lookup (inode_to_sock->hash, &inode);
+
+			current = analyzer;
+			while (current)
+			{
+				// pthread_mutex_lock(&analyzer->lock);
+				task->packet_in += (guint64)g_hash_table_lookup (current->packetin, &port);
+				task->packet_out += (guint64)g_hash_table_lookup (current->packetout, &port);
+				// pthread_mutex_lock(&analyzer->lock);
+				current = current->next;
+			}
+		}
+	}
+	closedir (dir);
 }
 
 gboolean
@@ -512,54 +577,7 @@ get_task_details (GPid pid, Task *task)
 		fclose (file);
 	}
 
-	task->packet_in = 0;
-	task->packet_out = 0;
-
-	char path[1024];
-	snprintf (path, sizeof (path), "/proc/%d/fd", (int)pid);
-	XtmNetworkAnalyzer *analyzer = xtm_network_analyzer_get_default ();
-
-	/***************************/
-	DIR *dir = opendir (path);
-	if (dir)
-	{
-		struct dirent *entry;
-		while ((entry = readdir (dir)) != NULL)
-		{
-			if (entry->d_type == DT_LNK)
-			{
-				char link[2048];
-				snprintf (link, sizeof (link), "%s/%s", path, entry->d_name);
-				char target[2048];
-				ssize_t len = readlink (link, target, sizeof (target) - 1);
-				if (len != -1)
-				{
-					target[len] = '\0';
-					if (strncmp (target, "socket:", 7) == 0)
-					{
-						int inode;
-						if (sscanf (target, "socket:[%d]", &inode) == 1)
-						{
-							task->active_socket += 1;
-
-							gpointer value = g_hash_table_lookup (inode_to_sock->hash, &inode);
-							long int port = (long int)value;
-
-							if (analyzer)
-							{
-								// pthread_mutex_lock(&analyzer->lock);
-								task->packet_in += (guint64)g_hash_table_lookup (analyzer->packetin, &port);
-								task->packet_out += (guint64)g_hash_table_lookup (analyzer->packetout, &port);
-								// pthread_mutex_lock(&analyzer->lock);
-							}
-						}
-					}
-				}
-			}
-		}
-		closedir (dir);
-	}
-	/***************************/
+	list_process_fds(task);
 
 	/* Read the full command line */
 	if (!get_task_cmdline (task))
@@ -576,6 +594,7 @@ get_task_list (GArray *task_list)
 	GPid pid;
 	Task task;
 
+	analyzer = xtm_network_analyzer_get_default ();
 	inode_to_sock = xtm_inode_to_sock_get_default ();
 	xtm_refresh_inode_to_sock (inode_to_sock);
 
