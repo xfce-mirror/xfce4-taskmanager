@@ -35,6 +35,29 @@ init_stats (void)
 	kc = kstat_open ();
 }
 
+int
+get_mac_address (const char *device, uint8_t mac[6])
+{
+	memset (mac, 0, sizeof (uint8_t) * 6);
+	return FALSE;
+}
+
+gboolean
+get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	*tcp_rx = 0;
+	*tcp_tx = 0;
+	*tcp_error = 0;
+	return TRUE;
+}
+
+#ifdef HAVE_LIBPCAP
+void
+packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
+{
+}
+#endif
+
 gboolean
 get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
 {
