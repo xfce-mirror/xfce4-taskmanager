@@ -11,6 +11,15 @@
 #include "config.h"
 #endif
 
+#include <cairo-gobject.h>
+#include <gdk/gdkkeysyms.h>
+#include <glib-object.h>
+#include <glib/gi18n.h>
+#include <glib/gprintf.h>
+#include <gtk/gtk.h>
+#include <unistd.h>
+
+#include "network-analyzer.h"
 #include "process-tree-model.h"
 #include "process-tree-view.h"
 #include "settings.h"
@@ -37,6 +46,9 @@ enum
 	COLUMN_UID,
 	COLUMN_CPU,
 	COLUMN_GROUP_CPU,
+	COLUMN_PACKET_IN,
+	COLUMN_PACKET_OUT,
+	COLUMN_ACTIVE_SOCKET,
 	COLUMN_PRIORITY,
 	N_COLUMNS,
 };
@@ -88,6 +100,7 @@ xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
 static void
 xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 {
+	XtmNetworkAnalyzer *network;
 	GtkCellRenderer *cell_text, *cell_right_aligned;
 	GtkTreeViewColumn *column;
 	gboolean visible;
@@ -122,6 +135,9 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 		G_TYPE_STRING, /* XTM_PTV_COLUMN_CPU_STR */
 		G_TYPE_FLOAT, /* XTM_PTV_COLUMN_GROUP_CPU */
 		G_TYPE_STRING, /* XTM_PTV_COLUMN_GROUP_CPU_STR */
+		G_TYPE_UINT64, /* XTM_PTV_COLUMN_PACKET_IN */
+		G_TYPE_UINT64, /* XTM_PTV_COLUMN_PACKET_OUT */
+		G_TYPE_UINT64, /* XTM_PTV_COLUMN_ACTIVE_SOCKET */
 		G_TYPE_INT, /* XTM_PTV_COLUMN_PRIORITY */
 		G_TYPE_STRING, /* XTM_PTV_COLUMN_BACKGROUND */
 		G_TYPE_STRING, /* XTM_PTV_COLUMN_FOREGROUND */
@@ -244,6 +260,43 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_GROUP_CPU));
 	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
 	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_GROUP_CPU]);
+
+	/*************/
+
+	g_object_get (treeview->settings, "column-packet-in", &visible, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("PacketIn"), cell_right_aligned, "text", XTM_PTV_COLUMN_PACKET_IN, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_PACKET_IN));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_PACKET_IN));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
+	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_PACKET_IN]);
+
+	g_object_get (treeview->settings, "column-packet-out", &visible, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("PacketOut"), cell_right_aligned, "text", XTM_PTV_COLUMN_PACKET_OUT, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_PACKET_OUT));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_PACKET_OUT));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
+	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_PACKET_OUT]);
+
+	g_object_get (treeview->settings, "column-active-socket", &visible, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("ActiveSocket"), cell_right_aligned, "text", XTM_PTV_COLUMN_ACTIVE_SOCKET, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
+	g_object_set (column, COLUMN_PROPERTIES, NULL);
+	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_ACTIVE_SOCKET));
+	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_ACTIVE_SOCKET));
+	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
+	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_ACTIVE_SOCKET]);
+
+	// insufficient permission
+	network = xtm_network_analyzer_get_default ();
+	if (network == NULL)
+	{
+		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_PACKET_IN]), FALSE);
+		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_PACKET_OUT]), FALSE);
+		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_ACTIVE_SOCKET]), FALSE);
+	}
+
+	/*******************/
 
 	g_object_get (treeview->settings, "column-priority", &visible, NULL);
 	/* TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view header. */
@@ -842,6 +895,12 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 			column_id = COLUMN_GROUP_CPU;
 		else if (!g_strcmp0 (pspec->name, "column-priority"))
 			column_id = COLUMN_PRIORITY;
+		else if (!g_strcmp0 (pspec->name, "column-packet-in"))
+			column_id = COLUMN_PACKET_IN;
+		else if (!g_strcmp0 (pspec->name, "column-packet-out"))
+			column_id = COLUMN_PACKET_OUT;
+		else if (!g_strcmp0 (pspec->name, "column-active-socket"))
+			column_id = COLUMN_ACTIVE_SOCKET;
 
 		g_object_get (object, pspec->name, &visible, NULL);
 		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[column_id]), visible);
