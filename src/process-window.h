@@ -34,6 +34,7 @@ typedef struct _XtmProcessWindow XtmProcessWindow;
 
 GType xtm_process_window_get_type (void);
 GtkWidget *xtm_process_window_new (void);
+GtkWindow *xtm_process_window_get (XtmProcessWindow *window);
 void xtm_process_window_settings_init (XtmProcessWindow *window, XfconfChannel *channel);
 void xtm_process_window_show (GtkWidget *widget);
 GtkTreeModel *xtm_process_window_get_model (XtmProcessWindow *window);

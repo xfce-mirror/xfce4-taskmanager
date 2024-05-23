@@ -123,15 +123,14 @@ destroy_window (void)
 }
 
 static gboolean
-delete_window (void)
+delete_window (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 {
 	if (!status_icon_get_visible ())
 	{
-		if (timer_id > 0)
-			g_source_remove (timer_id);
-		gtk_main_quit ();
+		destroy_window ();
 		return FALSE;
 	}
+
 	gtk_widget_hide (window);
 	return TRUE;
 }
@@ -291,8 +290,11 @@ main (int argc, char *argv[])
 	g_signal_connect_after (settings, "notify::full-command-line", G_CALLBACK (collect_data), NULL);
 	g_signal_connect (settings, "notify::show-status-icon", G_CALLBACK (show_hide_status_icon), NULL);
 
-	g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
+	g_signal_connect (xtm_process_window_get (window), "destroy", G_CALLBACK (destroy_window), NULL);
+	g_signal_connect (xtm_process_window_get (window), "delete-event", G_CALLBACK (delete_window), NULL);
 	g_signal_connect (window, "delete-event", G_CALLBACK (delete_window), NULL);
+	g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
+
 
 	if (gtk_widget_get_visible (window) || status_icon_get_visible ())
 		gtk_main ();

@@ -520,6 +520,12 @@ xtm_process_window_show (GtkWidget *widget)
 	GTK_WIDGET_CLASS (xtm_process_window_parent_class)->show (widget);
 }
 
+GtkWindow *
+xtm_process_window_get (XtmProcessWindow *window)
+{
+	return window->window;
+}
+
 static void
 xtm_process_window_hide (GtkWidget *widget)
 {
