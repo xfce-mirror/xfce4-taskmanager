@@ -12,6 +12,8 @@
 #include "config.h"
 #endif
 
+#include "inode-to-sock.h"
+#include "network-analyzer.h"
 #include "task-manager.h"
 
 #include <fcntl.h>
@@ -25,7 +27,17 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+// clang-format off
+#include <net/if.h>
+#include <net/route.h>
+#include <netinet/if_ether.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <netinet/in_pcb.h>
+#include <netinet/tcp.h>
 #include <ifaddrs.h>
+// clang-format on
+
 
 static kstat_ctl_t *kc;
 static gushort _cpu_count = 0;
@@ -81,7 +93,6 @@ get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 {
 	kstat_named_t *knp;
 	kstat_t *ksp;
-	kid_t kid;
 
 	if (!kc)
 		init_stats ();
@@ -92,7 +103,7 @@ get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 		return FALSE;
 	}
 
-	kid = kstat_read (kc, ksp, NULL);
+	kstat_read (kc, ksp, NULL);
 
 	if ((knp = kstat_data_lookup (ksp, "rbytes64")) != NULL)
 		*tcp_rx = knp->value.ui64;
@@ -108,6 +119,65 @@ get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 void
 packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
+	// Extract source and destination IP addresses and ports from the packet
+	struct ether_header eth_header;
+	struct ip ip_header;
+	struct tcphdr tcp_header;
+	XtmNetworkAnalyzer *iface;
+	long int src_port, dst_port;
+	char local_mac[18];
+	char src_mac[18];
+	char dst_mac[18];
+
+	memcpy (&eth_header, packet, sizeof (struct ether_header));
+	memcpy (&ip_header, packet + sizeof (struct ether_header), sizeof (struct ip));
+	memcpy (&tcp_header, packet + sizeof (struct ether_header) + sizeof (struct ip), sizeof (struct ip));
+
+	// cast -> increases required alignment from 1 to 2 [-Wcast-align]
+	// const struct ether_header *eth_header = (const struct ether_header *)packet;
+	// struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
+	// struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
+	// printf("%d, %d \n", eth_heade.ether_type , ip_header.ip_p);
+
+	// Dropped non-ip packet
+	if (eth_header.ether_type != 8 || ip_header.ip_p != 6)
+		return;
+
+	iface = (XtmNetworkAnalyzer *)args;
+
+	src_port = ntohs (tcp_header.th_sport);
+	dst_port = ntohs (tcp_header.th_dport);
+
+	// directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
+
+	snprintf (local_mac, sizeof (local_mac),
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		iface->mac[0], iface->mac[1],
+		iface->mac[2], iface->mac[3],
+		iface->mac[4], iface->mac[5]);
+
+	snprintf (src_mac, sizeof (local_mac),
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header.ether_shost.ether_addr_octet[0], eth_header.ether_shost.ether_addr_octet[1],
+		eth_header.ether_shost.ether_addr_octet[2], eth_header.ether_shost.ether_addr_octet[3],
+		eth_header.ether_shost.ether_addr_octet[4], eth_header.ether_shost.ether_addr_octet[5]);
+
+	snprintf (dst_mac, sizeof (local_mac),
+		"%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header.ether_dhost.ether_addr_octet[0], eth_header.ether_dhost.ether_addr_octet[1],
+		eth_header.ether_dhost.ether_addr_octet[2], eth_header.ether_dhost.ether_addr_octet[3],
+		eth_header.ether_dhost.ether_addr_octet[4], eth_header.ether_dhost.ether_addr_octet[5]);
+
+	// Debug
+	// pthread_mutex_lock(&iface->lock);
+
+	if (strcmp (local_mac, src_mac) == 0)
+		increament_packet_count (local_mac, "in ", iface->packetin, src_port);
+
+	if (strcmp (local_mac, dst_mac) == 0)
+		increament_packet_count (local_mac, "out", iface->packetout, dst_port);
+
+	// pthread_mutex_unlock(&iface->lock);
 }
 #endif
 
