@@ -115,6 +115,7 @@ else
 		solaris*)
 		ac_os_implementation="solaris"
 		AC_CHECK_LIB([kstat], [kstat_open])
+		AC_CHECK_LIB([socket], [freeifaddrs])
 		AC_CHECK_HEADERS([fcntl.h kstat.h procfs.h pwd.h stdlib.h string.h \
 				sys/procfs.h sys/stat.h sys/swap.h sys/types.h])
 		;;

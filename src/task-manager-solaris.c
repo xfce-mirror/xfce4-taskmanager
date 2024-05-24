@@ -25,6 +25,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#include <ifaddrs.h>
+
 static kstat_ctl_t *kc;
 static gushort _cpu_count = 0;
 static gulong ticks_total_delta = 0;
@@ -38,16 +40,67 @@ init_stats (void)
 int
 get_mac_address (const char *device, uint8_t mac[6])
 {
+#ifdef HAVE_LIBSOCKET
+	struct ifaddrs *ifaddr, *ifa;
+
+	if (getifaddrs (&ifaddr) == -1)
+		return -1;
+
+	for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+	{
+		if (ifa->ifa_addr == NULL)
+			continue;
+
+		// Check if the interface is a network interface (AF_PACKET for Linux)
+		if (ifa->ifa_addr->sa_family == AF_LINK && strcmp (device, ifa->ifa_name) == 0)
+		{
+			// Check if the interface has a hardware address (MAC address)
+			if (ifa->ifa_data != NULL)
+			{
+				// warning: cast from 'struct sockaddr *' to 'struct sockaddr_dl *' increases required alignment from 1 to 2
+				// struct sockaddr_dl *sdl = (struct sockaddr_dl *)ifa->ifa_addr;
+				struct sockaddr_dl sdl;
+				memcpy (&sdl, ifa->ifa_addr, sizeof (struct sockaddr_dl));
+				memcpy (mac, sdl.sdl_data + sdl.sdl_nlen, sizeof (uint8_t) * 6);
+				freeifaddrs (ifaddr);
+				return 0;
+			}
+		}
+	}
+
+	freeifaddrs (ifaddr);
+	return -1;
+#else
 	memset (mac, 0, sizeof (uint8_t) * 6);
 	return FALSE;
+#endif
 }
 
 gboolean
 get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 {
-	*tcp_rx = 0;
-	*tcp_tx = 0;
-	*tcp_error = 0;
+	kstat_named_t *knp;
+	kstat_t *ksp;
+	kid_t kid;
+
+	if (!kc)
+		init_stats ();
+
+	if (!(ksp = kstat_lookup (kc, "link", -1, NULL)))
+	{
+		printf ("kstat_lookup failed\n");
+		return FALSE;
+	}
+
+	kid = kstat_read (kc, ksp, NULL);
+
+	if ((knp = kstat_data_lookup (ksp, "rbytes64")) != NULL)
+		*tcp_rx = knp->value.ui64;
+	if ((knp = kstat_data_lookup (ksp, "obytes64")) != NULL)
+		*tcp_tx = knp->value.ui64;
+	if ((knp = kstat_data_lookup (ksp, "ipacket64")) != NULL)
+		*tcp_error = knp->value.ui64;
+
 	return TRUE;
 }
 
