@@ -11,6 +11,9 @@
 #include "config.h"
 #endif
 
+#include <libxfce4ui/libxfce4ui.h>
+
+#include "network-analyzer.h"
 #include "settings-dialog.h"
 #include "settings-dialog_ui.h"
 #include "settings.h"
@@ -18,8 +21,6 @@
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
-
-#include <libxfce4ui/libxfce4ui.h>
 
 static void show_about_dialog (GtkWidget *widget, gpointer user_data);
 static GtkWidget *xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window);
@@ -108,6 +109,7 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 	GtkDialog *dialog = GTK_DIALOG (user_data);
 
 	const gchar *authors[] = {
+		"(c) 2024-2024 Jehan-Antoine Vayssade",
 		"(c) 2014-2021 Simon Steinbeiss",
 		"(c) 2018-2019 Rozhuk Ivan",
 		"(c) 2014 Landry Breuil",
@@ -117,18 +119,22 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 		"(c) 2005-2008 Johannes Zellner",
 		"",
 		"FreeBSD",
+		"  \342\200\242 Jehan-Antoine Vayssade",
 		"  \342\200\242 Rozhuk Ivan",
 		"  \342\200\242 Mike Massonnet",
 		"  \342\200\242 Oliver Lehmann",
 		"",
 		"OpenBSD",
+		"  \342\200\242 Jehan-Antoine Vayssade",
 		"  \342\200\242 Landry Breuil",
 		"",
 		"Linux",
+		"  \342\200\242 Jehan-Antoine Vayssade",
 		"  \342\200\242 Johannes Zellner",
 		"  \342\200\242 Mike Massonnet",
 		"",
 		"OpenSolaris",
+		"  \342\200\242 Jehan-Antoine Vayssade",
 		"  \342\200\242 Mike Massonnet",
 		"  \342\200\242 Peter Tribble",
 		NULL
@@ -174,6 +180,7 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	GtkWidget *dialog;
 	GtkWidget *button;
 	XtmSettings *settings;
+	XtmNetworkAnalyzer *network;
 
 	settings = xtm_settings_get_default ();
 	dialog = GTK_WIDGET (gtk_builder_get_object (builder, "settings-dialog"));
@@ -214,8 +221,20 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
 	builder_bind_toggle_button (builder, "uid", settings, "column-uid");
 	builder_bind_toggle_button (builder, "cpu", settings, "column-cpu");
 	builder_bind_toggle_button (builder, "group-cpu", settings, "column-group-cpu");
+	builder_bind_toggle_button (builder, "packet-in", settings, "column-packet-in");
+	builder_bind_toggle_button (builder, "packet-out", settings, "column-packet-out");
+	builder_bind_toggle_button (builder, "active-socket", settings, "column-active-socket");
 	builder_bind_toggle_button (builder, "priority", settings, "column-priority");
 
+	// insufficient permission
+	network = xtm_network_analyzer_get_default ();
+
+	if (network == NULL)
+	{
+		gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "packet-in")));
+		gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "packet-out")));
+		gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (builder, "active-socket")));
+	}
 
 	button = GTK_WIDGET (gtk_builder_get_object (builder, "button-about"));
 	g_signal_connect (button, "clicked", G_CALLBACK (show_about_dialog), dialog);

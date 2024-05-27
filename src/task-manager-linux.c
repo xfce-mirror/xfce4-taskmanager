@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2024 Jehan-Antoine Vayssade, <javayss@sleek-think.ovh>
  * Copyright (c) 2008-2010  Mike Massonnet <mmassonnet@xfce.org>
  * Copyright (c) 2006  Johannes Zellner <webmaster@nebulon.de>
  *
@@ -12,10 +13,361 @@
 #include "config.h"
 #endif
 
+#include <stdio.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+#include <arpa/inet.h>
+#include <ifaddrs.h>
+#include <net/ethernet.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <netinet/ip6.h>
+#include <netinet/tcp.h>
+#include <netinet/udp.h>
+#include <netpacket/packet.h>
+
+#include <glib.h>
+
+#include "inode-to-sock.h"
+#include "network-analyzer.h"
 #include "task-manager.h"
 
+static XtmNetworkAnalyzer *analyzer = NULL;
+static XtmInodeToSock *inode_to_sock = NULL;
 static gushort _cpu_count = 0;
 static gulong jiffies_total_delta = 0;
+
+void list_process_fds (Task *task);
+void xtm_refresh_inode_to_sock_protocol (XtmInodeToSock *its, char *filename);
+
+void
+xtm_refresh_inode_to_sock_protocol (XtmInodeToSock *its, char *filename)
+{
+	char buffer[8192];
+	char rem_addr[128], local_addr[128];
+	int local_port, rem_port, inode, count;
+	gint64 *key;
+
+	FILE *procinfo = fopen (filename, "r");
+
+	if (procinfo == 0)
+	{
+		perror (filename);
+		return;
+	}
+
+	// skip header
+	if (fgets (buffer, sizeof (buffer), procinfo) == 0)
+	{
+		printf ("%s no header\n", filename);
+		fclose (procinfo);
+		return;
+	}
+
+	while (fgets (buffer, sizeof (buffer), procinfo))
+	{
+		count = sscanf (
+			buffer,
+			"%*d: %64[0-9A-Fa-f]:%X %64[0-9A-Fa-f]:%X %*X %*X:%*X %*X:%*X %*X %*d %*d %d",
+			local_addr, &local_port, rem_addr, &rem_port, &inode);
+
+		if (count != 5)
+			continue;
+
+		key = g_new0 (gint64, 1);
+		*key = inode;
+		g_hash_table_replace (its->hash, key, (gpointer)(intptr_t)local_port);
+	}
+
+	fclose (procinfo);
+}
+
+void
+xtm_refresh_inode_to_sock (XtmInodeToSock *its)
+{
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/tcp");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/tcp6");
+
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/udp");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/udp6");
+
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/udplite");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/udplite6");
+
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/raw");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/raw6");
+
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/icmp");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/icmp6");
+}
+
+#ifdef HAVE_LIBPCAP
+void
+packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
+{
+	struct ether_header *eth_header = (struct ether_header *)packet;
+	XtmNetworkAnalyzer *iface = (XtmNetworkAnalyzer *)args;
+
+	char local_mac[18];
+	char src_mac[18];
+	char dst_mac[18];
+
+	int32_t src_port = -1;
+	int32_t dst_port = -1;
+
+	sprintf (local_mac, "%02X:%02X:%02X:%02X:%02X:%02X",
+		iface->mac[0], iface->mac[1], iface->mac[2],
+		iface->mac[3], iface->mac[4], iface->mac[5]);
+
+	sprintf (src_mac, "%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header->ether_shost[0], eth_header->ether_shost[1],
+		eth_header->ether_shost[2], eth_header->ether_shost[3],
+		eth_header->ether_shost[4], eth_header->ether_shost[5]);
+
+	sprintf (dst_mac, "%02X:%02X:%02X:%02X:%02X:%02X",
+		eth_header->ether_dhost[0], eth_header->ether_dhost[1],
+		eth_header->ether_dhost[2], eth_header->ether_dhost[3],
+		eth_header->ether_dhost[4], eth_header->ether_dhost[5]);
+
+	// IPv4 handling
+	if (ntohs (eth_header->ether_type) == ETHERTYPE_IP)
+	{
+		struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
+
+		// TCP handling
+		if (ip_header->ip_p == IPPROTO_TCP)
+		{
+			struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
+			src_port = ntohs (tcp_header->source);
+			dst_port = ntohs (tcp_header->dest);
+		}
+		// UDP handling
+		else if (ip_header->ip_p == IPPROTO_UDP)
+		{
+			struct udphdr *udp_header = (struct udphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
+			src_port = ntohs (udp_header->source);
+			dst_port = ntohs (udp_header->dest);
+		}
+		// ICMP handling
+		else if (ip_header->ip_p == IPPROTO_ICMP)
+		{
+			// The Internet Control Message Protocol (ICMP) does not use ports like TCP and UDP
+			// But the ICMP packet is encapsulated in an IPv4 packet
+			// 0x1 Reported by /proc/net/raw using ping
+			src_port = 1;
+			dst_port = 1;
+		}
+	}
+	// IPv6 handling
+	else if (ntohs (eth_header->ether_type) == ETHERTYPE_IPV6)
+	{
+		struct ip6_hdr *ip6_header = (struct ip6_hdr *)(packet + sizeof (struct ether_header));
+
+		// TCP handling
+		if (ip6_header->ip6_nxt == IPPROTO_TCP)
+		{
+			struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip6_hdr));
+			src_port = ntohs (tcp_header->source);
+			dst_port = ntohs (tcp_header->dest);
+		}
+		// UDP handling
+		else if (ip6_header->ip6_nxt == IPPROTO_UDP)
+		{
+			struct udphdr *udp_header = (struct udphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip6_hdr));
+			src_port = ntohs (udp_header->source);
+			dst_port = ntohs (udp_header->dest);
+		}
+		// ICMP handling
+		else if (ip6_header->ip6_nxt == IPPROTO_ICMPV6)
+		{
+			// The Internet Control Message Protocol (ICMP) does not use ports like TCP and UDP
+			// But the ICMP packet is encapsulated in an IPv6 packet
+			// 0x3A Reported by /proc/net/raw6
+			src_port = 0x3A;
+			dst_port = 0x3A;
+		}
+	}
+	// Raw packet handling
+	else
+	{
+		src_port = 1;
+		dst_port = 1;
+	}
+
+	//! ICMP and RAW packet share the same local port
+	//! thus the link port -> count is broken in this case
+	//! since local port become non unique
+	//! However it still allow to see some unexpected program
+
+	if (src_port != -1 && dst_port != -1)
+	{
+		if (strcmp (local_mac, src_mac) == 0)
+			increament_packet_count (local_mac, "in ", iface->packetin, src_port);
+
+		if (strcmp (local_mac, dst_mac) == 0)
+			increament_packet_count (local_mac, "out", iface->packetout, dst_port);
+	}
+}
+#endif
+
+int
+get_mac_address (const char *device, uint8_t mac[6])
+{
+	struct ifaddrs *ifaddr, *ifa;
+	char device_path[512];
+	char link_path[512];
+
+	snprintf (device_path, 512, "/sys/class/net/%s", device);
+	ssize_t len = readlink (device_path, link_path, 511);
+
+	// disable localhost, docker, vpn, and other virtual device
+	// only physical device should remain
+	if (len == -1 || strstr (link_path, "virtual") != NULL)
+		return -1;
+
+	if (getifaddrs (&ifaddr) == -1)
+		return -1;
+
+	for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+	{
+		if (ifa->ifa_addr == NULL)
+			continue;
+
+		int family = ifa->ifa_addr->sa_family;
+
+		// Check if the interface is a network interface (AF_PACKET for Linux)
+		if (family == AF_PACKET && strcmp (device, ifa->ifa_name) == 0)
+		{
+			// Check if the interface has a hardware address (MAC address)
+			if (ifa->ifa_data != NULL)
+			{
+				struct sockaddr_ll *sll = (struct sockaddr_ll *)ifa->ifa_addr;
+				memcpy (mac, sll->sll_addr, sizeof (uint8_t) * 6);
+				freeifaddrs (ifaddr);
+				return 0;
+			}
+		}
+	}
+
+	freeifaddrs (ifaddr);
+	return -1;
+}
+
+gboolean
+get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
+{
+	FILE *file;
+	gchar buffer[256];
+	char *out;
+
+	*tcp_rx = 0;
+	*tcp_tx = 0;
+	*tcp_error = 0;
+
+	if ((file = fopen ("/proc/net/dev", "r")) == NULL)
+		return FALSE;
+
+	out = fgets (buffer, sizeof (buffer), file);
+
+	if (!out)
+		return FALSE;
+
+	out = fgets (buffer, sizeof (buffer), file);
+
+	if (!out)
+		return FALSE;
+
+	while (fgets (buffer, sizeof (buffer), file))
+	{
+		unsigned long int dummy = 0;
+		unsigned long int r_bytes = 0;
+		unsigned long int t_bytes = 0;
+		unsigned long int r_packets = 0;
+		unsigned long int t_packets = 0;
+		unsigned long int error = 0;
+		gchar ifname[256];
+
+		int count = sscanf (
+			buffer, "%[^:]: %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu",
+			ifname, &r_bytes, &r_packets, &error,
+			&dummy, &dummy, &dummy, &dummy, &dummy,
+			&t_bytes, &t_packets);
+
+		if (count != 11)
+		{
+			printf ("Something went wrong while reading /proc/net/dev -> expected %d\n", count);
+			break;
+		}
+
+		*tcp_rx += r_bytes;
+		*tcp_tx += t_bytes;
+		*tcp_error += error;
+	}
+
+	fclose (file);
+
+	return TRUE;
+}
+
+void
+list_process_fds (Task *task)
+{
+	XtmNetworkAnalyzer *current;
+	char path[1024];
+	char link[2048];
+	char target[2048];
+	struct dirent *entry;
+	ssize_t len;
+	long int port;
+	DIR *dir;
+
+	task->packet_in = 0;
+	task->packet_out = 0;
+
+	snprintf (path, sizeof (path), "/proc/%d/fd", (int)task->pid);
+
+	dir = opendir (path);
+
+	if (dir == 0)
+		return;
+
+	while ((entry = readdir (dir)) != NULL)
+	{
+		if (entry->d_type != DT_LNK)
+			continue;
+
+		snprintf (link, sizeof (link), "%s/%s", path, entry->d_name);
+		len = readlink (link, target, sizeof (target) - 1);
+
+		if (len == -1)
+			continue;
+
+		target[len] = '\0';
+		if (strncmp (target, "socket:", 7) != 0)
+			continue;
+
+		int inode;
+		if (sscanf (target, "socket:[%d]", &inode) == 1)
+		{
+			task->active_socket += 1;
+			port = (long int)g_hash_table_lookup (inode_to_sock->hash, &inode);
+
+			current = analyzer;
+			while (current)
+			{
+				// pthread_mutex_lock(&analyzer->lock);
+				task->packet_in += (guint64)g_hash_table_lookup (current->packetin, &port);
+				task->packet_out += (guint64)g_hash_table_lookup (current->packetout, &port);
+				// pthread_mutex_lock(&analyzer->lock);
+				current = current->next;
+			}
+		}
+	}
+	closedir (dir);
+}
 
 gboolean
 get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *memory_free, guint64 *memory_cache, guint64 *memory_buffers, guint64 *swap_total, guint64 *swap_free)
@@ -304,6 +656,8 @@ get_task_details (GPid pid, Task *task)
 		fclose (file);
 	}
 
+	list_process_fds (task);
+
 	/* Read the full command line */
 	if (!get_task_cmdline (task))
 		return FALSE;
@@ -318,6 +672,10 @@ get_task_list (GArray *task_list)
 	const gchar *name;
 	GPid pid;
 	Task task;
+
+	analyzer = xtm_network_analyzer_get_default ();
+	inode_to_sock = xtm_inode_to_sock_get_default ();
+	xtm_refresh_inode_to_sock (inode_to_sock);
 
 	if ((dir = g_dir_open ("/proc", 0, NULL)) == NULL)
 		return FALSE;
