@@ -39,6 +39,7 @@ static gushort _cpu_count = 0;
 static gulong jiffies_total_delta = 0;
 
 void list_process_fds (Task *task);
+void addtoconninode (XtmInodeToSock *its, char *buffer);
 
 void
 addtoconninode (XtmInodeToSock *its, char *buffer)
