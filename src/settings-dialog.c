@@ -109,7 +109,7 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 	GtkDialog *dialog = GTK_DIALOG (user_data);
 
 	const gchar *authors[] = {
-		"(c) 2021-2024 Jehan-Antoine Vayssade",
+		"(c) 2024-2024 Jehan-Antoine Vayssade",
 		"(c) 2014-2021 Simon Steinbeiss",
 		"(c) 2018-2019 Rozhuk Ivan",
 		"(c) 2014 Landry Breuil",
@@ -119,18 +119,22 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 		"(c) 2005-2008 Johannes Zellner",
 		"",
 		"FreeBSD",
+		"  \342\200\242 Jehan-Antoine Vayssade",
 		"  \342\200\242 Rozhuk Ivan",
 		"  \342\200\242 Mike Massonnet",
 		"  \342\200\242 Oliver Lehmann",
 		"",
 		"OpenBSD",
+		"  \342\200\242 Jehan-Antoine Vayssade",
 		"  \342\200\242 Landry Breuil",
 		"",
 		"Linux",
+		"  \342\200\242 Jehan-Antoine Vayssade",
 		"  \342\200\242 Johannes Zellner",
 		"  \342\200\242 Mike Massonnet",
 		"",
 		"OpenSolaris",
+		"  \342\200\242 Jehan-Antoine Vayssade",
 		"  \342\200\242 Mike Massonnet",
 		"  \342\200\242 Peter Tribble",
 		NULL
