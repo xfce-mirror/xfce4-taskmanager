@@ -24,7 +24,9 @@
 #include <net/ethernet.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
+#include <netinet/ip6.h>
 #include <netinet/tcp.h>
+#include <netinet/udp.h>
 #include <netpacket/packet.h>
 
 #include <glib.h>
@@ -39,109 +41,175 @@ static gushort _cpu_count = 0;
 static gulong jiffies_total_delta = 0;
 
 void list_process_fds (Task *task);
-void addtoconninode (XtmInodeToSock *its, char *buffer);
+void xtm_refresh_inode_to_sock_protocol (XtmInodeToSock *its, char *filename);
 
 void
-addtoconninode (XtmInodeToSock *its, char *buffer)
+xtm_refresh_inode_to_sock_protocol (XtmInodeToSock *its, char *filename)
 {
+	char buffer[8192];
 	char rem_addr[128], local_addr[128];
-	int local_port, rem_port;
-	int *inode = g_new0 (gint, 1);
-	char dummy[512];
+	int local_port, rem_port, inode, count;
+	gint64 *key;
 
-	sscanf (
-		buffer,
-		"%*d: %64[0-9A-Fa-f]:%X %64[0-9A-Fa-f]:%X %*X %*X:%*X %*X:%*X %*X %*d %*d %d %512s\n",
-		local_addr, &local_port, rem_addr, &rem_port, inode, dummy);
+	FILE *procinfo = fopen (filename, "r");
 
-	g_hash_table_replace (its->hash, inode, (gpointer)(intptr_t)local_port);
+	if (procinfo == 0)
+	{
+		perror (filename);
+		return;
+	}
+
+	// skip header
+	if (fgets (buffer, sizeof (buffer), procinfo) == 0)
+	{
+		printf ("%s no header\n", filename);
+		fclose (procinfo);
+		return;
+	}
+
+	while (fgets (buffer, sizeof (buffer), procinfo))
+	{
+		count = sscanf (
+			buffer,
+			"%*d: %64[0-9A-Fa-f]:%X %64[0-9A-Fa-f]:%X %*X %*X:%*X %*X:%*X %*X %*d %*d %d",
+			local_addr, &local_port, rem_addr, &rem_port, &inode);
+
+		if (count != 5)
+			continue;
+
+		key = g_new0 (gint64, 1);
+		*key = inode;
+		g_hash_table_replace (its->hash, key, (gpointer)(intptr_t)local_port);
+	}
+
+	fclose (procinfo);
 }
 
 void
 xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 {
-	char buffer[8192];
-	FILE *procinfo = fopen ("/proc/net/tcp", "r");
-	if (procinfo)
-	{
-		if (fgets (buffer, sizeof (buffer), procinfo) != 0)
-		{
-			do
-			{
-				if (fgets (buffer, sizeof (buffer), procinfo))
-					addtoconninode (its, buffer);
-			} while (!feof (procinfo));
-		}
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/tcp");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/tcp6");
 
-		fclose (procinfo);
-	}
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/udp");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/udp6");
 
-	procinfo = fopen ("/proc/net/tcp6", "r");
-	if (procinfo != NULL)
-	{
-		if (fgets (buffer, sizeof (buffer), procinfo))
-		{
-			do
-			{
-				if (fgets (buffer, sizeof (buffer), procinfo))
-					addtoconninode (its, buffer);
-			} while (!feof (procinfo));
-		}
-		fclose (procinfo);
-	}
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/udplite");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/udplite6");
+
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/raw");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/raw6");
+
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/icmp");
+	xtm_refresh_inode_to_sock_protocol (its, "/proc/net/icmp6");
 }
 
 #ifdef HAVE_LIBPCAP
 void
 packet_callback (u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
-	// Extract source and destination IP addresses and ports from the packet
 	struct ether_header *eth_header = (struct ether_header *)packet;
-	struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
-	struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
 	XtmNetworkAnalyzer *iface = (XtmNetworkAnalyzer *)args;
-
-	// Dropped non-ip packet
-	if (eth_header->ether_type != 8 || ip_header->ip_p != 6)
-		return;
-
-	long int src_port = ntohs (tcp_header->source);
-	long int dst_port = ntohs (tcp_header->dest);
-
-	// directly use strcmp on analyzer->mac, eth_header->ether_shost doesnt work
 
 	char local_mac[18];
 	char src_mac[18];
 	char dst_mac[18];
 
-	sprintf (local_mac,
-		"%02X:%02X:%02X:%02X:%02X:%02X",
-		iface->mac[0], iface->mac[1],
-		iface->mac[2], iface->mac[3],
-		iface->mac[4], iface->mac[5]);
+	int32_t src_port = -1;
+	int32_t dst_port = -1;
 
-	sprintf (src_mac,
-		"%02X:%02X:%02X:%02X:%02X:%02X",
+	sprintf (local_mac, "%02X:%02X:%02X:%02X:%02X:%02X",
+		iface->mac[0], iface->mac[1], iface->mac[2],
+		iface->mac[3], iface->mac[4], iface->mac[5]);
+
+	sprintf (src_mac, "%02X:%02X:%02X:%02X:%02X:%02X",
 		eth_header->ether_shost[0], eth_header->ether_shost[1],
 		eth_header->ether_shost[2], eth_header->ether_shost[3],
 		eth_header->ether_shost[4], eth_header->ether_shost[5]);
 
-	sprintf (dst_mac,
-		"%02X:%02X:%02X:%02X:%02X:%02X",
+	sprintf (dst_mac, "%02X:%02X:%02X:%02X:%02X:%02X",
 		eth_header->ether_dhost[0], eth_header->ether_dhost[1],
 		eth_header->ether_dhost[2], eth_header->ether_dhost[3],
 		eth_header->ether_dhost[4], eth_header->ether_dhost[5]);
 
-	// Debug
-	// pthread_mutex_lock(&iface->lock);
+	// IPv4 handling
+	if (ntohs (eth_header->ether_type) == ETHERTYPE_IP)
+	{
+		struct ip *ip_header = (struct ip *)(packet + sizeof (struct ether_header));
 
-	if (strcmp (local_mac, src_mac) == 0)
-		increament_packet_count (local_mac, "in ", iface->packetin, src_port);
+		// TCP handling
+		if (ip_header->ip_p == IPPROTO_TCP)
+		{
+			struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
+			src_port = ntohs (tcp_header->source);
+			dst_port = ntohs (tcp_header->dest);
+		}
+		// UDP handling
+		else if (ip_header->ip_p == IPPROTO_UDP)
+		{
+			struct udphdr *udp_header = (struct udphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip));
+			src_port = ntohs (udp_header->source);
+			dst_port = ntohs (udp_header->dest);
+		}
+		// ICMP handling
+		else if (ip_header->ip_p == IPPROTO_ICMP)
+		{
+			// The Internet Control Message Protocol (ICMP) does not use ports like TCP and UDP
+			// But the ICMP packet is encapsulated in an IPv4 packet
+			// 0x1 Reported by /proc/net/raw using ping
+			src_port = 1;
+			dst_port = 1;
+		}
+	}
+	// IPv6 handling
+	else if (ntohs (eth_header->ether_type) == ETHERTYPE_IPV6)
+	{
+		struct ip6_hdr *ip6_header = (struct ip6_hdr *)(packet + sizeof (struct ether_header));
 
-	if (strcmp (local_mac, dst_mac) == 0)
-		increament_packet_count (local_mac, "out", iface->packetout, dst_port);
+		// TCP handling
+		if (ip6_header->ip6_nxt == IPPROTO_TCP)
+		{
+			struct tcphdr *tcp_header = (struct tcphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip6_hdr));
+			src_port = ntohs (tcp_header->source);
+			dst_port = ntohs (tcp_header->dest);
+		}
+		// UDP handling
+		else if (ip6_header->ip6_nxt == IPPROTO_UDP)
+		{
+			struct udphdr *udp_header = (struct udphdr *)(packet + sizeof (struct ether_header) + sizeof (struct ip6_hdr));
+			src_port = ntohs (udp_header->source);
+			dst_port = ntohs (udp_header->dest);
+		}
+		// ICMP handling
+		else if (ip6_header->ip6_nxt == IPPROTO_ICMPV6)
+		{
+			// The Internet Control Message Protocol (ICMP) does not use ports like TCP and UDP
+			// But the ICMP packet is encapsulated in an IPv6 packet
+			// 0x3A Reported by /proc/net/raw6
+			src_port = 0x3A;
+			dst_port = 0x3A;
+		}
+	}
+	// Raw packet handling
+	else
+	{
+		src_port = 1;
+		dst_port = 1;
+	}
 
-	// pthread_mutex_unlock(&iface->lock);
+	//! ICMP and RAW packet share the same local port
+	//! thus the link port -> count is broken in this case
+	//! since local port become non unique
+	//! However it still allow to see some unexpected program
+
+	if (src_port != -1 && dst_port != -1)
+	{
+		if (strcmp (local_mac, src_mac) == 0)
+			increament_packet_count (local_mac, "in ", iface->packetin, src_port);
+
+		if (strcmp (local_mac, dst_mac) == 0)
+			increament_packet_count (local_mac, "out", iface->packetout, dst_port);
+	}
 }
 #endif
 
@@ -149,6 +217,16 @@ int
 get_mac_address (const char *device, uint8_t mac[6])
 {
 	struct ifaddrs *ifaddr, *ifa;
+	char device_path[512];
+	char link_path[512];
+
+	snprintf (device_path, 512, "/sys/class/net/%s", device);
+	ssize_t len = readlink (device_path, link_path, 511);
+
+	// disable localhost, docker, vpn, and other virtual device
+	// only physical device should remain
+	if (len == -1 || strstr (link_path, "virtual") != NULL)
+		return -1;
 
 	if (getifaddrs (&ifaddr) == -1)
 		return -1;

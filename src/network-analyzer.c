@@ -23,11 +23,11 @@ void *network_analyzer_thread (void *ptr);
 void
 increament_packet_count (char *mac, char *direction, GHashTable *hash_table, long int port)
 {
-	int *key = g_new0 (gint, 1);
+	gint64 *key = g_new0 (gint64, 1);
 	*key = port;
 	gpointer value = g_hash_table_lookup (hash_table, key);
-	g_hash_table_replace (hash_table, key, (gpointer)(((long int)value) + 1));
-	// printf ("%s -> %s %ld: %ld\n", mac, direction, port, ((long int)value) + 1);
+	g_hash_table_replace (hash_table, key, (gpointer)(((guint64)value) + 1));
+	// printf ("%s -> %s %ld: %ld\n", mac, direction, port, ((guint64)value) + 1);
 }
 
 void *

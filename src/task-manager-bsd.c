@@ -318,7 +318,7 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 	// inspired by openbsd netstat/inet.c
 	// inspired by openbsd fstat/fstat.c
 
-	int nfiles, port;
+	long int nfiles, port;
 	XtmNetworkAnalyzer *current;
 	struct kinfo_file *kf = get_process_fds (&nfiles, KERN_FILE_BYPID, task->pid);
 
@@ -371,7 +371,7 @@ list_process_fds (Task *task, struct kinfo_proc2 *kp)
 	struct in4pcb in4pcb;
 	struct in6pcb in6pcb;
 	struct inpcb *inp;
-	int port;
+	long int port;
 
 	nlistf = memf = NULL;
 	kd = kvm_openfiles (nlistf, memf, NULL, O_RDONLY, buf);

@@ -224,12 +224,12 @@ list_process_fds (Task *task)
 	XtmNetworkAnalyzer *current;
 	GHashTableIter iter;
 	gpointer key, value;
-	gint key_int, value_int;
+	gint64 key_int, value_int;
 
 	g_hash_table_iter_init (&iter, inode_to_sock->pid);
 	while (g_hash_table_iter_next (&iter, &key, &value))
 	{
-		key_int = *(int *)(key);
+		key_int = *(gint64 *)(key);
 		value_int = GPOINTER_TO_INT (value);
 
 		if (task->pid == value_int)
@@ -240,7 +240,7 @@ list_process_fds (Task *task)
 void
 addtoconninode (XtmInodeToSock *its, gint64 pid, char *ip, guint64 port)
 {
-	int *inode;
+	gint64 *inode;
 
 	if (its == NULL)
 		return;
@@ -258,7 +258,7 @@ addtoconninode (XtmInodeToSock *its, gint64 pid, char *ip, guint64 port)
 	if (strcmp (ip, "127.0.0.1") == 0)
 		return;
 
-	inode = g_new0 (gint, 1);
+	inode = g_new0 (gint64, 1);
 	*inode = port;
 
 	g_hash_table_replace (inode_to_sock->pid, inode, (gpointer)(intptr_t)pid);

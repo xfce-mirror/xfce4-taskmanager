@@ -354,9 +354,9 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 		token = strtok (NULL, delim);
 		strcpy (foreign_address, token);
 
-		int local_port, assos;
-		int *inode1 = g_new0 (gint, 1);
-		int *inode2 = g_new0 (gint, 1);
+		long int local_port, assos;
+		gint64 *inode1 = g_new0 (gint64, 1);
+		gint64 *inode2 = g_new0 (gint64, 1);
 
 		*inode1 = atoi (fd);
 		*inode2 = atoi (fd);
@@ -381,13 +381,13 @@ list_process_fds (Task *task)
 	XtmNetworkAnalyzer *current;
 	GHashTableIter iter;
 	gpointer key, value;
-	gint key_int, value_int;
+	gint64 key_int, value_int;
 	long int port;
 
 	g_hash_table_iter_init (&iter, inode_to_sock->pid);
 	while (g_hash_table_iter_next (&iter, &key, &value))
 	{
-		key_int = *(int *)(key);
+		key_int = *(gint64 *)(key);
 		value_int = GPOINTER_TO_INT (value);
 		if (task->pid == value_int)
 		{
