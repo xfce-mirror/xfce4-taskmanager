@@ -231,10 +231,9 @@ list_process_fds (Task *task)
 	{
 		key_int = *(int *)(key);
 		value_int = GPOINTER_TO_INT (value);
+
 		if (task->pid == value_int)
-		{
 			set_task_network_data (task, key_int);
-		}
 	}
 }
 
@@ -276,6 +275,7 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 	// net-snmp/agent/mibgroup/mibgroup/kernel_sunos5.c
 	// psutil/psutil/_psutil_sunos.c
 	// illumos-joyent/master/usr/src/uts/common/io/tl.c
+	// nicstat/nicstat.c
 
 	int sd, ret, flags, getcode, num_ent, i;
 	char buf[4096];
@@ -408,12 +408,11 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 				memcpy (&tp, databuf.buf + i * sizeof (tp), sizeof (tp));
 				inet_ntop (AF_INET, &tp.tcpConnLocalAddress, lip, sizeof (lip));
 				addtoconninode (inode_to_sock, tp.tcpConnCreationProcess, lip, tp.tcpConnLocalPort);
-				// interesting properties, allowing to remove pcpa
-				// tp.tcpConnEntryInfo.ce_in_data_inorder_bytes
-				// tp.tcpConnEntryInfo.ce_in_data_unorder_bytes
-				// tp.tcpConnEntryInfo.ce_out_data_bytes
-				// tp.tcpConnEntryInfo.ce_out_retrans_bytes
-				// tp.tcpConnEntryInfo.ce_out_retrans_bytes
+				// interesting properties, allowing to remove pcap
+				// tp.tcpConnEntryInfo.ce_in_data_inorder_segs
+				// tp.tcpConnEntryInfo.ce_in_data_unorder_segs
+				// tp.tcpConnEntryInfo.ce_out_data_segs
+				// tp.tcpConnEntryInfo.ce_out_retrans_segs
 			}
 		}
 #if defined(AF_INET6)
@@ -426,6 +425,11 @@ xtm_refresh_inode_to_sock (XtmInodeToSock *its)
 				memcpy (&tp6, databuf.buf + i * sizeof (tp6), sizeof (tp6));
 				inet_ntop (AF_INET6, &tp6.tcp6ConnLocalAddress, lip, sizeof (lip));
 				addtoconninode (inode_to_sock, tp6.tcp6ConnCreationProcess, lip, tp6.tcp6ConnLocalPort);
+				// interesting properties, allowing to remove pcap
+				// tp.tcpConnEntryInfo.ce_in_data_inorder_segs
+				// tp.tcpConnEntryInfo.ce_in_data_unorder_segs
+				// tp.tcpConnEntryInfo.ce_out_data_segs
+				// tp.tcpConnEntryInfo.ce_out_retrans_segs
 			}
 		}
 #endif

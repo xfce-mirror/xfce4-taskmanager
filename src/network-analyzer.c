@@ -27,7 +27,7 @@ increament_packet_count (char *mac, char *direction, GHashTable *hash_table, lon
 	*key = port;
 	gpointer value = g_hash_table_lookup (hash_table, key);
 	g_hash_table_replace (hash_table, key, (gpointer)(((long int)value) + 1));
-	//printf ("%s -> %s %ld: %ld\n", mac, direction, port, ((long int)value) + 1);
+	// printf ("%s -> %s %ld: %ld\n", mac, direction, port, ((long int)value) + 1);
 }
 
 void *
