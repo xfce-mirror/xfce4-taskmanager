@@ -523,7 +523,7 @@ xtm_process_window_show (GtkWidget *widget)
 GtkWindow *
 xtm_process_window_get (XtmProcessWindow *window)
 {
-	return window->window;
+	return GTK_WINDOW (window->window);
 }
 
 static void

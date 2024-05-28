@@ -290,8 +290,8 @@ main (int argc, char *argv[])
 	g_signal_connect_after (settings, "notify::full-command-line", G_CALLBACK (collect_data), NULL);
 	g_signal_connect (settings, "notify::show-status-icon", G_CALLBACK (show_hide_status_icon), NULL);
 
-	g_signal_connect (xtm_process_window_get (window), "destroy", G_CALLBACK (destroy_window), NULL);
-	g_signal_connect (xtm_process_window_get (window), "delete-event", G_CALLBACK (delete_window), NULL);
+	g_signal_connect (xtm_process_window_get (XTM_PROCESS_WINDOW (window)), "destroy", G_CALLBACK (destroy_window), NULL);
+	g_signal_connect (xtm_process_window_get (XTM_PROCESS_WINDOW (window)), "delete-event", G_CALLBACK (delete_window), NULL);
 	g_signal_connect (window, "delete-event", G_CALLBACK (delete_window), NULL);
 	g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
 
