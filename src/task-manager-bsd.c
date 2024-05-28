@@ -40,6 +40,7 @@
 /* for struct vmtotal */
 #include <sys/vmmeter.h>
 
+/* errno */
 #include <errno.h>
 extern int errno;
 

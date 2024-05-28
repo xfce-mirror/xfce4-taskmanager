@@ -18,6 +18,7 @@
 
 #ifdef HAVE_WNCK
 #include "app-manager.h"
+
 #include <gdk/gdkx.h>
 #endif
 
