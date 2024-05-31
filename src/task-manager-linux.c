@@ -346,7 +346,7 @@ pid_is_sleeping (GPid pid)
 	FILE *file;
 	gchar filename[96];
 	gchar buffer[1024];
-	gchar state[2];
+	gchar state[2] = { 0 };
 
 	snprintf (filename, sizeof (filename), "/proc/%i/status", pid);
 	if ((file = fopen (filename, "r")) == NULL)
