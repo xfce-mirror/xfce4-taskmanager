@@ -13,6 +13,10 @@
 #include "config.h"
 #endif
 
+#include "inode-to-sock.h"
+#include "network-analyzer.h"
+#include "task-manager.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -30,10 +34,6 @@
 #include <netpacket/packet.h>
 
 #include <glib.h>
-
-#include "inode-to-sock.h"
-#include "network-analyzer.h"
-#include "task-manager.h"
 
 static XtmNetworkAnalyzer *analyzer = NULL;
 static XtmInodeToSock *inode_to_sock = NULL;
@@ -273,12 +273,18 @@ get_network_usage (guint64 *tcp_rx, guint64 *tcp_tx, guint64 *tcp_error)
 	out = fgets (buffer, sizeof (buffer), file);
 
 	if (!out)
+	{
+		fclose (file);
 		return FALSE;
+	}
 
 	out = fgets (buffer, sizeof (buffer), file);
 
 	if (!out)
+	{
+		fclose (file);
 		return FALSE;
+	}
 
 	while (fgets (buffer, sizeof (buffer), file))
 	{

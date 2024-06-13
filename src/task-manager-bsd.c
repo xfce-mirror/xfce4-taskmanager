@@ -20,6 +20,8 @@
 #include "config.h"
 #endif
 
+#include "inode-to-sock.h"
+#include "network-analyzer.h"
 #include "task-manager.h"
 
 #include <err.h>
@@ -40,34 +42,27 @@
 /* for struct vmtotal */
 #include <sys/vmmeter.h>
 
+// clang-format off
 #include <net/if.h>
 #include <net/if_dl.h>
 #include <net/route.h>
-
-// clang-format off
 #include <netinet/if_ether.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/in_pcb.h>
 #include <netinet/tcp.h>
-// clang-format on
-
 #include <arpa/inet.h>
 #include <ifaddrs.h>
-
-// struct file in NetBSD
-// ugly ! where is defined this ?
-// plateform dependent
-
-#include "inode-to-sock.h"
-#include "network-analyzer.h"
-#include "task-manager.h"
+// clang-format on
 
 #include <errno.h>
 
 #ifdef __OpenBSD__
 extern int errno;
 #else
+// struct file in NetBSD
+// ugly ! where is defined this ?
+// plateform dependent
 typedef long register_t;
 typedef unsigned long paddr_t;
 #include <kvm.h>

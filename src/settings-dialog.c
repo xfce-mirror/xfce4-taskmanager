@@ -109,7 +109,6 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 	GtkDialog *dialog = GTK_DIALOG (user_data);
 
 	const gchar *authors[] = {
-		"(c) 2024-2024 Jehan-Antoine Vayssade",
 		"(c) 2014-2021 Simon Steinbeiss",
 		"(c) 2018-2019 Rozhuk Ivan",
 		"(c) 2014 Landry Breuil",

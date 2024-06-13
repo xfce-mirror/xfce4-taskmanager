@@ -10,10 +10,6 @@
 #ifndef NETWORK_ANALYZER_H
 #define NETWORK_ANALYZER_H
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include <glib.h>
 
 #ifdef HAVE_LIBPCAP
@@ -24,17 +20,14 @@
 typedef struct _XtmNetworkAnalyzer XtmNetworkAnalyzer;
 struct _XtmNetworkAnalyzer
 {
+	// interface mac adress
 	guint8 mac[6];
 
-#ifdef HAVE_LIBPCAP
-	// interface mac adress
-	pcap_if_t *iface;
+	void *iface; // pcap_if_t
+	void *handle; // pcap_t
 
 	pthread_t thread;
 	pthread_mutex_t lock;
-
-	pcap_t *handle;
-#endif
 
 	// map port and number of packets
 	GHashTable *packetin;

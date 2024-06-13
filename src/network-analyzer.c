@@ -6,6 +6,12 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  */
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#include "network-analyzer.h"
+#include "task-manager.h"
 
 #include <arpa/inet.h>
 #include <net/if.h>
@@ -14,9 +20,6 @@
 #include <netinet/tcp.h>
 #include <sys/socket.h>
 #include <sys/types.h>
-
-#include "network-analyzer.h"
-#include "task-manager.h"
 
 void *network_analyzer_thread (void *ptr);
 

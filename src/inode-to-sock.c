@@ -6,6 +6,9 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  */
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #include "inode-to-sock.h"
 #include "stdio.h"
@@ -13,7 +16,7 @@
 XtmInodeToSock *
 xtm_create_inode_to_sock (void)
 {
-	XtmInodeToSock *its = (XtmInodeToSock *)malloc (sizeof (XtmInodeToSock));
+	XtmInodeToSock *its = g_new (XtmInodeToSock, 1);
 	its->hash = g_hash_table_new_full (g_int_hash, g_int_equal, g_free, NULL);
 	// freebsd only
 	its->pid = g_hash_table_new_full (g_int_hash, g_int_equal, g_free, NULL);

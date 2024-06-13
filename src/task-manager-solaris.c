@@ -44,7 +44,6 @@
 #include <ifaddrs.h>
 
 #include <arpa/inet.h>
-//#include <stropts.h>
 #include <sys/stropts.h>
 #include <inet/mib2.h>
 #include <sys/tihdr.h>

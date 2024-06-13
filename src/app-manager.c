@@ -44,7 +44,7 @@ static App *apps_lookup_app (GArray *apps, WnckApplication *application);
 static void application_opened (WnckScreen *screen, WnckApplication *application, XtmAppManager *manager);
 static void application_closed (WnckScreen *screen, WnckApplication *application, XtmAppManager *manager);
 static void scale_factor_changed (GdkMonitor *monitor);
-static WnckHandle *handle = NULL;
+// static WnckHandle *handle = NULL;
 
 
 static void
@@ -63,12 +63,12 @@ xtm_app_manager_init (XtmAppManager *manager)
 	GdkMonitor *monitor;
 	GList *windows, *l;
 
-#if WNCK_CHECK_VERSION(43, 0, 0)
-	handle = wnck_handle_new (WNCK_CLIENT_TYPE_APPLICATION);
-	screen = wnck_handle_get_default_screen (handle);
-#else
+	// #if WNCK_CHECK_VERSION(43, 0, 0)
+	//	handle = wnck_handle_new (WNCK_CLIENT_TYPE_APPLICATION);
+	//	screen = wnck_handle_get_default_screen (handle);
+	// #else
 	screen = wnck_screen_get_default ();
-#endif
+	// #endif
 	monitor = gdk_display_get_monitor (gdk_display_get_default (), 0);
 
 	/* Retrieve initial applications */
@@ -218,11 +218,11 @@ application_closed (WnckScreen *screen __unused, WnckApplication *application, X
 static void
 scale_factor_changed (GdkMonitor *monitor)
 {
-#if WNCK_CHECK_VERSION(43, 0, 0)
-	wnck_handle_set_default_mini_icon_size (handle, WNCK_DEFAULT_MINI_ICON_SIZE * gdk_monitor_get_scale_factor (monitor));
-#else
+	// #if WNCK_CHECK_VERSION(43, 0, 0)
+	//	wnck_handle_set_default_mini_icon_size (handle, WNCK_DEFAULT_MINI_ICON_SIZE * gdk_monitor_get_scale_factor (monitor));
+	// #else
 	wnck_set_default_mini_icon_size (WNCK_DEFAULT_MINI_ICON_SIZE * gdk_monitor_get_scale_factor (monitor));
-#endif
+	// #endif
 }
 
 
