@@ -533,6 +533,7 @@ cb_copy_command_line (GtkMenuItem *mi, gpointer user_data)
 
 			clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 			gtk_clipboard_set_text (clipboard, cmdline, -1);
+			g_free (cmdline);
 
 			keep_looking = FALSE;
 		}
