@@ -139,7 +139,7 @@ msgstr "Usuń zadanie"
 #: src/process-tree-view.c:446
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr "Czy na pewno chcesz wysłać sygnał %s do PID %d?"
+msgstr "Czy na pewno chcesz wysłać sygnał %s do identyfikatora %d?"
 
 #: src/process-tree-view.c:447
 msgid "terminate"
@@ -214,7 +214,7 @@ msgstr "Priorytet"
 #. Same trick as above
 #: src/process-tree-view.c:609 src/process-tree-view.c:708
 msgid "Copy command line"
-msgstr "Skopiuj ścieżkę polecenia"
+msgstr "Skopiuj wiersz polecenia"
 
 #: src/process-window.c:171
 msgid "Bad Window"
@@ -235,12 +235,12 @@ msgstr "XGetWindowProperty nie powiodło się!"
 
 #: src/process-window.c:181
 msgid "No PID found"
-msgstr "Nie znaleziono PID"
+msgstr "Nie znaleziono identyfikatora"
 
 #: src/process-window.c:181
 #, c-format
 msgid "No PID found for window 0x%lx."
-msgstr "Nie znaleziono PID dla okna 0x%lx."
+msgstr "Nie znaleziono identyfikatora okna 0x%lx."
 
 #: src/process-window.c:383
 msgid "Filter on process name"
@@ -296,15 +296,15 @@ msgstr "_Zamknij"
 
 #: src/settings-dialog.ui:139
 msgid "Show all processes"
-msgstr "Wszystkie procesy"
+msgstr "Wyświetlanie wszystkich procesów"
 
 #: src/settings-dialog.ui:153
 msgid "Show application icons"
-msgstr "Ikony programów"
+msgstr "Wyświetlanie ikon programów"
 
 #: src/settings-dialog.ui:167
 msgid "Show full command lines"
-msgstr "Pełne ścieżki poleceń"
+msgstr "Wyświetlanie pełnych wierszy poleceń"
 
 #: src/settings-dialog.ui:181
 msgid "Show processes as tree"
