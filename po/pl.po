@@ -35,7 +35,7 @@ msgstr "Menedżer zadań"
 
 #: xfce4-taskmanager.desktop.in:4
 msgid "Easy to use application to monitor system resources"
-msgstr "Łatwa w użyciu aplikacja do monitorowania zasobów systemowych"
+msgstr "Łatwy w użyciu program do monitorowania zasobów systemowych"
 
 #: src/main.c:61
 msgid "Quit"
@@ -48,7 +48,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %s\n"
 "<b>Swap:</b> %s"
-msgstr "<b>Ilość procesów:</b> %u\n<b>Obciążenie CPU:</b> %.0f%%\n<b>Użycie pamięci:</b> %s\n<b>Użycie przestrzeni wymiany:</b> %s"
+msgstr "<b>Procesy:</b> %u\n<b>Procesor:</b> %.0f%%\n<b>Pamięć:</b> %s\n<b>Przestrzeń wymiany:</b> %s"
 
 #: src/main.c:255
 msgid "Xfce Notify Daemon"
@@ -61,22 +61,22 @@ msgstr "Demon menedżera ustawień jest niedostępny"
 #: src/process-statusbar.c:193 src/process-window.c:549
 #, c-format
 msgid "CPU: %s%%"
-msgstr "Obciążenie CPU: %s%%"
+msgstr "Procesor: %s%%"
 
 #: src/process-statusbar.c:201 src/process-window.c:553
 #, c-format
 msgid "Memory: %s"
-msgstr "Użycie pamięci: %s"
+msgstr "Pamięć: %s"
 
 #: src/process-statusbar.c:209
 #, c-format
 msgid "Swap: %s"
-msgstr "Użycie przestrzeni wymiany: %s"
+msgstr "Przestrzeń wymiany: %s"
 
 #: src/process-statusbar.c:224
 #, c-format
 msgid "Processes: %d"
-msgstr "Ilość procesów: %d"
+msgstr "Procesy: %d"
 
 #: src/process-tree-view.c:159
 msgid "Task"
@@ -158,7 +158,7 @@ msgstr "Błąd wysyłania sygnału"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "Wystąpił błąd podczas wysyłania sygnału do procesu o identyfikatorze %d. Proszę sprawdzić czy bieżący użytkownik posiada odpowiednie uprawnienia."
+msgstr "Wystąpił błąd podczas wysyłania sygnału do procesu o identyfikatorze %d. Sprawdź, czy bieżący użytkownik ma odpowiednie uprawnienia."
 
 #: src/process-tree-view.c:490
 msgid "Error setting priority"
@@ -169,7 +169,7 @@ msgstr "Błąd ustalania priorytetu"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "Wystąpił błąd podczas zmiany priorytetu procesu o identyfikatorze %d. Proszę sprawdzić czy bieżący użytkownik posiada odpowiednie uprawnienia."
+msgstr "Wystąpił błąd podczas zmiany priorytetu procesu o identyfikatorze %d. Sprawdź, czy bieżący użytkownik ma odpowiednie uprawnienia."
 
 #: src/process-tree-view.c:554 src/process-tree-view.c:697
 msgid "Stop"
@@ -280,7 +280,7 @@ msgstr "Piotr Maliński <admin@rk.edu.pl>, 2006.\nTomasz Chudyk <chudyk@gmail.co
 
 #: src/settings-dialog.ui:49
 msgid "Task Manager Settings"
-msgstr "Ustawienia Menedżera zadań"
+msgstr "Ustawienia menedżera zadań"
 
 #: src/settings-dialog.ui:63
 msgid "_Help"
