@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-10 00:51+0200\n"
+"POT-Creation-Date: 2024-10-15 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Marek Adamski, 2022-2024\n"
 "Language-Team: Polish (http://app.transifex.com/xfce/xfce-apps/language/pl/)\n"
@@ -27,9 +27,9 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:222 src/process-tree-view.c:448 src/process-tree-view.c:463
-#: src/process-tree-view.c:493 src/process-window.ui:7
-#: src/settings-dialog.c:147
+#: src/main.c:222 src/process-tree-view.c:446 src/process-tree-view.c:462
+#: src/process-tree-view.c:494 src/process-window.ui:7
+#: src/settings-dialog.c:143
 msgid "Task Manager"
 msgstr "Menedżer zadań"
 
@@ -37,11 +37,15 @@ msgstr "Menedżer zadań"
 msgid "Easy to use application to monitor system resources"
 msgstr "Łatwy w użyciu program do monitorowania zasobów systemowych"
 
-#: src/main.c:61
+#: xfce4-taskmanager.desktop.in:12
+msgid "monitor;resources;system;task;performance;"
+msgstr "monitor;zasoby;system;zadanie;wydajność;"
+
+#: src/main.c:59
 msgid "Quit"
 msgstr "Zakończ"
 
-#: src/main.c:171
+#: src/main.c:170
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -58,109 +62,109 @@ msgstr "Demon powiadomień Xfce"
 msgid "Settings daemon is unavailable"
 msgstr "Demon menedżera ustawień jest niedostępny"
 
-#: src/process-statusbar.c:193 src/process-window.c:549
+#: src/process-statusbar.c:191 src/process-window.c:548
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Procesor: %s%%"
 
-#: src/process-statusbar.c:201 src/process-window.c:553
+#: src/process-statusbar.c:199 src/process-window.c:552
 #, c-format
 msgid "Memory: %s"
 msgstr "Pamięć: %s"
 
-#: src/process-statusbar.c:209
+#: src/process-statusbar.c:207
 #, c-format
 msgid "Swap: %s"
 msgstr "Przestrzeń wymiany: %s"
 
-#: src/process-statusbar.c:224
+#: src/process-statusbar.c:222
 #, c-format
 msgid "Processes: %d"
 msgstr "Procesy: %d"
 
-#: src/process-tree-view.c:159
+#: src/process-tree-view.c:157
 msgid "Task"
 msgstr "Zadanie"
 
-#: src/process-tree-view.c:170 src/settings-dialog.ui:359
+#: src/process-tree-view.c:168 src/settings-dialog.ui:359
 msgid "PID"
 msgstr "Identyfikator"
 
-#: src/process-tree-view.c:178 src/settings-dialog.ui:373
+#: src/process-tree-view.c:176 src/settings-dialog.ui:373
 msgid "PPID"
 msgstr "Identyfikator rodzica"
 
-#: src/process-tree-view.c:186 src/settings-dialog.ui:387
+#: src/process-tree-view.c:184 src/settings-dialog.ui:387
 msgid "State"
 msgstr "Stan"
 
-#: src/process-tree-view.c:195
+#: src/process-tree-view.c:193
 msgid "VSZ"
 msgstr "Pamięć przydzielona"
 
-#: src/process-tree-view.c:203
+#: src/process-tree-view.c:201
 msgid "Group VSZ"
 msgstr "Grupuj pamięć przydzieloną"
 
-#: src/process-tree-view.c:211
+#: src/process-tree-view.c:209
 msgid "RSS"
 msgstr "Pamięć zajęta"
 
-#: src/process-tree-view.c:219
+#: src/process-tree-view.c:217
 msgid "Group RSS"
 msgstr "Grupuj pamięć zajętą"
 
-#: src/process-tree-view.c:227 src/settings-dialog.ui:457
+#: src/process-tree-view.c:225 src/settings-dialog.ui:457
 msgid "UID"
 msgstr "Użytkownik"
 
-#: src/process-tree-view.c:235 src/settings-dialog.ui:471
+#: src/process-tree-view.c:233 src/settings-dialog.ui:471
 msgid "CPU"
 msgstr "Obciążenie CPU"
 
-#: src/process-tree-view.c:243 src/settings-dialog.ui:485
+#: src/process-tree-view.c:241 src/settings-dialog.ui:485
 msgid "Group CPU"
 msgstr "Grupuj obciążenie CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:252
+#: src/process-tree-view.c:250
 msgid "Prio."
 msgstr "Priorytet"
 
-#: src/process-tree-view.c:444
+#: src/process-tree-view.c:442
 msgid "Terminate task"
 msgstr "Zakończ zadanie"
 
-#: src/process-tree-view.c:444
+#: src/process-tree-view.c:442
 msgid "Kill task"
 msgstr "Usuń zadanie"
 
-#: src/process-tree-view.c:446
+#: src/process-tree-view.c:444
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Czy na pewno chcesz wysłać sygnał %s do identyfikatora %d?"
 
-#: src/process-tree-view.c:447
+#: src/process-tree-view.c:445
 msgid "terminate"
 msgstr "zakończ"
 
-#: src/process-tree-view.c:447
+#: src/process-tree-view.c:445
 msgid "kill"
 msgstr "usuń"
 
-#: src/process-tree-view.c:459
+#: src/process-tree-view.c:457
 msgid "Error sending signal"
 msgstr "Błąd wysyłania sygnału"
 
-#: src/process-tree-view.c:461
+#: src/process-tree-view.c:459
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Wystąpił błąd podczas wysyłania sygnału do procesu o identyfikatorze %d. Sprawdź, czy bieżący użytkownik ma odpowiednie uprawnienia."
 
-#: src/process-tree-view.c:490
+#: src/process-tree-view.c:489
 msgid "Error setting priority"
 msgstr "Błąd ustalania priorytetu"
 
@@ -171,56 +175,56 @@ msgid ""
 "you don't have the required privileges."
 msgstr "Wystąpił błąd podczas zmiany priorytetu procesu o identyfikatorze %d. Sprawdź, czy bieżący użytkownik ma odpowiednie uprawnienia."
 
-#: src/process-tree-view.c:554 src/process-tree-view.c:697
+#: src/process-tree-view.c:556 src/process-tree-view.c:699
 msgid "Stop"
 msgstr "Zatrzymaj"
 
-#: src/process-tree-view.c:561
+#: src/process-tree-view.c:563
 msgid "Continue"
 msgstr "Kontynuuj"
 
-#: src/process-tree-view.c:567
+#: src/process-tree-view.c:569
 msgid "Terminate"
 msgstr "Zakończ"
 
-#: src/process-tree-view.c:573
+#: src/process-tree-view.c:575
 msgid "Kill"
 msgstr "Usuń"
 
-#: src/process-tree-view.c:580
+#: src/process-tree-view.c:582
 msgid "Very low"
 msgstr "Bardzo niski"
 
-#: src/process-tree-view.c:585
+#: src/process-tree-view.c:587
 msgid "Low"
 msgstr "Niski"
 
-#: src/process-tree-view.c:590
+#: src/process-tree-view.c:592
 msgid "Normal"
 msgstr "Zwykły"
 
-#: src/process-tree-view.c:595
+#: src/process-tree-view.c:597
 msgid "High"
 msgstr "Wysoki"
 
-#: src/process-tree-view.c:600
+#: src/process-tree-view.c:602
 msgid "Very high"
 msgstr "Bardzo wysoki"
 
-#: src/process-tree-view.c:605 src/settings-dialog.ui:499
+#: src/process-tree-view.c:607 src/settings-dialog.ui:499
 msgid "Priority"
 msgstr "Priorytet"
 
 #. Same trick as above
-#: src/process-tree-view.c:609 src/process-tree-view.c:708
+#: src/process-tree-view.c:611 src/process-tree-view.c:710
 msgid "Copy command line"
 msgstr "Skopiuj wiersz polecenia"
 
-#: src/process-window.c:171
+#: src/process-window.c:169
 msgid "Bad Window"
 msgstr "Nieprawidłowe okno"
 
-#: src/process-window.c:171
+#: src/process-window.c:169
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Identyfikator okna 0x%lx nie istnieje!"
@@ -233,28 +237,28 @@ msgstr "XGetWindowProperty nie powiodło się"
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty nie powiodło się!"
 
-#: src/process-window.c:181
+#: src/process-window.c:186
 msgid "No PID found"
 msgstr "Nie znaleziono identyfikatora"
 
-#: src/process-window.c:181
+#: src/process-window.c:186
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Nie znaleziono identyfikatora okna 0x%lx."
 
-#: src/process-window.c:383
+#: src/process-window.c:382
 msgid "Filter on process name"
 msgstr "Filtruj nazwy procesów"
 
-#: src/process-window.c:387
+#: src/process-window.c:386
 msgid "Starting task"
 msgstr "Rozpoczęcie zadania"
 
-#: src/process-window.c:387
+#: src/process-window.c:386
 msgid "Changing task"
 msgstr "Zmiana zadania"
 
-#: src/process-window.c:387
+#: src/process-window.c:386
 msgid "Terminating task"
 msgstr "Zakończenie zadania"
 
@@ -270,11 +274,11 @@ msgstr "Identyfikuj otwarte okno, klikając je."
 msgid "You are using the root account, you may harm your system."
 msgstr "Używasz konta roota, możesz uszkodzić swój system."
 
-#: src/settings-dialog.c:151
+#: src/settings-dialog.c:147
 msgid "Easy to use task manager"
 msgstr "Zarządza uruchomionymi procesami"
 
-#: src/settings-dialog.c:154
+#: src/settings-dialog.c:150
 msgid "translator-credits"
 msgstr "Piotr Maliński <admin@rk.edu.pl>, 2006.\nTomasz Chudyk <chudyk@gmail.com>, 2010.\nPiotr Strębski <strebski@o2.pl>, 2013.\nPiotr Sokół <psokol@jabster.pl>, 2009, 2011, 2013, 2014."
 
@@ -362,7 +366,7 @@ msgstr "Grupuj bajty rezydentne"
 msgid "Columns"
 msgstr "Kolumny"
 
-#: src/task-manager.c:257 src/task-manager.c:260
+#: src/task-manager.c:258 src/task-manager.c:261
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
