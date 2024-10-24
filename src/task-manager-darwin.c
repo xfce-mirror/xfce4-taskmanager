@@ -12,8 +12,8 @@
  * GNU Library General Public License for more details.
  */
 
-#include <stdlib.h>
 #include <err.h>
+#include <stdlib.h>
 #include <sys/types.h>
 /* for sysctl() */
 #include <sys/param.h>
@@ -30,11 +30,10 @@
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 /* Darwin target conditional */
-#include <TargetConditionals.h>
-#include <Availability.h>
-
 #include "task-manager.h"
 
+#include <Availability.h>
+#include <TargetConditionals.h>
 #include <errno.h>
 
 /* mark processes slept over 20 seconds as 'I' instead of 'S', thats how
@@ -49,17 +48,23 @@
  */
 
 static int
-mach_state_order(int s, long sleep_time)
+mach_state_order (int s, long sleep_time)
 {
-	switch (s) {
-	case TH_STATE_RUNNING:	return(1);
-	case TH_STATE_UNINTERRUPTIBLE:
-				return(2);
-	case TH_STATE_WAITING:	return((sleep_time > MAXSLP) ? 4 : 3);
-	case TH_STATE_STOPPED:	return(5);
-	case TH_STATE_HALTED:	return(6);
-	default:		return(7);
-    }
+	switch (s)
+	{
+		case TH_STATE_RUNNING:
+			return (1);
+		case TH_STATE_UNINTERRUPTIBLE:
+			return (2);
+		case TH_STATE_WAITING:
+			return ((sleep_time > MAXSLP) ? 4 : 3);
+		case TH_STATE_STOPPED:
+			return (5);
+		case TH_STATE_HALTED:
+			return (6);
+		default:
+			return (7);
+	}
 }
 
 static const gchar mach_state_table[] = {
@@ -73,8 +78,7 @@ static const gchar mach_state_table[] = {
 	'?'
 };
 
-__unused
-static const gchar p_stat2state[] = {
+__unused static const gchar p_stat2state[] = {
 	' ',
 	'I', /* SIDL */
 	'R', /* SRUN */
@@ -83,20 +87,20 @@ static const gchar p_stat2state[] = {
 	'Z' /* SZOMB */
 };
 
-#define TIME_VALUE_TO_NS(a)                                                                        \
+#define TIME_VALUE_TO_NS(a) \
 	(((uint64_t)((a)->seconds) * NSEC_PER_SEC) + ((uint64_t)((a)->microseconds) * NSEC_PER_USEC))
 
 static inline gulong
-mach_time_nsec(void)
+mach_time_nsec (void)
 {
 #if (defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_12) || \
-    (defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_10_0)
+	(defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_10_0)
 	/* Darwin 16+ introduced clock_gettime_nsec_np() */
-	return clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
+	return clock_gettime_nsec_np (CLOCK_MONOTONIC_RAW);
 #else
 	mach_timebase_info_data_t clock_timebase;
-	mach_timebase_info(&clock_timebase);
-	return (mach_absolute_time() * clock_timebase.numer) / clock_timebase.denom;
+	mach_timebase_info (&clock_timebase);
+	return (mach_absolute_time () * clock_timebase.numer) / clock_timebase.denom;
 #endif
 }
 
@@ -112,24 +116,26 @@ get_cpu_percent (GPid pid, gulong task_time, gfloat *cpu_user)
 	/* init time */
 	if (hash_time == NULL)
 		hash_time = g_hash_table_new (NULL, NULL);
-	if (cpu_time_old == 0) {
-		cpu_time_old = mach_time_nsec();
+	if (cpu_time_old == 0)
+	{
+		cpu_time_old = mach_time_nsec ();
 		g_hash_table_insert (hash_time, GINT_TO_POINTER (pid), (gpointer)(gulong)(task_time));
 		*cpu_user = 0.0f;
 		return;
 	}
 
-	task_time_old = (gulong) (g_hash_table_lookup (hash_time, GINT_TO_POINTER (pid)));
+	task_time_old = (gulong)(g_hash_table_lookup (hash_time, GINT_TO_POINTER (pid)));
 	gulong task_time_delta = (task_time - task_time_old) / NSEC_PER_USEC;
-        /* store for next iter */
+	/* store for next iter */
 	g_hash_table_insert (hash_time, GINT_TO_POINTER (pid), (gpointer)(gulong)(task_time));
 
-	gulong cpu_time = mach_time_nsec();
+	gulong cpu_time = mach_time_nsec ();
 	gulong cpu_time_delta = (cpu_time - cpu_time_old) / NSEC_PER_USEC;
 	/* store for next iter */
 	cpu_time_old = cpu_time;
 
-	if (cpu_time_delta == 0) {
+	if (cpu_time_delta == 0)
+	{
 		*cpu_user = 0.0f;
 		return;
 	}
@@ -137,7 +143,8 @@ get_cpu_percent (GPid pid, gulong task_time, gfloat *cpu_user)
 	*cpu_user = 0.01f * task_time_delta / cpu_time_delta;
 }
 
-gboolean get_task_list (GArray *task_list)
+gboolean
+get_task_list (GArray *task_list)
 {
 	static bool have_tfp0 = true;
 
@@ -146,7 +153,7 @@ gboolean get_task_list (GArray *task_list)
 	struct kinfo_proc *kp;
 	Task t;
 	char *args; /* OpenBSD KERN_PROC_ARGS: {"1", "2", "3"...}, Darwin KERN_PROCARGS2: "1" '\0' "2" '\0' "3"...ENV */
-	gchar* buf;
+	gchar *buf;
 	int nproc, i, nargs, argmax, c = 0;
 	char *np, *sp, *cp;
 
@@ -157,18 +164,18 @@ gboolean get_task_list (GArray *task_list)
 	mib[2] = KERN_PROC_ALL;
 	mib[3] = 0;
 
-	if (sysctl(mib, 4, NULL, &size, NULL, 0) < 0)
-		errx(1, "could not get kern.proc size");
+	if (sysctl (mib, 4, NULL, &size, NULL, 0) < 0)
+		errx (1, "could not get kern.proc size");
 
-	if ((kp = (struct kinfo_proc *)malloc(size)) == NULL)
-		errx(1,"failed to allocate memory for proc structures");
+	if ((kp = (struct kinfo_proc *)malloc (size)) == NULL)
+		errx (1, "failed to allocate memory for proc structures");
 
-	if (sysctl(mib, 4, kp, &size, NULL, 0) < 0)
-		errx(1, "could not read kern.proc");
+	if (sysctl (mib, 4, kp, &size, NULL, 0) < 0)
+		errx (1, "could not read kern.proc");
 
-	nproc = (int)(size / sizeof(struct kinfo_proc));
+	nproc = (int)(size / sizeof (struct kinfo_proc));
 
-	for (i=0 ; i < nproc ; i++)
+	for (i = 0; i < nproc; i++)
 	{
 		struct kinfo_proc p = kp[i];
 		task_t result;
@@ -176,49 +183,57 @@ gboolean get_task_list (GArray *task_list)
 		mach_port_t task;
 		thread_port_array_t thread_list;
 		uint32_t thread_count;
-		struct task_basic_info_64 task_info_data = {0};
-		struct task_thread_times_info thread_time_data = {0};
-		struct thread_basic_info thread_info_data = {0};
+		struct task_basic_info_64 task_info_data = { 0 };
+		struct task_thread_times_info thread_time_data = { 0 };
+		struct thread_basic_info thread_info_data = { 0 };
 		mach_msg_type_number_t task_info_count = TASK_BASIC_INFO_64_COUNT;
 		mach_msg_type_number_t thread_time_count = TASK_THREAD_TIMES_INFO_COUNT;
 		mach_msg_type_number_t thread_info_count = THREAD_BASIC_INFO_COUNT;
 
 		/* task_for_pid fails on zombies */
-		if (p.kp_proc.p_stat != SZOMB) {
+		if (p.kp_proc.p_stat != SZOMB)
+		{
 			/* get task port */
-			if ((result = task_for_pid(mach_task_self(), p.kp_proc.p_pid, &task)) != KERN_SUCCESS) {
+			if ((result = task_for_pid (mach_task_self (), p.kp_proc.p_pid, &task)) != KERN_SUCCESS)
+			{
 				/* we are not allowed inspect kernel_task when no tfp0 */
-				if (p.kp_proc.p_pid == 0) {
-					if (have_tfp0) {
-						g_warning("Unable to inspect kernel_task (%s)", mach_error_string(result));
+				if (p.kp_proc.p_pid == 0)
+				{
+					if (have_tfp0)
+					{
+						g_warning ("Unable to inspect kernel_task (%s)", mach_error_string (result));
 						have_tfp0 = false;
 					}
 					continue;
 				}
-				G_DEBUG_FMT ("Unable to get task of PID %d (%s)", p.kp_proc.p_pid, mach_error_string(result));
+				G_DEBUG_FMT ("Unable to get task of PID %d (%s)", p.kp_proc.p_pid, mach_error_string (result));
 			}
 			/* get basic info (for t.vsz t.rss t.state) */
-			if ((result = task_info(task, TASK_BASIC_INFO_64, (task_info_t)&task_info_data, &task_info_count)) != KERN_SUCCESS) {
-				G_DEBUG_FMT ("Unable to inspect task info of PID %d (%s)", p.kp_proc.p_pid, mach_error_string(result));
+			if ((result = task_info (task, TASK_BASIC_INFO_64, (task_info_t)&task_info_data, &task_info_count)) != KERN_SUCCESS)
+			{
+				G_DEBUG_FMT ("Unable to inspect task info of PID %d (%s)", p.kp_proc.p_pid, mach_error_string (result));
 				goto task_info_done;
 			}
 			/* get thread time info (for t.cpu_user) */
-			if ((result = task_info(task, TASK_THREAD_TIMES_INFO, (task_info_t)&thread_time_data, &thread_time_count)) != KERN_SUCCESS) {
-				G_DEBUG_FMT ("Unable to inspect task thread time of PID %d (%s)", p.kp_proc.p_pid, mach_error_string(result));
+			if ((result = task_info (task, TASK_THREAD_TIMES_INFO, (task_info_t)&thread_time_data, &thread_time_count)) != KERN_SUCCESS)
+			{
+				G_DEBUG_FMT ("Unable to inspect task thread time of PID %d (%s)", p.kp_proc.p_pid, mach_error_string (result));
 				goto task_info_done;
 			}
 			/* get threads */
-			if ((result = task_threads(task, &thread_list, &thread_count)) != KERN_SUCCESS) {
-				G_DEBUG_FMT ("Unable to get task threads of PID %d (%s)", p.kp_proc.p_pid, mach_error_string(result));
+			if ((result = task_threads (task, &thread_list, &thread_count)) != KERN_SUCCESS)
+			{
+				G_DEBUG_FMT ("Unable to get task threads of PID %d (%s)", p.kp_proc.p_pid, mach_error_string (result));
 				goto task_info_done;
 			}
 			task_state = 7; /* Max state */
-			for (c = 0; c < (int)thread_count; c++) {
+			for (c = 0; c < (int)thread_count; c++)
+			{
 				thread_info_count = THREAD_BASIC_INFO_COUNT;
-				result = thread_info(thread_list[c], THREAD_BASIC_INFO, (thread_info_t)&thread_info_data, &thread_info_count);
+				result = thread_info (thread_list[c], THREAD_BASIC_INFO, (thread_info_t)&thread_info_data, &thread_info_count);
 				if (result != KERN_SUCCESS)
-					G_DEBUG_FMT ("Unable to get thread %d info of PID %d (%s)", c, p.kp_proc.p_pid, mach_error_string(result));
-				result = mach_state_order(thread_info_data.run_state, thread_info_data.sleep_time);
+					G_DEBUG_FMT ("Unable to get thread %d info of PID %d (%s)", c, p.kp_proc.p_pid, mach_error_string (result));
+				result = mach_state_order (thread_info_data.run_state, thread_info_data.sleep_time);
 				if ((int)result < task_state)
 					task_state = result;
 
@@ -231,16 +246,17 @@ gboolean get_task_list (GArray *task_list)
 				 * retrieve Darwin process cpu usages by time calculation. */
 				/* cpu_usage += thread_info_data.cpu_usage; */
 
-				mach_port_deallocate(mach_task_self(), thread_list[c]);
+				mach_port_deallocate (mach_task_self (), thread_list[c]);
 			}
 
-			result = vm_deallocate(mach_task_self(), (vm_address_t)(thread_list), sizeof(*thread_list) * thread_count);
-			if (result) g_warning("Trouble freeing thread_list of PID %d (%s)", p.kp_proc.p_pid, mach_error_string(result));
-task_info_done:
-			mach_port_deallocate(mach_task_self(), task);
+			result = vm_deallocate (mach_task_self (), (vm_address_t)(thread_list), sizeof (*thread_list) * thread_count);
+			if (result)
+				g_warning ("Trouble freeing thread_list of PID %d (%s)", p.kp_proc.p_pid, mach_error_string (result));
+		task_info_done:
+			mach_port_deallocate (mach_task_self (), task);
 		}
 
-		memset(&t, 0, sizeof(t));
+		memset (&t, 0, sizeof (t));
 		t.pid = p.kp_proc.p_pid;
 		t.ppid = p.kp_eproc.e_ppid;
 		t.uid = p.kp_eproc.e_pcred.p_ruid;
@@ -290,50 +306,58 @@ task_info_done:
 		if (p.kp_proc.p_stat != SZOMB && task_info_data.suspend_count > 0)
 			t.state[c++] = 'B';
 #endif
-		g_strlcpy(t.name, p.kp_proc.p_comm, strlen(p.kp_proc.p_comm) + 1);
+		g_strlcpy (t.name, p.kp_proc.p_comm, strlen (p.kp_proc.p_comm) + 1);
 		/* https://opensource.apple.com/source/adv_cmds/adv_cmds-158/ps/print.c */
-		if (p.kp_proc.p_stat != SZOMB) {
+		if (p.kp_proc.p_stat != SZOMB)
+		{
 			mib[1] = KERN_ARGMAX;
-			size = sizeof(argmax);
-			if (sysctl(mib, 2, &argmax, &size, NULL, 0) != 0)
+			size = sizeof (argmax);
+			if (sysctl (mib, 2, &argmax, &size, NULL, 0) != 0)
 				argmax = 1024; /* fallback */
-			if ((args = malloc(argmax)) == NULL)
-				errx(1,"failed to allocate memory for argv structures at %zu", size);
-			memset(args, 0, argmax);
+			if ((args = malloc (argmax)) == NULL)
+				errx (1, "failed to allocate memory for argv structures at %zu", size);
+			memset (args, 0, argmax);
 
 			mib[1] = KERN_PROCARGS2;
 			mib[2] = t.pid;
 			size = (size_t)argmax;
-			if (sysctl(mib, 3, args, &size, NULL, 0) == 0) {
+			if (sysctl (mib, 3, args, &size, NULL, 0) == 0)
+			{
 				c = 0;
 				np = NULL;
 				sp = NULL;
 				cp = NULL;
 				/* Save current pos */
-				memcpy(&nargs, args, sizeof(nargs));
-				cp = args + sizeof(nargs);
+				memcpy (&nargs, args, sizeof (nargs));
+				cp = args + sizeof (nargs);
 
 				/* Skip the saved t.name. */
-				for (; cp < &args[size]; cp++) {
-					if (*cp == '\0') {
+				for (; cp < &args[size]; cp++)
+				{
+					if (*cp == '\0')
+					{
 						/* End of t.name reached. */
 						break;
 					}
 				}
 				/* Reached argmax */
-				if (cp == &args[size]) {
+				if (cp == &args[size])
+				{
 					goto done;
 				}
 
 				/* Skip trailing '\0' characters. */
-				for (; cp < &args[size]; cp++) {
-					if (*cp != '\0') {
+				for (; cp < &args[size]; cp++)
+				{
+					if (*cp != '\0')
+					{
 						/* Beginning of first argument reached. */
 						break;
 					}
 				}
 				/* Reached argmax */
-				if (cp == &args[size]) {
+				if (cp == &args[size])
+				{
 					goto done;
 				}
 				/* Save where the argv[0] string starts. */
@@ -345,41 +369,48 @@ task_info_done:
 				 * know where the command arguments end and the environment strings
 				 * start, which is why the '=' character is searched for as a heuristic.
 				 */
-				for (np = NULL; c < nargs && cp < &args[size]; cp++) {
-					if (*cp == '\0') {
+				for (np = NULL; c < nargs && cp < &args[size]; cp++)
+				{
+					if (*cp == '\0')
+					{
 						c++;
-						if (np != NULL) {
+						if (np != NULL)
+						{
 							/* Convert previous '\0'. */
 							*np = ' ';
 						}
 						/* Note location of current '\0'. */
 						np = cp;
-
 					}
 				}
 				/*
 				 * sp points to the beginning of the arguments/environment string, and
 				 * np should point to the '\0' terminator for the string.
 				 */
-				if (np == NULL || np == sp) {
+				if (np == NULL || np == sp)
+				{
 					/* Empty or unterminated string. */
 					goto done;
 				}
-done:
+			done:
 				/* Make a copy of the string. */
-				buf = g_strdup_printf("%s", sp);
-			} else {
-				/* When we reach here, the process has been gone after we got task info */
-				buf = g_strdup("");
+				buf = g_strdup_printf ("%s", sp);
 			}
-			g_assert(g_utf8_validate(buf, -1, NULL));
-			g_strlcpy(t.cmdline, buf, sizeof t.cmdline);
-			g_free(buf);
-			free(args);
-		} else {
+			else
+			{
+				/* When we reach here, the process has been gone after we got task info */
+				buf = g_strdup ("");
+			}
+			g_assert (g_utf8_validate (buf, -1, NULL));
+			g_strlcpy (t.cmdline, buf, sizeof t.cmdline);
+			g_free (buf);
+			free (args);
+		}
+		else
+		{
 			/* Zombie processes */
-			g_snprintf(t.name, strlen(p.kp_proc.p_comm) + 3, "(%s)", p.kp_proc.p_comm);
-			g_strlcpy(t.cmdline, t.name, sizeof t.name);
+			g_snprintf (t.name, strlen (p.kp_proc.p_comm) + 3, "(%s)", p.kp_proc.p_comm);
+			g_strlcpy (t.cmdline, t.name, sizeof t.name);
 		}
 
 		/* p_pctcpu always 0 on Darwin Releases */
@@ -387,17 +418,14 @@ done:
 
 		/* Set total_time. */
 		/* thread info contains live time, task info contains terminated time */
-		total_time = TIME_VALUE_TO_NS(&thread_time_data.user_time)
-			   + TIME_VALUE_TO_NS(&thread_time_data.system_time)
-			   + TIME_VALUE_TO_NS(&task_info_data.user_time)
-			   + TIME_VALUE_TO_NS(&task_info_data.system_time);
+		total_time = TIME_VALUE_TO_NS (&thread_time_data.user_time) + TIME_VALUE_TO_NS (&thread_time_data.system_time) + TIME_VALUE_TO_NS (&task_info_data.user_time) + TIME_VALUE_TO_NS (&task_info_data.system_time);
 
-		get_cpu_percent(t.pid, total_time, &t.cpu_user);
+		get_cpu_percent (t.pid, total_time, &t.cpu_user);
 
 		t.cpu_system = 0.0f; /* Unused */
-		g_array_append_val(task_list, t);
+		g_array_append_val (task_list, t);
 	}
-	free(kp);
+	free (kp);
 
 	g_array_sort (task_list, task_pid_compare_fn);
 
@@ -409,20 +437,21 @@ pid_is_sleeping (GPid pid)
 {
 	int mib[4];
 	struct kinfo_proc kp;
-	size_t size = sizeof(struct kinfo_proc);
+	size_t size = sizeof (struct kinfo_proc);
 
 	mib[0] = CTL_KERN;
 	mib[1] = KERN_PROC;
 	mib[2] = KERN_PROC_PID;
 	mib[3] = pid;
 
-	if (sysctl(mib, 4, &kp, &size, NULL, 0) < 0)
-		errx(1, "could not read kern.proc for pid %d", pid);
+	if (sysctl (mib, 4, &kp, &size, NULL, 0) < 0)
+		errx (1, "could not read kern.proc for pid %d", pid);
 
 	return (kp.kp_proc.p_stat == SSTOP ? TRUE : FALSE);
 }
 
-gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
+gboolean
+get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 {
 	static gulong cur_user = 0, cur_system = 0, cur_total = 0;
 	static gulong old_user = 0, old_system = 0, old_total = 0;
@@ -432,8 +461,8 @@ gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system
 	mach_msg_type_number_t vm_count = HOST_CPU_LOAD_INFO_COUNT;
 	host_cpu_load_info_data_t cpuload;
 
-	if (host_statistics(mach_host_self(), HOST_CPU_LOAD_INFO, (host_info_t)&cpuload, &vm_count) != KERN_SUCCESS)
-		errx(1, "failed to get host_statistics");
+	if (host_statistics (mach_host_self (), HOST_CPU_LOAD_INFO, (host_info_t)&cpuload, &vm_count) != KERN_SUCCESS)
+		errx (1, "failed to get host_statistics");
 
 	old_user = cur_user;
 	old_system = cur_system;
@@ -447,11 +476,11 @@ gboolean get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system
 	*cpu_system = (old_total > 0) ? (((cur_system - old_system) * 100.0f) / (float)(cur_total - old_total)) : 0.0f;
 
 	/* get #cpu */
-	size = sizeof(&cpu_count);
+	size = sizeof (&cpu_count);
 	mib[0] = CTL_HW;
 	mib[1] = HW_NCPU; /* Some impls uses hw.physicalcpu or hw.activecpu */
-	if (sysctl(mib, 2, cpu_count, &size, NULL, 0) == -1)
-		errx(1,"failed to get cpu count");
+	if (sysctl (mib, 2, cpu_count, &size, NULL, 0) == -1)
+		errx (1, "failed to get cpu count");
 	return TRUE;
 }
 
@@ -486,15 +515,17 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 	/* To match the behavior of Activity Monitor.app, we get hw.memsize first */
 	mib[0] = CTL_HW;
 	mib[1] = HW_MEMSIZE;
-	size = sizeof(memsize);
-	if (sysctl(mib, 2, &memsize, &size, NULL, 0) < 0) {
+	size = sizeof (memsize);
+	if (sysctl (mib, 2, &memsize, &size, NULL, 0) < 0)
+	{
 		/* Fallback to calculating, which matches the behavior of Apple top(1) */
 		memsize = 0;
 	}
 
 	/* Sad truth, VM_METER is not used by Darwin but defined in header, Apple lied to us */
-	host_page_size(mach_host_self(), &vm_pagesize); /* getpagesize() is much easier ig */
-	if (host_statistics64(mach_host_self(), HOST_VM_INFO64, (host_info_t)&vm_stat, &vm_count) == KERN_SUCCESS) {
+	host_page_size (mach_host_self (), &vm_pagesize); /* getpagesize() is much easier ig */
+	if (host_statistics64 (mach_host_self (), HOST_VM_INFO64, (host_info_t)&vm_stat, &vm_count) == KERN_SUCCESS)
+	{
 		/* Activity Monitor.app: UsedMem = pagetok(vm_stat.internal_page_count - vm_stat.purgeable_count) +
 		 *				   pagetok(vm_stat.wire_count) + pagetok(vm_stat.compressor_page_count)
 		 *			 Which is 'App Memory' + 'Wired Memory' + 'Compressed Memory'.
@@ -504,28 +535,31 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 		 * 		       between both results.
 		 * Which one shall I believe?
 		 */
-		if (memsize) {
+		if (memsize)
+		{
 			*memory_total = memsize;
-			*memory_free = memsize - pagetok(vm_stat.internal_page_count - vm_stat.purgeable_count
-				+ vm_stat.wire_count + vm_stat.compressor_page_count);
-		} else {
-			*memory_free = pagetok(vm_stat.free_count);
-			*memory_total = pagetok(vm_stat.free_count + vm_stat.wire_count + vm_stat.inactive_count
-				+ vm_stat.active_count + vm_stat.compressor_page_count);
+			*memory_free = memsize - pagetok (vm_stat.internal_page_count - vm_stat.purgeable_count + vm_stat.wire_count + vm_stat.compressor_page_count);
+		}
+		else
+		{
+			*memory_free = pagetok (vm_stat.free_count);
+			*memory_total = pagetok (vm_stat.free_count + vm_stat.wire_count + vm_stat.inactive_count + vm_stat.active_count + vm_stat.compressor_page_count);
 		}
 		*memory_buffers = 0; /* total - active, but not actually used by taskmanager, skip */
 		*memory_cache = 0; /* inactive,  but not actually used by taskmanager, skip */
 		*memory_available = *memory_free + *memory_cache + *memory_buffers;
-	} else {
-		errx(1,"failed to get vm_statistics");
+	}
+	else
+	{
+		errx (1, "failed to get vm_statistics");
 	}
 #endif
 	mib[0] = CTL_VM;
 	mib[1] = VM_SWAPUSAGE;
 	/* get swap usage */
-	size = sizeof(swapused);
-	if (sysctl(mib, 2, &swapused, &size, NULL, 0) < 0)
-		errx(1,"failed to get vm.swapusage");
+	size = sizeof (swapused);
+	if (sysctl (mib, 2, &swapused, &size, NULL, 0) < 0)
+		errx (1, "failed to get vm.swapusage");
 
 	/* Total things up */
 	*swap_total = *swap_free = 0;
