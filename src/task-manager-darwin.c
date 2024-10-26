@@ -264,7 +264,8 @@ get_task_list (GArray *task_list)
 		/* t.vsz *= getpagesize(); */
 		t.rss = task_info_data.resident_size / 1024.0; /* KiB */
 		/* PZERO no longer used by Darwin, no need to offset it like BSD */
-		/* Which priority should we use, kinfo_proc or jetsam? */
+		/* GNU htop is still using p_priority, but this label seems kept by XNU for just BSD compat,
+		 * the actual task scheduling was jetsam? Mach task priority? who knows */
 		t.prio = p.kp_proc.p_priority;
 
 		c = 0;
@@ -447,7 +448,7 @@ pid_is_sleeping (GPid pid)
 	if (sysctl (mib, 4, &kp, &size, NULL, 0) < 0)
 		errx (1, "could not read kern.proc for pid %d", pid);
 
-	return (kp.kp_proc.p_stat == SSTOP ? TRUE : FALSE);
+	return kp.kp_proc.p_stat == SSTOP;
 }
 
 gboolean
@@ -495,7 +496,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 	vm_statistics64_data_t vm_stat;
 	mach_msg_type_number_t vm_count = HOST_VM_INFO64_COUNT;
 	vm_size_t vm_pagesize;
-	uint64_t memsize;
+	uint64_t physmem;
 	size_t size;
 
 #if 0
@@ -515,11 +516,11 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 	/* To match the behavior of Activity Monitor.app, we get hw.memsize first */
 	mib[0] = CTL_HW;
 	mib[1] = HW_MEMSIZE;
-	size = sizeof (memsize);
-	if (sysctl (mib, 2, &memsize, &size, NULL, 0) < 0)
+	size = sizeof (physmem);
+	if (sysctl (mib, 2, &physmem, &size, NULL, 0) < 0)
 	{
-		/* Fallback to calculating, which matches the behavior of Apple top(1) */
-		memsize = 0;
+		/* Fallback to calculating virtmem only, which matches the behavior of Apple top(1) */
+		physmem = 0;
 	}
 
 	/* Sad truth, VM_METER is not used by Darwin but defined in header, Apple lied to us */
@@ -533,15 +534,16 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 		 *				 vm_stat.active_count + vm_stat.compressor_page_count);
 		 *		       Which not counting vm_stat.free_count and 'App Memory', resulting significant difference
 		 * 		       between both results.
-		 * Which one shall I believe?
 		 */
-		if (memsize)
+		if (physmem != 0)
 		{
-			*memory_total = memsize;
-			*memory_free = memsize - pagetok (vm_stat.internal_page_count - vm_stat.purgeable_count + vm_stat.wire_count + vm_stat.compressor_page_count);
+			/* When hw.memsize is available, we get free memory by substracting used virtual memory */
+			*memory_total = physmem;
+			*memory_free = physmem - pagetok (vm_stat.internal_page_count - vm_stat.purgeable_count + vm_stat.wire_count + vm_stat.compressor_page_count);
 		}
 		else
 		{
+			/* otherwise, we can only know how much virtual memory freed */
 			*memory_free = pagetok (vm_stat.free_count);
 			*memory_total = pagetok (vm_stat.free_count + vm_stat.wire_count + vm_stat.inactive_count + vm_stat.active_count + vm_stat.compressor_page_count);
 		}
