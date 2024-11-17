@@ -52,7 +52,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %s\n"
 "<b>Swap:</b> %s"
-msgstr "<b>Procesy:</b> %u\n<b>Procesor:</b> %.0f%%\n<b>Pamięć:</b> %s\n<b>Przestrzeń wymiany:</b> %s"
+msgstr "<b>Procesy:</b> %u\n<b>Procesor:</b> %.0f%%\n<b>Pamięć:</b> %s\n<b>Wymiana:</b> %s"
 
 #: src/main.c:255
 msgid "Xfce Notify Daemon"
@@ -75,7 +75,7 @@ msgstr "Pamięć: %s"
 #: src/process-statusbar.c:207
 #, c-format
 msgid "Swap: %s"
-msgstr "Przestrzeń wymiany: %s"
+msgstr "Wymiana: %s"
 
 #: src/process-statusbar.c:222
 #, c-format
@@ -120,11 +120,11 @@ msgstr "Użytkownik"
 
 #: src/process-tree-view.c:233 src/settings-dialog.ui:471
 msgid "CPU"
-msgstr "Obciążenie CPU"
+msgstr "Użycie CPU"
 
 #: src/process-tree-view.c:241 src/settings-dialog.ui:485
 msgid "Group CPU"
-msgstr "Grupuj obciążenie CPU"
+msgstr "Grupuj użycie CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
@@ -272,7 +272,7 @@ msgstr "Identyfikuj otwarte okno, klikając je."
 
 #: src/process-window.ui:127
 msgid "You are using the root account, you may harm your system."
-msgstr "Używasz konta roota, możesz uszkodzić swój system."
+msgstr "Używasz konta użytkownika root, możesz uszkodzić ten system."
 
 #: src/settings-dialog.c:147
 msgid "Easy to use task manager"
@@ -348,19 +348,19 @@ msgstr "Ogólne"
 
 #: src/settings-dialog.ui:401
 msgid "Virtual Bytes"
-msgstr "Bajty wirtualne"
+msgstr "Bajty przydzielone"
 
 #: src/settings-dialog.ui:415
 msgid "Group Virtual Bytes"
-msgstr "Grupuj bajty wirtualne"
+msgstr "Grupuj bajty przydzielone"
 
 #: src/settings-dialog.ui:429
 msgid "Resident Bytes"
-msgstr "Bajty rezydentne"
+msgstr "Bajty zajęte"
 
 #: src/settings-dialog.ui:443
 msgid "Group Resident Bytes"
-msgstr "Grupuj bajty rezydentne"
+msgstr "Grupuj bajty zajęte"
 
 #: src/settings-dialog.ui:520
 msgid "Columns"
