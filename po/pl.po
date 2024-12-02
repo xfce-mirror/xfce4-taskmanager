@@ -162,7 +162,7 @@ msgstr "Błąd wysyłania sygnału"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "Wystąpił błąd podczas wysyłania sygnału do procesu o identyfikatorze %d. Sprawdź, czy bieżący użytkownik ma odpowiednie uprawnienia."
+msgstr "Wystąpił błąd podczas wysyłania sygnału do procesu o identyfikatorze %d. Sprawdź, czy bieżący użytkownik ma odpowiednie uprawnienia."
 
 #: src/process-tree-view.c:489
 msgid "Error setting priority"
@@ -336,7 +336,7 @@ msgstr "Wyświetlanie potwierdzenia kończenia zadania"
 
 #: src/settings-dialog.ui:310
 msgid "Keep in the notification area"
-msgstr "Utrzymywanie w obszarze powiadomień"
+msgstr "Utrzymywanie w obszarze powiadomień"
 
 #: src/settings-dialog.ui:328
 msgid "<b>Miscellaneous</b>"
