@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-10 00:51+0200\n"
+"POT-Creation-Date: 2024-10-15 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2021-2024\n"
 "Language-Team: Hebrew (http://app.transifex.com/xfce/xfce-apps/language/he/)\n"
@@ -23,9 +23,9 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
 #: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:222 src/process-tree-view.c:448 src/process-tree-view.c:463
-#: src/process-tree-view.c:493 src/process-window.ui:7
-#: src/settings-dialog.c:147
+#: src/main.c:222 src/process-tree-view.c:446 src/process-tree-view.c:462
+#: src/process-tree-view.c:494 src/process-window.ui:7
+#: src/settings-dialog.c:143
 msgid "Task Manager"
 msgstr "מנהל משימות"
 
@@ -33,11 +33,15 @@ msgstr "מנהל משימות"
 msgid "Easy to use application to monitor system resources"
 msgstr "יישום פשוט למעקב אחר משאבי המערכת"
 
-#: src/main.c:61
+#: xfce4-taskmanager.desktop.in:12
+msgid "monitor;resources;system;task;performance;"
+msgstr "monitor;resources;system;task;performance;"
+
+#: src/main.c:59
 msgid "Quit"
 msgstr "יציאה"
 
-#: src/main.c:171
+#: src/main.c:170
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -54,109 +58,109 @@ msgstr "שדון התראה Xfce"
 msgid "Settings daemon is unavailable"
 msgstr "Settings daemon is unavailable"
 
-#: src/process-statusbar.c:193 src/process-window.c:549
+#: src/process-statusbar.c:191 src/process-window.c:548
 #, c-format
 msgid "CPU: %s%%"
 msgstr "‏CPU‏: %s%%"
 
-#: src/process-statusbar.c:201 src/process-window.c:553
+#: src/process-statusbar.c:199 src/process-window.c:552
 #, c-format
 msgid "Memory: %s"
 msgstr "זיכרון: %s"
 
-#: src/process-statusbar.c:209
+#: src/process-statusbar.c:207
 #, c-format
 msgid "Swap: %s"
 msgstr "הֶחְלֵף: %s"
 
-#: src/process-statusbar.c:224
+#: src/process-statusbar.c:222
 #, c-format
 msgid "Processes: %d"
 msgstr "תהליכים: %d"
 
-#: src/process-tree-view.c:159
+#: src/process-tree-view.c:157
 msgid "Task"
 msgstr "משימה"
 
-#: src/process-tree-view.c:170 src/settings-dialog.ui:359
+#: src/process-tree-view.c:168 src/settings-dialog.ui:359
 msgid "PID"
 msgstr "PID"
 
-#: src/process-tree-view.c:178 src/settings-dialog.ui:373
+#: src/process-tree-view.c:176 src/settings-dialog.ui:373
 msgid "PPID"
 msgstr "PPID"
 
-#: src/process-tree-view.c:186 src/settings-dialog.ui:387
+#: src/process-tree-view.c:184 src/settings-dialog.ui:387
 msgid "State"
 msgstr "מצב"
 
-#: src/process-tree-view.c:195
+#: src/process-tree-view.c:193
 msgid "VSZ"
 msgstr "VSZ"
 
-#: src/process-tree-view.c:203
+#: src/process-tree-view.c:201
 msgid "Group VSZ"
 msgstr "קבץ VSZ"
 
-#: src/process-tree-view.c:211
+#: src/process-tree-view.c:209
 msgid "RSS"
 msgstr "RSS"
 
-#: src/process-tree-view.c:219
+#: src/process-tree-view.c:217
 msgid "Group RSS"
 msgstr "קבץ RSS"
 
-#: src/process-tree-view.c:227 src/settings-dialog.ui:457
+#: src/process-tree-view.c:225 src/settings-dialog.ui:457
 msgid "UID"
 msgstr "UID"
 
-#: src/process-tree-view.c:235 src/settings-dialog.ui:471
+#: src/process-tree-view.c:233 src/settings-dialog.ui:471
 msgid "CPU"
 msgstr "CPU"
 
-#: src/process-tree-view.c:243 src/settings-dialog.ui:485
+#: src/process-tree-view.c:241 src/settings-dialog.ui:485
 msgid "Group CPU"
 msgstr "קבץ CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:252
+#: src/process-tree-view.c:250
 msgid "Prio."
 msgstr "עדיפות"
 
-#: src/process-tree-view.c:444
+#: src/process-tree-view.c:442
 msgid "Terminate task"
 msgstr "סיים משימה"
 
-#: src/process-tree-view.c:444
+#: src/process-tree-view.c:442
 msgid "Kill task"
 msgstr "הרוג משימה"
 
-#: src/process-tree-view.c:446
+#: src/process-tree-view.c:444
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "האם אתה בטוח שברצונך לשלוח את האות %s למזהה תהליך %d?"
 
-#: src/process-tree-view.c:447
+#: src/process-tree-view.c:445
 msgid "terminate"
 msgstr "הפסק"
 
-#: src/process-tree-view.c:447
+#: src/process-tree-view.c:445
 msgid "kill"
 msgstr "חסל"
 
-#: src/process-tree-view.c:459
+#: src/process-tree-view.c:457
 msgid "Error sending signal"
 msgstr "שגיאה בשליחת אות"
 
-#: src/process-tree-view.c:461
+#: src/process-tree-view.c:459
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "אירעה שגיאה בעת שליחת אות למזהה תהליך %d. אפשרי כי אין לך את ההרשאות הנדרשות."
 
-#: src/process-tree-view.c:490
+#: src/process-tree-view.c:489
 msgid "Error setting priority"
 msgstr "שגיאה בקביעת עדיפות"
 
@@ -167,56 +171,56 @@ msgid ""
 "you don't have the required privileges."
 msgstr "אירעה שגיאה בעת קביעת עדיפות למזהה תהליך %d. אפשרי כי אין לך את ההרשאות הנדרשות."
 
-#: src/process-tree-view.c:554 src/process-tree-view.c:697
+#: src/process-tree-view.c:556 src/process-tree-view.c:699
 msgid "Stop"
 msgstr "עצור"
 
-#: src/process-tree-view.c:561
+#: src/process-tree-view.c:563
 msgid "Continue"
 msgstr "המשך"
 
-#: src/process-tree-view.c:567
+#: src/process-tree-view.c:569
 msgid "Terminate"
 msgstr "סיים"
 
-#: src/process-tree-view.c:573
+#: src/process-tree-view.c:575
 msgid "Kill"
 msgstr "הרוג"
 
-#: src/process-tree-view.c:580
+#: src/process-tree-view.c:582
 msgid "Very low"
 msgstr "נמוכה מאוד"
 
-#: src/process-tree-view.c:585
+#: src/process-tree-view.c:587
 msgid "Low"
 msgstr "נמוכה"
 
-#: src/process-tree-view.c:590
+#: src/process-tree-view.c:592
 msgid "Normal"
 msgstr "רגילה"
 
-#: src/process-tree-view.c:595
+#: src/process-tree-view.c:597
 msgid "High"
 msgstr "גבוהה"
 
-#: src/process-tree-view.c:600
+#: src/process-tree-view.c:602
 msgid "Very high"
 msgstr "גבוהה מאוד"
 
-#: src/process-tree-view.c:605 src/settings-dialog.ui:499
+#: src/process-tree-view.c:607 src/settings-dialog.ui:499
 msgid "Priority"
 msgstr "עדיפות"
 
 #. Same trick as above
-#: src/process-tree-view.c:609 src/process-tree-view.c:708
+#: src/process-tree-view.c:611 src/process-tree-view.c:710
 msgid "Copy command line"
 msgstr "העתק משורת הפקודה"
 
-#: src/process-window.c:171
+#: src/process-window.c:169
 msgid "Bad Window"
 msgstr "חלון רע"
 
-#: src/process-window.c:171
+#: src/process-window.c:169
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "לא קיים id 0x%lx של חלון!"
@@ -229,28 +233,28 @@ msgstr "XGetWindowProperty נכשל"
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty נכשל!"
 
-#: src/process-window.c:181
+#: src/process-window.c:186
 msgid "No PID found"
 msgstr "לא נמצא מזהה תהליך"
 
-#: src/process-window.c:181
+#: src/process-window.c:186
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "לא נמצא מזהה תהליך לחלון 0x%lx."
 
-#: src/process-window.c:383
+#: src/process-window.c:382
 msgid "Filter on process name"
 msgstr "סנן לפי שם התהליך"
 
-#: src/process-window.c:387
+#: src/process-window.c:386
 msgid "Starting task"
 msgstr "מתחיל משימה"
 
-#: src/process-window.c:387
+#: src/process-window.c:386
 msgid "Changing task"
 msgstr "מחליף משימה"
 
-#: src/process-window.c:387
+#: src/process-window.c:386
 msgid "Terminating task"
 msgstr "מפסיק משימה"
 
@@ -266,11 +270,11 @@ msgstr "זהה חלון פתוח בעזרת קליק עליו."
 msgid "You are using the root account, you may harm your system."
 msgstr "אתה משתמש בחשבון root, אתה עלול לגרום נזק למערכת שלך."
 
-#: src/settings-dialog.c:151
+#: src/settings-dialog.c:147
 msgid "Easy to use task manager"
 msgstr "מנהל משימות קל לשימוש"
 
-#: src/settings-dialog.c:154
+#: src/settings-dialog.c:150
 msgid "translator-credits"
 msgstr "גינגס חאן וכנופייתו"
 
@@ -358,7 +362,7 @@ msgstr "קבץ בייטים מקומיים"
 msgid "Columns"
 msgstr "עמודות"
 
-#: src/task-manager.c:257 src/task-manager.c:260
+#: src/task-manager.c:258 src/task-manager.c:261
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
