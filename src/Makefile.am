@@ -56,6 +56,9 @@ endif
 if OS_LINUX
 xfce4_taskmanager_SOURCES += task-manager-linux.c
 endif
+if OS_DARWIN
+xfce4_taskmanager_SOURCES += task-manager-darwin.c
+endif
 if OS_SKEL
 xfce4_taskmanager_SOURCES += task-manager-skel.c
 endif
