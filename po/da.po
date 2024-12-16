@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-10 00:51+0200\n"
+"POT-Creation-Date: 2024-10-15 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: scootergrisen, 2016-2017,2019-2024\n"
 "Language-Team: Danish (http://app.transifex.com/xfce/xfce-apps/language/da/)\n"
@@ -20,9 +20,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:222 src/process-tree-view.c:448 src/process-tree-view.c:463
-#: src/process-tree-view.c:493 src/process-window.ui:7
-#: src/settings-dialog.c:147
+#: src/main.c:222 src/process-tree-view.c:446 src/process-tree-view.c:462
+#: src/process-tree-view.c:494 src/process-window.ui:7
+#: src/settings-dialog.c:143
 msgid "Task Manager"
 msgstr "Opgavehåndtering"
 
@@ -30,11 +30,15 @@ msgstr "Opgavehåndtering"
 msgid "Easy to use application to monitor system resources"
 msgstr "Letanvendeligt program til at overvåge systemressourcer"
 
-#: src/main.c:61
+#: xfce4-taskmanager.desktop.in:12
+msgid "monitor;resources;system;task;performance;"
+msgstr "overvåg;ressourcer;system;opgave;ydelse;"
+
+#: src/main.c:59
 msgid "Quit"
 msgstr "Afslut"
 
-#: src/main.c:171
+#: src/main.c:170
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -51,109 +55,109 @@ msgstr "Xfce-underretningsdæmon"
 msgid "Settings daemon is unavailable"
 msgstr "Indstillingsdæmon er ikke tilgængelig"
 
-#: src/process-statusbar.c:193 src/process-window.c:549
+#: src/process-statusbar.c:191 src/process-window.c:548
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: src/process-statusbar.c:201 src/process-window.c:553
+#: src/process-statusbar.c:199 src/process-window.c:552
 #, c-format
 msgid "Memory: %s"
 msgstr "Hukommelse: %s"
 
-#: src/process-statusbar.c:209
+#: src/process-statusbar.c:207
 #, c-format
 msgid "Swap: %s"
 msgstr "Swap: %s"
 
-#: src/process-statusbar.c:224
+#: src/process-statusbar.c:222
 #, c-format
 msgid "Processes: %d"
 msgstr "Processer: %d"
 
-#: src/process-tree-view.c:159
+#: src/process-tree-view.c:157
 msgid "Task"
 msgstr "Opgave"
 
-#: src/process-tree-view.c:170 src/settings-dialog.ui:359
+#: src/process-tree-view.c:168 src/settings-dialog.ui:359
 msgid "PID"
 msgstr "PID"
 
-#: src/process-tree-view.c:178 src/settings-dialog.ui:373
+#: src/process-tree-view.c:176 src/settings-dialog.ui:373
 msgid "PPID"
 msgstr "PPID"
 
-#: src/process-tree-view.c:186 src/settings-dialog.ui:387
+#: src/process-tree-view.c:184 src/settings-dialog.ui:387
 msgid "State"
 msgstr "Tilstand"
 
-#: src/process-tree-view.c:195
+#: src/process-tree-view.c:193
 msgid "VSZ"
 msgstr "VSZ"
 
-#: src/process-tree-view.c:203
+#: src/process-tree-view.c:201
 msgid "Group VSZ"
 msgstr "Gruppér VSZ"
 
-#: src/process-tree-view.c:211
+#: src/process-tree-view.c:209
 msgid "RSS"
 msgstr "RSS"
 
-#: src/process-tree-view.c:219
+#: src/process-tree-view.c:217
 msgid "Group RSS"
 msgstr "Gruppér RSS"
 
-#: src/process-tree-view.c:227 src/settings-dialog.ui:457
+#: src/process-tree-view.c:225 src/settings-dialog.ui:457
 msgid "UID"
 msgstr "UID"
 
-#: src/process-tree-view.c:235 src/settings-dialog.ui:471
+#: src/process-tree-view.c:233 src/settings-dialog.ui:471
 msgid "CPU"
 msgstr "CPU"
 
-#: src/process-tree-view.c:243 src/settings-dialog.ui:485
+#: src/process-tree-view.c:241 src/settings-dialog.ui:485
 msgid "Group CPU"
 msgstr "Gruppér CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:252
+#: src/process-tree-view.c:250
 msgid "Prio."
 msgstr "Prio."
 
-#: src/process-tree-view.c:444
+#: src/process-tree-view.c:442
 msgid "Terminate task"
 msgstr "Afslut opgave"
 
-#: src/process-tree-view.c:444
+#: src/process-tree-view.c:442
 msgid "Kill task"
 msgstr "Dræb opgave"
 
-#: src/process-tree-view.c:446
+#: src/process-tree-view.c:444
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Er du sikker på, at du vil sende %s-signalet til PID'et %d?"
 
-#: src/process-tree-view.c:447
+#: src/process-tree-view.c:445
 msgid "terminate"
 msgstr "afslut"
 
-#: src/process-tree-view.c:447
+#: src/process-tree-view.c:445
 msgid "kill"
 msgstr "dræb"
 
-#: src/process-tree-view.c:459
+#: src/process-tree-view.c:457
 msgid "Error sending signal"
 msgstr "Fejl ved signalafsendelse"
 
-#: src/process-tree-view.c:461
+#: src/process-tree-view.c:459
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Stødte på en fejl under afsendelse af signal til PID'et %d. Du har sandsynligvis ikke de påkrævede tilladelser."
 
-#: src/process-tree-view.c:490
+#: src/process-tree-view.c:489
 msgid "Error setting priority"
 msgstr "Fejl ved angivelse af prioritet"
 
@@ -164,56 +168,56 @@ msgid ""
 "you don't have the required privileges."
 msgstr "Stødte på en fejl under angivelse af prioritet for PID'et %d. Du har sandsynligvis ikke de påkrævede tilladelser."
 
-#: src/process-tree-view.c:554 src/process-tree-view.c:697
+#: src/process-tree-view.c:556 src/process-tree-view.c:699
 msgid "Stop"
 msgstr "Stop"
 
-#: src/process-tree-view.c:561
+#: src/process-tree-view.c:563
 msgid "Continue"
 msgstr "Fortsæt"
 
-#: src/process-tree-view.c:567
+#: src/process-tree-view.c:569
 msgid "Terminate"
 msgstr "Afslut"
 
-#: src/process-tree-view.c:573
+#: src/process-tree-view.c:575
 msgid "Kill"
 msgstr "Dræb"
 
-#: src/process-tree-view.c:580
+#: src/process-tree-view.c:582
 msgid "Very low"
 msgstr "Meget lav"
 
-#: src/process-tree-view.c:585
+#: src/process-tree-view.c:587
 msgid "Low"
 msgstr "Lav"
 
-#: src/process-tree-view.c:590
+#: src/process-tree-view.c:592
 msgid "Normal"
 msgstr "Normal"
 
-#: src/process-tree-view.c:595
+#: src/process-tree-view.c:597
 msgid "High"
 msgstr "Høj"
 
-#: src/process-tree-view.c:600
+#: src/process-tree-view.c:602
 msgid "Very high"
 msgstr "Meget høj"
 
-#: src/process-tree-view.c:605 src/settings-dialog.ui:499
+#: src/process-tree-view.c:607 src/settings-dialog.ui:499
 msgid "Priority"
 msgstr "Prioritet"
 
 #. Same trick as above
-#: src/process-tree-view.c:609 src/process-tree-view.c:708
+#: src/process-tree-view.c:611 src/process-tree-view.c:710
 msgid "Copy command line"
 msgstr "Kopiér kommandolinje"
 
-#: src/process-window.c:171
+#: src/process-window.c:169
 msgid "Bad Window"
 msgstr "Dårligt vindue"
 
-#: src/process-window.c:171
+#: src/process-window.c:169
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Vindue-id 0x%lx findes ikke!"
@@ -226,28 +230,28 @@ msgstr "XGetWindowProperty mislykkedes"
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty mislykkedes!"
 
-#: src/process-window.c:181
+#: src/process-window.c:186
 msgid "No PID found"
 msgstr "Intet PID fundet"
 
-#: src/process-window.c:181
+#: src/process-window.c:186
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Intet PID fundet for vindue 0x%lx."
 
-#: src/process-window.c:383
+#: src/process-window.c:382
 msgid "Filter on process name"
 msgstr "Filtrér efter procesnavn"
 
-#: src/process-window.c:387
+#: src/process-window.c:386
 msgid "Starting task"
 msgstr "Starter opgave"
 
-#: src/process-window.c:387
+#: src/process-window.c:386
 msgid "Changing task"
 msgstr "Skifter opgave"
 
-#: src/process-window.c:387
+#: src/process-window.c:386
 msgid "Terminating task"
 msgstr "Afslutter opgave"
 
@@ -263,11 +267,11 @@ msgstr "Identificer et åbent vindue ved at klikke på det."
 msgid "You are using the root account, you may harm your system."
 msgstr "Du bruger root-kontoen. Du kan gøre skade på dit system."
 
-#: src/settings-dialog.c:151
+#: src/settings-dialog.c:147
 msgid "Easy to use task manager"
 msgstr "Opgavehåndtering som er nem at bruge"
 
-#: src/settings-dialog.c:154
+#: src/settings-dialog.c:150
 msgid "translator-credits"
 msgstr "Per Kongstad\nAputsiak Niels Janussen\nscootergrisen"
 
@@ -355,7 +359,7 @@ msgstr "Gruppér residente bytes"
 msgid "Columns"
 msgstr "Kolonner"
 
-#: src/task-manager.c:257 src/task-manager.c:260
+#: src/task-manager.c:258 src/task-manager.c:261
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
