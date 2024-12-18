@@ -102,7 +102,7 @@ else
 		AC_CHECK_HEADERS([fcntl.h kvm.h paths.h pwd.h sys/param.h sys/proc.h \
 				sys/sysctl.h sys/types.h sys/user.h unistd.h])
 		;;
-		dragonfly*|netbsd*|openbsd*|darwin*)
+		dragonfly*|netbsd*|openbsd*)
 		ac_os_implementation="bsd"
 		AC_CHECK_HEADERS([err.h pwd.h stdlib.h string.h sys/param.h sys/sched.h \
 				sys/swap.h sys/sysctl.h sys/types.h unistd.h])
@@ -118,6 +118,11 @@ else
 		AC_CHECK_HEADERS([pwd.h signal.h stdio.h string.h sys/resource.h \
 				sys/stat.h sys/types.h unistd.h])
 		;;
+		darwin*)
+		ac_os_implementation="darwin"
+		AC_CHECK_HEADERS([err.h mach/mach.h stdlib.h string.h sys/param.h sys/proc.h \
+				sys/sysctl.h sys/types.h unistd.h Availability.h TargetConditionals.h])
+		;;
 		*)
 		AC_MSG_CHECKING([for OS implementation])
 		AC_MSG_ERROR([no OS implementation for $target_os is available])
@@ -131,6 +136,7 @@ AM_CONDITIONAL([OS_FREEBSD], [test x"$ac_os_implementation" = x"freebsd"])
 AM_CONDITIONAL([OS_BSD], [test x"$ac_os_implementation" = x"bsd"])
 AM_CONDITIONAL([OS_SOLARIS], [test x"$ac_os_implementation" = x"solaris"])
 AM_CONDITIONAL([OS_LINUX], [test x"$ac_os_implementation" = x"linux"])
+AM_CONDITIONAL([OS_DARWIN], [test x"$ac_os_implementation" = x"darwin"])
 AM_CONDITIONAL([OS_SKEL], [test x"$ac_os_implementation" = x"skel"])
 
 dnl ***********************************
