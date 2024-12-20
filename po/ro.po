@@ -1,0 +1,365 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfce4-taskmanager package.
+# 
+# Translators:
+# cip <c1pr1an@tuta.io>, 2019
+# Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Apps\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-10-15 00:50+0200\n"
+"PO-Revision-Date: 2013-07-03 18:41+0000\n"
+"Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024\n"
+"Language-Team: Romanian (http://app.transifex.com/xfce/xfce-apps/language/ro/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+#: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
+#: src/main.c:222 src/process-tree-view.c:446 src/process-tree-view.c:462
+#: src/process-tree-view.c:494 src/process-window.ui:7
+#: src/settings-dialog.c:143
+msgid "Task Manager"
+msgstr "Gestionar de sarcini"
+
+#: xfce4-taskmanager.desktop.in:4
+msgid "Easy to use application to monitor system resources"
+msgstr "Aplicație ușor de utilizat pentru monitorizarea resurselor sistemului"
+
+#: xfce4-taskmanager.desktop.in:12
+msgid "monitor;resources;system;task;performance;"
+msgstr "monitorizare;resurse;sistem;sarcină; performanță;"
+
+#: src/main.c:59
+msgid "Quit"
+msgstr "Ieșire"
+
+#: src/main.c:170
+#, c-format
+msgid ""
+"<b>Processes:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Memory:</b> %s\n"
+"<b>Swap:</b> %s"
+msgstr "<b>Procese:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memorie:</b> %s\n<b>Swap:</b> %s"
+
+#: src/main.c:255
+msgid "Xfce Notify Daemon"
+msgstr "Serviciul de notificări Xfce"
+
+#: src/main.c:257
+msgid "Settings daemon is unavailable"
+msgstr "Demonul opțiunilor Xfce nu este disponibil"
+
+#: src/process-statusbar.c:191 src/process-window.c:548
+#, c-format
+msgid "CPU: %s%%"
+msgstr "CPU: %s%%"
+
+#: src/process-statusbar.c:199 src/process-window.c:552
+#, c-format
+msgid "Memory: %s"
+msgstr "Memorie: %s"
+
+#: src/process-statusbar.c:207
+#, c-format
+msgid "Swap: %s"
+msgstr "Swap: %s"
+
+#: src/process-statusbar.c:222
+#, c-format
+msgid "Processes: %d"
+msgstr "Procese: %d"
+
+#: src/process-tree-view.c:157
+msgid "Task"
+msgstr "Sarcina"
+
+#: src/process-tree-view.c:168 src/settings-dialog.ui:359
+msgid "PID"
+msgstr "PID"
+
+#: src/process-tree-view.c:176 src/settings-dialog.ui:373
+msgid "PPID"
+msgstr "PPID"
+
+#: src/process-tree-view.c:184 src/settings-dialog.ui:387
+msgid "State"
+msgstr "Stare"
+
+#: src/process-tree-view.c:193
+msgid "VSZ"
+msgstr "VSZ"
+
+#: src/process-tree-view.c:201
+msgid "Group VSZ"
+msgstr "Grup VSZ"
+
+#: src/process-tree-view.c:209
+msgid "RSS"
+msgstr "RSS"
+
+#: src/process-tree-view.c:217
+msgid "Group RSS"
+msgstr "Grup RSS"
+
+#: src/process-tree-view.c:225 src/settings-dialog.ui:457
+msgid "UID"
+msgstr "UID"
+
+#: src/process-tree-view.c:233 src/settings-dialog.ui:471
+msgid "CPU"
+msgstr "CPU"
+
+#: src/process-tree-view.c:241 src/settings-dialog.ui:485
+msgid "Group CPU"
+msgstr "Grup CPU"
+
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: src/process-tree-view.c:250
+msgid "Prio."
+msgstr "Prio."
+
+#: src/process-tree-view.c:442
+msgid "Terminate task"
+msgstr "Termină sarcina"
+
+#: src/process-tree-view.c:442
+msgid "Kill task"
+msgstr "Omoară sarcina"
+
+#: src/process-tree-view.c:444
+#, c-format
+msgid "Are you sure you want to send the %s signal to the PID %d?"
+msgstr "Sunteți sigur că doriți să trimiteți semnalul %s către PID %d?"
+
+#: src/process-tree-view.c:445
+msgid "terminate"
+msgstr "termină"
+
+#: src/process-tree-view.c:445
+msgid "kill"
+msgstr "omoară"
+
+#: src/process-tree-view.c:457
+msgid "Error sending signal"
+msgstr "Eroare la trimiterea semnalului"
+
+#: src/process-tree-view.c:459
+#, c-format
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
+msgstr "A fost întâlnită o eroare la trimiterea unui semnal către PID %d. Este posibil să nu aveți privilegiile necesare."
+
+#: src/process-tree-view.c:489
+msgid "Error setting priority"
+msgstr "Eroare la stabilirea priorității"
+
+#: src/process-tree-view.c:491
+#, c-format
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr "A fost întâlnită o eroare la setarea unei priorități pentru PID %d. Este posibil să nu aveți privilegiile necesare."
+
+#: src/process-tree-view.c:556 src/process-tree-view.c:699
+msgid "Stop"
+msgstr "Stop"
+
+#: src/process-tree-view.c:563
+msgid "Continue"
+msgstr "Continuă"
+
+#: src/process-tree-view.c:569
+msgid "Terminate"
+msgstr "Termină"
+
+#: src/process-tree-view.c:575
+msgid "Kill"
+msgstr "Omoară"
+
+#: src/process-tree-view.c:582
+msgid "Very low"
+msgstr "Foarte joasă"
+
+#: src/process-tree-view.c:587
+msgid "Low"
+msgstr "Joasă"
+
+#: src/process-tree-view.c:592
+msgid "Normal"
+msgstr "Normală"
+
+#: src/process-tree-view.c:597
+msgid "High"
+msgstr "Înaltă"
+
+#: src/process-tree-view.c:602
+msgid "Very high"
+msgstr "Foarte înaltă"
+
+#: src/process-tree-view.c:607 src/settings-dialog.ui:499
+msgid "Priority"
+msgstr "Prioritate"
+
+#. Same trick as above
+#: src/process-tree-view.c:611 src/process-tree-view.c:710
+msgid "Copy command line"
+msgstr "Copiați linia de comandă"
+
+#: src/process-window.c:169
+msgid "Bad Window"
+msgstr "Fereastră incorectă"
+
+#: src/process-window.c:169
+#, c-format
+msgid "Window id 0x%lx does not exist!"
+msgstr "Id-ul ferestrei 0x%lx nu există!"
+
+#: src/process-window.c:174
+msgid "XGetWindowProperty failed"
+msgstr "XGetWindowProperty a eșuat"
+
+#: src/process-window.c:174
+msgid "XGetWindowProperty failed!"
+msgstr "XGetWindowProperty a eșuat!"
+
+#: src/process-window.c:186
+msgid "No PID found"
+msgstr "Nu a fost găsit niciun PID"
+
+#: src/process-window.c:186
+#, c-format
+msgid "No PID found for window 0x%lx."
+msgstr "Nu a fost găsit PID-ul pentru fereastra 0x%lx."
+
+#: src/process-window.c:382
+msgid "Filter on process name"
+msgstr "Filtrare după numele procesului"
+
+#: src/process-window.c:386
+msgid "Starting task"
+msgstr "Se lansează sarcina"
+
+#: src/process-window.c:386
+msgid "Changing task"
+msgstr "Se schimbă sarcina"
+
+#: src/process-window.c:386
+msgid "Terminating task"
+msgstr "Se termină sarcina"
+
+#: src/process-window.ui:26
+msgid "Settings"
+msgstr "Configurări"
+
+#: src/process-window.ui:35
+msgid "Identify an open window by clicking on it."
+msgstr "Identificați o fereastră deschisă făcând clic pe ea."
+
+#: src/process-window.ui:127
+msgid "You are using the root account, you may harm your system."
+msgstr "Utilizați contul de administrator (root). Vă puteți deteriora sistemul."
+
+#: src/settings-dialog.c:147
+msgid "Easy to use task manager"
+msgstr "Gestionar de sarcini ușor de utilizat"
+
+#: src/settings-dialog.c:150
+msgid "translator-credits"
+msgstr "Mișu Moldovan <dumol@xfce.org>, 2015.\nRemus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024."
+
+#: src/settings-dialog.ui:49
+msgid "Task Manager Settings"
+msgstr "Configurări gestionar de sarcini"
+
+#: src/settings-dialog.ui:63
+msgid "_Help"
+msgstr "_Ajutor"
+
+#: src/settings-dialog.ui:78
+msgid "About"
+msgstr "Despre"
+
+#: src/settings-dialog.ui:92
+msgid "_Close"
+msgstr "În_chide"
+
+#: src/settings-dialog.ui:139
+msgid "Show all processes"
+msgstr "Afișează toate procesele"
+
+#: src/settings-dialog.ui:153
+msgid "Show application icons"
+msgstr "Afișează pictogramele aplicațiilor"
+
+#: src/settings-dialog.ui:167
+msgid "Show full command lines"
+msgstr "Afișează liniile de comandă complete"
+
+#: src/settings-dialog.ui:181
+msgid "Show processes as tree"
+msgstr "Afișează procesele sub formă de arbore"
+
+#: src/settings-dialog.ui:195
+msgid "Show legend"
+msgstr "Afișează legenda"
+
+#: src/settings-dialog.ui:209
+msgid "Show values with more precision"
+msgstr "Afișează valorile cu mai multă precizie"
+
+#: src/settings-dialog.ui:230
+msgid "Refresh rate (ms):"
+msgstr "Rata de reîmprospătare (ms):"
+
+#: src/settings-dialog.ui:269
+msgid "<b>Interface</b>"
+msgstr "<b>Interfață</b>"
+
+#: src/settings-dialog.ui:296
+msgid "Prompt for terminating tasks"
+msgstr "Prompt pentru terminarea sarcinilor"
+
+#: src/settings-dialog.ui:310
+msgid "Keep in the notification area"
+msgstr "Păstrează în zona de notificare"
+
+#: src/settings-dialog.ui:328
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Diverse</b>"
+
+#: src/settings-dialog.ui:345
+msgid "General"
+msgstr "Generale"
+
+#: src/settings-dialog.ui:401
+msgid "Virtual Bytes"
+msgstr "Octeți virtuali"
+
+#: src/settings-dialog.ui:415
+msgid "Group Virtual Bytes"
+msgstr "Grup de octeți virtuali"
+
+#: src/settings-dialog.ui:429
+msgid "Resident Bytes"
+msgstr "Octeți rezidenți"
+
+#: src/settings-dialog.ui:443
+msgid "Group Resident Bytes"
+msgstr "Grup de octeți rezidenți"
+
+#: src/settings-dialog.ui:520
+msgid "Columns"
+msgstr "Coloane"
+
+#: src/task-manager.c:258 src/task-manager.c:261
+#, c-format
+msgid "%s%%"
+msgstr "%s%%"
