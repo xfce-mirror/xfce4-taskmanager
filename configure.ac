@@ -12,7 +12,7 @@ dnl 2005-2008 Johannes Zellner <webmaster@nebulon.de>
 dnl ***************************
 dnl *** Version information ***
 dnl ***************************
-XDT_VERSION_INIT([1.5.8])
+XDT_VERSION_INIT([1.5.8], [git])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
