@@ -1,3 +1,34 @@
+1.5.8 (2024-12-25)
+=====
+- Add Darwin support
+- I18n: Update po/LINGUAS list
+- I18n: Update po/LINGUAS list
+- Added missing Keywords entry to .desktop file
+- Fix leak when copying command line string
+- Fix core.UndefinedBinaryOperatorResult warning from scan-build
+- clang-format: Use IncludeBlocks::Regroup
+- Apply .clang-format file
+- Clean up and sort includes
+- clang-format: Add file
+- Aggregate children memory and cpu
+- process-tree-view: Reset /columns/positions at startup if invalid
+- Fix xfconf memory management
+- I18n: Update po/LINGUAS list
+- build: Use XDT_VERSION_INIT and get rid of configure.ac.in
+- build: Switch from intltool to gettext
+- Fix search filter memory leaks
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Asturian, Azerbaijani, Basque,
+  Belarusian, Bulgarian, Catalan, Chinese (China), Chinese (Hong Kong),
+  Chinese (Taiwan), Croatian, Czech, Danish, Dutch, Eastern Armenian,
+  English (Australia), English (United Kingdom), Estonian, Finnish,
+  French, Galician, German, Greek, Hebrew, Hungarian, Icelandic,
+  Indonesian, Interlingue, Italian, Japanese, Kazakh, Korean,
+  Lithuanian, Malay, Norwegian Bokmål, Occitan (post 1500), Persian
+  (Iran), Polish, Portuguese, Portuguese (Brazil), Romanian, Russian,
+  Serbian, Slovak, Spanish, Swedish, Telugu, Thai, Turkish, Ukrainian,
+  Uyghur
+
 1.5.7 (2024-02-29)
 =====
 - Update copyright year
