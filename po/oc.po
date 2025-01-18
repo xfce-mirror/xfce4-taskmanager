@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Cédric Valmary <cvalmary@yahoo.fr>, 2013
-# Quentin PAGÈS, 2020,2023-2024
+# Quentin PAGÈS, 2020,2023-2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2024-10-15 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Quentin PAGÈS, 2020,2023-2024\n"
+"Last-Translator: Quentin PAGÈS, 2020,2023-2025\n"
 "Language-Team: Occitan (post 1500) (http://app.transifex.com/xfce/xfce-apps/language/oc/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -220,15 +220,15 @@ msgstr "Marrida fenèstra"
 #: src/process-window.c:169
 #, c-format
 msgid "Window id 0x%lx does not exist!"
-msgstr ""
+msgstr "La fenèstra amb l’ID 0x%lx existís pas !"
 
 #: src/process-window.c:174
 msgid "XGetWindowProperty failed"
-msgstr ""
+msgstr "XGetWindowProperty a fracassat"
 
 #: src/process-window.c:174
 msgid "XGetWindowProperty failed!"
-msgstr ""
+msgstr "XGetWindowProperty a fracassat !"
 
 #: src/process-window.c:186
 msgid "No PID found"
@@ -237,11 +237,11 @@ msgstr "Cap de PID pas trobat"
 #: src/process-window.c:186
 #, c-format
 msgid "No PID found for window 0x%lx."
-msgstr ""
+msgstr "Cap de PID pas trobat per la fenèstra 0x%lx."
 
 #: src/process-window.c:382
 msgid "Filter on process name"
-msgstr ""
+msgstr "Filtrar sul nom de processús"
 
 #: src/process-window.c:386
 msgid "Starting task"
@@ -261,11 +261,11 @@ msgstr "Paramètres"
 
 #: src/process-window.ui:35
 msgid "Identify an open window by clicking on it."
-msgstr ""
+msgstr "Identificar una fenèstra dobèrta en clicant dessús."
 
 #: src/process-window.ui:127
 msgid "You are using the root account, you may harm your system."
-msgstr ""
+msgstr "Sètz a utilizar lo compte root, podètz damatjar lo sistèma."
 
 #: src/settings-dialog.c:147
 msgid "Easy to use task manager"
@@ -305,7 +305,7 @@ msgstr "Veire las linhas de comanda completas"
 
 #: src/settings-dialog.ui:181
 msgid "Show processes as tree"
-msgstr ""
+msgstr "Afichar los processús en arborescéncia"
 
 #: src/settings-dialog.ui:195
 msgid "Show legend"
@@ -349,11 +349,11 @@ msgstr "Gropar los octets virtuals"
 
 #: src/settings-dialog.ui:429
 msgid "Resident Bytes"
-msgstr ""
+msgstr "Octets residents"
 
 #: src/settings-dialog.ui:443
 msgid "Group Resident Bytes"
-msgstr ""
+msgstr "Gropar los octets residents"
 
 #: src/settings-dialog.ui:520
 msgid "Columns"
