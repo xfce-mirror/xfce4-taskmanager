@@ -13,6 +13,7 @@ xfce4_taskmanager_CFLAGS =						\
 	$(GTK3_CFLAGS)							\
 	$(WNCK_CFLAGS)							\
 	$(LIBXFCE4UI_CFLAGS)				\
+	$(LIBXFCE4UTIL_CFLAGS)				\
 	$(XFCONF_CFLAGS)						\
 	$(NULL)
 
@@ -23,6 +24,7 @@ xfce4_taskmanager_LDADD = 						\
 	$(GTK3_LIBS) 						\
 	$(WNCK_LIBS)						\
 	$(LIBXFCE4UI_LIBS)			\
+	$(LIBXFCE4UTIL_LIBS)			\
 	$(XFCONF_LIBS)					\
 	$(NULL)
 

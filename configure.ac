@@ -73,6 +73,7 @@ XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.22.0])
 XDT_CHECK_PACKAGE([CAIRO], [cairo], [1.5.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.14.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.14.0])
 XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.14.0])
 
 dnl ***********************************
