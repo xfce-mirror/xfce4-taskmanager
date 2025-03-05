@@ -10,6 +10,9 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #include "settings-dialog.h"
 #include "settings-dialog_ui.h"
@@ -141,8 +144,8 @@ show_about_dialog (GtkWidget *widget, gpointer user_data)
 
 	gtk_show_about_dialog (GTK_WINDOW (dialog),
 		"program-name", _("Task Manager"),
-		"version", PACKAGE_VERSION,
-		"copyright", "Copyright \302\251 2005-2024 The Xfce development team",
+		"version", VERSION_FULL,
+		"copyright", "Copyright \302\251 2005-" COPYRIGHT_YEAR " The Xfce development team",
 		"logo-icon-name", "org.xfce.taskmanager",
 		"comments", _("Easy to use task manager"),
 		"license", license,
@@ -236,7 +239,10 @@ xtm_settings_dialog_run (GtkWidget *parent_window)
 	GtkWidget *dialog;
 
 	builder = gtk_builder_new ();
-	gtk_builder_add_from_string (builder, settings_dialog_ui, settings_dialog_ui_length, NULL);
+	settings_dialog_ui_register_resource ();
+	gtk_builder_add_from_resource (GTK_BUILDER (builder),
+								   "/org/xfce/taskmanager/settings-dialog/settings-dialog.ui",
+								   NULL);
 	g_return_if_fail (GTK_IS_BUILDER (builder));
 
 	dialog = xtm_settings_dialog_new (builder, parent_window);

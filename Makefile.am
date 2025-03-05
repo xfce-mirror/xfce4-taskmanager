@@ -16,7 +16,10 @@ ChangeLog: Makefile
 	ChangeLog-git.sh > $(srcdir)/ChangeLog || touch $(srcdir)/ChangeLog
 
 EXTRA_DIST =								\
-	$(desktop_in_files)
+	$(desktop_in_files)						\
+	xfce-revision.h.in						\
+	meson.build								\
+	meson_options.txt
 
 DISTCLEANFILES =							\
 	$(desktop_DATA)
