@@ -28,15 +28,20 @@ xfce4_taskmanager_LDADD = 						\
 	$(XFCONF_LIBS)					\
 	$(NULL)
 
+xfce4_taskmanager_built_sources =	\
+	process-window_ui.c				\
+	process-window_ui.h				\
+	settings-dialog_ui.c			\
+	settings-dialog_ui.h
+
 xfce4_taskmanager_SOURCES =						\
+	$(xfce4_taskmanager_built_sources)			\
 	main.c								\
-	process-window_ui.h					\
 	process-window.c		process-window.h		\
 	process-monitor.c		process-monitor.h		\
 	process-tree-model.c		process-tree-model.h		\
 	process-tree-view.c		process-tree-view.h		\
 	process-statusbar.c		process-statusbar.h		\
-	settings-dialog_ui.h									\
 	settings-dialog.c		settings-dialog.h		\
 	settings.c			settings.h			\
 	task-manager.c			task-manager.h			\
@@ -65,12 +70,21 @@ if OS_SKEL
 xfce4_taskmanager_SOURCES += task-manager-skel.c
 endif
 
-if MAINTAINER_MODE
-BUILT_SOURCES = process-window_ui.h settings-dialog_ui.h
-process-window_ui.h: process-window.ui
-	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=process_window_ui $< >$@
-settings-dialog_ui.h: settings-dialog.ui
-	$(AM_V_GEN) xdt-csource --static --strip-comments --strip-content --name=settings_dialog_ui $< >$@
-endif
+xfce4_taskmanager_glade_files =		\
+	process-window.ui				\
+	settings-dialog.ui
 
-EXTRA_DIST = process-window.ui settings-dialog.ui
+%_ui.h: $(srcdir)/%-ui.gresource.xml $(xfce4_taskmanager_glade_files) Makefile
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-header --manual-register $<
+
+%_ui.c: $(srcdir)/%-ui.gresource.xml $(xfce4_taskmanager_glade_files) Makefile %_ui.h
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source --manual-register $<
+
+DISTCLEANFILES =						\
+	$(xfce4_taskmanager_built_sources)
+
+EXTRA_DIST =							\
+	$(xfce4_taskmanager_glade_files)	\
+	process-window-ui.gresource.xml		\
+	settings-dialog-ui.gresource.xml	\
+	meson.build
