@@ -80,6 +80,11 @@ xfce4_taskmanager_glade_files =		\
 %_ui.c: $(srcdir)/%-ui.gresource.xml $(xfce4_taskmanager_glade_files) Makefile %_ui.h
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source --manual-register $<
 
+DISTCLEANFILES =						\
+	$(xfce4_taskmanager_built_sources)
+
 EXTRA_DIST =							\
 	$(xfce4_taskmanager_glade_files)	\
+	process-window-ui.gresource.xml		\
+	settings-dialog-ui.gresource.xml	\
 	meson.build
