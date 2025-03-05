@@ -15,3 +15,6 @@ install-data-hook:
 
 uninstall-local:
 	-rm $(datadir)/icons/hicolor/icon-theme.cache
+
+EXTRA_DIST = \
+	meson.build

@@ -1,0 +1,20 @@
+option(
+  'x11',
+  type: 'feature',
+  value: 'auto',
+  description: 'Support for the X11 windowing system',
+)
+
+option(
+  'wnck',
+  type: 'feature',
+  value: 'auto',
+  description: 'Support for libwnck3 to display window icons/names',
+)
+
+option(
+  'skel',
+  type: 'boolean',
+  value: false,
+  description: 'Build with task-manager-skel.c',
+)
