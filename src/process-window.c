@@ -295,8 +295,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->builder = gtk_builder_new ();
 	process_window_ui_register_resource ();
 	gtk_builder_add_from_resource (GTK_BUILDER (window->builder),
-								   "/org/xfce/taskmanager/process-window/process-window.ui",
-								   NULL);
+		"/org/xfce/taskmanager/process-window/process-window.ui",
+		NULL);
 
 	window->window = GTK_WIDGET (gtk_builder_get_object (window->builder, "process-window"));
 	window->width = xfconf_channel_get_int (window->channel, SETTING_WINDOW_WIDTH, DEFAULT_WINDOW_WIDTH);

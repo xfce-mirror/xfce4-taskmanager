@@ -241,8 +241,8 @@ xtm_settings_dialog_run (GtkWidget *parent_window)
 	builder = gtk_builder_new ();
 	settings_dialog_ui_register_resource ();
 	gtk_builder_add_from_resource (GTK_BUILDER (builder),
-								   "/org/xfce/taskmanager/settings-dialog/settings-dialog.ui",
-								   NULL);
+		"/org/xfce/taskmanager/settings-dialog/settings-dialog.ui",
+		NULL);
 	g_return_if_fail (GTK_IS_BUILDER (builder));
 
 	dialog = xtm_settings_dialog_new (builder, parent_window);
