@@ -52,10 +52,11 @@ if libwnck.found()
 endif
 
 # Check the OS Family
+target_os = host_machine.system()
 if get_option('skel')
   os_implementation = 'skel'
 else
-  if build_machine.system() == 'freebsd'
+  if target_os == 'freebsd'
     os_implementation = 'freebsd'
     find_library('kvm')
     headers += [
@@ -70,7 +71,7 @@ else
       'pwd.h',
       'unistd.h',
     ]
-  elif ['dragonfly', 'netbsd', 'openbsd'].contains(build_machine.system())
+  elif ['dragonfly', 'netbsd', 'openbsd'].contains(target_os)
     os_implementation = 'bsd'
     headers += [
       'sys/param.h',
@@ -84,7 +85,7 @@ else
       'string.h',
       'unistd.h',
     ]
-  elif build_machine.system() == 'sunos'
+  elif target_os == 'sunos'
     os_implementation = 'solaris'
     find_library('kstat')
     headers += [
@@ -99,7 +100,7 @@ else
       'stdlib.h',
       'string.h',
     ]
-  elif build_machine.system() == 'linux'
+  elif target_os == 'linux'
     os_implementation = 'linux'
     headers += [
       'sys/resource.h',
@@ -111,7 +112,7 @@ else
       'string.h',
       'unistd.h',
     ]
-  elif build_machine.system() == 'darwin'
+  elif target_os == 'darwin'
     os_implementation = 'darwin'
     headers += [
       'mach/mach.h',
@@ -127,7 +128,7 @@ else
       'unistd.h',
    ]
   else
-    error('no OS implementation is available for target:', build_machine.system())
+    error('no OS implementation is available for target:', target_os)
   endif
 endif
 
