@@ -73,7 +73,7 @@ dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
 XDT_CHECK_PACKAGE([LIBXMU], [xmu], [1.1.2])
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.72.0])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.66.0])
 XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.24.0])
 XDT_CHECK_PACKAGE([CAIRO], [cairo], [1.5.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.18.0])
