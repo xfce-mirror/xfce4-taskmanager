@@ -15,9 +15,9 @@
 #include "process-statusbar.h"
 #include "process-tree-view.h"
 #include "process-window.h"
-#include "task-manager-resources.h"
 #include "settings-dialog.h"
 #include "settings.h"
+#include "task-manager-resources.h"
 #include "task-manager.h"
 
 #ifdef HAVE_LIBX11

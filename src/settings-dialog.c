@@ -15,8 +15,8 @@
 #endif
 
 #include "settings-dialog.h"
-#include "task-manager-resources.h"
 #include "settings.h"
+#include "task-manager-resources.h"
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
