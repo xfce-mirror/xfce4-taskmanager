@@ -29,10 +29,8 @@ xfce4_taskmanager_LDADD = 						\
 	$(NULL)
 
 xfce4_taskmanager_built_sources =	\
-	process-window_ui.c				\
-	process-window_ui.h				\
-	settings-dialog_ui.c			\
-	settings-dialog_ui.h
+	task-manager-resources.c		\
+	task-manager-resources.h
 
 xfce4_taskmanager_SOURCES =						\
 	$(xfce4_taskmanager_built_sources)			\
@@ -70,14 +68,12 @@ if OS_SKEL
 xfce4_taskmanager_SOURCES += task-manager-skel.c
 endif
 
-xfce4_taskmanager_glade_files =		\
-	process-window.ui				\
-	settings-dialog.ui
+xfce4_taskmanager_glade_files = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir $(srcdir) $(srcdir)/task-manager.gresource.xml)
 
-%_ui.h: $(srcdir)/%-ui.gresource.xml $(xfce4_taskmanager_glade_files) Makefile
+task-manager-resources.h: $(srcdir)/task-manager.gresource.xml $(xfce4_taskmanager_glade_files) Makefile
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-header --manual-register $<
 
-%_ui.c: $(srcdir)/%-ui.gresource.xml $(xfce4_taskmanager_glade_files) Makefile %_ui.h
+task-manager-resources.c: $(srcdir)/task-manager.gresource.xml $(xfce4_taskmanager_glade_files) Makefile task-manager-resources.h
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source --manual-register $<
 
 DISTCLEANFILES =						\
@@ -85,6 +81,5 @@ DISTCLEANFILES =						\
 
 EXTRA_DIST =							\
 	$(xfce4_taskmanager_glade_files)	\
-	process-window-ui.gresource.xml		\
-	settings-dialog-ui.gresource.xml	\
+	task-manager.gresource.xml			\
 	meson.build
