@@ -40,6 +40,6 @@ po/xfce4-taskmanager.pot
 autom4te.cache
 *.desktop
 INSTALL
-src/*_ui.c
-src/*_ui.h
+src/task-manager-resources.c
+src/task-manager-resources.h
 src/xfce4-taskmanager

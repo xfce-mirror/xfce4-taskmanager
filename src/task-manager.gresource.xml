@@ -3,4 +3,7 @@
   <gresource prefix="/org/xfce/taskmanager/process-window">
     <file>process-window.ui</file>
   </gresource>
+  <gresource prefix="/org/xfce/taskmanager/settings-dialog">
+    <file>settings-dialog.ui</file>
+  </gresource>
 </gresources>

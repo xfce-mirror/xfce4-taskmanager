@@ -1,17 +1,8 @@
 taskmanager_generated_sources = []
 
 taskmanager_generated_sources += gnome.compile_resources(
-  'process-window_ui',
-  'process-window-ui.gresource.xml',
-  export: false,
-  extra_args: [
-    '--manual-register',
-  ],
-)
-
-taskmanager_generated_sources += gnome.compile_resources(
-  'settings-dialog_ui',
-  'settings-dialog-ui.gresource.xml',
+  'task-manager-resources',
+  'task-manager.gresource.xml',
   export: false,
   extra_args: [
     '--manual-register',
