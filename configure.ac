@@ -13,18 +13,22 @@ dnl ***************************
 dnl *** Version information ***
 dnl ***************************
 XDT_VERSION_INIT([1.5.8], [git])
+m4_define([copyright_year], [2025])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2005-2024
-        The Xfce development team. All rights reserved.])
+AC_COPYRIGHT([Copyright (c) 2005-copyright_year() The Xfce development team. All rights reserved.])
 AC_INIT([Xfce4 Taskmanager], [xdt_version], [https://gitlab.xfce.org/apps/xfce4-taskmanager/], [xfce4-taskmanager],
         [https://docs.xfce.org/apps/xfce4-taskmanager/start])
 AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_CANONICAL_TARGET()
 AC_REVISION([xdt_version_build])
+AC_DEFINE([VERSION_FULL], [PACKAGE_VERSION], [Alias for VERSION and PACKAGE_VERSION for meson compatibility])
+COPYRIGHT_YEAR=copyright_year()
+AC_DEFINE_UNQUOTED([COPYRIGHT_YEAR], ["$COPYRIGHT_YEAR"], [Copyright year])
+AC_SUBST([COPYRIGHT_YEAR])
 
 dnl ***************************
 dnl *** Initialize automake ***
@@ -69,12 +73,14 @@ dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
 XDT_CHECK_PACKAGE([LIBXMU], [xmu], [1.1.2])
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
-XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.22.0])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.24.0])
 XDT_CHECK_PACKAGE([CAIRO], [cairo], [1.5.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.14.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.14.0])
-XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.14.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.18.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.18.0])
+XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.18.0])
+
+XDT_CHECK_PACKAGE_BINARY([GLIB_COMPILE_RESOURCES], [gio-2.0], [glib_compile_resources], [glib-compile-resources])
 
 dnl ***********************************
 dnl *** Check for optional packages ***
