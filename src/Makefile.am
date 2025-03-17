@@ -70,11 +70,8 @@ endif
 
 xfce4_taskmanager_glade_files = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir $(srcdir) $(srcdir)/task-manager.gresource.xml)
 
-task-manager-resources.h: $(srcdir)/task-manager.gresource.xml $(xfce4_taskmanager_glade_files) Makefile
-	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-header --manual-register $<
-
-task-manager-resources.c: $(srcdir)/task-manager.gresource.xml $(xfce4_taskmanager_glade_files) Makefile task-manager-resources.h
-	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source --manual-register $<
+task-manager-resources.c: $(srcdir)/task-manager.gresource.xml $(xfce4_taskmanager_glade_files) Makefile
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $<
 
 DISTCLEANFILES =						\
 	$(xfce4_taskmanager_built_sources)
