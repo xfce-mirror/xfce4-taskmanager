@@ -16,7 +16,6 @@
 
 #include "settings-dialog.h"
 #include "settings.h"
-#include "task-manager-resources.h"
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
@@ -239,7 +238,6 @@ xtm_settings_dialog_run (GtkWidget *parent_window)
 	GtkWidget *dialog;
 
 	builder = gtk_builder_new ();
-	task_manager_register_resource ();
 	gtk_builder_add_from_resource (GTK_BUILDER (builder),
 		"/org/xfce/taskmanager/settings-dialog/settings-dialog.ui",
 		NULL);

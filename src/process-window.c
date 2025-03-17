@@ -17,7 +17,6 @@
 #include "process-window.h"
 #include "settings-dialog.h"
 #include "settings.h"
-#include "task-manager-resources.h"
 #include "task-manager.h"
 
 #ifdef HAVE_LIBX11
@@ -293,7 +292,6 @@ xtm_process_window_init (XtmProcessWindow *window)
 	window->channel = xfconf_channel_get (CHANNEL);
 
 	window->builder = gtk_builder_new ();
-	task_manager_register_resource ();
 	gtk_builder_add_from_resource (GTK_BUILDER (window->builder),
 		"/org/xfce/taskmanager/process-window/process-window.ui",
 		NULL);
