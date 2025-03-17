@@ -4,9 +4,6 @@ taskmanager_generated_sources += gnome.compile_resources(
   'task-manager-resources',
   'task-manager.gresource.xml',
   export: false,
-  extra_args: [
-    '--manual-register',
-  ],
 )
 
 taskmanager_sources = [
