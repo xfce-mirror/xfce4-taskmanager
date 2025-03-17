@@ -29,8 +29,7 @@ xfce4_taskmanager_LDADD = 						\
 	$(NULL)
 
 xfce4_taskmanager_built_sources =	\
-	task-manager-resources.c		\
-	task-manager-resources.h
+	task-manager-resources.c
 
 xfce4_taskmanager_SOURCES =						\
 	$(xfce4_taskmanager_built_sources)			\
