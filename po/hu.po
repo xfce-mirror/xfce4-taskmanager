@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Balázs Meskó <meskobalazs@mailbox.org>, 2018
+# Balázs Meskó <meskobalazs@mailbox.org>, 2025
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2006,2009-2010
 # Gábor P., 2017,2019
 # gyeben <gyonkibendeguz@gmail.com>, 2016
@@ -15,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2024-10-15 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: László Varga, 2024\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2025\n"
 "Language-Team: Hungarian (http://app.transifex.com/xfce/xfce-apps/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,11 +33,11 @@ msgstr "Feladatkezelő"
 
 #: xfce4-taskmanager.desktop.in:4
 msgid "Easy to use application to monitor system resources"
-msgstr "Egy könnyen használható alkalmazás a rendszer erőforrások figyelésére"
+msgstr "Egy könnyen használható alkalmazás a rendszer-erőforrások figyelésére"
 
 #: xfce4-taskmanager.desktop.in:12
 msgid "monitor;resources;system;task;performance;"
-msgstr "figyelés;erőforrások;rendszer;feladat;teljesítmény;"
+msgstr "figyelés;erőforrások;rendszer;feladat;folyamat;teljesítmény;"
 
 #: src/main.c:59
 msgid "Quit"
@@ -49,7 +50,7 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %s\n"
 "<b>Swap:</b> %s"
-msgstr "<b>Folyamatok:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memória:</b> %s\n<b>Swap:</b> %s"
+msgstr "<b>Folyamatok:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memória:</b> %s\n<b>Cserehely:</b> %s"
 
 #: src/main.c:255
 msgid "Xfce Notify Daemon"
@@ -72,7 +73,7 @@ msgstr "Memória: %s"
 #: src/process-statusbar.c:207
 #, c-format
 msgid "Swap: %s"
-msgstr "Swap: %s"
+msgstr "Cserehely: %s"
 
 #: src/process-statusbar.c:222
 #, c-format
@@ -131,7 +132,7 @@ msgstr "Prio."
 
 #: src/process-tree-view.c:442
 msgid "Terminate task"
-msgstr "Feladat befejeztetése"
+msgstr "Feladat befejezése"
 
 #: src/process-tree-view.c:442
 msgid "Kill task"
@@ -144,7 +145,7 @@ msgstr "Biztosan elküldi a(z) %s szignált a(z) %d azonosítójú feladatnak?"
 
 #: src/process-tree-view.c:445
 msgid "terminate"
-msgstr "befejeztetés"
+msgstr "befejezés"
 
 #: src/process-tree-view.c:445
 msgid "kill"
@@ -182,7 +183,7 @@ msgstr "Folytatás"
 
 #: src/process-tree-view.c:569
 msgid "Terminate"
-msgstr "Befejeztetés"
+msgstr "Befejezés"
 
 #: src/process-tree-view.c:575
 msgid "Kill"
@@ -228,11 +229,11 @@ msgstr "A 0x%lx ablakazonosító nem létezik."
 
 #: src/process-window.c:174
 msgid "XGetWindowProperty failed"
-msgstr "XGetWindowProperty meghiúsult"
+msgstr "Az XGetWindowProperty sikertelen"
 
 #: src/process-window.c:174
 msgid "XGetWindowProperty failed!"
-msgstr "XGetWindowProperty meghiúsult."
+msgstr "Az XGetWindowProperty sikertelen."
 
 #: src/process-window.c:186
 msgid "No PID found"
@@ -281,7 +282,7 @@ msgstr "Kelemen Gábor <kelemeng at gnome dot hu>"
 
 #: src/settings-dialog.ui:49
 msgid "Task Manager Settings"
-msgstr "Feladatkezelő beállítások"
+msgstr "A Feladatkezelő beállításai"
 
 #: src/settings-dialog.ui:63
 msgid "_Help"
@@ -297,7 +298,7 @@ msgstr "_Bezárás"
 
 #: src/settings-dialog.ui:139
 msgid "Show all processes"
-msgstr "Minden folyamat megjelenítése"
+msgstr "Összes folyamat megjelenítése"
 
 #: src/settings-dialog.ui:153
 msgid "Show application icons"
@@ -321,19 +322,19 @@ msgstr "Értékek pontosabb megjelenítése"
 
 #: src/settings-dialog.ui:230
 msgid "Refresh rate (ms):"
-msgstr "Frissítési ráta (ms):"
+msgstr "Frissítési gyakoriság (ms):"
 
 #: src/settings-dialog.ui:269
 msgid "<b>Interface</b>"
-msgstr "<b> interfész </b>"
+msgstr "<b>Felület</b>"
 
 #: src/settings-dialog.ui:296
 msgid "Prompt for terminating tasks"
-msgstr "Kérdés feladatok befejeztetésekor"
+msgstr "Rákérdezés a feladatok befejezése előtt"
 
 #: src/settings-dialog.ui:310
 msgid "Keep in the notification area"
-msgstr "Tartsa az értesítési területen"
+msgstr "Megtartás az értesítési területen"
 
 #: src/settings-dialog.ui:328
 msgid "<b>Miscellaneous</b>"
@@ -349,15 +350,15 @@ msgstr "Virtuális bájtok"
 
 #: src/settings-dialog.ui:415
 msgid "Group Virtual Bytes"
-msgstr ""
+msgstr "Csoport virtuális bájtjai"
 
 #: src/settings-dialog.ui:429
 msgid "Resident Bytes"
-msgstr ""
+msgstr "Rezidens bájtok"
 
 #: src/settings-dialog.ui:443
 msgid "Group Resident Bytes"
-msgstr ""
+msgstr "Csoport rezidens bájtjai"
 
 #: src/settings-dialog.ui:520
 msgid "Columns"
