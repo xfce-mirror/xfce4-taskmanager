@@ -67,6 +67,7 @@ G_DEFINE_TYPE (XtmProcessWindow, xtm_process_window, GTK_TYPE_WIDGET)
 static void xtm_process_window_finalize (GObject *object);
 static void xtm_process_window_hide (GtkWidget *widget);
 
+static gboolean emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event, GtkWidget *widget);
 static void emit_destroy_signal (XtmProcessWindow *window);
 static gboolean xtm_process_window_key_pressed (XtmProcessWindow *window, GdkEventKey *event);
 static void monitor_update_step_size (XtmProcessWindow *window);
@@ -306,6 +307,7 @@ xtm_process_window_init (XtmProcessWindow *window)
 	if (xfconf_channel_get_bool (window->channel, SETTING_WINDOW_MAXIMIZED, FALSE))
 		gtk_window_maximize (GTK_WINDOW (window->window));
 
+	g_signal_connect_swapped (window->window, "delete-event", G_CALLBACK (emit_delete_event_signal), window);
 	g_signal_connect_swapped (window->window, "destroy", G_CALLBACK (emit_destroy_signal), window);
 	window->handler = g_signal_connect (window->window, "size-allocate", G_CALLBACK (xtm_process_window_size_allocate), window);
 	g_signal_connect_swapped (window->window, "key-press-event", G_CALLBACK (xtm_process_window_key_pressed), window);
@@ -437,7 +439,7 @@ xtm_process_window_finalize (GObject *object)
  */
 
 static void
-emit_destroy_signal (XtmProcessWindow *window)
+xtm_process_window_store_size (XtmProcessWindow *window)
 {
 	gboolean maximized = gtk_window_is_maximized (GTK_WINDOW (window->window));
 
@@ -450,7 +452,20 @@ emit_destroy_signal (XtmProcessWindow *window)
 		xfconf_channel_set_int (window->channel, SETTING_WINDOW_WIDTH, window->width);
 		xfconf_channel_set_int (window->channel, SETTING_WINDOW_HEIGHT, window->height);
 	}
+}
 
+static gboolean
+emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event, GtkWidget *widget)
+{
+	gboolean ret = FALSE;
+	g_signal_emit_by_name (window, "delete-event", event, &ret);
+	return ret;
+}
+
+static void
+emit_destroy_signal (XtmProcessWindow *window)
+{
+	xtm_process_window_store_size (window);
 	g_signal_emit_by_name (window, "destroy", G_TYPE_NONE);
 }
 
