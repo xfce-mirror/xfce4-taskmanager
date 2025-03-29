@@ -458,6 +458,7 @@ static gboolean
 emit_delete_event_signal (XtmProcessWindow *window, GdkEvent *event, GtkWidget *widget)
 {
 	gboolean ret = FALSE;
+	xtm_process_window_store_size (window);
 	g_signal_emit_by_name (window, "delete-event", event, &ret);
 	return ret;
 }
