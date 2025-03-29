@@ -126,7 +126,10 @@ delete_window (void)
 	if (!status_icon_get_visible ())
 	{
 		if (timer_id > 0)
+		{
 			g_source_remove (timer_id);
+			timer_id = 0;
+		}
 		gtk_main_quit ();
 		return FALSE;
 	}
