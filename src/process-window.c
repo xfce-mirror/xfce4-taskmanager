@@ -467,7 +467,7 @@ static void
 emit_destroy_signal (XtmProcessWindow *window)
 {
 	xtm_process_window_store_size (window);
-	g_signal_emit_by_name (window, "destroy", G_TYPE_NONE);
+	g_signal_emit_by_name (window, "destroy");
 }
 
 static gboolean
