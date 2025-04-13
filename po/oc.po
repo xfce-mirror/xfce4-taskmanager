@@ -301,7 +301,7 @@ msgstr "Veire las icònas de las aplicacions"
 
 #: src/settings-dialog.ui:167
 msgid "Show full command lines"
-msgstr "Veire las linhas de comanda completas"
+msgstr "Veire las linhas de comanda complètas"
 
 #: src/settings-dialog.ui:181
 msgid "Show processes as tree"
