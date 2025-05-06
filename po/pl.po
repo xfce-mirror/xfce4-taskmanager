@@ -252,7 +252,7 @@ msgstr "Filtruj nazwy procesów"
 
 #: src/process-window.c:386
 msgid "Starting task"
-msgstr "Rozpoczynanie zadania"
+msgstr "Uruchamianie zadania"
 
 #: src/process-window.c:386
 msgid "Changing task"
