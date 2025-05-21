@@ -12,7 +12,7 @@ dnl 2005-2008 Johannes Zellner <webmaster@nebulon.de>
 dnl ***************************
 dnl *** Version information ***
 dnl ***************************
-XDT_VERSION_INIT([1.5.8], [git])
+XDT_VERSION_INIT([1.6.0])
 m4_define([copyright_year], [2025])
 
 dnl ***************************
