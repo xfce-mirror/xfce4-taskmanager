@@ -35,6 +35,22 @@ taskmanager_sources += [
 ]
 endif
 
+dependencies = [
+  glib,
+  gtk,
+  cairo,
+  libxmu,
+  libxfce4util,
+  libxfce4ui,
+  xfconf,
+  libx11,
+  libwnck,
+]
+
+if target_os == 'freebsd' and kvm_lib.found()
+dependencies += [ kvm_lib ]
+endif
+
 taskmanager = executable(
   'xfce4-taskmanager',
   taskmanager_sources,
@@ -42,17 +58,7 @@ taskmanager = executable(
   include_directories: [
     include_directories('..'),
   ],
-  dependencies: [
-    glib,
-    gtk,
-    cairo,
-    libxmu,
-    libxfce4util,
-    libxfce4ui,
-    xfconf,
-    libx11,
-    libwnck,
-  ],
+  dependencies: dependencies,
   install: true,
   install_dir: get_option('prefix') / get_option('bindir'),
 )
