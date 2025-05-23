@@ -52,6 +52,8 @@ taskmanager = executable(
     xfconf,
     libx11,
     libwnck,
+    libkvm,
+    libkstat,
   ],
   install: true,
   install_dir: get_option('prefix') / get_option('bindir'),
