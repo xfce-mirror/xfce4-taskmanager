@@ -49,12 +49,14 @@ endif
 
 # Check the OS Family
 target_os = host_machine.system()
+libkvm = dependency('', required: false)
+libkstat = dependency('', required: false)
 if get_option('skel')
   os_implementation = 'skel'
 else
   if target_os == 'freebsd'
     os_implementation = 'freebsd'
-    find_library('kvm')
+    libkvm = cc.find_library('kvm')
     headers += [
       'sys/param.h',
       'sys/proc.h',
@@ -83,7 +85,7 @@ else
     ]
   elif target_os == 'sunos'
     os_implementation = 'solaris'
-    find_library('kstat')
+    libkstat = cc.find_library('kstat')
     headers += [
       'sys/procfs.h',
       'sys/stat.h',
