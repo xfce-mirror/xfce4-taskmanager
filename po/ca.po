@@ -131,7 +131,7 @@ msgstr "Prio."
 
 #: src/process-tree-view.c:442
 msgid "Terminate task"
-msgstr "Finalitza la tasca"
+msgstr "Acaba la tasca"
 
 #: src/process-tree-view.c:442
 msgid "Kill task"
@@ -144,7 +144,7 @@ msgstr "Esteu segur que voleu enviar el senyal %s al PID %d?"
 
 #: src/process-tree-view.c:445
 msgid "terminate"
-msgstr "finalitza"
+msgstr "acaba"
 
 #: src/process-tree-view.c:445
 msgid "kill"
@@ -182,7 +182,7 @@ msgstr "Continua"
 
 #: src/process-tree-view.c:569
 msgid "Terminate"
-msgstr "Finalitza"
+msgstr "acaba"
 
 #: src/process-tree-view.c:575
 msgid "Kill"
@@ -257,7 +257,7 @@ msgstr "Canviant la tasca"
 
 #: src/process-window.c:386
 msgid "Terminating task"
-msgstr "Finalitzant la tasca"
+msgstr "S'acaba la tasca"
 
 #: src/process-window.ui:26
 msgid "Settings"
@@ -329,7 +329,7 @@ msgstr "<b>Interfície</b>"
 
 #: src/settings-dialog.ui:296
 msgid "Prompt for terminating tasks"
-msgstr "Pregunta per a la finalització de les tasques"
+msgstr "Pregunta per acabar tasques"
 
 #: src/settings-dialog.ui:310
 msgid "Keep in the notification area"
