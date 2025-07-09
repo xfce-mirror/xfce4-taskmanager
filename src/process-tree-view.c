@@ -498,6 +498,51 @@ cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 	}
 }
 
+static gboolean
+search_process_line_by_pid (XtmProcessTreeView *treeview, GPid pid, GtkTreeIter *iter, GtkTreeModel **_model)
+{
+	GtkTreeModel *model;
+	gboolean tree, valid;
+	GPid pid_iter;
+
+	g_object_get (treeview->settings, "process-tree", &tree, NULL);
+	*_model = model = GTK_TREE_MODEL (tree ? treeview->model_tree : treeview->model_filter);
+
+	/* Get first row in list store */
+	valid = gtk_tree_model_get_iter_first (model, iter);
+
+	while (valid)
+	{
+		gtk_tree_model_get (model, iter, XTM_PTV_COLUMN_PID, &pid_iter, -1);
+		if (pid == pid_iter)
+			return TRUE;
+
+		if (gtk_tree_model_iter_has_child (model, iter))
+		{
+			GtkTreeIter parent_iter = *iter;
+			valid = gtk_tree_model_iter_children (model, iter, &parent_iter);
+		}
+		else
+		{
+			GtkTreeIter child_iter = *iter;
+			valid = gtk_tree_model_iter_next (model, iter);
+			if (tree && !valid)
+			{
+				gboolean validParent;
+				// finding my way up again
+				do
+				{
+					validParent = gtk_tree_model_iter_parent (model, iter, &child_iter);
+					child_iter = *iter;
+					valid = gtk_tree_model_iter_next (model, iter);
+				} while (!valid && validParent);
+			}
+		}
+	}
+
+	return FALSE;
+}
+
 /**
  * Process the "Copy command line" context menu item.
  *
@@ -509,38 +554,16 @@ static void
 cb_copy_command_line (GtkMenuItem *mi, gpointer user_data)
 {
 	XtmProcessTreeView *view = XTM_PROCESS_TREE_VIEW (user_data);
+	GtkTreeModel *model;
 	GPid pid = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (mi), "pid"));
-	GtkTreeModel *model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
-	gboolean keep_looking = TRUE;
 	GtkTreeIter iter;
-	GtkClipboard *clipboard;
 
-	if (!gtk_tree_model_get_iter_first (model, &iter))
+	if (search_process_line_by_pid (view, pid, &iter, &model))
 	{
-		return;
-	}
-
-	/* Look up the process in the model by the known PID */
-	while (keep_looking)
-	{
-		GPid pid_iter;
-		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid_iter, -1);
-
-		if (pid_iter == pid)
-		{
-			gchar *cmdline;
-			gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_COMMAND_RAW, &cmdline, -1);
-
-			clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-			gtk_clipboard_set_text (clipboard, cmdline, -1);
-			g_free (cmdline);
-
-			keep_looking = FALSE;
-		}
-		else
-		{
-			keep_looking = gtk_tree_model_iter_next (model, &iter);
-		}
+		gchar *cmdline;
+		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_COMMAND_RAW, &cmdline, -1);
+		gtk_clipboard_set_text (gtk_clipboard_get (GDK_SELECTION_CLIPBOARD), cmdline, -1);
+		g_free (cmdline);
 	}
 }
 
@@ -901,58 +924,17 @@ void
 xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid)
 {
 	GtkTreeModel *model;
-	GtkTreePath *path;
 	GtkTreeIter iter;
-	gboolean valid;
-	gboolean tree;
-	GPid pid_iter;
-	GtkTreeIter child_iter;
-	gboolean validParent;
 
-	g_object_get (treeview->settings, "process-tree", &tree, NULL);
-	model = GTK_TREE_MODEL (tree ? treeview->model_tree : treeview->model_filter);
-
-	g_return_if_fail (model != NULL);
-
-	/* Get first row in list store */
-	valid = gtk_tree_model_get_iter_first (model, &iter);
-
-	while (valid)
+	if (search_process_line_by_pid (treeview, pid, &iter, &model))
 	{
-		gtk_tree_model_get (model, &iter, XTM_PTV_COLUMN_PID, &pid_iter, -1);
-		if (pid == pid_iter)
-		{
-			path = gtk_tree_model_get_path (model, &iter);
-			gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview)), path);
+		GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
+		gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview)), path);
 
-			/* set cursor before scrolling to unstick the view from top if needed */
-			gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL, FALSE);
-			gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path, NULL, TRUE, 0.5, 0);
-			gtk_tree_path_free (path);
-			break;
-		}
-
-		if (gtk_tree_model_iter_has_child (model, &iter))
-		{
-			GtkTreeIter parent_iter = iter;
-
-			valid = gtk_tree_model_iter_children (model, &iter, &parent_iter);
-		}
-		else
-		{
-			child_iter = iter;
-			valid = gtk_tree_model_iter_next (model, &iter);
-			if (tree && !valid)
-			{
-				// finding my way up again
-				do
-				{
-					validParent = gtk_tree_model_iter_parent (model, &iter, &child_iter);
-					child_iter = iter;
-					valid = gtk_tree_model_iter_next (model, &iter);
-				} while (!valid && validParent);
-			}
-		}
+		/* set cursor before scrolling to unstick the view from top if needed */
+		gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL, FALSE);
+		gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path, NULL, TRUE, 0.5, 0);
+		gtk_tree_path_free (path);
 	}
 }
 
