@@ -7,10 +7,6 @@
  * your option) any later version.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "process-tree-model.h"
 #include "process-tree-view.h"
 #include "task-manager.h"

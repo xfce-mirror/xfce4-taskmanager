@@ -15,10 +15,6 @@
 #include <unistd.h>
 */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "task-manager.h"
 
 /* Cache some values */

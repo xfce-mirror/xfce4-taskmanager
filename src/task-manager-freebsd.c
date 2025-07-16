@@ -9,10 +9,6 @@
  * (at your option) any later version.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "task-manager.h"
 
 #include <fcntl.h>
