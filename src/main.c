@@ -8,10 +8,6 @@
  * (at your option) any later version.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "process-window.h"
 #include "settings.h"
 #include "task-manager.h"
