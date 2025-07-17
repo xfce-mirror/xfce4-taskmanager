@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Xfce
-# This file is distributed under the same license as the xfce-apps.xfce4-taskmanager package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
 # Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2015,2017,2019-2022,2024
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-15 00:50+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-17 12:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2015,2017,2019-2022,2024\n"
 "Language-Team: Kazakh (http://app.transifex.com/xfce/xfce-apps/language/kk/)\n"
@@ -18,26 +18,11 @@ msgstr ""
 "Language: kk\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:222 src/process-tree-view.c:446 src/process-tree-view.c:462
-#: src/process-tree-view.c:494 src/process-window.ui:7
-#: src/settings-dialog.c:143
-msgid "Task Manager"
-msgstr "Үрдістерді басқарушысы"
-
-#: xfce4-taskmanager.desktop.in:4
-msgid "Easy to use application to monitor system resources"
-msgstr "Жүйелік ресурстарды бақылауға арналған, пайдалануға оңай қосымша"
-
-#: xfce4-taskmanager.desktop.in:12
-msgid "monitor;resources;system;task;performance;"
-msgstr "monitor;resources;system;task;performance;монитор;ресурстар;жүйе;тапсырма;өнімділік;"
-
-#: src/main.c:59
+#: ../src/main.c:55
 msgid "Quit"
 msgstr "Шығу"
 
-#: src/main.c:170
+#: ../src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -46,319 +31,229 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Үрдістер:</b> %u\n<b>Процессор:</b> %.0f%%\n<b>Жады:</b> %s\n<b>Своп:</b> %s"
 
-#: src/main.c:255
+#: ../src/main.c:221 ../src/process-tree-view.c:442
+#: ../src/process-tree-view.c:458 ../src/process-tree-view.c:490
+#: ../src/settings-dialog.c:142
+msgid "Task Manager"
+msgstr "Үрдістерді басқарушысы"
+
+#: ../src/main.c:254
 msgid "Xfce Notify Daemon"
 msgstr "Xfce хабарламалар қызметі"
 
-#: src/main.c:257
+#: ../src/main.c:256
 msgid "Settings daemon is unavailable"
 msgstr "Баптаулар қызметі қолжетерсіз"
 
-#: src/process-statusbar.c:191 src/process-window.c:548
+#: ../src/process-statusbar.c:187 ../src/process-window.c:561
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: src/process-statusbar.c:199 src/process-window.c:552
+#: ../src/process-statusbar.c:195 ../src/process-window.c:565
 #, c-format
 msgid "Memory: %s"
 msgstr "Жады: %s"
 
-#: src/process-statusbar.c:207
+#: ../src/process-statusbar.c:203
 #, c-format
 msgid "Swap: %s"
 msgstr "Своп: %s"
 
-#: src/process-statusbar.c:222
+#: ../src/process-statusbar.c:218
 #, c-format
 msgid "Processes: %d"
 msgstr "Үрдістер: %d"
 
-#: src/process-tree-view.c:157
+#: ../src/process-tree-view.c:153
 msgid "Task"
 msgstr "Үрдіс"
 
-#: src/process-tree-view.c:168 src/settings-dialog.ui:359
+#: ../src/process-tree-view.c:164
 msgid "PID"
 msgstr "PID"
 
-#: src/process-tree-view.c:176 src/settings-dialog.ui:373
+#: ../src/process-tree-view.c:172
 msgid "PPID"
 msgstr "PPID"
 
-#: src/process-tree-view.c:184 src/settings-dialog.ui:387
+#: ../src/process-tree-view.c:180
 msgid "State"
 msgstr "Күйі"
 
-#: src/process-tree-view.c:193
+#: ../src/process-tree-view.c:189
 msgid "VSZ"
 msgstr "VSZ"
 
-#: src/process-tree-view.c:201
+#: ../src/process-tree-view.c:197
 msgid "Group VSZ"
 msgstr "Топтық VSZ"
 
-#: src/process-tree-view.c:209
+#: ../src/process-tree-view.c:205
 msgid "RSS"
 msgstr "RSS"
 
-#: src/process-tree-view.c:217
+#: ../src/process-tree-view.c:213
 msgid "Group RSS"
 msgstr "Топтық RSS"
 
-#: src/process-tree-view.c:225 src/settings-dialog.ui:457
+#: ../src/process-tree-view.c:221
 msgid "UID"
 msgstr "UID"
 
-#: src/process-tree-view.c:233 src/settings-dialog.ui:471
+#: ../src/process-tree-view.c:229
 msgid "CPU"
 msgstr "CPU"
 
-#: src/process-tree-view.c:241 src/settings-dialog.ui:485
+#: ../src/process-tree-view.c:237
 msgid "Group CPU"
 msgstr "Топтық CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:250
+#: ../src/process-tree-view.c:246
 msgid "Prio."
 msgstr "Prio."
 
-#: src/process-tree-view.c:442
+#: ../src/process-tree-view.c:438
 msgid "Terminate task"
 msgstr "Үрдісті аяқтау"
 
-#: src/process-tree-view.c:442
+#: ../src/process-tree-view.c:438
 msgid "Kill task"
 msgstr "Үрдісті құрту"
 
-#: src/process-tree-view.c:444
+#: ../src/process-tree-view.c:440
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "%s сигналын PID %d үшін жіберу керек екеніне сенімдісіз бе?"
 
-#: src/process-tree-view.c:445
+#: ../src/process-tree-view.c:441
 msgid "terminate"
 msgstr "аяқтау"
 
-#: src/process-tree-view.c:445
+#: ../src/process-tree-view.c:441
 msgid "kill"
 msgstr "құрту"
 
-#: src/process-tree-view.c:457
+#: ../src/process-tree-view.c:453
 msgid "Error sending signal"
 msgstr "Сигналды жіберу қатесі"
 
-#: src/process-tree-view.c:459
+#: ../src/process-tree-view.c:455
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "PID %d үшін сигналды жіберу кезінде қате орын алған. Сізде керек рұқсаттар жоқ сияқты."
 
-#: src/process-tree-view.c:489
+#: ../src/process-tree-view.c:485
 msgid "Error setting priority"
 msgstr "Приоритет орнату қатесі"
 
-#: src/process-tree-view.c:491
+#: ../src/process-tree-view.c:487
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "PID %d үшін приоритет орнату кезінде қате орын алған. Сізде керек рұқсаттар жоқ сияқты."
 
-#: src/process-tree-view.c:556 src/process-tree-view.c:699
+#: ../src/process-tree-view.c:575 ../src/process-tree-view.c:718
 msgid "Stop"
 msgstr "Тоқтату"
 
-#: src/process-tree-view.c:563
+#: ../src/process-tree-view.c:582
 msgid "Continue"
 msgstr "Жалғастыру"
 
-#: src/process-tree-view.c:569
+#: ../src/process-tree-view.c:588
 msgid "Terminate"
 msgstr "Аяқтау"
 
-#: src/process-tree-view.c:575
+#: ../src/process-tree-view.c:594
 msgid "Kill"
 msgstr "Құрту"
 
-#: src/process-tree-view.c:582
+#: ../src/process-tree-view.c:601
 msgid "Very low"
 msgstr "Өте төмен"
 
-#: src/process-tree-view.c:587
+#: ../src/process-tree-view.c:606
 msgid "Low"
 msgstr "Төмен"
 
-#: src/process-tree-view.c:592
+#: ../src/process-tree-view.c:611
 msgid "Normal"
 msgstr "Қалыпты"
 
-#: src/process-tree-view.c:597
+#: ../src/process-tree-view.c:616
 msgid "High"
 msgstr "Жоғары"
 
-#: src/process-tree-view.c:602
+#: ../src/process-tree-view.c:621
 msgid "Very high"
 msgstr "Өте жоғары"
 
-#: src/process-tree-view.c:607 src/settings-dialog.ui:499
+#: ../src/process-tree-view.c:626
 msgid "Priority"
 msgstr "Приоритеті"
 
 #. Same trick as above
-#: src/process-tree-view.c:611 src/process-tree-view.c:710
+#: ../src/process-tree-view.c:630 ../src/process-tree-view.c:729
 msgid "Copy command line"
 msgstr "Командалық жолды көшіріп алу"
 
-#: src/process-window.c:169
+#: ../src/process-window.c:165
 msgid "Bad Window"
 msgstr "Жаман терезе"
 
-#: src/process-window.c:169
+#: ../src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Терезе id 0x%lx жоқ болып тұр!"
 
-#: src/process-window.c:174
+#: ../src/process-window.c:170
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty сәтсіз аяқталды"
 
-#: src/process-window.c:174
+#: ../src/process-window.c:170
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty сәтсіз аяқталды!"
 
-#: src/process-window.c:186
+#: ../src/process-window.c:182
 msgid "No PID found"
 msgstr "PID табылмады"
 
-#: src/process-window.c:186
+#: ../src/process-window.c:182
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "0x%lx терезесі үшін PID табылмады."
 
-#: src/process-window.c:382
+#: ../src/process-window.c:381
 msgid "Filter on process name"
 msgstr "Үрдіс атымен сүзу"
 
-#: src/process-window.c:386
+#: ../src/process-window.c:385
 msgid "Starting task"
 msgstr "Тапсырманы бастау"
 
-#: src/process-window.c:386
+#: ../src/process-window.c:385
 msgid "Changing task"
 msgstr "Тапсырманы өзгерту"
 
-#: src/process-window.c:386
+#: ../src/process-window.c:385
 msgid "Terminating task"
 msgstr "Тапсырманы аяқтау"
 
-#: src/process-window.ui:26
-msgid "Settings"
-msgstr "Баптаулар"
-
-#: src/process-window.ui:35
-msgid "Identify an open window by clicking on it."
-msgstr "Ашық терезені оған шерту арқылы анықтау."
-
-#: src/process-window.ui:127
-msgid "You are using the root account, you may harm your system."
-msgstr "Сіз root тіркелгісін қолданудасыз, жүйеңізге зақым келтіруге болады."
-
-#: src/settings-dialog.c:147
+#: ../src/settings-dialog.c:146
 msgid "Easy to use task manager"
 msgstr "Жүйе үрдістерін ыңғайлы басқару"
 
-#: src/settings-dialog.c:150
+#: ../src/settings-dialog.c:149
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com> 2010"
 
-#: src/settings-dialog.ui:49
-msgid "Task Manager Settings"
-msgstr "Тапсырмалар басқарушысы баптаулары"
-
-#: src/settings-dialog.ui:63
-msgid "_Help"
-msgstr "_Көмек"
-
-#: src/settings-dialog.ui:78
-msgid "About"
-msgstr "Осы туралы"
-
-#: src/settings-dialog.ui:92
-msgid "_Close"
-msgstr "_Жабу"
-
-#: src/settings-dialog.ui:139
-msgid "Show all processes"
-msgstr "Барлық үрдістерді көрсету"
-
-#: src/settings-dialog.ui:153
-msgid "Show application icons"
-msgstr "Қолданбалар таңбашаларын көрсету"
-
-#: src/settings-dialog.ui:167
-msgid "Show full command lines"
-msgstr "Толық командалық жолды көрсету"
-
-#: src/settings-dialog.ui:181
-msgid "Show processes as tree"
-msgstr "Үрдістерді ағаш ретінде көрсету"
-
-#: src/settings-dialog.ui:195
-msgid "Show legend"
-msgstr "Аңызды көрсету"
-
-#: src/settings-dialog.ui:209
-msgid "Show values with more precision"
-msgstr "Мәндерді дәлірек көрсету"
-
-#: src/settings-dialog.ui:230
-msgid "Refresh rate (ms):"
-msgstr "Жаңарту жиілігі (мс):"
-
-#: src/settings-dialog.ui:269
-msgid "<b>Interface</b>"
-msgstr "<b>Интерфейс</b>"
-
-#: src/settings-dialog.ui:296
-msgid "Prompt for terminating tasks"
-msgstr "Үрдістерді аяқтауды растау"
-
-#: src/settings-dialog.ui:310
-msgid "Keep in the notification area"
-msgstr "Хабарламалар сөресінде ұстау"
-
-#: src/settings-dialog.ui:328
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Әр түрлі</b>"
-
-#: src/settings-dialog.ui:345
-msgid "General"
-msgstr "Жалпы"
-
-#: src/settings-dialog.ui:401
-msgid "Virtual Bytes"
-msgstr "Виртуал байттар"
-
-#: src/settings-dialog.ui:415
-msgid "Group Virtual Bytes"
-msgstr "Топтық виртуалды байттар"
-
-#: src/settings-dialog.ui:429
-msgid "Resident Bytes"
-msgstr "Резиденттік байттар"
-
-#: src/settings-dialog.ui:443
-msgid "Group Resident Bytes"
-msgstr "Топтық резиденттік байттар"
-
-#: src/settings-dialog.ui:520
-msgid "Columns"
-msgstr "Бағандар"
-
-#: src/task-manager.c:258 src/task-manager.c:261
+#: ../src/task-manager.c:254 ../src/task-manager.c:257
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
