@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Xfce
-# This file is distributed under the same license as the xfce-apps.xfce4-taskmanager package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
 # Michal Várady <miko.vaji@gmail.com>, 2006,2014,2017,2019-2021,2024
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-15 00:50+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-17 12:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2006,2014,2017,2019-2021,2024\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce-apps/language/cs/)\n"
@@ -19,26 +19,11 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:222 src/process-tree-view.c:446 src/process-tree-view.c:462
-#: src/process-tree-view.c:494 src/process-window.ui:7
-#: src/settings-dialog.c:143
-msgid "Task Manager"
-msgstr "Správce úloh"
-
-#: xfce4-taskmanager.desktop.in:4
-msgid "Easy to use application to monitor system resources"
-msgstr "Snadno použitelná aplikace k monitorování systémových zdrojů"
-
-#: xfce4-taskmanager.desktop.in:12
-msgid "monitor;resources;system;task;performance;"
-msgstr "sledování;prostředky;systém;úloh;výkon;"
-
-#: src/main.c:59
+#: ../src/main.c:55
 msgid "Quit"
 msgstr "Ukončit"
 
-#: src/main.c:170
+#: ../src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -47,319 +32,229 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Procesy:</b> %u\n<b>Procesor CPU:</b> %.0f%%\n<b>Paměť:</b> %s\n<b>Stránkovací soubor:</b> %s"
 
-#: src/main.c:255
+#: ../src/main.c:221 ../src/process-tree-view.c:442
+#: ../src/process-tree-view.c:458 ../src/process-tree-view.c:490
+#: ../src/settings-dialog.c:142
+msgid "Task Manager"
+msgstr "Správce úloh"
+
+#: ../src/main.c:254
 msgid "Xfce Notify Daemon"
 msgstr "Služba oznamování pro prostředí Xfce"
 
-#: src/main.c:257
+#: ../src/main.c:256
 msgid "Settings daemon is unavailable"
 msgstr "Služba pro nastavení není dostupná"
 
-#: src/process-statusbar.c:191 src/process-window.c:548
+#: ../src/process-statusbar.c:187 ../src/process-window.c:561
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: src/process-statusbar.c:199 src/process-window.c:552
+#: ../src/process-statusbar.c:195 ../src/process-window.c:565
 #, c-format
 msgid "Memory: %s"
 msgstr "Paměť: %s"
 
-#: src/process-statusbar.c:207
+#: ../src/process-statusbar.c:203
 #, c-format
 msgid "Swap: %s"
 msgstr "Stránkovací soubor: %s"
 
-#: src/process-statusbar.c:222
+#: ../src/process-statusbar.c:218
 #, c-format
 msgid "Processes: %d"
 msgstr "Procesy: %d"
 
-#: src/process-tree-view.c:157
+#: ../src/process-tree-view.c:153
 msgid "Task"
 msgstr "Úloha"
 
-#: src/process-tree-view.c:168 src/settings-dialog.ui:359
+#: ../src/process-tree-view.c:164
 msgid "PID"
 msgstr "PID"
 
-#: src/process-tree-view.c:176 src/settings-dialog.ui:373
+#: ../src/process-tree-view.c:172
 msgid "PPID"
 msgstr "PPID"
 
-#: src/process-tree-view.c:184 src/settings-dialog.ui:387
+#: ../src/process-tree-view.c:180
 msgid "State"
 msgstr "Stav"
 
-#: src/process-tree-view.c:193
+#: ../src/process-tree-view.c:189
 msgid "VSZ"
 msgstr "VSZ"
 
-#: src/process-tree-view.c:201
+#: ../src/process-tree-view.c:197
 msgid "Group VSZ"
 msgstr "Skupina VSZ"
 
-#: src/process-tree-view.c:209
+#: ../src/process-tree-view.c:205
 msgid "RSS"
 msgstr "RSS"
 
-#: src/process-tree-view.c:217
+#: ../src/process-tree-view.c:213
 msgid "Group RSS"
 msgstr "Skupina RSS"
 
-#: src/process-tree-view.c:225 src/settings-dialog.ui:457
+#: ../src/process-tree-view.c:221
 msgid "UID"
 msgstr "UID"
 
-#: src/process-tree-view.c:233 src/settings-dialog.ui:471
+#: ../src/process-tree-view.c:229
 msgid "CPU"
 msgstr "CPU"
 
-#: src/process-tree-view.c:241 src/settings-dialog.ui:485
+#: ../src/process-tree-view.c:237
 msgid "Group CPU"
 msgstr "Skupina CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:250
+#: ../src/process-tree-view.c:246
 msgid "Prio."
 msgstr "Prio."
 
-#: src/process-tree-view.c:442
+#: ../src/process-tree-view.c:438
 msgid "Terminate task"
 msgstr "Ukončit úlohu"
 
-#: src/process-tree-view.c:442
+#: ../src/process-tree-view.c:438
 msgid "Kill task"
 msgstr "Ukončit úlohu signálem KILL"
 
-#: src/process-tree-view.c:444
+#: ../src/process-tree-view.c:440
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Opravdu chcete poslat signál %s procesu s identifikátorem PID %d?"
 
-#: src/process-tree-view.c:445
+#: ../src/process-tree-view.c:441
 msgid "terminate"
 msgstr "terminate"
 
-#: src/process-tree-view.c:445
+#: ../src/process-tree-view.c:441
 msgid "kill"
 msgstr "kill"
 
-#: src/process-tree-view.c:457
+#: ../src/process-tree-view.c:453
 msgid "Error sending signal"
 msgstr "Chyba při odesílání signálu"
 
-#: src/process-tree-view.c:459
+#: ../src/process-tree-view.c:455
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Při odesílání signálu procesu s identifikátorem PID %d nastala chyba. Pravděpodobně nemáte potřebná oprávnění."
 
-#: src/process-tree-view.c:489
+#: ../src/process-tree-view.c:485
 msgid "Error setting priority"
 msgstr "Chyba při nastavování priority"
 
-#: src/process-tree-view.c:491
+#: ../src/process-tree-view.c:487
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Při nastavování priority procesu s identifikátorem PID %d nastala chyba. Pravděpodobně nemáte potřebná oprávnění."
 
-#: src/process-tree-view.c:556 src/process-tree-view.c:699
+#: ../src/process-tree-view.c:575 ../src/process-tree-view.c:718
 msgid "Stop"
 msgstr "Zastavit"
 
-#: src/process-tree-view.c:563
+#: ../src/process-tree-view.c:582
 msgid "Continue"
 msgstr "Pokračovat"
 
-#: src/process-tree-view.c:569
+#: ../src/process-tree-view.c:588
 msgid "Terminate"
 msgstr "Ukončit úlohu signálem TERM"
 
-#: src/process-tree-view.c:575
+#: ../src/process-tree-view.c:594
 msgid "Kill"
 msgstr "Ukončit signálem KILL"
 
-#: src/process-tree-view.c:582
+#: ../src/process-tree-view.c:601
 msgid "Very low"
 msgstr "Velmi nízká"
 
-#: src/process-tree-view.c:587
+#: ../src/process-tree-view.c:606
 msgid "Low"
 msgstr "Nízká"
 
-#: src/process-tree-view.c:592
+#: ../src/process-tree-view.c:611
 msgid "Normal"
 msgstr "Běžná"
 
-#: src/process-tree-view.c:597
+#: ../src/process-tree-view.c:616
 msgid "High"
 msgstr "Vysoká"
 
-#: src/process-tree-view.c:602
+#: ../src/process-tree-view.c:621
 msgid "Very high"
 msgstr "Velmi vysoká"
 
-#: src/process-tree-view.c:607 src/settings-dialog.ui:499
+#: ../src/process-tree-view.c:626
 msgid "Priority"
 msgstr "Priorita"
 
 #. Same trick as above
-#: src/process-tree-view.c:611 src/process-tree-view.c:710
+#: ../src/process-tree-view.c:630 ../src/process-tree-view.c:729
 msgid "Copy command line"
 msgstr "Zkopírovat řádek s příkazem"
 
-#: src/process-window.c:169
+#: ../src/process-window.c:165
 msgid "Bad Window"
 msgstr "Nesprávné okno"
 
-#: src/process-window.c:169
+#: ../src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Okno s identifikátorem 0x%lx neexistuje."
 
-#: src/process-window.c:174
+#: ../src/process-window.c:170
 msgid "XGetWindowProperty failed"
 msgstr "Metoda XGetWindowProperty selhala"
 
-#: src/process-window.c:174
+#: ../src/process-window.c:170
 msgid "XGetWindowProperty failed!"
 msgstr "Metoda XGetWindowProperty selhala."
 
-#: src/process-window.c:186
+#: ../src/process-window.c:182
 msgid "No PID found"
 msgstr "Identifikátor PID nenalezen"
 
-#: src/process-window.c:186
+#: ../src/process-window.c:182
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Identifikátor PID pro okno 0x%lx nenalezen."
 
-#: src/process-window.c:382
+#: ../src/process-window.c:381
 msgid "Filter on process name"
 msgstr "Filtrovat podle názvu procesu"
 
-#: src/process-window.c:386
+#: ../src/process-window.c:385
 msgid "Starting task"
 msgstr "Spouštění úlohy"
 
-#: src/process-window.c:386
+#: ../src/process-window.c:385
 msgid "Changing task"
 msgstr "Změna úlohy"
 
-#: src/process-window.c:386
+#: ../src/process-window.c:385
 msgid "Terminating task"
 msgstr "Ukončování úlohy"
 
-#: src/process-window.ui:26
-msgid "Settings"
-msgstr "Nastavení"
-
-#: src/process-window.ui:35
-msgid "Identify an open window by clicking on it."
-msgstr "Identifikujte okno kliknutím na něj."
-
-#: src/process-window.ui:127
-msgid "You are using the root account, you may harm your system."
-msgstr "Používáte účet správce systému (root), můžete poškodit systém."
-
-#: src/settings-dialog.c:147
+#: ../src/settings-dialog.c:146
 msgid "Easy to use task manager"
 msgstr "Snadno použitelný správce úloh"
 
-#: src/settings-dialog.c:150
+#: ../src/settings-dialog.c:149
 msgid "translator-credits"
 msgstr "Michal Várady <miko.vaji@gmail.com>"
 
-#: src/settings-dialog.ui:49
-msgid "Task Manager Settings"
-msgstr "Nastavení správce úloh"
-
-#: src/settings-dialog.ui:63
-msgid "_Help"
-msgstr "_Nápověda"
-
-#: src/settings-dialog.ui:78
-msgid "About"
-msgstr "O aplikaci"
-
-#: src/settings-dialog.ui:92
-msgid "_Close"
-msgstr "%Zavřít"
-
-#: src/settings-dialog.ui:139
-msgid "Show all processes"
-msgstr "Zobrazit všechny procesy"
-
-#: src/settings-dialog.ui:153
-msgid "Show application icons"
-msgstr "Zobrazovat ikony aplikací"
-
-#: src/settings-dialog.ui:167
-msgid "Show full command lines"
-msgstr "Zobrazovat celé řádky příkazů"
-
-#: src/settings-dialog.ui:181
-msgid "Show processes as tree"
-msgstr "Zobrazit procesy jako strom"
-
-#: src/settings-dialog.ui:195
-msgid "Show legend"
-msgstr "Zobrazit legendu"
-
-#: src/settings-dialog.ui:209
-msgid "Show values with more precision"
-msgstr "Zobrazovat hodnoty s větší přesností"
-
-#: src/settings-dialog.ui:230
-msgid "Refresh rate (ms):"
-msgstr "Obnovovací frekvence (ms):"
-
-#: src/settings-dialog.ui:269
-msgid "<b>Interface</b>"
-msgstr "<b>Rozhraní</b>"
-
-#: src/settings-dialog.ui:296
-msgid "Prompt for terminating tasks"
-msgstr "Ptát se na ukončování úloh"
-
-#: src/settings-dialog.ui:310
-msgid "Keep in the notification area"
-msgstr "Ponechat v oznamovací oblasti"
-
-#: src/settings-dialog.ui:328
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Ostatní</b>"
-
-#: src/settings-dialog.ui:345
-msgid "General"
-msgstr "Obecné"
-
-#: src/settings-dialog.ui:401
-msgid "Virtual Bytes"
-msgstr "Virtuální bajty"
-
-#: src/settings-dialog.ui:415
-msgid "Group Virtual Bytes"
-msgstr "Seskupit virtuální bajty"
-
-#: src/settings-dialog.ui:429
-msgid "Resident Bytes"
-msgstr "Rezidentní bajty"
-
-#: src/settings-dialog.ui:443
-msgid "Group Resident Bytes"
-msgstr "Seskupit rezidentní bajty"
-
-#: src/settings-dialog.ui:520
-msgid "Columns"
-msgstr "Sloupce"
-
-#: src/task-manager.c:258 src/task-manager.c:261
+#: ../src/task-manager.c:254 ../src/task-manager.c:257
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
