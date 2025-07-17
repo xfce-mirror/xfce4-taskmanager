@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Xfce
-# This file is distributed under the same license as the xfce-apps.xfce4-taskmanager package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
 # Саша Петровић <salepetronije@gmail.com>, 2012-2014,2017,2019,2024
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-15 00:50+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-17 12:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>, 2012-2014,2017,2019,2024\n"
 "Language-Team: Serbian (http://app.transifex.com/xfce/xfce-apps/language/sr/)\n"
@@ -20,26 +20,11 @@ msgstr ""
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:222 src/process-tree-view.c:446 src/process-tree-view.c:462
-#: src/process-tree-view.c:494 src/process-window.ui:7
-#: src/settings-dialog.c:143
-msgid "Task Manager"
-msgstr "Управник задатака"
-
-#: xfce4-taskmanager.desktop.in:4
-msgid "Easy to use application to monitor system resources"
-msgstr "Програм за надгледање система лак за употребу"
-
-#: xfce4-taskmanager.desktop.in:12
-msgid "monitor;resources;system;task;performance;"
-msgstr "надзорник;склоп;састав;задатак;учинак;"
-
-#: src/main.c:59
+#: ../src/main.c:55
 msgid "Quit"
 msgstr "Напусти"
 
-#: src/main.c:170
+#: ../src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -48,319 +33,229 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Процеси:</b> %u\n<b>Процесор:</b> %.0f%%\n<b>Меморија:</b> %s\n<b>Заменска меморија:</b> %s"
 
-#: src/main.c:255
+#: ../src/main.c:221 ../src/process-tree-view.c:442
+#: ../src/process-tree-view.c:458 ../src/process-tree-view.c:490
+#: ../src/settings-dialog.c:142
+msgid "Task Manager"
+msgstr "Управник задатака"
+
+#: ../src/main.c:254
 msgid "Xfce Notify Daemon"
 msgstr "Домар обавештавања ИксФЦЕ-а"
 
-#: src/main.c:257
+#: ../src/main.c:256
 msgid "Settings daemon is unavailable"
 msgstr "Домар поставки није доступан"
 
-#: src/process-statusbar.c:191 src/process-window.c:548
+#: ../src/process-statusbar.c:187 ../src/process-window.c:561
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Процесор: %s%%"
 
-#: src/process-statusbar.c:199 src/process-window.c:552
+#: ../src/process-statusbar.c:195 ../src/process-window.c:565
 #, c-format
 msgid "Memory: %s"
 msgstr "Меморија: %s"
 
-#: src/process-statusbar.c:207
+#: ../src/process-statusbar.c:203
 #, c-format
 msgid "Swap: %s"
 msgstr "Заменска меморија: %s"
 
-#: src/process-statusbar.c:222
+#: ../src/process-statusbar.c:218
 #, c-format
 msgid "Processes: %d"
 msgstr "Процеси: %d"
 
-#: src/process-tree-view.c:157
+#: ../src/process-tree-view.c:153
 msgid "Task"
 msgstr "Задатак"
 
-#: src/process-tree-view.c:168 src/settings-dialog.ui:359
+#: ../src/process-tree-view.c:164
 msgid "PID"
 msgstr "ПЛБ"
 
-#: src/process-tree-view.c:176 src/settings-dialog.ui:373
+#: ../src/process-tree-view.c:172
 msgid "PPID"
 msgstr "ППЛБ"
 
-#: src/process-tree-view.c:184 src/settings-dialog.ui:387
+#: ../src/process-tree-view.c:180
 msgid "State"
 msgstr "Стање"
 
-#: src/process-tree-view.c:193
+#: ../src/process-tree-view.c:189
 msgid "VSZ"
 msgstr "ВСЗ"
 
-#: src/process-tree-view.c:201
+#: ../src/process-tree-view.c:197
 msgid "Group VSZ"
 msgstr "Скупи ВСЗ"
 
-#: src/process-tree-view.c:209
+#: ../src/process-tree-view.c:205
 msgid "RSS"
 msgstr "РСС"
 
-#: src/process-tree-view.c:217
+#: ../src/process-tree-view.c:213
 msgid "Group RSS"
 msgstr "Скупи РСС"
 
-#: src/process-tree-view.c:225 src/settings-dialog.ui:457
+#: ../src/process-tree-view.c:221
 msgid "UID"
 msgstr "ЈЛБ"
 
-#: src/process-tree-view.c:233 src/settings-dialog.ui:471
+#: ../src/process-tree-view.c:229
 msgid "CPU"
 msgstr "CPU"
 
-#: src/process-tree-view.c:241 src/settings-dialog.ui:485
+#: ../src/process-tree-view.c:237
 msgid "Group CPU"
 msgstr "Скупи ЦПУ"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:250
+#: ../src/process-tree-view.c:246
 msgid "Prio."
 msgstr "Предност"
 
-#: src/process-tree-view.c:442
+#: ../src/process-tree-view.c:438
 msgid "Terminate task"
 msgstr "Окончај задатак"
 
-#: src/process-tree-view.c:442
+#: ../src/process-tree-view.c:438
 msgid "Kill task"
 msgstr "Убиј задатак"
 
-#: src/process-tree-view.c:444
+#: ../src/process-tree-view.c:440
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Да ли сигурно желите послати сигнал%s ПЛБ-у %d?"
 
-#: src/process-tree-view.c:445
+#: ../src/process-tree-view.c:441
 msgid "terminate"
 msgstr "окончај"
 
-#: src/process-tree-view.c:445
+#: ../src/process-tree-view.c:441
 msgid "kill"
 msgstr "убиј"
 
-#: src/process-tree-view.c:457
+#: ../src/process-tree-view.c:453
 msgid "Error sending signal"
 msgstr "Грешка приликом слања сигнала"
 
-#: src/process-tree-view.c:459
+#: ../src/process-tree-view.c:455
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Јавила се грешка приликом слања сигнала ПЛБ-у %d. Вероватно немате потребна овлашћења."
 
-#: src/process-tree-view.c:489
+#: ../src/process-tree-view.c:485
 msgid "Error setting priority"
 msgstr "Грешка подешавања предности"
 
-#: src/process-tree-view.c:491
+#: ../src/process-tree-view.c:487
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Јавила се грешка приликом одређивања предности ПЛБ-у %d. Вероватно немате потребна овлашћења."
 
-#: src/process-tree-view.c:556 src/process-tree-view.c:699
+#: ../src/process-tree-view.c:575 ../src/process-tree-view.c:718
 msgid "Stop"
 msgstr "Заустави"
 
-#: src/process-tree-view.c:563
+#: ../src/process-tree-view.c:582
 msgid "Continue"
 msgstr "Настави"
 
-#: src/process-tree-view.c:569
+#: ../src/process-tree-view.c:588
 msgid "Terminate"
 msgstr "Окончај"
 
-#: src/process-tree-view.c:575
+#: ../src/process-tree-view.c:594
 msgid "Kill"
 msgstr "Убиј"
 
-#: src/process-tree-view.c:582
+#: ../src/process-tree-view.c:601
 msgid "Very low"
 msgstr "Врло низак"
 
-#: src/process-tree-view.c:587
+#: ../src/process-tree-view.c:606
 msgid "Low"
 msgstr "Низак"
 
-#: src/process-tree-view.c:592
+#: ../src/process-tree-view.c:611
 msgid "Normal"
 msgstr "Обичан"
 
-#: src/process-tree-view.c:597
+#: ../src/process-tree-view.c:616
 msgid "High"
 msgstr "Висок"
 
-#: src/process-tree-view.c:602
+#: ../src/process-tree-view.c:621
 msgid "Very high"
 msgstr "Врло висок"
 
-#: src/process-tree-view.c:607 src/settings-dialog.ui:499
+#: ../src/process-tree-view.c:626
 msgid "Priority"
 msgstr "Предност"
 
 #. Same trick as above
-#: src/process-tree-view.c:611 src/process-tree-view.c:710
+#: ../src/process-tree-view.c:630 ../src/process-tree-view.c:729
 msgid "Copy command line"
 msgstr "Умножи из наредбене линије"
 
-#: src/process-window.c:169
+#: ../src/process-window.c:165
 msgid "Bad Window"
 msgstr "Неваљали прозор"
 
-#: src/process-window.c:169
+#: ../src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "ЛБ прозора 0x%lx не постоји!"
 
-#: src/process-window.c:174
+#: ../src/process-window.c:170
 msgid "XGetWindowProperty failed"
 msgstr "Није успео XGetWindowProperty"
 
-#: src/process-window.c:174
+#: ../src/process-window.c:170
 msgid "XGetWindowProperty failed!"
 msgstr "Није успео XGetWindowProperty!"
 
-#: src/process-window.c:186
+#: ../src/process-window.c:182
 msgid "No PID found"
 msgstr "Није пронађен ПЛБ"
 
-#: src/process-window.c:186
+#: ../src/process-window.c:182
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Није пронађен ПЛБ прозора 0x%lx."
 
-#: src/process-window.c:382
+#: ../src/process-window.c:381
 msgid "Filter on process name"
 msgstr "Преглед по имену процеса"
 
-#: src/process-window.c:386
+#: ../src/process-window.c:385
 msgid "Starting task"
 msgstr "Покретање задатка"
 
-#: src/process-window.c:386
+#: ../src/process-window.c:385
 msgid "Changing task"
 msgstr "Промена задатка"
 
-#: src/process-window.c:386
+#: ../src/process-window.c:385
 msgid "Terminating task"
 msgstr "Окончавање задатка"
 
-#: src/process-window.ui:26
-msgid "Settings"
-msgstr "Поставке"
-
-#: src/process-window.ui:35
-msgid "Identify an open window by clicking on it."
-msgstr "Означи отворени прозор кликом на њега."
-
-#: src/process-window.ui:127
-msgid "You are using the root account, you may harm your system."
-msgstr "Користите корени налог, којим можете нашкодити систему."
-
-#: src/settings-dialog.c:147
+#: ../src/settings-dialog.c:146
 msgid "Easy to use task manager"
 msgstr "Управник задатака лак за коришћење"
 
-#: src/settings-dialog.c:150
+#: ../src/settings-dialog.c:149
 msgid "translator-credits"
 msgstr "Саша Петровић <salepetronije@gmail.com>"
 
-#: src/settings-dialog.ui:49
-msgid "Task Manager Settings"
-msgstr "Поставке управника задатака"
-
-#: src/settings-dialog.ui:63
-msgid "_Help"
-msgstr "_Помоћ"
-
-#: src/settings-dialog.ui:78
-msgid "About"
-msgstr "Опширније"
-
-#: src/settings-dialog.ui:92
-msgid "_Close"
-msgstr "_Затвори"
-
-#: src/settings-dialog.ui:139
-msgid "Show all processes"
-msgstr "Прикажи све процесе"
-
-#: src/settings-dialog.ui:153
-msgid "Show application icons"
-msgstr "Прикажи сличице програма"
-
-#: src/settings-dialog.ui:167
-msgid "Show full command lines"
-msgstr "Прикажи пуну наредбену линију"
-
-#: src/settings-dialog.ui:181
-msgid "Show processes as tree"
-msgstr "Приказуј процесе као гранање"
-
-#: src/settings-dialog.ui:195
-msgid "Show legend"
-msgstr "Приказуј легенду"
-
-#: src/settings-dialog.ui:209
-msgid "Show values with more precision"
-msgstr "Прикажи вредности са више одређености"
-
-#: src/settings-dialog.ui:230
-msgid "Refresh rate (ms):"
-msgstr "Рок освежења (ms)"
-
-#: src/settings-dialog.ui:269
-msgid "<b>Interface</b>"
-msgstr "<b>Сучеље</b>"
-
-#: src/settings-dialog.ui:296
-msgid "Prompt for terminating tasks"
-msgstr "Питај за окончавање задатака"
-
-#: src/settings-dialog.ui:310
-msgid "Keep in the notification area"
-msgstr "Држи у обавештајној области"
-
-#: src/settings-dialog.ui:328
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Остало</b>"
-
-#: src/settings-dialog.ui:345
-msgid "General"
-msgstr "Опште"
-
-#: src/settings-dialog.ui:401
-msgid "Virtual Bytes"
-msgstr "Нестварни бајтови"
-
-#: src/settings-dialog.ui:415
-msgid "Group Virtual Bytes"
-msgstr "Скупи нестварне бајтове"
-
-#: src/settings-dialog.ui:429
-msgid "Resident Bytes"
-msgstr "Остаци битова"
-
-#: src/settings-dialog.ui:443
-msgid "Group Resident Bytes"
-msgstr "Скупи остатке битова"
-
-#: src/settings-dialog.ui:520
-msgid "Columns"
-msgstr "Ступци"
-
-#: src/task-manager.c:258 src/task-manager.c:261
+#: ../src/task-manager.c:254 ../src/task-manager.c:257
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
