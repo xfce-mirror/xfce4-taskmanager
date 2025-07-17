@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Xfce
-# This file is distributed under the same license as the xfce-apps.xfce4-taskmanager package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
 # enolp <enolp@softastur.org>, 2015,2020
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-10 00:51+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-17 12:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Ḷḷumex03, 2014\n"
 "Language-Team: Asturian (http://app.transifex.com/xfce/xfce-apps/language/ast/)\n"
@@ -21,22 +21,11 @@ msgstr ""
 "Language: ast\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:222 src/process-tree-view.c:448 src/process-tree-view.c:463
-#: src/process-tree-view.c:493 src/process-window.ui:7
-#: src/settings-dialog.c:147
-msgid "Task Manager"
-msgstr "Xestor de xeres"
-
-#: xfce4-taskmanager.desktop.in:4
-msgid "Easy to use application to monitor system resources"
-msgstr "Programa cenciellu pa rexir los recursos del sistema"
-
-#: src/main.c:61
+#: ../src/main.c:55
 msgid "Quit"
 msgstr "Colar"
 
-#: src/main.c:171
+#: ../src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -45,319 +34,229 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Procesos:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memoria:</b> %s\n<b>Intercambéu:</b> %s"
 
-#: src/main.c:255
+#: ../src/main.c:221 ../src/process-tree-view.c:442
+#: ../src/process-tree-view.c:458 ../src/process-tree-view.c:490
+#: ../src/settings-dialog.c:142
+msgid "Task Manager"
+msgstr "Xestor de xeres"
+
+#: ../src/main.c:254
 msgid "Xfce Notify Daemon"
 msgstr "Degorriu de notificaciones Xfce"
 
-#: src/main.c:257
+#: ../src/main.c:256
 msgid "Settings daemon is unavailable"
 msgstr "El degorriu d'axustes nun ta disponible"
 
-#: src/process-statusbar.c:193 src/process-window.c:549
+#: ../src/process-statusbar.c:187 ../src/process-window.c:561
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: src/process-statusbar.c:201 src/process-window.c:553
+#: ../src/process-statusbar.c:195 ../src/process-window.c:565
 #, c-format
 msgid "Memory: %s"
 msgstr "Memoria: %s"
 
-#: src/process-statusbar.c:209
+#: ../src/process-statusbar.c:203
 #, c-format
 msgid "Swap: %s"
 msgstr "Intercambéu: %s"
 
-#: src/process-statusbar.c:224
+#: ../src/process-statusbar.c:218
 #, c-format
 msgid "Processes: %d"
 msgstr "Procesos: %d"
 
-#: src/process-tree-view.c:159
+#: ../src/process-tree-view.c:153
 msgid "Task"
 msgstr "Xera"
 
-#: src/process-tree-view.c:170 src/settings-dialog.ui:359
+#: ../src/process-tree-view.c:164
 msgid "PID"
 msgstr "PID"
 
-#: src/process-tree-view.c:178 src/settings-dialog.ui:373
+#: ../src/process-tree-view.c:172
 msgid "PPID"
 msgstr "PPID"
 
-#: src/process-tree-view.c:186 src/settings-dialog.ui:387
+#: ../src/process-tree-view.c:180
 msgid "State"
 msgstr "Estáu"
 
-#: src/process-tree-view.c:195
+#: ../src/process-tree-view.c:189
 msgid "VSZ"
 msgstr "VSZ"
 
-#: src/process-tree-view.c:203
+#: ../src/process-tree-view.c:197
 msgid "Group VSZ"
 msgstr "VSZ agrupada"
 
-#: src/process-tree-view.c:211
+#: ../src/process-tree-view.c:205
 msgid "RSS"
 msgstr "Recursos"
 
-#: src/process-tree-view.c:219
+#: ../src/process-tree-view.c:213
 msgid "Group RSS"
 msgstr "Recusos agrupaos"
 
-#: src/process-tree-view.c:227 src/settings-dialog.ui:457
+#: ../src/process-tree-view.c:221
 msgid "UID"
 msgstr "UID"
 
-#: src/process-tree-view.c:235 src/settings-dialog.ui:471
+#: ../src/process-tree-view.c:229
 msgid "CPU"
 msgstr "CPU"
 
-#: src/process-tree-view.c:243 src/settings-dialog.ui:485
+#: ../src/process-tree-view.c:237
 msgid "Group CPU"
 msgstr "CPU agrupada"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:252
+#: ../src/process-tree-view.c:246
 msgid "Prio."
 msgstr "Prioridá"
 
-#: src/process-tree-view.c:444
+#: ../src/process-tree-view.c:438
 msgid "Terminate task"
 msgstr "Finar procesu"
 
-#: src/process-tree-view.c:444
+#: ../src/process-tree-view.c:438
 msgid "Kill task"
 msgstr "Matar procesu"
 
-#: src/process-tree-view.c:446
+#: ../src/process-tree-view.c:440
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "¿De xuru que quies unviar la señal %s al PID %d?"
 
-#: src/process-tree-view.c:447
+#: ../src/process-tree-view.c:441
 msgid "terminate"
 msgstr "finar"
 
-#: src/process-tree-view.c:447
+#: ../src/process-tree-view.c:441
 msgid "kill"
 msgstr "matar"
 
-#: src/process-tree-view.c:459
+#: ../src/process-tree-view.c:453
 msgid "Error sending signal"
 msgstr "Erru al unviar siñal"
 
-#: src/process-tree-view.c:461
+#: ../src/process-tree-view.c:455
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Alcontróse un fallu al unviar una señal al PID %d. Ye probable que nun tengas los privilexos riquíos."
 
-#: src/process-tree-view.c:490
+#: ../src/process-tree-view.c:485
 msgid "Error setting priority"
 msgstr "Erru al afitar prioridá"
 
-#: src/process-tree-view.c:491
+#: ../src/process-tree-view.c:487
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Alcontróse un fallu al afitar una prioridá al PID %d. Ye probable que nun tengas los privilexos riquíos."
 
-#: src/process-tree-view.c:554 src/process-tree-view.c:697
+#: ../src/process-tree-view.c:575 ../src/process-tree-view.c:718
 msgid "Stop"
 msgstr "Parar"
 
-#: src/process-tree-view.c:561
+#: ../src/process-tree-view.c:582
 msgid "Continue"
 msgstr "Siguir"
 
-#: src/process-tree-view.c:567
+#: ../src/process-tree-view.c:588
 msgid "Terminate"
 msgstr "Finar"
 
-#: src/process-tree-view.c:573
+#: ../src/process-tree-view.c:594
 msgid "Kill"
 msgstr "Matar"
 
-#: src/process-tree-view.c:580
+#: ../src/process-tree-view.c:601
 msgid "Very low"
 msgstr "Perbaxa"
 
-#: src/process-tree-view.c:585
+#: ../src/process-tree-view.c:606
 msgid "Low"
 msgstr "Baxa"
 
-#: src/process-tree-view.c:590
+#: ../src/process-tree-view.c:611
 msgid "Normal"
 msgstr "Normal"
 
-#: src/process-tree-view.c:595
+#: ../src/process-tree-view.c:616
 msgid "High"
 msgstr "Alta"
 
-#: src/process-tree-view.c:600
+#: ../src/process-tree-view.c:621
 msgid "Very high"
 msgstr "Peralta"
 
-#: src/process-tree-view.c:605 src/settings-dialog.ui:499
+#: ../src/process-tree-view.c:626
 msgid "Priority"
 msgstr "Prioridá"
 
 #. Same trick as above
-#: src/process-tree-view.c:609 src/process-tree-view.c:708
+#: ../src/process-tree-view.c:630 ../src/process-tree-view.c:729
 msgid "Copy command line"
 msgstr "Copiar llinia de comandos"
 
-#: src/process-window.c:171
+#: ../src/process-window.c:165
 msgid "Bad Window"
 msgstr "Ventana con fallos"
 
-#: src/process-window.c:171
+#: ../src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "¡La ventana 0x%lx nun existe!"
 
-#: src/process-window.c:174
+#: ../src/process-window.c:170
 msgid "XGetWindowProperty failed"
 msgstr "Fallu en XGetWindowProperty"
 
-#: src/process-window.c:174
+#: ../src/process-window.c:170
 msgid "XGetWindowProperty failed!"
 msgstr "¡Fallu en XGetWindowProperty!"
 
-#: src/process-window.c:181
+#: ../src/process-window.c:182
 msgid "No PID found"
 msgstr "Nun se atopó PID"
 
-#: src/process-window.c:181
+#: ../src/process-window.c:182
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Nun se atopó PID pa la ventana 0x%lx."
 
-#: src/process-window.c:383
+#: ../src/process-window.c:381
 msgid "Filter on process name"
 msgstr "Caltrear por nome de procesu"
 
-#: src/process-window.c:387
+#: ../src/process-window.c:385
 msgid "Starting task"
 msgstr "Entamando procesu"
 
-#: src/process-window.c:387
+#: ../src/process-window.c:385
 msgid "Changing task"
 msgstr "Camudiando de procesu"
 
-#: src/process-window.c:387
+#: ../src/process-window.c:385
 msgid "Terminating task"
 msgstr "Finando procesu"
 
-#: src/process-window.ui:26
-msgid "Settings"
-msgstr "Axustes"
-
-#: src/process-window.ui:35
-msgid "Identify an open window by clicking on it."
-msgstr "Identificar ventana abierta al da-y clic."
-
-#: src/process-window.ui:127
-msgid "You are using the root account, you may harm your system."
-msgstr "Tas usando cuenta root. Podríes dañar el to sistema."
-
-#: src/settings-dialog.c:151
+#: ../src/settings-dialog.c:146
 msgid "Easy to use task manager"
 msgstr "Un xestor de xeres fácil d'usar"
 
-#: src/settings-dialog.c:154
+#: ../src/settings-dialog.c:149
 msgid "translator-credits"
 msgstr "Softastur <alministradores@softastur.org>"
 
-#: src/settings-dialog.ui:49
-msgid "Task Manager Settings"
-msgstr "Axustes del xestor de xeres"
-
-#: src/settings-dialog.ui:63
-msgid "_Help"
-msgstr "_Ayuda"
-
-#: src/settings-dialog.ui:78
-msgid "About"
-msgstr "Tocante a"
-
-#: src/settings-dialog.ui:92
-msgid "_Close"
-msgstr "_Zarrar"
-
-#: src/settings-dialog.ui:139
-msgid "Show all processes"
-msgstr "Amosar tolos procesos"
-
-#: src/settings-dialog.ui:153
-msgid "Show application icons"
-msgstr "Amosar iconos d'aplicaciones"
-
-#: src/settings-dialog.ui:167
-msgid "Show full command lines"
-msgstr "Amosar llinies de comandos completes"
-
-#: src/settings-dialog.ui:181
-msgid "Show processes as tree"
-msgstr "Amosar procesos comu árbol"
-
-#: src/settings-dialog.ui:195
-msgid "Show legend"
-msgstr "Amosar lleenda"
-
-#: src/settings-dialog.ui:209
-msgid "Show values with more precision"
-msgstr "Amosar valores más precisos"
-
-#: src/settings-dialog.ui:230
-msgid "Refresh rate (ms):"
-msgstr "Tasa de refrescu (ms):"
-
-#: src/settings-dialog.ui:269
-msgid "<b>Interface</b>"
-msgstr "<b>Apariencia</b>"
-
-#: src/settings-dialog.ui:296
-msgid "Prompt for terminating tasks"
-msgstr "Órden pa finar procesos"
-
-#: src/settings-dialog.ui:310
-msgid "Keep in the notification area"
-msgstr "Caltener nel area de notificaciones"
-
-#: src/settings-dialog.ui:328
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Miscelánea</b>"
-
-#: src/settings-dialog.ui:345
-msgid "General"
-msgstr "Xeneral"
-
-#: src/settings-dialog.ui:401
-msgid "Virtual Bytes"
-msgstr "Bytes virtuales"
-
-#: src/settings-dialog.ui:415
-msgid "Group Virtual Bytes"
-msgstr "Bytes virtuales agrupaos"
-
-#: src/settings-dialog.ui:429
-msgid "Resident Bytes"
-msgstr "Bytes residentes"
-
-#: src/settings-dialog.ui:443
-msgid "Group Resident Bytes"
-msgstr "Bytes residentes agrupaos"
-
-#: src/settings-dialog.ui:520
-msgid "Columns"
-msgstr "Columnes"
-
-#: src/task-manager.c:257 src/task-manager.c:260
+#: ../src/task-manager.c:254 ../src/task-manager.c:257
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
