@@ -35,7 +35,7 @@ msgstr "Menedżer zadań"
 
 #: xfce4-taskmanager.desktop.in:4
 msgid "Easy to use application to monitor system resources"
-msgstr "Łatwy w użyciu program do monitorowania zasobów systemowych"
+msgstr "Łatwy w użyciu program do monitorowania zasobów systemowych"
 
 #: xfce4-taskmanager.desktop.in:12
 msgid "monitor;resources;system;task;performance;"
@@ -104,7 +104,7 @@ msgstr "Pamięć przydzielona"
 
 #: src/process-tree-view.c:197
 msgid "Group VSZ"
-msgstr "Grupuj pamięć przydzieloną"
+msgstr "Grupa pamięci przydzielonej"
 
 #: src/process-tree-view.c:205
 msgid "RSS"
@@ -112,7 +112,7 @@ msgstr "Pamięć zajęta"
 
 #: src/process-tree-view.c:213
 msgid "Group RSS"
-msgstr "Grupuj pamięć zajętą"
+msgstr "Grupa pamięci zajętej"
 
 #: src/process-tree-view.c:221 src/settings-dialog.ui:457
 msgid "UID"
@@ -124,7 +124,7 @@ msgstr "Użycie CPU"
 
 #: src/process-tree-view.c:237 src/settings-dialog.ui:485
 msgid "Group CPU"
-msgstr "Grupuj użycie CPU"
+msgstr "Grupa użycia CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
@@ -352,7 +352,7 @@ msgstr "Bajty przydzielone"
 
 #: src/settings-dialog.ui:415
 msgid "Group Virtual Bytes"
-msgstr "Grupuj bajty przydzielone"
+msgstr "Grupa bajtów przydzielonych"
 
 #: src/settings-dialog.ui:429
 msgid "Resident Bytes"
@@ -360,7 +360,7 @@ msgstr "Bajty zajęte"
 
 #: src/settings-dialog.ui:443
 msgid "Group Resident Bytes"
-msgstr "Grupuj bajty zajęte"
+msgstr "Grupuj bajtów zajętych"
 
 #: src/settings-dialog.ui:520
 msgid "Columns"
