@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfce4-taskmanager package.
 # 
 # Translators:
 # Balázs Meskó <meskobalazs@mailbox.org>, 2018
@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 12:51+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2025-07-18 10:42+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2025\n"
 "Language-Team: Hungarian (http://app.transifex.com/xfce/xfce-apps/language/hu/)\n"
@@ -24,11 +24,26 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/main.c:55
+#: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
+#: src/main.c:221 src/process-tree-view.c:442 src/process-tree-view.c:458
+#: src/process-tree-view.c:490 src/process-window.ui:7
+#: src/settings-dialog.c:142
+msgid "Task Manager"
+msgstr "Feladatkezelő"
+
+#: xfce4-taskmanager.desktop.in:4
+msgid "Easy to use application to monitor system resources"
+msgstr "Egy könnyen használható alkalmazás a rendszer-erőforrások figyelésére"
+
+#: xfce4-taskmanager.desktop.in:12
+msgid "monitor;resources;system;task;performance;"
+msgstr "figyelés;erőforrások;rendszer;feladat;folyamat;teljesítmény;"
+
+#: src/main.c:55
 msgid "Quit"
 msgstr "Kilépés"
 
-#: ../src/main.c:169
+#: src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -37,229 +52,319 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Folyamatok:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memória:</b> %s\n<b>Cserehely:</b> %s"
 
-#: ../src/main.c:221 ../src/process-tree-view.c:442
-#: ../src/process-tree-view.c:458 ../src/process-tree-view.c:490
-#: ../src/settings-dialog.c:142
-msgid "Task Manager"
-msgstr "Feladatkezelő"
-
-#: ../src/main.c:254
+#: src/main.c:254
 msgid "Xfce Notify Daemon"
 msgstr "Xfce értesítési démon"
 
-#: ../src/main.c:256
+#: src/main.c:256
 msgid "Settings daemon is unavailable"
 msgstr "A beállításdémon nem érhető el"
 
-#: ../src/process-statusbar.c:187 ../src/process-window.c:561
+#: src/process-statusbar.c:187 src/process-window.c:561
 #, c-format
 msgid "CPU: %s%%"
 msgstr "CPU: %s%%"
 
-#: ../src/process-statusbar.c:195 ../src/process-window.c:565
+#: src/process-statusbar.c:195 src/process-window.c:565
 #, c-format
 msgid "Memory: %s"
 msgstr "Memória: %s"
 
-#: ../src/process-statusbar.c:203
+#: src/process-statusbar.c:203
 #, c-format
 msgid "Swap: %s"
 msgstr "Cserehely: %s"
 
-#: ../src/process-statusbar.c:218
+#: src/process-statusbar.c:218
 #, c-format
 msgid "Processes: %d"
 msgstr "Folyamatok: %d"
 
-#: ../src/process-tree-view.c:153
+#: src/process-tree-view.c:153
 msgid "Task"
 msgstr "Feladat"
 
-#: ../src/process-tree-view.c:164
+#: src/process-tree-view.c:164 src/settings-dialog.ui:359
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:172
+#: src/process-tree-view.c:172 src/settings-dialog.ui:373
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:180
+#: src/process-tree-view.c:180 src/settings-dialog.ui:387
 msgid "State"
 msgstr "Állapot"
 
-#: ../src/process-tree-view.c:189
+#: src/process-tree-view.c:189
 msgid "VSZ"
 msgstr "VMR"
 
-#: ../src/process-tree-view.c:197
+#: src/process-tree-view.c:197
 msgid "Group VSZ"
 msgstr "Csoport VSZ"
 
-#: ../src/process-tree-view.c:205
+#: src/process-tree-view.c:205
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:213
+#: src/process-tree-view.c:213
 msgid "Group RSS"
 msgstr "Csoport RSS"
 
-#: ../src/process-tree-view.c:221
+#: src/process-tree-view.c:221 src/settings-dialog.ui:457
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:229
+#: src/process-tree-view.c:229 src/settings-dialog.ui:471
 msgid "CPU"
 msgstr "CPU"
 
-#: ../src/process-tree-view.c:237
+#: src/process-tree-view.c:237 src/settings-dialog.ui:485
 msgid "Group CPU"
 msgstr "Csoport CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:246
+#: src/process-tree-view.c:246
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:438
+#: src/process-tree-view.c:438
 msgid "Terminate task"
 msgstr "Feladat befejezése"
 
-#: ../src/process-tree-view.c:438
+#: src/process-tree-view.c:438
 msgid "Kill task"
 msgstr "Feladat kilövése"
 
-#: ../src/process-tree-view.c:440
+#: src/process-tree-view.c:440
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Biztosan elküldi a(z) %s szignált a(z) %d azonosítójú feladatnak?"
 
-#: ../src/process-tree-view.c:441
+#: src/process-tree-view.c:441
 msgid "terminate"
 msgstr "befejezés"
 
-#: ../src/process-tree-view.c:441
+#: src/process-tree-view.c:441
 msgid "kill"
 msgstr "kilövés"
 
-#: ../src/process-tree-view.c:453
+#: src/process-tree-view.c:453
 msgid "Error sending signal"
 msgstr "Hiba a szignál küldésekor"
 
-#: ../src/process-tree-view.c:455
+#: src/process-tree-view.c:455
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Hiba történt a szignál küldésekor a(z) %d azonosítójú feladatnak. Valószínűleg nincsenek megfelelő jogosultságai."
 
-#: ../src/process-tree-view.c:485
+#: src/process-tree-view.c:485
 msgid "Error setting priority"
 msgstr "Hiba a prioritás beállításakor"
 
-#: ../src/process-tree-view.c:487
+#: src/process-tree-view.c:487
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Hiba történt a(z) %d azonosítójú feladat prioritásának beállításakor. Valószínűleg nincsenek megfelelő jogosultságai."
 
-#: ../src/process-tree-view.c:575 ../src/process-tree-view.c:718
+#: src/process-tree-view.c:575 src/process-tree-view.c:718
 msgid "Stop"
 msgstr "Leállítás"
 
-#: ../src/process-tree-view.c:582
+#: src/process-tree-view.c:582
 msgid "Continue"
 msgstr "Folytatás"
 
-#: ../src/process-tree-view.c:588
+#: src/process-tree-view.c:588
 msgid "Terminate"
 msgstr "Befejezés"
 
-#: ../src/process-tree-view.c:594
+#: src/process-tree-view.c:594
 msgid "Kill"
 msgstr "Kilövés"
 
-#: ../src/process-tree-view.c:601
+#: src/process-tree-view.c:601
 msgid "Very low"
 msgstr "Nagyon alacsony"
 
-#: ../src/process-tree-view.c:606
+#: src/process-tree-view.c:606
 msgid "Low"
 msgstr "Alacsony"
 
-#: ../src/process-tree-view.c:611
+#: src/process-tree-view.c:611
 msgid "Normal"
 msgstr "Normál"
 
-#: ../src/process-tree-view.c:616
+#: src/process-tree-view.c:616
 msgid "High"
 msgstr "Magas"
 
-#: ../src/process-tree-view.c:621
+#: src/process-tree-view.c:621
 msgid "Very high"
 msgstr "Nagyon magas"
 
-#: ../src/process-tree-view.c:626
+#: src/process-tree-view.c:626 src/settings-dialog.ui:499
 msgid "Priority"
 msgstr "Prioritás"
 
 #. Same trick as above
-#: ../src/process-tree-view.c:630 ../src/process-tree-view.c:729
+#: src/process-tree-view.c:630 src/process-tree-view.c:729
 msgid "Copy command line"
 msgstr "Parancssor másolása"
 
-#: ../src/process-window.c:165
+#: src/process-window.c:165
 msgid "Bad Window"
 msgstr "Rossz ablak"
 
-#: ../src/process-window.c:165
+#: src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "A 0x%lx ablakazonosító nem létezik."
 
-#: ../src/process-window.c:170
+#: src/process-window.c:170
 msgid "XGetWindowProperty failed"
 msgstr "Az XGetWindowProperty sikertelen"
 
-#: ../src/process-window.c:170
+#: src/process-window.c:170
 msgid "XGetWindowProperty failed!"
 msgstr "Az XGetWindowProperty sikertelen."
 
-#: ../src/process-window.c:182
+#: src/process-window.c:182
 msgid "No PID found"
 msgstr "A PID nem található"
 
-#: ../src/process-window.c:182
+#: src/process-window.c:182
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "A PID nem található a 0x%lx ablakhoz"
 
-#: ../src/process-window.c:381
+#: src/process-window.c:381
 msgid "Filter on process name"
 msgstr "Szűrés folyamatnév alapján"
 
-#: ../src/process-window.c:385
+#: src/process-window.c:385
 msgid "Starting task"
 msgstr "Feladat elindítása"
 
-#: ../src/process-window.c:385
+#: src/process-window.c:385
 msgid "Changing task"
 msgstr "Feladat váltás"
 
-#: ../src/process-window.c:385
+#: src/process-window.c:385
 msgid "Terminating task"
 msgstr "Feladat befejezése"
 
-#: ../src/settings-dialog.c:146
+#: src/process-window.ui:26
+msgid "Settings"
+msgstr "Beállítások"
+
+#: src/process-window.ui:35
+msgid "Identify an open window by clicking on it."
+msgstr "Nyitott ablak azonosítása rákattintással."
+
+#: src/process-window.ui:127
+msgid "You are using the root account, you may harm your system."
+msgstr "Jelenleg root felhasználót használ, kárt tehet a rendszerben."
+
+#: src/settings-dialog.c:146
 msgid "Easy to use task manager"
 msgstr "Egyszerűen használható feladatkezelő"
 
-#: ../src/settings-dialog.c:149
+#: src/settings-dialog.c:149
 msgid "translator-credits"
 msgstr "Kelemen Gábor <kelemeng at gnome dot hu>"
 
-#: ../src/task-manager.c:254 ../src/task-manager.c:257
+#: src/settings-dialog.ui:49
+msgid "Task Manager Settings"
+msgstr "A Feladatkezelő beállításai"
+
+#: src/settings-dialog.ui:63
+msgid "_Help"
+msgstr "_Súgó"
+
+#: src/settings-dialog.ui:78
+msgid "About"
+msgstr "Névjegy"
+
+#: src/settings-dialog.ui:92
+msgid "_Close"
+msgstr "_Bezárás"
+
+#: src/settings-dialog.ui:139
+msgid "Show all processes"
+msgstr "Összes folyamat megjelenítése"
+
+#: src/settings-dialog.ui:153
+msgid "Show application icons"
+msgstr "Alkalmazásikonok megjelenítése"
+
+#: src/settings-dialog.ui:167
+msgid "Show full command lines"
+msgstr "Teljes parancssorok megjelenítése"
+
+#: src/settings-dialog.ui:181
+msgid "Show processes as tree"
+msgstr "Folyamatok megjelenítése faként"
+
+#: src/settings-dialog.ui:195
+msgid "Show legend"
+msgstr "Történek megjelenítése"
+
+#: src/settings-dialog.ui:209
+msgid "Show values with more precision"
+msgstr "Értékek pontosabb megjelenítése"
+
+#: src/settings-dialog.ui:230
+msgid "Refresh rate (ms):"
+msgstr "Frissítési gyakoriság (ms):"
+
+#: src/settings-dialog.ui:269
+msgid "<b>Interface</b>"
+msgstr "<b>Felület</b>"
+
+#: src/settings-dialog.ui:296
+msgid "Prompt for terminating tasks"
+msgstr "Rákérdezés a feladatok befejezése előtt"
+
+#: src/settings-dialog.ui:310
+msgid "Keep in the notification area"
+msgstr "Megtartás az értesítési területen"
+
+#: src/settings-dialog.ui:328
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Egyéb</b>"
+
+#: src/settings-dialog.ui:345
+msgid "General"
+msgstr "Általános"
+
+#: src/settings-dialog.ui:401
+msgid "Virtual Bytes"
+msgstr "Virtuális bájtok"
+
+#: src/settings-dialog.ui:415
+msgid "Group Virtual Bytes"
+msgstr "Csoport virtuális bájtjai"
+
+#: src/settings-dialog.ui:429
+msgid "Resident Bytes"
+msgstr "Rezidens bájtok"
+
+#: src/settings-dialog.ui:443
+msgid "Group Resident Bytes"
+msgstr "Csoport rezidens bájtjai"
+
+#: src/settings-dialog.ui:520
+msgid "Columns"
+msgstr "Oszlopok"
+
+#: src/task-manager.c:254 src/task-manager.c:257
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
