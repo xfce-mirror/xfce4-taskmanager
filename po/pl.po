@@ -292,7 +292,7 @@ msgstr "Pomo_c"
 
 #: src/settings-dialog.ui:78
 msgid "About"
-msgstr "O programie"
+msgstr "O programie"
 
 #: src/settings-dialog.ui:92
 msgid "_Close"
