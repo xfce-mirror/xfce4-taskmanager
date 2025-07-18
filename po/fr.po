@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfce4-taskmanager package.
 # 
 # Translators:
 # Charles Monzat <c.monzat@laposte.net>, 2017-2018
@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 12:51+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2025-07-18 10:42+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
 "Last-Translator: Wallon Wallon, 2022,2024\n"
 "Language-Team: French (http://app.transifex.com/xfce/xfce-apps/language/fr/)\n"
@@ -28,11 +28,26 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: ../src/main.c:55
+#: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
+#: src/main.c:221 src/process-tree-view.c:442 src/process-tree-view.c:458
+#: src/process-tree-view.c:490 src/process-window.ui:7
+#: src/settings-dialog.c:142
+msgid "Task Manager"
+msgstr "Gestionnaire de tâches"
+
+#: xfce4-taskmanager.desktop.in:4
+msgid "Easy to use application to monitor system resources"
+msgstr "Application simple d’utilisation pour surveiller les ressources du système"
+
+#: xfce4-taskmanager.desktop.in:12
+msgid "monitor;resources;system;task;performance;"
+msgstr "monitor;resources;system;task;performance;moniteur;écran;ressources;système;tâche;"
+
+#: src/main.c:55
 msgid "Quit"
 msgstr "Quitter"
 
-#: ../src/main.c:169
+#: src/main.c:169
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -41,229 +56,319 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Processus :</b> %u\n<b>CPU :</b> %.0f %%\n<b>Mémoire :</b> %s\n<b>Fichier d’échange :</b> %s"
 
-#: ../src/main.c:221 ../src/process-tree-view.c:442
-#: ../src/process-tree-view.c:458 ../src/process-tree-view.c:490
-#: ../src/settings-dialog.c:142
-msgid "Task Manager"
-msgstr "Gestionnaire de tâches"
-
-#: ../src/main.c:254
+#: src/main.c:254
 msgid "Xfce Notify Daemon"
 msgstr "Démon de notification Xfce"
 
-#: ../src/main.c:256
+#: src/main.c:256
 msgid "Settings daemon is unavailable"
 msgstr "Le démon des paramètres est indisponible"
 
-#: ../src/process-statusbar.c:187 ../src/process-window.c:561
+#: src/process-statusbar.c:187 src/process-window.c:561
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Processeur : %s%%"
 
-#: ../src/process-statusbar.c:195 ../src/process-window.c:565
+#: src/process-statusbar.c:195 src/process-window.c:565
 #, c-format
 msgid "Memory: %s"
 msgstr "Mémoire : %s"
 
-#: ../src/process-statusbar.c:203
+#: src/process-statusbar.c:203
 #, c-format
 msgid "Swap: %s"
 msgstr "Fichier d’échange : %s"
 
-#: ../src/process-statusbar.c:218
+#: src/process-statusbar.c:218
 #, c-format
 msgid "Processes: %d"
 msgstr "Processus : %d"
 
-#: ../src/process-tree-view.c:153
+#: src/process-tree-view.c:153
 msgid "Task"
 msgstr "Tâche"
 
-#: ../src/process-tree-view.c:164
+#: src/process-tree-view.c:164 src/settings-dialog.ui:359
 msgid "PID"
 msgstr "PID"
 
-#: ../src/process-tree-view.c:172
+#: src/process-tree-view.c:172 src/settings-dialog.ui:373
 msgid "PPID"
 msgstr "PPID"
 
-#: ../src/process-tree-view.c:180
+#: src/process-tree-view.c:180 src/settings-dialog.ui:387
 msgid "State"
 msgstr "État"
 
-#: ../src/process-tree-view.c:189
+#: src/process-tree-view.c:189
 msgid "VSZ"
 msgstr "VSZ"
 
-#: ../src/process-tree-view.c:197
+#: src/process-tree-view.c:197
 msgid "Group VSZ"
 msgstr "Groupe VSZ"
 
-#: ../src/process-tree-view.c:205
+#: src/process-tree-view.c:205
 msgid "RSS"
 msgstr "RSS"
 
-#: ../src/process-tree-view.c:213
+#: src/process-tree-view.c:213
 msgid "Group RSS"
 msgstr "Groupe RSS"
 
-#: ../src/process-tree-view.c:221
+#: src/process-tree-view.c:221 src/settings-dialog.ui:457
 msgid "UID"
 msgstr "UID"
 
-#: ../src/process-tree-view.c:229
+#: src/process-tree-view.c:229 src/settings-dialog.ui:471
 msgid "CPU"
 msgstr "Processeur"
 
-#: ../src/process-tree-view.c:237
+#: src/process-tree-view.c:237 src/settings-dialog.ui:485
 msgid "Group CPU"
 msgstr "Groupe CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: ../src/process-tree-view.c:246
+#: src/process-tree-view.c:246
 msgid "Prio."
 msgstr "Prio."
 
-#: ../src/process-tree-view.c:438
+#: src/process-tree-view.c:438
 msgid "Terminate task"
 msgstr "Terminer la tâche"
 
-#: ../src/process-tree-view.c:438
+#: src/process-tree-view.c:438
 msgid "Kill task"
 msgstr "Tuer la tâche"
 
-#: ../src/process-tree-view.c:440
+#: src/process-tree-view.c:440
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Êtes-vous sûr de vouloir envoyer le signal %s au PID %d ?"
 
-#: ../src/process-tree-view.c:441
+#: src/process-tree-view.c:441
 msgid "terminate"
 msgstr "terminer"
 
-#: ../src/process-tree-view.c:441
+#: src/process-tree-view.c:441
 msgid "kill"
 msgstr "tuer"
 
-#: ../src/process-tree-view.c:453
+#: src/process-tree-view.c:453
 msgid "Error sending signal"
 msgstr "Erreur d’envoi du signal"
 
-#: ../src/process-tree-view.c:455
+#: src/process-tree-view.c:455
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Une erreur s’est produite en envoyant un signal au PID %d. Il est probable que vous n’ayez pas les privilèges requis."
 
-#: ../src/process-tree-view.c:485
+#: src/process-tree-view.c:485
 msgid "Error setting priority"
 msgstr "Erreur de réglage des priorités"
 
-#: ../src/process-tree-view.c:487
+#: src/process-tree-view.c:487
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Une erreur s’est produite en définissant une priorité pour le PID %d. Il est probable que vous n’ayez pas les privilèges requis."
 
-#: ../src/process-tree-view.c:575 ../src/process-tree-view.c:718
+#: src/process-tree-view.c:575 src/process-tree-view.c:718
 msgid "Stop"
 msgstr "Arrêter"
 
-#: ../src/process-tree-view.c:582
+#: src/process-tree-view.c:582
 msgid "Continue"
 msgstr "Continuer"
 
-#: ../src/process-tree-view.c:588
+#: src/process-tree-view.c:588
 msgid "Terminate"
 msgstr "Terminer"
 
-#: ../src/process-tree-view.c:594
+#: src/process-tree-view.c:594
 msgid "Kill"
 msgstr "Tuer"
 
-#: ../src/process-tree-view.c:601
+#: src/process-tree-view.c:601
 msgid "Very low"
 msgstr "Très basse"
 
-#: ../src/process-tree-view.c:606
+#: src/process-tree-view.c:606
 msgid "Low"
 msgstr "Basse"
 
-#: ../src/process-tree-view.c:611
+#: src/process-tree-view.c:611
 msgid "Normal"
 msgstr "Normale"
 
-#: ../src/process-tree-view.c:616
+#: src/process-tree-view.c:616
 msgid "High"
 msgstr "Haute"
 
-#: ../src/process-tree-view.c:621
+#: src/process-tree-view.c:621
 msgid "Very high"
 msgstr "Très haute"
 
-#: ../src/process-tree-view.c:626
+#: src/process-tree-view.c:626 src/settings-dialog.ui:499
 msgid "Priority"
 msgstr "Priorité"
 
 #. Same trick as above
-#: ../src/process-tree-view.c:630 ../src/process-tree-view.c:729
+#: src/process-tree-view.c:630 src/process-tree-view.c:729
 msgid "Copy command line"
 msgstr "Copier la ligne de commande"
 
-#: ../src/process-window.c:165
+#: src/process-window.c:165
 msgid "Bad Window"
 msgstr "Mauvaise fenêtre"
 
-#: ../src/process-window.c:165
+#: src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "L’ID de fenêtre 0x%lx n’existe pas !"
 
-#: ../src/process-window.c:170
+#: src/process-window.c:170
 msgid "XGetWindowProperty failed"
 msgstr "XGetWindowProperty a échoué"
 
-#: ../src/process-window.c:170
+#: src/process-window.c:170
 msgid "XGetWindowProperty failed!"
 msgstr "XGetWindowProperty a échoué !"
 
-#: ../src/process-window.c:182
+#: src/process-window.c:182
 msgid "No PID found"
 msgstr "Aucun PID trouvé"
 
-#: ../src/process-window.c:182
+#: src/process-window.c:182
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Aucun PID trouvé pour la fenêtre 0x%lx."
 
-#: ../src/process-window.c:381
+#: src/process-window.c:381
 msgid "Filter on process name"
 msgstr "Filtrer d’après le nom du processus"
 
-#: ../src/process-window.c:385
+#: src/process-window.c:385
 msgid "Starting task"
 msgstr "Démarrage de la tâche"
 
-#: ../src/process-window.c:385
+#: src/process-window.c:385
 msgid "Changing task"
 msgstr "Changement de la tâche"
 
-#: ../src/process-window.c:385
+#: src/process-window.c:385
 msgid "Terminating task"
 msgstr "Fin de la tâche"
 
-#: ../src/settings-dialog.c:146
+#: src/process-window.ui:26
+msgid "Settings"
+msgstr "Paramètres"
+
+#: src/process-window.ui:35
+msgid "Identify an open window by clicking on it."
+msgstr "Identifiez une fenêtre ouverte en cliquant dedans."
+
+#: src/process-window.ui:127
+msgid "You are using the root account, you may harm your system."
+msgstr "Vous utilisez le compte administrateur, vous risquez d’endommager votre système."
+
+#: src/settings-dialog.c:146
 msgid "Easy to use task manager"
 msgstr "Gestionnaire de tâches simple d’utilisation"
 
-#: ../src/settings-dialog.c:149
+#: src/settings-dialog.c:149
 msgid "translator-credits"
 msgstr "L’équipe de traduction francophone de Xfce"
 
-#: ../src/task-manager.c:254 ../src/task-manager.c:257
+#: src/settings-dialog.ui:49
+msgid "Task Manager Settings"
+msgstr "Paramètres du gestionnaire de tâches"
+
+#: src/settings-dialog.ui:63
+msgid "_Help"
+msgstr "Aid_e"
+
+#: src/settings-dialog.ui:78
+msgid "About"
+msgstr "À propos"
+
+#: src/settings-dialog.ui:92
+msgid "_Close"
+msgstr "_Fermer"
+
+#: src/settings-dialog.ui:139
+msgid "Show all processes"
+msgstr "Afficher tous les processus"
+
+#: src/settings-dialog.ui:153
+msgid "Show application icons"
+msgstr "Afficher les icônes des applications"
+
+#: src/settings-dialog.ui:167
+msgid "Show full command lines"
+msgstr "Afficher les lignes de commande complètes"
+
+#: src/settings-dialog.ui:181
+msgid "Show processes as tree"
+msgstr "Afficher les processus en arbre"
+
+#: src/settings-dialog.ui:195
+msgid "Show legend"
+msgstr "Afficher la légende"
+
+#: src/settings-dialog.ui:209
+msgid "Show values with more precision"
+msgstr "Afficher les valeurs avec plus de précision"
+
+#: src/settings-dialog.ui:230
+msgid "Refresh rate (ms):"
+msgstr "Taux de rafraîchissement (ms) :"
+
+#: src/settings-dialog.ui:269
+msgid "<b>Interface</b>"
+msgstr "<b>Interface</b>"
+
+#: src/settings-dialog.ui:296
+msgid "Prompt for terminating tasks"
+msgstr "Fenêtre d’invite pour terminer les tâches"
+
+#: src/settings-dialog.ui:310
+msgid "Keep in the notification area"
+msgstr "Garder dans la zone de notification"
+
+#: src/settings-dialog.ui:328
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Divers</b>"
+
+#: src/settings-dialog.ui:345
+msgid "General"
+msgstr "Général"
+
+#: src/settings-dialog.ui:401
+msgid "Virtual Bytes"
+msgstr "Octets virtuels"
+
+#: src/settings-dialog.ui:415
+msgid "Group Virtual Bytes"
+msgstr "Groupe d’octets virtuels"
+
+#: src/settings-dialog.ui:429
+msgid "Resident Bytes"
+msgstr "Octets résidents"
+
+#: src/settings-dialog.ui:443
+msgid "Group Resident Bytes"
+msgstr "Groupe d’octets résidents"
+
+#: src/settings-dialog.ui:520
+msgid "Columns"
+msgstr "Colonnes"
+
+#: src/task-manager.c:254 src/task-manager.c:257
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
