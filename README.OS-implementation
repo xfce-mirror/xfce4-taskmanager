@@ -6,11 +6,10 @@ the existing implementations can serve as good examples. The src/task-manager.h 
 contains the declaration of the Task structure and the four functions that must be
 implemented.
 
-If you have trouble to add compilation to the build-env (autotools) you can run the
-configure script (./autogen.sh or ./configure) with the flag --with-skel and put your
-modifications inside the task-manager-skel.c file directly.
+If you have trouble to add compilation to the build-env (meson) you can run `meson setup`
+with the flag -Dskel and put your modifications inside the task-manager-skel.c file directly.
 
-When done, send a patch to Bugzilla (bugzilla.xfce.org).
+When done, send a patch to GitLab (https://gitlab.xfce.org/apps/xfce4-taskmanager).
 
 Some tips
 ---------
