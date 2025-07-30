@@ -276,7 +276,7 @@ msgstr "Używasz konta użytkownika root, możesz uszkodzić ten system."
 
 #: src/settings-dialog.c:146
 msgid "Easy to use task manager"
-msgstr "Zarządza uruchomionymi procesami"
+msgstr "Łatwy w użyciu menedżer zadań."
 
 #: src/settings-dialog.c:149
 msgid "translator-credits"
