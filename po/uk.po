@@ -5,6 +5,7 @@
 # Translators:
 # f977cb811fcf66493f48eac227fd7473_b98aa5d <2419f1d8d12d92441152e78ae3e3bde0_722180>, 2022
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2008
+# dsafsadf <heneral@gmail.com>, 2025
 # Gordon Freeman, 2023-2024
 # Vasyl Khrystiuk <h6.msangel@gmail.com>, 2021
 # Yarema aka Knedlyk <yupadmin@gmail.com>, 2014,2017
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-07-18 10:42+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Gordon Freeman, 2023-2024\n"
+"Last-Translator: dsafsadf <heneral@gmail.com>, 2025\n"
 "Language-Team: Ukrainian (http://app.transifex.com/xfce/xfce-apps/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,11 +32,11 @@ msgstr "Диспетчер задач"
 
 #: xfce4-taskmanager.desktop.in:4
 msgid "Easy to use application to monitor system resources"
-msgstr "Додаток легко використовувати для відслідковування системних ресурсів"
+msgstr "Застосунок легко використовувати для відслідковування системних ресурсів"
 
 #: xfce4-taskmanager.desktop.in:12
 msgid "monitor;resources;system;task;performance;"
-msgstr ""
+msgstr "монітор;ресурси;система;завдання;продуктивність;"
 
 #: src/main.c:55
 msgid "Quit"
@@ -80,7 +81,7 @@ msgstr "Процеси: %d"
 
 #: src/process-tree-view.c:153
 msgid "Task"
-msgstr "Задача"
+msgstr "Завдання"
 
 #: src/process-tree-view.c:164 src/settings-dialog.ui:359
 msgid "PID"
@@ -130,11 +131,11 @@ msgstr "Пріоритет"
 
 #: src/process-tree-view.c:438
 msgid "Terminate task"
-msgstr "Завершити задачу"
+msgstr "Завершити завдання"
 
 #: src/process-tree-view.c:438
 msgid "Kill task"
-msgstr "Знищити задачу"
+msgstr "Знищити завдання"
 
 #: src/process-tree-view.c:440
 #, c-format
@@ -280,7 +281,7 @@ msgstr "Dmitry Nikitin <luckas_fb@mail.ru>/nYarema aka Knedlyk <yupadmin@gmail.c
 
 #: src/settings-dialog.ui:49
 msgid "Task Manager Settings"
-msgstr "Налаштування диспетчера задач"
+msgstr "Налаштування диспетчера завдань"
 
 #: src/settings-dialog.ui:63
 msgid "_Help"
