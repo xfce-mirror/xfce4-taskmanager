@@ -34,7 +34,7 @@ msgstr ""
 
 #: src/main.c:55
 msgid "Quit"
-msgstr ""
+msgstr "ئاخىرلاشتۇر"
 
 #: src/main.c:169
 #, c-format
@@ -283,7 +283,7 @@ msgstr "ياردەم(_H)"
 
 #: src/settings-dialog.ui:78
 msgid "About"
-msgstr ""
+msgstr "ھەققىدە"
 
 #: src/settings-dialog.ui:92
 msgid "_Close"
