@@ -22,15 +22,15 @@ msgstr ""
 #: src/process-tree-view.c:490 src/process-window.ui:7
 #: src/settings-dialog.c:142
 msgid "Task Manager"
-msgstr "ۋەزىپە باشقۇرغۇ"
+msgstr "ۋەزىپە باشقۇرغۇچ"
 
 #: xfce4-taskmanager.desktop.in:4
 msgid "Easy to use application to monitor system resources"
-msgstr ""
+msgstr "سىستېما مەنبەسىنى نازارەت قىلىشنى ئاسانلاشتۇرىدىغان پىروگرامما"
 
 #: xfce4-taskmanager.desktop.in:12
 msgid "monitor;resources;system;task;performance;"
-msgstr ""
+msgstr "كۆزەتكۈچ؛مەنبە؛سىستېما؛ۋەزىپە؛ئىقتىدار؛"
 
 #: src/main.c:55
 msgid "Quit"
@@ -43,15 +43,15 @@ msgid ""
 "<b>CPU:</b> %.0f%%\n"
 "<b>Memory:</b> %s\n"
 "<b>Swap:</b> %s"
-msgstr ""
+msgstr "<b>جەريان:</b> %u\n<b>CPU:</b> %.0f%%\n<b>ئەسلەك:</b> %s\n<b>ئالماشتۇرۇش رايونى:</b> %s"
 
 #: src/main.c:254
 msgid "Xfce Notify Daemon"
-msgstr "Xfce ئۇقتۇرۇش مۇئەككىلى"
+msgstr "Xfce ئۇقتۇرۇش نازارەتچسى"
 
 #: src/main.c:256
 msgid "Settings daemon is unavailable"
-msgstr "تەڭشەك مۇئەككىلى يوق"
+msgstr "تەڭشەك نازارەتچسى يوق"
 
 #: src/process-statusbar.c:187 src/process-window.c:561
 #, c-format
@@ -61,17 +61,17 @@ msgstr "CPU: %s%%"
 #: src/process-statusbar.c:195 src/process-window.c:565
 #, c-format
 msgid "Memory: %s"
-msgstr ""
+msgstr "ئەسلەك: %s"
 
 #: src/process-statusbar.c:203
 #, c-format
 msgid "Swap: %s"
-msgstr ""
+msgstr "ئالماشتۇرۇش رايونى: %s"
 
 #: src/process-statusbar.c:218
 #, c-format
 msgid "Processes: %d"
-msgstr "ئىجرالار: %d"
+msgstr "جەريان: %d"
 
 #: src/process-tree-view.c:153
 msgid "Task"
@@ -91,11 +91,11 @@ msgstr "ھالەت"
 
 #: src/process-tree-view.c:189
 msgid "VSZ"
-msgstr "VSZ"
+msgstr "مەۋھۇم ئەسلەك"
 
 #: src/process-tree-view.c:197
 msgid "Group VSZ"
-msgstr ""
+msgstr "گۇرۇپپا مەۋھۇم ئەسلەك"
 
 #: src/process-tree-view.c:205
 msgid "RSS"
@@ -103,11 +103,11 @@ msgstr "RSS"
 
 #: src/process-tree-view.c:213
 msgid "Group RSS"
-msgstr ""
+msgstr "گۇرۇپپا فىزىكىلىق ئەسلەك"
 
 #: src/process-tree-view.c:221 src/settings-dialog.ui:457
 msgid "UID"
-msgstr "UID"
+msgstr "ئىشلەتكۈچى كىملىكى"
 
 #: src/process-tree-view.c:229 src/settings-dialog.ui:471
 msgid "CPU"
@@ -115,7 +115,7 @@ msgstr "CPU"
 
 #: src/process-tree-view.c:237 src/settings-dialog.ui:485
 msgid "Group CPU"
-msgstr ""
+msgstr "گۇرۇپپا CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
@@ -134,15 +134,15 @@ msgstr "ۋەزىپىنى ئولتۇر"
 #: src/process-tree-view.c:440
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr ""
+msgstr "سىز %s سىگنالىنى ‏‎PID‎‏ يەنى جەريان كىملىكى %d غا راستتىنلا يوللامسىز؟"
 
 #: src/process-tree-view.c:441
 msgid "terminate"
-msgstr ""
+msgstr "ئاخىرلاشتۇر"
 
 #: src/process-tree-view.c:441
 msgid "kill"
-msgstr ""
+msgstr "ئۆلتۈر"
 
 #: src/process-tree-view.c:453
 msgid "Error sending signal"
@@ -209,73 +209,73 @@ msgstr "مەرتىۋىسى"
 #. Same trick as above
 #: src/process-tree-view.c:630 src/process-tree-view.c:729
 msgid "Copy command line"
-msgstr ""
+msgstr "بۇيرۇق قۇرىنى كۆچۈر"
 
 #: src/process-window.c:165
 msgid "Bad Window"
-msgstr ""
+msgstr "ناچار كۆزنەك"
 
 #: src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
-msgstr ""
+msgstr "كۆزنەك كىملىكى  0x%lx مەۋجۇت ئەمەس!"
 
 #: src/process-window.c:170
 msgid "XGetWindowProperty failed"
-msgstr ""
+msgstr "XGetWindowProperty مەغلۇپ بولدى"
 
 #: src/process-window.c:170
 msgid "XGetWindowProperty failed!"
-msgstr ""
+msgstr "XGetWindowProperty مەغلۇپ بولدى!"
 
 #: src/process-window.c:182
 msgid "No PID found"
-msgstr ""
+msgstr "جەريان كىملىكى يەنى PID تېپىلمىدى"
 
 #: src/process-window.c:182
 #, c-format
 msgid "No PID found for window 0x%lx."
-msgstr ""
+msgstr "كۆزنەك 0x%lx نىڭ جەريان كىملىكى PID نى تاپالمىدى."
 
 #: src/process-window.c:381
 msgid "Filter on process name"
-msgstr ""
+msgstr "جەريان ئىسمىنى سۈزگۈچ"
 
 #: src/process-window.c:385
 msgid "Starting task"
-msgstr ""
+msgstr "ۋەزىپە قوزغىتىش"
 
 #: src/process-window.c:385
 msgid "Changing task"
-msgstr ""
+msgstr "ۋەزىپە ئۆزگەرتىش"
 
 #: src/process-window.c:385
 msgid "Terminating task"
-msgstr ""
+msgstr "ۋەزىپە ئاخىرلاشتۇرۇش"
 
 #: src/process-window.ui:26
 msgid "Settings"
-msgstr "تەڭشەكلەر"
+msgstr "تەڭشەك"
 
 #: src/process-window.ui:35
 msgid "Identify an open window by clicking on it."
-msgstr ""
+msgstr "كۆزنەكنى پەرقلەندۈرۈش ئۈچۈن چېكىلىدۇ."
 
 #: src/process-window.ui:127
 msgid "You are using the root account, you may harm your system."
-msgstr ""
+msgstr "سىز root يەنى باشقۇرغۇچى ھېساباتىنى ئىشلىتىۋاتىسىز، سىستېمىنى بۇزۇپ قويۇشىڭىز مۇمكىن."
 
 #: src/settings-dialog.c:146
 msgid "Easy to use task manager"
-msgstr "ئىشلىتىشكە ئەپلىك ۋەزىپە باشقۇرغۇ"
+msgstr "ئىشلىتىشكە ئەپلىك ۋەزىپە باشقۇرغۇچ"
 
 #: src/settings-dialog.c:149
 msgid "translator-credits"
-msgstr "غەيرەت ت.كەنجى <gheyret@gmail.com>"
+msgstr "غەيرەت ت.كەنجى <gheyret@gmail.com>\nئابدۇقادىر ئابلىز <sahranbay@gmail.com>"
 
 #: src/settings-dialog.ui:49
 msgid "Task Manager Settings"
-msgstr ""
+msgstr "ۋەزىپە باشقۇرغۇچ تەڭشىكى"
 
 #: src/settings-dialog.ui:63
 msgid "_Help"
@@ -287,47 +287,47 @@ msgstr "ھەققىدە"
 
 #: src/settings-dialog.ui:92
 msgid "_Close"
-msgstr "تاقا(_C)"
+msgstr "ياپ(_C)"
 
 #: src/settings-dialog.ui:139
 msgid "Show all processes"
-msgstr "ھەممە ئىجرالارنى كۆرسەتسۇن"
+msgstr "ھەممە جەرياننى كۆرسىتىدۇ"
 
 #: src/settings-dialog.ui:153
 msgid "Show application icons"
-msgstr "پروگرامما سىنبەلگىلىرىنى كۆرسەتسۇن"
+msgstr "پىروگرامما سىنبەلگىلىرىنى كۆرسىتىدۇ"
 
 #: src/settings-dialog.ui:167
 msgid "Show full command lines"
-msgstr "تولۇق بولغان بۇيرۇق قۇرىنى كۆرسەتسۇن"
+msgstr "تولۇق بولغان بۇيرۇق قۇرىنى كۆرسىتىدۇ"
 
 #: src/settings-dialog.ui:181
 msgid "Show processes as tree"
-msgstr ""
+msgstr "جەرياننى شاخسىمان كۆرسىتىدۇ"
 
 #: src/settings-dialog.ui:195
 msgid "Show legend"
-msgstr ""
+msgstr "رەسىملىك مىسالنى كۆرسىتىدۇ"
 
 #: src/settings-dialog.ui:209
 msgid "Show values with more precision"
-msgstr "قىممەتلەرنىڭ ئېنىقلىق دەرىجىسىنى تېخىمۇ يۇقىرى كۆتۈرسۇن"
+msgstr "تېخىمۇ ئېنىق قىممەتلەرنى كۆرسىتىدۇ"
 
 #: src/settings-dialog.ui:230
 msgid "Refresh rate (ms):"
-msgstr ""
+msgstr "يېڭىلاش نىسبىتى(مىللىسېكۇنت):"
 
 #: src/settings-dialog.ui:269
 msgid "<b>Interface</b>"
-msgstr ""
+msgstr "<b>ئارايۈز</b>"
 
 #: src/settings-dialog.ui:296
 msgid "Prompt for terminating tasks"
-msgstr "ۋەزىپىنى توختىتىدىغان چاغدا كۆرسەتمە چىقارسۇن"
+msgstr "ۋەزىپە توختىغاندا كۆرسەتمە چىقىرىدۇ"
 
 #: src/settings-dialog.ui:310
 msgid "Keep in the notification area"
-msgstr ""
+msgstr "ئۇقتۇرۇش رايونىدا ساقلاپ قالىدۇ"
 
 #: src/settings-dialog.ui:328
 msgid "<b>Miscellaneous</b>"
@@ -339,23 +339,23 @@ msgstr "ئادەتتىكى"
 
 #: src/settings-dialog.ui:401
 msgid "Virtual Bytes"
-msgstr "مەۋھۇم بايتلار"
+msgstr "مەۋھۇم بايت"
 
 #: src/settings-dialog.ui:415
 msgid "Group Virtual Bytes"
-msgstr ""
+msgstr "گۇرۇپپا مەۋھۇم بايت"
 
 #: src/settings-dialog.ui:429
 msgid "Resident Bytes"
-msgstr ""
+msgstr "دائىمىي بايت"
 
 #: src/settings-dialog.ui:443
 msgid "Group Resident Bytes"
-msgstr ""
+msgstr "گۇرۇپپا دائىمىي بايت"
 
 #: src/settings-dialog.ui:520
 msgid "Columns"
-msgstr ""
+msgstr "رەت"
 
 #: src/task-manager.c:254 src/task-manager.c:257
 #, c-format
