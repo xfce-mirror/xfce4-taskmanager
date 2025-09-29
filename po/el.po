@@ -9,6 +9,7 @@
 # ebal <ebalaskas@ebalaskas.gr>, 2008
 # ebal <ebalaskas@ebalaskas.gr>, 2008
 # Ioannis LM, 2023
+# Ioannis LM, 2023
 # Stavros Giannouris <stavrosg@hellug.gr>, 2008
 # Πέτρος Σαμαράς <psamaras1@gmail.com>, 2017
 # Στέργιος Γέμελας <sgemelas@protonmail.com>, 2021
@@ -18,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-07-18 10:42+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Ioannis LM, 2023\n"
+"Last-Translator: Στέργιος Γέμελας <sgemelas@protonmail.com>, 2021\n"
 "Language-Team: Greek (http://app.transifex.com/xfce/xfce-apps/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,11 +36,11 @@ msgstr "Διαχειριστής διεργασιών"
 
 #: xfce4-taskmanager.desktop.in:4
 msgid "Easy to use application to monitor system resources"
-msgstr "Εύκολη στη χρήση εφαρμογή για παρακολούθηση των πόρων του συστήματος "
+msgstr "Εύκολη στη χρήση εφαρμογή για για την εποπτεία των πόρων του συστήματος"
 
 #: xfce4-taskmanager.desktop.in:12
 msgid "monitor;resources;system;task;performance;"
-msgstr ""
+msgstr "εποπτεία;πόροι;σύστημα;διεργασία;απόδοση;"
 
 #: src/main.c:55
 msgid "Quit"
@@ -104,7 +105,7 @@ msgstr "VSZ"
 
 #: src/process-tree-view.c:197
 msgid "Group VSZ"
-msgstr ""
+msgstr "Group VSZ"
 
 #: src/process-tree-view.c:205
 msgid "RSS"
@@ -112,7 +113,7 @@ msgstr "RSS"
 
 #: src/process-tree-view.c:213
 msgid "Group RSS"
-msgstr ""
+msgstr "Group RSS"
 
 #: src/process-tree-view.c:221 src/settings-dialog.ui:457
 msgid "UID"
@@ -120,17 +121,17 @@ msgstr "UID"
 
 #: src/process-tree-view.c:229 src/settings-dialog.ui:471
 msgid "CPU"
-msgstr "Επεξεργαστής"
+msgstr "CPU"
 
 #: src/process-tree-view.c:237 src/settings-dialog.ui:485
 msgid "Group CPU"
-msgstr ""
+msgstr "Group CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
 #: src/process-tree-view.c:246
 msgid "Prio."
-msgstr "Προτ."
+msgstr "Προτερ."
 
 #: src/process-tree-view.c:438
 msgid "Terminate task"
@@ -143,37 +144,37 @@ msgstr "Βίαιος τερματισμός διεργασίας"
 #: src/process-tree-view.c:440
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
-msgstr "Θέλετε σίγουρα να στείλετε το σήμα %s στο PID %d;"
+msgstr "Θέλετε σίγουρα να στείλετε σήμα %s στο PID %d;"
 
 #: src/process-tree-view.c:441
 msgid "terminate"
-msgstr "τερματισμός"
+msgstr "τερματισμού"
 
 #: src/process-tree-view.c:441
 msgid "kill"
-msgstr "kill"
+msgstr "βίαιου τερματισμού"
 
 #: src/process-tree-view.c:453
 msgid "Error sending signal"
-msgstr "Σφάλμα κατά την αποστολή σήματος"
+msgstr "Σφάλμα στην αποστολή του σήματος"
 
 #: src/process-tree-view.c:455
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "Προέκυψε ένα σφάλμα κατά την αποστολή του σήματος στην διεργασία με PID %d. Είναι πιθανό να μην έχετε τα απαραίτητα δικαιώματα."
+msgstr "Προέκυψε σφάλμα στην αποστολή του σήματος για τη διεργασία με PID %d. Είναι πιθανό να μην έχετε τα απαραίτητα δικαιώματα."
 
 #: src/process-tree-view.c:485
 msgid "Error setting priority"
-msgstr "Σφάλμα κατά την ρύθμιση της προτεραιότητας"
+msgstr "Σφάλμα στη ρύθμιση προτεραιότητας"
 
 #: src/process-tree-view.c:487
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "Προέκυψε ένα σφάλμα κατά την ρύθμιση της προτεραιότητας στην διεργασία με PID %d. Είναι πιθανό να μην έχετε τα κατάλληλα δικαιώματα."
+msgstr "Προέκυψε σφάλμα στη ρύθμιση προτεραιότητας για την διεργασία με PID %d. Είναι πιθανό να μην έχετε τα κατάλληλα δικαιώματα."
 
 #: src/process-tree-view.c:575 src/process-tree-view.c:718
 msgid "Stop"
@@ -218,7 +219,7 @@ msgstr "Προτεραιότητα"
 #. Same trick as above
 #: src/process-tree-view.c:630 src/process-tree-view.c:729
 msgid "Copy command line"
-msgstr "Αντιγραφή γραμμής εντολής"
+msgstr "Αντιγραφή της γραμμής εντολών"
 
 #: src/process-window.c:165
 msgid "Bad Window"
@@ -227,7 +228,7 @@ msgstr "Κακό παράθυρο"
 #: src/process-window.c:165
 #, c-format
 msgid "Window id 0x%lx does not exist!"
-msgstr "Η ταυτότητα παραθύρου 0x%lx δεν υπάρχει!"
+msgstr "Δεν υπάρχει ταυτότητα (id) του παραθύρου 0x%lx!"
 
 #: src/process-window.c:170
 msgid "XGetWindowProperty failed"
@@ -235,7 +236,7 @@ msgstr "Αποτυχία XGetWindowProperty"
 
 #: src/process-window.c:170
 msgid "XGetWindowProperty failed!"
-msgstr "Αποτυχία XGetWindowProperty!"
+msgstr "Απέτυχε το XGetWindowProperty!"
 
 #: src/process-window.c:182
 msgid "No PID found"
@@ -268,11 +269,11 @@ msgstr "Ρυθμίσεις"
 
 #: src/process-window.ui:35
 msgid "Identify an open window by clicking on it."
-msgstr "Εντοπισμός παραθύρου με κλικ πάνω σε αυτό"
+msgstr "Εντοπισμός ενός ανοιχτού παραθύρου κάνοντας κλικ επάνω του."
 
 #: src/process-window.ui:127
 msgid "You are using the root account, you may harm your system."
-msgstr ""
+msgstr "Χρησιμοποιείτε το λογαριασμό διαχειριστή, μπορεί να προκαλέσετε βλάβη στο σύστημα σας."
 
 #: src/settings-dialog.c:146
 msgid "Easy to use task manager"
@@ -284,7 +285,7 @@ msgstr "Ευάγγελος Μπαλάσκας <ebalaskas@ebalaskas.gr>\nΣταύ
 
 #: src/settings-dialog.ui:49
 msgid "Task Manager Settings"
-msgstr "Ρυθμίσεις του διαχειριστή διεργασιών"
+msgstr "Ρυθμίσεις διαχειριστή διεργασιών"
 
 #: src/settings-dialog.ui:63
 msgid "_Help"
@@ -296,7 +297,7 @@ msgstr "Περί"
 
 #: src/settings-dialog.ui:92
 msgid "_Close"
-msgstr ""
+msgstr "_Κλείσιμο"
 
 #: src/settings-dialog.ui:139
 msgid "Show all processes"
@@ -304,11 +305,11 @@ msgstr "Εμφάνιση όλων των διεργασιών"
 
 #: src/settings-dialog.ui:153
 msgid "Show application icons"
-msgstr "Εμφάνιση εικονιδίων εφαρμογής"
+msgstr "Εμφάνιση των εικονιδίων στις εφαρμογές"
 
 #: src/settings-dialog.ui:167
 msgid "Show full command lines"
-msgstr "Εμφάνιση της γραμμής εντολών"
+msgstr "Εμφάνιση ολόκληρης της γραμμής εντολών"
 
 #: src/settings-dialog.ui:181
 msgid "Show processes as tree"
@@ -316,7 +317,7 @@ msgstr "Εμφάνιση διεργασιών σε δενδρική δομή"
 
 #: src/settings-dialog.ui:195
 msgid "Show legend"
-msgstr "Εμφάνιση επεξήγησης ενδείξεων"
+msgstr "Εμφάνιση ενδείξεων"
 
 #: src/settings-dialog.ui:209
 msgid "Show values with more precision"
@@ -348,19 +349,19 @@ msgstr "Γενικά"
 
 #: src/settings-dialog.ui:401
 msgid "Virtual Bytes"
-msgstr "Εικονικά Bytes"
+msgstr "Εικονικά bytes(VSZ)"
 
 #: src/settings-dialog.ui:415
 msgid "Group Virtual Bytes"
-msgstr ""
+msgstr "Ομαδοποιημένα εικονικά bytes(Group VSZ)"
 
 #: src/settings-dialog.ui:429
 msgid "Resident Bytes"
-msgstr "Παραμένοντα Bytes"
+msgstr "Bytes στη μνήμη(RSS)"
 
 #: src/settings-dialog.ui:443
 msgid "Group Resident Bytes"
-msgstr ""
+msgstr "Ομαδοποιημένα bytes στη μνήμη(Group RSS)"
 
 #: src/settings-dialog.ui:520
 msgid "Columns"
