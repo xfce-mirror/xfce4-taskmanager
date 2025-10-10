@@ -156,7 +156,7 @@ msgstr "Error de mandadís del signal"
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
-msgstr "Una error s'es produsida en mandant un signal al PID %d. Es probable qu'avètz pas los privilègis requesits."
+msgstr "Una error s'es produita en mandant un signal al PID %d. Es probable qu'avètz pas los privilègis requesits."
 
 #: src/process-tree-view.c:485
 msgid "Error setting priority"
@@ -167,7 +167,7 @@ msgstr "Error de reglatge de las prioritats"
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
-msgstr "Una error s'es produsida en definissent una prioritat pel PID %d. Es probable qu'avètz pas los privilègis requesits."
+msgstr "Una error s'es produita en definissent una prioritat pel PID %d. Es probable qu'avètz pas los privilègis requesits."
 
 #: src/process-tree-view.c:575 src/process-tree-view.c:718
 msgid "Stop"
