@@ -53,7 +53,7 @@ msgstr "<b>Processos:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memòria:</b> %s\n<b>Interc
 
 #: src/main.c:254
 msgid "Xfce Notify Daemon"
-msgstr "Dimoni de notificacions de Xfce"
+msgstr "Dimoni de notificacions de l'Xfce"
 
 #: src/main.c:256
 msgid "Settings daemon is unavailable"
@@ -269,7 +269,7 @@ msgstr "Identifica una finestra en fer-hi clic."
 
 #: src/process-window.ui:127
 msgid "You are using the root account, you may harm your system."
-msgstr ""
+msgstr "Esteu utilitzant el compte root, això podria malmetre el sistema."
 
 #: src/settings-dialog.c:146
 msgid "Easy to use task manager"
@@ -293,7 +293,7 @@ msgstr "Quant a"
 
 #: src/settings-dialog.ui:92
 msgid "_Close"
-msgstr ""
+msgstr "_Tanca"
 
 #: src/settings-dialog.ui:139
 msgid "Show all processes"
