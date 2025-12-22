@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2008
+# Arif Budiman <arifpedia@gmail.com>, 2025
 # Faisal Rachmadin <frachmadin@gmail.com>, 2022
 msgid ""
 msgstr ""
@@ -11,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-07-18 10:42+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Faisal Rachmadin <frachmadin@gmail.com>, 2022\n"
+"Last-Translator: Arif Budiman <arifpedia@gmail.com>, 2025\n"
 "Language-Team: Indonesian (http://app.transifex.com/xfce/xfce-apps/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr "Aplikasi untuk memonitor sumber daya sistem yang mudah digunakan"
 
 #: xfce4-taskmanager.desktop.in:12
 msgid "monitor;resources;system;task;performance;"
-msgstr ""
+msgstr "monitor;sumber daya;sistem;tugas;kinerja;"
 
 #: src/main.c:55
 msgid "Quit"
@@ -49,11 +50,11 @@ msgstr "<b>Proses:</b> %u\n<b>CPU:</b> %.0f%%\n<b>Memori:</b> %s\n<b>Swap:</b> %
 
 #: src/main.c:254
 msgid "Xfce Notify Daemon"
-msgstr "Jurik Notifikasi Xfce"
+msgstr "Daemon Notifikasi Xfce"
 
 #: src/main.c:256
 msgid "Settings daemon is unavailable"
-msgstr "Jurik pengaturan tak tersedia"
+msgstr "Daemon pengaturan tak tersedia"
 
 #: src/process-statusbar.c:187 src/process-window.c:561
 #, c-format
@@ -68,7 +69,7 @@ msgstr "Memori: %s"
 #: src/process-statusbar.c:203
 #, c-format
 msgid "Swap: %s"
-msgstr "Memory: %s"
+msgstr "Swap: %s"
 
 #: src/process-statusbar.c:218
 #, c-format
@@ -97,7 +98,7 @@ msgstr "VSZ"
 
 #: src/process-tree-view.c:197
 msgid "Group VSZ"
-msgstr ""
+msgstr "Grup VSZ"
 
 #: src/process-tree-view.c:205
 msgid "RSS"
@@ -105,7 +106,7 @@ msgstr "RSS"
 
 #: src/process-tree-view.c:213
 msgid "Group RSS"
-msgstr ""
+msgstr "Grup RSS"
 
 #: src/process-tree-view.c:221 src/settings-dialog.ui:457
 msgid "UID"
@@ -117,7 +118,7 @@ msgstr "CPU"
 
 #: src/process-tree-view.c:237 src/settings-dialog.ui:485
 msgid "Group CPU"
-msgstr ""
+msgstr "Grup CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
@@ -245,15 +246,15 @@ msgstr "Penyaring pada nama proses"
 
 #: src/process-window.c:385
 msgid "Starting task"
-msgstr ""
+msgstr "Memulai tugas"
 
 #: src/process-window.c:385
 msgid "Changing task"
-msgstr ""
+msgstr "Mengubah tugas"
 
 #: src/process-window.c:385
 msgid "Terminating task"
-msgstr ""
+msgstr "Mengakhiri tugas"
 
 #: src/process-window.ui:26
 msgid "Settings"
@@ -273,7 +274,7 @@ msgstr "Manajer tugas yang mudah digunakan"
 
 #: src/settings-dialog.c:149
 msgid "translator-credits"
-msgstr "Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.\nKukuh Syafaat <syafaatkukuh@gmail.com>, 2017.\nTriyan W. Nugroho <triyan.wn@gmail.com>, 2020, 2021."
+msgstr "Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.\nKukuh Syafaat <syafaatkukuh@gmail.com>, 2017.\nTriyan W. Nugroho <triyan.wn@gmail.com>, 2020, 2021.\nArif Budiman <arifpedia@gmail.com>, 2025."
 
 #: src/settings-dialog.ui:49
 msgid "Task Manager Settings"
@@ -281,7 +282,7 @@ msgstr "Pengaturan Manajer Tugas"
 
 #: src/settings-dialog.ui:63
 msgid "_Help"
-msgstr "B_antuan"
+msgstr "Bantuan"
 
 #: src/settings-dialog.ui:78
 msgid "About"
@@ -289,7 +290,7 @@ msgstr "Tentang"
 
 #: src/settings-dialog.ui:92
 msgid "_Close"
-msgstr "_Tutup"
+msgstr "Tutup"
 
 #: src/settings-dialog.ui:139
 msgid "Show all processes"
@@ -345,7 +346,7 @@ msgstr "Bita Virtual"
 
 #: src/settings-dialog.ui:415
 msgid "Group Virtual Bytes"
-msgstr ""
+msgstr "Grup Byte Virtual"
 
 #: src/settings-dialog.ui:429
 msgid "Resident Bytes"
@@ -353,7 +354,7 @@ msgstr "Bita Residen"
 
 #: src/settings-dialog.ui:443
 msgid "Group Resident Bytes"
-msgstr ""
+msgstr "Grup Byte Residen"
 
 #: src/settings-dialog.ui:520
 msgid "Columns"
