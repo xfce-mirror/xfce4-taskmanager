@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2013
+# Junghee Lee <daemul72@gmail.com>, 2026
 # 1763f4a4329a2376c933c5e919a36cbc_341ca53 <1f851310383599d03339229d772e1290_119292>, 2017
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2015,2019-2022,2024
 msgid ""
@@ -12,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-07-18 10:42+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2015,2019-2022,2024\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2026\n"
 "Language-Team: Korean (http://app.transifex.com/xfce/xfce-apps/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgstr "시스템 자원 감시에 용이한 프로그램"
 
 #: xfce4-taskmanager.desktop.in:12
 msgid "monitor;resources;system;task;performance;"
-msgstr ""
+msgstr "monitor;resources;system;task;performance;모니터;해상도;시스템;"
 
 #: src/main.c:55
 msgid "Quit"
