@@ -126,48 +126,8 @@ setting_changed (GObject *object, GParamSpec *pspec __unused, XtmTaskManager *ma
 static gchar *
 pretty_cmdline (gchar *cmdline, gchar *comm)
 {
-	gunichar c;
-	gchar *ch, *text_max, *text = g_strstrip (g_strdup (cmdline));
-	gsize csize, text_size = (gsize)strlen (text);
-
-	/* UTF-8 normalize. */
-	do
-	{
-		for (ch = text, text_max = (text + text_size);
-				 text_max > ch;
-				 text_max = (text + text_size), ch = g_utf8_next_char (ch))
-		{
-			c = g_utf8_get_char_validated (ch, -1); /* If use (text_max - ch) - result is worse. */
-			if ((gunichar)-2 == c)
-			{
-				text_size = (gsize)(ch - text);
-				(*ch) = 0;
-				break;
-			}
-			if ((gunichar)-1 == c)
-			{
-				(*ch) = ' ';
-				continue;
-			}
-			csize = (gsize)g_unichar_to_utf8 (c, NULL);
-
-			if (!g_unichar_isdefined (c) ||
-					!g_unichar_isprint (c) ||
-					(g_unichar_isspace (c) && (1 != csize || (' ' != (*ch) && '	' != (*ch)))) ||
-					g_unichar_ismark (c) ||
-					g_unichar_istitle (c) ||
-					g_unichar_iswide (c) ||
-					g_unichar_iszerowidth (c) ||
-					g_unichar_iscntrl (c))
-			{
-				if (text_max < (ch + csize))
-					break;
-				memmove (ch, (ch + csize), (gsize)(text_max - (ch + csize)));
-				text_size -= csize;
-			}
-		}
-		text[text_size] = 0;
-	} while (!g_utf8_validate (text, (gssize)text_size, NULL));
+	gchar *text = g_strstrip (g_utf8_make_valid (cmdline, -1));
+	gsize text_size = strlen (text);
 
 	if (!full_cmdline && text_size > 3)
 	{
