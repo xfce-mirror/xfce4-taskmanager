@@ -64,6 +64,14 @@ status_icon_popup_menu (GtkStatusIcon *_status_icon, guint button, guint activat
 }
 
 static void
+icon_theme_changed (GtkIconTheme *icon_theme, GtkStatusIcon *status_icon)
+{
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+	gtk_status_icon_set_from_icon_name (status_icon, "org.xfce.taskmanager");
+	G_GNUC_END_IGNORE_DEPRECATIONS
+}
+
+static void
 create_status_icon (void)
 {
 	if (!status_icon_or_null)
@@ -73,6 +81,7 @@ create_status_icon (void)
 		G_GNUC_END_IGNORE_DEPRECATIONS
 		g_signal_connect (status_icon, "activate", G_CALLBACK (status_icon_activated), NULL);
 		g_signal_connect (status_icon, "popup-menu", G_CALLBACK (status_icon_popup_menu), NULL);
+		g_signal_connect_object (gtk_icon_theme_get_default (), "changed", G_CALLBACK (icon_theme_changed), status_icon, 0);
 		status_icon_or_null = status_icon;
 	}
 }
