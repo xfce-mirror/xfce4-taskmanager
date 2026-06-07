@@ -32,7 +32,7 @@ msgstr "Snadno použitelná aplikace k monitorování systémových zdrojů"
 
 #: xfce4-taskmanager.desktop.in:12
 msgid "monitor;resources;system;task;performance;"
-msgstr "sledování;prostředky;systém;úloh;výkon;"
+msgstr "sledování;zdroje;prostředky;systém;úloha;výkon;procesy;"
 
 #: src/main.c:55
 msgid "Quit"
@@ -140,11 +140,11 @@ msgstr "Opravdu chcete poslat signál %s procesu s identifikátorem PID %d?"
 
 #: src/process-tree-view.c:441
 msgid "terminate"
-msgstr "terminate"
+msgstr "TERM"
 
 #: src/process-tree-view.c:441
 msgid "kill"
-msgstr "kill"
+msgstr "KILL"
 
 #: src/process-tree-view.c:453
 msgid "Error sending signal"
