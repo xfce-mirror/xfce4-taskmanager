@@ -315,7 +315,7 @@ void
 xtm_process_monitor_set_step_size (XtmProcessMonitor *monitor, gfloat step_size)
 {
 	g_return_if_fail (XTM_IS_PROCESS_MONITOR (monitor));
-	g_object_set (monitor, "step_size", step_size, NULL);
+	g_object_set (monitor, "step-size", step_size, NULL);
 	if (GDK_IS_WINDOW (gtk_widget_get_window (GTK_WIDGET (monitor))))
 		gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET (monitor)), NULL, FALSE);
 }
