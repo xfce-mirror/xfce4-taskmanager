@@ -130,11 +130,7 @@ delete_window (void)
 {
 	if (!status_icon_get_visible ())
 	{
-		if (timer_id > 0)
-		{
-			g_source_remove (timer_id);
-			timer_id = 0;
-		}
+		g_clear_handle_id (&timer_id, g_source_remove);
 		gtk_main_quit ();
 		return FALSE;
 	}
@@ -246,8 +242,7 @@ main (int argc, char *argv[])
 	if (error != NULL)
 	{
 		g_warning ("Unable to register GApplication: %s", error->message);
-		g_error_free (error);
-		error = NULL;
+		g_clear_error (&error);
 	}
 
 	if (g_application_get_is_remote (G_APPLICATION (app)))

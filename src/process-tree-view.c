@@ -272,31 +272,11 @@ xtm_process_tree_view_finalize (GObject *object)
 {
 	XtmProcessTreeView *treeview = XTM_PROCESS_TREE_VIEW (object);
 
-	if (GTK_IS_TREE_MODEL (treeview->model))
-	{
-		g_object_unref (treeview->model);
-		treeview->model = NULL;
-	}
-
-	if (GTK_IS_TREE_MODEL (treeview->model_filter))
-	{
-		g_object_unref (treeview->model_filter);
-		treeview->model_filter = NULL;
-	}
-
-	if (GTK_IS_TREE_MODEL (treeview->model_tree))
-	{
-		g_object_unref (treeview->model_tree);
-		treeview->model_tree = NULL;
-	}
-
-	if (XTM_IS_SETTINGS (treeview->settings))
-	{
-		g_object_unref (treeview->settings);
-	}
-
-	g_free (treeview->cmd_filter);
-	treeview->cmd_filter = NULL;
+	g_clear_object (&treeview->model);
+	g_clear_object (&treeview->model_filter);
+	g_clear_object (&treeview->model_tree);
+	g_clear_object (&treeview->settings);
+	g_clear_pointer (&treeview->cmd_filter, g_free);
 
 	G_OBJECT_CLASS (xtm_process_tree_view_parent_class)->finalize (object);
 }
