@@ -51,9 +51,9 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 	widget_class->draw = xtm_process_monitor_draw;
 
 	g_object_class_install_property (class, PROP_STEP_SIZE,
-		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1f, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT | G_PARAM_READWRITE));
+		g_param_spec_float ("step-size", "StepSize", "Step size", 0.1f, G_MAXFLOAT, 1, G_PARAM_CONSTRUCT | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_TYPE,
-		g_param_spec_int ("type", "Type", "Type of graph to render", 0, G_MAXINT, 0, G_PARAM_READWRITE));
+		g_param_spec_int ("type", "Type", "Type of graph to render", 0, G_MAXINT, 0, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void

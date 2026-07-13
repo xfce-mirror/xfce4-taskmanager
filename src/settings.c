@@ -70,51 +70,51 @@ xtm_settings_class_init (XtmSettingsClass *klass)
 	class->set_property = xtm_settings_set_property;
 	class->finalize = xtm_settings_finalize;
 	g_object_class_install_property (class, PROP_SHOW_ALL_PROCESSES,
-		g_param_spec_boolean ("show-all-processes", "ShowAllProcesses", "Show all processes", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("show-all-processes", "ShowAllProcesses", "Show all processes", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_SHOW_LEGEND,
-		g_param_spec_boolean ("show-legend", "ShowLegend", "Show legend", TRUE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("show-legend", "ShowLegend", "Show legend", TRUE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_MORE_PRECISION,
-		g_param_spec_boolean ("more-precision", "MorePrecision", "More precision", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("more-precision", "MorePrecision", "More precision", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_FULL_COMMAND_LINE,
-		g_param_spec_boolean ("full-command-line", "FullCommandLine", "Full command line", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("full-command-line", "FullCommandLine", "Full command line", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_SHOW_STATUS_ICON,
-		g_param_spec_boolean ("show-status-icon", "ShowStatusIcon", "Show/hide the status icon", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("show-status-icon", "ShowStatusIcon", "Show/hide the status icon", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_SHOW_APPLICATION_ICONS,
-		g_param_spec_boolean ("show-application-icons", "ShowApplicationIcons", "Show application icons", TRUE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("show-application-icons", "ShowApplicationIcons", "Show application icons", TRUE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_PROMPT_TERMINATE_TASK,
-		g_param_spec_boolean ("prompt-terminate-task", "PromptTerminateTask", "Prompt dialog for terminating a task", TRUE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("prompt-terminate-task", "PromptTerminateTask", "Prompt dialog for terminating a task", TRUE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_REFRESH_RATE,
-		g_param_spec_uint ("refresh-rate", "RefreshRate", "Refresh rate in milliseconds", 0, G_MAXUINT, 750, G_PARAM_READWRITE));
+		g_param_spec_uint ("refresh-rate", "RefreshRate", "Refresh rate in milliseconds", 0, G_MAXUINT, 750, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMNS_POSITIONS,
-		g_param_spec_string ("columns-positions", "ColumnsPositions", "Positions of the tree view columns", NULL, G_PARAM_READWRITE));
+		g_param_spec_string ("columns-positions", "ColumnsPositions", "Positions of the tree view columns", NULL, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_UID,
-		g_param_spec_boolean ("column-uid", "ColumnUID", "Show column UID", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-uid", "ColumnUID", "Show column UID", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_PID,
-		g_param_spec_boolean ("column-pid", "ColumnPID", "Show column PID", TRUE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-pid", "ColumnPID", "Show column PID", TRUE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_PPID,
-		g_param_spec_boolean ("column-ppid", "ColumnPPID", "Show column PPID", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-ppid", "ColumnPPID", "Show column PPID", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_STATE,
-		g_param_spec_boolean ("column-state", "ColumnState", "Show column state", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-state", "ColumnState", "Show column state", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_VSZ,
-		g_param_spec_boolean ("column-vsz", "ColumnVSZ", "Show column VSZ", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-vsz", "ColumnVSZ", "Show column VSZ", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_GROUP_VSZ,
-		g_param_spec_boolean ("column-group-vsz", "ColumnGroupVSZ", "Show column Group VSZ", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-group-vsz", "ColumnGroupVSZ", "Show column Group VSZ", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_RSS,
-		g_param_spec_boolean ("column-rss", "ColumnRSS", "Show column RSS", TRUE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-rss", "ColumnRSS", "Show column RSS", TRUE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_GROUP_RSS,
-		g_param_spec_boolean ("column-group-rss", "ColumnGroupRSS", "Show column Group RSS", TRUE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-group-rss", "ColumnGroupRSS", "Show column Group RSS", TRUE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_CPU,
-		g_param_spec_boolean ("column-cpu", "ColumnCPU", "Show column CPU", TRUE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-cpu", "ColumnCPU", "Show column CPU", TRUE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_GROUP_CPU,
-		g_param_spec_boolean ("column-group-cpu", "ColumnGroupCPU", "Show column Group CPU", TRUE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-group-cpu", "ColumnGroupCPU", "Show column Group CPU", TRUE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_COLUMN_PRIORITY,
-		g_param_spec_boolean ("column-priority", "ColumnPriority", "Show column priority", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("column-priority", "ColumnPriority", "Show column priority", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_SORT_COLUMN_ID,
-		g_param_spec_uint ("sort-column-id", "SortColumn", "Sort by column id", 0, G_MAXUINT, 0, G_PARAM_READWRITE));
+		g_param_spec_uint ("sort-column-id", "SortColumn", "Sort by column id", 0, G_MAXUINT, 0, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_SORT_TYPE,
-		g_param_spec_uint ("sort-type", "SortType", "Sort type (asc/dsc)", 0, 1, 0, G_PARAM_READWRITE));
+		g_param_spec_uint ("sort-type", "SortType", "Sort type (asc/dsc)", 0, 1, 0, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_PROCESS_TREE,
-		g_param_spec_boolean ("process-tree", "ProcessTreeView", "Process tree", FALSE, G_PARAM_READWRITE));
+		g_param_spec_boolean ("process-tree", "ProcessTreeView", "Process tree", FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void

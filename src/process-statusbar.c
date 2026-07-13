@@ -56,15 +56,15 @@ xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 	class->finalize = xtm_process_statusbar_finalize;
 	class->set_property = xtm_process_statusbar_set_property;
 	g_object_class_install_property (class, PROP_CPU,
-		g_param_spec_float ("cpu", "CPU", "CPU usage", 0, 100, 0, G_PARAM_CONSTRUCT | G_PARAM_WRITABLE));
+		g_param_spec_float ("cpu", "CPU", "CPU usage", 0, 100, 0, G_PARAM_CONSTRUCT | G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_MEMORY,
-		g_param_spec_string ("memory", "Memory", "Memory usage", "", G_PARAM_CONSTRUCT | G_PARAM_WRITABLE));
+		g_param_spec_string ("memory", "Memory", "Memory usage", "", G_PARAM_CONSTRUCT | G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_SWAP,
-		g_param_spec_string ("swap", "Swap", "Swap usage", "", G_PARAM_CONSTRUCT | G_PARAM_WRITABLE));
+		g_param_spec_string ("swap", "Swap", "Swap usage", "", G_PARAM_CONSTRUCT | G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_SHOW_SWAP,
-		g_param_spec_boolean ("show-swap", "ShowSwap", "Show or hide swap usage", TRUE, G_PARAM_WRITABLE));
+		g_param_spec_boolean ("show-swap", "ShowSwap", "Show or hide swap usage", TRUE, G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
 	g_object_class_install_property (class, PROP_NUM_PROCESSES,
-		g_param_spec_uint ("num-processes", "NumProcesses", "Number of processes", 0, G_MAXUINT, 0, G_PARAM_CONSTRUCT | G_PARAM_WRITABLE));
+		g_param_spec_uint ("num-processes", "NumProcesses", "Number of processes", 0, G_MAXUINT, 0, G_PARAM_CONSTRUCT | G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
 }
 
 static void

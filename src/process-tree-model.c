@@ -104,7 +104,7 @@ xtm_process_tree_model_class_init (XtmProcessTreeModelClass *klass)
 	class->get_property = xtm_process_tree_model_get_property;
 
 	g_object_class_install_property (class, PROP_MODEL,
-		g_param_spec_object ("model", NULL, NULL, GTK_TYPE_TREE_MODEL, G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
+		g_param_spec_object ("model", NULL, NULL, GTK_TYPE_TREE_MODEL, G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 }
 
 static void
