@@ -460,7 +460,7 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 	size_t size;
 	int mib[2];
 	mach_msg_type_number_t vm_count = HOST_CPU_LOAD_INFO_COUNT;
-	host_cpu_load_info_data_t cpuload;
+	host_cpu_load_info_data_t cpuload = { 0 };
 
 	if (host_statistics (mach_host_self (), HOST_CPU_LOAD_INFO, (host_info_t)&cpuload, &vm_count) != KERN_SUCCESS)
 		errx (1, "failed to get host_statistics");
@@ -493,7 +493,7 @@ get_memory_usage (guint64 *memory_total, guint64 *memory_available, guint64 *mem
 {
 	int mib[2];
 	struct xsw_usage swapused;
-	vm_statistics64_data_t vm_stat;
+	vm_statistics64_data_t vm_stat = { 0 };
 	mach_msg_type_number_t vm_count = HOST_VM_INFO64_COUNT;
 	vm_size_t vm_pagesize;
 	uint64_t physmem;

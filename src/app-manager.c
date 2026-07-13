@@ -157,7 +157,7 @@ apps_remove_application (GArray *apps, WnckApplication *application)
 static App *
 apps_lookup_pid (GArray *apps, GPid pid)
 {
-	App tapp;
+	App tapp = { 0 };
 
 	if (apps->data == NULL)
 		return (NULL);

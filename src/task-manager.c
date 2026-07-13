@@ -303,7 +303,7 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
 static gboolean
 task_list_find_for_pid (GArray *task_list, GPid pid, Task **task, guint *idx)
 {
-	Task *task_tmp = NULL, tkey;
+	Task *task_tmp = NULL, tkey = { 0 };
 
 	if (task_list->data != NULL)
 	{
