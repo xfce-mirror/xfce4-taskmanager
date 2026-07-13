@@ -42,7 +42,6 @@ static void
 xtm_app_manager_class_init (XtmAppManagerClass *klass)
 {
 	GObjectClass *class = G_OBJECT_CLASS (klass);
-	xtm_app_manager_parent_class = g_type_class_peek_parent (klass);
 	class->finalize = xtm_app_manager_finalize;
 }
 

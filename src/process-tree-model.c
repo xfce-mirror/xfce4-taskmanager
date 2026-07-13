@@ -98,7 +98,6 @@ static void
 xtm_process_tree_model_class_init (XtmProcessTreeModelClass *klass)
 {
 	GObjectClass *class = G_OBJECT_CLASS (klass);
-	xtm_process_tree_model_parent_class = g_type_class_peek_parent (klass);
 	class->finalize = xtm_process_tree_model_finalize;
 	class->set_property = xtm_process_tree_model_set_property;
 	class->get_property = xtm_process_tree_model_get_property;

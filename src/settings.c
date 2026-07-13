@@ -64,7 +64,6 @@ static void
 xtm_settings_class_init (XtmSettingsClass *klass)
 {
 	GObjectClass *class = G_OBJECT_CLASS (klass);
-	xtm_settings_parent_class = g_type_class_peek_parent (klass);
 	class->get_property = xtm_settings_get_property;
 	class->set_property = xtm_settings_set_property;
 	class->finalize = xtm_settings_finalize;

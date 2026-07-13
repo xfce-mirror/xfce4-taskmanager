@@ -199,7 +199,6 @@ xtm_process_window_class_init (XtmProcessWindowClass *klass)
 	GObjectClass *class;
 	GtkWidgetClass *widget_class;
 
-	xtm_process_window_parent_class = g_type_class_peek_parent (klass);
 	class = G_OBJECT_CLASS (klass);
 	class->finalize = xtm_process_window_finalize;
 	widget_class = GTK_WIDGET_CLASS (klass);

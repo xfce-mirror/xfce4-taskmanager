@@ -71,7 +71,6 @@ static void
 xtm_task_manager_class_init (XtmTaskManagerClass *klass)
 {
 	GObjectClass *class = G_OBJECT_CLASS (klass);
-	xtm_task_manager_parent_class = g_type_class_peek_parent (klass);
 	class->finalize = xtm_task_manager_finalize;
 }
 

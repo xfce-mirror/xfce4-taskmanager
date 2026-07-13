@@ -72,7 +72,6 @@ static void
 xtm_process_tree_view_class_init (XtmProcessTreeViewClass *klass)
 {
 	GObjectClass *class = G_OBJECT_CLASS (klass);
-	xtm_process_tree_view_parent_class = g_type_class_peek_parent (klass);
 	class->finalize = xtm_process_tree_view_finalize;
 }
 

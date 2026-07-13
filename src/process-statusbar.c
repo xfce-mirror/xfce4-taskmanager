@@ -52,7 +52,6 @@ static void
 xtm_process_statusbar_class_init (XtmProcessStatusbarClass *klass)
 {
 	GObjectClass *class = G_OBJECT_CLASS (klass);
-	xtm_process_statusbar_parent_class = g_type_class_peek_parent (klass);
 	class->finalize = xtm_process_statusbar_finalize;
 	class->set_property = xtm_process_statusbar_set_property;
 	g_object_class_install_property (class, PROP_CPU,

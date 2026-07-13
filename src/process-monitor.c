@@ -44,7 +44,6 @@ xtm_process_monitor_class_init (XtmProcessMonitorClass *klass)
 {
 	GObjectClass *class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-	xtm_process_monitor_parent_class = g_type_class_peek_parent (klass);
 	class->finalize = xtm_process_monitor_finalize;
 	class->get_property = xtm_process_monitor_get_property;
 	class->set_property = xtm_process_monitor_set_property;
