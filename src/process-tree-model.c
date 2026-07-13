@@ -617,7 +617,7 @@ xtm_process_tree_model_row_inserted (XtmProcessTreeModel *treemodel, GtkTreePath
 	GValue c_value = { 0 };
 	GValue p_value = { 0 };
 	gboolean same;
-	gboolean not_persist = TRUE;
+	gboolean not_persist;
 	gboolean signal_parent;
 
 	g_return_if_fail (gtk_tree_path_get_depth (path) == 1);
@@ -738,7 +738,7 @@ xtm_process_tree_model_row_deleted (XtmProcessTreeModel *treemodel, GtkTreePath 
 	GtkTreeIter s_iter;
 	XtmCrossLink *lnk;
 	GNode *del_node, *node, *old_parent;
-	gboolean not_persist = TRUE;
+	gboolean not_persist;
 
 	g_return_if_fail (gtk_tree_path_get_depth (path) == 1);
 
@@ -876,7 +876,7 @@ xtm_process_tree_model_rows_reordered (XtmProcessTreeModel *treemodel, GtkTreePa
 	GSequenceIter *s_iter;
 	GSequenceIter *swap1, *swap2;
 	XtmCrossLink *lnk;
-	gboolean not_persist = TRUE;
+	gboolean not_persist;
 
 	size = g_sequence_get_length (treemodel->list);
 
