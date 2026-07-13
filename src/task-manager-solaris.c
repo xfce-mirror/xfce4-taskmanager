@@ -138,11 +138,11 @@ get_cpu_usage (gushort *cpu_count, gfloat *cpu_user, gfloat *cpu_system)
 
 	for (ksp = kc->kc_chain; ksp != NULL; ksp = ksp->ks_next)
 	{
-		if (!g_strcmp0 (ksp->ks_module, "cpu_info"))
+		if (g_strcmp0 (ksp->ks_module, "cpu_info") == 0)
 		{
 			_cpu_count += 1;
 		}
-		else if (!g_strcmp0 (ksp->ks_module, "cpu") && !g_strcmp0 (ksp->ks_name, "sys"))
+		else if (g_strcmp0 (ksp->ks_module, "cpu") == 0 && g_strcmp0 (ksp->ks_name, "sys") == 0)
 		{
 			kstat_read (kc, ksp, NULL);
 			knp = kstat_data_lookup (ksp, "cpu_nsec_user");

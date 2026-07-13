@@ -837,43 +837,43 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 		gushort column_id;
 
 		column_id = COLUMN_UID;
-		if (!g_strcmp0 (pspec->name, "column-pid"))
+		if (g_strcmp0 (pspec->name, "column-pid") == 0)
 			column_id = COLUMN_PID;
-		else if (!g_strcmp0 (pspec->name, "column-ppid"))
+		else if (g_strcmp0 (pspec->name, "column-ppid") == 0)
 			column_id = COLUMN_PPID;
-		else if (!g_strcmp0 (pspec->name, "column-state"))
+		else if (g_strcmp0 (pspec->name, "column-state") == 0)
 			column_id = COLUMN_STATE;
-		else if (!g_strcmp0 (pspec->name, "column-vsz"))
+		else if (g_strcmp0 (pspec->name, "column-vsz") == 0)
 			column_id = COLUMN_VSZ;
-		else if (!g_strcmp0 (pspec->name, "column-group-vsz"))
+		else if (g_strcmp0 (pspec->name, "column-group-vsz") == 0)
 			column_id = COLUMN_GROUP_VSZ;
-		else if (!g_strcmp0 (pspec->name, "column-rss"))
+		else if (g_strcmp0 (pspec->name, "column-rss") == 0)
 			column_id = COLUMN_RSS;
-		else if (!g_strcmp0 (pspec->name, "column-group-rss"))
+		else if (g_strcmp0 (pspec->name, "column-group-rss") == 0)
 			column_id = COLUMN_GROUP_RSS;
-		else if (!g_strcmp0 (pspec->name, "column-cpu"))
+		else if (g_strcmp0 (pspec->name, "column-cpu") == 0)
 			column_id = COLUMN_CPU;
-		else if (!g_strcmp0 (pspec->name, "column-group-cpu"))
+		else if (g_strcmp0 (pspec->name, "column-group-cpu") == 0)
 			column_id = COLUMN_GROUP_CPU;
-		else if (!g_strcmp0 (pspec->name, "column-priority"))
+		else if (g_strcmp0 (pspec->name, "column-priority") == 0)
 			column_id = COLUMN_PRIORITY;
 
 		g_object_get (object, pspec->name, &visible, NULL);
 		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[column_id]), visible);
 	}
-	else if (!g_strcmp0 (pspec->name, "show-application-icons"))
+	else if (g_strcmp0 (pspec->name, "show-application-icons") == 0)
 	{
 		GtkTreeViewColumn *column;
 		column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[COLUMN_COMMAND]);
 		gtk_tree_view_column_clear (column);
 		column_task_pack_cells (treeview, column);
 	}
-	else if (!g_strcmp0 (pspec->name, "show-all-processes"))
+	else if (g_strcmp0 (pspec->name, "show-all-processes") == 0)
 	{
 		g_object_get (object, pspec->name, &treeview->show_all_processes_cached, NULL);
 		gtk_tree_model_filter_refilter (GTK_TREE_MODEL_FILTER (treeview->model_filter));
 	}
-	else if (!g_strcmp0 (pspec->name, "process-tree"))
+	else if (g_strcmp0 (pspec->name, "process-tree") == 0)
 	{
 		gboolean tree;
 		g_object_get (object, pspec->name, &tree, NULL);
