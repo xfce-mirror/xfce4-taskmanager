@@ -176,7 +176,7 @@ apps_lookup_app (GArray *apps, WnckApplication *application)
 	for (i = 0; i < apps->len; i++)
 	{
 		tapp = &g_array_index (apps, App, i);
-		if (tapp->application == application)
+		if (tapp != NULL && tapp->application == application)
 			return (tapp);
 	}
 
