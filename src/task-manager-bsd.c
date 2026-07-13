@@ -138,7 +138,7 @@ get_task_list (GArray *task_list)
 				if (errno != ENOMEM)
 				{ /* ESRCH: process disappeared */
 					/* printf ("process with pid %d disappeared, errno=%d\n", t.pid, errno); */
-					args[0] = '\0';
+					args[0] = NULL;
 					args[1] = NULL;
 					break;
 				}
