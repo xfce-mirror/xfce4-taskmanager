@@ -27,7 +27,6 @@ G_DECLARE_FINAL_TYPE (XtmProcessWindow, xtm_process_window, XTM, PROCESS_WINDOW,
 	}
 
 GtkWidget *xtm_process_window_new (void);
-void xtm_process_window_settings_init (XtmProcessWindow *window, XfconfChannel *channel);
 void xtm_process_window_show (GtkWidget *widget);
 GtkTreeModel *xtm_process_window_get_model (XtmProcessWindow *window);
 void xtm_process_window_set_system_info (XtmProcessWindow *window, guint num_processes, gfloat cpu, gfloat memory, gchar *memory_str, gfloat swap, gchar *swap_str);
