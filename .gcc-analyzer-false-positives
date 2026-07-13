@@ -1,0 +1,1 @@
+app-manager.c:[0-9]+:[0-9]+: warning: dereference of NULL .+tapp.+ \[CWE-476\] \[-Wanalyzer-null-dereference\]
