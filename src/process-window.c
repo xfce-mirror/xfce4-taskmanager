@@ -44,7 +44,6 @@ struct _XtmProcessWindow
 	GtkWidget *vpaned;
 	GtkWidget *treeview;
 	GtkWidget *statusbar;
-	GtkWidget *settings_button;
 	XtmSettings *settings;
 	XfconfChannel *channel;
 	gint width;
