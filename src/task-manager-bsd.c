@@ -121,8 +121,13 @@ get_task_list (GArray *task_list)
 			memset (args, 0, size);
 			for (;; size *= 2)
 			{
-				if ((args = realloc (args, size)) == NULL)
+				char **rargs = realloc (args, size);
+				if (rargs == NULL)
+				{
+					free (args);
 					errx (1, "failed to allocate memory (size=%zu) for argv structures of pid %d", size, t.pid);
+				}
+				args = rargs;
 				memset (args, 0, size);
 				mib[0] = CTL_KERN;
 				mib[1] = KERN_PROC_ARGS;
