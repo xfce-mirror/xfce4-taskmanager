@@ -30,11 +30,6 @@ typedef struct
 	GNode *tree;
 } XtmCrossLink;
 
-typedef struct _XtmProcessTreeModelClass XtmProcessTreeModelClass;
-struct _XtmProcessTreeModelClass
-{
-	GObjectClass parent_class;
-};
 struct _XtmProcessTreeModel
 {
 	GObject parent;

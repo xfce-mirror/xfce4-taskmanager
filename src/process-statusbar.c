@@ -23,14 +23,9 @@ enum
 	PROP_SHOW_SWAP,
 	PROP_NUM_PROCESSES,
 };
-typedef struct _XtmProcessStatusbarClass XtmProcessStatusbarClass;
-struct _XtmProcessStatusbarClass
-{
-	GtkStatusbarClass parent_class;
-};
 struct _XtmProcessStatusbar
 {
-	GtkHBox parent;
+	GtkBox parent;
 	/*<private>*/
 	XtmSettings *settings;
 

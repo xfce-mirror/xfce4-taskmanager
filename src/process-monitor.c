@@ -19,11 +19,6 @@ enum
 	PROP_STEP_SIZE = 1,
 	PROP_TYPE,
 };
-typedef struct _XtmProcessMonitorClass XtmProcessMonitorClass;
-struct _XtmProcessMonitorClass
-{
-	GtkDrawingAreaClass parent_class;
-};
 struct _XtmProcessMonitor
 {
 	GtkDrawingArea parent;

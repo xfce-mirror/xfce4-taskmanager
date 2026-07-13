@@ -15,11 +15,6 @@
 
 
 
-typedef struct _XtmAppManagerClass XtmAppManagerClass;
-struct _XtmAppManagerClass
-{
-	GObjectClass parent_class;
-};
 struct _XtmAppManager
 {
 	GObject parent;

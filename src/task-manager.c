@@ -33,11 +33,6 @@ static gboolean full_cmdline;
 
 
 
-typedef struct _XtmTaskManagerClass XtmTaskManagerClass;
-struct _XtmTaskManagerClass
-{
-	GObjectClass parent_class;
-};
 struct _XtmTaskManager
 {
 	GObject parent;

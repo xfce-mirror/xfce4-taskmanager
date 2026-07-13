@@ -31,12 +31,6 @@
 
 
 
-typedef struct _XtmProcessWindowClass XtmProcessWindowClass;
-struct _XtmProcessWindowClass
-{
-	GtkWidgetClass parent_class;
-};
-
 struct _XtmProcessWindow
 {
 	GtkWidget parent;

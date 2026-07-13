@@ -49,11 +49,6 @@ enum
 	PROP_PROCESS_TREE,
 	N_PROPS,
 };
-typedef struct _XtmSettingsClass XtmSettingsClass;
-struct _XtmSettingsClass
-{
-	GObjectClass parent_class;
-};
 struct _XtmSettings
 {
 	GObject parent;

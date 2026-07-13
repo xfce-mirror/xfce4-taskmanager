@@ -15,11 +15,7 @@
 #include <xfconf/xfconf.h>
 
 #define XTM_TYPE_PROCESS_WINDOW (xtm_process_window_get_type ())
-#define XTM_PROCESS_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XTM_TYPE_PROCESS_WINDOW, XtmProcessWindow))
-#define XTM_PROCESS_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XTM_TYPE_PROCESS_WINDOW, XtmProcessWindowClass))
-#define XTM_IS_PROCESS_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XTM_TYPE_PROCESS_WINDOW))
-#define XTM_IS_PROCESS_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XTM_TYPE_PROCESS_WINDOW))
-#define XTM_PROCESS_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XTM_TYPE_PROCESS_WINDOW, XtmProcessWindowClass))
+G_DECLARE_FINAL_TYPE (XtmProcessWindow, xtm_process_window, XTM, PROCESS_WINDOW, GtkWidget)
 #define XTM_SHOW_MESSAGE(type, title, message, ...) \
 	{ \
 		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, type, GTK_BUTTONS_OK, title); \
@@ -30,9 +26,6 @@
 		gtk_widget_destroy (dialog); \
 	}
 
-typedef struct _XtmProcessWindow XtmProcessWindow;
-
-GType xtm_process_window_get_type (void);
 GtkWidget *xtm_process_window_new (void);
 void xtm_process_window_settings_init (XtmProcessWindow *window, XfconfChannel *channel);
 void xtm_process_window_show (GtkWidget *widget);

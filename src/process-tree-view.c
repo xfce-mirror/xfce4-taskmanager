@@ -37,11 +37,6 @@ enum
 	N_COLUMNS,
 };
 
-typedef struct _XtmProcessTreeViewClass XtmProcessTreeViewClass;
-struct _XtmProcessTreeViewClass
-{
-	GtkTreeViewClass parent_class;
-};
 struct _XtmProcessTreeView
 {
 	GtkTreeView parent;

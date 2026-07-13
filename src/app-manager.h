@@ -24,15 +24,8 @@ struct _App
 };
 
 #define XTM_TYPE_APP_MANAGER (xtm_app_manager_get_type ())
-#define XTM_APP_MANAGER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XTM_TYPE_APP_MANAGER, XtmAppManager))
-#define XTM_APP_MANAGER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XTM_TYPE_APP_MANAGER, XtmAppManagerClass))
-#define XTM_IS_APP_MANAGER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XTM_TYPE_APP_MANAGER))
-#define XTM_IS_APP_MANAGER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XTM_TYPE_APP_MANAGER))
-#define XTM_APP_MANAGER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XTM_TYPE_APP_MANAGER, XtmAppManagerClass))
+G_DECLARE_FINAL_TYPE (XtmAppManager, xtm_app_manager, XTM, APP_MANAGER, GObject)
 
-typedef struct _XtmAppManager XtmAppManager;
-
-GType xtm_app_manager_get_type (void);
 XtmAppManager *xtm_app_manager_new (void);
 App *xtm_app_manager_get_app_from_pid (XtmAppManager *manager, GPid pid);
 

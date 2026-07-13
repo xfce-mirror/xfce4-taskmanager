@@ -63,15 +63,8 @@ gboolean pid_is_sleeping (GPid pid);
  */
 
 #define XTM_TYPE_TASK_MANAGER (xtm_task_manager_get_type ())
-#define XTM_TASK_MANAGER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XTM_TYPE_TASK_MANAGER, XtmTaskManager))
-#define XTM_TASK_MANAGER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XTM_TYPE_TASK_MANAGER, XtmTaskManagerClass))
-#define XTM_IS_TASK_MANAGER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XTM_TYPE_TASK_MANAGER))
-#define XTM_IS_TASK_MANAGER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XTM_TYPE_TASK_MANAGER))
-#define XTM_TASK_MANAGER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XTM_TYPE_TASK_MANAGER, XtmTaskManagerClass))
+G_DECLARE_FINAL_TYPE (XtmTaskManager, xtm_task_manager, XTM, TASK_MANAGER, GObject)
 
-typedef struct _XtmTaskManager XtmTaskManager;
-
-GType xtm_task_manager_get_type (void);
 XtmTaskManager *xtm_task_manager_new (GtkTreeModel *model);
 void xtm_task_manager_get_system_info (XtmTaskManager *manager, guint *num_processes, gfloat *cpu,
 	guint64 *memory_used, guint64 *memory_total,
