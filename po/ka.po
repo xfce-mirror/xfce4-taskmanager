@@ -1,0 +1,363 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfce4-taskmanager package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Apps\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2025-07-18 10:42+0200\n"
+"PO-Revision-Date: 2013-07-03 18:41+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Georgian (http://app.transifex.com/xfce/xfce-apps/language/ka/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
+#: src/main.c:221 src/process-tree-view.c:442 src/process-tree-view.c:458
+#: src/process-tree-view.c:490 src/process-window.ui:7
+#: src/settings-dialog.c:142
+msgid "Task Manager"
+msgstr "ამოცანების მმართველი"
+
+#: xfce4-taskmanager.desktop.in:4
+msgid "Easy to use application to monitor system resources"
+msgstr "იოლი აპლიკაცია სისტემური რესურსების მონიტორინგისთვის"
+
+#: xfce4-taskmanager.desktop.in:12
+msgid "monitor;resources;system;task;performance;"
+msgstr "monitor;resources;system;task;performance;მონიტორი;რესურსები;სისტემა;ამოცანა;წარმადობა;"
+
+#: src/main.c:55
+msgid "Quit"
+msgstr "გასვლა"
+
+#: src/main.c:169
+#, c-format
+msgid ""
+"<b>Processes:</b> %u\n"
+"<b>CPU:</b> %.0f%%\n"
+"<b>Memory:</b> %s\n"
+"<b>Swap:</b> %s"
+msgstr "<b>პროცესები:</b> %u\n<b>CPU:</b> %.0f%%\n<b>მეხსიერება:</b> %s\n<b>სვოპი:</b> %s"
+
+#: src/main.c:254
+msgid "Xfce Notify Daemon"
+msgstr "Xfce-ის შეტყობინების სერვისი"
+
+#: src/main.c:256
+msgid "Settings daemon is unavailable"
+msgstr "პარამეტრების სერვისი მიუწვდომელია"
+
+#: src/process-statusbar.c:187 src/process-window.c:561
+#, c-format
+msgid "CPU: %s%%"
+msgstr "CPU: %s%%"
+
+#: src/process-statusbar.c:195 src/process-window.c:565
+#, c-format
+msgid "Memory: %s"
+msgstr "მეხსიერება: %s"
+
+#: src/process-statusbar.c:203
+#, c-format
+msgid "Swap: %s"
+msgstr "სვოპი: %s"
+
+#: src/process-statusbar.c:218
+#, c-format
+msgid "Processes: %d"
+msgstr "პროცესები: %d"
+
+#: src/process-tree-view.c:153
+msgid "Task"
+msgstr "ამოცანა"
+
+#: src/process-tree-view.c:164 src/settings-dialog.ui:359
+msgid "PID"
+msgstr "PID"
+
+#: src/process-tree-view.c:172 src/settings-dialog.ui:373
+msgid "PPID"
+msgstr "PPID"
+
+#: src/process-tree-view.c:180 src/settings-dialog.ui:387
+msgid "State"
+msgstr "მდგომარეობა"
+
+#: src/process-tree-view.c:189
+msgid "VSZ"
+msgstr "VSZ"
+
+#: src/process-tree-view.c:197
+msgid "Group VSZ"
+msgstr "VSZ-ის დაჯგუფება"
+
+#: src/process-tree-view.c:205
+msgid "RSS"
+msgstr "RSS"
+
+#: src/process-tree-view.c:213
+msgid "Group RSS"
+msgstr "RSS-ის დაჯგუფება"
+
+#: src/process-tree-view.c:221 src/settings-dialog.ui:457
+msgid "UID"
+msgstr "UID"
+
+#: src/process-tree-view.c:229 src/settings-dialog.ui:471
+msgid "CPU"
+msgstr "პროცესორი"
+
+#: src/process-tree-view.c:237 src/settings-dialog.ui:485
+msgid "Group CPU"
+msgstr "ჯგუფის CPU"
+
+#. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
+#. header.
+#: src/process-tree-view.c:246
+msgid "Prio."
+msgstr "პრიო."
+
+#: src/process-tree-view.c:438
+msgid "Terminate task"
+msgstr "პროცესის შეწყვეტა"
+
+#: src/process-tree-view.c:438
+msgid "Kill task"
+msgstr "პროცესის მოკვლა"
+
+#: src/process-tree-view.c:440
+#, c-format
+msgid "Are you sure you want to send the %s signal to the PID %d?"
+msgstr "მართლა გნებავთ, გაუგზავნოთ სიგნალი %s PID-ს %d?"
+
+#: src/process-tree-view.c:441
+msgid "terminate"
+msgstr "შეწყვეტა"
+
+#: src/process-tree-view.c:441
+msgid "kill"
+msgstr "მოკვლა"
+
+#: src/process-tree-view.c:453
+msgid "Error sending signal"
+msgstr "სიგნალის გაგზავნის შეცდომა"
+
+#: src/process-tree-view.c:455
+#, c-format
+msgid ""
+"An error was encountered by sending a signal to the PID %d. It is likely you"
+" don't have the required privileges."
+msgstr "სიგნალის PID-თან %d გაგზავნისას აღმოჩენილია შეცდომა. როგორც ჩანს, არ გაქვთ საჭირო პრივილეგიები."
+
+#: src/process-tree-view.c:485
+msgid "Error setting priority"
+msgstr "პრიორიტეტის დაყენების შეცდომა"
+
+#: src/process-tree-view.c:487
+#, c-format
+msgid ""
+"An error was encountered by setting a priority to the PID %d. It is likely "
+"you don't have the required privileges."
+msgstr "PID-ზე %d პრიორიტეტის დაყენებისას აღმოჩენილია შეცდომა. როგორც ჩანს, არ გაქვთ საჭირო პრივილეგიები."
+
+#: src/process-tree-view.c:575 src/process-tree-view.c:718
+msgid "Stop"
+msgstr "გაჩერება"
+
+#: src/process-tree-view.c:582
+msgid "Continue"
+msgstr "გაგრძელება"
+
+#: src/process-tree-view.c:588
+msgid "Terminate"
+msgstr "შეწყვეტა"
+
+#: src/process-tree-view.c:594
+msgid "Kill"
+msgstr "მოკვლა"
+
+#: src/process-tree-view.c:601
+msgid "Very low"
+msgstr "ძალიან დაბალი"
+
+#: src/process-tree-view.c:606
+msgid "Low"
+msgstr "დაბალი"
+
+#: src/process-tree-view.c:611
+msgid "Normal"
+msgstr "ნორმალური"
+
+#: src/process-tree-view.c:616
+msgid "High"
+msgstr "მაღალი"
+
+#: src/process-tree-view.c:621
+msgid "Very high"
+msgstr "ძალიან მაღალი"
+
+#: src/process-tree-view.c:626 src/settings-dialog.ui:499
+msgid "Priority"
+msgstr "პრიორიტეტი"
+
+#. Same trick as above
+#: src/process-tree-view.c:630 src/process-tree-view.c:729
+msgid "Copy command line"
+msgstr "ბრძანების სტრიქონის კოპირება"
+
+#: src/process-window.c:165
+msgid "Bad Window"
+msgstr "ცუდი ფანჯარა"
+
+#: src/process-window.c:165
+#, c-format
+msgid "Window id 0x%lx does not exist!"
+msgstr "ფანჯარა id-ით 0x%lx არ არსებობს!"
+
+#: src/process-window.c:170
+msgid "XGetWindowProperty failed"
+msgstr "XGetWindowProperty ჩავარდა"
+
+#: src/process-window.c:170
+msgid "XGetWindowProperty failed!"
+msgstr "XGetWindowProperty ჩავარდა!"
+
+#: src/process-window.c:182
+msgid "No PID found"
+msgstr "PID აღმოჩენილი არაა"
+
+#: src/process-window.c:182
+#, c-format
+msgid "No PID found for window 0x%lx."
+msgstr "ფანჯრისთვის 0x%lx PID აღმოჩენილი არაა."
+
+#: src/process-window.c:381
+msgid "Filter on process name"
+msgstr "ფილტრი პროცესის სახელზე"
+
+#: src/process-window.c:385
+msgid "Starting task"
+msgstr "ამოცანის გაშვება"
+
+#: src/process-window.c:385
+msgid "Changing task"
+msgstr "ამოცანის შეცვლა"
+
+#: src/process-window.c:385
+msgid "Terminating task"
+msgstr "ამოცანის შეწყვეტა"
+
+#: src/process-window.ui:26
+msgid "Settings"
+msgstr "მორგება"
+
+#: src/process-window.ui:35
+msgid "Identify an open window by clicking on it."
+msgstr "მოახდინეთ ღია ფანჯრის იდენტიფიკაცია მასზე დაწკაპუნებით."
+
+#: src/process-window.ui:127
+msgid "You are using the root account, you may harm your system."
+msgstr "იყენებთ ანგარიშს root. შეგიძლიათ, სისტემას ავნოთ."
+
+#: src/settings-dialog.c:146
+msgid "Easy to use task manager"
+msgstr "ადვილად გამოსაყენებელი ამოცანების მმართველი"
+
+#: src/settings-dialog.c:149
+msgid "translator-credits"
+msgstr "ეკატერინე პაპავა"
+
+#: src/settings-dialog.ui:49
+msgid "Task Manager Settings"
+msgstr "ამოცანების მმართველის მორგება"
+
+#: src/settings-dialog.ui:63
+msgid "_Help"
+msgstr "დახმარება"
+
+#: src/settings-dialog.ui:78
+msgid "About"
+msgstr "შესახებ"
+
+#: src/settings-dialog.ui:92
+msgid "_Close"
+msgstr "დახურვა"
+
+#: src/settings-dialog.ui:139
+msgid "Show all processes"
+msgstr "ყველა პროცესის ჩვენება"
+
+#: src/settings-dialog.ui:153
+msgid "Show application icons"
+msgstr "აპლიკაციის ხატულების ჩვენება"
+
+#: src/settings-dialog.ui:167
+msgid "Show full command lines"
+msgstr "ბრძანების სტრიქონების სრულად ჩვენება"
+
+#: src/settings-dialog.ui:181
+msgid "Show processes as tree"
+msgstr "პროცესის ჩვენება ხეზე"
+
+#: src/settings-dialog.ui:195
+msgid "Show legend"
+msgstr "ახსნის ჩვენება"
+
+#: src/settings-dialog.ui:209
+msgid "Show values with more precision"
+msgstr "მნიშვნელობების მეტი სიზუსტით ჩვენება"
+
+#: src/settings-dialog.ui:230
+msgid "Refresh rate (ms):"
+msgstr "განახლების სიხშირე (მწმ):"
+
+#: src/settings-dialog.ui:269
+msgid "<b>Interface</b>"
+msgstr "<b>ინტერფეისი</b>"
+
+#: src/settings-dialog.ui:296
+msgid "Prompt for terminating tasks"
+msgstr "კითხვა ამოცანების შეწყვეტამდე"
+
+#: src/settings-dialog.ui:310
+msgid "Keep in the notification area"
+msgstr "შენარჩუნება სისტემურ საათთან"
+
+#: src/settings-dialog.ui:328
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>სხვადასხვა</b>"
+
+#: src/settings-dialog.ui:345
+msgid "General"
+msgstr "მთავარი"
+
+#: src/settings-dialog.ui:401
+msgid "Virtual Bytes"
+msgstr "ვირტუალური ბაიტი"
+
+#: src/settings-dialog.ui:415
+msgid "Group Virtual Bytes"
+msgstr "ვირტუალური ბაიტების დაჯგუფება"
+
+#: src/settings-dialog.ui:429
+msgid "Resident Bytes"
+msgstr "რეზიდენტული ბაიტი"
+
+#: src/settings-dialog.ui:443
+msgid "Group Resident Bytes"
+msgstr "რეზიდენტული ბაიტების დაჯგუფება"
+
+#: src/settings-dialog.ui:520
+msgid "Columns"
+msgstr "სვეტები"
+
+#: src/task-manager.c:254 src/task-manager.c:257
+#, c-format
+msgid "%s%%"
+msgstr "%s%%"
