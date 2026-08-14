@@ -9,7 +9,7 @@
 # Enrico B. <enricobe@hotmail.com>, 2017
 # Fabio Riga <usul@aruba.it>, 2007
 # Mauro Giubileo <debianmaverick@gmail.com>, 2014
-# Vincenzo Reale <vinx.reale@gmail.com>, 2020
+# Vincenzo Reale <smart2128vr@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
