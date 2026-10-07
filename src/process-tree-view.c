@@ -50,6 +50,9 @@ struct _XtmProcessTreeView
 	XtmSettings *settings;
 	guint owner_uid;
 	gboolean show_all_processes_cached;
+	/* When process-tree mode is on: TRUE expands all groups and keeps new
+	 * children auto-expanded; FALSE collapses all and leaves new rows folded. */
+	gboolean trees_expanded;
 };
 G_DEFINE_TYPE (XtmProcessTreeView, xtm_process_tree_view, GTK_TYPE_TREE_VIEW)
 
@@ -124,6 +127,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
 	treeview->model_tree = xtm_process_tree_model_new (GTK_TREE_MODEL (treeview->model_filter));
 
 	g_object_set (treeview, "search-column", XTM_PTV_COLUMN_COMMAND, "model", tree ? treeview->model_tree : treeview->model_filter, NULL);
+	treeview->trees_expanded = TRUE;
 	if (tree)
 	{
 		gtk_tree_view_expand_all (GTK_TREE_VIEW (treeview));
@@ -857,14 +861,13 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 		gboolean tree;
 		g_object_get (object, pspec->name, &tree, NULL);
 		gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), tree ? treeview->model_tree : treeview->model_filter);
+		g_signal_handlers_disconnect_by_func (treeview->model_tree, (gpointer)G_CALLBACK (expand_row), treeview);
 		if (tree)
 		{
+			/* Re-entering tree mode restores the expand-all default. */
+			treeview->trees_expanded = TRUE;
 			gtk_tree_view_expand_all (GTK_TREE_VIEW (treeview));
 			g_signal_connect (treeview->model_tree, "row-has-child-toggled", G_CALLBACK (expand_row), treeview);
-		}
-		else
-		{
-			g_signal_handlers_disconnect_by_func (treeview->model_tree, (gpointer)G_CALLBACK (expand_row), treeview);
 		}
 	}
 }
@@ -873,7 +876,8 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 static void
 expand_row (GtkTreeModel *model __unused, GtkTreePath *path, GtkTreeIter *iter __unused, XtmProcessTreeView *treeview)
 {
-	gtk_tree_view_expand_row (GTK_TREE_VIEW (treeview), path, FALSE);
+	if (treeview->trees_expanded)
+		gtk_tree_view_expand_row (GTK_TREE_VIEW (treeview), path, FALSE);
 }
 
 
@@ -882,6 +886,46 @@ GtkWidget *
 xtm_process_tree_view_new (void)
 {
 	return g_object_new (XTM_TYPE_PROCESS_TREE_VIEW, NULL);
+}
+
+gboolean
+xtm_process_tree_view_get_trees_expanded (XtmProcessTreeView *treeview)
+{
+	g_return_val_if_fail (XTM_IS_PROCESS_TREE_VIEW (treeview), FALSE);
+	return treeview->trees_expanded;
+}
+
+void
+xtm_process_tree_view_set_trees_expanded (XtmProcessTreeView *treeview, gboolean expanded)
+{
+	gboolean tree;
+
+	g_return_if_fail (XTM_IS_PROCESS_TREE_VIEW (treeview));
+
+	g_object_get (treeview->settings, "process-tree", &tree, NULL);
+	if (!tree)
+		return;
+
+	treeview->trees_expanded = expanded;
+
+	g_signal_handlers_disconnect_by_func (treeview->model_tree, (gpointer)G_CALLBACK (expand_row), treeview);
+
+	if (expanded)
+	{
+		gtk_tree_view_expand_all (GTK_TREE_VIEW (treeview));
+		g_signal_connect (treeview->model_tree, "row-has-child-toggled", G_CALLBACK (expand_row), treeview);
+	}
+	else
+	{
+		gtk_tree_view_collapse_all (GTK_TREE_VIEW (treeview));
+	}
+}
+
+void
+xtm_process_tree_view_toggle_trees_expanded (XtmProcessTreeView *treeview)
+{
+	g_return_if_fail (XTM_IS_PROCESS_TREE_VIEW (treeview));
+	xtm_process_tree_view_set_trees_expanded (treeview, !treeview->trees_expanded);
 }
 
 GtkTreeModel *

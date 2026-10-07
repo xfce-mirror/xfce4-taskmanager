@@ -44,6 +44,7 @@ struct _XtmProcessWindow
 	GtkWidget *vpaned;
 	GtkWidget *treeview;
 	GtkWidget *statusbar;
+	GtkWidget *button_expand_trees;
 	XtmSettings *settings;
 	XfconfChannel *channel;
 	gint width;
@@ -70,6 +71,46 @@ filter_entry_icon_pressed_cb (GtkEntry *entry, gint position, GdkEventButton *ev
 		gtk_entry_set_text (entry, "");
 		gtk_widget_grab_focus (GTK_WIDGET (entry));
 	}
+}
+
+static void
+xtm_process_window_update_expand_trees_button (XtmProcessWindow *window)
+{
+	gboolean tree;
+	gboolean expanded;
+
+	g_return_if_fail (window->button_expand_trees != NULL);
+	g_return_if_fail (XTM_IS_PROCESS_TREE_VIEW (window->treeview));
+
+	g_object_get (window->settings, "process-tree", &tree, NULL);
+	gtk_widget_set_visible (window->button_expand_trees, tree);
+	if (!tree)
+		return;
+
+	expanded = xtm_process_tree_view_get_trees_expanded (XTM_PROCESS_TREE_VIEW (window->treeview));
+	if (expanded)
+	{
+		gtk_tool_button_set_icon_name (GTK_TOOL_BUTTON (window->button_expand_trees), "pan-down-symbolic");
+		gtk_widget_set_tooltip_text (window->button_expand_trees, _("Collapse all process trees"));
+	}
+	else
+	{
+		gtk_tool_button_set_icon_name (GTK_TOOL_BUTTON (window->button_expand_trees), "pan-end-symbolic");
+		gtk_widget_set_tooltip_text (window->button_expand_trees, _("Expand all process trees"));
+	}
+}
+
+static void
+xtm_process_window_expand_trees_clicked (XtmProcessWindow *window)
+{
+	xtm_process_tree_view_toggle_trees_expanded (XTM_PROCESS_TREE_VIEW (window->treeview));
+	xtm_process_window_update_expand_trees_button (window);
+}
+
+static void
+xtm_process_window_process_tree_changed (GObject *object __unused, GParamSpec *pspec __unused, XtmProcessWindow *window)
+{
+	xtm_process_window_update_expand_trees_button (window);
 }
 
 #ifdef HAVE_LIBX11
@@ -311,6 +352,12 @@ xtm_process_window_init (XtmProcessWindow *window)
 #endif
 		gtk_widget_hide (button);
 
+	window->button_expand_trees = GTK_WIDGET (gtk_builder_get_object (window->builder, "button-expand-trees"));
+	g_signal_connect_swapped (G_OBJECT (window->button_expand_trees), "clicked",
+		G_CALLBACK (xtm_process_window_expand_trees_clicked), window);
+	g_signal_connect (window->settings, "notify::process-tree",
+		G_CALLBACK (xtm_process_window_process_tree_changed), window);
+
 	window->filter_searchbar = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-searchbar"));
 	{
 		GtkWidget *toolitem;
@@ -366,6 +413,8 @@ xtm_process_window_init (XtmProcessWindow *window)
 		g_signal_connect (window->treeview, "scroll-event", G_CALLBACK (xtm_process_window_unstick_view_event), window);
 		g_signal_connect (window->treeview, "cursor-changed", G_CALLBACK (xtm_process_window_unstick_view_cursor), window);
 	}
+
+	xtm_process_window_update_expand_trees_button (window);
 
 	window->filter_entry = GTK_WIDGET (gtk_builder_get_object (window->builder, "filter-entry"));
 	g_signal_connect (G_OBJECT (window->filter_entry), "icon-press", G_CALLBACK (filter_entry_icon_pressed_cb), NULL);
