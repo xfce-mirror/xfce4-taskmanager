@@ -53,5 +53,8 @@ GtkWidget *xtm_process_tree_view_new (void);
 void xtm_process_tree_view_set_filter (XtmProcessTreeView *treeview, const gchar *cmd_filter);
 GtkTreeModel *xtm_process_tree_view_get_model (XtmProcessTreeView *treeview);
 void xtm_process_tree_view_highlight_pid (XtmProcessTreeView *treeview, GPid pid);
+gboolean xtm_process_tree_view_get_trees_expanded (XtmProcessTreeView *treeview);
+void xtm_process_tree_view_set_trees_expanded (XtmProcessTreeView *treeview, gboolean expanded);
+void xtm_process_tree_view_toggle_trees_expanded (XtmProcessTreeView *treeview);
 
 #endif /* !PROCESS_TREE_VIEW_H */

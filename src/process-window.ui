@@ -37,6 +37,15 @@
               </object>
             </child>
             <child>
+              <object class="GtkToolButton" id="button-expand-trees">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Collapse all process trees</property>
+                <property name="icon_name">pan-down-symbolic</property>
+              </object>
+            </child>
+            <child>
               <object class="GtkToolItem" id="filter-toolitem">
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
