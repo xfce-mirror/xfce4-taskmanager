@@ -861,7 +861,7 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
 		gboolean tree;
 		g_object_get (object, pspec->name, &tree, NULL);
 		gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), tree ? treeview->model_tree : treeview->model_filter);
-		g_signal_handlers_disconnect_by_func (treeview->model_tree, (gpointer)G_CALLBACK (expand_row), treeview);
+		g_signal_handlers_disconnect_by_func (treeview->model_tree, expand_row, treeview);
 		if (tree)
 		{
 			/* Re-entering tree mode restores the expand-all default. */
@@ -906,9 +906,12 @@ xtm_process_tree_view_set_trees_expanded (XtmProcessTreeView *treeview, gboolean
 	if (!tree)
 		return;
 
+	if (treeview->trees_expanded == expanded)
+		return;
+
 	treeview->trees_expanded = expanded;
 
-	g_signal_handlers_disconnect_by_func (treeview->model_tree, (gpointer)G_CALLBACK (expand_row), treeview);
+	g_signal_handlers_disconnect_by_func (treeview->model_tree, expand_row, treeview);
 
 	if (expanded)
 	{
