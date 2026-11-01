@@ -396,6 +396,18 @@ save_columns_positions (XtmProcessTreeView *treeview)
 	g_object_set (treeview->settings, "columns-positions", columns_positions, NULL);
 }
 
+static GtkWidget *
+get_our_attached_widget (GtkMenuItem *mi)
+{
+	GtkWidget *widget;
+	do
+	{
+		widget = gtk_menu_get_attach_widget (GTK_MENU (gtk_widget_get_parent (GTK_WIDGET (mi))));
+	} while (GTK_IS_MENU_ITEM (widget));
+
+	return widget;
+}
+
 static void
 cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 {
@@ -412,7 +424,8 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 	if ((xtm_signal == XTM_SIGNAL_TERMINATE && prompt_terminate_task) || xtm_signal == XTM_SIGNAL_KILL)
 	{
 		gint res;
-		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
+		GtkWindow *parent = GTK_WINDOW (get_our_attached_widget (mi));
+		dialog = gtk_message_dialog_new (parent, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
 			(xtm_signal == XTM_SIGNAL_TERMINATE) ? _("Terminate task") : _("Kill task"));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 			_("Are you sure you want to send the %s signal to the PID %d?"),
@@ -427,7 +440,8 @@ cb_send_signal (GtkMenuItem *mi, gpointer user_data)
 
 	if (!send_signal_to_pid (pid, xtm_signal))
 	{
-		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+		GtkWindow *parent = GTK_WINDOW (get_our_attached_widget (mi));
+		dialog = gtk_message_dialog_new (parent, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
 			_("Error sending signal"));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 			_("An error was encountered by sending a signal to the PID %d. "
@@ -459,7 +473,8 @@ cb_set_priority (GtkMenuItem *mi, gpointer user_data)
 
 	if (!set_priority_to_pid (pid, priority))
 	{
-		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+		GtkWindow *parent = GTK_WINDOW (get_our_attached_widget (mi));
+		GtkWidget *dialog = gtk_message_dialog_new (parent, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
 			_("Error setting priority"));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 			_("An error was encountered by setting a priority to the PID %d. "
@@ -624,9 +639,10 @@ create_popup_menu (XtmProcessTreeView *treeview, GPid pid, guint activate_time)
 	static GtkWidget *menu = NULL;
 
 	if (menu != NULL)
-		gtk_widget_destroy (menu);
+		gtk_menu_detach (GTK_MENU (menu));
 
 	menu = build_context_menu (treeview, pid);
+	gtk_menu_attach_to_widget (GTK_MENU (menu), gtk_widget_get_toplevel (GTK_WIDGET (treeview)), NULL);
 	return menu;
 }
 

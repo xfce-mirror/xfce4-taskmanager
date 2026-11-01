@@ -16,9 +16,9 @@
 
 #define XTM_TYPE_PROCESS_WINDOW (xtm_process_window_get_type ())
 G_DECLARE_FINAL_TYPE (XtmProcessWindow, xtm_process_window, XTM, PROCESS_WINDOW, GtkWidget)
-#define XTM_SHOW_MESSAGE(type, title, message, ...) \
+#define XTM_SHOW_MESSAGE(parent, type, title, message, ...) \
 	{ \
-		GtkWidget *dialog = gtk_message_dialog_new (NULL, 0, type, GTK_BUTTONS_OK, title); \
+		GtkWidget *dialog = gtk_message_dialog_new (parent, 0, type, GTK_BUTTONS_OK, title); \
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), message, ##__VA_ARGS__); \
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Task Manager")); \
 		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE); \
