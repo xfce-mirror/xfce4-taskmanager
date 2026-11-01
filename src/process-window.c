@@ -195,12 +195,12 @@ xwininfo_clicked_cb (GtkButton *button __unused, gpointer user_data)
 		&prop);
 	if (status == BadWindow)
 	{
-		XTM_SHOW_MESSAGE (GTK_MESSAGE_INFO,
+		XTM_SHOW_MESSAGE (GTK_WINDOW (window->window), GTK_MESSAGE_INFO,
 			_("Bad Window"), _("Window id 0x%lx does not exist!"), selected_window);
 	}
 	if (status != Success)
 	{
-		XTM_SHOW_MESSAGE (GTK_MESSAGE_ERROR,
+		XTM_SHOW_MESSAGE (GTK_WINDOW (window->window), GTK_MESSAGE_ERROR,
 			_("XGetWindowProperty failed"), _("XGetWindowProperty failed!"));
 	}
 	else
@@ -212,7 +212,7 @@ xwininfo_clicked_cb (GtkButton *button __unused, gpointer user_data)
 		}
 		else
 		{
-			XTM_SHOW_MESSAGE (GTK_MESSAGE_INFO,
+			XTM_SHOW_MESSAGE (GTK_WINDOW (window->window), GTK_MESSAGE_INFO,
 				_("No PID found"), _("No PID found for window 0x%lx."), selected_window);
 		}
 		g_free (prop);
