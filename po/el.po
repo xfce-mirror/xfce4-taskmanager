@@ -9,7 +9,7 @@
 # ebal <ebalaskas@ebalaskas.gr>, 2008
 # ebal <ebalaskas@ebalaskas.gr>, 2008
 # Ioannis LM, 2023
-# Ioannis LM, 2023
+# Ioannis LM, 2023,2026
 # Stavros Giannouris <stavrosg@hellug.gr>, 2008
 # Πέτρος Σαμαράς <psamaras1@gmail.com>, 2017
 # Στέργιος Γέμελας <sgemelas@protonmail.com>, 2021
@@ -17,9 +17,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:42+0200\n"
+"POT-Creation-Date: 2026-10-24 13:00+0200\n"
 "PO-Revision-Date: 2013-07-03 18:41+0000\n"
-"Last-Translator: Στέργιος Γέμελας <sgemelas@protonmail.com>, 2021\n"
+"Last-Translator: Ioannis LM, 2023,2026\n"
 "Language-Team: Greek (http://app.transifex.com/xfce/xfce-apps/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,8 +28,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: xfce4-taskmanager.desktop.in:3 xfce4-taskmanager.desktop.in:5
-#: src/main.c:221 src/process-tree-view.c:442 src/process-tree-view.c:458
-#: src/process-tree-view.c:490 src/process-window.ui:7
+#: src/main.c:226 src/process-tree-view.c:420 src/process-tree-view.c:436
+#: src/process-tree-view.c:468 src/process-window.ui:7
 #: src/settings-dialog.c:142
 msgid "Task Manager"
 msgstr "Διαχειριστής διεργασιών"
@@ -46,7 +46,7 @@ msgstr "εποπτεία;πόροι;σύστημα;διεργασία;απόδο
 msgid "Quit"
 msgstr "Κλείσιμο"
 
-#: src/main.c:169
+#: src/main.c:174
 #, c-format
 msgid ""
 "<b>Processes:</b> %u\n"
@@ -55,211 +55,219 @@ msgid ""
 "<b>Swap:</b> %s"
 msgstr "<b>Διεργασίες:</b> %u\n<b>Επεξεργαστής:</b> %.0f%%\n<b>Μνήμη:</b> %s\n<b>Swap:</b> %s"
 
-#: src/main.c:254
+#: src/main.c:258
 msgid "Xfce Notify Daemon"
 msgstr "Υπηρεσία ειδοποιήσεων Xfce"
 
-#: src/main.c:256
+#: src/main.c:260
 msgid "Settings daemon is unavailable"
 msgstr "Η υπηρεσία ρυθμίσεων δεν είναι διαθέσιμη"
 
-#: src/process-statusbar.c:187 src/process-window.c:561
+#: src/process-statusbar.c:181 src/process-window.c:602
 #, c-format
 msgid "CPU: %s%%"
 msgstr "Επεξεργαστής: %s%%"
 
-#: src/process-statusbar.c:195 src/process-window.c:565
+#: src/process-statusbar.c:189 src/process-window.c:606
 #, c-format
 msgid "Memory: %s"
 msgstr "Μνήμη: %s"
 
-#: src/process-statusbar.c:203
+#: src/process-statusbar.c:197
 #, c-format
 msgid "Swap: %s"
 msgstr "Swap: %s"
 
-#: src/process-statusbar.c:218
+#: src/process-statusbar.c:212
 #, c-format
 msgid "Processes: %d"
 msgstr "Διεργασίες: %d"
 
-#: src/process-tree-view.c:153
+#: src/process-tree-view.c:151
 msgid "Task"
 msgstr "Διεργασία"
 
-#: src/process-tree-view.c:164 src/settings-dialog.ui:359
+#: src/process-tree-view.c:162 src/settings-dialog.ui:359
 msgid "PID"
 msgstr "PID"
 
-#: src/process-tree-view.c:172 src/settings-dialog.ui:373
+#: src/process-tree-view.c:170 src/settings-dialog.ui:373
 msgid "PPID"
 msgstr "PPID"
 
-#: src/process-tree-view.c:180 src/settings-dialog.ui:387
+#: src/process-tree-view.c:178 src/settings-dialog.ui:387
 msgid "State"
 msgstr "Κατάσταση"
 
-#: src/process-tree-view.c:189
+#: src/process-tree-view.c:187
 msgid "VSZ"
 msgstr "VSZ"
 
-#: src/process-tree-view.c:197
+#: src/process-tree-view.c:195
 msgid "Group VSZ"
 msgstr "Group VSZ"
 
-#: src/process-tree-view.c:205
+#: src/process-tree-view.c:203
 msgid "RSS"
 msgstr "RSS"
 
-#: src/process-tree-view.c:213
+#: src/process-tree-view.c:211
 msgid "Group RSS"
 msgstr "Group RSS"
 
-#: src/process-tree-view.c:221 src/settings-dialog.ui:457
+#: src/process-tree-view.c:219 src/settings-dialog.ui:457
 msgid "UID"
 msgstr "UID"
 
-#: src/process-tree-view.c:229 src/settings-dialog.ui:471
+#: src/process-tree-view.c:227 src/settings-dialog.ui:471
 msgid "CPU"
 msgstr "CPU"
 
-#: src/process-tree-view.c:237 src/settings-dialog.ui:485
+#: src/process-tree-view.c:235 src/settings-dialog.ui:485
 msgid "Group CPU"
 msgstr "Group CPU"
 
 #. TRANSLATORS: “Prio.” is short for Priority, it appears in the tree view
 #. header.
-#: src/process-tree-view.c:246
+#: src/process-tree-view.c:244
 msgid "Prio."
 msgstr "Προτερ."
 
-#: src/process-tree-view.c:438
+#: src/process-tree-view.c:416
 msgid "Terminate task"
 msgstr "Τερματισμός διεργασίας"
 
-#: src/process-tree-view.c:438
+#: src/process-tree-view.c:416
 msgid "Kill task"
 msgstr "Βίαιος τερματισμός διεργασίας"
 
-#: src/process-tree-view.c:440
+#: src/process-tree-view.c:418
 #, c-format
 msgid "Are you sure you want to send the %s signal to the PID %d?"
 msgstr "Θέλετε σίγουρα να στείλετε σήμα %s στο PID %d;"
 
-#: src/process-tree-view.c:441
+#: src/process-tree-view.c:419
 msgid "terminate"
 msgstr "τερματισμού"
 
-#: src/process-tree-view.c:441
+#: src/process-tree-view.c:419
 msgid "kill"
 msgstr "βίαιου τερματισμού"
 
-#: src/process-tree-view.c:453
+#: src/process-tree-view.c:431
 msgid "Error sending signal"
 msgstr "Σφάλμα στην αποστολή του σήματος"
 
-#: src/process-tree-view.c:455
+#: src/process-tree-view.c:433
 #, c-format
 msgid ""
 "An error was encountered by sending a signal to the PID %d. It is likely you"
 " don't have the required privileges."
 msgstr "Προέκυψε σφάλμα στην αποστολή του σήματος για τη διεργασία με PID %d. Είναι πιθανό να μην έχετε τα απαραίτητα δικαιώματα."
 
-#: src/process-tree-view.c:485
+#: src/process-tree-view.c:463
 msgid "Error setting priority"
 msgstr "Σφάλμα στη ρύθμιση προτεραιότητας"
 
-#: src/process-tree-view.c:487
+#: src/process-tree-view.c:465
 #, c-format
 msgid ""
 "An error was encountered by setting a priority to the PID %d. It is likely "
 "you don't have the required privileges."
 msgstr "Προέκυψε σφάλμα στη ρύθμιση προτεραιότητας για την διεργασία με PID %d. Είναι πιθανό να μην έχετε τα κατάλληλα δικαιώματα."
 
-#: src/process-tree-view.c:575 src/process-tree-view.c:718
+#: src/process-tree-view.c:553 src/process-tree-view.c:696
 msgid "Stop"
 msgstr "Σταμάτημα"
 
-#: src/process-tree-view.c:582
+#: src/process-tree-view.c:560
 msgid "Continue"
 msgstr "Συνέχεια"
 
-#: src/process-tree-view.c:588
+#: src/process-tree-view.c:566
 msgid "Terminate"
 msgstr "Τερματισμός"
 
-#: src/process-tree-view.c:594
+#: src/process-tree-view.c:572
 msgid "Kill"
 msgstr "Βίαιος τερματισμός"
 
-#: src/process-tree-view.c:601
+#: src/process-tree-view.c:579
 msgid "Very low"
 msgstr "Πολύ χαμηλή"
 
-#: src/process-tree-view.c:606
+#: src/process-tree-view.c:584
 msgid "Low"
 msgstr "Χαμηλή"
 
-#: src/process-tree-view.c:611
+#: src/process-tree-view.c:589
 msgid "Normal"
 msgstr "Κανονική"
 
-#: src/process-tree-view.c:616
+#: src/process-tree-view.c:594
 msgid "High"
 msgstr "Υψηλή"
 
-#: src/process-tree-view.c:621
+#: src/process-tree-view.c:599
 msgid "Very high"
 msgstr "Πολύ υψηλή"
 
-#: src/process-tree-view.c:626 src/settings-dialog.ui:499
+#: src/process-tree-view.c:604 src/settings-dialog.ui:499
 msgid "Priority"
 msgstr "Προτεραιότητα"
 
 #. Same trick as above
-#: src/process-tree-view.c:630 src/process-tree-view.c:729
+#: src/process-tree-view.c:608 src/process-tree-view.c:707
 msgid "Copy command line"
 msgstr "Αντιγραφή της γραμμής εντολών"
 
-#: src/process-window.c:165
+#: src/process-window.c:94 src/process-window.ui:44
+msgid "Collapse all process trees"
+msgstr "Σύμπτυξη όλων των δενδρικών διαδικασιών"
+
+#: src/process-window.c:99
+msgid "Expand all process trees"
+msgstr "Ανάπτυξη όλων των δενδρικών διαδικασιών"
+
+#: src/process-window.c:199
 msgid "Bad Window"
 msgstr "Κακό παράθυρο"
 
-#: src/process-window.c:165
+#: src/process-window.c:199
 #, c-format
 msgid "Window id 0x%lx does not exist!"
 msgstr "Δεν υπάρχει ταυτότητα (id) του παραθύρου 0x%lx!"
 
-#: src/process-window.c:170
+#: src/process-window.c:204
 msgid "XGetWindowProperty failed"
 msgstr "Αποτυχία XGetWindowProperty"
 
-#: src/process-window.c:170
+#: src/process-window.c:204
 msgid "XGetWindowProperty failed!"
 msgstr "Απέτυχε το XGetWindowProperty!"
 
-#: src/process-window.c:182
+#: src/process-window.c:216
 msgid "No PID found"
 msgstr "Δε βρέθηκε PID"
 
-#: src/process-window.c:182
+#: src/process-window.c:216
 #, c-format
 msgid "No PID found for window 0x%lx."
 msgstr "Δεν βρέθηκε PID για το παράθυρο 0x%lx"
 
-#: src/process-window.c:381
+#: src/process-window.c:422
 msgid "Filter on process name"
 msgstr "Φίλτρο στο όνομα της διεργασίας"
 
-#: src/process-window.c:385
+#: src/process-window.c:426
 msgid "Starting task"
 msgstr "Έναρξη"
 
-#: src/process-window.c:385
+#: src/process-window.c:426
 msgid "Changing task"
 msgstr "Μεταβολή"
 
-#: src/process-window.c:385
+#: src/process-window.c:426
 msgid "Terminating task"
 msgstr "Τερματισμός"
 
@@ -271,7 +279,7 @@ msgstr "Ρυθμίσεις"
 msgid "Identify an open window by clicking on it."
 msgstr "Εντοπισμός ενός ανοιχτού παραθύρου κάνοντας κλικ επάνω του."
 
-#: src/process-window.ui:127
+#: src/process-window.ui:136
 msgid "You are using the root account, you may harm your system."
 msgstr "Χρησιμοποιείτε το λογαριασμό διαχειριστή, μπορεί να προκαλέσετε βλάβη στο σύστημα σας."
 
@@ -367,7 +375,7 @@ msgstr "Ομαδοποιημένα bytes στη μνήμη(Group RSS)"
 msgid "Columns"
 msgstr "Στήλες"
 
-#: src/task-manager.c:254 src/task-manager.c:257
+#: src/task-manager.c:208 src/task-manager.c:211
 #, c-format
 msgid "%s%%"
 msgstr "%s%%"
