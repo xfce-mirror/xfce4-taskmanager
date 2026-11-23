@@ -354,7 +354,7 @@ msgstr "Virtuele bytes"
 
 #: src/settings-dialog.ui:415
 msgid "Group Virtual Bytes"
-msgstr "Groepeer Virtuele Bytes"
+msgstr "Groepeer Virtuele bytes"
 
 #: src/settings-dialog.ui:429
 msgid "Resident Bytes"
@@ -362,7 +362,7 @@ msgstr "Residente bytes"
 
 #: src/settings-dialog.ui:443
 msgid "Group Resident Bytes"
-msgstr "Groepeer Residente Bytes"
+msgstr "Groepeer Residente bytes"
 
 #: src/settings-dialog.ui:520
 msgid "Columns"
